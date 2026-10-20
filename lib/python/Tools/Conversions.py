@@ -1,5 +1,5 @@
 from locale import format_string
-from time import localtime, time, strftime, strptime
+from time import localtime, strftime, strptime, time
 
 from Components.config import config
 

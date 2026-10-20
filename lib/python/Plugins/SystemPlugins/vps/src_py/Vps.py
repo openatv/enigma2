@@ -1,16 +1,17 @@
 from os import X_OK, access, chmod
 from time import localtime, strftime, time
-from enigma import eConsoleAppContainer, eEnv, eEPGCache, eServiceReference, eTimer, getBestPlayableServiceReference
+
+from enigma import eConsoleAppContainer, eEPGCache, eEnv, eServiceReference, eTimer, getBestPlayableServiceReference
 
 import NavigationInstance
-import Screens.Standby
-from Components.config import config
-from Components.TimerSanityCheck import TimerSanityCheck
 from RecordTimer import AFTEREVENT, RecordTimerEntry, parseEvent
-from Screens.MessageBox import MessageBox
 from ServiceReference import ServiceReference
 from timer import TimerEntry
 from Tools import Notifications
+from Components.config import config
+from Components.TimerSanityCheck import TimerSanityCheck
+from Screens.MessageBox import MessageBox
+import Screens.Standby
 from Tools.StbHardware import getFPWasTimerWakeup
 
 vps_exe = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/vps/vps")

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 19:03+0000\n"
+"POT-Creation-Date: 2026-10-19 19:43+0000\n"
 "PO-Revision-Date: 2026-08-16 18:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1349,9 +1349,6 @@ msgstr ""
 msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
 msgstr ""
 
-msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
-msgstr "'Bộ đệm trong giờ' hoặc 'số lượng sự kiện cuối cùng'. Để xóa các tập tin timeshift cũ hơn, điều kiện xảy ra đầu tiên được ưu tiên."
-
 msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr ""
 
@@ -1701,6 +1698,9 @@ msgstr ""
 "Một bản ghi âm đã được bắt đầu:\n"
 "%s"
 
+msgid "A recording has priority. Time shift is being stopped."
+msgstr ""
+
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -1727,6 +1727,9 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Không tìm thấy công cụ cần thiết (%s)."
+
+msgid "A storage check is still running. Save these settings without waiting for it?"
+msgstr ""
 
 msgid ""
 "A timer failed to record!\n"
@@ -2208,9 +2211,6 @@ msgstr ""
 
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Điều chỉnh vị trí dọc của các chữ cái được sử dụng cho teletext."
-
-msgid "Adjusts compensation for hardware buffer latency for DM9x0."
-msgstr ""
 
 msgid "Adult"
 msgstr ""
@@ -2766,9 +2766,6 @@ msgstr "Người dùng sk (với mặc định là 'không')"
 msgid "Ask user (with default of 'Yes')"
 msgstr "Hỏi người dùng (với mặc định là 'có')"
 
-msgid "Aspect"
-msgstr "Tỷ lệ khung hình"
-
 msgid "Aspect Ratio"
 msgstr ""
 
@@ -3007,7 +3004,7 @@ msgstr ""
 msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
 msgstr ""
 
-msgid "Automatically start time shift after"
+msgid "Automatically start time shift"
 msgstr "Tự động bắt đầu timeshift sau"
 
 msgid "Automatically turn on external subtitles"
@@ -3116,9 +3113,6 @@ msgstr ""
 
 msgid "Back, upper USB"
 msgstr "Quay lại, USB trên"
-
-msgid "Back/Recall"
-msgstr "Quay lại / Nhớ lại"
 
 msgid "Background"
 msgstr "Lý lịch"
@@ -3532,6 +3526,9 @@ msgstr "Vương quốc Bru-nây"
 
 msgid "Buffer Management"
 msgstr ""
+
+msgid "Buffer age limit"
+msgstr "Giới hạn bộ đệm thời gian [tính bằng giờ]"
 
 #, python-format
 msgid "Buffering %d%%"
@@ -4319,6 +4316,12 @@ msgstr ""
 msgid "Check for PDC availability on each service."
 msgstr ""
 
+msgid "Check for free space"
+msgstr "Timeshift kiểm tra không gian miễn phí?"
+
+msgid "Check for older files"
+msgstr "Kiểm tra thời gian cho các tập tin cũ hơn [tính bằng phút]"
+
 msgid "Check power and input state from TV"
 msgstr "Kiểm tra nguồn và trạng thái đầu vào từ TV"
 
@@ -4339,6 +4342,9 @@ msgstr ""
 
 msgid "Checking file system..."
 msgstr "Kiểm tra hệ thống tập tin ..."
+
+msgid "Checking storage directory..."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -5300,9 +5306,6 @@ msgstr "Nội dung"
 msgid "Content does not fit on DVD!"
 msgstr "Nội dung không phù hợp với DVD!"
 
-msgid "Context"
-msgstr "Bối cảnh"
-
 msgid "Continent"
 msgstr ""
 
@@ -5624,9 +5627,6 @@ msgstr "Tạo tập tin AP và SC"
 msgid "Creating file system"
 msgstr "Tạo hệ thống tập tin"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Tạo tập tin Hardlink đến Timeshift không thành công!"
-
 #, python-format
 msgid ""
 "Creating or activating the swap file failed.\n"
@@ -5887,6 +5887,9 @@ msgid "DAB+ channel %s"
 msgstr ""
 
 msgid "DAB+ decoder back end not installed"
+msgstr ""
+
+msgid "DAB+ front display"
 msgstr ""
 
 msgid "DAB+ scan failed; existing bouquets were kept."
@@ -6481,6 +6484,9 @@ msgstr "Xóa plugin"
 msgid "Delete Timer"
 msgstr "Xóa bộ đếm thời gian"
 
+msgid "Delete after zap"
+msgstr "Timeshift đệm xóa sau zap?"
+
 msgid "Delete all duplicated lines"
 msgstr ""
 
@@ -6798,10 +6804,6 @@ msgstr ""
 
 msgid "Directory"
 msgstr "Danh mục"
-
-#, python-format
-msgid "Directory '%s' can't be linked to recordings!"
-msgstr ""
 
 #, python-format
 msgid "Directory '%s' does not exist!"
@@ -7393,9 +7395,6 @@ msgstr ""
 msgid "ECM information for '%s'"
 msgstr ""
 
-msgid "EJECTCD"
-msgstr "ĐỐI TƯỢNG"
-
 msgid "EPG"
 msgstr "EPG"
 
@@ -7663,9 +7662,6 @@ msgstr "Kích hoạt%s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Kích hoạt 5V cho ăng ten hoạt động"
 
-msgid "Enable Autorecord"
-msgstr "Bật tự động ghi"
-
 msgid "Enable BT audio"
 msgstr "Kích hoạt âm thanh BT"
 
@@ -7767,6 +7763,9 @@ msgstr "Cho phép tự động quét nhanh"
 #, python-format
 msgid "Enable auto fast scan for '%s'"
 msgstr "Cho phép tự động quét nhanh cho%s"
+
+msgid "Enable auto record"
+msgstr "Bật tự động ghi"
 
 msgid "Enable automatic shares"
 msgstr ""
@@ -7973,9 +7972,6 @@ msgstr "Mã hóa"
 msgid "Encryption And Descrambling"
 msgstr ""
 
-msgid "End"
-msgstr "Cuối cùng"
-
 msgid "End Alternatives Edit"
 msgstr "kết thúc thay thế chỉnh sửa"
 
@@ -8122,9 +8118,6 @@ msgstr ""
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr ""
 
-msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
-msgstr ""
-
 msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
 msgstr ""
 
@@ -8243,9 +8236,6 @@ msgstr ""
 
 msgid "Entry text only"
 msgstr ""
-
-msgid "Epg/Guide"
-msgstr "Epg / Hướng dẫn"
 
 msgid "Equal to"
 msgstr "Tương đương với"
@@ -8618,8 +8608,14 @@ msgstr ""
 msgid "Event View Context Menu"
 msgstr "Menu sự kiện"
 
+msgid "Event based file splitting"
+msgstr "Timeshift chia tách tập tin dựa trên sự kiện"
+
 msgid "Event font size"
 msgstr "Cỡ chữ sự kiện"
+
+msgid "Event limit"
+msgstr "Timeshift các sự kiện cuối cùng giới hạn [số lượng sự kiện]"
 
 msgid "Event name only"
 msgstr "Chỉ tên sự kiện"
@@ -8847,9 +8843,6 @@ msgstr "F2"
 
 msgid "F3"
 msgstr "F3"
-
-msgid "F4"
-msgstr "F4"
 
 msgid "FBC SCR (Unicable/JESS)"
 msgstr ""
@@ -9929,9 +9922,6 @@ msgstr "Cài đặt ghi HDMI-IN"
 msgid "HDMI-In Recording Settings"
 msgstr "Cài đặt ghi HDMI-IN"
 
-msgid "HDMIin"
-msgstr "HDMI trong"
-
 msgid "HDR OSD adjustment"
 msgstr ""
 
@@ -10177,9 +10167,6 @@ msgstr "Tây Ban Nha 30.0w"
 
 #, fuzzy
 msgid "Historical"
-msgstr "Lịch sử"
-
-msgid "History"
 msgstr "Lịch sử"
 
 msgid "History Prev/Next"
@@ -10511,14 +10498,8 @@ msgstr ""
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Nếu các bản ghi đang sử dụng không gian tối đa đã đặt, phần lớn nhất sẽ bị xóa."
 
-msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
-msgstr ""
-
 msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr ""
-
-msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
-msgstr "Nếu không gian trống nhỏ hơn giá trị cài đặt, thì sẽ thực hiện một nỗ lực để xóa các tệp timeshift cũ."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr ""
@@ -10622,9 +10603,6 @@ msgstr "Nhập từ URL máy thu từ xa"
 
 msgid "Import remote receiver URL"
 msgstr "Nhập URL máy thu từ xa"
-
-msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
-msgstr "Ngoài kiểm tra khi bắt đầu sự kiện, có thể sử dụng kiểm tra lặp đi lặp lại, để các điều kiện 'giới hạn bộ đệm tính theo giờ' hoặc 'kiểm tra không gian trống' được phát hiện trước đó."
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "Trong chế độ chuyên gia, định cấu hình bộ chỉnh nào sẽ được ưu tiên cho bản ghi, khi có nhiều hơn một bộ chỉnh."
@@ -10774,9 +10752,6 @@ msgstr "Tiếng Indonesia"
 
 msgid "Info"
 msgstr "Thông tin"
-
-msgid "Info (EPG)"
-msgstr "Thông tin (EPG)"
 
 msgid "Info button (long)"
 msgstr "Nút thông tin (dài)"
@@ -11293,9 +11268,6 @@ msgstr ""
 msgid "Kiribati"
 msgstr "Kiribati"
 
-msgid "Kodi"
-msgstr ""
-
 msgid "Kodi Add-on Packages"
 msgstr ""
 
@@ -11694,9 +11666,6 @@ msgstr ""
 msgid "List of storage devices"
 msgstr "Danh sách các thiết bị lưu trữ"
 
-msgid "List/Fav"
-msgstr "Danh sách / Fav"
-
 msgid "Lists reloaded!"
 msgstr "Danh sách tải lại!"
 
@@ -11961,9 +11930,6 @@ msgstr "MAC"
 msgid "MORE"
 msgstr "HƠN"
 
-msgid "MOUSE"
-msgstr "CHUỘT"
-
 msgid "MSC audio frame quality"
 msgstr ""
 
@@ -12000,9 +11966,6 @@ msgid "Magazines/Reports/Documentary"
 msgstr "tạp chí / báo cáo / phim tài liệu"
 
 msgid "Magenta"
-msgstr ""
-
-msgid "Magic"
 msgstr ""
 
 msgid "Main Menu"
@@ -12149,9 +12112,6 @@ msgstr ""
 msgid "Mark As Dedicated 3D Service"
 msgstr "Đánh dấu dịch vụ là dịch vụ 3D chuyên dụng"
 
-msgid "Mark/Portal/Playlist"
-msgstr "Đánh dấu / Cổng thông tin / Danh sách phát"
-
 #, fuzzy
 msgid "Marker Actions"
 msgstr "Thao tác nhanh"
@@ -12217,9 +12177,6 @@ msgstr "Mayotte"
 
 msgid "Measured current"
 msgstr ""
-
-msgid "Media"
-msgstr "Phương tiện truyền thông"
 
 msgid "Media Center"
 msgstr "Trung tâm Truyền thông"
@@ -13782,19 +13739,6 @@ msgstr ""
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "Không đủ dung lượng đĩa. Vui lòng giải phóng không gian đĩa và thử lại. (Yêu cầu%d MB,%d MB khả dụng)"
 
-#, python-format
-msgid ""
-"Not enough free disk space!\n"
-"\n"
-"Filesize: %sMB\n"
-"Free Space: %sMB\n"
-"Path: %s"
-msgstr ""
-"Không đủ dung lượng đĩa miễn phí!\n"
-"Kích thước tệp:%sMB\n"
-"Tự do:%sMB\n"
-"Đường dẫn:%s"
-
 msgid "Not found"
 msgstr ""
 
@@ -14006,9 +13950,6 @@ msgstr ""
 
 msgid "Ojibwa"
 msgstr ""
-
-msgid "Older files in the time shift directory are removed on every event change."
-msgstr "Các tệp cũ hơn trong thư mục timeshift được xóa trên mỗi thay đổi sự kiện."
 
 msgid "Olympic blue"
 msgstr ""
@@ -14335,9 +14276,6 @@ msgstr ""
 msgid "Opkg Log Actions"
 msgstr ""
 
-msgid "Option"
-msgstr "Tùy chọn"
-
 msgid "Option to disable picons on the InfoBar."
 msgstr "Tùy chọn tắt picons trên Infobar"
 
@@ -14476,9 +14414,6 @@ msgstr "TRANG LÊN / XUỐNG"
 msgid "PAL"
 msgstr "PAL"
 
-msgid "PC"
-msgstr "PC"
-
 msgid "PCM Multichannel"
 msgstr "PCM đa kênh"
 
@@ -14502,10 +14437,6 @@ msgstr ""
 msgid "PIN code needed"
 msgstr "Mã PIN cần thiết"
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP"
-msgstr ""
-
 msgid "PLP ID"
 msgstr "PLP ID"
 
@@ -14523,9 +14454,6 @@ msgstr "Bảng điều khiển"
 
 msgid "PRIMETIME"
 msgstr "TIẾNG VIỆT"
-
-msgid "PVR"
-msgstr "PVR"
 
 msgid "Package"
 msgstr ""
@@ -15655,9 +15583,6 @@ msgstr "Hồ sơ"
 msgid "Profile: Local receiver"
 msgstr "Hồ sơ: Hộp người dùng"
 
-msgid "Program"
-msgstr "Chương trình"
-
 #, python-format
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr ""
@@ -15777,9 +15702,6 @@ msgstr ""
 
 msgid "Protocol"
 msgstr "Giao thức"
-
-msgid "Prov"
-msgstr "Chứng minh"
 
 msgid "Provider"
 msgstr "Nhà cung cấp"
@@ -15908,6 +15830,9 @@ msgstr ""
 msgid "RAM temperature"
 msgstr ""
 
+msgid "RAM time shift cannot be saved as a recording."
+msgstr ""
+
 msgid "RC custom code"
 msgstr ""
 
@@ -15988,6 +15913,9 @@ msgid "Radio Channel Selection"
 msgstr "Lựa chọn kênh radio"
 
 msgid "Radio Channel Selection Actions"
+msgstr ""
+
+msgid "Radio text"
 msgstr ""
 
 msgid "Raise and lower the CPU frequency gradually depending on the load."
@@ -17152,9 +17080,6 @@ msgstr "Rwanda"
 msgid "Réunion"
 msgstr "Sum họp"
 
-msgid "SAT"
-msgstr "SAT"
-
 msgid "SAT input"
 msgstr ""
 
@@ -17396,6 +17321,9 @@ msgstr ""
 msgid "Save the right column directory location on exit."
 msgstr ""
 
+msgid "Save these settings anyway?"
+msgstr ""
+
 msgid "Save time shift as movie and continue recording"
 msgstr "Lưu timeshift như phim và tiếp tục ghi"
 
@@ -17430,9 +17358,6 @@ msgstr ""
 
 msgid "Saving EPG Cache..."
 msgstr "Lưu bộ nhớ cache EPG ..."
-
-msgid "Saving time shift buffer, this might take a while."
-msgstr "Tiết kiệm timeshift như phim bây giờ. Có lẽ sẽ mất một lúc!"
 
 msgid "Saving time shift files"
 msgstr "Lưu tập tin Timeshift"
@@ -17630,9 +17555,6 @@ msgstr ""
 msgid "Search west"
 msgstr "Tìm kiếm về phía tây"
 
-msgid "Search/WEB"
-msgstr "Tìm kiếm / WEB"
-
 msgid "Searching"
 msgstr "Đang tìm kiếm"
 
@@ -17712,14 +17634,8 @@ msgstr ""
 msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
 msgstr "Chọn 'được bật' nếu bộ chỉnh này có cáp tín hiệu được kết nối, nếu không thì chọn 'không có gì được kết nối'."
 
-msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr "Nếu được đặt thành 'không', timeshift chỉ sử dụng một tệp bộ đệm. Chúng tôi khuyên bạn nên 'Kiểm tra thời gian cho các tệp cũ hơn [tính bằng phút]' và 'Kiểm tra thời gian để có dung lượng trống?' để điều chỉnh."
-
 msgid "Select 'No' to only write a log message to the debug log file."
 msgstr "nếu được đặt thành 'không', chỉ một thông báo gỡ lỗi được ghi vào nhật ký gỡ lỗi "
-
-msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
-msgstr "Nếu được đặt thành 'không', bạn có thể lưu các sự kiện cũ hơn ngay cả sau khi hạ gục hoặc gián đoạn timeshift."
 
 msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Chọn 'phân cực' nếu sử dụng LNB 'phổ quát', nếu không hãy tham khảo bảng thông số LNB của bạn."
@@ -17762,9 +17678,6 @@ msgstr "Nếu được đặt thành 'có; infobar sẽ vẫn hiển thị vĩnh
 
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr ""
-
-msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
-msgstr "Nếu được đặt thành 'có', cho phép bạn sử dụng thanh tìm kiếm để chuyển đến một điểm trong sự kiện."
 
 msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
 msgstr "Với tùy chọn này được đặt thành 'có', danh sách kênh sẽ luôn hiển thị cho bạn màn hình bó hoa trước tiên. Nếu được đặt thành 'không', bó hoa hiện tại sẽ được mở."
@@ -18105,11 +18018,20 @@ msgstr ""
 msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
+msgid "Select a duration compensation for hardware buffer latency for DM9x0."
+msgstr ""
+
+msgid "Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr ""
+
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr ""
 
 msgid "Select a menu item"
+msgstr ""
+
+msgid "Select a minimum amount of free space. When the free space falls below this value, cleanup tries to remove old unused time shift buffers. Buffers being played or saved remain protected so this is not a guaranteed free space reserve."
 msgstr ""
 
 msgid "Select a movie"
@@ -18154,6 +18076,9 @@ msgstr ""
 msgid "Select a tuner"
 msgstr "Chọn bộ chỉnh"
 
+msgid "Select a writable directory on a mounted storage device or network share. Internal flash and RAM are not permitted. Hard links are not required. Press 'OK' to select a directory."
+msgstr ""
+
 msgid "Select action"
 msgstr "Chọn hành động"
 
@@ -18187,6 +18112,9 @@ msgstr ""
 
 msgid "Select channel audio"
 msgstr "Chọn kênh audio"
+
+msgid "Select channel set"
+msgstr ""
 
 msgid "Select copy destination for:"
 msgstr "Chọn đích sao chép cho:"
@@ -18311,9 +18239,6 @@ msgstr ""
 msgid "Select if this timer is to be repeated."
 msgstr ""
 
-msgid "Select if time shift must continue when set to record."
-msgstr "Chọn nếu timeshift phải tiếp tục khi được đặt thành ghi."
-
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Chọn nếu bạn muốn chế độ Dịch vụ phụ được kích hoạt."
 
@@ -18437,10 +18362,16 @@ msgstr ""
 msgid "Select the action to perform when the timer ends."
 msgstr ""
 
+msgid "Select the action to take when leaving time shift due to a service change. This option is used when the time shift stop warning is enabled."
+msgstr ""
+
 msgid "Select the action to take when the EnergySaver timer activates."
 msgstr ""
 
 msgid "Select the action to take when the SleepTimer activates."
+msgstr ""
+
+msgid "Select the age after which unused time shift buffers may be removed during cleanup. Buffers still being recorded, played or saved remain protected. This setting does not limit the length of an active buffer."
 msgstr ""
 
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
@@ -18620,6 +18551,9 @@ msgstr ""
 msgid "Select the input connector you want to use."
 msgstr ""
 
+msgid "Select the interval for checking buffer age and free space in addition to checks on event changes. Disabled means there is no periodic check. Cleanup removes unused temporary buffers and does not shorten an active buffer."
+msgstr ""
+
 msgid "Select the last item in list or move to the end of text"
 msgstr ""
 
@@ -18692,6 +18626,9 @@ msgid "Select the next item in list or move the cursor right"
 msgstr ""
 
 msgid "Select the next item in the list"
+msgstr ""
+
+msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
 msgid "Select the number of times to retry a task if an error occurs when running the task."
@@ -19340,9 +19277,6 @@ msgstr "Đặt vị trí mặc định cho bản ghi tức thì của bạn. Nh�
 msgid "Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Đặt vị trí mặc định cho các tập tin timeshift của bạn. Nhấn 'OK' để thêm các vị trí mới, chọn trái / phải để chọn một vị trí hiện có."
-
 msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Đặt vị trí mặc định cho bản ghi của bạn. Nhấn 'OK' để thêm các vị trí mới, chọn trái / phải để chọn một vị trí hiện có."
 
@@ -19467,9 +19401,6 @@ msgstr ""
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
-
-msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
-msgstr "Nếu được đặt thành 'có', hãy bật autorecord để tự động chuyển nền thời gian"
 
 msgid "Set to the desired primetime hour."
 msgstr "Đặt thời gian gốc mong muốn (giờ)."
@@ -19989,6 +19920,9 @@ msgstr ""
 msgid "Show animation while busy"
 msgstr "Hiển thị hình ảnh động trong khi bận rộn"
 
+msgid "Show available DAB+ reception and decoding information above the radio text. This option applies to both USB and DVB reception."
+msgstr ""
+
 msgid "Show background in Radio Mode"
 msgstr "Hiển thị nền trong Chế độ radio"
 
@@ -20258,6 +20192,9 @@ msgstr ""
 msgid "Show previous system information screen"
 msgstr ""
 
+msgid "Show radio text, slideshow pictures or only the station logo on the receiver's color display. Slideshow mode falls back to the station logo; logo-only mode never shows slides. If no station logo is available, the DAB+ logo is shown. This setting is independent of the TV slideshow."
+msgstr ""
+
 msgid "Show record indicator"
 msgstr "Hiển thị chỉ số hồ sơ"
 
@@ -20352,6 +20289,9 @@ msgstr ""
 msgid "Show task messages if File Commander is not running and all task are completed."
 msgstr ""
 
+msgid "Show technical status line"
+msgstr ""
+
 msgid "Show the CCcam Info Screen"
 msgstr ""
 
@@ -20410,7 +20350,7 @@ msgstr "Hiển thị Hướng dẫn chương trình dọc"
 msgid "Show warning before restart"
 msgstr "Hiển thị cảnh báo trước khi khởi động lại"
 
-msgid "Show warning when time shift is stopped"
+msgid "Show warning when time shift stopped"
 msgstr "Hiển thị cảnh báo khi dừng timeshift"
 
 msgid "Show watch status"
@@ -20421,6 +20361,9 @@ msgid "Show/Game show"
 msgstr "Chương trình trò chơi"
 
 msgid "Show/Hide Actions"
+msgstr ""
+
+msgid "Show/Hide channel name"
 msgstr ""
 
 msgid "Show/Hide focus bar"
@@ -20621,9 +20564,6 @@ msgstr ""
 msgid "Skip forward (enter time)"
 msgstr "bỏ qua phía trước (nhập thời gian)"
 
-msgid "Skip jumping to live while timeshifting with plugins"
-msgstr ""
-
 msgid "Skip network setup"
 msgstr ""
 
@@ -20645,9 +20585,6 @@ msgstr ""
 
 msgid "Skip to 0% (start) position"
 msgstr ""
-
-msgid "Sleep"
-msgstr "Ngủ"
 
 msgid "Sleep Timer"
 msgstr "Hẹn giờ ngủ"
@@ -20724,6 +20661,9 @@ msgstr ""
 
 msgid "Slide top to bottom"
 msgstr "Trượt từ trên xuống dưới"
+
+msgid "Slideshow / station logo"
+msgstr ""
 
 #, python-format
 msgid "Slot %d"
@@ -21304,6 +21244,9 @@ msgstr ""
 msgid "Station"
 msgstr ""
 
+msgid "Station logo only"
+msgstr ""
+
 msgid "Status"
 msgstr "Bắt đầu"
 
@@ -21324,6 +21267,9 @@ msgstr ""
 
 msgid "Status:"
 msgstr "Bắt đầu:"
+
+msgid "Stay in time shift at buffer end (for plugins)"
+msgstr ""
 
 msgid "Step"
 msgstr ""
@@ -21423,10 +21369,6 @@ msgstr ""
 msgid "Stopping Softcam"
 msgstr "Dừng Softcam"
 
-#, fuzzy
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Mốc timeshift trong khi ghi âm?"
-
 msgid "Storage / Disk Information"
 msgstr ""
 
@@ -21457,6 +21399,10 @@ msgstr "không tìm thấy!"
 #, fuzzy
 msgid "Storage device not writable!"
 msgstr "không thể ghi được!"
+
+#, python-format
+msgid "Storage directory '%s' is unavailable or not writable."
+msgstr ""
 
 msgid "Store position"
 msgstr "Vị trí cửa hàng"
@@ -22296,6 +22242,12 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr ""
 
+msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
+msgstr ""
+
+msgid "The current time shift buffer is no longer available."
+msgstr ""
+
 #, python-format
 msgid "The custom mount point for '%s' is empty!"
 msgstr ""
@@ -22330,13 +22282,6 @@ msgstr ""
 #, python-format
 msgid "The file '%s' has been changed. Do you want to save it?"
 msgstr ""
-
-msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Hệ thống tập tin trên Timeshift-Device của bạn không hỗ trợ các liên kết cứng.\n"
-"Hãy chắc chắn rằng nó được định dạng trong EXT2, EXT3 hoặc EXT4!"
 
 #, python-format
 msgid "The following files are related to '%s':"
@@ -22413,6 +22358,9 @@ msgstr "Kết quả đã được ghi vào % s."
 msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
 msgstr ""
 
+msgid "The running Enigma2 version cannot safely save an active time shift buffer."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr "Mã PIN đã lưu đã bị xóa."
 
@@ -22440,6 +22388,9 @@ msgid ""
 "Do that now or extend the timer?"
 msgstr ""
 
+msgid "The storage check did not finish. Please check the device or network and try again."
+msgstr ""
+
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Thời gian được nhân với bộ đếm lặp lại hiện tại."
 
@@ -22450,9 +22401,16 @@ msgstr ""
 "Thời gian bộ đệm cho timeshift vượt quá giới hạn chỉ định trong cài đặt.\n"
 "Bạn muốn làm gì ?"
 
-msgid ""
-"The time shift storage device is not available.\n"
-"Please check the device and the time shift path."
+msgid "The time shift buffer is not available."
+msgstr ""
+
+msgid "The time shift recording was saved, but a temporary recording could not be removed."
+msgstr ""
+
+msgid "The time shift storage device is not available. Please check the device and the time shift path."
+msgstr ""
+
+msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr ""
 
 #, python-format
@@ -22877,38 +22835,20 @@ msgstr "Khoảng thời gian lặp lại bước nhảy để tiến / lùi nhan
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Time jump: Use normal fast forward for speeds"
 
-msgid "Time shift buffer delete after zap"
-msgstr "Timeshift đệm xóa sau zap?"
-
-msgid "Time shift buffer limit"
-msgstr "Giới hạn bộ đệm thời gian [tính bằng giờ]"
-
 msgid "Time shift buffer location"
 msgstr "Địa điểm hẹn giờ"
 
-msgid "Time shift checking for free space"
-msgstr "Timeshift kiểm tra không gian miễn phí?"
-
-msgid "Time shift checking for older files"
-msgstr "Kiểm tra thời gian cho các tập tin cũ hơn [tính bằng phút]"
-
-msgid "Time shift event based file splitting"
-msgstr "Timeshift chia tách tập tin dựa trên sự kiện"
-
-msgid "Time shift event limit"
-msgstr "Timeshift các sự kiện cuối cùng giới hạn [số lượng sự kiện]"
+msgid "Time shift could not be started. Please check the storage device and available space."
+msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr ""
 
-msgid "Time shift not possible!"
-msgstr "Timeshift không thể!"
-
 msgid "Time shift save action on zap"
 msgstr "Timeshift-lưu hành động trên zap"
 
-msgid "Time shift save failed!"
-msgstr "Lưu thời gian không thành công!"
+msgid "Time shift save failed! The source buffer has been retained."
+msgstr ""
 
 msgid "Time shift save location"
 msgstr ""
@@ -22919,8 +22859,8 @@ msgstr "Timeshift lưu bản ghi (Chọn sự kiện)"
 msgid "Time shift save recording (Stop after current event)"
 msgstr "Timeshift lưu bản ghi (dừng sau sự kiện hiện tại)"
 
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Timeshift lưu vào đĩa cứng của bạn!"
+msgid "Time shift saved!"
+msgstr ""
 
 msgid "Time shift will get saved at end of event."
 msgstr "Timeshift sẽ được lưu vào cuối sự kiện!"
@@ -23642,6 +23582,9 @@ msgstr ""
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr ""
 
+msgid "Unable to prepare the time shift storage device."
+msgstr ""
+
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr ""
@@ -23661,6 +23604,9 @@ msgstr ""
 msgid "Unable to save network mount configuration!"
 msgstr ""
 
+msgid "Unable to start RAM time shift."
+msgstr ""
+
 msgid "Unable to start the DAB+ feed"
 msgstr ""
 
@@ -23677,8 +23623,14 @@ msgstr ""
 msgid "Unable to update HDD replacement: %s"
 msgstr ""
 
+msgid "Unable to update the time shift buffer."
+msgstr ""
+
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s!"
+msgstr ""
+
+msgid "Unable to write the time shift event information."
 msgstr ""
 
 msgid "Unattended upgrade without GUI"
@@ -24022,6 +23974,9 @@ msgstr ""
 msgid "Use QuickSelect"
 msgstr ""
 
+msgid "Use SeekBar while time shifting"
+msgstr ""
+
 msgid "Use TV remote control"
 msgstr "Sử dụng điều khiển từ xa"
 
@@ -24205,9 +24160,6 @@ msgstr "Sử dụng cài đặt nâng cao video này?"
 msgid "Use time jumps for fast forward/backward"
 msgstr "Sử dụng thời gian để nhảy nhanh / lùi"
 
-msgid "Use time shift SeekBar while time shifting"
-msgstr "Sử dụng thanh tìm kiếm timeshift trong khi timeshifting?"
-
 msgid "Use viewer for unknown files"
 msgstr ""
 
@@ -24303,9 +24255,6 @@ msgstr "VMGM (đoạn giới thiệu)"
 
 msgid "VOB file"
 msgstr ""
-
-msgid "VOD"
-msgstr "VOD"
 
 msgid "VPN"
 msgstr "VPN"
@@ -24902,6 +24851,9 @@ msgstr "Khi được bật, dữ liệu EIT sẽ được bao gồm trong các l
 msgid "When enabled, SDT and BAT data will be included in http streams."
 msgstr ""
 
+msgid "When enabled, a new buffer is started for each event. When disabled, a continuous buffer is kept across different events. File systems such as FAT32 still require physical file parts, which are played as one buffer. Cleanup does not limit the size of an active buffer."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Khi được bật, một thông báo bật lên sẽ được hiển thị khi phim kết thúc và phần tiếp theo sẽ bắt đầu."
 
@@ -24920,8 +24872,8 @@ msgstr "Khi được bật, một bản ghi được phép làm gián đoạn tr
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Khi được bật, một bản ghi được phép làm gián đoạn truyền hình trực tiếp, khi không có bộ chỉnh miễn phí."
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
-msgstr "Khi được bật, một cảnh báo sẽ được hiển thị và người dùng sẽ có tùy chọn dừng hoặc tiếp tục chuyển đổi thời gian."
+msgid "When enabled, a warning will be displayed if a command will stop time shift. An option to stop or to continue the time shift will be displayed."
+msgstr ""
 
 msgid "When enabled, allow Samba network access without a password."
 msgstr ""
@@ -24944,11 +24896,17 @@ msgstr ""
 msgid "When enabled, allow usage of the NFS version 4 protocols."
 msgstr ""
 
+msgid "When enabled, allow use of the SeekBar to jump to a selected point within the time shift buffer."
+msgstr ""
+
 msgid "When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video."
 msgstr ""
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Khi được bật, cần xác thực để xem luồng http."
+
+msgid "When enabled, automatically save completed time shift buffers as recordings. This applies to newly started buffers. With event splitting disabled, saving starts when the buffer is stopped. Saved recordings are not removed by the time shift cleanup."
+msgstr ""
 
 msgid "When enabled, bypass HDMI EDID checking."
 msgstr ""
@@ -24964,6 +24922,9 @@ msgstr "Khi được bật, tiếp tục đến bó hoa tiếp theo khi đạt �
 
 msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Khi được bật, các bản ghi bị xóa sẽ được chuyển vào thùng rác, thay vì bị xóa ngay lập tức."
+
+msgid "When enabled, do not automatically switch to live TV when playback reaches the end of the time shift buffer. Enable this only for plugins that require continued time shift playback, such as alternative audio plugins."
+msgstr ""
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "Khi được bật, phụ đề bên ngoài sẽ luôn được bật để phát lại phim."
@@ -25008,6 +24969,9 @@ msgid "When enabled, show status or error messages."
 msgstr "Khi được bật, hiển thị trạng thái hoặc thông báo lỗi."
 
 msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
+msgstr ""
+
+msgid "When enabled, stops time shift from being used if a recording is in progress. This is advisable for USB sticks or other slow media."
 msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
@@ -25079,8 +25043,11 @@ msgstr "Khi được bật, cài đặt này có trọng lượng lớn hơn 'B�
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Khi được bật, cài đặt này có trọng lượng lớn hơn 'Bộ điều chỉnh ưu tiên'."
 
-msgid "When enabled, time shift starts automatically in background after specified time."
-msgstr "Khi được bật, timeshift bắt đầu tự động trong nền sau thời gian được chỉ định."
+msgid "When enabled, time shift starts automatically in background after the selected time."
+msgstr ""
+
+msgid "When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected."
+msgstr ""
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "Khi được bật, bạn có thể tùy chỉnh cài đặt OpenWeb If cho bộ điều chỉnh dự phòng"
@@ -25271,8 +25238,8 @@ msgstr "Viết lỗi trong khi ghi. Đĩa % s"
 msgid "Write failed!"
 msgstr "Viết thất bại!"
 
-msgid "Www"
-msgstr "Www"
+msgid "Writing to the time shift storage device failed. Time shift has been stopped."
+msgstr ""
 
 msgid "X-Resolution"
 msgstr ""
@@ -25439,9 +25406,6 @@ msgstr ""
 msgid "You should flash a new image!"
 msgstr ""
 
-msgid "YouTube"
-msgstr ""
-
 #, python-format
 msgid "Your %s %s does not support PiP HD"
 msgstr "Bạn % s% s không hỗ trợ PiP HD"
@@ -25561,9 +25525,6 @@ msgstr "Youtube TV"
 
 msgid "ZAP"
 msgstr "ZAP"
-
-msgid "ZOOM"
-msgstr "THU PHÓNG"
 
 #, fuzzy
 msgid "ZPicon"
@@ -25693,9 +25654,6 @@ msgstr "Thu phóng từ phải"
 
 msgid "Zulu"
 msgstr ""
-
-msgid "[Timeshift] Merging records failed!"
-msgstr "[Timeshift] Hồ sơ hợp nhất thất bại!"
 
 msgid "[Timeshift] Restarting time shift!"
 msgstr "[TimeShift] Khởi động lại Timeshift!"
@@ -26356,6 +26314,162 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Aspect"
+#~ msgstr "Tỷ lệ khung hình"
+
+#~ msgid "Back/Recall"
+#~ msgstr "Quay lại / Nhớ lại"
+
+#~ msgid "Context"
+#~ msgstr "Bối cảnh"
+
+#~ msgid "EJECTCD"
+#~ msgstr "ĐỐI TƯỢNG"
+
+#~ msgid "End"
+#~ msgstr "Cuối cùng"
+
+#~ msgid "Epg/Guide"
+#~ msgstr "Epg / Hướng dẫn"
+
+#~ msgid "F4"
+#~ msgstr "F4"
+
+#~ msgid "HDMIin"
+#~ msgstr "HDMI trong"
+
+#~ msgid "History"
+#~ msgstr "Lịch sử"
+
+#~ msgid "Info (EPG)"
+#~ msgstr "Thông tin (EPG)"
+
+#~ msgid "List/Fav"
+#~ msgstr "Danh sách / Fav"
+
+#~ msgid "MOUSE"
+#~ msgstr "CHUỘT"
+
+#~ msgid "Mark/Portal/Playlist"
+#~ msgstr "Đánh dấu / Cổng thông tin / Danh sách phát"
+
+#~ msgid "Media"
+#~ msgstr "Phương tiện truyền thông"
+
+#~ msgid "Option"
+#~ msgstr "Tùy chọn"
+
+#~ msgid "PC"
+#~ msgstr "PC"
+
+#~ msgid "PVR"
+#~ msgstr "PVR"
+
+#~ msgid "Program"
+#~ msgstr "Chương trình"
+
+#~ msgid "Prov"
+#~ msgstr "Chứng minh"
+
+#~ msgid "SAT"
+#~ msgstr "SAT"
+
+#~ msgid "Search/WEB"
+#~ msgstr "Tìm kiếm / WEB"
+
+#~ msgid "Sleep"
+#~ msgstr "Ngủ"
+
+#~ msgid "VOD"
+#~ msgstr "VOD"
+
+#~ msgid "Www"
+#~ msgstr "Www"
+
+#~ msgid "ZOOM"
+#~ msgstr "THU PHÓNG"
+
+#~ msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
+#~ msgstr "'Bộ đệm trong giờ' hoặc 'số lượng sự kiện cuối cùng'. Để xóa các tập tin timeshift cũ hơn, điều kiện xảy ra đầu tiên được ưu tiên."
+
+#~ msgid "Creating hard link to time shift file failed!"
+#~ msgstr "Tạo tập tin Hardlink đến Timeshift không thành công!"
+
+#~ msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
+#~ msgstr "Nếu không gian trống nhỏ hơn giá trị cài đặt, thì sẽ thực hiện một nỗ lực để xóa các tệp timeshift cũ."
+
+#~ msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
+#~ msgstr "Ngoài kiểm tra khi bắt đầu sự kiện, có thể sử dụng kiểm tra lặp đi lặp lại, để các điều kiện 'giới hạn bộ đệm tính theo giờ' hoặc 'kiểm tra không gian trống' được phát hiện trước đó."
+
+#, python-format
+#~ msgid ""
+#~ "Not enough free disk space!\n"
+#~ "\n"
+#~ "Filesize: %sMB\n"
+#~ "Free Space: %sMB\n"
+#~ "Path: %s"
+#~ msgstr ""
+#~ "Không đủ dung lượng đĩa miễn phí!\n"
+#~ "Kích thước tệp:%sMB\n"
+#~ "Tự do:%sMB\n"
+#~ "Đường dẫn:%s"
+
+#~ msgid "Older files in the time shift directory are removed on every event change."
+#~ msgstr "Các tệp cũ hơn trong thư mục timeshift được xóa trên mỗi thay đổi sự kiện."
+
+#~ msgid "Saving time shift buffer, this might take a while."
+#~ msgstr "Tiết kiệm timeshift như phim bây giờ. Có lẽ sẽ mất một lúc!"
+
+#~ msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
+#~ msgstr "Nếu được đặt thành 'không', timeshift chỉ sử dụng một tệp bộ đệm. Chúng tôi khuyên bạn nên 'Kiểm tra thời gian cho các tệp cũ hơn [tính bằng phút]' và 'Kiểm tra thời gian để có dung lượng trống?' để điều chỉnh."
+
+#~ msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
+#~ msgstr "Nếu được đặt thành 'không', bạn có thể lưu các sự kiện cũ hơn ngay cả sau khi hạ gục hoặc gián đoạn timeshift."
+
+#~ msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
+#~ msgstr "Nếu được đặt thành 'có', cho phép bạn sử dụng thanh tìm kiếm để chuyển đến một điểm trong sự kiện."
+
+#~ msgid "Select if time shift must continue when set to record."
+#~ msgstr "Chọn nếu timeshift phải tiếp tục khi được đặt thành ghi."
+
+#~ msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+#~ msgstr "Đặt vị trí mặc định cho các tập tin timeshift của bạn. Nhấn 'OK' để thêm các vị trí mới, chọn trái / phải để chọn một vị trí hiện có."
+
+#~ msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
+#~ msgstr "Nếu được đặt thành 'có', hãy bật autorecord để tự động chuyển nền thời gian"
+
+#, fuzzy
+#~ msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+#~ msgstr "Mốc timeshift trong khi ghi âm?"
+
+#~ msgid ""
+#~ "The file system on your time shift device does not support hard links.\n"
+#~ "Make sure it is formatted in EXT2, EXT3 or EXT4!"
+#~ msgstr ""
+#~ "Hệ thống tập tin trên Timeshift-Device của bạn không hỗ trợ các liên kết cứng.\n"
+#~ "Hãy chắc chắn rằng nó được định dạng trong EXT2, EXT3 hoặc EXT4!"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Timeshift không thể!"
+
+#~ msgid "Time shift save failed!"
+#~ msgstr "Lưu thời gian không thành công!"
+
+#~ msgid "Time shift saved to your hard disk drive!"
+#~ msgstr "Timeshift lưu vào đĩa cứng của bạn!"
+
+#~ msgid "Use time shift SeekBar while time shifting"
+#~ msgstr "Sử dụng thanh tìm kiếm timeshift trong khi timeshifting?"
+
+#~ msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
+#~ msgstr "Khi được bật, một cảnh báo sẽ được hiển thị và người dùng sẽ có tùy chọn dừng hoặc tiếp tục chuyển đổi thời gian."
+
+#~ msgid "When enabled, time shift starts automatically in background after specified time."
+#~ msgstr "Khi được bật, timeshift bắt đầu tự động trong nền sau thời gian được chỉ định."
+
+#~ msgid "[Timeshift] Merging records failed!"
+#~ msgstr "[Timeshift] Hồ sơ hợp nhất thất bại!"
 
 #~ msgid "Allow 10bit"
 #~ msgstr "Cho phép 10 bit"

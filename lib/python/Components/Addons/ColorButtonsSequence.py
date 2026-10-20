@@ -1,13 +1,10 @@
-from Components.Addons.GUIAddon import GUIAddon
+from enigma import BT_ALIGN_CENTER, BT_SCALE, RT_BLEND, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListbox, eListboxPythonMultiContent, eSize, gFont, getDesktop
 
-from enigma import eListbox, eListboxPythonMultiContent, BT_ALIGN_CENTER, RT_VALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_BLEND, BT_SCALE, eSize, getDesktop, gFont
-
-from skin import parseColor, parseFont, applySkinFactor
-
-from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryText
+from skin import applySkinFactor, parseColor, parseFont
 from Components.Label import Label
-
-from Tools.Directories import resolveFilename, SCOPE_GUISKIN
+from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryText
+from Components.Addons.GUIAddon import GUIAddon
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
 
@@ -31,7 +28,7 @@ class ColorButtonsSequence(GUIAddon):
 		self.cornerRadius = 0
 		self.pixmaps = {}
 		self.colors = {}
-		self.textRenderer = Label("")
+		self.textRenderer = Label()
 
 	def onContainerShown(self):
 		for x, val in self.sources.items():

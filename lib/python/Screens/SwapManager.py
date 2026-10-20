@@ -1,13 +1,14 @@
 from glob import glob
-from os import system, stat, remove, rename
+from os import remove, rename, stat, system
 from os.path import exists, normpath
 from stat import ST_SIZE
+
 from enigma import eTimer
 
 from Components.ActionMap import ActionMap
-from Components.config import config, configfile, ConfigYesNo
+from Components.config import ConfigYesNo, config, configfile
 from Components.Console import Console
-from Components.Harddisk import harddiskmanager, getProcMounts
+from Components.Harddisk import getProcMounts, harddiskmanager
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText

@@ -1,4 +1,5 @@
-from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParametersCable, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersATSC
+from enigma import eDVBFrontendParametersATSC, eDVBFrontendParametersCable, eDVBFrontendParametersSatellite, eDVBFrontendParametersTerrestrial
+
 from Components.NimManager import nimmanager
 
 SIGN = "\u00B0"

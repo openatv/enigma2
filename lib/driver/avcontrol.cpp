@@ -442,9 +442,15 @@ void eAVControl::setVideoMode(const std::string &newMode, int flags) const
 	CFile::writeStr(proc_videomode, driverMode, __MODULE__, flags);
 #endif
 #ifdef DREAMNEXTGEN
-	CFile::writeStr("/etc/u-boot.scr.d/000_hdmimode.scr", "setenv hdmimode " + driverMode, __MODULE__, flags | FLAGS_SUPPRESS_NOT_EXISTS);
-	CFile::writeStr("/etc/u-boot.scr.d/000_outputmode.scr", "setenv outputmode " + driverMode, __MODULE__, flags | FLAGS_SUPPRESS_NOT_EXISTS);
-	(void)std::system("update-autoexec");
+	// Rebuilding autoexec.img writes to the flash, so only do it when the mode really changed.
+	const std::string hdmiMode = "setenv hdmimode " + driverMode;
+	const std::string outputMode = "setenv outputmode " + driverMode;
+	if (CFile::read("/etc/u-boot.scr.d/000_hdmimode.scr", __MODULE__, flags | FLAGS_SUPPRESS_NOT_EXISTS) != hdmiMode || CFile::read("/etc/u-boot.scr.d/000_outputmode.scr", __MODULE__, flags | FLAGS_SUPPRESS_NOT_EXISTS) != outputMode)
+	{
+		CFile::writeStr("/etc/u-boot.scr.d/000_hdmimode.scr", hdmiMode, __MODULE__, flags | FLAGS_SUPPRESS_NOT_EXISTS);
+		CFile::writeStr("/etc/u-boot.scr.d/000_outputmode.scr", outputMode, __MODULE__, flags | FLAGS_SUPPRESS_NOT_EXISTS);
+		(void)std::system("update-autoexec");
+	}
 	CFile::writeStr("/sys/class/ppmgr/ppscaler", "1", __MODULE__, flags | FLAGS_SUPPRESS_NOT_EXISTS);
 	CFile::writeStr("/sys/class/ppmgr/ppscaler", "0", __MODULE__, flags | FLAGS_SUPPRESS_NOT_EXISTS);
 	CFile::writeStr("/sys/class/video/axis", getVideoAxis(newMode), __MODULE__, flags);

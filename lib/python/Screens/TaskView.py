@@ -1,5 +1,5 @@
 from Components.ActionMap import HelpableActionMap
-from Components.config import ConfigSubsection, ConfigSelection
+from Components.config import ConfigSelection, ConfigSubsection
 from Components.ConfigList import ConfigListScreen
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Task import job_manager

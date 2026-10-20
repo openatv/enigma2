@@ -1,33 +1,28 @@
-from time import sleep, time
 from operator import mul
 from random import SystemRandom
-from threading import Thread
-from threading import Event
+from threading import Event, Thread
+from time import sleep, time
 
 from enigma import eDVBDiseqcCommand, eDVBFrontendParametersSatellite, eDVBResourceManager, eDVBSatelliteEquipmentControl, eTimer, iDVBFrontend
 
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Screens.ChoiceBox import ChoiceBox
-from Screens.Satconfig import NimSetup
-from Plugins.Plugin import PluginDescriptor
-
-from Components.Label import Label
-from Components.Button import Button
-from Components.ConfigList import ConfigList
-from Components.ConfigList import ConfigListScreen
-from Components.TunerInfo import TunerInfo
 from Components.ActionMap import ActionMap, NumberActionMap
-from Components.NimManager import inputPowerSlotForNim, nimmanager
+from Components.Button import Button
+from Components.config import ActionKeys, ConfigFloat, ConfigInteger, ConfigNothing, ConfigSatlist, ConfigSelection, ConfigSubsection, NoSave, config, getConfigListEntry
+from Components.ConfigList import ConfigList, ConfigListScreen
+from Components.Label import Label
 from Components.MenuList import MenuList
+from Components.NimManager import inputPowerSlotForNim, nimmanager
 from Components.ScrollLabel import ScrollLabel
-from Components.config import config, ConfigFloat, ConfigInteger, ConfigNothing, ConfigSatlist, ConfigSelection, ConfigSubsection, ActionKeys, NoSave, getConfigListEntry
+from Components.TunerInfo import TunerInfo
 from Components.TuneTest import Tuner
+from Plugins.Plugin import PluginDescriptor
+from Screens.ChoiceBox import ChoiceBox
+from Screens.MessageBox import MessageBox
+from Screens.Satconfig import NimSetup
+from Screens.Screen import Screen
 from Tools.Transponder import ConvertToHumanReadable
 
-
-from . import log
-from . import rotor_calc
+from . import log, rotor_calc
 
 
 class PositionerSetup(Screen):
@@ -161,13 +156,13 @@ class PositionerSetup(Screen):
 		self["ber_bar"] = TunerInfo(TunerInfo.BER_BAR, statusDict=self.frontendStatus)
 		self["lock_state"] = TunerInfo(TunerInfo.LOCK_STATE, statusDict=self.frontendStatus)
 
-		self["frequency_value"] = Label("")
-		self["symbolrate_value"] = Label("")
-		self["fec_value"] = Label("")
-		self["polarisation"] = Label("")
-		self["status_bar"] = Label("")
-		self["rotorstatus"] = Label("")
-		self["inputpower"] = Label("")
+		self["frequency_value"] = Label()
+		self["symbolrate_value"] = Label()
+		self["fec_value"] = Label()
+		self["polarisation"] = Label()
+		self["status_bar"] = Label()
+		self["rotorstatus"] = Label()
+		self["inputpower"] = Label()
 		self.updateInputPower()
 		if self.sec:
 			self.sec.slotRotorSatPosChanged.get().append(self.rotorPositionChanged)

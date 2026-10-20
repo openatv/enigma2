@@ -58,7 +58,7 @@ from Screens.ParentalControlSetup import ProtectedScreen, runWithScreenProtectio
 from Screens.PictureInPicture import PictureInPicture
 from Screens.PiPSetup import PiPSetup
 from Screens.PVRState import PVRState, TimeshiftState
-from Screens.RdsDisplay import DABSlideDisplay, RassInteractive, RdsInfoDisplay
+from Screens.RdsDisplay import DABSlideDisplay, RassInteractive, RdsInfoDisplay, RdsInfoDisplaySummary
 from Screens.Screen import Screen
 from Screens.ScreenSaver import ScreenSaver
 from Screens.Setup import Setup
@@ -615,7 +615,7 @@ class NumberZap(Screen):
 		self["servicenumber"] = Label(self.numberString)
 		self["number_summary"] = StaticText(self.numberString)
 		self["servicename"] = Label()
-		self["service_summary"] = StaticText("")
+		self["service_summary"] = StaticText()
 		self["Service"] = ServiceEvent()
 		self.handleServiceName()
 		self["service_summary"].setText(self["servicename"].getText())
@@ -3551,9 +3551,9 @@ class InfoBarRdsDecoder:
 		self.dab_slide_display = self.session.instantiateDialog(DABSlideDisplay)
 		self.dab_slide_display.setAnimationMode(0)
 		self.rds_display = self.session.instantiateDialog(RdsInfoDisplay)
-		self.session.instantiateSummaryDialog(self.rds_display)
 		self.rds_display.setAnimationMode(0)
 		self.dab_slide_display.reserveRadioTextArea(self.rds_display)
+		self.rds_display.onLayoutFinish.append(self.dab_slide_display.reserveRadioTextArea)
 		self.rass_interactive = None
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 			iPlayableService.evEnd: self.__serviceStopped,
@@ -3563,7 +3563,7 @@ class InfoBarRdsDecoder:
 			"startRassInteractive": (self.startRassInteractive, _("Start RDS interactive"))
 		}, prio=-1, description=_("RDS Actions"))
 		self["RdsActions"].setEnabled(False)
-		self.onLayoutFinish.append(self.rds_display.show)
+		self.onLayoutFinish.append(self.rds_display.updateVisibility)
 		self.rds_display.onRassInteractivePossibilityChanged.append(self.RassInteractivePossibilityChanged)
 
 	def RassInteractivePossibilityChanged(self, state):
@@ -3583,6 +3583,7 @@ class InfoBarRdsDecoder:
 			rass_interactive.close()
 
 	def startRassInteractive(self):
+		self.dab_slide_display.rassPictureAvailable()
 		self.rds_display.hide()
 		self.rass_interactive = self.session.openWithCallback(self.RassInteractiveClosed, RassInteractive)
 
@@ -3590,7 +3591,7 @@ class InfoBarRdsDecoder:
 		if self.rass_interactive is not None:
 			self.rass_interactive = None
 			self.RassSlidePicChanged()
-		self.rds_display.show()
+		self.rds_display.updateVisibility()
 
 
 class InfoBarPVRState:
@@ -3707,14 +3708,8 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		self.pvrStateDialog.hide()
 
 	def __timeshiftEventName(self, state):
-		if self.timeshiftEnabled() and exists("%spts_livebuffer_%s.meta" % (config.timeshift.path.value, self.pts_currplaying)):
-			readmetafile = open("%spts_livebuffer_%s.meta" % (config.timeshift.path.value, self.pts_currplaying))
-			servicerefname = readmetafile.readline()[0:-1]  # noqa F841
-			eventname = readmetafile.readline()[0:-1]
-			readmetafile.close()
-			self.pvrStateDialog["eventname"].setText(eventname)
-		else:
-			self.pvrStateDialog["eventname"].setText("")
+		entry = self.timeshiftRegistry.buffers.get(f"pts_livebuffer_{self.pts_currplaying}") if self.timeshiftEnabled() else None
+		self.pvrStateDialog["eventname"].setText(entry.metadata.get("name", "") if entry else "")
 
 
 class InfoBarShowMovies:  # This is used in InfoBar.py.
@@ -4019,7 +4014,8 @@ class InfoBarInstantRecord:
 				case "savetimeshiftEvent":
 					InfoBarTimeshift.saveTimeshiftEventPopup(self)
 				case _:
-					if answer[1].startswith("pts_livebuffer") is True:
+					registry = getattr(self, "timeshiftRegistry", None)
+					if registry and (answer[1] in registry.buffers or answer[1].startswith("pts_livebuffer")):
 						InfoBarTimeshift.SaveTimeshift(self, timeshiftfile=answer[1])
 			if answer[1] != "savetimeshiftEvent":
 				self.saveTimeshiftEventPopupActive = False
@@ -4343,7 +4339,7 @@ class InfoBarAudioSelection:
 				message = _("enabled")
 			print(f"[InfoBarGenerics] InfoBarAudioSelection: Dolby Digital down mix is now {status}.")
 			if popup:
-				Notifications.AddPopup(text=_("Dolby Digital downmix is now") + " " + message, type=MessageBox.TYPE_INFO, timeout=5, id="DDdownmixToggle")
+				self.session.showInfo(_("Dolby Digital downmix is now") + " " + message, replaceId="DDdownmixToggle")
 
 	def audioDownmixOn(self):
 		if not config.av.downmix_ac3.value:
@@ -4977,6 +4973,21 @@ class InfoBarCueSheetSupport:
 
 
 class InfoBarSummary(Screen):
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent=parent)
+		self.radioSummary = None
+		if session.summaryDesktop is not None and BoxInfo.getItem("FrontpanelDisplay") and BoxInfo.getItem("displaytype") != "7segment":
+			self.radioSummary = session.doInstantiateDialog(RdsInfoDisplaySummary, (self,), {}, session.summaryDesktop)
+			# Follow the normal summary lifecycle, not the TV infobar's hide timer.
+			# RDS updates must never show over menus, movie playback or standby.
+			self.onShow.append(self.radioSummary.updateDisplay)
+			self.onHide.append(self.radioSummary.hide)
+			self.onClose.append(self.closeRadioSummary)
+
+	def closeRadioSummary(self):
+		self.session.deleteDialog(self.radioSummary)
+		self.radioSummary = None
+
 	skin = """
 	<screen position="0,0" size="132,64">
 		<widget source="global.CurrentTime" render="Label" position="62,46" size="82,18" font="Regular;16" >
@@ -5028,8 +5039,8 @@ class InfoBarMoviePlayerSummary(Screen):
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
-		self["state_summary"] = StaticText("")
-		self["speed_summary"] = StaticText("")
+		self["state_summary"] = StaticText()
+		self["speed_summary"] = StaticText()
 		self["statusicon_summary"] = MultiPixmap()
 		self.onShow.append(self.addWatcher)
 		self.onHide.append(self.removeWatcher)
@@ -5359,7 +5370,7 @@ class InfoBarSleepTimer:
 			delay = 0
 		if showMessage and delay != previous:
 			print("[InfoBarGenerics] InfoBarSleepTimer: %s set to %d minutes." % (name, minutes))
-			Notifications.AddPopup(message, type=MessageBox.TYPE_INFO, timeout=5)
+			self.session.showInfo(message)
 		return delay
 
 	def sleepTimerTimeout(self):

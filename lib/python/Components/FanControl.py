@@ -1,11 +1,11 @@
 import os
 
-from Components.config import config, ConfigSubList, ConfigSubsection, ConfigSlider
-from Components.SystemInfo import BoxInfo
-from Tools.BoundFunction import boundFunction
+from enigma import iRecordableService
 
 import NavigationInstance
-from enigma import iRecordableService
+from Components.config import ConfigSlider, ConfigSubList, ConfigSubsection, config
+from Components.SystemInfo import BoxInfo
+from Tools.BoundFunction import boundFunction
 
 
 class FanControl:

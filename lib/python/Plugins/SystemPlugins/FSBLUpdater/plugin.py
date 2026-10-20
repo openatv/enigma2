@@ -1,11 +1,10 @@
-from Components.config import config, ConfigBoolean
-from Screens.ChoiceBox import ChoiceBox
+from Components.config import ConfigBoolean, config
 from Plugins.Plugin import PluginDescriptor
+from Screens.ChoiceBox import ChoiceBox
 from Tools.HardwareInfo import HardwareInfo
+import Tools.Notifications
 
 from .FSBLUpdater import FSBLUpdater
-
-import Tools.Notifications
 
 
 config.misc.fsbl_update_never = ConfigBoolean(default=False)

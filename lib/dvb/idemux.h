@@ -1,6 +1,7 @@
 #ifndef __dvb_idemux_h
 #define __dvb_idemux_h
 
+#include <cerrno>
 #include <lib/dvb/idvb.h>
 #include <lib/service/iservicescrambled.h>
 
@@ -73,6 +74,10 @@ public:
 		eventStreamCorrupt
 	};
 	virtual RESULT connectEvent(const sigc::slot<void(int)> &event, ePtr<eConnection> &conn)=0;
+	// Append optional methods so existing recorder vtable slots stay unchanged.
+	virtual RESULT setSplitSize(off_t bytes) { errno = ENOSYS; return -1; }
+	virtual long long getWrittenBytes() { errno = ENOSYS; return -1; }
+	virtual void setSyncOnStop(bool enabled) { }
 };
 
 #endif

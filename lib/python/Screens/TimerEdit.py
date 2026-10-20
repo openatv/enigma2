@@ -1,4 +1,4 @@
-from Screens.Timers import RecordTimerOverview, ConflictTimerOverview
+from Screens.Timers import ConflictTimerOverview, RecordTimerOverview
 
 
 class TimerEditList(RecordTimerOverview):

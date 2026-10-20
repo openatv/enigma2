@@ -9,8 +9,7 @@ from os import listdir, mkdir, rmdir, unlink
 from os.path import exists, ismount, join, realpath
 from string import ascii_letters, digits
 
-
-from Components.Task import Job, LoggingTask, ConditionTask, ReturncodePostcondition
+from Components.Task import ConditionTask, Job, LoggingTask, ReturncodePostcondition
 from Tools.Conversions import scaleNumber
 from Tools.Directories import fileReadLine, fileReadLines, fileWriteLines
 

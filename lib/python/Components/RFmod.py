@@ -1,5 +1,6 @@
-from Components.config import config, ConfigSelection, ConfigSubsection, ConfigOnOff, ConfigSlider, ConfigNothing
 from enigma import eRFmod
+
+from Components.config import ConfigNothing, ConfigOnOff, ConfigSelection, ConfigSlider, ConfigSubsection, config
 from Components.SystemInfo import BoxInfo
 
 # CHECK ME.

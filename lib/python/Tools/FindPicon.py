@@ -1,8 +1,8 @@
 ##
 ## Picon renderer by Gruffy .. some speedups by Ghost
 ##
-from Tools.Directories import fileExists
 from Tools.Alternatives import GetWithAlternative
+from Tools.Directories import fileExists
 #from Components.config import config
 from enigma import eServiceCenter, eServiceReference
 

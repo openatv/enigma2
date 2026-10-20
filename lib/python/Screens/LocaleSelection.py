@@ -1,7 +1,7 @@
 from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigSelection, ConfigSubsection, config
-from Components.Label import Label
 from Components.International import international
+from Components.Label import Label
 from Components.Opkg import OpkgComponent
 from Components.Pixmap import MultiPixmap
 from Components.Sources.List import List
@@ -427,10 +427,10 @@ class LocaleSettings(Setup):
 class LocaleSelectionSummary(ScreenSummary):
 	def __init__(self, session, parent):
 		ScreenSummary.__init__(self, session, parent=parent)
-		self["native"] = StaticText("")
-		self["name"] = StaticText("")
-		self["locale"] = StaticText("")
-		self["package"] = StaticText("")
+		self["native"] = StaticText()
+		self["name"] = StaticText()
+		self["locale"] = StaticText()
+		self["package"] = StaticText()
 		if self.addWatcher not in self.onShow:
 			self.onShow.append(self.addWatcher)
 		if self.removeWatcher not in self.onHide:

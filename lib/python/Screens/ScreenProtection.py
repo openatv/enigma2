@@ -1,4 +1,5 @@
 from types import MethodType
+
 from Components.config import config
 from Screens.InputBox import PinInput
 from Screens.MessageBox import MessageBox

@@ -1,10 +1,12 @@
 from os import popen
+
 from enigma import eDVBCI_UI, eLabel, iPlayableService
-from Components.Renderer.Renderer import Renderer
+
+from skin import parameters
 from Components.SystemInfo import BoxInfo
 from Components.VariableText import VariableText
+from Components.Renderer.Renderer import Renderer
 from Tools.Hex2strColor import Hex2strColor
-from skin import parameters
 
 
 class CiModuleControl(Renderer, VariableText):
@@ -30,9 +32,6 @@ class CiModuleControl(Renderer, VariableText):
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)
 
-	def ciModuleStateChanged(self, slot):
-		self.changed(True)
-
 	def changed(self, what):
 		if what is True or what[0] == self.CHANGED_SPECIFIC and what[1] == iPlayableService.evStart:
 			string = ""
@@ -46,16 +45,17 @@ class CiModuleControl(Renderer, VariableText):
 					if string:
 						string += " "
 					if state not in (-1, 3):
-						if state == 0:
-							if not self.allVisible:
-								string += ""
-								add_num = False
-							else:
-								string += Hex2strColor(self.colors[0])  # no module
-						elif state == 1:
-							string += Hex2strColor(self.colors[1])  # init module
-						elif state == 2:
-							string += Hex2strColor(self.colors[2])  # module ready
+						match state:
+							case 0:
+								if not self.allVisible:
+									string += ""
+									add_num = False
+								else:
+									string += Hex2strColor(self.colors[0])  # no module
+							case 1:
+								string += Hex2strColor(self.colors[1])  # init module
+							case 2:
+								string += Hex2strColor(self.colors[2])  # module ready
 					else:
 						if not self.allVisible:
 							string += ""
@@ -67,3 +67,6 @@ class CiModuleControl(Renderer, VariableText):
 				if string:
 					string = _("CI slot: ") + string
 			self.text = string
+
+	def ciModuleStateChanged(self, slot):
+		self.changed(True)

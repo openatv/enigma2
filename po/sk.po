@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 19:03+0000\n"
-"PO-Revision-Date: 2026-10-14 08:06+0000\n"
+"POT-Creation-Date: 2026-10-19 19:43+0000\n"
+"PO-Revision-Date: 2026-10-20 13:32+0000\n"
 "Last-Translator: Marián Hikaník <marian-sk@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -1391,9 +1391,6 @@ msgstr "'%s' odpojené."
 msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
 msgstr "'%s' používa autentifikáciu typu Enterprise (802.1X). Takéto siete nemožno nastavovať tu, musia sa konfigurovať manuálne, v súbore wpa_supplicant.conf."
 
-msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
-msgstr "'Vyrovnávacia pamäť v hodinách' alebo 'počet posledných udalostí'. Pri vymazávaní starších súborov timeshiftu má prednosť podmienka, ktorá nastala skôr."
-
 msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Preberať pohotovostný režim z TV' má vyššiu prioritu ako 'Preberať vstup z TV'."
 
@@ -1733,6 +1730,9 @@ msgstr ""
 "Začalo sa nahrávanie:\n"
 "%s"
 
+msgid "A recording has priority. Time shift is being stopped."
+msgstr "Nahrávanie má prioritu. Timeshift sa zastavuje."
+
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -1762,6 +1762,9 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Požadovaný nástroj (%s) sa nenašiel."
+
+msgid "A storage check is still running. Save these settings without waiting for it?"
+msgstr "Stále prebieha kontrola úložiska. Uložiť tieto nastavenia bez čakania na jej dokončenie?"
 
 msgid ""
 "A timer failed to record!\n"
@@ -2245,9 +2248,6 @@ msgstr "Prispôsobenie posunu oscilátora tunera, pre spresnenie príjmu signál
 
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Upravte vertikálnu pozíciu písmen používaných pre teletext."
-
-msgid "Adjusts compensation for hardware buffer latency for DM9x0."
-msgstr "Upraví kompenzáciu pre latenciu HW vyrovnávacej pamäte pre DM9x0."
 
 msgid "Adult"
 msgstr "Pre dospelých"
@@ -2796,9 +2796,6 @@ msgstr "Opýtať sa používateľa (predvolené: 'nie')"
 msgid "Ask user (with default of 'Yes')"
 msgstr "Opýtať sa používateľa (predvolené: 'áno')"
 
-msgid "Aspect"
-msgstr "Pomer strán"
-
 msgid "Aspect Ratio"
 msgstr "Pomer strán"
 
@@ -3033,7 +3030,7 @@ msgstr "Automaticky prepnúť TV do pohotovostného režimu vždy, keď sa prij�
 msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
 msgstr "Automaticky spustiť rýchle vyhľadávanie (fast scan) 90 sekúnd po každom prepnutí do pohotovostného režimu a každých 24 hodín v pohotovostnom režime. Ak prebieha nahrávanie, opakovať po hodine. Ak chcete prehľadať viacerých poskytovateľov, vyberte voľbu 'Multi'."
 
-msgid "Automatically start time shift after"
+msgid "Automatically start time shift"
 msgstr "Automatické spustenie timeshiftu po"
 
 msgid "Automatically turn on external subtitles"
@@ -3141,9 +3138,6 @@ msgstr "USB vzadu, vpravo"
 
 msgid "Back, upper USB"
 msgstr "USB vzadu, hore"
-
-msgid "Back/Recall"
-msgstr "Späť/Odvolať"
 
 msgid "Background"
 msgstr "Pozadie"
@@ -3553,6 +3547,9 @@ msgstr "Brunej (Brunejsko-darussalamský štát)"
 
 msgid "Buffer Management"
 msgstr "Spravovanie vyrovnávacej pamäte"
+
+msgid "Buffer age limit"
+msgstr "Limit vyrovnávacej pamäte timeshiftu (h)"
 
 #, python-format
 msgid "Buffering %d%%"
@@ -4340,6 +4337,12 @@ msgstr "Skontrolovať PDC"
 msgid "Check for PDC availability on each service."
 msgstr "Skontrolovať dostupnosť PDC pri každej stanici/službe."
 
+msgid "Check for free space"
+msgstr "Timeshift – kontrola voľného miesta"
+
+msgid "Check for older files"
+msgstr "Timeshift – kontrola starších súborov (min.)"
+
 msgid "Check power and input state from TV"
 msgstr "Skontrolovať napájanie a stav vstupu z TV"
 
@@ -4360,6 +4363,9 @@ msgstr "Kontroluje sa ONID/TSID..."
 
 msgid "Checking file system..."
 msgstr "Kontrola súborového systému..."
+
+msgid "Checking storage directory..."
+msgstr "Kontroluje sa priečinok úložiska..."
 
 #, python-format
 msgid ""
@@ -5323,9 +5329,6 @@ msgstr "Obsah"
 msgid "Content does not fit on DVD!"
 msgstr "Obsah sa nezmestí na DVD!"
 
-msgid "Context"
-msgstr "Kontext"
-
 msgid "Continent"
 msgstr "Kontinent"
 
@@ -5648,9 +5651,6 @@ msgstr "Vytvorenie súborov .ap a .sc"
 msgid "Creating file system"
 msgstr "Vytvára sa súborový systém"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Vytvorenie hardlinku na súbor timeshiftu neúspešné!"
-
 #, python-format
 msgid ""
 "Creating or activating the swap file failed.\n"
@@ -5913,6 +5913,9 @@ msgstr "Kanál DAB+ %s"
 
 msgid "DAB+ decoder back end not installed"
 msgstr "Nie je nainštalovaný backend dekodéra DAB+"
+
+msgid "DAB+ front display"
+msgstr "Zobrazenie DAB+ vpredu"
 
 msgid "DAB+ scan failed; existing bouquets were kept."
 msgstr "Vyhľadávanie DAB+ bolo neúspešné; existujúce prehľady zostali zachované."
@@ -6498,6 +6501,9 @@ msgstr "Vymazanie pluginov"
 msgid "Delete Timer"
 msgstr "Vymazať časovač"
 
+msgid "Delete after zap"
+msgstr "Po prepnutí odstrániť vyrovnávaciu pamäť timeshiftu"
+
 msgid "Delete all duplicated lines"
 msgstr "Vymazať všetky duplicitné riadky"
 
@@ -6811,10 +6817,6 @@ msgstr "Priečinky"
 
 msgid "Directory"
 msgstr "Priečinok"
-
-#, python-format
-msgid "Directory '%s' can't be linked to recordings!"
-msgstr "Priečinok '%s' nie je možné prepojiť s nahrávkami!"
 
 #, python-format
 msgid "Directory '%s' does not exist!"
@@ -7410,9 +7412,6 @@ msgstr "Informácia ECM"
 msgid "ECM information for '%s'"
 msgstr "Informácia ECM pre '%s'"
 
-msgid "EJECTCD"
-msgstr "EJECTCD"
-
 msgid "EPG"
 msgstr "EPG"
 
@@ -7676,9 +7675,6 @@ msgstr "Zapnúť %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Zapnúť 5 V pre aktívnu anténu"
 
-msgid "Enable Autorecord"
-msgstr "Zapnúť automatické nahrávanie"
-
 msgid "Enable BT audio"
 msgstr "Zapnúť BT audio"
 
@@ -7778,6 +7774,9 @@ msgstr "Povoliť automatické rýchle vyhľadávanie (fast scan)"
 #, python-format
 msgid "Enable auto fast scan for '%s'"
 msgstr "Povoliť automatické rýchle vyhľadávanie (fast scan) pre %s"
+
+msgid "Enable auto record"
+msgstr "Zapnúť automatické nahrávanie"
 
 msgid "Enable automatic shares"
 msgstr "Povoliť automatické zdieľania"
@@ -7983,9 +7982,6 @@ msgstr "Šifrovanie"
 msgid "Encryption And Descrambling"
 msgstr "Kódovanie a dekódovanie"
 
-msgid "End"
-msgstr "Koniec"
-
 msgid "End Alternatives Edit"
 msgstr "Ukončiť úpravu alternatív"
 
@@ -8136,9 +8132,6 @@ msgstr "Zadajte PIN od 0 do 255 pridelené tomuto používateľskému pásmu in�
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr "Zadajte ID siete ZeroTier. ID by malo mať dĺžku presne 16 znakov."
 
-msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
-msgstr "Zadajte dobu, ktorá sa pridá do vyrov. pamäte pre streamovanie po chybe v streamovaní. Predíde sa tak ďalším chybám kvôli nedostatočnej vyrovnávacej pamäti."
-
 msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
 msgstr "Zadajte fixnú/statickú adresu IPv4, ktorá sa má použiť pre tento sieťový adaptér."
 
@@ -8256,9 +8249,6 @@ msgstr "Číslo a text"
 
 msgid "Entry text only"
 msgstr "Len text"
-
-msgid "Epg/Guide"
-msgstr "EPG/Sprievodca"
 
 msgid "Equal to"
 msgstr "Zhodné s"
@@ -8631,8 +8621,14 @@ msgstr "Akcie zobrazenia udalosti"
 msgid "Event View Context Menu"
 msgstr "Menu pre zobrazenie udalosti"
 
+msgid "Event based file splitting"
+msgstr "Timeshift – rozdelenie súborov podľa udalosti"
+
 msgid "Event font size"
 msgstr "Veľkosť písma pre udalosť"
+
+msgid "Event limit"
+msgstr "Timeshift – limit posledných udalostí (počet)"
 
 msgid "Event name only"
 msgstr "Len názov udalosti"
@@ -8864,9 +8860,6 @@ msgstr "F2"
 
 msgid "F3"
 msgstr "F3"
-
-msgid "F4"
-msgstr "F4"
 
 msgid "FBC SCR (Unicable/JESS)"
 msgstr "FBC SCR (Unicable/JESS)"
@@ -9930,9 +9923,6 @@ msgstr "Akcie HDMI-In"
 msgid "HDMI-In Recording Settings"
 msgstr "Nastavenia nahrávania HDMI-In"
 
-msgid "HDMIin"
-msgstr "Vstup HDMI"
-
 msgid "HDR OSD adjustment"
 msgstr "nastavenie HDR OSD"
 
@@ -10175,9 +10165,6 @@ msgstr "Hispasat 30,0 W"
 
 msgid "Historical"
 msgstr "Historické"
-
-msgid "History"
-msgstr "História"
 
 msgid "History Prev/Next"
 msgstr "História dozadu/dopredu"
@@ -10499,14 +10486,8 @@ msgstr "Ak je táto možnosť povolená, na prehrávanie sa bude používať nov
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Ak súbory denníkov dosiahnu maximum prideleného miesta, najstaršie súbory sa odstránia."
 
-msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
-msgstr "Ak je táto možnosť nastavená na 'Áno', môže sa timeshift používať s alternatívnymi audio pluginmi."
-
 msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Ak je aktivované náhradné riešenie pre vypnutie, čaká sa, kým sa nesynchronizuje systémový čas. V závislosti od požiadavky zariadenia sa v prebúdzaní pokračuje maximálne 2 minúty."
-
-msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
-msgstr "Ak je voľné miesto menšie ako nastavená hodnota, vykoná sa pokus o odstránenie starých súborov timeshiftu."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr "Ak je text príliš dlhý na zobrazenie na prednom paneli, bude sa opakovať (počet opakovaní)."
@@ -10610,9 +10591,6 @@ msgstr "Importovať z URL adresy vzdialeného prijímača"
 
 msgid "Import remote receiver URL"
 msgstr "Importovať URL adresu vzdialeného prijímača"
-
-msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
-msgstr "Okrem kontroly pri začiatku udalosti je možné vykonávať kontrolu aj opakovane. Tým sa skôr zistia podmienky typu 'limit vyrovnávacej pamäte v hodinách' alebo 'kontrola voľného miesta'."
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "V expertnom režime nakonfigurujte, ktoré tunery sa uprednostnia pri nahrávaní, ak je k dispozícii viac ako jeden tuner."
@@ -10764,9 +10742,6 @@ msgstr "indonézština"
 
 msgid "Info"
 msgstr "Info"
-
-msgid "Info (EPG)"
-msgstr "Info (EPG)"
 
 msgid "Info button (long)"
 msgstr "Tlačidlo Info (dlho)"
@@ -11279,9 +11254,6 @@ msgstr "kirgizština"
 msgid "Kiribati"
 msgstr "kiribati"
 
-msgid "Kodi"
-msgstr "Kodi"
-
 msgid "Kodi Add-on Packages"
 msgstr "Prídavné balíčky Kodi"
 
@@ -11672,9 +11644,6 @@ msgstr "Zoznam úložných zariadení"
 msgid "List of storage devices"
 msgstr "Zoznam úložných zariadení"
 
-msgid "List/Fav"
-msgstr "Zoznam/obľúbené"
-
 msgid "Lists reloaded!"
 msgstr "Zoznamy obnovené!"
 
@@ -11932,9 +11901,6 @@ msgstr "MMA"
 msgid "MORE"
 msgstr "VIAC"
 
-msgid "MOUSE"
-msgstr "MYŠ"
-
 msgid "MSC audio frame quality"
 msgstr "Kvalita zvukového rámca MSC"
 
@@ -11971,9 +11937,6 @@ msgstr "magazíny/reportáže/dokumenty"
 
 msgid "Magenta"
 msgstr "Purpurová"
-
-msgid "Magic"
-msgstr "Magic"
 
 msgid "Main Menu"
 msgstr "Hlavné menu"
@@ -12113,9 +12076,6 @@ msgstr "Rezerva pred prepnutím"
 msgid "Mark As Dedicated 3D Service"
 msgstr "Označiť stanicu ako 3D"
 
-msgid "Mark/Portal/Playlist"
-msgstr "Označiť/portál/playlist"
-
 msgid "Marker Actions"
 msgstr "Akcie pre značky"
 
@@ -12179,9 +12139,6 @@ msgstr "Mayotte"
 
 msgid "Measured current"
 msgstr "Nameraný prúd"
-
-msgid "Media"
-msgstr "Médium"
 
 msgid "Media Center"
 msgstr "Centrum médií"
@@ -13703,20 +13660,6 @@ msgstr "Nie je definované"
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "Nedostatok miesta na disku. Uvoľnite priestor na disku a skúste to znova. (potrebných %d MB, k dispozícii je %d MB)"
 
-#, python-format
-msgid ""
-"Not enough free disk space!\n"
-"\n"
-"Filesize: %sMB\n"
-"Free Space: %sMB\n"
-"Path: %s"
-msgstr ""
-"Nedostatok miesta na disku!\n"
-"\n"
-"Veľkosť súb.: %sMB\n"
-"Voľné: %sMB\n"
-"Cesta: %s"
-
 msgid "Not found"
 msgstr "Nenájdené"
 
@@ -13927,9 +13870,6 @@ msgstr "Posunúť a zatvoriť zariadenie CA"
 
 msgid "Ojibwa"
 msgstr "odžibwa"
-
-msgid "Older files in the time shift directory are removed on every event change."
-msgstr "Staršie súbory v priečinku pre timeshift sa odstraňujú pri každej zmene udalostí."
 
 msgid "Olympic blue"
 msgstr "olympijská modrá"
@@ -14240,9 +14180,6 @@ msgstr "Opkg akcie"
 msgid "Opkg Log Actions"
 msgstr "Akcie pre denník opkg"
 
-msgid "Option"
-msgstr "Možnosť (Option)"
-
 msgid "Option to disable picons on the InfoBar."
 msgstr "Povolenie/zakázanie zobrazenia pikon v infolište."
 
@@ -14379,9 +14316,6 @@ msgstr "STRÁNKA NAHOR/NADOL"
 msgid "PAL"
 msgstr "PAL"
 
-msgid "PC"
-msgstr "PC"
-
 msgid "PCM Multichannel"
 msgstr "Multikanálové PCM"
 
@@ -14403,10 +14337,6 @@ msgstr "PIN"
 msgid "PIN code needed"
 msgstr "Je potrebný PIN"
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP"
-msgstr "PIP"
-
 msgid "PLP ID"
 msgstr "PLP ID"
 
@@ -14424,9 +14354,6 @@ msgstr "PPanel"
 
 msgid "PRIMETIME"
 msgstr "PRIMETIME"
-
-msgid "PVR"
-msgstr "PVR"
 
 msgid "Package"
 msgstr "Balíček"
@@ -15555,9 +15482,6 @@ msgstr "Profil"
 msgid "Profile: Local receiver"
 msgstr "Profil: Lokálny prijímač"
 
-msgid "Program"
-msgstr "Program"
-
 #, python-format
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "Na vykonanie tejto akcie je potrebné nainštalovať program'%s'. Chcete nainštalovať balíček '%s' na inštaláciu programu?"
@@ -15672,9 +15596,6 @@ msgstr "Ochrana"
 
 msgid "Protocol"
 msgstr "Protokol"
-
-msgid "Prov"
-msgstr "Poskyt"
 
 msgid "Provider"
 msgstr "Poskytovateľ"
@@ -15802,6 +15723,9 @@ msgstr "RAM benchmark"
 msgid "RAM temperature"
 msgstr "Teplota RAM"
 
+msgid "RAM time shift cannot be saved as a recording."
+msgstr "Timeshift v pamäti RAM nemožno uložiť ako nahrávku."
+
 msgid "RC custom code"
 msgstr "Používateľský RC kód"
 
@@ -15882,6 +15806,9 @@ msgstr "Výber rádiového kanála"
 
 msgid "Radio Channel Selection Actions"
 msgstr "Akcie pre výber rádiového kanála"
+
+msgid "Radio text"
+msgstr "Rádiotext"
 
 msgid "Raise and lower the CPU frequency gradually depending on the load."
 msgstr "Postupne zvyšovať a znižovať frekvenciu CPU podľa vyťaženia."
@@ -17031,9 +16958,6 @@ msgstr "Rwanda"
 msgid "Réunion"
 msgstr "Réunion"
 
-msgid "SAT"
-msgstr "SAT"
-
 msgid "SAT input"
 msgstr "SAT vstup"
 
@@ -17270,6 +17194,9 @@ msgstr "Uložiť záznam správ z konzoly do súboru"
 msgid "Save the right column directory location on exit."
 msgstr "Pri ukončení uložiť umiestnenie priečinka v pravom stĺpci."
 
+msgid "Save these settings anyway?"
+msgstr "Chcete aj napriek tomu tieto nastavenia uložiť?"
+
 msgid "Save time shift as movie and continue recording"
 msgstr "Uložiť timeshift ako film a pokračovať v nahrávaní"
 
@@ -17304,9 +17231,6 @@ msgstr "Uložené riadky v správach skriptov"
 
 msgid "Saving EPG Cache..."
 msgstr "Uložiť EPG cache…"
-
-msgid "Saving time shift buffer, this might take a while."
-msgstr "Ukladá sa vyrovnávacia pamäť funkcie timeshift. Môže to chvíľu trvať."
 
 msgid "Saving time shift files"
 msgstr "Ukladajú sa súbory timeshiftu"
@@ -17510,9 +17434,6 @@ msgstr "Hľadať balíčky podľa názvu alebo opisu"
 msgid "Search west"
 msgstr "Hľadať západne"
 
-msgid "Search/WEB"
-msgstr "Hľadať/WEB"
-
 msgid "Searching"
 msgstr "Hľadanie"
 
@@ -17591,14 +17512,8 @@ msgstr "Na spustenie pomocníka pre CI+ helper, zvoľte možnosť 'Zapnúť'."
 msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
 msgstr "Ak je k tomuto tuneru pripojený signálový kábel, vyberte možnosť 'povolené', inak vyberte možnosť 'nič nie je pripojené'."
 
-msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr "Ak chcete, aby timeshift používal jeden vyrovnávací súbor, vyberte možnosť 'Nie'. Na kontrolu veľkosti vyrovnávacieho súboru použite položky 'Kontrola starších súborov timeshiftu [v minútach]' a 'Kontrola voľného miesta pre timeshift'."
-
 msgid "Select 'No' to only write a log message to the debug log file."
 msgstr "Ak sa má do súboru denníka ladenia zapísať iba správa, vyberte možnosť 'Nie'."
-
-msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
-msgstr "Ak chcete uložiť staršie udalosti aj po prepnutí alebo prerušení timeshiftu, vyberte možnosť 'Nie'."
 
 msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Ak sa používa 'univerzálny' LNB, vyberte možnosť 'polarizácia', v opačnom prípade si pozrite špecifikácie vášho LNB."
@@ -17641,9 +17556,6 @@ msgstr "Ak je nastavené na 'Áno', pri pozastavení prehrávania médií zostan
 
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "Vyberte voľbu 'Áno', ak chcete povoliť systému VPS úpravu časovačov nahrávania na základe údajov PDC. Stanica/služba však musí poskytovať spoľahlivé PDC údaje pre jednotlivé udalosti."
-
-msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
-msgstr "Ak je nastavené 'Áno', bude možné použitie vyhľadávacieho panela na skok na vybraný bod v rámci udalosti."
 
 msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
 msgstr "Ak je nastavené 'Áno', pri otvorení zoznamu kanálov sa vždy najprv zobrazí obrazovka výberu prehľadu. Pri nastavení 'Nie' sa otvorí aktuálny prehľad."
@@ -17984,12 +17896,21 @@ msgstr "Vyberte priečinok zo záložiek"
 msgid "Select a distribution from where images are to be obtained"
 msgstr "Vyberte distribúciu, z ktorej sa majú získať image"
 
+msgid "Select a duration compensation for hardware buffer latency for DM9x0."
+msgstr "Upraví kompenzáciu pre latenciu HW vyrovnávacej pamäte pre DM9x0."
+
+msgid "Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr "Zadajte dobu, ktorá sa pridá do vyrov. pamäte pre streamovanie po chybe v streamovaní. Predíde sa tak ďalším chybám kvôli nedostatočnej vyrovnávacej pamäti."
+
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr "Vyberte umiestnenie, kam sa má rozbaliť '%s':"
 
 msgid "Select a menu item"
 msgstr "Vyberte položku menu"
+
+msgid "Select a minimum amount of free space. When the free space falls below this value, cleanup tries to remove old unused time shift buffers. Buffers being played or saved remain protected so this is not a guaranteed free space reserve."
+msgstr "Vyberte minimálnu veľkosť voľného miesta. Ak klesne voľné miesto pod túto hodnotu, prebehne pokus o vyčistenie starých nepoužívaných pamätí pre timeshift. Prehrávaný alebo uložený obsah vyrovnávacej pamäte zostane chránený, Nejde teda o zaručenú rezervu voľného miesta."
 
 msgid "Select a movie"
 msgstr "Vyberte film"
@@ -18033,6 +17954,9 @@ msgstr "Vyberte čas, v pohotovostnom režime, pred ktorým môže dekódovanie 
 msgid "Select a tuner"
 msgstr "Vyberte tuner"
 
+msgid "Select a writable directory on a mounted storage device or network share. Internal flash and RAM are not permitted. Hard links are not required. Press 'OK' to select a directory."
+msgstr "Vyberte priečinok s možnosťou zápisu na pripojenom úložnom zariadení alebo sieťovom zdieľaní. Interná pamäť flash a RAM nie je povolená. Nevyžadujú sa pevné prepojenia. Pre výber priečinka stlačte 'OK'."
+
 msgid "Select action"
 msgstr "Vyberte akciu"
 
@@ -18066,6 +17990,9 @@ msgstr "Vybrerte kartový server"
 
 msgid "Select channel audio"
 msgstr "Vyberte zvukový kanál"
+
+msgid "Select channel set"
+msgstr "Vybrať zostavu kanálov"
 
 msgid "Select copy destination for:"
 msgstr "Vyberte umiestnenie kópie pre:"
@@ -18190,9 +18117,6 @@ msgstr "Vyberte, či sa tento časovač aktivuje v stredu."
 msgid "Select if this timer is to be repeated."
 msgstr "Vyberte, či sa má tento časovač opakovať."
 
-msgid "Select if time shift must continue when set to record."
-msgstr "Vyberte, či má timeshift pokračovať, ak je nastavené nahrávanie."
-
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Vyberte, či sa má aktivovať režim podradenej stanice."
 
@@ -18316,11 +18240,17 @@ msgstr "Vyberte akciu pre '%s'"
 msgid "Select the action to perform when the timer ends."
 msgstr "Vyberte akciu, ktorá sa vykoná po skončení časovača."
 
+msgid "Select the action to take when leaving time shift due to a service change. This option is used when the time shift stop warning is enabled."
+msgstr "Vyberte akciu pri opúšťaní timeshiftu z dôvodu zmeny stanice/služby. Táto voľba sa používa pri zapnutej výstrahe pre timeshift."
+
 msgid "Select the action to take when the EnergySaver timer activates."
 msgstr "Vyberte akciu pri aktivácii časovača EnergySaver."
 
 msgid "Select the action to take when the SleepTimer activates."
 msgstr "Vyberte akciu pri aktivácii časovača uspania."
+
+msgid "Select the age after which unused time shift buffers may be removed during cleanup. Buffers still being recorded, played or saved remain protected. This setting does not limit the length of an active buffer."
+msgstr "Vyberte čas, po ktorom sa môžu vyčistiť nepoužívané vyrovnávacie pamäte pre timeshift. Obsah pamätí, ktorý sa nahráva, prehráva alebo je uložený, bude chránený. Toto nastavenie neobmedzuje dĺžku aktívnej vyrovnávacej pamäte."
 
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
 msgstr "Vyberte dobu čakania po chybe úlohy, než sa úloha spustí znovu."
@@ -18498,6 +18428,9 @@ msgstr "Vyberte počiatočnú pozíciu značky na časovej osi. Značkou je vert
 msgid "Select the input connector you want to use."
 msgstr "Vyberte vstupný konektor, ktorý chcete použiť."
 
+msgid "Select the interval for checking buffer age and free space in addition to checks on event changes. Disabled means there is no periodic check. Cleanup removes unused temporary buffers and does not shorten an active buffer."
+msgstr "Vyberte interval kontroly veku vyrov. pamäte a voľného miesta, dodatkovo ku kontrolám pri zmene udalosti. Vypnutie znamená deaktivovanie pravidelnej kontroly. Vyčistením sa odstránia nepoužívané dočasné vyrov. pamäte, ale neskráti sa aktívna vyrov. pamäť."
+
 msgid "Select the last item in list or move to the end of text"
 msgstr "Vyberte poslednú položku v zozname alebo sa presuňte na koniec textu"
 
@@ -18570,6 +18503,9 @@ msgstr "Vybrať ďalšiu položku v zozname alebo presunúť kurzor doprava"
 
 msgid "Select the next item in the list"
 msgstr "Vyberte ďalšiu položku v zozname"
+
+msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
+msgstr "Vyberte počet udalostí, ktorý sa uchová vo vyrov. pamäte pre timeshift. Udalosti prekračujúce tento limit sa odstránia počas čistenia. Pamäť môže obsahovať viaceré časti súboru, ktoré sa započítavajú ako jeden. Používané vyrov. pamäte zostanú chránené, takže limit sa môže dočasne prekročiť."
 
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr "Vyberte počet pokusov o zopakovanie úlohy v prípade, že počas jej vykonávania dôjde k chybe."
@@ -19212,9 +19148,6 @@ msgstr "Nastavenie predvoleného umiestnenia okamžitých nahrávok. Tlačidlom 
 msgid "Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations."
 msgstr "Nastavte predvolené umiestnenie na ukladanie súborov timeshiftu. Stlačením tlačidla „OK“ pridáte nové umiestnenia a stlačením tlačidla DOĽAVA/DOPRAVA vyberiete z umiestnení definovaných predtým."
 
-msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Nastavenie predvoleného umiestnenia pre súbory timeshift. Tlačidlom 'OK' sa pridá nové umiestnenie, tlačidlami 'doľava/doprava' vyberte existujúce umiestnenie."
-
 msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Nastavenie predvoleného umiestnenia pre nahrávky. Tlačidlom 'OK' sa pridá nové umiestnenie, tlačidlami 'doľava/doprava' vyberte existujúce umiestnenie."
 
@@ -19342,9 +19275,6 @@ msgstr "Ak chcete v pohotovostnom režime dekódovať nahrávky čakajúce vo fr
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Ak je aktivovaná možnosť 'Áno', zapne sa odosielanie rovnakých príkazov do TV pre vypnutie, ako aj pre normálny pohotovostný režim."
-
-msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
-msgstr "Nastavte na 'Áno', pre zapnutie automatického nahrávania timeshiftu na pozadí."
 
 msgid "Set to the desired primetime hour."
 msgstr "Nastavte požadovaný hlavný vysielací čas – primetime (h)."
@@ -19864,6 +19794,9 @@ msgstr "Zobraziť všetky podrobnosti"
 msgid "Show animation while busy"
 msgstr "Zobraziť animáciu pri zaneprázdnení"
 
+msgid "Show available DAB+ reception and decoding information above the radio text. This option applies to both USB and DVB reception."
+msgstr "Zobraziť dostupný príjem DAB+ a informáciu o dekódovaní nad rádiotextom. Táto voľba sa používa pre príjem cez USB a DVB."
+
 msgid "Show background in Radio Mode"
 msgstr "Zobraziť pozadie v rádio režime"
 
@@ -20130,6 +20063,9 @@ msgstr "Zobraziť predchádzajúcu obrazovku pre servisnú informáciu"
 msgid "Show previous system information screen"
 msgstr "Zobraziť predchádzajúcu systémovú informačnú obrazovku"
 
+msgid "Show radio text, slideshow pictures or only the station logo on the receiver's color display. Slideshow mode falls back to the station logo; logo-only mode never shows slides. If no station logo is available, the DAB+ logo is shown. This setting is independent of the TV slideshow."
+msgstr "Zobraziť rádiotext, obrázky prezentácie alebo len logo stanice na farebnom displeji prijímača. Režim prezentácie sa prepne naspäť na logo stanice; v režime len pre logo sa prezentácie nezobrazujú. Ak nie je dostupné žiadne logo; zobrazí sa logo DAB+. Toto nastavenie je nezávislé od prezentácie na TV."
+
 msgid "Show record indicator"
 msgstr "Zobraziť indikátor nahrávania"
 
@@ -20223,6 +20159,9 @@ msgstr "Zobraziť správy o úlohách"
 msgid "Show task messages if File Commander is not running and all task are completed."
 msgstr "Zobraziť správy o úlohách, ak program Správca súborov nie je spustený a všetky úlohy sú dokončené."
 
+msgid "Show technical status line"
+msgstr "Zobraziť technický stavový riadok"
+
 msgid "Show the CCcam Info Screen"
 msgstr "Zobraziť informačnú obrazovku CCcam"
 
@@ -20280,7 +20219,7 @@ msgstr "Zobraziť vertikálneho programového sprievodcu"
 msgid "Show warning before restart"
 msgstr "Zobrazovať výstrahu pred reštartovaním"
 
-msgid "Show warning when time shift is stopped"
+msgid "Show warning when time shift stopped"
 msgstr "Zobraziť varovanie pri zastavení timeshiftu"
 
 msgid "Show watch status"
@@ -20291,6 +20230,9 @@ msgstr "Show/herná show"
 
 msgid "Show/Hide Actions"
 msgstr "Zobraziť/skryť akcie infolišty"
+
+msgid "Show/Hide channel name"
+msgstr "Zobraziť/skryť názov kanála"
 
 msgid "Show/Hide focus bar"
 msgstr "Zobraziť/skryť panel pre zameranie"
@@ -20493,9 +20435,6 @@ msgstr "Preskočiť dopredu %s%%"
 msgid "Skip forward (enter time)"
 msgstr "Preskočiť dopredu (zadajte čas)"
 
-msgid "Skip jumping to live while timeshifting with plugins"
-msgstr "Nepreskočiť na živé vysielanie pri timeshifte so zásuvnými modulmi"
-
 msgid "Skip network setup"
 msgstr "Preskočiť nastavenie siete"
 
@@ -20517,9 +20456,6 @@ msgstr "Preskočiť na pozíciu %s0%% (pri druhom stlačení pridať %s%%)"
 
 msgid "Skip to 0% (start) position"
 msgstr "Preskočiť na počiatočnú pozíciu 0 %"
-
-msgid "Sleep"
-msgstr "Uspať"
 
 msgid "Sleep Timer"
 msgstr "Časovač uspania"
@@ -20600,6 +20536,9 @@ msgstr "Slučka prezentácie"
 
 msgid "Slide top to bottom"
 msgstr "Posúvať zhora nadol"
+
+msgid "Slideshow / station logo"
+msgstr "Prezentácia/logo stanice"
 
 #, python-format
 msgid "Slot %d"
@@ -21173,6 +21112,9 @@ msgstr "Statická IP/vlastná IP"
 msgid "Station"
 msgstr "Stanica"
 
+msgid "Station logo only"
+msgstr "Len logo stanice"
+
 msgid "Status"
 msgstr "Stav"
 
@@ -21193,6 +21135,9 @@ msgstr "Stav nie je dostupný!"
 
 msgid "Status:"
 msgstr "Stav:"
+
+msgid "Stay in time shift at buffer end (for plugins)"
+msgstr "Zostať v timeshifte aj na konci vyrov. pamäte (pre pluginy)"
 
 msgid "Step"
 msgstr "Krok"
@@ -21292,9 +21237,6 @@ msgstr "Zastavenie %s sa nepodarilo (kód ukončenia %s)"
 msgid "Stopping Softcam"
 msgstr "Zastavuje sa softcam"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Zablokuje timeshift počas nahrávania (odporúča sa pre USB kľúče)."
-
 msgid "Storage / Disk Information"
 msgstr "Informácie o úložisku/disku"
 
@@ -21322,6 +21264,10 @@ msgstr "Nenašlo sa úložné zariadenie!"
 
 msgid "Storage device not writable!"
 msgstr "Úložné zariadenie nie je zapisovateľné!"
+
+#, python-format
+msgid "Storage directory '%s' is unavailable or not writable."
+msgstr "Priečinok úložiska '%s' nie je dostupný alebo sa do neho nedá zapisovať."
 
 msgid "Store position"
 msgstr "Uložiť pozíciu"
@@ -22166,6 +22112,12 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "Príkaz na prebudenie z pohotovostného režimu sa odošle viackrát."
 
+msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
+msgstr "Pokračovanie nahrávania nebolo možné bezpečne identifikovať. Obidve nahrávky boli zachované a nezlúčia sa."
+
+msgid "The current time shift buffer is no longer available."
+msgstr "Aktuálna vyrovnávacia pamäť pre timeshift už nie je dostupná."
+
 #, python-format
 msgid "The custom mount point for '%s' is empty!"
 msgstr "Používateľský bod pripojenia pre '%s' je prázdny!"
@@ -22203,13 +22155,6 @@ msgstr "Súbor '%s' sa zmenil. Majú sa vykonané zmeny zahodiť?"
 #, python-format
 msgid "The file '%s' has been changed. Do you want to save it?"
 msgstr "Súbor '%s' sa zmenil. Má sa ho uložiť?"
-
-msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Súborový systém jednotky s timeshiftom nepodporuje hardlinky.\n"
-"Skontrolujte, či je vo formáte EXT2, EXT3 alebo EXT4!"
 
 #, python-format
 msgid "The following files are related to '%s':"
@@ -22289,6 +22234,9 @@ msgstr "Výsledky boli zapísané do súboru %s."
 msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
 msgstr "Kmeňový podradený priečinok v SPÚŠŤACOM súbore výrobcu nemožno rozšíriť bezpečným spôsobom."
 
+msgid "The running Enigma2 version cannot safely save an active time shift buffer."
+msgstr "Spustená verzia systému Enigma2 nedokáže bezpečne ukladať vyrov. pamäť pre aktívny timeshift."
+
 msgid "The saved PIN was cleared."
 msgstr "Uložený PIN kód bol vymazaný."
 
@@ -22321,6 +22269,9 @@ msgstr ""
 "\n"
 "Vykonať hneď alebo časovač predĺžiť?"
 
+msgid "The storage check did not finish. Please check the device or network and try again."
+msgstr "Kontrola úložiska sa ešte neskončila. Prosím skontrolujte zariadenie alebo sieť a skúste to ešte raz."
+
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Čas sa vynásobí aktuálnym počítadlom opakovaní."
 
@@ -22331,12 +22282,17 @@ msgstr ""
 "Čas vyrovnávacej pamäte pre timeshift prekračuje limit zadaný v nastaveniach.\n"
 "Čo sa má urobiť?"
 
-msgid ""
-"The time shift storage device is not available.\n"
-"Please check the device and the time shift path."
-msgstr ""
-"Úložné zariadenie pre timeshift nie je dostupné.\n"
-"Prosím, skontrolujte zariadenie a cestu pre timeshift."
+msgid "The time shift buffer is not available."
+msgstr "Vyrov. pamäť pre timeshift nie je dostupná."
+
+msgid "The time shift recording was saved, but a temporary recording could not be removed."
+msgstr "Nahrávka timeshiftu bola uložená, alebo dočasnú nahrávku sa nepodarilo odstrániť."
+
+msgid "The time shift storage device is not available. Please check the device and the time shift path."
+msgstr "Nie je dostupné úložné zariadenie pre timeshift. Prosím skontrolujte zariadenie a cestu pre timeshift."
+
+msgid "The time shift storage device was removed. Time shift has been stopped."
+msgstr "Úložné zariadenie pre timeshift bolo odstránené. Timeshift sa zastavil."
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -22754,38 +22710,20 @@ msgstr "Interval opakovania časového skoku pre rýchly posun dopredu/dozadu"
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Časový skok: použiť normálne rýchlosti rýchleho pretáčania"
 
-msgid "Time shift buffer delete after zap"
-msgstr "Po prepnutí odstrániť vyrovnávaciu pamäť timeshiftu"
-
-msgid "Time shift buffer limit"
-msgstr "Limit vyrovnávacej pamäte timeshiftu (h)"
-
 msgid "Time shift buffer location"
 msgstr "Umiestnenie timeshiftu"
 
-msgid "Time shift checking for free space"
-msgstr "Timeshift – kontrola voľného miesta"
-
-msgid "Time shift checking for older files"
-msgstr "Timeshift – kontrola starších súborov (min.)"
-
-msgid "Time shift event based file splitting"
-msgstr "Timeshift – rozdelenie súborov podľa udalosti"
-
-msgid "Time shift event limit"
-msgstr "Timeshift – limit posledných udalostí (počet)"
+msgid "Time shift could not be started. Please check the storage device and available space."
+msgstr "Nepodarilo sa spustiť timeshift. Prosím skontrolujte úložné zariadenie a dostupné miesto."
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr "Bez spoľahlivého priečinku nemusí timeshift fungovať správne."
 
-msgid "Time shift not possible!"
-msgstr "Timeshift nie je možný!"
-
 msgid "Time shift save action on zap"
 msgstr "Uloženie timeshiftu pri prepnutí"
 
-msgid "Time shift save failed!"
-msgstr "Uloženie timeshiftu neúspešné!"
+msgid "Time shift save failed! The source buffer has been retained."
+msgstr "Uloženie timeshiftu bolo neúspešné! Zdrojová vyrovnávacia pamäť bola zachovaná."
 
 msgid "Time shift save location"
 msgstr "Miesto uloženia súborov nahrávok timeshiftu"
@@ -22796,8 +22734,8 @@ msgstr "Uložiť nahrávku timeshiftu (vyberte udalosť)"
 msgid "Time shift save recording (Stop after current event)"
 msgstr "Uložiť nahrávku timeshiftu (zastaviť po aktuálnej udalosti)"
 
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Timeshift bol uložený na pevný disk!"
+msgid "Time shift saved!"
+msgstr "Timeshift bol uložený!"
 
 msgid "Time shift will get saved at end of event."
 msgstr "Timeshift sa uloží na konci udalosti."
@@ -23508,6 +23446,9 @@ msgstr "Nemožno otvoriť tuner (%d)"
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr "Nemožno pripraviť aktualizáciu prehľadu. Vyhľadávanie bude pokračovať bez aktualizovania prehľadov."
 
+msgid "Unable to prepare the time shift storage device."
+msgstr "Nemožno pripraviť úložné zariadenie pre timeshift."
+
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr "Nemožno prečítať SPÚŠŤACÍ súbor výrobcu '%s'!"
@@ -23527,6 +23468,9 @@ msgstr "Nemožno uložiť konfiguráciu siete!"
 msgid "Unable to save network mount configuration!"
 msgstr "Nemožno uložiť konfiguráciu pripojenia siete!"
 
+msgid "Unable to start RAM time shift."
+msgstr "Nemožno spustiť timeshift do pamäte RAM."
+
 msgid "Unable to start the DAB+ feed"
 msgstr "Nemožno spustiť zdroj DAB+"
 
@@ -23543,9 +23487,15 @@ msgstr "Nemožno naladiť sat. zdroj DAB+"
 msgid "Unable to update HDD replacement: %s"
 msgstr "Nemožno aktualizovať náhradu HDD: %s"
 
+msgid "Unable to update the time shift buffer."
+msgstr "Nemožno aktualizovať vyrovnávaciu pamäť pre timeshift."
+
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s!"
 msgstr "Nemožno overiť pozíciu Unicable pre LNB %d: %s!"
+
+msgid "Unable to write the time shift event information."
+msgstr "Nemožno zapísať informáciu o udalosti timeshiftu."
 
 msgid "Unattended upgrade without GUI"
 msgstr "Bezobslužná aktualizácia bez GUI"
@@ -23884,6 +23834,9 @@ msgstr "Použiť PIN"
 msgid "Use QuickSelect"
 msgstr "Použiť rýchly výber"
 
+msgid "Use SeekBar while time shifting"
+msgstr "Použiť vyhľadávací panel počas timeshiftu"
+
 msgid "Use TV remote control"
 msgstr "Používať diaľkové ovládanie TV"
 
@@ -24070,9 +24023,6 @@ msgstr "Použiť toto rozšírené nastavenie obrazu?"
 msgid "Use time jumps for fast forward/backward"
 msgstr "Použiť časové skoky pretáčania dopredu/dozadu"
 
-msgid "Use time shift SeekBar while time shifting"
-msgstr "Počas posúvania času používať vyhľadávací panel pre funkciu timeshift"
-
 msgid "Use viewer for unknown files"
 msgstr "Používať prehliadač aj pre neznáme súbory"
 
@@ -24166,9 +24116,6 @@ msgstr "VMGM (intro upútavka)"
 
 msgid "VOB file"
 msgstr "VOB súbor"
-
-msgid "VOD"
-msgstr "VOD"
 
 msgid "VPN"
 msgstr "VPN"
@@ -24787,6 +24734,9 @@ msgstr "Ak je povolené, pridajú sa EIT dáta do streamu. To umožní klientsk�
 msgid "When enabled, SDT and BAT data will be included in http streams."
 msgstr "Ak je povolené, budú dáta SDT, BAT zahrnuté do http streamov."
 
+msgid "When enabled, a new buffer is started for each event. When disabled, a continuous buffer is kept across different events. File systems such as FAT32 still require physical file parts, which are played as one buffer. Cleanup does not limit the size of an active buffer."
+msgstr "Ak je povolené, pre každú udalosť sa spustí nová vyrov. pamäť. Ak je vypnuté, pre rôzne udalosti sa bude používať pokračovacia vyrov. pamäť. Súborové systémy typu FAT32 vyžadujú fyzické časti súboru, ktoré sa prehrajú ako jeden. Vyčistením sa neobmedzí veľkosť aktívnej vyrov. pamäte."
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Ak je povolené, po skončení prehrávania a pred začiatkom nového prehrávania sa zobrazí správa."
 
@@ -24805,8 +24755,8 @@ msgstr "Ak je povolené, nahrávka môže prerušiť streamovanie, ak nie je k d
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Ak je povolené, nahrávanie môže prerušiť živé vysielanie, ak nie je k dispozícii žiadny voľný tuner."
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
-msgstr "Ak je povolené, zobrazí sa výstraha a používateľ bude mať možnosť zastaviť alebo pokračovať v timeshifte."
+msgid "When enabled, a warning will be displayed if a command will stop time shift. An option to stop or to continue the time shift will be displayed."
+msgstr "Ak je povolené, zobrazí sa pri zastavení timeshiftu nejakým príkazom výstraha. Zobrazí sa voľba pre zastavenie alebo pokračovanie timeshiftu."
 
 msgid "When enabled, allow Samba network access without a password."
 msgstr "Ak je povolené, povoliť sieťový prístup Samba aj bez hesla."
@@ -24829,11 +24779,17 @@ msgstr "Ak je povolené, povoliť používanie protokolov NFS verzie 3."
 msgid "When enabled, allow usage of the NFS version 4 protocols."
 msgstr "Ak je povolené, povoliť používanie protokolov NFS verzie 4."
 
+msgid "When enabled, allow use of the SeekBar to jump to a selected point within the time shift buffer."
+msgstr "Ak je povolené, umožní sa používanie vyhľadávacieho panela na preskočenie na vybraný bod vo vyrov. pamäti timeshiftu."
+
 msgid "When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video."
 msgstr "Ak je povolené, do menu pre rozšírenia sa pridá položka 'Manuálne rozlíšenie', aby bola možná rýchla zmena video-režimu pre aktuálne video."
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Ak je povolené, na sledovanie http streamov sa vyžaduje prihlásenie."
+
+msgid "When enabled, automatically save completed time shift buffers as recordings. This applies to newly started buffers. With event splitting disabled, saving starts when the buffer is stopped. Saved recordings are not removed by the time shift cleanup."
+msgstr "Ak je povolené, uložia sa kompletné časti vyrov. pamäte pre timeshift ako nahrávky. Používa sa pri nových spustených vyrov. pamätiach. S vypnutým delením udalostí sa ukladanie spustí pri zastavení vyrov. pamäte. Uložené nahrávky sa neodstránia pri čistení timeshiftu."
 
 msgid "When enabled, bypass HDMI EDID checking."
 msgstr "Ak je povolené, kontrola HDMI EDID sa vynechá."
@@ -24849,6 +24805,9 @@ msgstr "Ak je povolené, po dosiahnutí posledného kanála v aktuálnom prehľa
 
 msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Ak je povolené, vymazané nahrávky sa namiesto ich okamžitého odstránenia presunú do koša."
+
+msgid "When enabled, do not automatically switch to live TV when playback reaches the end of the time shift buffer. Enable this only for plugins that require continued time shift playback, such as alternative audio plugins."
+msgstr "Ak je povolené, po dosiahnutí konca vyrov. pamäte pre timeshift sa nevykoná automatické prepnutie na živé TV vysielanie. Používajte iba pre pluginy, ktoré vyžadujú neprerušované prehrávanie timeshiftu, ako aj alternatívne pluginy pre zvuk."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "Ak je povolené, počas prehrávania filmu budú vždy zapnuté externé titulky."
@@ -24894,6 +24853,9 @@ msgstr "Ak je povolené, budú sa zobrazovať stavové alebo chybové správy."
 
 msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
 msgstr "Ak je povolené, určiť používateľské nastavenia DNS pre tento adaptér, namiesto globálnych nastavení DNS."
+
+msgid "When enabled, stops time shift from being used if a recording is in progress. This is advisable for USB sticks or other slow media."
+msgstr "Ak je povolené, timeshift sa nebude používať v prípade, že prebieha nahrávka. Táto voľba sa odporúča pre USB kľúče alebo iné pomalšie médiá."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Ak je povolené, použijú sa titulky pre sluchovo postihnutých."
@@ -24964,8 +24926,11 @@ msgstr "Ak povolené, toto nastavenie má väčšiu váhu ako 'Preferovaný tune
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Ak povolené, toto nastavenie má väčšiu váhu ako 'Preferovaný tuner'."
 
-msgid "When enabled, time shift starts automatically in background after specified time."
-msgstr "Ak je povolené, po uplynutí stanoveného čase sa na pozadí automaticky spustí timeshift."
+msgid "When enabled, time shift starts automatically in background after the selected time."
+msgstr "Ak je povolené, timeshift sa automaticky spustí na pozadí po vybranom čase."
+
+msgid "When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected."
+msgstr "Ak je povolené, tak sa pri zmene stanice/služby vymažú nepoužité vyrov. pamäte pre timeshift. Ak je vypnuté, budú sa pamäte spravovať bežným spôsobom. Zachovaním dočasných vyrovnávacích pamätí nevznikajú trvalé nahrávky. Uložené nahrávky zostanú neporušené."
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "Ak je povolené, môžete upravovať nastavenia OpenWebIf pre záložný tuner."
@@ -25155,8 +25120,8 @@ msgstr "Chyba zápisu počas nahrávania. %s"
 msgid "Write failed!"
 msgstr "Zápis zlyhal!"
 
-msgid "Www"
-msgstr "Www"
+msgid "Writing to the time shift storage device failed. Time shift has been stopped."
+msgstr "Zlyhal zápis na úložné zariadenie pre timeshift. Timeshift sa zastavil."
 
 msgid "X-Resolution"
 msgstr "Rozlíšenie X"
@@ -25322,9 +25287,6 @@ msgstr "Zdá sa, že sledujete timeshift, pri jeho zastavení sa stanica nakrát
 msgid "You should flash a new image!"
 msgstr "Mali by ste vykonať flash nového image!"
 
-msgid "YouTube"
-msgstr "YouTube"
-
 #, python-format
 msgid "Your %s %s does not support PiP HD"
 msgstr "%s %s nepodporuje PiP HD"
@@ -25443,9 +25405,6 @@ msgstr "Youtube TV"
 
 msgid "ZAP"
 msgstr "PREPNUTIE"
-
-msgid "ZOOM"
-msgstr "ZOOM"
 
 msgid "ZPicon"
 msgstr "ZPicon"
@@ -25569,9 +25528,6 @@ msgstr "Priblíženie sprava"
 
 msgid "Zulu"
 msgstr "zuluština"
-
-msgid "[Timeshift] Merging records failed!"
-msgstr "[Timeshift] Zlučovanie nahrávok bolo neúspešné!"
 
 msgid "[Timeshift] Restarting time shift!"
 msgstr "[TimeShift] Reštart funkcie timeshift!"
@@ -26231,6 +26187,191 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Aspect"
+#~ msgstr "Pomer strán"
+
+#~ msgid "Back/Recall"
+#~ msgstr "Späť/Odvolať"
+
+#~ msgid "Context"
+#~ msgstr "Kontext"
+
+#~ msgid "EJECTCD"
+#~ msgstr "EJECTCD"
+
+#~ msgid "End"
+#~ msgstr "Koniec"
+
+#~ msgid "Epg/Guide"
+#~ msgstr "EPG/Sprievodca"
+
+#~ msgid "F4"
+#~ msgstr "F4"
+
+#~ msgid "HDMIin"
+#~ msgstr "Vstup HDMI"
+
+#~ msgid "History"
+#~ msgstr "História"
+
+#~ msgid "Info (EPG)"
+#~ msgstr "Info (EPG)"
+
+#~ msgid "Kodi"
+#~ msgstr "Kodi"
+
+#~ msgid "List/Fav"
+#~ msgstr "Zoznam/obľúbené"
+
+#~ msgid "MOUSE"
+#~ msgstr "MYŠ"
+
+#~ msgid "Magic"
+#~ msgstr "Magic"
+
+#~ msgid "Mark/Portal/Playlist"
+#~ msgstr "Označiť/portál/playlist"
+
+#~ msgid "Media"
+#~ msgstr "Médium"
+
+#~ msgid "Option"
+#~ msgstr "Možnosť (Option)"
+
+#~ msgid "PC"
+#~ msgstr "PC"
+
+#~ msgid "PIP"
+#~ msgstr "PIP"
+
+#~ msgid "PVR"
+#~ msgstr "PVR"
+
+#~ msgid "Program"
+#~ msgstr "Program"
+
+#~ msgid "Prov"
+#~ msgstr "Poskyt"
+
+#~ msgid "SAT"
+#~ msgstr "SAT"
+
+#~ msgid "Search/WEB"
+#~ msgstr "Hľadať/WEB"
+
+#~ msgid "Sleep"
+#~ msgstr "Uspať"
+
+#~ msgid "VOD"
+#~ msgstr "VOD"
+
+#~ msgid "Www"
+#~ msgstr "Www"
+
+#~ msgid "YouTube"
+#~ msgstr "YouTube"
+
+#~ msgid "ZOOM"
+#~ msgstr "ZOOM"
+
+#~ msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
+#~ msgstr "'Vyrovnávacia pamäť v hodinách' alebo 'počet posledných udalostí'. Pri vymazávaní starších súborov timeshiftu má prednosť podmienka, ktorá nastala skôr."
+
+#~ msgid "Creating hard link to time shift file failed!"
+#~ msgstr "Vytvorenie hardlinku na súbor timeshiftu neúspešné!"
+
+#, python-format
+#~ msgid "Directory '%s' can't be linked to recordings!"
+#~ msgstr "Priečinok '%s' nie je možné prepojiť s nahrávkami!"
+
+#~ msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
+#~ msgstr "Ak je táto možnosť nastavená na 'Áno', môže sa timeshift používať s alternatívnymi audio pluginmi."
+
+#~ msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
+#~ msgstr "Ak je voľné miesto menšie ako nastavená hodnota, vykoná sa pokus o odstránenie starých súborov timeshiftu."
+
+#~ msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
+#~ msgstr "Okrem kontroly pri začiatku udalosti je možné vykonávať kontrolu aj opakovane. Tým sa skôr zistia podmienky typu 'limit vyrovnávacej pamäte v hodinách' alebo 'kontrola voľného miesta'."
+
+#, python-format
+#~ msgid ""
+#~ "Not enough free disk space!\n"
+#~ "\n"
+#~ "Filesize: %sMB\n"
+#~ "Free Space: %sMB\n"
+#~ "Path: %s"
+#~ msgstr ""
+#~ "Nedostatok miesta na disku!\n"
+#~ "\n"
+#~ "Veľkosť súb.: %sMB\n"
+#~ "Voľné: %sMB\n"
+#~ "Cesta: %s"
+
+#~ msgid "Older files in the time shift directory are removed on every event change."
+#~ msgstr "Staršie súbory v priečinku pre timeshift sa odstraňujú pri každej zmene udalostí."
+
+#~ msgid "Saving time shift buffer, this might take a while."
+#~ msgstr "Ukladá sa vyrovnávacia pamäť funkcie timeshift. Môže to chvíľu trvať."
+
+#~ msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
+#~ msgstr "Ak chcete, aby timeshift používal jeden vyrovnávací súbor, vyberte možnosť 'Nie'. Na kontrolu veľkosti vyrovnávacieho súboru použite položky 'Kontrola starších súborov timeshiftu [v minútach]' a 'Kontrola voľného miesta pre timeshift'."
+
+#~ msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
+#~ msgstr "Ak chcete uložiť staršie udalosti aj po prepnutí alebo prerušení timeshiftu, vyberte možnosť 'Nie'."
+
+#~ msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
+#~ msgstr "Ak je nastavené 'Áno', bude možné použitie vyhľadávacieho panela na skok na vybraný bod v rámci udalosti."
+
+#~ msgid "Select if time shift must continue when set to record."
+#~ msgstr "Vyberte, či má timeshift pokračovať, ak je nastavené nahrávanie."
+
+#~ msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+#~ msgstr "Nastavenie predvoleného umiestnenia pre súbory timeshift. Tlačidlom 'OK' sa pridá nové umiestnenie, tlačidlami 'doľava/doprava' vyberte existujúce umiestnenie."
+
+#~ msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
+#~ msgstr "Nastavte na 'Áno', pre zapnutie automatického nahrávania timeshiftu na pozadí."
+
+#~ msgid "Skip jumping to live while timeshifting with plugins"
+#~ msgstr "Nepreskočiť na živé vysielanie pri timeshifte so zásuvnými modulmi"
+
+#~ msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+#~ msgstr "Zablokuje timeshift počas nahrávania (odporúča sa pre USB kľúče)."
+
+#~ msgid ""
+#~ "The file system on your time shift device does not support hard links.\n"
+#~ "Make sure it is formatted in EXT2, EXT3 or EXT4!"
+#~ msgstr ""
+#~ "Súborový systém jednotky s timeshiftom nepodporuje hardlinky.\n"
+#~ "Skontrolujte, či je vo formáte EXT2, EXT3 alebo EXT4!"
+
+#~ msgid ""
+#~ "The time shift storage device is not available.\n"
+#~ "Please check the device and the time shift path."
+#~ msgstr ""
+#~ "Úložné zariadenie pre timeshift nie je dostupné.\n"
+#~ "Prosím, skontrolujte zariadenie a cestu pre timeshift."
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Timeshift nie je možný!"
+
+#~ msgid "Time shift save failed!"
+#~ msgstr "Uloženie timeshiftu neúspešné!"
+
+#~ msgid "Time shift saved to your hard disk drive!"
+#~ msgstr "Timeshift bol uložený na pevný disk!"
+
+#~ msgid "Use time shift SeekBar while time shifting"
+#~ msgstr "Počas posúvania času používať vyhľadávací panel pre funkciu timeshift"
+
+#~ msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
+#~ msgstr "Ak je povolené, zobrazí sa výstraha a používateľ bude mať možnosť zastaviť alebo pokračovať v timeshifte."
+
+#~ msgid "When enabled, time shift starts automatically in background after specified time."
+#~ msgstr "Ak je povolené, po uplynutí stanoveného čase sa na pozadí automaticky spustí timeshift."
+
+#~ msgid "[Timeshift] Merging records failed!"
+#~ msgstr "[Timeshift] Zlučovanie nahrávok bolo neúspešné!"
 
 #~ msgid "Allow 10bit"
 #~ msgstr "Povoliť 10 bitov"

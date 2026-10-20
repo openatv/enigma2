@@ -1,31 +1,32 @@
 import os
-import time
 import random
+import time
 
-from enigma import iPlayableService, eTimer, eServiceCenter, iServiceInformation, ePicLoad, eServiceReference
+from enigma import ePicLoad, eServiceCenter, eServiceReference, eTimer, iPlayableService, iServiceInformation
 
-from Components.ActionMap import NumberActionMap, HelpableActionMap
-from Components.Label import Label
-from Components.Pixmap import Pixmap, MultiPixmap
+from ServiceReference import ServiceReference
+from Components.ActionMap import HelpableActionMap, NumberActionMap
+from Components.config import config
 from Components.FileList import FILE_IS_DIR, FILE_NAME, FileList
+from Components.Label import Label
 from Components.MediaPlayer import PlayList
 from Components.MovieList import AUDIO_EXTENSIONS
-from Components.ServicePosition import ServicePositionGauge
-from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
+from Components.Pixmap import MultiPixmap, Pixmap
 from Components.Playlist import PlaylistIOInternal, PlaylistIOM3U, PlaylistIOPLS
-from Components.config import config
+from Components.ServiceEventTracker import InfoBarBase, ServiceEventTracker
+from Components.ServicePosition import ServicePositionGauge
 from Components.SystemInfo import BoxInfo
 from Plugins.Plugin import PluginDescriptor
-from ServiceReference import ServiceReference
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Screens.InputBox import InputBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.InfoBar import InfoBar, setAudioTrack
-from Screens.InfoBarGenerics import InfoBarSeek, InfoBarScreenSaver, InfoBarAudioSelection, InfoBarAspectSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarSubtitleSupport, InfoBarResolutionSelection
-from Tools.Directories import fileExists, resolveFilename, SCOPE_CONFIG, SCOPE_PLAYLIST, SCOPE_GUISKIN
+from Screens.InfoBarGenerics import InfoBarAspectSelection, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarResolutionSelection, InfoBarScreenSaver, InfoBarSeek, InfoBarSubtitleSupport
+from Screens.InputBox import InputBox
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 from Tools.BoundFunction import boundFunction
-from .settings import MediaPlayerSetup, Load_defaults
+from Tools.Directories import SCOPE_CONFIG, SCOPE_GUISKIN, SCOPE_PLAYLIST, fileExists, resolveFilename
+
+from .settings import Load_defaults, MediaPlayerSetup
 
 
 class MyPlayList(PlayList):
@@ -146,18 +147,18 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 
 		self["PositionGauge"] = ServicePositionGauge(self.session.nav)
 
-		self["currenttext"] = Label("")
+		self["currenttext"] = Label()
 
 		self["artisttext"] = Label(_("Artist") + ':')
-		self["artist"] = Label("")
+		self["artist"] = Label()
 		self["titletext"] = Label(_("Title") + ':')
-		self["title"] = Label("")
+		self["title"] = Label()
 		self["albumtext"] = Label(_("Album") + ':')
-		self["album"] = Label("")
+		self["album"] = Label()
 		self["yeartext"] = Label(_("Year") + ':')
-		self["year"] = Label("")
+		self["year"] = Label()
 		self["genretext"] = Label(_("Genre") + ':')
-		self["genre"] = Label("")
+		self["genre"] = Label()
 		self["coverArt"] = MediaPixmap()
 		self["repeat"] = MultiPixmap()
 
@@ -1104,8 +1105,8 @@ class MediaPlayerLCDScreen(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session)
 		self["text1"] = Label("Media Player")
-		self["text3"] = Label("")
-		self["text4"] = Label("")
+		self["text3"] = Label()
+		self["text4"] = Label()
 
 	def setText(self, text, line):
 		if len(text) > 10:

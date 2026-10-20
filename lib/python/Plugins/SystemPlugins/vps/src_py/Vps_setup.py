@@ -1,8 +1,9 @@
 from enigma import getDesktop
+
+from Components.ActionMap import ActionMap
+from Components.ScrollLabel import ScrollLabel
 from Screens.Screen import Screen
 from Screens.Setup import Setup
-from Components.ScrollLabel import ScrollLabel
-from Components.ActionMap import ActionMap
 
 
 class VPS_Setup(Setup):

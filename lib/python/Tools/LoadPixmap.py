@@ -1,4 +1,4 @@
-from enigma import loadPNG, loadJPG, loadSVG, loadGIF, loadWEBP, detectImageType, RT_HALIGN_CENTER
+from enigma import RT_HALIGN_CENTER, detectImageType, loadGIF, loadJPG, loadPNG, loadSVG, loadWEBP
 
 
 # If cached is not supplied, LoadPixmap defaults to caching PNGs and not caching JPGs

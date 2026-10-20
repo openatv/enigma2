@@ -1,7 +1,6 @@
-from Screens.Screen import Screen
-
 from Components.Label import Label
-from Components.Pixmap import Pixmap, MultiPixmap
+from Components.Pixmap import MultiPixmap, Pixmap
+from Screens.Screen import Screen
 
 
 class PVRState(Screen):

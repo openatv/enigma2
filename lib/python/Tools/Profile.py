@@ -1,4 +1,4 @@
-from os.path import join as pathjoin, isfile
+from os.path import isfile, join as pathjoin
 from time import time
 
 from Tools.Directories import SCOPE_CONFIG, SCOPE_LIBDIR, fileReadLines, fileWriteLine, resolveFilename

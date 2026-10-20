@@ -1,7 +1,8 @@
-from os import access, F_OK, R_OK
-from Plugins.Plugin import PluginDescriptor
-from Components.Scanner import scanDevice
+from os import F_OK, R_OK, access
+
 from Components.Harddisk import harddiskmanager
+from Components.Scanner import scanDevice
+from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
 from Tools.Notifications import notificationCenter, showInfo
 

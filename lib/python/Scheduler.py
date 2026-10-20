@@ -4,6 +4,7 @@ from os import fsync, remove, rename
 from os.path import exists
 from subprocess import call
 from sys import maxsize
+from threading import Thread
 from time import ctime, localtime, mktime, strftime, time
 from uuid import uuid4
 
@@ -11,8 +12,6 @@ from enigma import eActionMap, quitMainloop
 
 import NavigationInstance
 from timer import Timer, TimerEntry
-from threading import Thread
-
 from Components.config import config
 from Components.SystemInfo import getBoxDisplayName
 from Components.TimerSanityCheck import TimerSanityCheck

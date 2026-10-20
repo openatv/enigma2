@@ -1,13 +1,15 @@
 from glob import glob
-from os import access, W_OK
-from enigma import iPlayableService, eTimer, eServiceReference, iRecordableService, eFCCServiceManager
-from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigSelection
+from os import W_OK, access
+
+from enigma import eFCCServiceManager, eServiceReference, eTimer, iPlayableService, iRecordableService
+
+from Components.config import ConfigSelection, ConfigSubsection, ConfigYesNo, config
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.SystemInfo import BoxInfo
 from Plugins.Plugin import PluginDescriptor
 from Screens.InfoBar import InfoBar
-from Screens.Setup import Setup
 from Screens.InfoBarGenerics import streamrelay
+from Screens.Setup import Setup
 
 max_fcc = len(glob('/dev/fcc?'))
 default_fcc = (max_fcc) > 5 and 5 or max_fcc

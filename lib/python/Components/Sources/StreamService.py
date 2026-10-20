@@ -1,4 +1,5 @@
 from enigma import eServiceReference, pNavigation
+
 from Components.Element import cached
 from Components.SystemInfo import BoxInfo
 from Components.Sources.Source import Source

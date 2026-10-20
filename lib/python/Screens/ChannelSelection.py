@@ -2675,11 +2675,16 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if hasattr(self.session, "pip"):
 			self.session.pip.inactive()
 
-	def zap(self, enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None, doPlay=True):
+	def zap(self, enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None, doPlay=True, recordingHandoff=None):
+		if recordingHandoff and not recordingHandoff.isValid():
+			recordingHandoff.finish(False)
+			return
 		nref = ref if ref is not None else self.getCurrentSelection()
 		# IPTV may have zero DVB identifiers; valid() only rejects idInvalid.
 		if nref is None or not nref.valid():
 			print("[ChannelSelection] Ignore zap without a valid service reference.")
+			if recordingHandoff:
+				recordingHandoff.finish(False)
 			return
 		self.curRoot = self.startRoot
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
@@ -2700,8 +2705,17 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					self.setStartRoot(self.curRoot)
 					self.setCurrentSelection(ref)
 		elif ref is None or ref != nref:
-			Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref, doPlay))
+			if recordingHandoff:
+				callback = boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref, doPlay, recordingHandoff=recordingHandoff)
+				if recordingHandoff.priority:
+					callback(True)
+				else:
+					Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(callback)
+			else:
+				Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref, doPlay))
 		elif not preview_zap:
+			if recordingHandoff:
+				recordingHandoff.finish(True)  # The target is already the live service.
 			self.lastroot.value = ""  # force save root.
 			self.saveRoot()
 			self.saveChannel(nref)
@@ -2712,11 +2726,27 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.rootChanged = False
 			self.revertMode = None
 
-	def zapCheckTimeshiftCallback(self, enable_pipzap, preview_zap, nref, doPlay, answer):
+	def zapCheckTimeshiftCallback(self, enable_pipzap, preview_zap, nref, doPlay, answer, recordingHandoff=None):
+		if recordingHandoff and not recordingHandoff.isValid():
+			recordingHandoff.finish(False)
+			return
+		if recordingHandoff and (not answer or not doPlay):
+			recordingHandoff.finish(False)
+			answer = False
 		if answer:
 			self.new_service_played = True
 			if doPlay:
-				self.session.nav.playService(nref)
+				if recordingHandoff:
+					if not recordingHandoff.stopService():
+						self.setStartRoot(self.curRoot)
+						self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
+						return
+					try:
+						self.session.nav.playService(nref)
+					finally:
+						recordingHandoff.finish(True)
+				else:
+					self.session.nav.playService(nref)
 			if not preview_zap:
 				self.lastroot.value = ""  # Force save root.
 				self.saveRoot()
@@ -2724,7 +2754,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				config.servicelist.lastmode.save()
 				if self.startServiceRef is None or nref != self.startServiceRef:
 					self.addToHistory(nref)
-				if self.dopipzap:
+				if self.dopipzap and recordingHandoff is None:
 					self.setCurrentSelection(self.session.pip.getCurrentService())
 				else:
 					self.mainScreenMode = config.servicelist.lastmode.value
@@ -3030,7 +3060,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.setCurrentSelection(tmp_ref)
 		self.revertMode = None
 
-	def switchToAll(self, sref):
+	def switchToAll(self, sref, recordingHandoff=None):
 		if Screens.InfoBar.InfoBar.instance:
 			servicelist = Screens.InfoBar.InfoBar.instance.servicelist
 			if servicelist:
@@ -3054,13 +3084,19 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 						servicelist.bouquet_root = rootBouquet
 				servicelist.enterPath(bouquet)
 				servicelist.setCurrentSelection(sref)
-				servicelist.zap(enable_pipzap=True)
+				options = {"recordingHandoff": recordingHandoff} if recordingHandoff else {}
+				servicelist.zap(enable_pipzap=recordingHandoff is None, **options)
 				servicelist.correctChannelNumber()
 				servicelist.startRoot = bouquet
 				if servicelist.dopipzap:
 					servicelist.addToHistory(sref)
 
-	def performZap(self, sref):
+	def performZap(self, sref, recordingHandoff=None):
+		if recordingHandoff and not recordingHandoff.isValid():
+			recordingHandoff.finish(False)
+			return
+		options = {"recordingHandoff": recordingHandoff} if recordingHandoff else {}
+
 		def getBqRoot(reference):
 			isTV = True
 			isDAB = reference.type == eServiceReference.idServiceDAB
@@ -3081,7 +3117,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if "current" in servicepath:
 				self.saveChannel(sref)
 				self.setCurrentSelection(sref)
-				self.zap(enable_pipzap=True)
+				self.zap(enable_pipzap=recordingHandoff is None, **options)
 				if self.dopipzap:
 					self.addToHistory(sref)
 				return
@@ -3096,7 +3132,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				if bouquet:
 					self.enterPath(eServiceReference(bouquet))
 			self.setCurrentSelection(sref)
-			self.zap(enable_pipzap=True)
+			self.zap(enable_pipzap=recordingHandoff is None, **options)
 			self.correctChannelNumber()
 			self.startRoot = bouquet
 			if self.dopipzap:
@@ -3131,7 +3167,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if found:
 			finalZap(isTV, found)
 		else:
-			self.switchToAll(sref)
+			self.switchToAll(sref, **options)
 
 
 class PiPZapSelection(ChannelSelection):
@@ -3270,6 +3306,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self.session.nav.playService(lastservice)
 
 	def startRassInteractive(self):
+		self.infobar.dab_slide_display.rassPictureAvailable()
 		self.info.hide()
 		self.infobar.rass_interactive = self.session.openWithCallback(self.RassInteractiveClosed, RassInteractive)
 

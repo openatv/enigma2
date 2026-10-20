@@ -11,10 +11,10 @@ import NavigationInstance
 from ServiceReference import ServiceReference
 from skin import fonts, getSkinFactor, parameters, parseFont
 from Components.config import config
-from Components.FileList import AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAGE_EXTENSIONS, MOVIE_EXTENSIONS, KNOWN_EXTENSIONS
+from Components.FileList import AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAGE_EXTENSIONS, KNOWN_EXTENSIONS, MOVIE_EXTENSIONS
 from Components.GUIComponent import GUIComponent
-from Components.SkinIcon import SkinIcon, loadSkinIcon
 from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest, MultiContentEntryProgress, MultiContentEntryText
+from Components.SkinIcon import SkinIcon, loadSkinIcon
 from Components.Renderer.Picon import getChannelSelectionPiconName
 from Screens.LocationBox import defaultInhibitDirs
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename

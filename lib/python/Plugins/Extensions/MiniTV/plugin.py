@@ -1,6 +1,6 @@
-from Plugins.Plugin import PluginDescriptor
-from Components.config import config, ConfigSubsection, ConfigSelection
+from Components.config import ConfigSelection, ConfigSubsection, config
 from Components.SystemInfo import BoxInfo
+from Plugins.Plugin import PluginDescriptor
 
 config.plugins.minitv = ConfigSubsection()
 config.plugins.minitv.enable = ConfigSelection(default="disable", choices=[("enable", "enable"), ("disable", "disable")])

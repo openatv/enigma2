@@ -1,20 +1,17 @@
 from datetime import datetime
-from os import rename, remove, stat, sync
+from os import remove, rename, stat, sync
 from os.path import exists, split
 from time import localtime, mktime, time
 
+from enigma import eServiceCenter, eServiceReference, eTimer, iRecordableService, iServiceInformation, quitMainloop
 
-from enigma import eTimer, eServiceReference, eServiceCenter, iServiceInformation, iRecordableService, quitMainloop
-
+from RecordTimer import RecordTimerEntry
+from ServiceReference import ServiceReference
 from Components.config import config
 from Components.ScrambledRecordings import ScrambledRecordings
 from Components.SystemInfo import BoxInfo
 from Components.UsageConfig import preferredInstantRecordPath
-
-from RecordTimer import RecordTimerEntry
 from Screens.MessageBox import MessageBox
-from ServiceReference import ServiceReference
-
 from Tools.Directories import fileExists, fileReadLine, fileReadLines, fileWriteLines
 from Tools.Notifications import AddNotification
 

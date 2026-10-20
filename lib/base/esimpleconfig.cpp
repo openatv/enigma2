@@ -1,11 +1,14 @@
 #include <algorithm>
 #include <cctype>
 #include <climits>
+#include <cstdlib>
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <sstream>
 #include <map>
+#include <strings.h>
+#include <sys/stat.h>
 #include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
 #include <lib/base/esimpleconfig.h>
@@ -23,34 +26,41 @@ namespace eSimpleConfig
 		return *configValues;
 	}
 
-	static void load()
+	bool getValues(std::map<std::string, std::string> &values)
 	{
-		std::string file = eEnv::resolve("${sysconfdir}/enigma2/settings");
-
-		struct stat settings_stat = {};
-		if (stat(file.c_str(), &settings_stat) == -1 || settings_stat.st_mtime <= lastModified)
-			return;
-
-		std::ifstream in(file.c_str());
+		values.clear();
+		std::ifstream in(eEnv::resolve("${sysconfdir}/enigma2/settings"));
 		if (!in.good())
-			return;
+			return false;
 
-		getConfigValues().clear();
-		do
+		std::string line;
+		while (std::getline(in, line))
 		{
-			std::string line;
-			std::getline(in, line);
-
-			if (line[0] == '#')
+			if (line.empty() || line[0] == '#')
 				continue;
 
 			auto equals = line.find_first_of('=');
 			if (equals != std::string::npos)
-				getConfigValues().insert(std::pair<std::string, std::string>(line.substr(0, equals), line.substr(equals + 1)));
+				values.insert(std::pair<std::string, std::string>(line.substr(0, equals), line.substr(equals + 1)));
 		}
-		while (in.good());
-		in.close();
+		if (!in.eof())
+		{
+			values.clear();
+			return false;
+		}
+		return true;
+	}
 
+	static void load()
+	{
+		std::string file = eEnv::resolve("${sysconfdir}/enigma2/settings");
+		struct stat settings_stat = {};
+		if (stat(file.c_str(), &settings_stat) == -1 || settings_stat.st_mtime <= lastModified)
+			return;
+		std::map<std::string, std::string> values;
+		if (!getValues(values))
+			return;
+		getConfigValues().swap(values);
 		lastModified = settings_stat.st_mtime;
 	}
 

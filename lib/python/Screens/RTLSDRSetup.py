@@ -3,6 +3,7 @@ from enigma import iServiceInformation
 from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigText, ConfigYesNo, NoSave, ReadOnly, config
 from Components.RTLSDR import cacheRTLSDRTuner, ensureDABSatelliteConfig, enumerateRTLSDRSysfsDevices, getDABSatelliteDefinitions, hasAvailableSatelliteDAB, hasRTLSDRBackend, hasRTLSDRDVBKernelDriver, hasRTLSDRUSBHardware, isRTLSDRDVBKernelDriverBlacklisted, isRTLSDRInUse, setRTLSDRDVBKernelDriverBlacklist, updateDABBoxInfo
+from Components.SystemInfo import BoxInfo
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.Setup import Setup
@@ -60,11 +61,17 @@ class RTLSDRSetup(Setup):
 			(_("Common settings"),),
 			((_("Show DAB+ slideshow"), 1), config.dab.slideshow,
 				_("Replace the static radio background with pictures transmitted by the current DAB+ station.")),
+			((_("Show technical status line"), 1), config.dab.technicalInfo,
+				_("Show available DAB+ reception and decoding information above the radio text. This option applies to both USB and DVB reception.")),
 			((_("Audio decoding"), 1), config.dab.audioMode,
 				_("Use automatic hardware detection, request hardware AAC decoding, or force the software PCM compatibility path.")),
 			((_("Clear before scan"), 1), config.dab.clearBeforeScan,
 				_("Remove previously stored services from scanned DAB+ multiplexes. Disable this option to retain services when a multiplex is temporarily unavailable."))
 		]
+		if BoxInfo.getItem("ColorFrontpanelDisplay"):
+			items.insert(2, (
+				(_("DAB+ front display"), 1), config.dab.frontDisplay,
+				_("Show radio text, slideshow pictures or only the station logo on the receiver's color display. Slideshow mode falls back to the station logo; logo-only mode never shows slides. If no station logo is available, the DAB+ logo is shown. This setting is independent of the TV slideshow.")))
 		if self.hasRTLSDRHardware() and self.hasAvailableSatelliteDAB():
 			items.append((
 				(_("Reception sources to scan"), 1),

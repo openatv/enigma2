@@ -63,6 +63,25 @@ class ServiceInfo(Converter):
 	IS_DVBI = 49
 	DAB_LANGUAGE = 50
 	DAB_PROTECTION = 51
+	DAB_METADATA = 52
+	DAB_QUALITY = 53
+	DAB_ENSEMBLE_ID = 54
+	DAB_TECHNICAL = 55
+	DAB_TEXT_FIELDS = {
+		"DABArtist": iServiceInformation.sTagArtist,
+		"DABBitrate": iServiceInformation.sTagBitrate,
+		"DABChannel": iServiceInformation.sDABChannel,
+		"DABCodec": iServiceInformation.sTagCodec,
+		"DABDynamicLabel": iServiceInformation.sDABDynamicLabel,
+		"DABEnsemble": iServiceInformation.sDABEnsembleLabel,
+		"DABGenre": iServiceInformation.sTagGenre,
+		"DABReceiver": iServiceInformation.sDABReceiverName,
+		"DABTitle": iServiceInformation.sTagTitle
+	}
+	DAB_QUALITY_FIELDS = {
+		"DABFICQuality": iServiceInformation.sDABFICQuality,
+		"DABMSCQuality": iServiceInformation.sDABMSCQuality
+	}
 
 	VIDEO_INFO_WIDTH = 0
 	VIDEO_INFO_HEIGHT = 1
@@ -77,11 +96,13 @@ class ServiceInfo(Converter):
 		# self.poll_interval = 10000
 		# self.poll_enabled = True
 		self.argument = token
-		self.token, self.interestingEvents = {
+		tokens = {
 			"AudioPid": (self.APID, (iPlayableService.evUpdatedInfo,)),
 			"AudioTracksAvailable": (self.AUDIOTRACKS_AVAILABLE, (iPlayableService.evUpdatedInfo,)),
+			"DABEnsembleId": (self.DAB_ENSEMBLE_ID, (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evUpdatedInfo)),
 			"DABLanguage": (self.DAB_LANGUAGE, (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evUpdatedInfo)),
 			"DABProtection": (self.DAB_PROTECTION, (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evUpdatedInfo)),
+			"DABTechnical": (self.DAB_TECHNICAL, (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evUpdatedInfo)),
 			"EditMode": (self.EDITMODE, (iPlayableService.evUpdatedInfo,)),
 			"Editmode": (self.EDITMODE, (iPlayableService.evUpdatedInfo,)),
 			"FrameRate": (self.FRAMERATE, (iPlayableService.evVideoSizeChanged, iPlayableService.evUpdatedInfo)),
@@ -135,7 +156,10 @@ class ServiceInfo(Converter):
 			"VideoPid": (self.VPID, (iPlayableService.evUpdatedInfo,)),
 			# "VideoSize": (self.VIDEO_SIZE, (iPlayableService.evVideoSizeChanged,)),
 			"VideoWidth": (self.XRES, (iPlayableService.evVideoSizeChanged,)),
-		}.get(token)
+		}
+		tokens.update(dict.fromkeys(self.DAB_TEXT_FIELDS, (self.DAB_METADATA, (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evUpdatedInfo))))
+		tokens.update(dict.fromkeys(self.DAB_QUALITY_FIELDS, (self.DAB_QUALITY, (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evUpdatedInfo))))
+		self.token, self.interestingEvents = tokens.get(token)
 		self.instanceInfoBarSubserviceSelection = None
 
 	def changed(self, what):
@@ -162,6 +186,10 @@ class ServiceInfo(Converter):
 		result = False
 		service = self.source.service
 		info = service and service.info()
+		if self.token == self.DAB_QUALITY:
+			return self.value >= 0  # Availability, including a measured zero.
+		if self.token in (self.DAB_LANGUAGE, self.DAB_PROTECTION, self.DAB_METADATA, self.DAB_ENSEMBLE_ID, self.DAB_TECHNICAL):
+			return bool(self.text)
 		if self.token == self.IS_DVBI:
 			result = bool(service and getattr(self.source, "isDVBI", False))
 		elif info:
@@ -253,14 +281,35 @@ class ServiceInfo(Converter):
 		result = ""
 		service = self.source.service
 		info = service and service.info()
-		if self.token in (self.DAB_LANGUAGE, self.DAB_PROTECTION):
+		if self.token in (self.DAB_LANGUAGE, self.DAB_PROTECTION, self.DAB_METADATA, self.DAB_QUALITY, self.DAB_ENSEMBLE_ID, self.DAB_TECHNICAL):
 			if info:
 				serviceRef = info.getInfoString(iServiceInformation.sServiceref)
 				if serviceRef and eServiceReference(serviceRef).type == eServiceReference.idServiceDAB:
 					if self.token == self.DAB_LANGUAGE:
 						result = dabMetadata.languageName(info.getInfoString(iServiceInformation.sTagLanguageCode))
-					else:
+					elif self.token == self.DAB_PROTECTION:
 						result = info.getInfoString(iServiceInformation.sDABProtection)
+					elif self.token == self.DAB_QUALITY:
+						quality = self.value
+						result = f"{quality}%" if quality >= 0 else ""
+					elif self.token == self.DAB_ENSEMBLE_ID:
+						ensembleId = info.getInfo(iServiceInformation.sDABEnsembleId)
+						result = f"{ensembleId:04X}" if ensembleId > 0 else ""
+					elif self.token == self.DAB_TECHNICAL:
+						channel = info.getInfoString(iServiceInformation.sDABChannel)
+						parts = [f"SDR {channel}" if channel else "DVB"]
+						values = [info.getInfoString(self.DAB_TEXT_FIELDS[x]) for x in ("DABCodec", "DABBitrate")]
+						parts.extend(x for x in values if x)
+						protection = info.getInfoString(iServiceInformation.sDABProtection)
+						if protection:
+							parts.append(protection)
+						for name, field in (("FIC", iServiceInformation.sDABFICQuality), ("MSC", iServiceInformation.sDABMSCQuality)):
+							quality = info.getInfo(field)
+							if 0 <= quality <= 100:
+								parts.append(f"{name} {quality}%")
+						result = " | ".join(parts)
+					else:
+						result = info.getInfoString(self.DAB_TEXT_FIELDS[self.argument])
 			return result
 		if info:
 			videoData = info.getInfoString(iServiceInformation.sVideoInfo) or "-1|-1|-1|-1|-1|-1"
@@ -330,6 +379,14 @@ class ServiceInfo(Converter):
 		result = -1
 		service = self.source.service
 		info = service and service.info()
+		if self.token == self.DAB_QUALITY:
+			if info:
+				serviceRef = info.getInfoString(iServiceInformation.sServiceref)
+				if serviceRef and eServiceReference(serviceRef).type == eServiceReference.idServiceDAB:
+					quality = info.getInfo(self.DAB_QUALITY_FIELDS[self.argument])
+					if 0 <= quality <= 100:
+						result = quality
+			return result
 		if info:
 			match self.token:
 				case self.FRAMERATE:
@@ -348,3 +405,4 @@ class ServiceInfo(Converter):
 		return result
 
 	value = property(getValue)
+	range = property(lambda self: 100 if self.token == self.DAB_QUALITY else None)

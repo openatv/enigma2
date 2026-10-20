@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 19:03+0000\n"
+"POT-Creation-Date: 2026-10-19 19:43+0000\n"
 "PO-Revision-Date: 2026-08-17 22:30+0000\n"
 "Last-Translator: ikvat <ikvat@hotmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -1351,9 +1351,6 @@ msgstr ""
 msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
 msgstr ""
 
-msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
-msgstr "'Tampon en heure(s)' ou 'nombre de derniers évènements'. Pour effacer les anciens fichiers PauseDirect, la première condition est prioritaire."
-
 msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Gérer la veille du téléviseur' a une priorité plus élevée que 'Gérer l'entrée du téléviseur'."
 
@@ -1693,6 +1690,9 @@ msgstr ""
 "Un enregistrement a démarré :\n"
 "%s"
 
+msgid "A recording has priority. Time shift is being stopped."
+msgstr ""
+
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -1722,6 +1722,9 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Un outil requis (%s) n'a pas été trouvé."
+
+msgid "A storage check is still running. Save these settings without waiting for it?"
+msgstr ""
 
 msgid ""
 "A timer failed to record!\n"
@@ -2205,9 +2208,6 @@ msgstr ""
 
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Ajustement le positionnement verticale des lettres utilisées pour le télétexte."
-
-msgid "Adjusts compensation for hardware buffer latency for DM9x0."
-msgstr ""
 
 msgid "Adult"
 msgstr "Adulte"
@@ -2758,9 +2758,6 @@ msgstr "Demander à l'utilisateur (avec comme défaut 'non')"
 msgid "Ask user (with default of 'Yes')"
 msgstr "Demander à l'utilisateur (avec comme défaut 'oui')"
 
-msgid "Aspect"
-msgstr "Aspect"
-
 msgid "Aspect Ratio"
 msgstr ""
 
@@ -2995,7 +2992,7 @@ msgstr "Mettre automatiquement le téléviseur en veille lorsque le récepteur p
 msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
 msgstr ""
 
-msgid "Automatically start time shift after"
+msgid "Automatically start time shift"
 msgstr "Démarrer automatiquement la PauseDirect après"
 
 msgid "Automatically turn on external subtitles"
@@ -3103,9 +3100,6 @@ msgstr "Prise USB arrière droite"
 
 msgid "Back, upper USB"
 msgstr "A l'arrière, USB du haut"
-
-msgid "Back/Recall"
-msgstr "Retour/Rappel"
 
 msgid "Background"
 msgstr "Arrière-plan"
@@ -3515,6 +3509,9 @@ msgstr "Brunei Darussalam"
 
 msgid "Buffer Management"
 msgstr ""
+
+msgid "Buffer age limit"
+msgstr "PauseDirect limite du buffer [en heures]"
 
 #, python-format
 msgid "Buffering %d%%"
@@ -4304,6 +4301,12 @@ msgstr ""
 msgid "Check for PDC availability on each service."
 msgstr ""
 
+msgid "Check for free space"
+msgstr "PauseDirect vérification de l'espace libre ?"
+
+msgid "Check for older files"
+msgstr "PauseDirect vérification pour des anciens fichiers [en minutes]"
+
 msgid "Check power and input state from TV"
 msgstr "Vérifiez l'alimentation et l'état d'entrée du téléviseur"
 
@@ -4324,6 +4327,9 @@ msgstr ""
 
 msgid "Checking file system..."
 msgstr "Vérification du système de fichiers..."
+
+msgid "Checking storage directory..."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -5279,9 +5285,6 @@ msgstr "Contenu"
 msgid "Content does not fit on DVD!"
 msgstr "Le contenu ne tient pas sur le DVD !"
 
-msgid "Context"
-msgstr "Contexte"
-
 msgid "Continent"
 msgstr ""
 
@@ -5597,9 +5600,6 @@ msgstr "Création des fichiers AP et SC"
 msgid "Creating file system"
 msgstr "Création du système de fichiers"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Création du lien matériel (hardlink) vers le fichier de PauseDirect a échoué !"
-
 #, python-format
 msgid ""
 "Creating or activating the swap file failed.\n"
@@ -5856,6 +5856,9 @@ msgid "DAB+ channel %s"
 msgstr ""
 
 msgid "DAB+ decoder back end not installed"
+msgstr ""
+
+msgid "DAB+ front display"
 msgstr ""
 
 msgid "DAB+ scan failed; existing bouquets were kept."
@@ -6442,6 +6445,9 @@ msgstr "Effacer plugins"
 msgid "Delete Timer"
 msgstr "Supprimer la programmation"
 
+msgid "Delete after zap"
+msgstr "PauseDirect effacer le buffer après un zap ?"
+
 msgid "Delete all duplicated lines"
 msgstr ""
 
@@ -6756,10 +6762,6 @@ msgstr ""
 
 msgid "Directory"
 msgstr "Répertoire"
-
-#, python-format
-msgid "Directory '%s' can't be linked to recordings!"
-msgstr "Le répertoire '%s' ne peut pas être lié aux enregistrements !"
 
 #, python-format
 msgid "Directory '%s' does not exist!"
@@ -7351,9 +7353,6 @@ msgstr ""
 msgid "ECM information for '%s'"
 msgstr ""
 
-msgid "EJECTCD"
-msgstr "EJECTCD"
-
 msgid "EPG"
 msgstr "EPG"
 
@@ -7617,9 +7616,6 @@ msgstr "Activer %s pro :"
 msgid "Enable 5V for active antenna"
 msgstr "Activer 5V pour l'antenne active"
 
-msgid "Enable Autorecord"
-msgstr "Activer l'enregistrement automatique"
-
 msgid "Enable BT audio"
 msgstr "Activer BT Audio"
 
@@ -7719,6 +7715,9 @@ msgstr "Activer le scan rapide automatique"
 #, python-format
 msgid "Enable auto fast scan for '%s'"
 msgstr "Activer le scan rapide automatique pour %s"
+
+msgid "Enable auto record"
+msgstr "Activer l'enregistrement automatique"
 
 msgid "Enable automatic shares"
 msgstr ""
@@ -7924,9 +7923,6 @@ msgstr "Cryptage"
 msgid "Encryption And Descrambling"
 msgstr ""
 
-msgid "End"
-msgstr "Fin"
-
 msgid "End Alternatives Edit"
 msgstr "fin d'édition alternatifs"
 
@@ -8075,9 +8071,6 @@ msgstr ""
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr ""
 
-msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
-msgstr ""
-
 msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
 msgstr ""
 
@@ -8195,9 +8188,6 @@ msgstr ""
 
 msgid "Entry text only"
 msgstr ""
-
-msgid "Epg/Guide"
-msgstr "Epg/Guide"
 
 msgid "Equal to"
 msgstr "Égale au"
@@ -8569,8 +8559,14 @@ msgstr "Actions de la vue des événements"
 msgid "Event View Context Menu"
 msgstr "Menu événements"
 
+msgid "Event based file splitting"
+msgstr "PauseDirect découper les fichiers sur base des évènements"
+
 msgid "Event font size"
 msgstr "Taille de la police des événements"
+
+msgid "Event limit"
+msgstr "PauseDirect derniers événements limite [nombre d'événements]"
 
 msgid "Event name only"
 msgstr "Nom de l'événement uniquement"
@@ -8802,9 +8798,6 @@ msgstr "F2"
 
 msgid "F3"
 msgstr "F3"
-
-msgid "F4"
-msgstr "F4"
 
 msgid "FBC SCR (Unicable/JESS)"
 msgstr ""
@@ -9868,9 +9861,6 @@ msgstr "HDMI-IN Actions"
 msgid "HDMI-In Recording Settings"
 msgstr "HDMI-IN Paramètres d'enregistrement"
 
-msgid "HDMIin"
-msgstr "HDMIin"
-
 msgid "HDR OSD adjustment"
 msgstr ""
 
@@ -10113,9 +10103,6 @@ msgstr "Hispasat 30.0w"
 
 msgid "Historical"
 msgstr "Historique"
-
-msgid "History"
-msgstr "Histoire"
 
 msgid "History Prev/Next"
 msgstr ""
@@ -10437,14 +10424,8 @@ msgstr ""
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Si les logs utilisent le maximum d'espace le plus vieux sera supprimé."
 
-msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
-msgstr ""
-
 msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Si la solution de contournement de la mise en veille profonde est activée, attendez que l'heure du système soit synchronisée. Selon les besoins, le réveil du dispositif se poursuivra après un maximum de 2 minutes."
-
-msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
-msgstr "Si l'espace libre est plus petit que la valeur définie, un essai sera fait d'effacer les fichiers de PauseDirect les plus anciens."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr ""
@@ -10548,9 +10529,6 @@ msgstr "Importer depuis l’URL du récepteur distant"
 
 msgid "Import remote receiver URL"
 msgstr "Importer l’URL du récepteur distant"
-
-msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
-msgstr "En plus de la vérification au démarrage de l'événement, un contrôle répétitif peut être utilisé de sorte que 'limite de tampon en heures' ou 'vérifier l'espace libre' soient détectés plus rapidement."
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "En mode expert, configurez les tuners préférés pour les enregistrements lorsque plus d'un tuner est disponible."
@@ -10702,9 +10680,6 @@ msgstr "Indonésien"
 
 msgid "Info"
 msgstr "Info"
-
-msgid "Info (EPG)"
-msgstr "Info (EPG)"
 
 msgid "Info button (long)"
 msgstr "Bouton info (long)"
@@ -11216,9 +11191,6 @@ msgstr "Kirghiz / kirghiz"
 msgid "Kiribati"
 msgstr "Kiribati"
 
-msgid "Kodi"
-msgstr "Kodi"
-
 msgid "Kodi Add-on Packages"
 msgstr ""
 
@@ -11609,9 +11581,6 @@ msgstr ""
 msgid "List of storage devices"
 msgstr "Liste des périphériques de stockage"
 
-msgid "List/Fav"
-msgstr "List/Fav"
-
 msgid "Lists reloaded!"
 msgstr "Listes rechargées !"
 
@@ -11869,9 +11838,6 @@ msgstr "MMA"
 msgid "MORE"
 msgstr "PLUS"
 
-msgid "MOUSE"
-msgstr "MOUSE"
-
 msgid "MSC audio frame quality"
 msgstr ""
 
@@ -11908,9 +11874,6 @@ msgstr "Magazines/Rapports/Documentaires"
 
 msgid "Magenta"
 msgstr ""
-
-msgid "Magic"
-msgstr "Magie"
 
 msgid "Main Menu"
 msgstr "Menu principal"
@@ -12050,9 +12013,6 @@ msgstr ""
 msgid "Mark As Dedicated 3D Service"
 msgstr "Marquer le service comme un service dédié à la 3D"
 
-msgid "Mark/Portal/Playlist"
-msgstr "Marque/Portail/Liste de lecture"
-
 msgid "Marker Actions"
 msgstr "Actions de marqueur"
 
@@ -12116,9 +12076,6 @@ msgstr "Mayotte"
 
 msgid "Measured current"
 msgstr ""
-
-msgid "Media"
-msgstr "Multimédia"
 
 msgid "Media Center"
 msgstr "Centre Multimédia"
@@ -13636,20 +13593,6 @@ msgstr ""
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "Espace disque insuffisant. Veuillez libérer de l'espace disque et réessayer. (%d MB requis, %d MB disponible)"
 
-#, python-format
-msgid ""
-"Not enough free disk space!\n"
-"\n"
-"Filesize: %sMB\n"
-"Free Space: %sMB\n"
-"Path: %s"
-msgstr ""
-"Pas assez d'espace disque !\n"
-"\n"
-"Taille du fichier : %sMB\n"
-"Espace libre : %sMB\n"
-"Chemin : %s"
-
 msgid "Not found"
 msgstr ""
 
@@ -13860,9 +13803,6 @@ msgstr ""
 
 msgid "Ojibwa"
 msgstr "Ojibwa"
-
-msgid "Older files in the time shift directory are removed on every event change."
-msgstr "Les fichiers les plus vieux dans le répertoire PauseDirect seront enlevés à chaque changement d'événement."
 
 msgid "Olympic blue"
 msgstr ""
@@ -14175,9 +14115,6 @@ msgstr ""
 msgid "Opkg Log Actions"
 msgstr ""
 
-msgid "Option"
-msgstr "Option"
-
 msgid "Option to disable picons on the InfoBar."
 msgstr "Option pour désactiver les picons dans l'infobarre"
 
@@ -14314,9 +14251,6 @@ msgstr "PAGE HAUT/BAS"
 msgid "PAL"
 msgstr "PAL"
 
-msgid "PC"
-msgstr "PC"
-
 msgid "PCM Multichannel"
 msgstr "PCM Multicanaux"
 
@@ -14338,10 +14272,6 @@ msgstr ""
 msgid "PIN code needed"
 msgstr "Code PIN requis"
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP"
-msgstr ""
-
 msgid "PLP ID"
 msgstr "PLP ID"
 
@@ -14359,9 +14289,6 @@ msgstr "PPanel"
 
 msgid "PRIMETIME"
 msgstr "PRIMETIME"
-
-msgid "PVR"
-msgstr "PVR"
 
 msgid "Package"
 msgstr ""
@@ -15485,9 +15412,6 @@ msgstr "Profil"
 msgid "Profile: Local receiver"
 msgstr "Profil : récepteur local"
 
-msgid "Program"
-msgstr "Programme"
-
 #, python-format
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr ""
@@ -15602,9 +15526,6 @@ msgstr ""
 
 msgid "Protocol"
 msgstr "Protocole"
-
-msgid "Prov"
-msgstr "Opérateur"
 
 msgid "Provider"
 msgstr "Opérateur"
@@ -15732,6 +15653,9 @@ msgstr ""
 msgid "RAM temperature"
 msgstr ""
 
+msgid "RAM time shift cannot be saved as a recording."
+msgstr ""
+
 msgid "RC custom code"
 msgstr ""
 
@@ -15811,6 +15735,9 @@ msgid "Radio Channel Selection"
 msgstr "Sélection Canal Radio"
 
 msgid "Radio Channel Selection Actions"
+msgstr ""
+
+msgid "Radio text"
 msgstr ""
 
 msgid "Raise and lower the CPU frequency gradually depending on the load."
@@ -16964,9 +16891,6 @@ msgstr "Rwanda"
 msgid "Réunion"
 msgstr "Réunion"
 
-msgid "SAT"
-msgstr "SAT"
-
 msgid "SAT input"
 msgstr ""
 
@@ -17203,6 +17127,9 @@ msgstr ""
 msgid "Save the right column directory location on exit."
 msgstr ""
 
+msgid "Save these settings anyway?"
+msgstr ""
+
 msgid "Save time shift as movie and continue recording"
 msgstr "Sauvegarder le PauseDirect comme film et continuer l'enregistrement"
 
@@ -17237,9 +17164,6 @@ msgstr ""
 
 msgid "Saving EPG Cache..."
 msgstr "Sauvegarde du cache EPG…"
-
-msgid "Saving time shift buffer, this might take a while."
-msgstr "Sauvegarde du PauseDirect en tant que film. Cela peut prendre un certains temps !"
 
 msgid "Saving time shift files"
 msgstr "Sauvegarde des fichiers PauseDirect"
@@ -17440,9 +17364,6 @@ msgstr ""
 msgid "Search west"
 msgstr "Rechercher à l'ouest"
 
-msgid "Search/WEB"
-msgstr "Recherche/WEB"
-
 msgid "Searching"
 msgstr "Recherche en cours"
 
@@ -17521,14 +17442,8 @@ msgstr ""
 msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
 msgstr "Sélectionnez ‘activé’ si le tuner a un câble avec du signal connecté, sinon choisir ‘rien de connecté’."
 
-msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr "Si mis à 'non', PauseDirect utilise seulement le fichier de buffer. Il est recommandé d'ajuster 'PauseDirect vérifie les fichiers plus anciens [en minutes]' et 'PauseDirect vérifie l'espace libre ?'."
-
 msgid "Select 'No' to only write a log message to the debug log file."
 msgstr "S'il est défini sur « non », seul un message de débogage est écrit dans le journal des logs"
-
-msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
-msgstr "Si mis à 'non', vous pouvez sauver les événements plus anciens même après un zap ou une interruption du PauseDirect."
 
 msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Sélectionnez ‘polarisation’ si vous utilisez un LNB ‘universel’, sinon consultez la fiche technique de votre LNB."
@@ -17571,9 +17486,6 @@ msgstr "Si défini sur 'oui' : l'infobarre reste affichée en permanence 'en pau
 
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr ""
-
-msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
-msgstr "Si mis à 'oui' cela permets à la barre de recherche de sauter à un point d'un évènement."
 
 msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
 msgstr "Si cette option est réglée sur 'oui', les listes de chaînes vous montreront toujours l'écran du bouquet en premier. Si elle est réglée sur \"non\", le bouquet actuel sera ouvert."
@@ -17914,11 +17826,20 @@ msgstr ""
 msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
+msgid "Select a duration compensation for hardware buffer latency for DM9x0."
+msgstr ""
+
+msgid "Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr ""
+
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr ""
 
 msgid "Select a menu item"
+msgstr ""
+
+msgid "Select a minimum amount of free space. When the free space falls below this value, cleanup tries to remove old unused time shift buffers. Buffers being played or saved remain protected so this is not a guaranteed free space reserve."
 msgstr ""
 
 msgid "Select a movie"
@@ -17963,6 +17884,9 @@ msgstr ""
 msgid "Select a tuner"
 msgstr "Sélectionner un tuner"
 
+msgid "Select a writable directory on a mounted storage device or network share. Internal flash and RAM are not permitted. Hard links are not required. Press 'OK' to select a directory."
+msgstr ""
+
 msgid "Select action"
 msgstr "Sélectionner une action"
 
@@ -17996,6 +17920,9 @@ msgstr "Sélectionnez le serveur de cartes"
 
 msgid "Select channel audio"
 msgstr "Sélectionnez le canal audio"
+
+msgid "Select channel set"
+msgstr ""
 
 msgid "Select copy destination for:"
 msgstr "Sélectionnez la destination de la copie pour :"
@@ -18120,9 +18047,6 @@ msgstr ""
 msgid "Select if this timer is to be repeated."
 msgstr ""
 
-msgid "Select if time shift must continue when set to record."
-msgstr "Choisir si le PauseDirect doit continuer lorsqu'un enregistrement démarre."
-
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Choisir si vous voulez activer le mode sous-service."
 
@@ -18246,10 +18170,16 @@ msgstr ""
 msgid "Select the action to perform when the timer ends."
 msgstr ""
 
+msgid "Select the action to take when leaving time shift due to a service change. This option is used when the time shift stop warning is enabled."
+msgstr ""
+
 msgid "Select the action to take when the EnergySaver timer activates."
 msgstr ""
 
 msgid "Select the action to take when the SleepTimer activates."
+msgstr ""
+
+msgid "Select the age after which unused time shift buffers may be removed during cleanup. Buffers still being recorded, played or saved remain protected. This setting does not limit the length of an active buffer."
 msgstr ""
 
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
@@ -18428,6 +18358,9 @@ msgstr ""
 msgid "Select the input connector you want to use."
 msgstr ""
 
+msgid "Select the interval for checking buffer age and free space in addition to checks on event changes. Disabled means there is no periodic check. Cleanup removes unused temporary buffers and does not shorten an active buffer."
+msgstr ""
+
 msgid "Select the last item in list or move to the end of text"
 msgstr ""
 
@@ -18499,6 +18432,9 @@ msgid "Select the next item in list or move the cursor right"
 msgstr ""
 
 msgid "Select the next item in the list"
+msgstr ""
+
+msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
 msgid "Select the number of times to retry a task if an error occurs when running the task."
@@ -19140,9 +19076,6 @@ msgstr "Définir l'emplacement par défaut pour vos enregistrements instantanés
 msgid "Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Défnir l'emplacement pour vos fichier PauseDirect. Appuyer sur OK pour ajouter un nouvel emplacement, sélectionner gauche/droite pour choisir un emplacement existant."
-
 msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Définir l'emplacement par défaut pour vos enregistrements. Appuyer sur OK pour ajouter un nouvel emplacement, sélectionner gauche/droite pour choisir un emplacement existant."
 
@@ -19267,9 +19200,6 @@ msgstr ""
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Si ce paramètre est réglé sur 'Yes' ; les mêmes commandes seront envoyées au téléviseur pour les événements de mise en veille profonde que pour les événements de mise en veille normale."
-
-msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
-msgstr "Si mis à 'oui', active l'enregistrement auto (autorecord) pour la PauseDirect automatique en tâche de fond"
 
 msgid "Set to the desired primetime hour."
 msgstr "Définir le temps du primetime (heure)."
@@ -19786,6 +19716,9 @@ msgstr ""
 msgid "Show animation while busy"
 msgstr "Afficher l'animation si occupé"
 
+msgid "Show available DAB+ reception and decoding information above the radio text. This option applies to both USB and DVB reception."
+msgstr ""
+
 msgid "Show background in Radio Mode"
 msgstr "Afficher image d'arrière-plan en mode Radio"
 
@@ -20053,6 +19986,9 @@ msgstr ""
 msgid "Show previous system information screen"
 msgstr ""
 
+msgid "Show radio text, slideshow pictures or only the station logo on the receiver's color display. Slideshow mode falls back to the station logo; logo-only mode never shows slides. If no station logo is available, the DAB+ logo is shown. This setting is independent of the TV slideshow."
+msgstr ""
+
 msgid "Show record indicator"
 msgstr "Afficher l'indication d'enregistrement"
 
@@ -20146,6 +20082,9 @@ msgstr ""
 msgid "Show task messages if File Commander is not running and all task are completed."
 msgstr ""
 
+msgid "Show technical status line"
+msgstr ""
+
 msgid "Show the CCcam Info Screen"
 msgstr ""
 
@@ -20203,7 +20142,7 @@ msgstr "Afficher le guide du programme vertical"
 msgid "Show warning before restart"
 msgstr "Afficher un avertissement avant de redémarrer le récepteur en fonction du type d'enregistrement"
 
-msgid "Show warning when time shift is stopped"
+msgid "Show warning when time shift stopped"
 msgstr "Afficher un avertissement quand la PauseDirect est arrêtée"
 
 msgid "Show watch status"
@@ -20215,6 +20154,9 @@ msgstr "Spectacle/jeux"
 
 msgid "Show/Hide Actions"
 msgstr "InfoBar Afficher/Masquer les actions"
+
+msgid "Show/Hide channel name"
+msgstr ""
 
 msgid "Show/Hide focus bar"
 msgstr "Afficher/Masquer la barre de focus"
@@ -20415,9 +20357,6 @@ msgstr ""
 msgid "Skip forward (enter time)"
 msgstr "avance rapide (saisir temps)"
 
-msgid "Skip jumping to live while timeshifting with plugins"
-msgstr ""
-
 msgid "Skip network setup"
 msgstr ""
 
@@ -20439,9 +20378,6 @@ msgstr ""
 
 msgid "Skip to 0% (start) position"
 msgstr ""
-
-msgid "Sleep"
-msgstr "Veille programmée"
 
 msgid "Sleep Timer"
 msgstr "Programmation de mise en veille"
@@ -20521,6 +20457,9 @@ msgstr ""
 
 msgid "Slide top to bottom"
 msgstr "Bandeau depuis le haut"
+
+msgid "Slideshow / station logo"
+msgstr ""
 
 #, python-format
 msgid "Slot %d"
@@ -21092,6 +21031,9 @@ msgstr ""
 msgid "Station"
 msgstr ""
 
+msgid "Station logo only"
+msgstr ""
+
 msgid "Status"
 msgstr "Statut"
 
@@ -21112,6 +21054,9 @@ msgstr "Statut non disponible!"
 
 msgid "Status:"
 msgstr "Statut :"
+
+msgid "Stay in time shift at buffer end (for plugins)"
+msgstr ""
 
 msgid "Step"
 msgstr ""
@@ -21211,9 +21156,6 @@ msgstr ""
 msgid "Stopping Softcam"
 msgstr "Arrêt Softcam"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Arrêter le PauseDirect en cours si un enregistrement est en cours (recommandé pour les clés USB)"
-
 msgid "Storage / Disk Information"
 msgstr ""
 
@@ -21241,6 +21183,10 @@ msgstr "Disque introuvable !"
 
 msgid "Storage device not writable!"
 msgstr "Le disque n’est pas accessible en écriture !"
+
+#, python-format
+msgid "Storage directory '%s' is unavailable or not writable."
+msgstr ""
 
 msgid "Store position"
 msgstr "Enregistrer la position"
@@ -22075,6 +22021,12 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "La commande de réveil de la mise en veille sera envoyée plusieurs fois."
 
+msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
+msgstr ""
+
+msgid "The current time shift buffer is no longer available."
+msgstr ""
+
 #, python-format
 msgid "The custom mount point for '%s' is empty!"
 msgstr ""
@@ -22109,13 +22061,6 @@ msgstr ""
 #, python-format
 msgid "The file '%s' has been changed. Do you want to save it?"
 msgstr ""
-
-msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Le système de fichier de votre périphérique pour le PauseDirect ne supporte pas les liens matériels.\n"
-"Soyez certains qu'il est formaté en ext2, ext3 ou ext4 !"
 
 #, python-format
 msgid "The following files are related to '%s':"
@@ -22192,6 +22137,9 @@ msgstr "Les résultats ont été écrits sur %s."
 msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
 msgstr ""
 
+msgid "The running Enigma2 version cannot safely save an active time shift buffer."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr "Le code PIN sauvegardé a été effacé."
 
@@ -22219,6 +22167,9 @@ msgid ""
 "Do that now or extend the timer?"
 msgstr ""
 
+msgid "The storage check did not finish. Please check the device or network and try again."
+msgstr ""
+
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Le temps est multiplié par le compteur de répétitions actuel."
 
@@ -22229,9 +22180,16 @@ msgstr ""
 "La durée du tampon pour le PauseDirect dépasse la limite spécifiée dans les paramètres.\n"
 "Que voulez-vous faire ?"
 
-msgid ""
-"The time shift storage device is not available.\n"
-"Please check the device and the time shift path."
+msgid "The time shift buffer is not available."
+msgstr ""
+
+msgid "The time shift recording was saved, but a temporary recording could not be removed."
+msgstr ""
+
+msgid "The time shift storage device is not available. Please check the device and the time shift path."
+msgstr ""
+
+msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr ""
 
 #, python-format
@@ -22654,39 +22612,20 @@ msgstr "Saut dans le temps intervalle de répétition pour avance et recul rapid
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Saut dans le temps : utiliser l'avance rapide pour la vitesse"
 
-msgid "Time shift buffer delete after zap"
-msgstr "PauseDirect effacer le buffer après un zap ?"
-
-msgid "Time shift buffer limit"
-msgstr "PauseDirect limite du buffer [en heures]"
-
 msgid "Time shift buffer location"
 msgstr "Emplacement PauseDirect"
 
-msgid "Time shift checking for free space"
-msgstr "PauseDirect vérification de l'espace libre ?"
-
-msgid "Time shift checking for older files"
-msgstr "PauseDirect vérification pour des anciens fichiers [en minutes]"
-
-msgid "Time shift event based file splitting"
-msgstr "PauseDirect découper les fichiers sur base des évènements"
-
-msgid "Time shift event limit"
-msgstr "PauseDirect derniers événements limite [nombre d'événements]"
+msgid "Time shift could not be started. Please check the storage device and available space."
+msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr ""
 
-# TODO
-msgid "Time shift not possible!"
-msgstr "Le décalage temporel n'est pas possible !"
-
 msgid "Time shift save action on zap"
 msgstr "PauseDirect - sauvegarde lorsqu'on zappe"
 
-msgid "Time shift save failed!"
-msgstr "La sauvegarde du PauseDirect a échoué !"
+msgid "Time shift save failed! The source buffer has been retained."
+msgstr ""
 
 msgid "Time shift save location"
 msgstr ""
@@ -22699,8 +22638,8 @@ msgstr "PauseDirect sauvegarder l'enregistrement (Sélectionner l'événement)"
 msgid "Time shift save recording (Stop after current event)"
 msgstr "PauseDirect sauvegarder l'enregistrement (arrêter après événement en cours)"
 
-msgid "Time shift saved to your hard disk drive!"
-msgstr "PauseDirect sauvegardé sur le disque dur !"
+msgid "Time shift saved!"
+msgstr ""
 
 msgid "Time shift will get saved at end of event."
 msgstr "PauseDirect sera sauvegardé à la fin de l'événement !"
@@ -23416,6 +23355,9 @@ msgstr ""
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr ""
 
+msgid "Unable to prepare the time shift storage device."
+msgstr ""
+
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr ""
@@ -23435,6 +23377,9 @@ msgstr ""
 msgid "Unable to save network mount configuration!"
 msgstr ""
 
+msgid "Unable to start RAM time shift."
+msgstr ""
+
 msgid "Unable to start the DAB+ feed"
 msgstr ""
 
@@ -23451,8 +23396,14 @@ msgstr ""
 msgid "Unable to update HDD replacement: %s"
 msgstr ""
 
+msgid "Unable to update the time shift buffer."
+msgstr ""
+
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s!"
+msgstr ""
+
+msgid "Unable to write the time shift event information."
 msgstr ""
 
 msgid "Unattended upgrade without GUI"
@@ -23792,6 +23743,9 @@ msgstr ""
 msgid "Use QuickSelect"
 msgstr ""
 
+msgid "Use SeekBar while time shifting"
+msgstr ""
+
 msgid "Use TV remote control"
 msgstr "Utiliser la télécommande de la TV"
 
@@ -23975,9 +23929,6 @@ msgstr "Utiliser ces paramètres d'amélioration de la vidéo ?"
 msgid "Use time jumps for fast forward/backward"
 msgstr "Utiliser le saut dans le temps pour l'avance/le retour rapide"
 
-msgid "Use time shift SeekBar while time shifting"
-msgstr "Utiliser la barre de recherche du PauseDirect pendant un PauseDirect ?"
-
 msgid "Use viewer for unknown files"
 msgstr ""
 
@@ -24071,9 +24022,6 @@ msgstr "VMGM (intro bande-annonce)"
 
 msgid "VOB file"
 msgstr "Fichier VOB"
-
-msgid "VOD"
-msgstr "VOD"
 
 msgid "VPN"
 msgstr "VPN"
@@ -24658,6 +24606,9 @@ msgstr "Lorsqu'elle est activée, les données EIT seront inclus dans les flux h
 msgid "When enabled, SDT and BAT data will be included in http streams."
 msgstr ""
 
+msgid "When enabled, a new buffer is started for each event. When disabled, a continuous buffer is kept across different events. File systems such as FAT32 still require physical file parts, which are played as one buffer. Cleanup does not limit the size of an active buffer."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Lorsqu'elle est activée, un message contextuel s'affiche quand un film est terminé et que le prochain va commencer."
 
@@ -24676,8 +24627,8 @@ msgstr "Lorsqu'activé, un enregistrement est autorisé à interrompre le stream
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Lorsqu'elle est activée, un enregistrement est autorisé à interrompre la télévision en direct, quand il n'y a pas de tuners libres."
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
-msgstr "Lorsqu'elle est activée, un avertissement sera affiché et l'utilisateur aura l'option d'arrêter ou de continuer la PauseDirect."
+msgid "When enabled, a warning will be displayed if a command will stop time shift. An option to stop or to continue the time shift will be displayed."
+msgstr ""
 
 msgid "When enabled, allow Samba network access without a password."
 msgstr ""
@@ -24700,11 +24651,17 @@ msgstr ""
 msgid "When enabled, allow usage of the NFS version 4 protocols."
 msgstr ""
 
+msgid "When enabled, allow use of the SeekBar to jump to a selected point within the time shift buffer."
+msgstr ""
+
 msgid "When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video."
 msgstr ""
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Lorsqu'elle est activée, l'authentification est requise pour regarder les flux http."
+
+msgid "When enabled, automatically save completed time shift buffers as recordings. This applies to newly started buffers. With event splitting disabled, saving starts when the buffer is stopped. Saved recordings are not removed by the time shift cleanup."
+msgstr ""
 
 msgid "When enabled, bypass HDMI EDID checking."
 msgstr ""
@@ -24720,6 +24677,9 @@ msgstr "Lorsqu'elle est activée, passer au prochain bouquet quand la dernière 
 
 msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Lorsqu'elle est activée, les enregistrements supprimés sont déplacés vers la corbeille, au lieu d'être supprimé immédiatement."
+
+msgid "When enabled, do not automatically switch to live TV when playback reaches the end of the time shift buffer. Enable this only for plugins that require continued time shift playback, such as alternative audio plugins."
+msgstr ""
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "Lorsqu'elle est activée, les sous-titres externes seront toujours activés lors de la lecture d'un film."
@@ -24764,6 +24724,9 @@ msgid "When enabled, show status or error messages."
 msgstr "Lorsqu'activé, indique le statut ou les messages d'erreur."
 
 msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
+msgstr ""
+
+msgid "When enabled, stops time shift from being used if a recording is in progress. This is advisable for USB sticks or other slow media."
 msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
@@ -24835,8 +24798,11 @@ msgstr "Lorsqu’il est activé, ce paramètre a plus de poids que ‘Tuner pré
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Lorsqu’il est activé, ce paramètre a plus de poids que ‘Tuner préféré’."
 
-msgid "When enabled, time shift starts automatically in background after specified time."
-msgstr "Lorsqu'activé, la PauseDirect démarrera automatiquement en tâche de fond après le temps spécifié."
+msgid "When enabled, time shift starts automatically in background after the selected time."
+msgstr ""
+
+msgid "When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected."
+msgstr ""
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "Lorsque cette option est activée, vous pouvez personnaliser les paramètres OpenWebIf pour le tuner de secours"
@@ -25026,8 +24992,8 @@ msgstr "Erreur d'écriture pendant l'enregistrement. %s"
 msgid "Write failed!"
 msgstr "L'écriture a échoué !"
 
-msgid "Www"
-msgstr "Www"
+msgid "Writing to the time shift storage device failed. Time shift has been stopped."
+msgstr ""
 
 msgid "X-Resolution"
 msgstr ""
@@ -25193,9 +25159,6 @@ msgstr "Vous semblez être en timeshift, le service s'arrêtera brièvement lors
 msgid "You should flash a new image!"
 msgstr "Vous devriez mettre une nouvelle image!"
 
-msgid "YouTube"
-msgstr "YouTube"
-
 #, python-format
 msgid "Your %s %s does not support PiP HD"
 msgstr "Votre %s %s ne supporte pas le PiP HD"
@@ -25317,9 +25280,6 @@ msgstr "Youtube TV"
 
 msgid "ZAP"
 msgstr "ZAP"
-
-msgid "ZOOM"
-msgstr "ZOOM"
 
 msgid "ZPicon"
 msgstr "ZPicon"
@@ -25444,9 +25404,6 @@ msgstr "Zoomer de la droite"
 
 msgid "Zulu"
 msgstr "Zoulou"
-
-msgid "[Timeshift] Merging records failed!"
-msgstr "[PauseDirect] La fusion des enregistrements a échoué !"
 
 msgid "[Timeshift] Restarting time shift!"
 msgstr "[PauseDirect] Redémarrage du PauseDirect !"
@@ -26106,6 +26063,176 @@ msgstr "Oui (garder feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Aspect"
+#~ msgstr "Aspect"
+
+#~ msgid "Back/Recall"
+#~ msgstr "Retour/Rappel"
+
+#~ msgid "Context"
+#~ msgstr "Contexte"
+
+#~ msgid "EJECTCD"
+#~ msgstr "EJECTCD"
+
+#~ msgid "End"
+#~ msgstr "Fin"
+
+#~ msgid "Epg/Guide"
+#~ msgstr "Epg/Guide"
+
+#~ msgid "F4"
+#~ msgstr "F4"
+
+#~ msgid "HDMIin"
+#~ msgstr "HDMIin"
+
+#~ msgid "History"
+#~ msgstr "Histoire"
+
+#~ msgid "Info (EPG)"
+#~ msgstr "Info (EPG)"
+
+#~ msgid "Kodi"
+#~ msgstr "Kodi"
+
+#~ msgid "List/Fav"
+#~ msgstr "List/Fav"
+
+#~ msgid "MOUSE"
+#~ msgstr "MOUSE"
+
+#~ msgid "Magic"
+#~ msgstr "Magie"
+
+#~ msgid "Mark/Portal/Playlist"
+#~ msgstr "Marque/Portail/Liste de lecture"
+
+#~ msgid "Media"
+#~ msgstr "Multimédia"
+
+#~ msgid "Option"
+#~ msgstr "Option"
+
+#~ msgid "PC"
+#~ msgstr "PC"
+
+#~ msgid "PVR"
+#~ msgstr "PVR"
+
+#~ msgid "Program"
+#~ msgstr "Programme"
+
+#~ msgid "Prov"
+#~ msgstr "Opérateur"
+
+#~ msgid "SAT"
+#~ msgstr "SAT"
+
+#~ msgid "Search/WEB"
+#~ msgstr "Recherche/WEB"
+
+#~ msgid "Sleep"
+#~ msgstr "Veille programmée"
+
+#~ msgid "VOD"
+#~ msgstr "VOD"
+
+#~ msgid "Www"
+#~ msgstr "Www"
+
+#~ msgid "YouTube"
+#~ msgstr "YouTube"
+
+#~ msgid "ZOOM"
+#~ msgstr "ZOOM"
+
+#~ msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
+#~ msgstr "'Tampon en heure(s)' ou 'nombre de derniers évènements'. Pour effacer les anciens fichiers PauseDirect, la première condition est prioritaire."
+
+#~ msgid "Creating hard link to time shift file failed!"
+#~ msgstr "Création du lien matériel (hardlink) vers le fichier de PauseDirect a échoué !"
+
+#, python-format
+#~ msgid "Directory '%s' can't be linked to recordings!"
+#~ msgstr "Le répertoire '%s' ne peut pas être lié aux enregistrements !"
+
+#~ msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
+#~ msgstr "Si l'espace libre est plus petit que la valeur définie, un essai sera fait d'effacer les fichiers de PauseDirect les plus anciens."
+
+#~ msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
+#~ msgstr "En plus de la vérification au démarrage de l'événement, un contrôle répétitif peut être utilisé de sorte que 'limite de tampon en heures' ou 'vérifier l'espace libre' soient détectés plus rapidement."
+
+#, python-format
+#~ msgid ""
+#~ "Not enough free disk space!\n"
+#~ "\n"
+#~ "Filesize: %sMB\n"
+#~ "Free Space: %sMB\n"
+#~ "Path: %s"
+#~ msgstr ""
+#~ "Pas assez d'espace disque !\n"
+#~ "\n"
+#~ "Taille du fichier : %sMB\n"
+#~ "Espace libre : %sMB\n"
+#~ "Chemin : %s"
+
+#~ msgid "Older files in the time shift directory are removed on every event change."
+#~ msgstr "Les fichiers les plus vieux dans le répertoire PauseDirect seront enlevés à chaque changement d'événement."
+
+#~ msgid "Saving time shift buffer, this might take a while."
+#~ msgstr "Sauvegarde du PauseDirect en tant que film. Cela peut prendre un certains temps !"
+
+#~ msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
+#~ msgstr "Si mis à 'non', PauseDirect utilise seulement le fichier de buffer. Il est recommandé d'ajuster 'PauseDirect vérifie les fichiers plus anciens [en minutes]' et 'PauseDirect vérifie l'espace libre ?'."
+
+#~ msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
+#~ msgstr "Si mis à 'non', vous pouvez sauver les événements plus anciens même après un zap ou une interruption du PauseDirect."
+
+#~ msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
+#~ msgstr "Si mis à 'oui' cela permets à la barre de recherche de sauter à un point d'un évènement."
+
+#~ msgid "Select if time shift must continue when set to record."
+#~ msgstr "Choisir si le PauseDirect doit continuer lorsqu'un enregistrement démarre."
+
+#~ msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+#~ msgstr "Défnir l'emplacement pour vos fichier PauseDirect. Appuyer sur OK pour ajouter un nouvel emplacement, sélectionner gauche/droite pour choisir un emplacement existant."
+
+#~ msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
+#~ msgstr "Si mis à 'oui', active l'enregistrement auto (autorecord) pour la PauseDirect automatique en tâche de fond"
+
+#~ msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+#~ msgstr "Arrêter le PauseDirect en cours si un enregistrement est en cours (recommandé pour les clés USB)"
+
+#~ msgid ""
+#~ "The file system on your time shift device does not support hard links.\n"
+#~ "Make sure it is formatted in EXT2, EXT3 or EXT4!"
+#~ msgstr ""
+#~ "Le système de fichier de votre périphérique pour le PauseDirect ne supporte pas les liens matériels.\n"
+#~ "Soyez certains qu'il est formaté en ext2, ext3 ou ext4 !"
+
+# TODO
+#~ msgid "Time shift not possible!"
+#~ msgstr "Le décalage temporel n'est pas possible !"
+
+#~ msgid "Time shift save failed!"
+#~ msgstr "La sauvegarde du PauseDirect a échoué !"
+
+#~ msgid "Time shift saved to your hard disk drive!"
+#~ msgstr "PauseDirect sauvegardé sur le disque dur !"
+
+#~ msgid "Use time shift SeekBar while time shifting"
+#~ msgstr "Utiliser la barre de recherche du PauseDirect pendant un PauseDirect ?"
+
+#~ msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
+#~ msgstr "Lorsqu'elle est activée, un avertissement sera affiché et l'utilisateur aura l'option d'arrêter ou de continuer la PauseDirect."
+
+#~ msgid "When enabled, time shift starts automatically in background after specified time."
+#~ msgstr "Lorsqu'activé, la PauseDirect démarrera automatiquement en tâche de fond après le temps spécifié."
+
+#~ msgid "[Timeshift] Merging records failed!"
+#~ msgstr "[PauseDirect] La fusion des enregistrements a échoué !"
 
 #~ msgid "Allow 10bit"
 #~ msgstr "Autoriser 10bit"

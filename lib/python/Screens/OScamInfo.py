@@ -1,17 +1,17 @@
 # PYTHON IMPORTS
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timedelta, timezone
+from ipaddress import ip_address
 from json import loads
 from os.path import exists
-from re import compile
-from twisted.internet.reactor import callInThread
-from ssl import create_default_context, _create_unverified_context as SkipCertificateVerification
-from urllib.parse import unquote
-from urllib.request import build_opener, HTTPDigestAuthHandler, HTTPHandler, HTTPSHandler, HTTPPasswordMgrWithDefaultRealm, Request
-from time import time
 from pathlib import Path
-from xml.etree.ElementTree import XML, ParseError
-from ipaddress import ip_address
-from socket import getaddrinfo, gaierror, gethostname
+from re import compile
+from socket import gaierror, getaddrinfo, gethostname
+from ssl import _create_unverified_context as SkipCertificateVerification, create_default_context
+from time import time
+from urllib.parse import unquote
+from urllib.request import HTTPDigestAuthHandler, HTTPHandler, HTTPPasswordMgrWithDefaultRealm, HTTPSHandler, Request, build_opener
+from xml.etree.ElementTree import ParseError, XML
+from twisted.internet.reactor import callInThread
 
 # ENIGMA IMPORTS
 from enigma import eTimer

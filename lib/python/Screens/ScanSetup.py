@@ -1,12 +1,12 @@
 from enigma import eComponentScan, eConsoleAppContainer, eDVBFrontendParametersATSC, eDVBFrontendParametersCable, eDVBFrontendParametersSatellite, eDVBFrontendParametersTerrestrial, eDVBResourceManager, eTimer, iDVBFrontend
 
 from Components.ActionMap import ActionMap, NumberActionMap
-from Components.config import config, ConfigEnableDisable, ConfigFloat, ConfigInteger, ConfigSelection, ConfigSlider, ConfigSubsection, ConfigYesNo
+from Components.config import ConfigEnableDisable, ConfigFloat, ConfigInteger, ConfigSelection, ConfigSlider, ConfigSubsection, ConfigYesNo, config
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.NimManager import getConfigSatlist, nimmanager
-from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo
+from Components.Sources.StaticText import StaticText
 from Screens.InfoBar import InfoBar
 from Screens.MessageBox import MessageBox
 from Screens.ParentalControlSetup import ProtectedScreen

@@ -1,6 +1,7 @@
-from Plugins.Extensions.CutListEditor.plugin import CutListEditor
-from Components.ServiceEventTracker import ServiceEventTracker
 from enigma import iPlayableService, iServiceInformation
+
+from Components.ServiceEventTracker import ServiceEventTracker
+from Plugins.Extensions.CutListEditor.plugin import CutListEditor
 from Tools.Directories import fileExists
 
 

@@ -1,13 +1,15 @@
 from os.path import exists
-from enigma import eTimer, iPlayableService, iServiceInformation, eServiceReference, iServiceKeys, getDesktop
-from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
+
+from enigma import eServiceReference, eTimer, getDesktop, iPlayableService, iServiceInformation, iServiceKeys
+
+from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
 from Components.config import config
 from Components.Harddisk import harddiskmanager
 from Components.Label import Label
 from Components.Pixmap import Pixmap
-from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
+from Components.ServiceEventTracker import InfoBarBase, ServiceEventTracker
 from Screens.ChoiceBox import ChoiceBox
-from Screens.InfoBarGenerics import InfoBarSeek, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarShowHide, InfoBarNotifications, InfoBarAudioSelection, InfoBarSubtitleSupport
+from Screens.InfoBarGenerics import InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarPVRState, InfoBarSeek, InfoBarShowHide, InfoBarSubtitleSupport
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 
@@ -17,9 +19,9 @@ lastpath = ""
 class DVDSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent)
-		self["Title"] = Label("")
-		self["Time"] = Label("")
-		self["Chapter"] = Label("")
+		self["Title"] = Label()
+		self["Time"] = Label()
+		self["Chapter"] = Label()
 
 	def updateChapter(self, chapter):
 		self["Chapter"].setText(chapter)
@@ -157,9 +159,9 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self.dvdScreen = None
 		self.session.nav.stopService()
 		self["audioLabel"] = Label("n/a")
-		self["subtitleLabel"] = Label("")
-		self["angleLabel"] = Label("")
-		self["chapterLabel"] = Label("")
+		self["subtitleLabel"] = Label()
+		self["angleLabel"] = Label()
+		self["chapterLabel"] = Label()
 		self["anglePix"] = Pixmap()
 		self["anglePix"].hide()
 		self.last_audioTuple = None

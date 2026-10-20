@@ -1,5 +1,5 @@
-import sys
 import inspect
+import sys
 
 #WARNING! Dont use inspect.stack()! its very very very slow.
 

@@ -5,7 +5,7 @@ from enigma import eLabel, ePixmap, eTimer
 from skin import domScreens, parseColor, parsePixmap
 from Components.ConditionalWidget import ConditionalWidget
 from Components.GUIComponent import GUIComponent
-from Tools.Directories import SCOPE_LCDSKIN, SCOPE_GUISKIN, fileExists, resolveFilename
+from Tools.Directories import SCOPE_GUISKIN, SCOPE_LCDSKIN, fileExists, resolveFilename
 
 
 class Pixmap(GUIComponent):

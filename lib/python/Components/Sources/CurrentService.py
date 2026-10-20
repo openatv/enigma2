@@ -1,9 +1,9 @@
-from enigma import iPlayableService, eServiceCenter
+from enigma import eServiceCenter, iPlayableService
 
+import NavigationInstance
 from Components.Element import cached
 from Components.PerServiceDisplay import PerServiceBase
 from Components.Sources.Source import Source
-import NavigationInstance
 
 
 class CurrentService(PerServiceBase, Source):

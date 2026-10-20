@@ -273,11 +273,11 @@ class Setup(ConfigListScreen, Screen, ProtectedScreen):
 class SetupSummary(ScreenSummary):
 	def __init__(self, session, parent):
 		ScreenSummary.__init__(self, session, parent=parent)
-		self["entry"] = StaticText("")
-		self["value"] = StaticText("")
+		self["entry"] = StaticText()
+		self["value"] = StaticText()
 		self["SetupTitle"] = StaticText(parent.getTitle())  # DEBUG: Deprecated widget name, this will be removed soon.
-		self["SetupEntry"] = StaticText("")  # DEBUG: Deprecated widget name, this will be removed soon.
-		self["SetupValue"] = StaticText("")  # DEBUG: Deprecated widget name, this will be removed soon.
+		self["SetupEntry"] = StaticText()  # DEBUG: Deprecated widget name, this will be removed soon.
+		self["SetupValue"] = StaticText()  # DEBUG: Deprecated widget name, this will be removed soon.
 		if self.addWatcher not in self.onShow:
 			self.onShow.append(self.addWatcher)
 		if self.removeWatcher not in self.onHide:

@@ -792,9 +792,9 @@ class WizardSummary(ScreenSummary):
 	def __init__(self, session, parent):
 		ScreenSummary.__init__(self, session, parent)
 		self.skinName = ["WizardSummary"]
-		self["text"] = StaticText("")
-		self["entry"] = StaticText("")
-		self["value"] = StaticText("")
+		self["text"] = StaticText()
+		self["entry"] = StaticText()
+		self["value"] = StaticText()
 		if self.addWatcher not in self.onShow:
 			self.onShow.append(self.addWatcher)
 		if self.removeWatcher not in self.onHide:

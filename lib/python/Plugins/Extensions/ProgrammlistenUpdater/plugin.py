@@ -1,18 +1,20 @@
 from glob import glob
 from os import chdir, makedirs, remove
-from os.path import exists, dirname, isfile, join
-from re import compile, S
-from shutil import rmtree, copy2
+from os.path import dirname, exists, isfile, join
+from re import S, compile
+from shutil import copy2, rmtree
 from sys import modules
 from tarfile import open as taropen
-from time import time, localtime, strftime
-from twisted.internet.reactor import callInThread
-from urllib.request import urlopen, Request
+from time import localtime, strftime, time
+from urllib.request import Request, urlopen
 from zipfile import ZipFile
+from twisted.internet.reactor import callInThread
 
-from enigma import checkInternetAccess, eDVBDB, eTimer, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT
-from Components.config import ConfigSubsection, ConfigYesNo, ConfigText, config, configfile
+from enigma import RT_HALIGN_LEFT, RT_HALIGN_RIGHT, checkInternetAccess, eDVBDB, eListboxPythonMultiContent, eTimer, gFont
+
+from skin import parameters
 from Components.ActionMap import ActionMap
+from Components.config import ConfigSubsection, ConfigText, ConfigYesNo, config, configfile
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText
@@ -22,7 +24,6 @@ from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
-from skin import parameters
 
 config.pud = ConfigSubsection()
 config.pud.autocheck = ConfigYesNo(default=False)

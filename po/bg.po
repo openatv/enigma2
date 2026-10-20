@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 19:03+0000\n"
+"POT-Creation-Date: 2026-10-19 19:43+0000\n"
 "PO-Revision-Date: 2026-08-17 04:56+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -1345,9 +1345,6 @@ msgstr ""
 msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
 msgstr ""
 
-msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
-msgstr "„Буфер в часове“ или „брой на последните събития“. За изтриване на по-стари файлове с изместване на времето приоритет има условието, което е настъпило първо."
-
 msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "„Управление на готовност от телевизора“ има по-висок приоритет от „Управление на входа от телевизора“."
 
@@ -1695,6 +1692,9 @@ msgstr ""
 "Записът е стартиран:\n"
 "%s"
 
+msgid "A recording has priority. Time shift is being stopped."
+msgstr ""
+
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -1721,6 +1721,9 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Не е намерен необходим инструмент (% s)."
+
+msgid "A storage check is still running. Save these settings without waiting for it?"
+msgstr ""
 
 msgid ""
 "A timer failed to record!\n"
@@ -2200,9 +2203,6 @@ msgstr ""
 
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Регулирайте вертикалната позиция на буквите, използвани за телетекст."
-
-msgid "Adjusts compensation for hardware buffer latency for DM9x0."
-msgstr ""
 
 msgid "Adult"
 msgstr ""
@@ -2751,9 +2751,6 @@ msgstr "Попитай потребителя (с по подразбиране 
 msgid "Ask user (with default of 'Yes')"
 msgstr "Попитай потребителя (с по подразбирне като 'да')"
 
-msgid "Aspect"
-msgstr "Гледна точка"
-
 msgid "Aspect Ratio"
 msgstr ""
 
@@ -2988,7 +2985,7 @@ msgstr "Автоматично се поставя телевизора в ре�
 msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
 msgstr ""
 
-msgid "Automatically start time shift after"
+msgid "Automatically start time shift"
 msgstr "Автоматично стартиране на смяната на времето след"
 
 msgid "Automatically turn on external subtitles"
@@ -3096,9 +3093,6 @@ msgstr ""
 
 msgid "Back, upper USB"
 msgstr "Назад, към горния USB"
-
-msgid "Back/Recall"
-msgstr "Назад/Припомняне"
 
 msgid "Background"
 msgstr "Фон"
@@ -3508,6 +3502,9 @@ msgstr ""
 
 msgid "Buffer Management"
 msgstr ""
+
+msgid "Buffer age limit"
+msgstr "Буферно ограничение за Timeshift [в часове]"
 
 #, python-format
 msgid "Buffering %d%%"
@@ -4291,6 +4288,12 @@ msgstr ""
 msgid "Check for PDC availability on each service."
 msgstr ""
 
+msgid "Check for free space"
+msgstr "Проверка на изместване на времето за свободно място"
+
+msgid "Check for older files"
+msgstr "Timeshift проверка за по-големи файлове [минути]"
+
 msgid "Check power and input state from TV"
 msgstr ""
 
@@ -4311,6 +4314,9 @@ msgstr ""
 
 msgid "Checking file system..."
 msgstr "Проверка на файлова система..."
+
+msgid "Checking storage directory..."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -5267,9 +5273,6 @@ msgstr "Съдържание"
 msgid "Content does not fit on DVD!"
 msgstr "Съдържанието не се побира на DVD!"
 
-msgid "Context"
-msgstr "Контекст"
-
 msgid "Continent"
 msgstr "Континент"
 
@@ -5585,9 +5588,6 @@ msgstr "Създаване на AP и SC файлове"
 msgid "Creating file system"
 msgstr "Създаване на файлова система"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Създаване на Hardlink за Timeshift файл не успя!"
-
 #, python-format
 msgid ""
 "Creating or activating the swap file failed.\n"
@@ -5844,6 +5844,9 @@ msgid "DAB+ channel %s"
 msgstr ""
 
 msgid "DAB+ decoder back end not installed"
+msgstr ""
+
+msgid "DAB+ front display"
 msgstr ""
 
 msgid "DAB+ scan failed; existing bouquets were kept."
@@ -6430,6 +6433,9 @@ msgstr "Изтриване на плъгините"
 msgid "Delete Timer"
 msgstr "Изтриване на таймера"
 
+msgid "Delete after zap"
+msgstr ""
+
 msgid "Delete all duplicated lines"
 msgstr ""
 
@@ -6743,10 +6749,6 @@ msgstr ""
 
 msgid "Directory"
 msgstr "Директория"
-
-#, python-format
-msgid "Directory '%s' can't be linked to recordings!"
-msgstr "Директорията „%s“ не може да бъде свързана със записи!"
 
 #, python-format
 msgid "Directory '%s' does not exist!"
@@ -7336,9 +7338,6 @@ msgstr ""
 msgid "ECM information for '%s'"
 msgstr ""
 
-msgid "EJECTCD"
-msgstr ""
-
 msgid "EPG"
 msgstr ""
 
@@ -7602,9 +7601,6 @@ msgstr "Разрешаване на %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Разрешаване на 5V за активната антена"
 
-msgid "Enable Autorecord"
-msgstr "Разрешаване на автоматичен запис"
-
 msgid "Enable BT audio"
 msgstr "Разрешаване на BT Audio"
 
@@ -7704,6 +7700,9 @@ msgstr "Разрешаване на автоматично бързо скани
 #, python-format
 msgid "Enable auto fast scan for '%s'"
 msgstr "Разрешаване на автоматично бързо сканиране %s"
+
+msgid "Enable auto record"
+msgstr "Разрешаване на автоматичен запис"
 
 msgid "Enable automatic shares"
 msgstr ""
@@ -7909,9 +7908,6 @@ msgstr "Криптиране"
 msgid "Encryption And Descrambling"
 msgstr ""
 
-msgid "End"
-msgstr "Край"
-
 msgid "End Alternatives Edit"
 msgstr "край на алтернативното редактиране"
 
@@ -8060,9 +8056,6 @@ msgstr ""
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr ""
 
-msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
-msgstr ""
-
 msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
 msgstr ""
 
@@ -8180,9 +8173,6 @@ msgstr ""
 
 msgid "Entry text only"
 msgstr ""
-
-msgid "Epg/Guide"
-msgstr "EPG/Ръководство"
 
 msgid "Equal to"
 msgstr "Също като"
@@ -8553,8 +8543,14 @@ msgstr "Действия за преглед на събитие"
 msgid "Event View Context Menu"
 msgstr "Контекстно меню за преглед на събития"
 
+msgid "Event based file splitting"
+msgstr "Timeshift събитие базирано на файлово разделяне"
+
 msgid "Event font size"
 msgstr "Размер на шрифта за събитието"
+
+msgid "Event limit"
+msgstr "TimeShift на последните ограничени събития [брой събития]"
 
 msgid "Event name only"
 msgstr "Само име за събитие"
@@ -8785,9 +8781,6 @@ msgid "F2"
 msgstr ""
 
 msgid "F3"
-msgstr ""
-
-msgid "F4"
 msgstr ""
 
 msgid "FBC SCR (Unicable/JESS)"
@@ -9851,9 +9844,6 @@ msgstr "Действия за HDMI-IN"
 msgid "HDMI-In Recording Settings"
 msgstr "HDMI-IN Настройки за запис"
 
-msgid "HDMIin"
-msgstr ""
-
 msgid "HDR OSD adjustment"
 msgstr ""
 
@@ -10096,9 +10086,6 @@ msgstr ""
 
 msgid "Historical"
 msgstr "Исторически"
-
-msgid "History"
-msgstr "История"
 
 msgid "History Prev/Next"
 msgstr ""
@@ -10417,14 +10404,8 @@ msgstr ""
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Ако дневницитеи зползват определеното максимално използвано пространство, най-старите ще бъдат изтрити."
 
-msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
-msgstr ""
-
 msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Ако заобиколното решение в дълбока готовност е активирано, изчакайте, докато системното време се синхронизира. В зависимост от изискването, събуждането на устройството ще продължи след максимум 2 минути."
-
-msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
-msgstr "Ако свободното пространство е по-малко от зададената стойност, тогава се прави опит за изтриване на старите файлове за timeshift."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr "Ако текстът е твърде дълъг, за да бъде показан на предния панел, той ще се повтори (брой пъти)."
@@ -10528,9 +10509,6 @@ msgstr "Импортиране от URL на резервния приемник
 
 msgid "Import remote receiver URL"
 msgstr "Импорт от URL на резервния приемник"
-
-msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
-msgstr "В допълнение към проверката при стартиране на събитие може да се използва повтаряща се проверка, за да се открият по-рано условията за \"ограничаване на буфера в часове\" или \"проверка на свободното място\"."
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "В експертен режим конфигурирайте кои тунери ще бъдат предпочитани за записи, когато има повече от един тунер."
@@ -10682,9 +10660,6 @@ msgstr ""
 
 msgid "Info"
 msgstr "Информация"
-
-msgid "Info (EPG)"
-msgstr "Информация (EPG)"
 
 msgid "Info button (long)"
 msgstr "Информация бутон (дълго)"
@@ -11196,9 +11171,6 @@ msgstr ""
 msgid "Kiribati"
 msgstr ""
 
-msgid "Kodi"
-msgstr ""
-
 msgid "Kodi Add-on Packages"
 msgstr ""
 
@@ -11589,9 +11561,6 @@ msgstr ""
 msgid "List of storage devices"
 msgstr "Списък на устройствата за съхранение"
 
-msgid "List/Fav"
-msgstr "Списък/Любими"
-
 msgid "Lists reloaded!"
 msgstr "Списъците са презаредени!"
 
@@ -11849,9 +11818,6 @@ msgstr ""
 msgid "MORE"
 msgstr "ОЩЕ"
 
-msgid "MOUSE"
-msgstr ""
-
 msgid "MSC audio frame quality"
 msgstr ""
 
@@ -11888,9 +11854,6 @@ msgstr "списания/доклади/документални"
 
 msgid "Magenta"
 msgstr ""
-
-msgid "Magic"
-msgstr "Магия"
 
 msgid "Main Menu"
 msgstr "Основно меню"
@@ -12030,9 +11993,6 @@ msgstr ""
 msgid "Mark As Dedicated 3D Service"
 msgstr "Маркирайте сервиза като специален 3D сервиз"
 
-msgid "Mark/Portal/Playlist"
-msgstr ""
-
 msgid "Marker Actions"
 msgstr "Действия с маркери"
 
@@ -12096,9 +12056,6 @@ msgstr ""
 
 msgid "Measured current"
 msgstr ""
-
-msgid "Media"
-msgstr "Медиа"
 
 msgid "Media Center"
 msgstr ""
@@ -13613,20 +13570,6 @@ msgstr ""
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "Недостатъчно дисково пространство. Моля, освободете малко дисково пространство и опитайте отново. (необходими са %d MB, налични са %d MB)"
 
-#, python-format
-msgid ""
-"Not enough free disk space!\n"
-"\n"
-"Filesize: %sMB\n"
-"Free Space: %sMB\n"
-"Path: %s"
-msgstr ""
-"Няма достатъчно свободно дисково пространство!\n"
-"\n"
-"Размер на файла: %sMB\n"
-"Свободно пространство: %sMB\n"
-"Път: %s"
-
 msgid "Not found"
 msgstr ""
 
@@ -13837,9 +13780,6 @@ msgstr ""
 
 msgid "Ojibwa"
 msgstr ""
-
-msgid "Older files in the time shift directory are removed on every event change."
-msgstr "По-старите файлове в директорията с изместване на времето се премахват при всяка промяна на събитието."
 
 msgid "Olympic blue"
 msgstr ""
@@ -14150,9 +14090,6 @@ msgstr ""
 msgid "Opkg Log Actions"
 msgstr ""
 
-msgid "Option"
-msgstr "Опция"
-
 msgid "Option to disable picons on the InfoBar."
 msgstr "Опция за забраняване на пикони в инфобара"
 
@@ -14289,9 +14226,6 @@ msgstr "Страница НАГОРЕ/НАДОЛУ"
 msgid "PAL"
 msgstr ""
 
-msgid "PC"
-msgstr ""
-
 msgid "PCM Multichannel"
 msgstr "PCM многоканален"
 
@@ -14313,10 +14247,6 @@ msgstr ""
 msgid "PIN code needed"
 msgstr "PIN код е необходим"
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP"
-msgstr ""
-
 msgid "PLP ID"
 msgstr ""
 
@@ -14333,9 +14263,6 @@ msgid "PPanel"
 msgstr ""
 
 msgid "PRIMETIME"
-msgstr ""
-
-msgid "PVR"
 msgstr ""
 
 msgid "Package"
@@ -15460,9 +15387,6 @@ msgstr "Профил"
 msgid "Profile: Local receiver"
 msgstr "Профил: Местен приемник"
 
-msgid "Program"
-msgstr "Програма"
-
 #, python-format
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr ""
@@ -15577,9 +15501,6 @@ msgstr ""
 
 msgid "Protocol"
 msgstr "Протокол"
-
-msgid "Prov"
-msgstr ""
 
 msgid "Provider"
 msgstr "Провайдер"
@@ -15707,6 +15628,9 @@ msgstr ""
 msgid "RAM temperature"
 msgstr ""
 
+msgid "RAM time shift cannot be saved as a recording."
+msgstr ""
+
 msgid "RC custom code"
 msgstr "RC персонализиран код"
 
@@ -15786,6 +15710,9 @@ msgid "Radio Channel Selection"
 msgstr ""
 
 msgid "Radio Channel Selection Actions"
+msgstr ""
+
+msgid "Radio text"
 msgstr ""
 
 msgid "Raise and lower the CPU frequency gradually depending on the load."
@@ -16936,9 +16863,6 @@ msgstr ""
 msgid "Réunion"
 msgstr ""
 
-msgid "SAT"
-msgstr ""
-
 msgid "SAT input"
 msgstr ""
 
@@ -17175,6 +17099,9 @@ msgstr ""
 msgid "Save the right column directory location on exit."
 msgstr ""
 
+msgid "Save these settings anyway?"
+msgstr ""
+
 msgid "Save time shift as movie and continue recording"
 msgstr "Запазете смяната във времето като филм и продължете да записвате"
 
@@ -17209,9 +17136,6 @@ msgstr ""
 
 msgid "Saving EPG Cache..."
 msgstr "Запазване на кеша за EPG ..."
-
-msgid "Saving time shift buffer, this might take a while."
-msgstr "Запазване наTimeShift като филм сега. Това може да отнеме известно време!"
 
 msgid "Saving time shift files"
 msgstr "Запазване на TimeShift файлове"
@@ -17412,9 +17336,6 @@ msgstr ""
 msgid "Search west"
 msgstr "Търсене на запад"
 
-msgid "Search/WEB"
-msgstr "Търсене/WEB"
-
 msgid "Searching"
 msgstr "Търсене на"
 
@@ -17493,14 +17414,8 @@ msgstr ""
 msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
 msgstr "Изберете 'активиран', ако този тунер има свързан сигнален кабел, в противен случай изберете 'нищо не е свързано'."
 
-msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr "Ако е зададено 'не', TimeShift използва само един буфер файл. Препоръчваме ви \"Проверка на Timeshift за по-стари файлове [в минути]\" и \"Проверка на времето за свободно пространство?\" да се настрои."
-
 msgid "Select 'No' to only write a log message to the debug log file."
 msgstr ""
-
-msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
-msgstr "Ако е зададено \"не\", можете да запазите по-старите събития дори след включване или прекъсване на timeshift."
 
 msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Изберете „поляризация“, ако използвате „универсален“ конвертор, в противен случай направете справка със спецификацията на вашия конвертор."
@@ -17544,9 +17459,6 @@ msgstr "Ако е зададено 'да'; инфобарът остава по�
 
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr ""
-
-msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
-msgstr "Ако е зададено 'да', ви позволява да използвате лентата за търсене, за да прескочите до точка в събитието."
 
 msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
 msgstr "Ако тази опция е настроена на \"да\", списъците с канали винаги ще ви покажат първо букета. Ако е зададено \"не\", текущият букет ще бъде отворен."
@@ -17887,11 +17799,20 @@ msgstr ""
 msgid "Select a distribution from where images are to be obtained"
 msgstr ""
 
+msgid "Select a duration compensation for hardware buffer latency for DM9x0."
+msgstr ""
+
+msgid "Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr ""
+
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr ""
 
 msgid "Select a menu item"
+msgstr ""
+
+msgid "Select a minimum amount of free space. When the free space falls below this value, cleanup tries to remove old unused time shift buffers. Buffers being played or saved remain protected so this is not a guaranteed free space reserve."
 msgstr ""
 
 msgid "Select a movie"
@@ -17936,6 +17857,9 @@ msgstr ""
 msgid "Select a tuner"
 msgstr "Изберете тунер"
 
+msgid "Select a writable directory on a mounted storage device or network share. Internal flash and RAM are not permitted. Hard links are not required. Press 'OK' to select a directory."
+msgstr ""
+
 msgid "Select action"
 msgstr "Изберете действие"
 
@@ -17969,6 +17893,9 @@ msgstr "Изберете сървър за карти"
 
 msgid "Select channel audio"
 msgstr "Изберете аудио канал"
+
+msgid "Select channel set"
+msgstr ""
 
 msgid "Select copy destination for:"
 msgstr "Изберете цел на копирането за:"
@@ -18093,9 +18020,6 @@ msgstr ""
 msgid "Select if this timer is to be repeated."
 msgstr ""
 
-msgid "Select if time shift must continue when set to record."
-msgstr "Изберете ако TimeShift трябва да продължи, когато е настроен за запис."
-
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Изберете дали искате Subservice режим да се активира."
 
@@ -18219,10 +18143,16 @@ msgstr ""
 msgid "Select the action to perform when the timer ends."
 msgstr ""
 
+msgid "Select the action to take when leaving time shift due to a service change. This option is used when the time shift stop warning is enabled."
+msgstr ""
+
 msgid "Select the action to take when the EnergySaver timer activates."
 msgstr ""
 
 msgid "Select the action to take when the SleepTimer activates."
+msgstr ""
+
+msgid "Select the age after which unused time shift buffers may be removed during cleanup. Buffers still being recorded, played or saved remain protected. This setting does not limit the length of an active buffer."
 msgstr ""
 
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
@@ -18401,6 +18331,9 @@ msgstr ""
 msgid "Select the input connector you want to use."
 msgstr ""
 
+msgid "Select the interval for checking buffer age and free space in addition to checks on event changes. Disabled means there is no periodic check. Cleanup removes unused temporary buffers and does not shorten an active buffer."
+msgstr ""
+
 msgid "Select the last item in list or move to the end of text"
 msgstr ""
 
@@ -18472,6 +18405,9 @@ msgid "Select the next item in list or move the cursor right"
 msgstr ""
 
 msgid "Select the next item in the list"
+msgstr ""
+
+msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
 msgid "Select the number of times to retry a task if an error occurs when running the task."
@@ -19115,9 +19051,6 @@ msgstr "Задайте местоположението по подразбир�
 msgid "Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations."
 msgstr ""
 
-msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Задайте местоположението по подразбиране за файловете ви за временно преместване. Натиснете \"OK\", за да добавите нови местоположения, изберете ляво/дясно, за да изберете съществуващо местоположение."
-
 msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Задайте местоположението по подразбиране за записите си. Натиснете \"OK\", за да добавите нови местоположения, изберете ляво/дясно, за да изберете съществуващо местоположение."
 
@@ -19242,9 +19175,6 @@ msgstr ""
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Ако е зададено на „Да“, същите команди ще бъдат изпращани към телевизора за събития в режим на дълбока готовност, както се изпращат по време на редовни събития в режим на готовност."
-
-msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
-msgstr "Ако е зададено 'да', активирайте автоматичното записване за автоматичен timeshift"
 
 msgid "Set to the desired primetime hour."
 msgstr "Настройте на желания праймтайм (час)."
@@ -19761,6 +19691,9 @@ msgstr ""
 msgid "Show animation while busy"
 msgstr "Показване на анимация докато сте зает"
 
+msgid "Show available DAB+ reception and decoding information above the radio text. This option applies to both USB and DVB reception."
+msgstr ""
+
 msgid "Show background in Radio Mode"
 msgstr "Показване на фон в режим радио"
 
@@ -20027,6 +19960,9 @@ msgstr ""
 msgid "Show previous system information screen"
 msgstr ""
 
+msgid "Show radio text, slideshow pictures or only the station logo on the receiver's color display. Slideshow mode falls back to the station logo; logo-only mode never shows slides. If no station logo is available, the DAB+ logo is shown. This setting is independent of the TV slideshow."
+msgstr ""
+
 msgid "Show record indicator"
 msgstr "Показване на индикатора за запис"
 
@@ -20120,6 +20056,9 @@ msgstr ""
 msgid "Show task messages if File Commander is not running and all task are completed."
 msgstr ""
 
+msgid "Show technical status line"
+msgstr ""
+
 msgid "Show the CCcam Info Screen"
 msgstr "Показване на информационния екран на CCcam"
 
@@ -20177,7 +20116,7 @@ msgstr "Показване на вертикално програмно ръко
 msgid "Show warning before restart"
 msgstr "Показване на предупреждение преди рестартиране"
 
-msgid "Show warning when time shift is stopped"
+msgid "Show warning when time shift stopped"
 msgstr "Показване на предупреждение, когато смяната на времето е спряна"
 
 msgid "Show watch status"
@@ -20188,6 +20127,9 @@ msgstr "Шоу/Игри шоу"
 
 msgid "Show/Hide Actions"
 msgstr "Информационна лента Показване/скриване на действията"
+
+msgid "Show/Hide channel name"
+msgstr ""
 
 msgid "Show/Hide focus bar"
 msgstr "Показване/скриване на лентата за фокусиране"
@@ -20388,9 +20330,6 @@ msgstr ""
 msgid "Skip forward (enter time)"
 msgstr "прескочи напред (въведете време)"
 
-msgid "Skip jumping to live while timeshifting with plugins"
-msgstr ""
-
 msgid "Skip network setup"
 msgstr ""
 
@@ -20412,9 +20351,6 @@ msgstr ""
 
 msgid "Skip to 0% (start) position"
 msgstr ""
-
-msgid "Sleep"
-msgstr "Заспиване"
 
 msgid "Sleep Timer"
 msgstr "Таймер за заспиване"
@@ -20493,6 +20429,9 @@ msgstr ""
 
 msgid "Slide top to bottom"
 msgstr "Разгледай от горе до долу"
+
+msgid "Slideshow / station logo"
+msgstr ""
 
 #, python-format
 msgid "Slot %d"
@@ -21066,6 +21005,9 @@ msgstr "Статичен IP / Персонализиран"
 msgid "Station"
 msgstr ""
 
+msgid "Station logo only"
+msgstr ""
+
 msgid "Status"
 msgstr "Статус"
 
@@ -21086,6 +21028,9 @@ msgstr "Статусът е недостъпен!"
 
 msgid "Status:"
 msgstr "Статус:"
+
+msgid "Stay in time shift at buffer end (for plugins)"
+msgstr ""
 
 msgid "Step"
 msgstr ""
@@ -21185,9 +21130,6 @@ msgstr ""
 msgid "Stopping Softcam"
 msgstr "Спиране Softcam"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Стоп на използване на timeshift, ако записа е в ход. (Препоръчително за USB стикове)"
-
 msgid "Storage / Disk Information"
 msgstr ""
 
@@ -21215,6 +21157,10 @@ msgstr "Дискът не беше намерен!"
 
 msgid "Storage device not writable!"
 msgstr "Дискът не е за запис!"
+
+#, python-format
+msgid "Storage directory '%s' is unavailable or not writable."
+msgstr ""
 
 msgid "Store position"
 msgstr "Запази позиция"
@@ -22043,6 +21989,12 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "Командата за събуждане от режим на готовност ще бъде изпратена няколко пъти."
 
+msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
+msgstr ""
+
+msgid "The current time shift buffer is no longer available."
+msgstr ""
+
 #, python-format
 msgid "The custom mount point for '%s' is empty!"
 msgstr ""
@@ -22077,13 +22029,6 @@ msgstr ""
 #, python-format
 msgid "The file '%s' has been changed. Do you want to save it?"
 msgstr ""
-
-msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Файловата система на вашето Timeshift-устройство не поддържа hardlinks.\n"
-"Уверете се, че е форматиран в EXT2, EXT3 or EXT4!"
 
 #, python-format
 msgid "The following files are related to '%s':"
@@ -22160,6 +22105,9 @@ msgstr "Резултатите са записани в %s."
 msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
 msgstr ""
 
+msgid "The running Enigma2 version cannot safely save an active time shift buffer."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr "Запазеният PIN е изчистен."
 
@@ -22187,6 +22135,9 @@ msgid ""
 "Do that now or extend the timer?"
 msgstr ""
 
+msgid "The storage check did not finish. Please check the device or network and try again."
+msgstr ""
+
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Времето се умножава по текущия брояч на повторения."
 
@@ -22197,9 +22148,16 @@ msgstr ""
 "Времето на буфер за TimeShift надвишава определения лимит в настройките.\n"
 "Какво искаш да направиш ?"
 
-msgid ""
-"The time shift storage device is not available.\n"
-"Please check the device and the time shift path."
+msgid "The time shift buffer is not available."
+msgstr ""
+
+msgid "The time shift recording was saved, but a temporary recording could not be removed."
+msgstr ""
+
+msgid "The time shift storage device is not available. Please check the device and the time shift path."
+msgstr ""
+
+msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr ""
 
 #, python-format
@@ -22619,38 +22577,20 @@ msgstr "Времеви скок на повторение интервал за 
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Времеви скок: Използвайте нормално бързо напред за скорости"
 
-msgid "Time shift buffer delete after zap"
-msgstr ""
-
-msgid "Time shift buffer limit"
-msgstr "Буферно ограничение за Timeshift [в часове]"
-
 msgid "Time shift buffer location"
 msgstr "Местоположение на Timeshift"
 
-msgid "Time shift checking for free space"
-msgstr "Проверка на изместване на времето за свободно място"
-
-msgid "Time shift checking for older files"
-msgstr "Timeshift проверка за по-големи файлове [минути]"
-
-msgid "Time shift event based file splitting"
-msgstr "Timeshift събитие базирано на файлово разделяне"
-
-msgid "Time shift event limit"
-msgstr "TimeShift на последните ограничени събития [брой събития]"
+msgid "Time shift could not be started. Please check the storage device and available space."
+msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr ""
 
-msgid "Time shift not possible!"
-msgstr "Timeshift не е възможен!"
-
 msgid "Time shift save action on zap"
 msgstr "Timeshift-запазващо действие на превключване"
 
-msgid "Time shift save failed!"
-msgstr "Timeshift неуспешно запазен!"
+msgid "Time shift save failed! The source buffer has been retained."
+msgstr ""
 
 msgid "Time shift save location"
 msgstr ""
@@ -22661,8 +22601,8 @@ msgstr "Timeshift запазва запис (Изберете събитие)"
 msgid "Time shift save recording (Stop after current event)"
 msgstr "Timeshift запазва запис (стоп след текущото събитие)"
 
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Timeshift запазен на вашия harddisk!"
+msgid "Time shift saved!"
+msgstr ""
 
 msgid "Time shift will get saved at end of event."
 msgstr "Timeshift ще се запази в края на събитието!"
@@ -23371,6 +23311,9 @@ msgstr ""
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr ""
 
+msgid "Unable to prepare the time shift storage device."
+msgstr ""
+
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr ""
@@ -23390,6 +23333,9 @@ msgstr ""
 msgid "Unable to save network mount configuration!"
 msgstr ""
 
+msgid "Unable to start RAM time shift."
+msgstr ""
+
 msgid "Unable to start the DAB+ feed"
 msgstr ""
 
@@ -23406,8 +23352,14 @@ msgstr ""
 msgid "Unable to update HDD replacement: %s"
 msgstr ""
 
+msgid "Unable to update the time shift buffer."
+msgstr ""
+
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s!"
+msgstr ""
+
+msgid "Unable to write the time shift event information."
 msgstr ""
 
 msgid "Unattended upgrade without GUI"
@@ -23747,6 +23699,9 @@ msgstr ""
 msgid "Use QuickSelect"
 msgstr ""
 
+msgid "Use SeekBar while time shifting"
+msgstr ""
+
 msgid "Use TV remote control"
 msgstr "Използване на ТВ дистанционно"
 
@@ -23930,9 +23885,6 @@ msgstr "Използване на тези настройки за видео а
 msgid "Use time jumps for fast forward/backward"
 msgstr "Използване на времеви скок за бързо напред/назад"
 
-msgid "Use time shift SeekBar while time shifting"
-msgstr "Използвайте лентата за търсене с изместване на времето при изместване на времето"
-
 msgid "Use viewer for unknown files"
 msgstr ""
 
@@ -24025,9 +23977,6 @@ msgid "VMGM (intro trailer)"
 msgstr "VMGM (интро трейлър)"
 
 msgid "VOB file"
-msgstr ""
-
-msgid "VOD"
 msgstr ""
 
 msgid "VPN"
@@ -24613,6 +24562,9 @@ msgstr "Когато е разрешено, данните за EIT ще бъд�
 msgid "When enabled, SDT and BAT data will be included in http streams."
 msgstr ""
 
+msgid "When enabled, a new buffer is started for each event. When disabled, a continuous buffer is kept across different events. File systems such as FAT32 still require physical file parts, which are played as one buffer. Cleanup does not limit the size of an active buffer."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Когато е разрешено, ще се покаже изскачащо съобщение, когато филмът приключи и следващия ще стартира."
 
@@ -24631,8 +24583,8 @@ msgstr "Когато е разрешено, записът може да пре�
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Когато е разрешено, записът може да прекрати телевизията на живо, когато няма свободни тунери."
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
-msgstr "Когато е разрешено, ще се покаже предупреждение и потребителят ще получи опция за спиране или продължаване на timeshift."
+msgid "When enabled, a warning will be displayed if a command will stop time shift. An option to stop or to continue the time shift will be displayed."
+msgstr ""
 
 msgid "When enabled, allow Samba network access without a password."
 msgstr ""
@@ -24655,11 +24607,17 @@ msgstr ""
 msgid "When enabled, allow usage of the NFS version 4 protocols."
 msgstr ""
 
+msgid "When enabled, allow use of the SeekBar to jump to a selected point within the time shift buffer."
+msgstr ""
+
 msgid "When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video."
 msgstr ""
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Когато е разрешено, е необходимо удостоверяване за гледане на http потоци."
+
+msgid "When enabled, automatically save completed time shift buffers as recordings. This applies to newly started buffers. With event splitting disabled, saving starts when the buffer is stopped. Saved recordings are not removed by the time shift cleanup."
+msgstr ""
 
 msgid "When enabled, bypass HDMI EDID checking."
 msgstr ""
@@ -24675,6 +24633,9 @@ msgstr "Когато е разрешено, продължаване към сл
 
 msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Когато е разрешено, изтритите записи се преместват в кошчето, вместо да се изтриват веднага."
+
+msgid "When enabled, do not automatically switch to live TV when playback reaches the end of the time shift buffer. Enable this only for plugins that require continued time shift playback, such as alternative audio plugins."
+msgstr ""
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "Когато е разрешено, външните субтитри винаги ще се включват при възпроизвеждане на филми."
@@ -24719,6 +24680,9 @@ msgid "When enabled, show status or error messages."
 msgstr "Когато е разрешено, се показва статуса или съобщения за грешки."
 
 msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
+msgstr ""
+
+msgid "When enabled, stops time shift from being used if a recording is in progress. This is advisable for USB sticks or other slow media."
 msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
@@ -24790,8 +24754,11 @@ msgstr "Ако е включен, този параметър има по-гол
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Ако е включен, този параметър има по-голяма тежест от 'Приоритетен тунер'."
 
-msgid "When enabled, time shift starts automatically in background after specified time."
-msgstr "Когато е разрешено, TimeShift започва автоматично във фонов режим след определено време."
+msgid "When enabled, time shift starts automatically in background after the selected time."
+msgstr ""
+
+msgid "When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected."
+msgstr ""
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "Ако е включено, можете да персонализирате настройките на OpenWebIf за резервния тунер"
@@ -24981,7 +24948,7 @@ msgstr "Писане на грешка по време на запис. %s"
 msgid "Write failed!"
 msgstr "Писането се провали!"
 
-msgid "Www"
+msgid "Writing to the time shift storage device failed. Time shift has been stopped."
 msgstr ""
 
 msgid "X-Resolution"
@@ -25148,9 +25115,6 @@ msgstr "Изглежда, че сте в смяна на времето, усл�
 msgid "You should flash a new image!"
 msgstr "Трябва да флашнете ново изображение!"
 
-msgid "YouTube"
-msgstr ""
-
 #, python-format
 msgid "Your %s %s does not support PiP HD"
 msgstr "Вашият %s %s не поддържа PiP HD"
@@ -25269,9 +25233,6 @@ msgstr ""
 
 msgid "ZAP"
 msgstr "Превключване"
-
-msgid "ZOOM"
-msgstr "Мащабиране"
 
 msgid "ZPicon"
 msgstr ""
@@ -25395,9 +25356,6 @@ msgstr "Мащабиране отдясно"
 
 msgid "Zulu"
 msgstr ""
-
-msgid "[Timeshift] Merging records failed!"
-msgstr "[Timeshift] Неуспешно свързване записи!"
 
 msgid "[Timeshift] Restarting time shift!"
 msgstr "[TimeShift] Рестартиране наTimeshift!"
@@ -26056,6 +26014,136 @@ msgstr "да (запази фийдове)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Aspect"
+#~ msgstr "Гледна точка"
+
+#~ msgid "Back/Recall"
+#~ msgstr "Назад/Припомняне"
+
+#~ msgid "Context"
+#~ msgstr "Контекст"
+
+#~ msgid "End"
+#~ msgstr "Край"
+
+#~ msgid "Epg/Guide"
+#~ msgstr "EPG/Ръководство"
+
+#~ msgid "History"
+#~ msgstr "История"
+
+#~ msgid "Info (EPG)"
+#~ msgstr "Информация (EPG)"
+
+#~ msgid "List/Fav"
+#~ msgstr "Списък/Любими"
+
+#~ msgid "Magic"
+#~ msgstr "Магия"
+
+#~ msgid "Media"
+#~ msgstr "Медиа"
+
+#~ msgid "Option"
+#~ msgstr "Опция"
+
+#~ msgid "Program"
+#~ msgstr "Програма"
+
+#~ msgid "Search/WEB"
+#~ msgstr "Търсене/WEB"
+
+#~ msgid "Sleep"
+#~ msgstr "Заспиване"
+
+#~ msgid "ZOOM"
+#~ msgstr "Мащабиране"
+
+#~ msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
+#~ msgstr "„Буфер в часове“ или „брой на последните събития“. За изтриване на по-стари файлове с изместване на времето приоритет има условието, което е настъпило първо."
+
+#~ msgid "Creating hard link to time shift file failed!"
+#~ msgstr "Създаване на Hardlink за Timeshift файл не успя!"
+
+#, python-format
+#~ msgid "Directory '%s' can't be linked to recordings!"
+#~ msgstr "Директорията „%s“ не може да бъде свързана със записи!"
+
+#~ msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
+#~ msgstr "Ако свободното пространство е по-малко от зададената стойност, тогава се прави опит за изтриване на старите файлове за timeshift."
+
+#~ msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
+#~ msgstr "В допълнение към проверката при стартиране на събитие може да се използва повтаряща се проверка, за да се открият по-рано условията за \"ограничаване на буфера в часове\" или \"проверка на свободното място\"."
+
+#, python-format
+#~ msgid ""
+#~ "Not enough free disk space!\n"
+#~ "\n"
+#~ "Filesize: %sMB\n"
+#~ "Free Space: %sMB\n"
+#~ "Path: %s"
+#~ msgstr ""
+#~ "Няма достатъчно свободно дисково пространство!\n"
+#~ "\n"
+#~ "Размер на файла: %sMB\n"
+#~ "Свободно пространство: %sMB\n"
+#~ "Път: %s"
+
+#~ msgid "Older files in the time shift directory are removed on every event change."
+#~ msgstr "По-старите файлове в директорията с изместване на времето се премахват при всяка промяна на събитието."
+
+#~ msgid "Saving time shift buffer, this might take a while."
+#~ msgstr "Запазване наTimeShift като филм сега. Това може да отнеме известно време!"
+
+#~ msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
+#~ msgstr "Ако е зададено 'не', TimeShift използва само един буфер файл. Препоръчваме ви \"Проверка на Timeshift за по-стари файлове [в минути]\" и \"Проверка на времето за свободно пространство?\" да се настрои."
+
+#~ msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
+#~ msgstr "Ако е зададено \"не\", можете да запазите по-старите събития дори след включване или прекъсване на timeshift."
+
+#~ msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
+#~ msgstr "Ако е зададено 'да', ви позволява да използвате лентата за търсене, за да прескочите до точка в събитието."
+
+#~ msgid "Select if time shift must continue when set to record."
+#~ msgstr "Изберете ако TimeShift трябва да продължи, когато е настроен за запис."
+
+#~ msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+#~ msgstr "Задайте местоположението по подразбиране за файловете ви за временно преместване. Натиснете \"OK\", за да добавите нови местоположения, изберете ляво/дясно, за да изберете съществуващо местоположение."
+
+#~ msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
+#~ msgstr "Ако е зададено 'да', активирайте автоматичното записване за автоматичен timeshift"
+
+#~ msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+#~ msgstr "Стоп на използване на timeshift, ако записа е в ход. (Препоръчително за USB стикове)"
+
+#~ msgid ""
+#~ "The file system on your time shift device does not support hard links.\n"
+#~ "Make sure it is formatted in EXT2, EXT3 or EXT4!"
+#~ msgstr ""
+#~ "Файловата система на вашето Timeshift-устройство не поддържа hardlinks.\n"
+#~ "Уверете се, че е форматиран в EXT2, EXT3 or EXT4!"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Timeshift не е възможен!"
+
+#~ msgid "Time shift save failed!"
+#~ msgstr "Timeshift неуспешно запазен!"
+
+#~ msgid "Time shift saved to your hard disk drive!"
+#~ msgstr "Timeshift запазен на вашия harddisk!"
+
+#~ msgid "Use time shift SeekBar while time shifting"
+#~ msgstr "Използвайте лентата за търсене с изместване на времето при изместване на времето"
+
+#~ msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
+#~ msgstr "Когато е разрешено, ще се покаже предупреждение и потребителят ще получи опция за спиране или продължаване на timeshift."
+
+#~ msgid "When enabled, time shift starts automatically in background after specified time."
+#~ msgstr "Когато е разрешено, TimeShift започва автоматично във фонов режим след определено време."
+
+#~ msgid "[Timeshift] Merging records failed!"
+#~ msgstr "[Timeshift] Неуспешно свързване записи!"
 
 #~ msgid "Seconds"
 #~ msgstr "секунди"

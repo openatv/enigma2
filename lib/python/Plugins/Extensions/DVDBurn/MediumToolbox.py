@@ -1,12 +1,12 @@
-from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
-from Components.Sources.StaticText import StaticText
-from Components.Sources.Progress import Progress
-from Components.Task import Task, Job, job_manager, Condition
-from Components.ScrollLabel import ScrollLabel
-from Components.Harddisk import harddiskmanager
 from Components.Console import Console
+from Components.Harddisk import harddiskmanager
+from Components.ScrollLabel import ScrollLabel
+from Components.Task import Condition, Job, Task, job_manager
+from Components.Sources.Progress import Progress
+from Components.Sources.StaticText import StaticText
 from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
+from Screens.Screen import Screen
 
 
 class MediumToolbox(Screen):

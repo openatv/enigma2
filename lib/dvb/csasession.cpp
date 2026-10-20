@@ -55,6 +55,14 @@ static bool dvbTripletMatch(const eServiceReferenceDVB& ref1, const eServiceRefe
 	       ref1.getOriginalNetworkID() == ref2.getOriginalNetworkID();
 }
 
+int eDVBCSASession::cachedCsaAlt(const eServiceReferenceDVB& ref)
+{
+	auto it = s_csa_cache.find(makeServiceKey(ref));
+	if (it == s_csa_cache.end() || !it->second.valid)
+		return -1;
+	return it->second.is_csa_alt ? 1 : 0;
+}
+
 eDVBCSASession::eDVBCSASession(const eServiceReferenceDVB& ref)
 	: m_service_ref(ref)
 	, m_active(false)

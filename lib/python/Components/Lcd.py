@@ -1,11 +1,11 @@
 from os.path import exists
 from sys import maxsize
-from twisted.internet import threads
 from usb import busses
+from twisted.internet import threads
 
 from enigma import eActionMap, eDBoxLCD, eTimer
 
-from Components.config import config, ConfigYesNo, ConfigNothing, ConfigOnOff, ConfigSelection, ConfigSlider, ConfigSubsection
+from Components.config import ConfigNothing, ConfigOnOff, ConfigSelection, ConfigSlider, ConfigSubsection, ConfigYesNo, config
 from Components.SystemInfo import BoxInfo
 from Screens.InfoBar import InfoBar
 from Screens.Screen import Screen

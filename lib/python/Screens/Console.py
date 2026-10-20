@@ -1,5 +1,5 @@
-from re import sub
 from os.path import isfile
+from re import sub
 from time import localtime
 
 from enigma import eConsoleAppContainer, eTimer

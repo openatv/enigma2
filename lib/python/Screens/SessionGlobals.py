@@ -1,15 +1,15 @@
-from Screens.Screen import Screen
+from Components.Converter.Combine import Combine
+from Components.Renderer.FrontpanelLed import FrontpanelLed
+from Components.Sources.Boolean import Boolean
 from Components.Sources.Clock import Clock
 from Components.Sources.CurrentService import CurrentService
 from Components.Sources.EventInfo import EventInfo
-from Components.Sources.FrontendStatus import FrontendStatus
 from Components.Sources.FrontendInfo import FrontendInfo
+from Components.Sources.FrontendStatus import FrontendStatus
+from Components.Sources.RecordState import RecordState
 from Components.Sources.Source import Source
 from Components.Sources.TunerInfo import TunerInfo
-from Components.Sources.Boolean import Boolean
-from Components.Sources.RecordState import RecordState
-from Components.Converter.Combine import Combine
-from Components.Renderer.FrontpanelLed import FrontpanelLed
+from Screens.Screen import Screen
 
 
 class SessionGlobals(Screen):

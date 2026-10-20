@@ -1,14 +1,11 @@
-from Components.Addons.GUIAddon import GUIAddon
+from enigma import BT_ALIGN_CENTER, BT_VALIGN_CENTER, RT_BLEND, RT_HALIGN_CENTER, RT_VALIGN_CENTER, eListbox, eListboxPythonMultiContent, eSize, gFont, getDesktop
 
-from enigma import eListbox, eListboxPythonMultiContent, BT_ALIGN_CENTER, BT_VALIGN_CENTER, RT_BLEND, gFont, eSize, getDesktop, RT_HALIGN_CENTER, RT_VALIGN_CENTER
-
-from skin import applySkinFactor, parseFont, parseColor
-
-from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryText
-from Components.Sources.List import List
+from skin import applySkinFactor, parseColor, parseFont
 from Components.Label import Label
-
-from Tools.Directories import resolveFilename, SCOPE_GUISKIN
+from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryText
+from Components.Addons.GUIAddon import GUIAddon
+from Components.Sources.List import List
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
 
@@ -33,7 +30,7 @@ class Pager(GUIAddon):
 		self.orientation = eListbox.orHorizontal
 		self.maxPages = 10
 		self.currentPageStyle = "bubbletext"  # possible is bubbletext and graphic
-		self.textRenderer = Label("")
+		self.textRenderer = Label()
 		self.bubbletextCornerRadius = 12
 		self.bubbletextBkColor = 0x02444444
 		self.bubbletextPadding = 10

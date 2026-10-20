@@ -477,7 +477,7 @@ class LCNScannerSetup(LCNScanner, Setup):
 			self["key_yellow"] = StaticText(_("Scan"))
 		else:
 			self["scanActions"].setEnabled(False)
-			self["key_yellow"] = StaticText("")
+			self["key_yellow"] = StaticText()
 
 	def keyScan(self):
 		def performScan():

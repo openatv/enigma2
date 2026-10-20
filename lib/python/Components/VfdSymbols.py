@@ -1,7 +1,7 @@
 from os.path import exists, join
 from twisted.internet import threads
 
-from enigma import eTimer, iPlayableService, iServiceInformation, getVFDSymbolsPoll
+from enigma import eTimer, getVFDSymbolsPoll, iPlayableService, iServiceInformation
 
 from Components.config import config
 from Components.ParentalControl import parentalControl

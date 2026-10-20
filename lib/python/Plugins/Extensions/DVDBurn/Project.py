@@ -1,9 +1,10 @@
-from Tools.Directories import fileExists
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigText, ConfigSelection, ConfigSequence, ConfigSubList
-from . import Title
 import xml.dom.minidom
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS
+
+from Components.config import ConfigInteger, ConfigSelection, ConfigSequence, ConfigSubList, ConfigSubsection, ConfigText, config
+from Tools.Directories import SCOPE_FONTS, SCOPE_PLUGINS, fileExists, resolveFilename
 from Tools.ISO639 import ISO639Language
+
+from . import Title
 
 
 class ConfigColor(ConfigSequence):

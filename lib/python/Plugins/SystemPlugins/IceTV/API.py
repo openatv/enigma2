@@ -7,14 +7,14 @@ All Right Reserved
 License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
 
-import requests
-import json
-
 from fcntl import ioctl
+from json import dumps
+from socket import AF_INET, SHUT_RDWR, SOCK_DGRAM, create_connection, error as sockerror, socket
 from struct import pack
-from socket import socket, create_connection, AF_INET, SOCK_DGRAM, SHUT_RDWR, error as sockerror
-from . import config, saveConfigFile, getIceTVDeviceType
+
 from Components.SystemInfo import BoxInfo
+
+from . import config, getIceTVDeviceType, saveConfigFile
 
 _version_string = "20191127"
 _protocol = "http://"
@@ -87,52 +87,54 @@ def showIdToEventId(show_id):
 
 
 class Request:
-    def __init__(self, resource):
-        super(Request, self).__init__()
-        self.params = {
-            "api_key": "9019fa88-bd0c-4b1b-94ac-6761aa6a664f",
-            "application_version": _version_string,
-        }
-        self.headers = {
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "User-Agent": "SystemPlugins.IceTV/%s (%s; %s; %s)" % (_version_string, BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel"), BoxInfo.getItem("imagebuild")),
-        }
-        self.url = _protocol + config.plugins.icetv.server.name.value + resource
-        self.data = {}
-        self.response = None
+	def __init__(self, resource):
+		super(Request, self).__init__()
+		self.params = {
+			"api_key": "9019fa88-bd0c-4b1b-94ac-6761aa6a664f",
+			"application_version": _version_string,
+		}
+		self.headers = {
+			"Content-Type": "application/json",
+			"Accept": "application/json",
+			"User-Agent": "SystemPlugins.IceTV/%s (%s; %s; %s)" % (_version_string, BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel"), BoxInfo.getItem("imagebuild")),
+		}
+		self.url = _protocol + config.plugins.icetv.server.name.value + resource
+		self.data = {}
+		self.response = None
 
-    def _shorten(self, text):
-        if len(text) < 4000:
-            return text
-        return text[:2000] + "\n...\n" + text[-2000:]
+	def _shorten(self, text):
+		if len(text) < 4000:
+			return text
+		return text[:2000] + "\n...\n" + text[-2000:]
 
-    def send(self, method):
-        data = json.dumps(self.data)
-        # FIXME verify=False -> verify=True
-        r = requests.request(method, self.url, params=self.params, headers=self.headers, data=data, verify=False, timeout=10.0)  #NOSONAR
-        err = not r.ok
-        if err or _debug_level > 0:
-            print("[IceTV]", r.request.method, r.request.url)
-        if err or _debug_level > 1:
-            print("[IceTV] headers", r.request.headers)
-        if err or _debug_level == 3:
-            print("[IceTV]", self._shorten(r.request.body))
-        elif err or _debug_level > 3:
-            print("[IceTV]", r.request.body)
-        if err or _debug_level > 0:
-            print("[IceTV]", r.status_code, r.reason)
-        if err or _debug_level > 1:
-            print("[IceTV] headers", r.headers)
-        if err or _debug_level == 3:
-            print("[IceTV]", self._shorten(r.text))
-        elif err or _debug_level > 3:
-            print("[IceTV]", r.text)
-        self.response = r
-        if r.status_code == 401:
-            clearCredentials()
-        r.raise_for_status()
-        return r
+	def send(self, method):
+		from requests import request  # Load HTTP support only when sending a request.
+
+		data = dumps(self.data)
+		# FIXME verify=False -> verify=True
+		r = request(method, self.url, params=self.params, headers=self.headers, data=data, verify=False, timeout=10.0)  #NOSONAR
+		err = not r.ok
+		if err or _debug_level > 0:
+			print("[IceTV]", r.request.method, r.request.url)
+		if err or _debug_level > 1:
+			print("[IceTV] headers", r.request.headers)
+		if err or _debug_level == 3:
+			print("[IceTV]", self._shorten(r.request.body))
+		elif err or _debug_level > 3:
+			print("[IceTV]", r.request.body)
+		if err or _debug_level > 0:
+			print("[IceTV]", r.status_code, r.reason)
+		if err or _debug_level > 1:
+			print("[IceTV] headers", r.headers)
+		if err or _debug_level == 3:
+			print("[IceTV]", self._shorten(r.text))
+		elif err or _debug_level > 3:
+			print("[IceTV]", r.text)
+		self.response = r
+		if r.status_code == 401:
+			clearCredentials()
+		r.raise_for_status()
+		return r
 
 
 class AuthRequest(Request):

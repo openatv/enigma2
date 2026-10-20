@@ -1,5 +1,5 @@
 from __future__ import annotations
-
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from enum import StrEnum
 from ipaddress import ip_address
@@ -12,7 +12,6 @@ from shutil import copy2
 from socket import AF_UNIX, SOCK_STREAM, gethostbyname, gethostname, socket
 from subprocess import DEVNULL, check_output
 from uuid import uuid4
-from collections.abc import Callable
 from twisted.internet import reactor
 
 from enigma import e2avahi_set_debug, eNetworkServiceBrowser, eTimer
@@ -517,7 +516,7 @@ class NetworkManager:
 		if adapter is None:
 			return interface
 		if adapter.isWiFi:
-			return f"{adapter.module or 'Unknown'} {_('wireless network interface')}"
+			return _("wireless network interface")
 		return _("Ethernet network interface")
 
 	def notifyNetworkPlugins(self, reason: bool, interface: str = ""):

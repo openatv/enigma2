@@ -3,20 +3,22 @@
 # Snoete <snoete@hotmail.com>, 2022, 2023, 2024, 2025, 2026.
 # Walter <info@wt-electronic.nl>, 2021.
 # jbleyel <jbleyel@gmx.net>, 2023, 2026.
+# Snoete <snoete@users.noreply.hosted.weblate.org>, 2026.
+# jbleyel <jbleyel@users.noreply.hosted.weblate.org>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-12 19:03+0000\n"
-"PO-Revision-Date: 2026-08-16 15:58+0000\n"
-"Last-Translator: Snoete <snoete@hotmail.com>\n"
+"POT-Creation-Date: 2026-10-19 19:43+0000\n"
+"PO-Revision-Date: 2026-10-19 20:01+0000\n"
+"Last-Translator: jbleyel <jbleyel@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.9.dev0\n"
+"X-Generator: Weblate 2026.11.dev0\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
@@ -43,8 +45,9 @@ msgstr "  REC  "
 msgid "  Red key : Show/Hide channel name"
 msgstr "  Rode kop : Toon/verberg zender naam"
 
+#, fuzzy
 msgid " (+5 volt terrestrial)"
-msgstr ""
+msgstr " (+5 Volt, terrestrisch)"
 
 #, python-format
 msgid " (Channel %s)"
@@ -795,7 +798,7 @@ msgstr[1] "%d uren"
 
 #, python-format
 msgid "%d Hz"
-msgstr ""
+msgstr "%d Hz"
 
 #, python-format
 msgid "%d MB"
@@ -880,7 +883,7 @@ msgstr[1] "%d jaren"
 
 #, python-format
 msgid "%d additional slots have been created.\n"
-msgstr ""
+msgstr "%d er zijn extra slots gecreëerd.\n"
 
 #, python-format
 msgid "%d core"
@@ -897,8 +900,8 @@ msgstr[1] "%d feed catalogus pakketten zijn bijgewerkt."
 #, python-format
 msgid "%d host found."
 msgid_plural "%d hosts found."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Host gevonden."
+msgstr[1] "%d Hosts gevonden."
 
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -923,20 +926,20 @@ msgstr "%d ms"
 #, python-format
 msgid "%d network found."
 msgid_plural "%d networks found."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d netwerk gevonden."
+msgstr[1] "%d netwerken gevonden."
 
 #, python-format
 msgid "%d obsolete manufacturer STARTUP files will be replaced or removed."
-msgstr ""
+msgstr "Er worden %d verouderde STARTUP bestanden van de fabrikant vervangen of verwijderd."
 
 #, python-format
 msgid "%d of %d channels contained a DAB+ ensemble"
-msgstr ""
+msgstr "%d van %d zenders bevatten een DAB+ ensemble"
 
 #, python-format
 msgid "%d of %d feeds completed"
-msgstr ""
+msgstr "%d van %d feeds voltooid"
 
 #, python-format
 msgid "%d package found."
@@ -1036,7 +1039,7 @@ msgstr[1] "%d Plugins zijn niet beschikbaar:"
 
 #, python-format
 msgid "%d radio bouquets created"
-msgstr ""
+msgstr "%d Radiobouquets aangemaakt"
 
 #, python-format
 msgid "%d sec"
@@ -1050,7 +1053,7 @@ msgstr[1] "%d zenders gevonden."
 
 #, python-format
 msgid "%d slots have been created on the device.\n"
-msgstr ""
+msgstr "%d slots zijn op het gekozen apparaat aangemaakt.\n"
 
 #, python-format
 msgid "%d times"
@@ -1168,11 +1171,11 @@ msgstr "%s %sB"
 
 #, python-format
 msgid "%s (cached)"
-msgstr ""
+msgstr "%s (in cache opgeslagen)"
 
-#, python-format
+#, fuzzy, python-format
 msgid "%s (motor)"
-msgstr ""
+msgstr "%s (motor)"
 
 #, python-format
 msgid "%s - Setup"
@@ -1184,7 +1187,7 @@ msgstr "%s Plugin Browser beheren"
 
 #, python-format
 msgid "%s DMIPS per core"
-msgstr ""
+msgstr "%s DMIPS per core"
 
 #, python-format
 msgid "%s GHz"
@@ -1212,7 +1215,7 @@ msgstr "%s View"
 
 #, python-format
 msgid "%s action failed (exit code %s)"
-msgstr ""
+msgstr "%s actie mislukt (exitcode %s)"
 
 #, python-format
 msgid "%s additional screens"
@@ -1236,10 +1239,13 @@ msgid ""
 "\n"
 "Do you want to start it?"
 msgstr ""
+"%s wordt momenteel niet uitgevoerd.\n"
+"\n"
+"Wilt u die starten?"
 
 #, python-format
 msgid "%s is currently stopped or unreachable. Press GREEN to start it."
-msgstr ""
+msgstr "%s is op dit moment gestopt of onbereikbaar. Druk op GROEN, om die te starten."
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1255,15 +1261,15 @@ msgid "%s not available."
 msgstr "%s niet beschikbaar."
 
 msgid "%s support"
-msgstr ""
+msgstr "%s support"
 
 #, python-format
 msgid "%s version"
-msgstr ""
+msgstr "%s versie"
 
 #, python-format
 msgid "%s webif disabled"
-msgstr ""
+msgstr "%s webif uitgeschakeld"
 
 #, python-format
 msgid "%s%d min"
@@ -1276,7 +1282,7 @@ msgstr "%s%s(Default: %s)"
 
 #, python-format
 msgid "%s. (Lowest)"
-msgstr ""
+msgstr "%s. (Laagste)"
 
 #, python-format
 msgid "%s/%s: %s"
@@ -1284,11 +1290,11 @@ msgstr "%s/%s: %s"
 
 #, python-format
 msgid "%s: bouquet could not be cleared"
-msgstr ""
+msgstr "%s: Bouquet kon niet verwijderd worden"
 
 #, python-format
 msgid "%s: bouquet could not be written"
-msgstr ""
+msgstr "%s: Bouquet kon niet worden aangemaakt"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
@@ -1332,29 +1338,26 @@ msgstr "'%s' bevat %d bestand(en) en %d sub-mappen.\n"
 
 #, python-format
 msgid "'%s' is already set by a dedicated setting above, remove it from 'Mount options'."
-msgstr ""
+msgstr "'%s' is al door een andere instelling hierboven vastgelegd, daarom deze a.u.b. uit de 'Mount opties' verwijderen."
 
 #, python-format
 msgid "'%s' is listed more than once in 'Mount options'."
-msgstr ""
+msgstr "'%s' is al meerdere keren vermeld in de 'Mount opties'."
 
 #, python-format
 msgid "'%s' mounted."
-msgstr ""
+msgstr "'%s' gemount."
 
 #, python-format
 msgid "'%s' unmounted."
-msgstr ""
+msgstr "'%s' geünmount."
 
 #, python-format
 msgid "'%s' uses enterprise authentication (802.1X). Networks like this cannot be set up here, they have to be configured manually in wpa_supplicant.conf."
-msgstr ""
-
-msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
-msgstr "Buffer 'in uren' of 'aantal bestanden'. De oudste Timeshift bestanden worden als eerste verwijderd."
+msgstr "'%s' gebruikt de enterprise authentificatie (802.1X). Dit soort netwerken kunnen hier niet ingesteld worden, maar moeten handmatig in het bestand 'wpa_supplicant.conf' worden geconfigureerd."
 
 msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
-msgstr "Geef 'Standby van de TV' een hogere prioriteit dan 'input van de TV'."
+msgstr "Geef 'Stand-by van de TV' een hogere prioriteit dan 'input van de TV'."
 
 msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr "`Decodeer & en ECM opnemen' geeft de optie om achteraf te decoderen indien dit niet lukt tijdens de opname. 'Niet Decoderen & en neem ECM op' slaat de opname gedecodeerd op, zodat deze tijdens het afspelen kan worden gedecodeerd. 'Normaal' betekent decoderen en geen ECM opslaan."
@@ -1371,7 +1374,7 @@ msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Opgelet: Na %d crashes vind een herstart plaats.)"
 
 msgid "(Deep) Standby only"
-msgstr ""
+msgstr "Alleen (Deep) Stand-by"
 
 msgid "(PiP)"
 msgstr "(PiP)"
@@ -1423,19 +1426,19 @@ msgid "-24h/+24 Hours"
 msgstr "-24/+24 Uur"
 
 msgid "/media/hdd already exists and is not a directory. It will not be overwritten."
-msgstr ""
+msgstr "'/media/hdd' bestaat al en is geen map. Deze wordt niet overschreven."
 
 msgid "/media/hdd contains files or other directories. Move them before enabling HDD replacement; nothing has been deleted."
-msgstr ""
+msgstr "'/media/hdd' bevat bestanden of andere mappen. Deze voor het activeren van de harde schijf vervanger verplaatsen; er werd niets verwijderd."
 
 msgid "/media/hdd is an existing symbolic link to another location. It will not be overwritten."
-msgstr ""
+msgstr "'/media/hdd' is een bestaande snelkoppeling naar een andere locatie. Er word niets overschreven."
 
 msgid "/media/hdd is in use. Unmount the existing device or share before changing the HDD replacement."
-msgstr ""
+msgstr "'/media/hdd' word al gebruikt. A.u.b. het bestaande apparaat of Share unmounten voordat u de harde schijf vervangt."
 
 msgid "/media/hdd is reserved by another device in /etc/fstab. Change that device's mount point first."
-msgstr ""
+msgstr "'/media/hdd' is al in '/etc/fstab' voor een ander apparaat gereserveerd. A.u.b. eerst het mountpoint van dat apparaat wijzigen."
 
 msgid "/s"
 msgstr "/s"
@@ -1450,7 +1453,7 @@ msgid "1"
 msgstr "1"
 
 msgid "1. (Highest)"
-msgstr ""
+msgstr "1. (Hoogste)"
 
 msgid "10bit"
 msgstr "10bit"
@@ -1462,7 +1465,7 @@ msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if
 msgstr "12, toon Latin-1 letters behalve bij grieks en cyrillisch, wanneer nodig dan naar 8 wisselen."
 
 msgid "12-bit HDR (no PiP)"
-msgstr ""
+msgstr "12-bit HDR (geen PiP)"
 
 msgid "12V output"
 msgstr "12V uitgang"
@@ -1618,7 +1621,7 @@ msgid "<Select a device>"
 msgstr "<Selecteer een apparaat>"
 
 msgid "<no capabilities found>"
-msgstr ""
+msgstr "<geen mogelijkheden gevonden>"
 
 msgid "<no log found>"
 msgstr "<geen log gevonden"
@@ -1630,7 +1633,7 @@ msgid "A backup is now being created."
 msgstr "Er wordt nu een back-up gemaakt."
 
 msgid "A backup of your previous settings was found. Do you want to restore it before continuing with the setup?"
-msgstr ""
+msgstr "Er is een back-up van vorige instellingen gevonden. Wilt u deze herstellen, voordat u verder gaat met de configuratie?"
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Een door komma's gescheiden lijst van extensies, die voor de instelling van \"Mijn extensies\" in \"Extensies filteren\" gebruikt gaan worden. Geef de naam van de extensie op zonder leidende punt (.)."
@@ -1700,6 +1703,9 @@ msgstr ""
 "Een opname is gestart:\n"
 "%s"
 
+msgid "A recording has priority. Time shift is being stopped."
+msgstr "Een opname heeft nu voorrang. Timeshift wordt beëindigd."
+
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
@@ -1711,10 +1717,10 @@ msgid "A recording is currently running. Please stop the recording before trying
 msgstr "U bent aan het opnemen. Stop de opname voordat u de signaalmeting start."
 
 msgid "A recording is running or will start within six minutes. Changing the tuner configuration can interrupt it. Save anyway?"
-msgstr ""
+msgstr "Een opname loopt of zal binnen zes minuten starten. Het wijzigen van de Tuner configuratie kan deze opname onderbreken. Toch opslaan?"
 
 msgid "A recording is running or will start within six minutes. Please try the positioner setup later."
-msgstr ""
+msgstr "Een opname loopt of zal binnen zes minuten starten. Daarom a.u.b. de Rotor instellingen op een later moment wijzigen."
 
 #, python-format
 msgid ""
@@ -1729,6 +1735,9 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Het benodigde hulpmiddel (%s) is niet gevonden."
+
+msgid "A storage check is still running. Save these settings without waiting for it?"
+msgstr "Er loopt nog een opslagcontrole. Deze instellingen opslaan, zonder op het resultaat te wachten?"
 
 msgid ""
 "A timer failed to record!\n"
@@ -1762,6 +1771,8 @@ msgid ""
 "A zap timer wants to switch the channel.\n"
 "Do you want to zap now?\n"
 msgstr ""
+"Een ZapTimer wil naar een andere zender wisselen.\n"
+"Wilt u nu omschakelen?\n"
 
 msgid "AAC downmix"
 msgstr "AAC downmix"
@@ -1782,13 +1793,13 @@ msgid "AC3plus transcoding"
 msgstr "AC3plus transcodering"
 
 msgid "AC4"
-msgstr ""
+msgstr "AC4"
 
 msgid "AFL"
 msgstr "AFL"
 
 msgid "AI Subtitles"
-msgstr ""
+msgstr "AI-Ondertiteling"
 
 msgid "AI Translation color"
 msgstr "Kleur van de door AI vertaalde ondertiteling"
@@ -1824,7 +1835,7 @@ msgid "ATSC provider"
 msgstr "ATSC provider"
 
 msgid "AV Receiver, Soundbar And Remote"
-msgstr ""
+msgstr "AV-Receiver, Soundbar en afstandsbediening"
 
 msgid "AV Setup"
 msgstr "Audio / Video"
@@ -1863,7 +1874,7 @@ msgid "Above 200 Mbps"
 msgstr "Boven 200 Mbps"
 
 msgid "Access mode"
-msgstr ""
+msgstr "Toegangsmodus"
 
 msgid "Access point"
 msgstr "Access point"
@@ -1872,6 +1883,8 @@ msgid ""
 "Access point not found.\n"
 "Check it is in range and the SSID is correct."
 msgstr ""
+"Access point niet gevonden.\n"
+"Controleren of die in de buurt is en of de SSID correct is."
 
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "Voor toegang tot geolocatie informatie is een internetverbinding noodzakelijk."
@@ -1913,7 +1926,7 @@ msgid "Activate a way to send individual or specific internal HDMI-CEC commands 
 msgstr "Activeer een manier om individuele of specifieke interne HDMI-CEC commando's via de command-line te sturen."
 
 msgid "Activate network adapter"
-msgstr ""
+msgstr "De netwerkadapter activeren"
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "De Flash-Expander inschakelen, alle wijzigen opslaan en afsluiten"
@@ -1937,15 +1950,15 @@ msgid "Active only"
 msgstr "Alleen actieve"
 
 msgid "Adapter"
-msgstr ""
+msgstr "Adapter"
 
 #, python-format
 msgid "Adapter '%s'"
-msgstr ""
+msgstr "Adapter '%s'"
 
 #, python-format
 msgid "Adapter '%s' Context Menu"
-msgstr ""
+msgstr "Adapter '%s' Contextmenu"
 
 msgid "Adapter Settings"
 msgstr "Adapter instellingen"
@@ -1954,7 +1967,7 @@ msgid "Add"
 msgstr "Toevoegen"
 
 msgid "Add 'Manual resolution' to Extensions"
-msgstr ""
+msgstr "Voeg 'Handmatige resolutie' toe aan het Extensies-menu (BLAUW-Lang)"
 
 msgid "Add Alternatives"
 msgstr "Alternatieven toevoegen"
@@ -1993,13 +2006,13 @@ msgid "Add Marker To Bouquet"
 msgstr "Marker toevoegen"
 
 msgid "Add Mount Manually"
-msgstr ""
+msgstr "Een Mountpoint handmatig toevoegen"
 
 msgid "Add New Quad Channel Entry"
 msgstr "Nieuwe Quad zender toevoegen"
 
 msgid "Add Path"
-msgstr ""
+msgstr "Pad toevoegen"
 
 msgid "Add RecordTimer"
 msgstr "Timer voor een opname toevoegen"
@@ -2020,10 +2033,10 @@ msgid "Add To Parental Protection"
 msgstr "Zender op kinderslot zetten"
 
 msgid "Add Wi-Fi"
-msgstr ""
+msgstr "Wifi toevoegen"
 
 msgid "Add Wi-Fi Manually"
-msgstr ""
+msgstr "Wifi handmatig toevoegen"
 
 msgid "Add Zap+RecordTimer"
 msgstr "Timer voor 'Zappen + Opnemen' toevoegen"
@@ -2053,7 +2066,7 @@ msgid "Add a mark"
 msgstr "Plaats een markering"
 
 msgid "Add a new Saved Wi-Fi Network"
-msgstr ""
+msgstr "Een nieuw opgeslagen wifi netwerk toevoegen"
 
 msgid "Add a new bouquet"
 msgstr "Een favorietenlijst toevoegen"
@@ -2107,7 +2120,7 @@ msgid "Add new tag"
 msgstr "Nieuwe tag toevoegen"
 
 msgid "Add or change additional slots"
-msgstr ""
+msgstr "Extra slots toevoegen of wijzigen"
 
 msgid "Add provider"
 msgstr "Provider toevoegen"
@@ -2176,7 +2189,7 @@ msgid "Adding schedule..."
 msgstr "Voegt schema toe..."
 
 msgid "Additional cable of motorized LNB"
-msgstr ""
+msgstr "Extra kabel voor een gemotoriseerde LNB"
 
 msgid "Additional files/folders to backup"
 msgstr "Extra back-up bestanden"
@@ -2189,13 +2202,13 @@ msgstr "Aanvullende motoropties geven de mogelijkheid de specifieke eigenschappe
 
 #, python-format
 msgid "Additional rotor cable from %s"
-msgstr ""
+msgstr "Extra Rotorkabel van %s"
 
 msgid "Additional slots cannot be changed while the receiver is running from one of them."
-msgstr ""
+msgstr "Extra slots kunnen niet gewijzigd worden, zolang de ontvanger op één van deze slots loopt."
 
 msgid "Adjust the CPU frequency to the load reported by the kernel scheduler."
-msgstr ""
+msgstr "De CPU-frequentie aan de door de kernel scheduler gelezen waarde aanpassen."
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Wijzig de kleuren zodanig dat alle tinten te onderscheiden zijn, maar wel zo verzadigd mogelijk zijn. Zodra het resultaat u bevalt, drukt u op OK om dit menu af te sluiten of selecteert u een ander testscherm d.m.v. de nummerknoppen."
@@ -2204,13 +2217,10 @@ msgid "Adjust the horizontal position of the letters used for teletext."
 msgstr "Pas de horizontale positie van de letters aan die worden gebruikt voor Teletekst."
 
 msgid "Adjust the tuner oscillator offset to refine the DAB+ signal reception."
-msgstr ""
+msgstr "De oscillator offset van de tuner wijzigen om de DAB+ ontvangst te verbeteren."
 
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Pas de verticale positie van de letters aan die worden gebruikt in Teletekst."
-
-msgid "Adjusts compensation for hardware buffer latency for DM9x0."
-msgstr ""
 
 msgid "Adult"
 msgstr "Volwassen"
@@ -2225,7 +2235,7 @@ msgid "Advanced"
 msgstr "Geavanceerd"
 
 msgid "Advanced Diagnostics"
-msgstr ""
+msgstr "Geavanceerde diagnose"
 
 msgid "Advanced Options"
 msgstr "Geavanceerde opties"
@@ -2264,7 +2274,7 @@ msgid "After Event"
 msgstr "Na de taak"
 
 msgid "After a successful scan, replace missing bouquet services by uniquely named services of the same reception type and satellite position. Ambiguous matches are left unchanged. Bouquet order and custom names are preserved."
-msgstr ""
+msgstr "Na een succesvolle scan, worden ontbrekende zenders in Favorietenlijsten vervangen door zenders van hetzelfde ontvangsttype en satellietpositie. Gelijknamige treffers worden niet gewijzigd. De volgorde van Favorietenlijsten en de eigen benamingen blijven ongewijzigd."
 
 msgid "After event"
 msgstr "Na deze taak"
@@ -2279,10 +2289,10 @@ msgid "After zap"
 msgstr "Na het zappen"
 
 msgid "Aggregate data only"
-msgstr ""
+msgstr "Alleen gegevens verzamelen"
 
 msgid "Aggressive"
-msgstr ""
+msgstr "Agressief"
 
 msgid "Akan"
 msgstr "Akan"
@@ -2758,9 +2768,6 @@ msgstr "Vraag gebruiker (met 'nee' als standaard )"
 msgid "Ask user (with default of 'Yes')"
 msgstr "Vraag gebruiker (met 'ja' als standaard )"
 
-msgid "Aspect"
-msgstr "Aspect"
-
 msgid "Aspect Ratio"
 msgstr "Beeldverhouding"
 
@@ -2995,7 +3002,7 @@ msgstr "Automatisch de TV in Stand-by zetten wanneer de ontvanger naar Stand-by 
 msgid "Automatically run the fast scan 90 seconds after each entry into standby and every 24 hours while remaining in standby. If a recording is in progress, retry after one hour. Select 'Multi' to scan multiple providers."
 msgstr ""
 
-msgid "Automatically start time shift after"
+msgid "Automatically start time shift"
 msgstr "Timeshift automatisch starten na"
 
 msgid "Automatically turn on external subtitles"
@@ -3103,9 +3110,6 @@ msgstr "Achterkant, USB rechts"
 
 msgid "Back, upper USB"
 msgstr "Achterkant, USB bovenzijde"
-
-msgid "Back/Recall"
-msgstr "Terug/oproepen"
 
 msgid "Background"
 msgstr "Achtergrond"
@@ -3517,6 +3521,9 @@ msgstr "Brunei Darussalam"
 
 msgid "Buffer Management"
 msgstr ""
+
+msgid "Buffer age limit"
+msgstr "Timeshift buffer - limiet in uren"
 
 #, python-format
 msgid "Buffering %d%%"
@@ -4304,6 +4311,12 @@ msgstr "Controleer op PDC"
 msgid "Check for PDC availability on each service."
 msgstr "Controleer op beschikbaarheid PDC bij elke zender"
 
+msgid "Check for free space"
+msgstr "Moet Timeshift op vrije ruimte controleren"
+
+msgid "Check for older files"
+msgstr "Timeshift controle van oude bestanden [in minuten]"
+
 msgid "Check power and input state from TV"
 msgstr "Controleer power en invoer status van TV"
 
@@ -4324,6 +4337,9 @@ msgstr ""
 
 msgid "Checking file system..."
 msgstr "Controleer bestandssysteem..."
+
+msgid "Checking storage directory..."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -5383,9 +5399,6 @@ msgstr "Inhoud"
 msgid "Content does not fit on DVD!"
 msgstr "De inhoud past niet op een DVD!"
 
-msgid "Context"
-msgstr "Context"
-
 msgid "Continent"
 msgstr "Continent"
 
@@ -5705,9 +5718,6 @@ msgstr "Creëer AP en SC bestanden"
 msgid "Creating file system"
 msgstr "Creëert bestandssyeteem"
 
-msgid "Creating hard link to time shift file failed!"
-msgstr "Creëer hardlink naar Timeshift-bestand mislukt!"
-
 #, python-format
 msgid ""
 "Creating or activating the swap file failed.\n"
@@ -5966,6 +5976,9 @@ msgid "DAB+ channel %s"
 msgstr ""
 
 msgid "DAB+ decoder back end not installed"
+msgstr ""
+
+msgid "DAB+ front display"
 msgstr ""
 
 msgid "DAB+ scan failed; existing bouquets were kept."
@@ -6558,6 +6571,9 @@ msgstr "Plugins verwijderen"
 msgid "Delete Timer"
 msgstr "Verwijder een Timer"
 
+msgid "Delete after zap"
+msgstr "Timeshift buffer verwijderen na zenderwissel"
+
 msgid "Delete all duplicated lines"
 msgstr "Alle dubbele regels verwijderen"
 
@@ -6873,10 +6889,6 @@ msgstr "Mappen"
 
 msgid "Directory"
 msgstr "Map"
-
-#, python-format
-msgid "Directory '%s' can't be linked to recordings!"
-msgstr "Map '%s' kan niet voor opnames gebruikt worden!"
 
 #, python-format
 msgid "Directory '%s' does not exist!"
@@ -7470,9 +7482,6 @@ msgstr "ECM-informatie"
 msgid "ECM information for '%s'"
 msgstr "ECM-informatie voor '%s'"
 
-msgid "EJECTCD"
-msgstr "EJECTCD"
-
 msgid "EPG"
 msgstr "EPG"
 
@@ -7736,9 +7745,6 @@ msgstr "Activeer %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "5V voor actieve antenne inschakelen"
 
-msgid "Enable Autorecord"
-msgstr "Aktiveer automatische opname"
-
 msgid "Enable BT audio"
 msgstr "BT audio inschakelen"
 
@@ -7838,6 +7844,9 @@ msgstr "Auto Fastscan inschakelen"
 #, python-format
 msgid "Enable auto fast scan for '%s'"
 msgstr "Activeer snelle auto scan voor %s"
+
+msgid "Enable auto record"
+msgstr "Aktiveer automatische opname"
 
 msgid "Enable automatic shares"
 msgstr "Auto-Share activeren"
@@ -8047,9 +8056,6 @@ msgstr "Codering"
 msgid "Encryption And Descrambling"
 msgstr ""
 
-msgid "End"
-msgstr "Einde"
-
 msgid "End Alternatives Edit"
 msgstr "Alternatieven bewerken stoppen"
 
@@ -8204,9 +8210,6 @@ msgstr ""
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr ""
 
-msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
-msgstr ""
-
 msgid "Enter the fixed/static IPv4 address to be used for this network adapter."
 msgstr ""
 
@@ -8324,9 +8327,6 @@ msgstr "Invoer nummer en tekst"
 
 msgid "Entry text only"
 msgstr "Invoer van alleen tekst"
-
-msgid "Epg/Guide"
-msgstr "Epg/Guide"
 
 msgid "Equal to"
 msgstr "Gelijk aan"
@@ -8702,8 +8702,14 @@ msgstr "Programma overzicht Acties"
 msgid "Event View Context Menu"
 msgstr "Programma overzicht context menu"
 
+msgid "Event based file splitting"
+msgstr "Timeshift splitsen van bestanden"
+
 msgid "Event font size"
 msgstr "Programma omschrijving lettergrootte"
+
+msgid "Event limit"
+msgstr "Timeshift opname limiet [aantal bestanden]"
 
 msgid "Event name only"
 msgstr "Enkel programma naam"
@@ -8935,9 +8941,6 @@ msgstr "F2"
 
 msgid "F3"
 msgstr "F3"
-
-msgid "F4"
-msgstr "F4"
 
 msgid "FBC SCR (Unicable/JESS)"
 msgstr "FBC SCR (Unicable/JESS)"
@@ -10000,9 +10003,6 @@ msgstr "HDMI-IN Acties"
 msgid "HDMI-In Recording Settings"
 msgstr "HDMI-IN opname instellingen"
 
-msgid "HDMIin"
-msgstr "HDMI-in"
-
 msgid "HDR OSD adjustment"
 msgstr ""
 
@@ -10248,9 +10248,6 @@ msgstr "Hispasat 30.0w"
 
 msgid "Historical"
 msgstr "Historisch"
-
-msgid "History"
-msgstr "Geschiedenis"
 
 msgid "History Prev/Next"
 msgstr "History Vorige/Volgende"
@@ -10572,14 +10569,8 @@ msgstr "Indien ingeschakeld, wordt de nieuwe GStreamer playback engine gebruikt.
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Maximale ruimte die de logs in beslag mogen nemen. Als dat overschreden wordt, worden de oudste het eerste verwijderd."
 
-msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
-msgstr "Indien ingesteld op \"ja\", kunt u Timeshift gebruiken met alternatieve audio-plugins."
-
 msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Wanneer de deep standby workaround is geactiveerd, a.u.b. wachten tot de systeemtijd is gesynchroniseerd. Afhankelijk van het gebruik zal de ontvanger binnen maximaal 2 minuten opstarten."
-
-msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
-msgstr "Als de beschikbare ruimte minder dan instelwaarde is, dan wordt een poging gedaan om de oude Timeshift bestanden te verwijderen."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr "Wanneer de tekst te lang is voor het display, zal die een aantal keren worden herhaald."
@@ -10687,9 +10678,6 @@ msgstr "Importeer data vanaf een externe ontvanger"
 
 msgid "Import remote receiver URL"
 msgstr "Locatie van de externe ontvanger"
-
-msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
-msgstr "Naast de controle bij een start van Timeshift, kan een herhaalde controle worden uitgevoerd, waardoor de ingestelde waarden bij 'limiet in uren' of 'vrije ruimte controleren' eerder worden gecontroleerd."
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "In expert modus, configureer welke tuners de voorkeur hebben voor opnames, wanneer meer dan een tuner beschikbaar is."
@@ -10841,9 +10829,6 @@ msgstr "Indonesisch"
 
 msgid "Info"
 msgstr "Informatie"
-
-msgid "Info (EPG)"
-msgstr "Info (EPG)"
 
 msgid "Info button (long)"
 msgstr "INFO-knop (lang)"
@@ -11355,9 +11340,6 @@ msgstr "Kirgizisch"
 msgid "Kiribati"
 msgstr "Kiribati"
 
-msgid "Kodi"
-msgstr "Kodi"
-
 msgid "Kodi Add-on Packages"
 msgstr ""
 
@@ -11748,9 +11730,6 @@ msgstr "Overzicht van opslagmedia"
 msgid "List of storage devices"
 msgstr "Overzicht van opslagmedia"
 
-msgid "List/Fav"
-msgstr "List/Fav"
-
 msgid "Lists reloaded!"
 msgstr "Lijsten opnieuw ingeladen!"
 
@@ -12008,9 +11987,6 @@ msgstr "MMA"
 msgid "MORE"
 msgstr "MEER"
 
-msgid "MOUSE"
-msgstr "MUIS"
-
 msgid "MSC audio frame quality"
 msgstr ""
 
@@ -12047,9 +12023,6 @@ msgstr "tijdschriften/reportages/documentaire"
 
 msgid "Magenta"
 msgstr "Magenta"
-
-msgid "Magic"
-msgstr "Magic"
 
 msgid "Main Menu"
 msgstr "Hoofdmenu"
@@ -12189,9 +12162,6 @@ msgstr "Marge voor zappen"
 msgid "Mark As Dedicated 3D Service"
 msgstr "Als 3D zender markeren"
 
-msgid "Mark/Portal/Playlist"
-msgstr "Markeer/Portaal/Afspeellijst"
-
 msgid "Marker Actions"
 msgstr "Marker Acties"
 
@@ -12255,9 +12225,6 @@ msgstr "Mayotte"
 
 msgid "Measured current"
 msgstr ""
-
-msgid "Media"
-msgstr "Media"
 
 msgid "Media Center"
 msgstr "Media centrum"
@@ -13772,20 +13739,6 @@ msgstr "Niet gedefinieerd"
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "Onvoldoende schijfruimte. Maak ruimte vrij en probeer het opnieuw (%d MB noodzakelijk, %d MB beschikbaar)"
 
-#, python-format
-msgid ""
-"Not enough free disk space!\n"
-"\n"
-"Filesize: %sMB\n"
-"Free Space: %sMB\n"
-"Path: %s"
-msgstr ""
-"Niet genoeg vrije ruimte!\n"
-"\n"
-"Bestandgrtootte: %sMB\n"
-"Vrije ruimte: %sMB\n"
-"Pad: %s"
-
 msgid "Not found"
 msgstr ""
 
@@ -13999,9 +13952,6 @@ msgstr "Offset en CA-apparaat sluiten"
 
 msgid "Ojibwa"
 msgstr "Ojibwe"
-
-msgid "Older files in the time shift directory are removed on every event change."
-msgstr "Oudere bestanden in de Timeshift map worden verwijderd bij de start van een nieuwe."
 
 msgid "Olympic blue"
 msgstr "Olympisch blauw"
@@ -14312,9 +14262,6 @@ msgstr "Opkg Acties"
 msgid "Opkg Log Actions"
 msgstr "Opkg Log Acties"
 
-msgid "Option"
-msgstr "Opties"
-
 msgid "Option to disable picons on the InfoBar."
 msgstr "Optie om picons uit te schakelen op de informatiebalk"
 
@@ -14451,9 +14398,6 @@ msgstr "PAGINA OP/NEER"
 msgid "PAL"
 msgstr "PAL"
 
-msgid "PC"
-msgstr "PC"
-
 msgid "PCM Multichannel"
 msgstr "PCM Meerkanaals"
 
@@ -14475,10 +14419,6 @@ msgstr ""
 msgid "PIN code needed"
 msgstr "Pincode benodigd"
 
-#. TRANSLATORS: PIP with uppercase i is for the button key text
-msgid "PIP"
-msgstr "PIP"
-
 msgid "PLP ID"
 msgstr "PLP ID"
 
@@ -14496,9 +14436,6 @@ msgstr "PPanel"
 
 msgid "PRIMETIME"
 msgstr "PRIMETIME"
-
-msgid "PVR"
-msgstr "PVR"
 
 msgid "Package"
 msgstr "Pakket"
@@ -15628,9 +15565,6 @@ msgstr "Profiel"
 msgid "Profile: Local receiver"
 msgstr "Profiel: lokale box"
 
-msgid "Program"
-msgstr "Program"
-
 #, python-format
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "Programma '%s' moet geïnstalleerd worden om deze actie uit te voeren. Wilt u het pakket '%s' installeren om dit programma te installeren?"
@@ -15745,9 +15679,6 @@ msgstr ""
 
 msgid "Protocol"
 msgstr "Protocol"
-
-msgid "Prov"
-msgstr "Prov"
 
 msgid "Provider"
 msgstr "Provider"
@@ -15875,6 +15806,9 @@ msgstr "RAM benchmark"
 msgid "RAM temperature"
 msgstr ""
 
+msgid "RAM time shift cannot be saved as a recording."
+msgstr ""
+
 msgid "RC custom code"
 msgstr "AB custom code"
 
@@ -15955,6 +15889,9 @@ msgstr "Radio zender kiezen"
 
 msgid "Radio Channel Selection Actions"
 msgstr "Radio zenderlijst Acties"
+
+msgid "Radio text"
+msgstr ""
 
 msgid "Raise and lower the CPU frequency gradually depending on the load."
 msgstr ""
@@ -17104,9 +17041,6 @@ msgstr "Rwanda"
 msgid "Réunion"
 msgstr "Réunion"
 
-msgid "SAT"
-msgstr "SAT"
-
 msgid "SAT input"
 msgstr ""
 
@@ -17343,6 +17277,9 @@ msgstr "Console log-meldingen opslaan"
 msgid "Save the right column directory location on exit."
 msgstr "De maplocatie in de rechterkolom opslaan bij het afsluiten."
 
+msgid "Save these settings anyway?"
+msgstr ""
+
 msgid "Save time shift as movie and continue recording"
 msgstr "Bewaar Timeshift als opname en ga door met opnemen"
 
@@ -17377,9 +17314,6 @@ msgstr "Opgeslagen regels in scriptberichten"
 
 msgid "Saving EPG Cache..."
 msgstr "Bezig EPG Cache op te slaan..."
-
-msgid "Saving time shift buffer, this might take a while."
-msgstr "Timeshift wordt nu als opname opgeslagen. Dit kan even duren!"
 
 msgid "Saving time shift files"
 msgstr "Bewaart Timeshift bestanden"
@@ -17584,9 +17518,6 @@ msgstr ""
 msgid "Search west"
 msgstr "Zoek west"
 
-msgid "Search/WEB"
-msgstr "Zoeken/WEB"
-
 msgid "Searching"
 msgstr "Zoeken"
 
@@ -17665,14 +17596,8 @@ msgstr "Kies 'Activeren' om de CI+ Helper te starten."
 msgid "Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."
 msgstr "Selecteer 'ingeschakeld' als een antennekabel is aangesloten, anders kiest u 'niets verbonden'."
 
-msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
-msgstr "Als u hier voor 'nee', kiest zal Timeshift slechts één buffer bestand gebruiken. Het is aan te raden in dat geval 'Timeshift controleren van oude bestanden [in minuten]' en 'Timeshift controleren van vrije ruimte' ook in te schakelen."
-
 msgid "Select 'No' to only write a log message to the debug log file."
 msgstr "Bij 'nee' zal er bij een fout in de skin alleen een melding worden gemaakt in het Debug-log."
-
-msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
-msgstr "Kiest u voor 'nee', dan worden de Timeshift-opnames niet verwijderd na het overschakelen naar een andere zender of na een onderbreking."
 
 msgid "Select 'Polarization' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Selecteer 'polarisatie als u een universele LNB gebruikt. Consulteer de specs van uw LNB."
@@ -17715,9 +17640,6 @@ msgstr "Bij 'ja' zal de informatiebalk continu worden getoond wanneer het afspel
 
 msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "De VPS plugin kan bepalen of een programma eerder begint of langer duurt dan in de Timer ingesteld. De zender moet dan wel betrouwbare gegevens leveren!"
-
-msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
-msgstr "Kies 'Ja' om tijdens een Timeshift-opname m.b.v. de zoekbalk naar elk gewenst tijdstip, vooruit- of terug te spoelen."
 
 msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
 msgstr ""
@@ -18064,12 +17986,21 @@ msgstr "Selecteer een map uit de bladwijzers"
 msgid "Select a distribution from where images are to be obtained"
 msgstr "Selecteer een distributie van welke de images moeten worden opgehaald"
 
+msgid "Select a duration compensation for hardware buffer latency for DM9x0."
+msgstr ""
+
+msgid "Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr ""
+
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr "Selecteer een locatie waar u '%s' wilt uitpakken:"
 
 msgid "Select a menu item"
 msgstr "Selecteer een menu-item"
+
+msgid "Select a minimum amount of free space. When the free space falls below this value, cleanup tries to remove old unused time shift buffers. Buffers being played or saved remain protected so this is not a guaranteed free space reserve."
+msgstr ""
 
 msgid "Select a movie"
 msgstr "Selecteer een opname"
@@ -18113,6 +18044,9 @@ msgstr "Selecteer een tijd waarvoor in Stand-by de decodering voortgezet mag wor
 msgid "Select a tuner"
 msgstr "Selecteer een tuner"
 
+msgid "Select a writable directory on a mounted storage device or network share. Internal flash and RAM are not permitted. Hard links are not required. Press 'OK' to select a directory."
+msgstr ""
+
 msgid "Select action"
 msgstr "Selecteer actie"
 
@@ -18146,6 +18080,9 @@ msgstr "Kies een cardserver"
 
 msgid "Select channel audio"
 msgstr "Selecteer audio kanaal"
+
+msgid "Select channel set"
+msgstr ""
 
 msgid "Select copy destination for:"
 msgstr "Selecteer kopieerbestemming voor:"
@@ -18270,9 +18207,6 @@ msgstr "Opgeven of deze Timer op een woensdag actief moet worden."
 msgid "Select if this timer is to be repeated."
 msgstr "Opgeven of deze Timer herhaald moet worden."
 
-msgid "Select if time shift must continue when set to record."
-msgstr "Wat moet er met de Timeshift opname gebeuren wanneer u overschakelt naar een andere zender."
-
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Selecteer als u het gebruik van sub-zenders wilt activeren."
 
@@ -18396,11 +18330,17 @@ msgstr "Actie voor '%s' selecteren"
 msgid "Select the action to perform when the timer ends."
 msgstr "Opgeven wat er moet gebeuren wanneer de Timer is uitgevoerd."
 
+msgid "Select the action to take when leaving time shift due to a service change. This option is used when the time shift stop warning is enabled."
+msgstr ""
+
 msgid "Select the action to take when the EnergySaver timer activates."
 msgstr "Hoe wilt u uw ontvanger afsluiten wanneer de Energie SpaarTimer actief wordt."
 
 msgid "Select the action to take when the SleepTimer activates."
 msgstr "Hoe wilt u de ontvanger afsluiten wanneer de SlaapTimer actief wordt."
+
+msgid "Select the age after which unused time shift buffers may be removed during cleanup. Buffers still being recorded, played or saved remain protected. This setting does not limit the length of an active buffer."
+msgstr ""
 
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
 msgstr ""
@@ -18580,6 +18520,9 @@ msgstr "Selecteer de positie van de tijdlijn in de Grafische EPG. Dit is de vert
 msgid "Select the input connector you want to use."
 msgstr "Selecteer de gewenste aansluiting."
 
+msgid "Select the interval for checking buffer age and free space in addition to checks on event changes. Disabled means there is no periodic check. Cleanup removes unused temporary buffers and does not shorten an active buffer."
+msgstr ""
+
 msgid "Select the last item in list or move to the end of text"
 msgstr "Selecteer het laatste item in de lijst of ga naar het einde van de tekst"
 
@@ -18656,6 +18599,9 @@ msgstr "Selecteer het volgende item in de lijst of ga met de cursor naar rechts"
 
 msgid "Select the next item in the list"
 msgstr "Selecteer het volgende item in de lijst"
+
+msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
+msgstr ""
 
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr ""
@@ -19303,9 +19249,6 @@ msgstr ""
 "Druk op OK om een nieuwe locatie toe te voegen.\n"
 "Druk op LINKS/RECHTS om een bestaande locatie toe te voegen."
 
-msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Stel hier de standaard locatie in voor Timeshift bestanden. Druk op 'OK' om nieuwe locaties toe te voegen; met LINKS/RECHTS kiest u uit bestaande, reeds vastgelegde locaties."
-
 msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Stel hier de standaard locatie in voor opnames. Druk op 'OK' om nieuwe locaties toe te voegen; met LINKS/RECHTS kiest u uit bestaande, reeds vastgelegde locaties."
 
@@ -19436,9 +19379,6 @@ msgstr "Activeren om gecodeerde opnames te decoderen in Stand-by."
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Wanneer u kiest voor 'Ja' worden dezelfde commando's naar de TV gestuurd voor deep standby als voor de normale standby functies."
-
-msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
-msgstr "Kies 'Ja' wanneer u automatisch een Timeshift opname wilt starten."
 
 msgid "Set to the desired primetime hour."
 msgstr "Stel de gewenste primetime in (uur)."
@@ -19966,6 +19906,9 @@ msgstr "Alle details tonen"
 msgid "Show animation while busy"
 msgstr "Toon een Spinner wanneer uw ontvanger bezig is"
 
+msgid "Show available DAB+ reception and decoding information above the radio text. This option applies to both USB and DVB reception."
+msgstr ""
+
 msgid "Show background in Radio Mode"
 msgstr "Toon een achtergrond in radio modus"
 
@@ -20234,6 +20177,9 @@ msgstr "Het vorige zenderinformatie scherm laten zien"
 msgid "Show previous system information screen"
 msgstr "Toon het vorige systeeminformatie scherm"
 
+msgid "Show radio text, slideshow pictures or only the station logo on the receiver's color display. Slideshow mode falls back to the station logo; logo-only mode never shows slides. If no station logo is available, the DAB+ logo is shown. This setting is independent of the TV slideshow."
+msgstr ""
+
 msgid "Show record indicator"
 msgstr "Toon een opname indicatie in de zenderlijst"
 
@@ -20329,6 +20275,9 @@ msgstr "Taakberichten weergeven"
 msgid "Show task messages if File Commander is not running and all task are completed."
 msgstr "Toon taakberichten als File Commander niet actief is en alle taken zijn voltooid."
 
+msgid "Show technical status line"
+msgstr ""
+
 msgid "Show the CCcam Info Screen"
 msgstr "Toon het CCcam informatiescherm"
 
@@ -20386,7 +20335,7 @@ msgstr "Toon verticale Elektronische programmagids"
 msgid "Show warning before restart"
 msgstr "Toon een waarschuwing voor de ontvanger herstart"
 
-msgid "Show warning when time shift is stopped"
+msgid "Show warning when time shift stopped"
 msgstr "Toon waarschuwing als Timeshift gestopt wordt"
 
 msgid "Show watch status"
@@ -20397,6 +20346,9 @@ msgstr "Show/Quiz"
 
 msgid "Show/Hide Actions"
 msgstr "InfoBar Acties weergeven/verbergen"
+
+msgid "Show/Hide channel name"
+msgstr ""
 
 msgid "Show/Hide focus bar"
 msgstr "Toon/verberg focus balk"
@@ -20599,9 +20551,6 @@ msgstr ""
 msgid "Skip forward (enter time)"
 msgstr "Spring vooruit (tijd invoeren)"
 
-msgid "Skip jumping to live while timeshifting with plugins"
-msgstr "Tijdens het Timeshiften d.m.v. plugins niet naar Live-TV schakelen"
-
 msgid "Skip network setup"
 msgstr ""
 
@@ -20623,9 +20572,6 @@ msgstr ""
 
 msgid "Skip to 0% (start) position"
 msgstr ""
-
-msgid "Sleep"
-msgstr "Slaap"
 
 msgid "Sleep Timer"
 msgstr "Slaaptimer"
@@ -20704,6 +20650,9 @@ msgstr "Diavoorstelling lus"
 
 msgid "Slide top to bottom"
 msgstr "Schuiven boven>beneden"
+
+msgid "Slideshow / station logo"
+msgstr ""
 
 #, python-format
 msgid "Slot %d"
@@ -21277,6 +21226,9 @@ msgstr "Statische IP / Aangepast"
 msgid "Station"
 msgstr ""
 
+msgid "Station logo only"
+msgstr ""
+
 msgid "Status"
 msgstr "Status"
 
@@ -21297,6 +21249,9 @@ msgstr "De status is onbekend!"
 
 msgid "Status:"
 msgstr "Status:"
+
+msgid "Stay in time shift at buffer end (for plugins)"
+msgstr ""
 
 msgid "Step"
 msgstr "Stap"
@@ -21396,9 +21351,6 @@ msgstr ""
 msgid "Stopping Softcam"
 msgstr "Stoppen Softcam"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Stopt Timeshift tijdens een opname. Aan te raden bij gebruik van een USB-stick."
-
 msgid "Storage / Disk Information"
 msgstr "Disk en opslag informatie"
 
@@ -21426,6 +21378,10 @@ msgstr "Harde schijf niet gevonden!"
 
 msgid "Storage device not writable!"
 msgstr "Harde schijf is niet beschrijfbaar!"
+
+#, python-format
+msgid "Storage directory '%s' is unavailable or not writable."
+msgstr ""
 
 msgid "Store position"
 msgstr "Positie opslaan"
@@ -22270,6 +22226,12 @@ msgstr ""
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "Het commando voor opstarten uit standby zal meerdere keren verstuurd worden."
 
+msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
+msgstr ""
+
+msgid "The current time shift buffer is no longer available."
+msgstr ""
+
 #, python-format
 msgid "The custom mount point for '%s' is empty!"
 msgstr ""
@@ -22307,13 +22269,6 @@ msgstr "Het bestand '%s' is gewijzigd. Wilt u de wijzigingen ongedaan maken?"
 #, python-format
 msgid "The file '%s' has been changed. Do you want to save it?"
 msgstr "Het bestand '%s' is gewijzigd. Wilt u het opslaan?"
-
-msgid ""
-"The file system on your time shift device does not support hard links.\n"
-"Make sure it is formatted in EXT2, EXT3 or EXT4!"
-msgstr ""
-"Het bestandssyteem van uw Timeshift apparaat ondersteunt geen hardlinks.\n"
-"Formatteer die in EXT2, EXT3 or EXT4!"
 
 #, python-format
 msgid "The following files are related to '%s':"
@@ -22390,6 +22345,9 @@ msgstr "De resultaten zijn bewaard op %s."
 msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely extended."
 msgstr ""
 
+msgid "The running Enigma2 version cannot safely save an active time shift buffer."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr "De opgeslagen pincode is verwijderd."
 
@@ -22422,6 +22380,9 @@ msgstr ""
 "\n"
 "Wilt u dat nu doen of de timer verlengen?"
 
+msgid "The storage check did not finish. Please check the device or network and try again."
+msgstr ""
+
 msgid "The time is multiplied by the current repeat counter."
 msgstr "De tijd wordt gemultipliceerd met de huidige repeat counter."
 
@@ -22432,9 +22393,16 @@ msgstr ""
 "De buffertijd voor Timeshift groter is dan de opgegeven limiet in de instellingen.\n"
 "Wat wilt u doen?"
 
-msgid ""
-"The time shift storage device is not available.\n"
-"Please check the device and the time shift path."
+msgid "The time shift buffer is not available."
+msgstr ""
+
+msgid "The time shift recording was saved, but a temporary recording could not be removed."
+msgstr ""
+
+msgid "The time shift storage device is not available. Please check the device and the time shift path."
+msgstr ""
+
+msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr ""
 
 #, python-format
@@ -22890,38 +22858,20 @@ msgstr "Tijdsprongen: Herhaal interval voor snel vooruit- en terug spoelen"
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Tijdsprong: Normaal spoelen gebruiken voor"
 
-msgid "Time shift buffer delete after zap"
-msgstr "Timeshift buffer verwijderen na zenderwissel"
-
-msgid "Time shift buffer limit"
-msgstr "Timeshift buffer - limiet in uren"
-
 msgid "Time shift buffer location"
 msgstr "Timeshift opname locatie"
 
-msgid "Time shift checking for free space"
-msgstr "Moet Timeshift op vrije ruimte controleren"
-
-msgid "Time shift checking for older files"
-msgstr "Timeshift controle van oude bestanden [in minuten]"
-
-msgid "Time shift event based file splitting"
-msgstr "Timeshift splitsen van bestanden"
-
-msgid "Time shift event limit"
-msgstr "Timeshift opname limiet [aantal bestanden]"
+msgid "Time shift could not be started. Please check the storage device and available space."
+msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr "Timeshift functioneert eventueel niet goed zonder een geschikte opnamelocatie."
 
-msgid "Time shift not possible!"
-msgstr "Timeshift is niet mogelijk!"
-
 msgid "Time shift save action on zap"
 msgstr "Timeshift opslaan actie bij zappen"
 
-msgid "Time shift save failed!"
-msgstr "Opslaan Timeshift-bestand mislukt!"
+msgid "Time shift save failed! The source buffer has been retained."
+msgstr ""
 
 msgid "Time shift save location"
 msgstr "Timeshift opname locatie"
@@ -22932,8 +22882,8 @@ msgstr "Bewaar Timeshift opname (selecteer programma)"
 msgid "Time shift save recording (Stop after current event)"
 msgstr "Timeshift wordt opgeslagen als opname (stopt na het huidige programma)"
 
-msgid "Time shift saved to your hard disk drive!"
-msgstr "Timeshift opgeslagen op uw HDD!"
+msgid "Time shift saved!"
+msgstr ""
 
 msgid "Time shift will get saved at end of event."
 msgstr "Timeshift zal na afloop van het programma worden opgeslagen!"
@@ -23644,6 +23594,9 @@ msgstr ""
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr ""
 
+msgid "Unable to prepare the time shift storage device."
+msgstr ""
+
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr ""
@@ -23663,6 +23616,9 @@ msgstr ""
 msgid "Unable to save network mount configuration!"
 msgstr ""
 
+msgid "Unable to start RAM time shift."
+msgstr ""
+
 msgid "Unable to start the DAB+ feed"
 msgstr ""
 
@@ -23679,8 +23635,14 @@ msgstr ""
 msgid "Unable to update HDD replacement: %s"
 msgstr ""
 
+msgid "Unable to update the time shift buffer."
+msgstr ""
+
 #, python-format
 msgid "Unable to validate the Unicable position for LNB %d: %s!"
+msgstr ""
+
+msgid "Unable to write the time shift event information."
 msgstr ""
 
 msgid "Unattended upgrade without GUI"
@@ -24020,6 +23982,9 @@ msgstr ""
 msgid "Use QuickSelect"
 msgstr "Gebruik QuickSelect"
 
+msgid "Use SeekBar while time shifting"
+msgstr ""
+
 msgid "Use TV remote control"
 msgstr "Gebruik de afstandsbediening van de TV"
 
@@ -24208,9 +24173,6 @@ msgstr "Gebruik deze videoverbeteringsinstellingen?"
 msgid "Use time jumps for fast forward/backward"
 msgstr "Gebruik tijdssprongen voor snel vooruit of terug spoelen ( << / >> )"
 
-msgid "Use time shift SeekBar while time shifting"
-msgstr "Het gebruik van de zoekbalk tijdens Timeshift toestaan"
-
 msgid "Use viewer for unknown files"
 msgstr "De Viewer gebruiken voor onbekende bestanden"
 
@@ -24304,9 +24266,6 @@ msgstr "VMGM (intro trailer)"
 
 msgid "VOB file"
 msgstr "VOB bestand"
-
-msgid "VOD"
-msgstr "VOD"
 
 msgid "VPN"
 msgstr "VPN"
@@ -24925,6 +24884,9 @@ msgstr "Indien geactiveerd, zal de EIT data toegevoegd worden aan de http-stream
 msgid "When enabled, SDT and BAT data will be included in http streams."
 msgstr "Bij \"Ja\" worden gegevens uit de SDT (Service Description Table) en BAT (Bouquet Association Table) opgenomen in HTTP-streams."
 
+msgid "When enabled, a new buffer is started for each event. When disabled, a continuous buffer is kept across different events. File systems such as FAT32 still require physical file parts, which are played as one buffer. Cleanup does not limit the size of an active buffer."
+msgstr ""
+
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Bij 'Ja' ziet u aan het eind van een opname of film een bericht voordat de volgende wordt gestart."
 
@@ -24945,8 +24907,8 @@ msgstr "Indien geactiveerd, mag een opname de stream stoppen, als er geen vrije 
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Indien geactiveerd, dan kan een opname live TV onderbreken indien er geen vrije tuners meer beschikbaar zijn."
 
-msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
-msgstr "Bij het stoppen van Timeshift wordt gevraagd of u Timeshift echt wilt stoppen of dat de opname door moet lopen."
+msgid "When enabled, a warning will be displayed if a command will stop time shift. An option to stop or to continue the time shift will be displayed."
+msgstr ""
 
 msgid "When enabled, allow Samba network access without a password."
 msgstr ""
@@ -24969,11 +24931,17 @@ msgstr ""
 msgid "When enabled, allow usage of the NFS version 4 protocols."
 msgstr ""
 
+msgid "When enabled, allow use of the SeekBar to jump to a selected point within the time shift buffer."
+msgstr ""
+
 msgid "When enabled, an entry of 'Manual resolution' is added to the Extensions menu to allow a quick change of the video mode for the current video."
 msgstr ""
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Bij 'Ja', moet een wachtwoord worden opgegeven om http-streams te kunnen zien."
+
+msgid "When enabled, automatically save completed time shift buffers as recordings. This applies to newly started buffers. With event splitting disabled, saving starts when the buffer is stopped. Saved recordings are not removed by the time shift cleanup."
+msgstr ""
 
 msgid "When enabled, bypass HDMI EDID checking."
 msgstr ""
@@ -24989,6 +24957,9 @@ msgstr "Bij 'Ja' kunt u doorzappen naar de volgende favorietenlijst, wanneer de 
 
 msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Kies 'Ja' wanneer u verwijderde opnames naar de prullenbak wilt verplaatsen, anders worden deze direct verwijderd."
+
+msgid "When enabled, do not automatically switch to live TV when playback reaches the end of the time shift buffer. Enable this only for plugins that require continued time shift playback, such as alternative audio plugins."
+msgstr ""
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "Kies ja wanneer u externe ondertitels wilt weergegeven tijdens het afspelen van een film. Het ondertitelbestand moet dan uiteraard wel aanwezig zijn."
@@ -25036,6 +25007,9 @@ msgid "When enabled, show status or error messages."
 msgstr "Bij 'Ja' worden status- of foutmeldingen getoond."
 
 msgid "When enabled, specify custom DNS settings for this adapter instead of using the global DNS settings."
+msgstr ""
+
+msgid "When enabled, stops time shift from being used if a recording is in progress. This is advisable for USB sticks or other slow media."
 msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
@@ -25107,10 +25081,11 @@ msgstr "Indien geactiveerd, dan wordt de voorkeur gegeven aan deze optie boven d
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "Indien geactiveerd, dan wordt er voorkeur gegeven aan deze optie boven de optie 'Voorkeurstuner'."
 
-msgid "When enabled, time shift starts automatically in background after specified time."
+msgid "When enabled, time shift starts automatically in background after the selected time."
 msgstr ""
-"Met deze optie stelt u in na hoeveel tijd Timeshift automatisch zal starten.\n"
-"U kunt kiezen tussen 'geen Timeshift' of van 0 tot maximaal 5 minuten."
+
+msgid "When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected."
+msgstr ""
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "De OpenWebif instellingen wijzigen van de Fallback tuner."
@@ -25310,8 +25285,8 @@ msgstr "Schrijffout tijdens opname %s"
 msgid "Write failed!"
 msgstr "Schrijven mislukt!"
 
-msgid "Www"
-msgstr "Www"
+msgid "Writing to the time shift storage device failed. Time shift has been stopped."
+msgstr ""
 
 msgid "X-Resolution"
 msgstr "X-resolutie"
@@ -25480,9 +25455,6 @@ msgstr "Waarschijnlijk is Timeshift nu ingeschakeld, de uitzending zal kort stop
 msgid "You should flash a new image!"
 msgstr "U kunt het beste een nieuwe image flashen!"
 
-msgid "YouTube"
-msgstr "YouTube"
-
 #, python-format
 msgid "Your %s %s does not support PiP HD"
 msgstr "Uw %s %s ondersteunt geen PiP HD"
@@ -25601,9 +25573,6 @@ msgstr "YouTube TV"
 
 msgid "ZAP"
 msgstr "ZAP"
-
-msgid "ZOOM"
-msgstr "ZOOM"
 
 msgid "ZPicon"
 msgstr "ZPicon"
@@ -25727,9 +25696,6 @@ msgstr "Zoom vanaf rechts"
 
 msgid "Zulu"
 msgstr "Zoeloe"
-
-msgid "[Timeshift] Merging records failed!"
-msgstr "[Timeshift] Samenvoegen van opnames is mislukt!"
 
 msgid "[Timeshift] Restarting time shift!"
 msgstr "[TimeShift] Timeshift wordt herstart!"
@@ -26386,6 +26352,186 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Aspect"
+#~ msgstr "Aspect"
+
+#~ msgid "Back/Recall"
+#~ msgstr "Terug/oproepen"
+
+#~ msgid "Context"
+#~ msgstr "Context"
+
+#~ msgid "EJECTCD"
+#~ msgstr "EJECTCD"
+
+#~ msgid "End"
+#~ msgstr "Einde"
+
+#~ msgid "Epg/Guide"
+#~ msgstr "Epg/Guide"
+
+#~ msgid "F4"
+#~ msgstr "F4"
+
+#~ msgid "HDMIin"
+#~ msgstr "HDMI-in"
+
+#~ msgid "History"
+#~ msgstr "Geschiedenis"
+
+#~ msgid "Info (EPG)"
+#~ msgstr "Info (EPG)"
+
+#~ msgid "Kodi"
+#~ msgstr "Kodi"
+
+#~ msgid "List/Fav"
+#~ msgstr "List/Fav"
+
+#~ msgid "MOUSE"
+#~ msgstr "MUIS"
+
+#~ msgid "Magic"
+#~ msgstr "Magic"
+
+#~ msgid "Mark/Portal/Playlist"
+#~ msgstr "Markeer/Portaal/Afspeellijst"
+
+#~ msgid "Media"
+#~ msgstr "Media"
+
+#~ msgid "Option"
+#~ msgstr "Opties"
+
+#~ msgid "PC"
+#~ msgstr "PC"
+
+#~ msgid "PIP"
+#~ msgstr "PIP"
+
+#~ msgid "PVR"
+#~ msgstr "PVR"
+
+#~ msgid "Program"
+#~ msgstr "Program"
+
+#~ msgid "Prov"
+#~ msgstr "Prov"
+
+#~ msgid "SAT"
+#~ msgstr "SAT"
+
+#~ msgid "Search/WEB"
+#~ msgstr "Zoeken/WEB"
+
+#~ msgid "Sleep"
+#~ msgstr "Slaap"
+
+#~ msgid "VOD"
+#~ msgstr "VOD"
+
+#~ msgid "Www"
+#~ msgstr "Www"
+
+#~ msgid "YouTube"
+#~ msgstr "YouTube"
+
+#~ msgid "ZOOM"
+#~ msgstr "ZOOM"
+
+#~ msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
+#~ msgstr "Buffer 'in uren' of 'aantal bestanden'. De oudste Timeshift bestanden worden als eerste verwijderd."
+
+#~ msgid "Creating hard link to time shift file failed!"
+#~ msgstr "Creëer hardlink naar Timeshift-bestand mislukt!"
+
+#, python-format
+#~ msgid "Directory '%s' can't be linked to recordings!"
+#~ msgstr "Map '%s' kan niet voor opnames gebruikt worden!"
+
+#~ msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
+#~ msgstr "Indien ingesteld op \"ja\", kunt u Timeshift gebruiken met alternatieve audio-plugins."
+
+#~ msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
+#~ msgstr "Als de beschikbare ruimte minder dan instelwaarde is, dan wordt een poging gedaan om de oude Timeshift bestanden te verwijderen."
+
+#~ msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
+#~ msgstr "Naast de controle bij een start van Timeshift, kan een herhaalde controle worden uitgevoerd, waardoor de ingestelde waarden bij 'limiet in uren' of 'vrije ruimte controleren' eerder worden gecontroleerd."
+
+#, python-format
+#~ msgid ""
+#~ "Not enough free disk space!\n"
+#~ "\n"
+#~ "Filesize: %sMB\n"
+#~ "Free Space: %sMB\n"
+#~ "Path: %s"
+#~ msgstr ""
+#~ "Niet genoeg vrije ruimte!\n"
+#~ "\n"
+#~ "Bestandgrtootte: %sMB\n"
+#~ "Vrije ruimte: %sMB\n"
+#~ "Pad: %s"
+
+#~ msgid "Older files in the time shift directory are removed on every event change."
+#~ msgstr "Oudere bestanden in de Timeshift map worden verwijderd bij de start van een nieuwe."
+
+#~ msgid "Saving time shift buffer, this might take a while."
+#~ msgstr "Timeshift wordt nu als opname opgeslagen. Dit kan even duren!"
+
+#~ msgid "Select 'No' to make time shift use a single buffer file. Use 'Time shift checking for older files [in minutes]' and 'Time shift checking for free space?' to control the size of the buffer file."
+#~ msgstr "Als u hier voor 'nee', kiest zal Timeshift slechts één buffer bestand gebruiken. Het is aan te raden in dat geval 'Timeshift controleren van oude bestanden [in minuten]' en 'Timeshift controleren van vrije ruimte' ook in te schakelen."
+
+#~ msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
+#~ msgstr "Kiest u voor 'nee', dan worden de Timeshift-opnames niet verwijderd na het overschakelen naar een andere zender of na een onderbreking."
+
+#~ msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
+#~ msgstr "Kies 'Ja' om tijdens een Timeshift-opname m.b.v. de zoekbalk naar elk gewenst tijdstip, vooruit- of terug te spoelen."
+
+#~ msgid "Select if time shift must continue when set to record."
+#~ msgstr "Wat moet er met de Timeshift opname gebeuren wanneer u overschakelt naar een andere zender."
+
+#~ msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
+#~ msgstr "Stel hier de standaard locatie in voor Timeshift bestanden. Druk op 'OK' om nieuwe locaties toe te voegen; met LINKS/RECHTS kiest u uit bestaande, reeds vastgelegde locaties."
+
+#~ msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
+#~ msgstr "Kies 'Ja' wanneer u automatisch een Timeshift opname wilt starten."
+
+#~ msgid "Skip jumping to live while timeshifting with plugins"
+#~ msgstr "Tijdens het Timeshiften d.m.v. plugins niet naar Live-TV schakelen"
+
+#~ msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+#~ msgstr "Stopt Timeshift tijdens een opname. Aan te raden bij gebruik van een USB-stick."
+
+#~ msgid ""
+#~ "The file system on your time shift device does not support hard links.\n"
+#~ "Make sure it is formatted in EXT2, EXT3 or EXT4!"
+#~ msgstr ""
+#~ "Het bestandssyteem van uw Timeshift apparaat ondersteunt geen hardlinks.\n"
+#~ "Formatteer die in EXT2, EXT3 or EXT4!"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Timeshift is niet mogelijk!"
+
+#~ msgid "Time shift save failed!"
+#~ msgstr "Opslaan Timeshift-bestand mislukt!"
+
+#~ msgid "Time shift saved to your hard disk drive!"
+#~ msgstr "Timeshift opgeslagen op uw HDD!"
+
+#~ msgid "Use time shift SeekBar while time shifting"
+#~ msgstr "Het gebruik van de zoekbalk tijdens Timeshift toestaan"
+
+#~ msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
+#~ msgstr "Bij het stoppen van Timeshift wordt gevraagd of u Timeshift echt wilt stoppen of dat de opname door moet lopen."
+
+#~ msgid "When enabled, time shift starts automatically in background after specified time."
+#~ msgstr ""
+#~ "Met deze optie stelt u in na hoeveel tijd Timeshift automatisch zal starten.\n"
+#~ "U kunt kiezen tussen 'geen Timeshift' of van 0 tot maximaal 5 minuten."
+
+#~ msgid "[Timeshift] Merging records failed!"
+#~ msgstr "[Timeshift] Samenvoegen van opnames is mislukt!"
 
 #~ msgid "Allow 10bit"
 #~ msgstr "10bit toestaan"

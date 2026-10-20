@@ -1,7 +1,7 @@
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
+from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.config import ConfigSubsection, ConfigText, config
 from Components.Label import Label
-from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen, ScreenSummary
@@ -206,8 +206,8 @@ class ChoiceBoxSummary(ScreenSummary):
 	def __init__(self, session, parent):
 		ScreenSummary.__init__(self, session, parent=parent)
 		self["text"] = StaticText(parent["text"].getText())
-		self["entry"] = StaticText("")
-		self["value"] = StaticText("")
+		self["entry"] = StaticText()
+		self["value"] = StaticText()
 		self.choiceList = []
 		index = 0
 		for item in self.parent["list"].getList():

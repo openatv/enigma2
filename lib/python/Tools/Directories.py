@@ -10,7 +10,7 @@ from traceback import print_exc
 from unicodedata import normalize
 from xml.etree.ElementTree import Element, ParseError, fromstring, parse
 
-from enigma import eEnv, getDesktop, eGetEnigmaDebugLvl
+from enigma import eEnv, eGetEnigmaDebugLvl, getDesktop
 
 DEFAULT_MODULE_NAME = __name__.split(".")[-1]
 

@@ -1,19 +1,19 @@
-from enigma import eAVControl, eListbox, eListboxPythonMultiContent, BT_ALIGN_CENTER, iPlayableService, iRecordableService, eServiceReference, iServiceInformation, gFont, RT_HALIGN_LEFT, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_HALIGN_CENTER, eTimer, getDesktop, eSize, eStreamServer
-from skin import applySkinFactor, parseColor, parseFont, parameters
+import re
 
-from Components.Addons.GUIAddon import GUIAddon
-from Components.Label import Label
-from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryText
-from Components.ServiceEventTracker import ServiceEventTracker
-from Components.Sources.StreamService import StreamServiceList
-from Components.NimManager import nimmanager
-from Tools.Directories import resolveFilename, SCOPE_GUISKIN
-from Tools.GetEcmInfo import createCurrentCaidLabel
-from Tools.LoadPixmap import LoadPixmap
-from Tools.Hex2strColor import Hex2strColor
+from enigma import BT_ALIGN_CENTER, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_VALIGN_CENTER, RT_VALIGN_TOP, eAVControl, eListbox, eListboxPythonMultiContent, eServiceReference, eSize, eStreamServer, eTimer, gFont, getDesktop, iPlayableService, iRecordableService, iServiceInformation
 
 import NavigationInstance
-import re
+from skin import applySkinFactor, parameters, parseColor, parseFont
+from Components.Label import Label
+from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryText
+from Components.NimManager import nimmanager
+from Components.ServiceEventTracker import ServiceEventTracker
+from Components.Addons.GUIAddon import GUIAddon
+from Components.Sources.StreamService import StreamServiceList
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
+from Tools.GetEcmInfo import createCurrentCaidLabel
+from Tools.Hex2strColor import Hex2strColor
+from Tools.LoadPixmap import LoadPixmap
 
 
 def StdAudioDesc(desc):
@@ -54,7 +54,7 @@ class ServiceInfoBar(GUIAddon):
 		self.__event_tracker = None
 		self.currentCrypto = ""
 		self.tuner_string = ""
-		self.textRenderer = Label("")
+		self.textRenderer = Label()
 		self.permanentIcons = []
 		self.records_running = 0
 		self.streamServer = eStreamServer.getInstance()

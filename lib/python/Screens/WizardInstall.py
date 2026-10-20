@@ -3,13 +3,13 @@ from tarfile import TarError, TarFile
 from enigma import eDVBDB
 
 from Components.ActionMap import HelpableActionMap
-from Components.ConfigList import ConfigListScreen
 from Components.config import ConfigBoolean, ConfigIP, ConfigSelection, ConfigSubsection, ConfigYesNo, config
+from Components.ConfigList import ConfigListScreen
 from Components.NetworkManager import networkManager
-from Tools.ServiceAction import ServiceAction
 from Components.Opkg import OpkgComponent
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
+from Tools.ServiceAction import ServiceAction
 
 config.misc.installwizard = ConfigSubsection()
 config.misc.installwizard.hasnetwork = ConfigBoolean(default=False)

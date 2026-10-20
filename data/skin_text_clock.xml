@@ -123,8 +123,8 @@
 	</screen>
 
 	<!-- RDS info -->
-	<screen name="RdsInfoDisplaySummary" position="0,0" size="132,64">
-		<widget source="message" render="Label" position="0,0" size="120,20" font="Regular;18" noWrap="1" />
+	<screen name="RdsInfoDisplaySummary" position="0,0" size="132,64" zPosition="1" backgroundColor="#000000" flags="wfNoBorder">
+		<widget source="combined" render="RollerCharLCD" position="0,0" size="132,20" font="Regular;18" noWrap="1" />
 	</screen>
 
 <!-- Plugin browser -->

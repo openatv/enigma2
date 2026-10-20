@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
-from Screens.Screen import Screen
+from enigma import eDVBSatelliteEquipmentControl, eServiceCenter, eTimer, iPlayableService, iServiceInformation
+
 from Components.BlinkingPixmap import BlinkingPixmapConditional
-from Components.config import config, ConfigInteger
+from Components.config import ConfigInteger, config
 from Components.Label import Label
+from Components.NimManager import nimmanager
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.Boolean import Boolean
-from enigma import eDVBSatelliteEquipmentControl, eTimer, iPlayableService, eServiceCenter, iServiceInformation
-from Components.NimManager import nimmanager
 from Components.Sources.FrontendStatus import FrontendStatus
+from Screens.Screen import Screen
 
 INVALID_POSITION = 9999
 config.misc.lastrotorposition = ConfigInteger(INVALID_POSITION)
@@ -21,14 +22,14 @@ class Dish(Screen):
 		Screen.__init__(self, session)
 		self["Dishpixmap"] = BlinkingPixmapConditional()
 		self["Dishpixmap"].onVisibilityChange.append(self.DishpixmapVisibilityChanged)
-		self["turnTime"] = Label("")
-		self["posFrom"] = Label("")
-		self["posGoto"] = Label("")
+		self["turnTime"] = Label()
+		self["posFrom"] = Label()
+		self["posGoto"] = Label()
 		self["From"] = Label(_("From :"))
 		self["Goto"] = Label(_("Goto :"))
 		self["Tuner"] = Label(_("Tuner :"))
-		self["tunerName"] = Label("")
-		self["turnSpeed"] = Label("")
+		self["tunerName"] = Label()
+		self["turnSpeed"] = Label()
 
 		self.updateRotorSatList()
 		self.rotorTimer = eTimer()
@@ -253,14 +254,14 @@ class Dishpip(Dish, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self["Dishpixmap"] = Boolean(fixed=True, poll=1500)
-		self["turnTime"] = Label("")
-		self["posFrom"] = Label("")
-		self["posGoto"] = Label("")
+		self["turnTime"] = Label()
+		self["posFrom"] = Label()
+		self["posGoto"] = Label()
 		self["From"] = Label(_("From :"))
 		self["Goto"] = Label(_("Goto :"))
 		self["Tuner"] = Label(_("Tuner :"))
-		self["tunerName"] = Label("")
-		self["turnSpeed"] = Label("")
+		self["tunerName"] = Label()
+		self["turnSpeed"] = Label()
 		self.updateRotorSatList()
 		self.frontend = None
 		self["Frontend"] = FrontendStatus(service_source=lambda: self.frontend, update_interval=1000)

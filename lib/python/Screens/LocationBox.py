@@ -84,7 +84,7 @@ class LocationBox(Screen, NumericalTextInput):
 		self["targetfreespace"] = Label()
 		self["fileheading"] = Label(_("Directories"))
 		self["filelist"] = FileList(currDir, showDirectories=True, showFiles=False, inhibitMounts=inhibitMounts, inhibitDirs=inhibitDirs, showCurrentDirectory=True)
-		self["quickselect"] = Label("")
+		self["quickselect"] = Label()
 		self["quickselect"].visible = False
 		self["bookmarkheading"] = Label(_("Bookmarks"))
 		self["bookmarklist"] = MenuList(self.bookmarksList)

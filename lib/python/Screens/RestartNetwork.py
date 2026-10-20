@@ -1,5 +1,5 @@
-from Screens.Processing import Processing
 from Screens.ParentalControlSetup import ProtectedScreen
+from Screens.Processing import Processing
 from Screens.Screen import Screen
 from Tools.ServiceAction import ServiceAction
 

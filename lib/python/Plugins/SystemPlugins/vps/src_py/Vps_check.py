@@ -1,16 +1,19 @@
-from enigma import eTimer, eConsoleAppContainer, getDesktop
-from Screens.Screen import Screen
-from Components.ActionMap import ActionMap
-from Components.Sources.StaticText import StaticText
-from Screens.MessageBox import MessageBox
-from Screens.ChoiceBox import ChoiceBox
-from Tools.XMLTools import stringToXML
-from Tools import Directories
 from time import time
-from Components.config import config
-from .Vps import vps_exe, vps_timers
-import NavigationInstance
 from xml.etree.ElementTree import parse as xml_parse
+
+from enigma import eConsoleAppContainer, eTimer, getDesktop
+
+import NavigationInstance
+from Tools import Directories
+from Components.ActionMap import ActionMap
+from Components.config import config
+from Components.Sources.StaticText import StaticText
+from Screens.ChoiceBox import ChoiceBox
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Tools.XMLTools import stringToXML
+
+from .Vps import vps_exe, vps_timers
 
 check_pdc_interval_available = 3600 * 24 * 30 * 12
 check_pdc_interval_unavailable = 3600 * 24 * 30 * 2

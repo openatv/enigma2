@@ -6,8 +6,8 @@ from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigSelection, ConfigSubsection, ConfigText, config
 from Components.Console import Console
 from Components.Harddisk import harddiskmanager
-from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo
+from Components.Sources.StaticText import StaticText
 from Screens.HarddiskSetup import HarddiskSelection
 from Screens.LocationBox import DEFAULT_INHIBIT_DEVICES
 from Screens.MessageBox import MessageBox

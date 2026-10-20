@@ -1,5 +1,6 @@
-from Components.Sources.Source import Source
 from enigma import eTimer
+
+from Components.Sources.Source import Source
 
 
 class FrontendStatus(Source):

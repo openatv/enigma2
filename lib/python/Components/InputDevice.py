@@ -6,7 +6,7 @@ from struct import pack
 
 from enigma import eRCInput
 
-from keyids import KEYIDS, KEYIDNAMES
+from keyids import KEYIDNAMES, KEYIDS
 from Components.config import ConfigSelection, ConfigSlider, ConfigSubsection, ConfigText, ConfigYesNo, config
 from Components.Console import Console
 from Components.International import international

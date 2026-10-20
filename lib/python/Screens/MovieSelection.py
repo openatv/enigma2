@@ -1,9 +1,9 @@
-from pickle import dump, load
 from os import W_OK, access, listdir, mkdir, rename, stat
 from os.path import abspath, exists, isdir, isfile, join, normpath, pardir, realpath, split, splitext
+from pickle import dump, load
 from time import time
 
-from enigma import eRCInput, eServiceCenter, eServiceReference, eServiceReferenceFS, eTimer, eSize, iPlayableService, iServiceInformation, getPrevAsciiCode, pNavigation
+from enigma import eRCInput, eServiceCenter, eServiceReference, eServiceReferenceFS, eSize, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, pNavigation
 
 import NavigationInstance
 from RecordTimer import AFTEREVENT, RecordTimerEntry
@@ -11,17 +11,17 @@ from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
 from Components.config import ConfigLocations, ConfigSelection, ConfigSelectionNumber, ConfigSet, ConfigSubsection, ConfigText, ConfigYesNo, config
 from Components.DiskInfo import DiskInfo
 from Components.Harddisk import harddiskmanager
+from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.MovieList import AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAGE_EXTENSIONS, MovieList, resetMoviePlayState
 from Components.Pixmap import MultiPixmap, Pixmap
-from Components.Label import Label
 from Components.PluginComponent import plugins
 from Components.ServiceEventTracker import InfoBarBase, ServiceEventTracker
+from Components.SystemInfo import BoxInfo
 from Components.UsageConfig import preferredTimerPath
 from Components.Sources.Boolean import Boolean
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import BoxInfo
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
 import Screens.InfoBar
@@ -149,6 +149,15 @@ def createMoveList(serviceref, dest):
 		raise Exception("Refusing to move to the same directory")
 	moveList = [(src, join(dest, srcName))]  # Make a list of items to move.
 	if not serviceref.flags & eServiceReference.mustDescent:  # Real movie, add extra files.
+		if src.endswith(".ts"):
+			for index in range(1, 1000):
+				partName = f"{srcName}.{index:03d}"
+				partPath = join(srcPath, partName)
+				try:
+					stat(partPath)
+				except FileNotFoundError:
+					break
+				moveList.append((partPath, join(dest, partName)))
 		srcBase = splitext(src)[0]
 		baseName = split(srcBase)[1]
 		eitName = f"{srcBase}.eit"
@@ -257,7 +266,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		self.feedbackTimer = None
 		self.pathselectEnabled = False
 		self.numericalTextInput = NumericalTextInput(mapping=NumericalTextInput.MAP_SEARCH_UPCASE)
-		self["chosenletter"] = Label("")
+		self["chosenletter"] = Label()
 		self["chosenletter"].visible = False
 		self["waitingtext"] = Label(_("Please wait... Loading list..."))
 		self.LivePlayTimer = eTimer()
@@ -1805,7 +1814,7 @@ class MovieSelectionSummary(Screen):
 	# this when the info is not selected.
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
-		self["name"] = StaticText("")
+		self["name"] = StaticText()
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
 
@@ -1845,8 +1854,8 @@ class MovieContextMenu(Screen, ProtectedScreen):  # Contract: On OK returns a ca
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
-		self["footnote"] = Label("")
-		self["description"] = Label("")
+		self["footnote"] = Label()
+		self["description"] = Label()
 		self["status"] = StaticText()
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions", "MenuActions"], {
 			"red": self.cancelClick,
@@ -1911,7 +1920,7 @@ class MovieContextMenu(Screen, ProtectedScreen):  # Contract: On OK returns a ca
 class MovieContextMenuSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
-		self["selected"] = StaticText("")
+		self["selected"] = StaticText()
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
 

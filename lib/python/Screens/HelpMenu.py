@@ -168,8 +168,8 @@ class HelpMenu(Screen, ShowRemoteControl):
 		self.setTitle(_("Help"))
 		self["list"] = HelpMenuList(helpList, self.close)
 		self["list"].onSelectionChanged.append(self.selectionChanged)
-		self["buttonlist"] = Label("")
-		self["description"] = Label("")
+		self["buttonlist"] = Label()
+		self["description"] = Label()
 		self["key_help"] = StaticText(_("HELP"))
 		self["helpActions"] = ActionMap(["HelpActions"], {
 			"cancel": self.close,
@@ -495,7 +495,7 @@ class XMLHelp(Screen):
 		if additionalSkin:
 			self.skinName.insert(0, additionalSkin)
 		self["key_red"] = StaticText(_("Close"))
-		self["key_yellow"] = StaticText("")
+		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText(">>" if pages else "")
 		self["heading"] = Label()
 		self["detailtext"] = ScrollLabel()

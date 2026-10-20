@@ -7,35 +7,36 @@ All Right Reserved
 License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
 
-from enigma import eTimer, eEPGCache, eDVBDB, eServiceReference, iRecordableService, eServiceCenter
+from calendar import timegm
+from collections import defaultdict, deque
+from operator import itemgetter
+from os import path
+from time import gmtime, localtime, strftime, strptime, time
+from twisted.internet import reactor, threads
+
+from enigma import eDVBDB, eEPGCache, eServiceCenter, eServiceReference, eTimer, iRecordableService
+
+import NavigationInstance
+from RecordTimer import RecordTimerEntry
+from ServiceReference import ServiceReference, service_types_tv_ref
 from Components.ActionMap import ActionMap
+from Components.config import ConfigText, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
+from Components.Genres import genres
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
-from Components.config import getConfigListEntry, ConfigText
-from Components.Genres import genres
 from Components.SystemInfo import getBoxDisplayName
+from Components.TimerSanityCheck import TimerSanityCheck
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
-from RecordTimer import RecordTimerEntry
-from ServiceReference import ServiceReference, service_types_tv_ref
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS
-from Tools.LoadPixmap import LoadPixmap
-from calendar import timegm
-from time import strptime, gmtime, localtime, strftime, time
-from . import config, enableIceTV, disableIceTV
-from . import API as ice
-import requests
-from collections import deque, defaultdict
-from operator import itemgetter
 from Screens.TextBox import TextBox
-from Components.TimerSanityCheck import TimerSanityCheck
-import NavigationInstance
-from twisted.internet import reactor, threads
-from os import path
+from Tools.Directories import SCOPE_PLUGINS, resolveFilename
+from Tools.LoadPixmap import LoadPixmap
+
+from . import API as ice, config, disableIceTV, enableIceTV
 
 
 def ensure_str(result):
@@ -268,16 +269,18 @@ parental_ratings = {
 
 
 def _logResponseException(logger, heading, exception):
-    msg = heading
-    if isinstance(exception, requests.exceptions.ConnectionError):
-        msg += ": " + _("The IceTV server can not be reached. Try checking the Internet connection on your %s %s\nDetails") % getBoxDisplayName()
-    msg += ": " + str(exception)
-    if hasattr(exception, "response") and hasattr(exception.response, "text"):
-        ex_text = str(exception.response.text).strip()
-        if ex_text:
-            msg += "\n" + ex_text
-    logger.addLog(msg)
-    return msg
+	from requests.exceptions import ConnectionError  # Resolve HTTP errors only when a request has failed.
+
+	msg = heading
+	if isinstance(exception, ConnectionError):
+		msg += ": " + _("The IceTV server can not be reached. Try checking the Internet connection on your %s %s\nDetails") % getBoxDisplayName()
+	msg += ": " + str(exception)
+	if hasattr(exception, "response") and hasattr(exception.response, "text"):
+		ex_text = str(exception.response.text).strip()
+		if ex_text:
+			msg += "\n" + ex_text
+	logger.addLog(msg)
+	return msg
 
 
 class LogEntry(dict):

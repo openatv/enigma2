@@ -2,7 +2,7 @@ from Components.AVSwitch import avSwitch
 from Components.config import config, configfile
 from Components.SystemInfo import BoxInfo
 from Screens.HelpMenu import ShowRemoteControl
-from Screens.Wizard import WizardSummary, Wizard
+from Screens.Wizard import Wizard, WizardSummary
 from Tools.Directories import SCOPE_SKINS, resolveFilename
 
 

@@ -8,12 +8,12 @@ from Components.config import config, configfile
 from Components.Harddisk import Freespace
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.StaticText import StaticText
-from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox
+from Screens.Console import Console
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
-from Tools.MultiBoot import MultiBoot
 from Tools.Directories import fileReadLines, fileWriteLines
+from Tools.MultiBoot import MultiBoot
 
 MODULE_NAME = __name__.split(".")[-1]
 

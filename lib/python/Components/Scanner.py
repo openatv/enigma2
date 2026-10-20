@@ -1,11 +1,12 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from functools import total_ordering
-from mimetypes import guess_type, add_type
+from mimetypes import add_type, guess_type
 from os import walk
 from os.path import join
-from Plugins.Plugin import PluginDescriptor
+
 from Components.PluginComponent import plugins
+from Plugins.Plugin import PluginDescriptor
 
 
 add_type("audio/dts", ".dts")

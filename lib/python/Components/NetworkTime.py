@@ -1,6 +1,6 @@
 from time import ctime, time
 
-from enigma import eTimer, eDVBLocalTimeHandler, eEPGCache
+from enigma import eDVBLocalTimeHandler, eEPGCache, eTimer
 
 from Components.config import config
 from Components.Console import Console

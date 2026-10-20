@@ -3,9 +3,9 @@ from time import gmtime, localtime, mktime, time
 from enigma import eServiceCenter, eServiceReference, getBestPlayableServiceReference, iServiceInformation
 
 import NavigationInstance
-from Components.NimManager import nimmanager
 from timer import TimerEntry
 from Components.config import config
+from Components.NimManager import nimmanager
 from Tools.CIHelper import cihelper
 
 

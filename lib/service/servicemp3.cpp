@@ -2401,7 +2401,9 @@ RESULT eServiceMP3::getPlayPosition(pts_t& pts) {
 			/* dreamaudiosink has no get-decoder-time; fall through to query_position. */
 #else
 			g_signal_emit_by_name(dvb_audiosink, "get-decoder-time", &pos);
-			if (GST_CLOCK_TIME_IS_VALID(pos))
+			/* Some audio decoders keep reporting zero during playback. Use the
+			 * synchronized playbin position instead of resetting the cache to zero. */
+			if (GST_CLOCK_TIME_IS_VALID(pos) && pos > 0)
 				got_decoder_time = true;
 #endif
 		} else if (!m_sourceinfo.is_audio) {

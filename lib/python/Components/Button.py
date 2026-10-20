@@ -1,7 +1,7 @@
+from enigma import eButton
+
 from Components.GUIComponent import GUIComponent
 from Components.VariableText import VariableText
-
-from enigma import eButton
 
 
 class Button(VariableText, GUIComponent):

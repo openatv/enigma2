@@ -1,13 +1,13 @@
 from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigSelection, ConfigYesNo, config, getConfigListEntry
-from Components.InputDevice import inputDevices, keyboard, iRcTypeControl
+from Components.InputDevice import iRcTypeControl, inputDevices, keyboard
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup
-from Tools.Directories import resolveFilename, SCOPE_GUISKIN
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
 
@@ -18,8 +18,8 @@ class InputDeviceSelection(Screen):
 		self.edittext = _("Press OK to edit the settings.")
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Select"))
-		self["key_yellow"] = StaticText("")
-		self["key_blue"] = StaticText("")
+		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText()
 		self["introduction"] = StaticText(self.edittext)
 		self.devices = [(inputDevices.getDeviceName(x), x) for x in inputDevices.getDeviceList()]
 		print(f"[InputDeviceSelection] found devices :-> {len(self.devices)} {str(self.devices)}")

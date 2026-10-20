@@ -168,13 +168,15 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.onShown.remove(self.__checkServiceStarted)
 
 	def openBouquetList(self):
-		if config.usage.tvradiobutton_mode.value == "MovieList":
+		radioMode = self.servicelist.mode == self.servicelist.MODE_RADIO
+		buttonMode = config.usage.tvradiobutton_mode.value
+		if radioMode:
+			self.showRadioChannelList(True)
+		else:
 			self.showTvChannelList(True)
+		if buttonMode == "MovieList" and not radioMode:
 			self.showMovies()
-		elif config.usage.tvradiobutton_mode.value == "ChannelList":
-			self.showTvChannelList(True)
-		elif config.usage.tvradiobutton_mode.value == "BouquetList":
-			self.showTvChannelList(True)
+		elif buttonMode == "BouquetList":
 			self.servicelist.showFavourites()
 
 	def showTvButton(self):

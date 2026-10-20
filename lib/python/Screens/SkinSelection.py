@@ -4,13 +4,13 @@ from os.path import exists, isdir, isfile, join, split
 from enigma import addFont, ePicLoad
 
 from Components.config import ConfigSelection, NoSave, config
-from Components.PluginComponent import plugins
 from Components.Pixmap import Pixmap
+from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 from Screens.Processing import Processing
 from Screens.Setup import Setup
-from Screens.Standby import TryQuitMainloop, QUIT_RESTART
-from Tools.Directories import SCOPE_GUISKIN, SCOPE_FONTS, SCOPE_SKINS, resolveFilename
+from Screens.Standby import QUIT_RESTART, TryQuitMainloop
+from Tools.Directories import SCOPE_FONTS, SCOPE_GUISKIN, SCOPE_SKINS, resolveFilename
 
 
 class SkinSelection(Setup):

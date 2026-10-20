@@ -5,9 +5,9 @@ from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.config import ActionKeys, ConfigBoolean, ConfigElement, ConfigInteger, ConfigMACText, ConfigNumber, ConfigSelection, ConfigSequence, ConfigService, ConfigText, config, configfile
 from Components.GUIComponent import GUIComponent
 from Components.Pixmap import Pixmap
+from Components.SystemInfo import getBoxDisplayName
 from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import getBoxDisplayName
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Standby import QUIT_REBOOT, QUIT_RESTART, TryQuitMainloop

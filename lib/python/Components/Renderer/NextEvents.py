@@ -1,7 +1,9 @@
 from time import localtime
-from enigma import eLabel, eEPGCache
-from Components.Renderer.Renderer import Renderer
+
+from enigma import eEPGCache, eLabel
+
 from Components.VariableText import VariableText
+from Components.Renderer.Renderer import Renderer
 
 
 class NextEvents(VariableText, Renderer):
@@ -17,13 +19,14 @@ class NextEvents(VariableText, Renderer):
 		self.number = 0
 		attribs = []
 		for (attrib, value) in self.skinAttributes:
-			if attrib == "number":
-				self.number = int(value)
-			elif attrib == "lines":
-				self.number = int(value) + 1
-				self.lines = True
-			else:
-				attribs.append((attrib, value))
+			match attrib:
+				case "lines":
+					self.number = int(value) + 1
+					self.lines = True
+				case "number":
+					self.number = int(value)
+				case _:
+					attribs.append((attrib, value))
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)
 

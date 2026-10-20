@@ -1,28 +1,28 @@
 from datetime import date
 from glob import glob
-from os import access, makedirs, listdir, stat, rename, remove, F_OK, R_OK, W_OK
+from os import F_OK, R_OK, W_OK, access, listdir, makedirs, remove, rename, stat
 from os.path import exists, isdir, isfile, join
 
 from enigma import eConsoleAppContainer, eEPGCache
-from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
-from Components.config import configfile
-from Components.config import config
+
+from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
+from Components.config import config, configfile
 from Components.ConfigList import ConfigListScreen
 from Components.FileList import MultiFileSelectList
 from Components.Harddisk import harddiskmanager
 from Components.Label import Label
 from Components.MenuList import MenuList
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Screens.Console import Console
 from Screens.MessageBox import MessageBox
-from Screens.RestartNetwork import RestartNetwork
 from Screens.ParentalControlSetup import ProtectedScreen
+from Screens.RestartNetwork import RestartNetwork
 from Screens.Screen import Screen
-from Tools.Directories import fileWriteLines, resolveFilename, SCOPE_GUISKIN
+from Tools.Directories import SCOPE_GUISKIN, fileWriteLines, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
-from Tools.ShellCompatibleFunctions import backupUserDB, listpkg, restoreUserDB, BLACKLISTED, MANDATORY_RIGHTS
+from Tools.ShellCompatibleFunctions import BLACKLISTED, MANDATORY_RIGHTS, backupUserDB, listpkg, restoreUserDB
 
 
 MACHINEBUILD = BoxInfo.getItem("machinebuild")
@@ -315,7 +315,7 @@ class RestoreMenu(Screen, ProtectedScreen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Restore"))
 		self["key_yellow"] = StaticText(_("Delete"))
-		self["summary_description"] = StaticText("")
+		self["summary_description"] = StaticText()
 
 		self.sel = []
 		self.val = []
@@ -649,7 +649,7 @@ class RestorePlugins(Screen, ProtectedScreen):
 		self["menu"].onSelectionChanged.append(self.selectionChanged)
 		self["key_green"] = StaticText(_("Install"))
 		self["key_red"] = StaticText(_("Cancel"))
-		self["summary_description"] = StaticText("")
+		self["summary_description"] = StaticText()
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{

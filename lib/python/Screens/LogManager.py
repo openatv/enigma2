@@ -4,7 +4,10 @@ from os import SEEK_END, remove, rmdir, stat, walk
 from os.path import basename, exists, getsize, isdir, join
 from re import compile
 from time import ctime, time
+
 from enigma import eBackgroundFileEraser, eLabel, eTimer, fontRenderClass, gFont
+
+from skin import getSkinFactor
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.config import config, configfile
@@ -15,7 +18,6 @@ import Components.Task
 from Components.VariableText import VariableText
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
-from skin import getSkinFactor
 from Tools.Conversions import scaleNumber
 from Tools.Directories import fileReadLines
 from Tools.TextBoundary import getTextBoundarySize

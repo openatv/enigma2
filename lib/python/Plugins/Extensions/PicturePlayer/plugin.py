@@ -1,7 +1,8 @@
 from os.path import basename, dirname
 
-from Plugins.Plugin import PluginDescriptor
 from enigma import getDesktop
+
+from Plugins.Plugin import PluginDescriptor
 
 #------------------------------------------------------------------------------------------
 

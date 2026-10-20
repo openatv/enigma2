@@ -1,15 +1,15 @@
 from glob import glob
-from os.path import dirname, getmtime, isfile, join as pathjoin, splitext
 from os import listdir, unlink
+from os.path import dirname, getmtime, isfile, join as pathjoin, splitext
 from traceback import print_exc
 from xml.etree.ElementTree import Element, ElementTree, fromstring
 
-from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, clearFonts, clearPixmapCache, eLabel, eListbox, eListboxPythonMultiContent, eStack, ePixmap, ePoint, eQRCode, eRect, eRectangle, eScrollConfig, eSize, eSlider, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
+from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, clearFonts, clearPixmapCache, eLabel, eListbox, eListboxPythonMultiContent, ePixmap, ePoint, eQRCode, eRect, eRectangle, eScrollConfig, eSize, eSlider, eStack, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, gFont, gMainDC, gRGB, getDesktop, getFontFaces
 
 from Components.config import ConfigEnableDisable, ConfigSelection, ConfigSubsection, ConfigText, DEFAULT_READONLY_COLOR, config, setReadOnlyColor
 from Components.SystemInfo import BoxInfo
 from Components.Sources.Source import ObsoleteSource
-from Tools.Directories import SCOPE_LCDSKIN, SCOPE_GUISKIN, SCOPE_FONTS, SCOPE_SKINS, pathExists, resolveFilename, fileReadXML, clearResolveLists
+from Tools.Directories import SCOPE_FONTS, SCOPE_GUISKIN, SCOPE_LCDSKIN, SCOPE_SKINS, clearResolveLists, fileReadXML, pathExists, resolveFilename
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 
@@ -2358,6 +2358,7 @@ def readSkin(screen, skin, names, desktop):
 	screen.renderer = []
 	screen.stacks = []
 	usedComponents = set()
+	usedSources = set()
 
 	def processConstant(constant_widget, context, target=None):
 		widgetName = constant_widget.attrib.get("name")
@@ -2392,10 +2393,15 @@ def readSkin(screen, skin, names, desktop):
 	def processNone(widget, context, stack=None):  # This is a dummy method for the parser.
 		pass
 
+	stackOrder = 0
+
 	def proccesStackAddition(widget, stack, target):
+		nonlocal stackOrder
 		if stack:
 			target.stackIndex = stack.index
-			pos = widget.attrib.get("position")
+			target.stackOrder = stackOrder  # Children must be stacked in skin (XML) order.
+			stackOrder += 1
+			pos = widget.attrib.get("position", "")
 			align = eWidget.eStackAlignNone
 			if stack.layout == 0:  # horizontal
 				if "left" in pos:
@@ -2436,6 +2442,7 @@ def readSkin(screen, skin, names, desktop):
 			screen[widgetName] = proccesStackAddition(widget, stack, screen[widgetName])
 		elif widgetSource:
 			# print(f"[Skin] DEBUG: Widget source='{widgetSource}'.")
+			usedSources.add(widgetSource)
 			while True:  # Get corresponding source until we found a non-obsolete source.
 				# Parse our current "widgetSource", which might specify a "related screen" before the dot,
 				# for example to reference a parent, global or session-global screen.
@@ -2732,14 +2739,23 @@ def readSkin(screen, skin, names, desktop):
 	except Exception as err:
 		print(f"[Skin] Error: Screen '{myName}' {str(err)}!")
 		print_exc()
-	from Components.GUIComponent import GUIComponent  # This must be here to avoid a boot loop.
-	unusedComponents = [x for x in set(screen.keys()) - usedComponents if isinstance(x, GUIComponent)]
-	assert not unusedComponents, f"[Skin] The following components in '{myName}' don't have a skin entry: {', '.join(unusedComponents)}"
+	if config.crash.debugScreens.value:
+		from Components.GUIComponent import GUIComponent  # This must be here to avoid a boot loop.
+		from Components.Sources.Source import Source  # This must be here to avoid a boot loop.
+		screenKeys = sorted(x for x in screen.keys() if not x.endswith(("Action", "Actions")))
+		# print(f"[Skin] Screen '{myName}' in module '{screen.__class__.__name__}' has widgets including '{"', '".join(screenKeys)}'.")
+		print(f"[Skin] Screen '{myName}' has widgets including '{"', '".join(screenKeys)}'.")
+		screenKeys = set(screenKeys)
+		if unusedComponents := sorted(x for x in screenKeys - usedComponents if isinstance(screen[x], GUIComponent)):
+			print(f"[Skin] Unused components: '{"', '".join(unusedComponents)}'.")
+		if unusedSources := sorted(x for x in screenKeys - usedSources if isinstance(screen[x], Source)):
+			print(f"[Skin] Unused sources: '{"', '".join(unusedSources)}'.")
 	# This may look pointless, but it unbinds "screen" from the nested scope. A better
 	# solution is to avoid the nested scope above and use the context object to pass
 	# things around.
 	screen = None
 	usedComponents = None
+	usedSources = None
 
 
 # Search the domScreens dictionary to see if any of the screen names provided

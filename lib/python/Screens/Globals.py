@@ -1,5 +1,5 @@
-from Screens.Screen import Screen
 from Components.Sources.Clock import Clock
+from Screens.Screen import Screen
 
 
 class Globals(Screen):

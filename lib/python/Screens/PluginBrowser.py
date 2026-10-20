@@ -1,6 +1,6 @@
 from fnmatch import fnmatchcase
 from os import makedirs, symlink, unlink
-from os.path import exists, join, islink
+from os.path import exists, islink, join
 from re import compile
 from shutil import rmtree
 from time import time
@@ -800,8 +800,8 @@ class PluginBrowserSummary(ScreenSummary):
 	def __init__(self, session, parent):
 		ScreenSummary.__init__(self, session, parent=parent)
 		self.skinName = ["PluginBrowserSummary"]
-		self["entry"] = StaticText("")
-		self["value"] = StaticText("")
+		self["entry"] = StaticText()
+		self["value"] = StaticText()
 		self.onShow.append(self.addWatcher)
 		self.onHide.append(self.removeWatcher)
 
@@ -1670,9 +1670,9 @@ class PackageActionSummary(ScreenSummary):
 	def __init__(self, session, parent):
 		ScreenSummary.__init__(self, session, parent=parent)
 		self.skinName = ["PackageActionSummary"]
-		self["category"] = StaticText("")
-		self["name"] = StaticText("")
-		self["description"] = StaticText("")
+		self["category"] = StaticText()
+		self["name"] = StaticText()
+		self["description"] = StaticText()
 		self.onShow.append(self.addWatcher)
 		self.onHide.append(self.removeWatcher)
 
