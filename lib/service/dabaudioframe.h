@@ -4,7 +4,7 @@
 #include <cstddef>
 #include <cstdint>
 
-/* Framing of the compressed byte stream supplied by the RTL-SDR backend.
+/* Shared AAC/MP2 framing for RTL-SDR byte streams and native DAB MSC blocks.
  * Pipe reads need not coincide with AAC/MP2 frames or even complete headers. */
 struct eDABAudioFrame
 {

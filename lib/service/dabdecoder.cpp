@@ -4,6 +4,7 @@
 #include <cctype>
 #include <cstring>
 
+#include <lib/service/dabaudioframe.h>
 #include <lib/service/dabdebug.h>
 #include <lib/service/dabpacketdecoder.h>
 
@@ -248,7 +249,7 @@ void eDABDecoder::feedETI(const uint8_t *data, size_t length)
 	}
 	++m_eti_frames;
 	parseFIC(data + mstStart, ficLength);
-	feedMSC(streams);
+	feedMSC(streams, data[4]);
 }
 
 void eDABDecoder::processAF(const uint8_t *data, size_t length)
@@ -408,6 +409,7 @@ void eDABDecoder::processTags(const uint8_t *data, size_t length)
 	std::vector<uint8_t> fic;
 	std::vector<Stream> streams;
 	bool isETI = false;
+	int frameCount = -1;
 	size_t position = 0;
 	while (position + 8 <= length)
 	{
@@ -425,6 +427,7 @@ void eDABDecoder::processTags(const uint8_t *data, size_t length)
 		else if (id == 0x64657469 && valueLength >= 6) // deti
 		{
 			const uint16_t deti = read16(value);
+			frameCount = deti & 0xff; // FCT, modulo 250, as in ETI-NI.
 			const bool atstf = deti & 0x8000;
 			const bool ficf = deti & 0x4000;
 			const uint32_t etiHeader = read32(value + 2);
@@ -449,7 +452,7 @@ void eDABDecoder::processTags(const uint8_t *data, size_t length)
 		return;
 	++m_eti_frames;
 	parseFIC(fic.data(), fic.size());
-	feedMSC(streams);
+	feedMSC(streams, frameCount);
 }
 
 void eDABDecoder::parseFIC(const uint8_t *data, size_t length)
@@ -787,6 +790,7 @@ void eDABDecoder::resolveService()
 	if (subchannel == m_subchannels.end() || !subchannel->second.bitrate)
 		return;
 	const bool changed = m_selected_subchannel != service->second.subchannel ||
+		m_selected_start_address != subchannel->second.startAddress ||
 		m_selected_bitrate != subchannel->second.bitrate || m_selected_dabplus != service->second.dabplus;
 	m_selected_subchannel = service->second.subchannel;
 	m_selected_start_address = subchannel->second.startAddress;
@@ -795,6 +799,8 @@ void eDABDecoder::resolveService()
 	m_service_label = service->second.label;
 	if (changed)
 	{
+		m_mp2_frame.clear();
+		m_mp2_frame_count = -1;
 		m_superframe.clear();
 		m_superframe_parts = 0;
 		m_superframe_part_size = 0;
@@ -804,7 +810,7 @@ void eDABDecoder::resolveService()
 	}
 }
 
-void eDABDecoder::feedMSC(const std::vector<Stream> &streams)
+void eDABDecoder::feedMSC(const std::vector<Stream> &streams, int frameCount)
 {
 	for (size_t i = 0; i < streams.size(); ++i)
 	{
@@ -813,8 +819,10 @@ void eDABDecoder::feedMSC(const std::vector<Stream> &streams)
 			++m_msc_frames;
 			if (m_selected_dabplus)
 				feedDABPlus(streams[i].data.data(), streams[i].data.size());
+			else if (streams[i].startAddress == m_selected_start_address)
+				feedDAB(streams[i].data.data(), streams[i].data.size(), frameCount);
 			else
-				feedDAB(streams[i].data.data(), streams[i].data.size());
+				m_mp2_frame.clear();
 		}
 		for (std::map<uint16_t, std::unique_ptr<eDABPacketDecoder> >::iterator decoder =
 			m_packet_decoders.begin(); decoder != m_packet_decoders.end(); ++decoder)
@@ -826,39 +834,47 @@ void eDABDecoder::feedMSC(const std::vector<Stream> &streams)
 	}
 }
 
-void eDABDecoder::feedDAB(const uint8_t *data, size_t length)
+void eDABDecoder::feedDAB(const uint8_t *data, size_t length, int frameCount)
 {
-	/* One ETI MSC block of a legacy DAB audio subchannel is one complete
-	 * MPEG-1/2 Layer II frame.  Keep it compressed for the normal Enigma2
-	 * hardware audio sink, but inspect the embedded PAD before forwarding it. */
-	if (!data || length < 10 || !m_audio_callback)
+	/* ETSI TS 103 466: each MSC block covers 24 ms. MPEG-1 Layer II (48 kHz)
+	 * fits in one block; MPEG-2 LSF (24 kHz) needs two consecutive blocks.
+	 * PAD belongs to the end of the complete audio frame, not its first half. */
+	if (frameCount < 0 || frameCount >= 250 || m_mp2_frame_count < 0 ||
+		frameCount != (m_mp2_frame_count + 1) % 250)
+		m_mp2_frame.clear();
+	m_mp2_frame_count = frameCount;
+	if (!data || length < 10 || !m_audio_callback || m_selected_bitrate <= 0 ||
+		length != static_cast<size_t>(m_selected_bitrate) * 3)
+	{
+		m_mp2_frame.clear();
 		return;
+	}
+	const size_t blockLength = length;
+	if (!m_mp2_frame.empty())
+	{
+		m_mp2_frame.insert(m_mp2_frame.end(), data, data + length);
+		data = m_mp2_frame.data();
+		length = m_mp2_frame.size();
+	}
+	eDABAudioFrame frame;
+	const eDABAudioFrame::Result result = frame.parse(data, length);
+	if (result == eDABAudioFrame::Invalid || frame.dabplus ||
+		(frame.durationNs != 24000000 && frame.durationNs != 48000000) ||
+		frame.length != blockLength * (frame.durationNs / 24000000))
+	{
+		m_mp2_frame.clear();
+		return;
+	}
+	if (result == eDABAudioFrame::Incomplete)
+	{
+		m_mp2_frame.assign(data, data + length);
+		return;
+	}
+
 	const uint32_t header = read32(data);
-	if ((header >> 21) != 0x7ff || ((header >> 17) & 3) != 2)
-		return;
-	const int version = (header >> 19) & 3;
-	const int bitrateIndex = (header >> 12) & 0x0f;
-	const int sampleRateIndex = (header >> 10) & 3;
-	if (version == 1 || !bitrateIndex || bitrateIndex == 15 || sampleRateIndex == 3)
-		return;
-
-	static const int mpeg1Layer2Bitrates[16] = {
-		0, 32, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320, 384, 0
-	};
-	static const int mpeg2Layer2Bitrates[16] = {
-		0, 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160, 0
-	};
-	static const int mpeg1SampleRates[3] = {44100, 48000, 32000};
-	const bool mpeg1 = version == 3;
-	const int bitrate = mpeg1 ? mpeg1Layer2Bitrates[bitrateIndex] : mpeg2Layer2Bitrates[bitrateIndex];
-	int sampleRate = mpeg1SampleRates[sampleRateIndex];
-	if (!mpeg1)
-		sampleRate /= version == 2 ? 2 : 4;
-	if (!bitrate || !sampleRate)
-		return;
-
+	const bool mpeg1 = ((header >> 19) & 3) == 3;
 	const bool mono = ((header >> 6) & 3) == 3;
-	const size_t scaleFactorCRCLength = mpeg1 && bitrate < (mono ? 56 : 112) ? 2 : 4;
+	const size_t scaleFactorCRCLength = mpeg1 && m_selected_bitrate < (mono ? 56 : 112) ? 2 : 4;
 	const size_t bodyLength = length - 4;
 	if (bodyLength > scaleFactorCRCLength + 2)
 	{
@@ -871,9 +887,9 @@ void eDABDecoder::feedDAB(const uint8_t *data, size_t length)
 		}
 	}
 
-	const uint64_t durationNs = 1152000000000ULL / static_cast<uint64_t>(sampleRate);
 	++m_audio_frames;
-	m_audio_callback(data, length, data, length, durationNs, 0, false);
+	m_audio_callback(data, length, data, length, frame.durationNs, 0, false);
+	m_mp2_frame.clear();
 }
 
 void eDABDecoder::feedDABPlus(const uint8_t *data, size_t length)
