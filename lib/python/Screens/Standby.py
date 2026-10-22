@@ -319,11 +319,8 @@ class Standby(Standby2):
 		Screens.InfoBar.InfoBar.checkTimeshiftRunning(Screens.InfoBar.InfoBar.instance, self.showMessageBoxcallback)
 
 	def showMessageBoxcallback(self, answer):
-		if answer:
-			self.onClose.append(self.doStandby)
-
-	def doStandby(self):
-		Tools.Notifications.AddNotification(Screens.Standby.Standby2)
+		if answer:  # This screen may already be closed, it closes itself when the message box hides it.
+			Tools.Notifications.AddNotification(Standby2)
 
 
 class StandbySummary(Screen):
