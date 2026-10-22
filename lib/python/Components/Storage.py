@@ -7,6 +7,7 @@
 from glob import glob
 from os import listdir, mkdir, rmdir, unlink
 from os.path import exists, ismount, join, realpath
+from shutil import which
 from string import ascii_letters, digits
 
 from Components.Task import ConditionTask, Job, LoggingTask, ReturncodePostcondition
@@ -260,24 +261,7 @@ class StorageDevice():
 		return job
 
 	def createCheckJob(self, options=None):
-		options = options or {}
-		debug = options.get("debug")
-		job = Job(_("Checking file system..."))
-		if self.findMount():
-			UnmountTask(job, self, debug)
-		task = LoggingTask(job, "fsck")
-		if self.fsType == "ntfs":
-			task.setTool("ntfsfix")
-		else:
-			task.setTool(f"fsck.{self.fsType}")
-			if self.fsType == "exfat":
-				task.args += ["-p"]
-			else:
-				task.args += ["-f", "-p"]
-		task.args.append(self.devicePoint)
-		task = MountTask(job, self, debug=debug)
-		task.weighting = 3
-		return job
+		return FileSystemCheckJob(self)
 
 	def createTrimJob(self, options=None):
 		options = options or {}
@@ -290,6 +274,113 @@ class StorageDevice():
 		task = MountTask(job, self, debug=debug)
 		task.weighting = 3
 		return job
+
+
+class FileSystemCheckJob(Job):
+	def __init__(self, storageDevice):
+		Job.__init__(self, _("Checking file system..."))
+		self.storageDevice = storageDevice
+		self.mounts = []
+		self.nomountFile = join("/dev", f"nomount.{storageDevice.disk}")
+		self.ownsMountBlock = False
+		self.state_changed.append(self.releaseMountBlock)
+		FileSystemCheckUnmountTask(self)
+		self.checkTask = FileSystemCheckTask(self)
+		self.mountTask = FileSystemCheckMountTask(self)
+
+	def getMounts(self):
+		device = realpath(self.storageDevice.devicePoint)
+		return [x for x in getProcMountsNew(strict=True) if realpath(x[0]) == device]
+
+	def releaseMountBlock(self):
+		# Job failures also include missing tools, prepare exceptions and cancellation.
+		if self.ownsMountBlock and self.status in (self.FAILED, self.FINISHED):
+			try:
+				unlink(self.nomountFile)
+			except FileNotFoundError:
+				self.ownsMountBlock = False
+			except OSError as err:
+				print(f"[Storage] Unable to remove '{self.nomountFile}': {err}")
+			else:
+				self.ownsMountBlock = False
+
+
+class FileSystemCheckUnmountTask(LoggingTask):
+	def __init__(self, job):
+		LoggingTask.__init__(self, job, _("Unmount"))
+		self.setTool(which("umount") or "/bin/umount")
+
+	def checkPreconditions(self, immediate=False):
+		problems = LoggingTask.checkPreconditions(self, immediate)
+		if not immediate:
+			# Check all required tools before taking the storage offline.
+			problems += self.job.checkTask.checkPreconditions() + self.job.mountTask.checkPreconditions()
+		return problems
+
+	def prepare(self):
+		self.job.mounts = self.job.getMounts()
+		if len(self.job.mounts) > 1:
+			raise OSError(_("This device has multiple mount points. Unmount them before checking the file system."))
+		if self.job.mounts and self.job.mounts[0][1] == "/":
+			raise OSError(_("The running system's file system cannot be checked."))
+		# Do not overwrite or remove a mount block owned by another operation.
+		with open(self.job.nomountFile, "xb"):
+			self.job.ownsMountBlock = True
+		if self.job.mounts:
+			# A busy filesystem must remain mounted; never use force or lazy unmount.
+			self.args.append(self.job.mounts[0][1])
+		else:
+			self.cmd = None
+			self.returncode = 0
+
+
+class FileSystemCheckTask(LoggingTask):
+	def __init__(self, job):
+		LoggingTask.__init__(self, job, "fsck")
+		fsType = job.storageDevice.fsType
+		tool = "ntfsfix" if fsType == "ntfs" else f"fsck.{fsType}"
+		self.setTool(which(tool) or join("/sbin", tool))
+		if fsType != "ntfs":
+			self.args += ["-p"] if fsType == "exfat" else ["-f", "-p"]
+		self.args.append(job.storageDevice.devicePoint)
+		self.postconditions = [FileSystemCheckCondition()]
+
+	def prepare(self):
+		# Recheck after unmount, including unexpected mounts created in the meantime.
+		if self.job.getMounts():
+			raise OSError(_("The device is still mounted. Stop recordings and time shift before checking the file system."))
+
+
+class FileSystemCheckCondition(ReturncodePostcondition):
+	def check(self, task):
+		# e2fsck status 1 means repaired; status 2 requests a reboot, not a remount.
+		return task.returncode == 0 or (task.job.storageDevice.fsType in ("ext2", "ext3", "ext4") and task.returncode == 1)
+
+	def getErrorMessage(self, task):
+		if task.job.storageDevice.fsType in ("ext2", "ext3", "ext4") and task.returncode in (2, 3):
+			return _("The file system was repaired. Restart the receiver before using this device.")
+		return ReturncodePostcondition.getErrorMessage(self, task)
+
+
+class FileSystemCheckMountTask(LoggingTask):
+	def __init__(self, job):
+		LoggingTask.__init__(self, job, _("Mount"))
+		self.setTool(which("mount") or "/bin/mount")
+		self.weighting = 3
+
+	def prepare(self):
+		# Restore only this device's previous mount, including its read-only state.
+		if self.job.mounts:
+			device, mountPoint = self.job.mounts[0][:2]
+			mountOptions = self.job.mounts[0][3]
+			if any(x[1] == mountPoint for x in getProcMountsNew(strict=True)):
+				raise OSError(_("The previous mount point is already in use."))
+			if not exists(mountPoint):
+				mkdir(mountPoint)
+			self.args += ["-o", mountOptions, device, mountPoint]
+		else:
+			self.cmd = None
+			self.returncode = 0
 
 
 class UUIDTask(ConditionTask):
@@ -468,12 +559,17 @@ class MkfsTask(LoggingTask):
 			print(self.log)
 
 
-def getProcMountsNew():
-	lines = fileReadLines("/proc/mounts", default=[])
+def getProcMountsNew(strict=False):
+	lines = fileReadLines("/proc/mounts", default=None if strict else [])
+	if strict and not lines:
+		raise OSError(_("Unable to read the list of mounted file systems."))
 	result = []
-	for line in [x for x in lines if x and x.startswith("/dev/")]:
+	for line in [x for x in lines if x and (strict or x.startswith("/dev/"))]:
 		# Replace encoded space (\040) and newline (\012) characters with actual space and newline
-		result.append([s.replace("\\040", " ").replace("\\012", "\n") for s in line.strip(" \n").split(" ")])
+		parts = [x.replace("\\040", " ").replace("\\011", "\t").replace("\\012", "\n").replace("\\134", "\\") for x in line.split()]
+		if strict and len(parts) < 4:
+			raise OSError(_("Unable to read the list of mounted file systems."))
+		result.append(parts)
 	return result
 
 
