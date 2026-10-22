@@ -696,8 +696,10 @@ class InfoBarTimeshift:
 		if self.isRamTimeshift():
 			ts = self.getTimeshift()
 			if not ts.isTimeshiftEnabled() and ts.startTimeshift():
+				print("[Timeshift] Unable to start RAM time shift.")
+				if self.pauseAfterStart or self.notifyAfterStart:
+					self.session.showError(_("Unable to start RAM time shift."))
 				self.pauseAfterStart = self.notifyAfterStart = False
-				self.session.showError(_("Unable to start RAM time shift."))
 				return False
 			self.event_changed = False
 			if self.pauseAfterStart:
@@ -820,7 +822,8 @@ class InfoBarTimeshift:
 			raise PermissionError(path)
 		return (mount[0], mount[1])
 
-	def ptsAbortTimeshift(self, message, detail=None, stop=True):
+	def ptsAbortTimeshift(self, message, detail=None, stop=True, notify=False):
+		manualStart = self.pauseAfterStart or self.notifyAfterStart
 		self.startGeneration += 1
 		self.requestedStartGeneration = None
 		self.pauseAfterStart = self.notifyAfterStart = False
@@ -853,10 +856,12 @@ class InfoBarTimeshift:
 		if hasattr(self, "pvrStateDialog"):
 			self.pvrStateDialog.hide()
 		error = (config.timeshift.path.value, message, detail)
-		if self.ptsStorageError != error:
+		if self.ptsStorageError != error or manualStart:
 			self.ptsStorageError = error
 			print(f"[Timeshift] {message} Path: {error[0]}. {detail or ''}")
-			self.session.showError(f"{message}\n{error[0]}" + (f"\n{detail}" if detail else ""), timeout=10)
+			# Background storage checks only need diagnostics; explicit actions need feedback.
+			if manualStart or notify:
+				self.session.showError(message, timeout=10)
 
 	def ptsTimeshiftWriteError(self):
 		# The native recorder has already stopped and returned to live TV.
@@ -865,7 +870,7 @@ class InfoBarTimeshift:
 			entry.retained = True
 			entry.autosave = False
 		self.finishTimeshiftBuffer()
-		self.ptsAbortTimeshift(_("Writing to the time shift storage device failed. Time shift has been stopped."), stop=False)
+		self.ptsAbortTimeshift(_("Writing to the time shift storage device failed. Time shift has been stopped."), stop=False, notify=True)
 
 	def ptsPartitionChanged(self, action, partition):
 		if action == "remove" and self.ptsStorage and not self.isRamTimeshift():
@@ -873,7 +878,7 @@ class InfoBarTimeshift:
 			if (partition.device and source == join("/dev", partition.device)) or (partition.mountpoint and mountpoint.rstrip("/") == partition.mountpoint.rstrip("/")):
 				self.ptsStorage = None
 				if self.timeshiftEnabled() or self.save_current_timeshift:
-					self.ptsAbortTimeshift(_("The time shift storage device was removed. Time shift has been stopped."))
+					self.ptsAbortTimeshift(_("The time shift storage device was removed. Time shift has been stopped."), notify=True)
 				else:
 					self.pts_delay_timer.stop()
 					self.pts_cleanUp_timer.stop()
@@ -1190,7 +1195,7 @@ class InfoBarTimeshift:
 			info = service and service.info()
 			event = info and info.getEvent(0)
 		except Exception as err:
-			AddNotification(MessageBox, f"{_("Getting event information failed!")}\n\n{str(err)}", MessageBox.TYPE_ERROR, timeout=10)
+			print(f"[Timeshift] Getting event information failed: {err}")
 		if event is not None:
 			curEvent = parseEvent(event)
 			self.pts_curevent_begin = int(curEvent[0])
@@ -1603,7 +1608,7 @@ class InfoBarTimeshift:
 					try:
 						self.timeshiftRegistry.acquire(entry)
 					except OSError as err:
-						self.session.showWarning(str(err))
+						print(f"[Timeshift] Unable to select playback buffer '{entry.path}': {err}")
 						return
 					self.playbackLeases[nexttsfile] = entry
 			self.pendingPlaybackIdentifier = ""
