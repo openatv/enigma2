@@ -111,6 +111,11 @@ class eDVBServicePMTHandler: public eDVBPMTParser
 	uint8_t m_decode_demux_num;
 	ePtr<eTimer> m_no_pat_entry_delay;
 
+	/* event handlers may stop the service, which frees or destroys this handler */
+	bool *m_destroyed;
+	unsigned int m_free_count;
+	bool sendServiceEvent(int event);
+
 	bool m_pmt_ready;
 	bool m_ca_disabled;
 	static int m_debug;

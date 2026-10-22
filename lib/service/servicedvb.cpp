@@ -2093,6 +2093,8 @@ void eDVBServicePlay::serviceEventTimeshift(int event) {
 
 RESULT eDVBServicePlay::start()
 {
+	/* an event handler may stop and release this service while it starts */
+	ePtr<eDVBServicePlay> self = this;
 	eServiceReferenceDVB service = (eServiceReferenceDVB&)m_reference;
 	bool scrambled = true;
 	int packetsize = 188;
