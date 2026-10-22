@@ -776,6 +776,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen, ProtectedScreen):
 		if cableAvailable and "Vuplus DVB-C NIM(BCM3148)" in (self.nim.description or "") and self.nim.isFBCRoot() and self.nim.is_fbc[2] != 1:
 			cableWarning = _("Warning: This FBC-C V1 tuner should be installed in the first slot. In the second slot only 2 of 8 demodulators may be available. ")
 		multiTypeDescription = _("This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately.")
+		inputDescription = self.nim.getInputDescription()
+		if inputDescription:
+			multiTypeDescription = inputDescription
+			self.list.append(getConfigListEntry(_("Shared SAT and C/T inputs") if self.nim.sharedSatInput >= 0 else _("2 tuners: 2 SAT sockets, 1 C/T socket")))
 		if not isMultiType:
 			if satelliteAvailable:
 				self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.dvbs.configMode, _("Configure this tuner using Simple or Advanced options, loop it through to another tuner, copy a configuration from another tuner or disable it."))
@@ -1553,6 +1557,8 @@ class NimSelection(Screen, ProtectedScreen):
 							enabledTypes.append(frontendType)
 					text = "%s: %s" % (_("Enabled"), ", ".join(enabledTypes)) if enabledTypes else _("nothing connected")
 					text = "%s: %s\n%s" % (_("Available tuner types"), ", ".join(x.getMultiTypeList().values()), text)
+					if x.sharedCTInput >= 0:
+						text += "\n" + (_("Shared SAT and C/T inputs") if x.sharedSatInput >= 0 else _("2 tuners: 2 SAT sockets, 1 C/T socket"))
 				elif x.isCompatible("DVB-S"):
 					nimConfig = nimmanager.getNimConfig(x.slot).dvbs
 					text = nimConfig.configMode.value

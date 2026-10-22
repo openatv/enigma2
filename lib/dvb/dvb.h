@@ -245,6 +245,7 @@ public:
 	RESULT allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, ePtr<iDVBFrontendParameters> &feparm, bool simulate=false, bool returnScoreOnly=false);
 
 	RESULT allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> &fe, int slot_index);
+	bool sharedInputInUse(eDVBFrontend *frontend, int type, bool incompatibleOnly);
 			/* allocate a demux able to filter on the selected frontend. */
 	RESULT allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBAllocatedDemux> &demux, int &cap);
 	void refreshNonCIDemuxSources();
@@ -259,6 +260,7 @@ public:
 	PSignal1<void,int> frontendUseMaskChanged;
 	SWIG_VOID(RESULT) allocateRawChannel(eUsePtr<iDVBChannel> &SWIG_OUTPUT, int slot_index);
 	PyObject *setFrontendSlotInformations(SWIG_PYOBJECT(ePyObject) list);
+	PyObject *setFrontendInputGroups(SWIG_PYOBJECT(ePyObject) list);
 	bool frontendIsCompatible(int index, const char *type);
 	bool frontendIsMultistream(int index);
 	std::string getFrontendCapabilities(int index);
