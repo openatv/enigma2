@@ -30,7 +30,6 @@ class Listbox(Renderer):
 		instance.selectionChanged.get().append(self.selectionChanged)
 		self.setWrapAround(self.wrapAround)  # Trigger property changes.
 		self.setSelectionEnabled(self.selectionEnabled)
-		self.setScrollbarMode(self.scrollbarMode)
 
 	def preWidgetRemove(self, instance):
 		# Clearing the content emits selectionChanged, so disconnect the callback first.
@@ -117,7 +116,10 @@ class Listbox(Renderer):
 				"showNever": eListbox.showNever,
 				"showLeft": eListbox.showLeftOnDemand,
 				"showLeftOnDemand": eListbox.showLeftOnDemand,
-				"showLeftAlways": eListbox.showLeftAlways
+				"showLeftAlways": eListbox.showLeftAlways,
+				"showTopOnDemand": eListbox.showTopOnDemand,
+				"showTopAlways": eListbox.showTopAlways,
+				"showOnDemandShrink": eListbox.showOnDemandShrink
 			}.get(mode, eListbox.showNever))
 
 	scrollbarMode = property(getScrollbarMode, setScrollbarMode)

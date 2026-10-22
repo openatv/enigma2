@@ -133,8 +133,8 @@ private:
 	void parseFIG1(const uint8_t *data, size_t length);
 	void reportPacketComponent(uint16_t componentId);
 	void resolveService();
-	void feedMSC(const std::vector<Stream> &streams);
-	void feedDAB(const uint8_t *data, size_t length);
+	void feedMSC(const std::vector<Stream> &streams, int frameCount);
+	void feedDAB(const uint8_t *data, size_t length, int frameCount);
 	void feedDABPlus(const uint8_t *data, size_t length);
 	void processSuperframe();
 	void inspectPAD(const uint8_t *data, size_t length);
@@ -171,6 +171,8 @@ private:
 	int m_selected_start_address;
 	int m_selected_bitrate;
 	bool m_selected_dabplus;
+	std::vector<uint8_t> m_mp2_frame;
+	int m_mp2_frame_count = -1;
 	std::vector<uint8_t> m_superframe;
 	size_t m_superframe_part_size;
 	int m_superframe_parts;
