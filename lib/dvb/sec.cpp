@@ -64,6 +64,19 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
  */
 int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite &sat, iDVBFrontend *fe, int slot_id, int *highest_score_lnb)
 {
+	eDVBFrontend *requestedFrontend = static_cast<eDVBFrontend *>(fe);
+	const int sharedInput = requestedFrontend->getSharedSatInput();
+	std::vector<eDVBFrontend *> sharedUsers;
+	if (sharedInput >= 0)
+	{
+		auto &frontends = requestedFrontend->is_simulate() ? m_avail_simulate_frontends : m_avail_frontends;
+		for (auto &entry : frontends)
+		{
+			eDVBFrontend *other = entry->m_frontend;
+			if (other != requestedFrontend && entry->m_inuse && other->getSharedSatInput() == sharedInput && other->getTuneType() == iDVBFrontend::feSatellite)
+				sharedUsers.push_back(other);
+		}
+	}
 	bool simulate = ((eDVBFrontend*)fe)->is_simulate();
 	bool direct_connected = m_not_linked_slot_mask & slot_id;
 	int score=0, satcount=0, old_satcount=0;
@@ -82,6 +95,9 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 	while (linked_prev_ptr != -1)
 	{
 		eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*) linked_prev_ptr;
+		// Do not take over a triple tuner's demodulator while it records C/T.
+		if (requestedFrontend->getSharedCTInput() >= 0 && linked_fe->m_inuse && linked_fe->m_frontend->getTuneType() != iDVBFrontend::feSatellite)
+			return 0;
 		if (linked_fe->m_inuse)
 			linked_in_use = true;
 		fe = linked_fe->m_frontend;
@@ -94,11 +110,12 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 	while (!linked_in_use && linked_next_ptr != -1)
 	{
 		eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*) linked_next_ptr;
-		if (linked_fe->m_inuse)
+		if (linked_fe->m_inuse && (requestedFrontend->getSharedCTInput() < 0 || linked_fe->m_frontend->getTuneType() == iDVBFrontend::feSatellite))
 			linked_in_use = true;
 		linked_fe->m_frontend->getData(eDVBFrontend::LINKED_NEXT_PTR, (long&)linked_next_ptr);
 	}
 
+	linked_in_use = linked_in_use || !sharedUsers.empty();
 	// when a linked in use tuner is found we get the tuner data...
 	if (linked_in_use)
 	{
@@ -123,6 +140,16 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 
 		if ( lnb_param.m_slot_mask & slot_id ) // lnb for correct tuner?
 		{
+			bool incompatible = false;
+			for (auto *other : sharedUsers)
+			{
+				long userBand;
+				other->getData(eDVBFrontend::SATCR, userBand);
+				if ((userBand >= 0) != is_unicable || (is_unicable && userBand == lnb_param.SatCR_idx))
+					incompatible = true;
+			}
+			if (incompatible)
+				continue;
 			int ret = 0;
 			eDVBSatelliteDiseqcParameters &di_param = lnb_param.m_diseqc_parameters;
 
@@ -261,6 +288,13 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 							}
 						}
 						eSecDebugNoSimulate("[eDVBSatelliteEquipmentControl] ret4 %d", ret);
+					}
+
+					// User bands can select different transponders, but cannot move a shared dish.
+					if (ret && rotor && !sharedUsers.empty() && rotor_pos != sat.orbital_position)
+					{
+						ret = 0;
+						satcount = old_satcount;
 					}
 
 					// A rotor cannot move while an advanced dependent tuner is using its current position.
