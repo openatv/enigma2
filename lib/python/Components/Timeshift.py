@@ -698,7 +698,7 @@ class InfoBarTimeshift:
 			if not ts.isTimeshiftEnabled() and ts.startTimeshift():
 				print("[Timeshift] Unable to start RAM time shift.")
 				if self.pauseAfterStart or self.notifyAfterStart:
-					self.session.showError(_("Unable to start RAM time shift."))
+					self.session.showError(_("Time shift not possible!"))
 				self.pauseAfterStart = self.notifyAfterStart = False
 				return False
 			self.event_changed = False
@@ -859,9 +859,9 @@ class InfoBarTimeshift:
 		if self.ptsStorageError != error or manualStart:
 			self.ptsStorageError = error
 			print(f"[Timeshift] {message} Path: {error[0]}. {detail or ''}")
-			# Background storage checks only need diagnostics; explicit actions need feedback.
+			# Keep storage diagnostics in the log; a manual start only needs a short reply.
 			if manualStart or notify:
-				self.session.showError(message, timeout=10)
+				self.session.showError(_("Time shift not possible!") if manualStart else message, timeout=10)
 
 	def ptsTimeshiftWriteError(self):
 		# The native recorder has already stopped and returned to live TV.
@@ -870,7 +870,7 @@ class InfoBarTimeshift:
 			entry.retained = True
 			entry.autosave = False
 		self.finishTimeshiftBuffer()
-		self.ptsAbortTimeshift(_("Writing to the time shift storage device failed. Time shift has been stopped."), stop=False, notify=True)
+		self.ptsAbortTimeshift(_("Writing to the time shift storage device failed. Time shift has been stopped."), stop=False, notify=self.save_current_timeshift)
 
 	def ptsPartitionChanged(self, action, partition):
 		if action == "remove" and self.ptsStorage and not self.isRamTimeshift():
@@ -878,7 +878,7 @@ class InfoBarTimeshift:
 			if (partition.device and source == join("/dev", partition.device)) or (partition.mountpoint and mountpoint.rstrip("/") == partition.mountpoint.rstrip("/")):
 				self.ptsStorage = None
 				if self.timeshiftEnabled() or self.save_current_timeshift:
-					self.ptsAbortTimeshift(_("The time shift storage device was removed. Time shift has been stopped."), notify=True)
+					self.ptsAbortTimeshift(_("The time shift storage device was removed. Time shift has been stopped."), notify=self.save_current_timeshift)
 				else:
 					self.pts_delay_timer.stop()
 					self.pts_cleanUp_timer.stop()
