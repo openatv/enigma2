@@ -66,7 +66,22 @@ int eStack::event(int event, void* data, void* data2) {
 		return 0;
 
 	int ret = eWidget::event(event, data, data2);
-	if (event == evtChangedSize)
+	if (event == evtChangedPosition) {
+		/* the children are siblings, not real children, so they don't follow
+		   us: shift them along the axis the layout doesn't control (a nested
+		   stack gets moved by its parent stack) */
+		ePoint delta = position() - m_lastpos;
+		m_lastpos = position();
+		if (delta.x() || delta.y()) {
+			for (auto child : m_stackchilds) {
+				if (m_direction == Horizontal)
+					child->move(ePoint(child->position().x(), child->position().y() + delta.y()));
+				else
+					child->move(ePoint(child->position().x() + delta.x(), child->position().y()));
+			}
+			recalcLayout();
+		}
+	} else if (event == evtChangedSize)
 		recalcLayout();
 	return ret;
 }

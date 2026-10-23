@@ -5,35 +5,9 @@ from Components.config import config
 from Components.Element import cached
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
+from Components.SystemInfo import VideoCodec
 from Tools.GetEcmInfo import GetEcmInfo, getCaidData
 from Tools.Transponder import ConvertToHumanReadable
-
-CODEC_NAMES = {  # Stream type to codec mapping.
-	-1: "N/A",
-	0: "MPEG2",
-	1: "AVC",
-	2: "H263",
-	3: "VC1",
-	4: "MPEG4-VC",
-	5: "VC1-SM",
-	6: "MPEG1",
-	7: "HEVC",
-	8: "VP8",
-	9: "VP9",
-	10: "XVID",
-	11: "N/A 11",
-	12: "N/A 12",
-	13: "DIVX 3.11",
-	14: "DIVX 4",
-	15: "DIVX 5",
-	16: "AVS",
-	17: "N/A 17",
-	18: "VP6",
-	19: "N/A 19",
-	20: "N/A 20",
-	21: "SPARK"
-}
-codec_data = CODEC_NAMES  # Legacy name currently only used in Information.py.
 
 
 class PliExtraInfo(Converter, Poll):
@@ -373,7 +347,7 @@ class PliExtraInfo(Converter, Poll):
 		return feRaw.get("tuner_type") or ""
 
 	def createVideoCodec(self, info):
-		return CODEC_NAMES.get(info.getInfo(iServiceInformation.sVideoType), _("N/A"))
+		return VideoCodec.getName(info.getInfo(iServiceInformation.sVideoType), _("N/A"))
 
 	@cached
 	def getBool(self):

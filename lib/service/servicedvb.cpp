@@ -2093,6 +2093,8 @@ void eDVBServicePlay::serviceEventTimeshift(int event) {
 
 RESULT eDVBServicePlay::start()
 {
+	/* an event handler may stop and release this service while it starts */
+	ePtr<eDVBServicePlay> self = this;
 	eServiceReferenceDVB service = (eServiceReferenceDVB&)m_reference;
 	bool scrambled = true;
 	int packetsize = 188;
@@ -3035,8 +3037,8 @@ std::string eDVBServicePlay::getInfoString(int w)
 		{
 			ePtr<eDVBService> sRelayServiceOrigSref;
 			eDVBDB::getInstance()->getService(eServiceReferenceDVB(m_reference.alternativeurl), sRelayServiceOrigSref);
-//			eDebug("[eDVBServicePlay] getInfoString m_provider_name %s", sRelayServiceOrigSref->m_provider_name.c_str());
-			m_dvb_service->m_provider_name = std::string(sRelayServiceOrigSref->m_provider_name);
+			if (sRelayServiceOrigSref)
+				m_dvb_service->m_provider_name = sRelayServiceOrigSref->m_provider_name;
 		}
 		return m_dvb_service->m_provider_name;
 	case sServiceref:

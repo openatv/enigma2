@@ -25,7 +25,7 @@ from Components.RTLSDR import getRTLSDRChannelFrequency
 from Components.ScrollLabel import ScrollLabel
 from Components.ServiceEventTracker import ServiceEventTracker
 # from Components.Storage import storageManager
-from Components.SystemInfo import BoxInfo, getBoxDisplayName, getDemodVersion
+from Components.SystemInfo import BoxInfo, VideoCodec, getBoxDisplayName, getDemodVersion
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen, ScreenSummary
@@ -1662,9 +1662,8 @@ class InformationService(InformationBase):
 			info.append(self.formatLine("H", _("Service and PID information for '%s'") % self.serviceName))
 			info.append("")
 			if self.serviceInfo:
-				from Components.Converter.PliExtraInfo import codec_data  # This should be in SystemInfo maybe as a BoxInfo variable.
 				videoData = []
-				videoData.append(codec_data.get(self.serviceInfo.getInfo(iServiceInformation.sVideoType), _("N/A")))
+				videoData.append(VideoCodec.getName(self.serviceInfo.getInfo(iServiceInformation.sVideoType), _("N/A")))
 				width = self.serviceInfo.getInfo(iServiceInformation.sVideoWidth)
 				height = self.serviceInfo.getInfo(iServiceInformation.sVideoHeight)
 				if width > 0 and height > 0:

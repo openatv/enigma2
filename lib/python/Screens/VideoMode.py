@@ -8,8 +8,7 @@ from Components.config import ConfigNothing, config, configfile
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.ServiceEventTracker import ServiceEventTracker
-from Components.SystemInfo import BoxInfo
-from Components.Converter.PliExtraInfo import CODEC_NAMES
+from Components.SystemInfo import BoxInfo, VideoCodec
 from Screens.ChannelSelection import FLAG_IS_DEDICATED_3D
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
@@ -544,7 +543,7 @@ class AutoVideoMode(Screen):
 			service = NavigationInstance.instance.getCurrentService()
 			info = service and service.info()
 			if info:
-				codec = CODEC_NAMES.get(info.getInfo(iServiceInformation.sVideoType), "")
+				codec = VideoCodec.getName(info.getInfo(iServiceInformation.sVideoType), "")
 				gamma = {1: "HDR", 2: "HDR10", 3: "HLG"}.get(info.getInfo(iServiceInformation.sGamma), "")
 				content = " ".join(x for x in (content, codec, gamma) if x and x != "N/A")
 			resolutionlabel["content"].setText(content)

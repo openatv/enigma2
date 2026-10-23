@@ -233,6 +233,9 @@ class FlashExpander(Setup):
 
 	def keyGreen(self):
 		def activateCallback(output, retVal, extraArgs):
+			self.messageBox.close(retVal == 0)
+
+		def copyFinishedCallback(success):
 			def mountCallback(output, retVal, extraArgs):
 				system("sync")
 				if isdir(join(f"/{EXPANDER_MOUNT}/{EXPANDER_MOUNT}", "bin")):
@@ -242,8 +245,7 @@ class FlashExpander(Setup):
 				else:
 					self.session.open(MessageBox, _("Error: mount not successful!"), MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 
-			self.messageBox.close(retVal == 0)
-			if retVal:
+			if not success:
 				self.session.open(MessageBox, _("Error: The copy was unsuccessful!"), MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 				self.updateStatus()
 			else:
@@ -267,18 +269,20 @@ class FlashExpander(Setup):
 		def copyFlashdata():
 			makedirs(usrDirectory, exist_ok=True)
 			self.console.ePopen(["/bin/busybox", "cp", "-af", f"{EXPANDER_DIRECTORY}/.", usrDirectory], callback=activateCallback)
-			self.messageBox = self.session.open(MessageBox, "%s\n\n%s" % (usrDirectory, _("Please wait, flash memory is being copied to this flash expander. This could take a number of minutes to complete.")), MessageBox.TYPE_INFO, enable_input=False, windowTitle=self.getTitle())
+			self.messageBox = self.session.openWithCallback(copyFinishedCallback, MessageBox, "%s\n\n%s" % (usrDirectory, _("Please wait, flash memory is being copied to this flash expander. This could take a number of minutes to complete.")), MessageBox.TYPE_INFO, enable_input=False, windowTitle=self.getTitle())
 
 		def deleteCallback(answer):
 			def deleteMessageCallback(output, retVal, extraArgs):
 				self.messageBox.close(retVal == 0)
-				if retVal:
+
+			def deleteFinishedCallback(success):
+				if not success:
 					self.session.open(MessageBox, _("Error: The delete was unsuccessful!"), MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 				self.updateStatus()
 
 			if answer:
 				self.console.ePopen(["/bin/busybox", "rm", "-r", usrDirectory], callback=deleteMessageCallback)
-				self.messageBox = self.session.open(MessageBox, "%s\n\n%s" % (usrDirectory, _("Please wait, copy of flash memory is being deleted. This could take a few minutes to complete.")), MessageBox.TYPE_INFO, enable_input=False, windowTitle=self.getTitle())
+				self.messageBox = self.session.openWithCallback(deleteFinishedCallback, MessageBox, "%s\n\n%s" % (usrDirectory, _("Please wait, copy of flash memory is being deleted. This could take a few minutes to complete.")), MessageBox.TYPE_INFO, enable_input=False, windowTitle=self.getTitle())
 
 		if config.flashExpander.device.value:
 			if not self.mountData:  # Reselect the device

@@ -83,6 +83,24 @@ class pServiceEvent:
 	def getExtraEventData(self):
 		return None
 
+	def getCridData(self, types):
+		return []
+
+	def getEPGSource(self):
+		return ""
+
+	def getGenreDataList(self):
+		return []
+
+	def getParentalData(self):
+		return None
+
+	def getPdcPil(self):
+		return 0
+
+	def getRunningStatus(self):
+		return 0
+
 
 class EventInfo(PerServiceBase, Source):
 	NOW = 0
