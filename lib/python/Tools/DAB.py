@@ -28,6 +28,43 @@ class DABMetadata:
 		0x7B: "az", 0x7C: "as", 0x7D: "hy", 0x7E: "ar", 0x7F: "am"
 	}
 
+	def programmeTypeName(self, value, table):
+		"""Format FIG 0/17 using the FIG 0/9 International Table Identifier.
+
+		ETSI TS 101 756 tables 12/13 differ from RDS for codes 30 and 31.
+		Do not guess a category until the ensemble's table is known.
+		"""
+		try:
+			code, table = int(value), int(table)
+		except (TypeError, ValueError):
+			return ""
+		if not 1 <= code <= 29:
+			return ""
+		# Translate on access so GUI language changes do not cache old labels.
+		if table == 1:
+			names = (
+				"", _("News"), _("Current Affairs"), _("Information"), _("Sport"),
+				_("Education"), _("Drama"), _("Culture"), _("Science"), _("Varied"),
+				_("Pop Music"), _("Rock Music"), _("Easy Listening Music"),
+				_("Light Classical"), _("Serious Classical"), _("Other Music"),
+				_("Weather/meteorology"), _("Finance/Business"), _("Children's programmes"),
+				_("Social Affairs"), _("Religion"), _("Phone In"), _("Travel"),
+				_("Leisure"), _("Jazz Music"), _("Country Music"), _("National Music"),
+				_("Oldies Music"), _("Folk Music"), _("Documentary")
+			)
+		elif table == 2:
+			names = (
+				"", _("News"), _("Information"), _("Sports"), _("Talk"), _("Rock"),
+				_("Classic Rock"), _("Adult Hits"), _("Soft Rock"), _("Top 40"),
+				_("Country"), _("Oldies"), _("Soft"), _("Nostalgia"), _("Jazz"),
+				_("Classical"), _("Rhythm and Blues"), _("Soft Rhythm and Blues"),
+				_("Foreign Language"), _("Religious Music"), _("Religious Talk"),
+				_("Personality"), _("Public"), _("College"), "", "", "", "", "", _("Weather")
+			)
+		else:
+			return ""
+		return names[code]
+
 	def languageName(self, value):
 		try:
 			code = int(value)

@@ -82,6 +82,8 @@ struct eDABWorkerStats
 	int snrCentidB;
 	int ficQuality;
 	int mscQuality;
+	int programmeType = -1;
+	int programmeTypeTable = -1;
 	bool rfSynced;
 	bool serviceFound;
 	bool dabplus;

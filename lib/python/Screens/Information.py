@@ -1637,7 +1637,8 @@ class InformationService(InformationBase):
 				addIfAvailable(info, _("DAB+ channel"), channelText)
 			elif serviceRef:
 				addIfAvailable(info, _("DVB payload PID"), formatHex(serviceRef.getUnsignedData(5) & 0x1FFF))
-			addIfAvailable(info, _("Program type"), getServiceInfoValue(iServiceInformation.sTagGenre))
+			addIfAvailable(info, _("Genre"), getServiceInfoValue(iServiceInformation.sTagGenre))
+			addIfAvailable(info, _("Programme type (PTY)"), dabMetadata.programmeTypeName(getServiceInfoValue(iServiceInformation.sDABPTY), getServiceInfoValue(iServiceInformation.sDABPTYTable)))
 			addIfAvailable(info, _("Language"), dabMetadata.languageName(getServiceInfoValue(iServiceInformation.sTagLanguageCode)))
 			addIfAvailable(info, _("Codec"), getServiceInfoValue(iServiceInformation.sTagCodec))
 			addIfAvailable(info, _("Audio bit rate"), getServiceInfoValue(iServiceInformation.sTagBitrate))
