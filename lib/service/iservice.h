@@ -439,7 +439,9 @@ public:
 		sDABFICQuality = sUser + 7,
 		sDABMSCQuality = sUser + 8,
 		sDABProtection = sUser + 9,
-		sDABDynamicLabel = sUser + 10
+		sDABDynamicLabel = sUser + 10,
+		sDABPTY = sUser + 11,
+		sDABPTYTable = sUser + 12
 	};
 	enum {
 		resNA = -1,
