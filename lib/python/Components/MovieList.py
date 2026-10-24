@@ -1,7 +1,7 @@
 # flake8: noqa: F401
 
 from os import stat
-from os.path import join, normpath, realpath, split, splitext
+from os.path import islink, join, normpath, realpath, split, splitext
 from random import shuffle
 from struct import Struct
 
@@ -13,13 +13,16 @@ from skin import fonts, getSkinFactor, parameters, parseFont
 from Components.config import config
 from Components.FileList import AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAGE_EXTENSIONS, KNOWN_EXTENSIONS, MOVIE_EXTENSIONS
 from Components.GUIComponent import GUIComponent
+from Components.MovieListSettings import movieListSettings
+from Components.MovieListStyle import movieListStyles
 from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest, MultiContentEntryProgress, MultiContentEntryText
 from Components.SkinIcon import SkinIcon, loadSkinIcon
 from Components.Renderer.Picon import getChannelSelectionPiconName
 from Screens.LocationBox import defaultInhibitDirs
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
-from Tools.FuzzyDate import FuzzyTime
 from Tools.LoadPixmap import LoadPixmap
+from Tools.MovieFileOperations import writeMovieStatus
+from Tools.MovieMaintenance import MovieStructure, movieMaintenanceState
 from Tools.TextBoundary import getTextBoundarySize
 from Tools.Trashcan import TRASHCAN
 
@@ -70,6 +73,26 @@ class StubInfo:
 justStubInfo = StubInfo()
 
 
+class MovieListServiceInfo(StubInfo):
+	def __init__(self, item):
+		self.item = item
+
+	def getName(self, serviceRef):
+		return self.item.get("title") or split(serviceRef.getPath())[1]
+
+	def getLength(self, serviceRef):
+		return self.item.get("duration") or -1
+
+	def getInfo(self, serviceRef, field):
+		return self.item.get({iServiceInformation.sTimeCreate: "recordedAt", iServiceInformation.sFileSize: "fileSize"}.get(field), 0) or 0
+
+	def getInfoObject(self, serviceRef, field):
+		return self.getInfo(serviceRef, field)
+
+	def getInfoString(self, serviceRef, field):
+		return self.item.get({iServiceInformation.sDescription: "description", iServiceInformation.sServiceref: "serviceReference", iServiceInformation.sTags: "tags"}.get(field), "") or ""
+
+
 def lastPlayPosFromCache(ref):
 	from Screens.InfoBarGenerics import resumePointCache
 	return resumePointCache.get(ref.toString(), None)
@@ -88,13 +111,13 @@ def moviePlayState(cutsFileName, ref, length):
 				cut, cutType = cutsParser.unpack(data)
 				if cutType == 3:  # Undocumented, but 3 appears to be the stop.
 					cutPTS = cut
-				else:
+				elif cutType == 5:
 					lastCut = cut
 		last = lastPlayPosFromCache(ref)  # See what we have in RAM (it might help).
 		if last:
 			if not lastCut:  # Get the length from the cache.
 				lastCut = last[2]
-			if not cutPTS:  # Get the cut point from the cache if not in the file.
+			if cutPTS is None:  # Zero is an explicit start position.
 				cutPTS = last[1]
 		if cutPTS is None:
 			return None  # Unseen movie.
@@ -109,8 +132,7 @@ def moviePlayState(cutsFileName, ref, length):
 	except Exception:
 		cutPTS = lastPlayPosFromCache(ref)
 		if cutPTS:
-			if not length or (length < 0):
-				length = cutPTS[2]
+			length = cutPTS[2] or (max(0, length or 0) * 90000)
 			if length:
 				if cutPTS[1] >= length:
 					return 100
@@ -122,24 +144,15 @@ def moviePlayState(cutsFileName, ref, length):
 
 def resetMoviePlayState(cutsFileName, ref=None):
 	try:
+		if not cutsFileName.endswith(".cuts"):
+			return
+		writeMovieStatus(cutsFileName[:-5])
 		if ref is not None:
+			# InfoBarGenerics imports MovieList; resolve this entry point after startup.
 			from Screens.InfoBarGenerics import delResumePoint
 			delResumePoint(ref)
-		with open(cutsFileName, "rb") as fd:
-			cutlist = []
-			while True:
-				data = fd.read(cutsParser.size)
-				if len(data) < cutsParser.size:
-					break
-				cut, cutType = cutsParser.unpack(data)
-				if cutType != 3:
-					cutlist.append(data)
-		with open(cutsFileName, "wb") as fd:
-			fd.write("".join(cutlist))
-	except Exception:
-		pass
-		# import sys
-		# print(f"[MovieList] Exception in resetMoviePlayState: {sys.exc_info()[0]} - {sys.exc_info()[1]}!")
+	except (OSError, ValueError) as error:
+		print(f"[MovieList] Unable to reset playback position: {error}")
 
 
 class MovieList(GUIComponent):
@@ -170,6 +183,16 @@ class MovieList(GUIComponent):
 		self.fontSize = 28 if getSkinFactor() == 1.5 else 20
 		self.listHeight = None
 		self.listWidth = None
+		self.listStyle = None
+		self.styleOverride = None
+		self.styleMode = "default"
+		self.isGrid = False
+		self.styleScale = ((1, 1), (1, 1))
+		self.movieMetadata = {}
+		self.cached = False
+		self.moviePosters = {}
+		self.moviePreviews = {}
+		self.markedPaths = set()
 		self.reloadDelayTimer = None
 		self.l = eListboxPythonMultiContent()
 		self.tags = set()
@@ -194,6 +217,7 @@ class MovieList(GUIComponent):
 		self.updatePlayPosCache()
 
 	def applySkin(self, desktop, parent):
+		self.styleScale = parent.scale
 		if self.skinAttributes is not None:
 			attribs = []
 			for (attrib, value) in self.skinAttributes:
@@ -232,7 +256,15 @@ class MovieList(GUIComponent):
 		return self._playInForeground
 
 	def set_playInForeground(self, value):
-		self._playInForeground = value
+		if self._playInForeground is not value:
+			previous = self._playInForeground
+			self._playInForeground = value
+			if self.listStyle is not None:
+				for serviceRef in (previous, value):
+					index = self.findService(serviceRef)
+					if index is not None:
+						self.invalidateItem(index)
+						self.l.invalidateEntry(index)
 
 	playInForeground = property(get_playInForeground, set_playInForeground)
 
@@ -244,18 +276,29 @@ class MovieList(GUIComponent):
 		if timer is not None and timer.justplay:
 			return
 		result = {}
-		for timer in NavigationInstance.instance.RecordTimer.timer_list:
-			if timer.isRunning() and not timer.justplay:
-				result[f"{split(timer.Filename)[1]}.ts"] = timer
+		for recording in NavigationInstance.instance.RecordTimer.timer_list:
+			if recording.isRunning() and not recording.justplay:
+				result[f"{split(recording.Filename)[1]}.ts"] = recording
 		if self.runningTimers == result:
 			return
 		self.runningTimers = result
 		if timer is not None:
+			movieMaintenanceState.invalidate((f"{timer.Filename}.ts",))
 			if self.reloadDelayTimer is not None:
 				self.reloadDelayTimer.stop()
 			self.reloadDelayTimer = eTimer()
 			self.reloadDelayTimer.callback.append(self.reload)
 			self.reloadDelayTimer.start(5000, 1)
+
+	def updateRecordingLengths(self):
+		if config.movielist.showRecordingLength.value and not self.cached:
+			for service, info, begin, data in self.list:
+				path = service.getPath()
+				if (timer := self.runningTimers.get(split(path)[1])) is not None and path == f"{timer.Filename}.ts":
+					info = eServiceCenter.getInstance().info(service)
+					length = info.getLength(service) if info else 0
+					self.movieMetadata.setdefault(path, {})["duration"] = max(0, length)
+					self.invalidateMoviePaths((path,))
 
 	def connectSelChanged(self, fnc):
 		if fnc not in self.onSelectionChanged:
@@ -271,23 +314,57 @@ class MovieList(GUIComponent):
 				callback()
 
 	def setDescriptionState(self, val):
-		self.descr_state = val
+		if self.descr_state != val:
+			self.descr_state = val
+			self.list = [(x[0], x[1], x[2], None) for x in self.list]
+			self.l.setList(self.list)
 
 	def setSortType(self, type):
 		self.sort_type = type
 
 	def setItemsPerPage(self):
-		if self.listHeight > 0:
+		styleSetting = getattr(config.movielist, "widgetStyle", None)
+		styleName = self.styleOverride if self.styleOverride is not None else styleSetting.value if styleSetting is not None else ""
+		self.listStyle = None
+		self.isGrid = False
+		self.l.setTemplate(None)
+		if self.instance is not None and styleName:
+			width = self.instance.size().width() - self.instance.getScrollbarWidth() - self.instance.getScrollbarOffset()
+			height = self.instance.size().height()
+			if width > 0 and height > 0:
+				self.listStyle = movieListStyles.createTemplate(styleName, width, height, self.styleScale, self.styleMode)
+		if self.listStyle is not None:
+			self.listStyle.apply(self.l)
+			self.itemHeight = self.listStyle.itemHeight
+			self.isGrid = self.listStyle.isGrid
+			self.instance.resize(eSize(self.listWidth, height // self.itemHeight * self.itemHeight))
+			return
+		self.l.setOrientation(eListbox.orVertical)
+		listHeight = self.instance.size().height() if styleName else self.listHeight
+		if listHeight > 0:
 			ext = config.movielist.useextlist.value
-			itemHeight = (self.listHeight // config.movielist.itemsperpage.value) * 2 if ext != "0" else self.listHeight // config.movielist.itemsperpage.value
+			minimumHeight = max(34 if getSkinFactor() == 1.5 else 28, self.fontSize + config.movielist.fontsize.value + 8)
+			itemHeight = max(minimumHeight, listHeight // config.movielist.itemsperpage.value) * (2 if ext != "0" else 1)
 		else:
 			itemHeight = 30  # Some default (270/5).
 		self.itemHeight = itemHeight
 		self.l.setItemHeight(itemHeight)
-		self.setIconFont()
-		self.instance.resize(eSize(self.listWidth, self.listHeight // itemHeight * itemHeight))
+		self.setFontsize()
+		self.instance.resize(eSize(self.listWidth, listHeight // itemHeight * itemHeight))
+
+	def setStyleMode(self, mode):
+		if self.styleMode != mode:
+			self.styleMode = mode
+			if self.instance is not None:
+				self.instance.resize(eSize(self.listWidth, self.listHeight))
+				self.setItemsPerPage()
+				self.invalidateMoviePaths(self.movieMetadata)
 
 	def setFontsize(self):
+		if self.listStyle is not None:
+			for index, font in enumerate(self.listStyle.template["fonts"]):
+				self.l.setFont(index, font)
+			return
 		self.l.setFont(0, gFont(self.fontName, self.fontSize + config.movielist.fontsize.value))
 		self.dateFont = gFont(self.fontName, (self.fontSize - 3) + config.movielist.fontsize.value)
 		self.l.setFont(1, self.dateFont)
@@ -315,6 +392,10 @@ class MovieList(GUIComponent):
 		self.invalidateItem(self.getCurrentIndex())
 
 	def buildMovieListEntry(self, serviceref, info, begin, data):
+		if self.listStyle is not None:
+			return self.buildStyledMovieListEntry(serviceref, info, begin, data)
+		if data is not None and data != -1 and hasattr(data, "styleValues"):
+			data = None
 		switch = config.usage.show_icons_in_movielist.value
 		ext = config.movielist.useextlist.value
 		width = self.l.getItemSize().width()
@@ -341,6 +422,11 @@ class MovieList(GUIComponent):
 			textPosY = 1
 		if parameters.get("MovieListNativeIcons", 0):
 			pathIconSize = dataIconSize = progressIconSize = min(ih, self.iconFontSize + 4)
+		else:
+			maximumIconSize = max(1, ih - 2 * listBeginX)
+			pathIconSize = min(pathIconSize, maximumIconSize)
+			dataIconSize = min(dataIconSize, maximumIconSize)
+			progressIconSize = min(progressIconSize, maximumIconSize)
 		textPosX = listBeginX + dataIconSize + listMarginX
 		if serviceref.flags & eServiceReference.mustDescent:
 			iconSize = pathIconSize  # Directory.
@@ -355,6 +441,8 @@ class MovieList(GUIComponent):
 				if not p[1]:
 					p = split(p[0])  # If path ends in "/", p is blank.
 				txt = p[1]
+				if isinstance(info, MovieListServiceInfo):
+					txt = info.getName(serviceref)
 				if txt == TRASHCAN:
 					dateSize = getTextBoundarySize(self.instance, self.dateFont, self.l.getItemSize(), _("Trashcan")).width()
 					res.append(self.iconEntry(self.iconTrash, (iconPosX, iconPosY), (iconSize, iconSize)))
@@ -363,10 +451,12 @@ class MovieList(GUIComponent):
 					return res
 			if not config.movielist.show_underscores.value:
 				txt = txt.replace("_", " ").strip()
-			dateSize = getTextBoundarySize(self.instance, self.dateFont, self.l.getItemSize(), _("Directory")).width()
+			directoryText = movieListSettings.directoryText(pathName) if info is not None else _("Directory")
+			directoryText = self.movieMetadata.get(pathName, {}).get("mediaStructure") or directoryText
+			dateSize = getTextBoundarySize(self.instance, self.dateFont, self.l.getItemSize(), directoryText).width()
 			res.append(self.iconEntry(self.iconFolder, (iconPosX, iconPosY), (iconSize, iconSize)))
 			res.append(MultiContentEntryText(pos=(textPosX, 0), size=(width - textPosX - dateSize - listMarginX - listEndX, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=txt))
-			res.append(MultiContentEntryText(pos=(width - dateSize - listEndX, textPosY), size=(dateSize, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=_("Directory")))
+			res.append(MultiContentEntryText(pos=(width - dateSize - listEndX, textPosY), size=(dateSize, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=directoryText))
 			return res
 		if (data == -1) or (data is None):
 			data = MovieListData()
@@ -374,14 +464,12 @@ class MovieList(GUIComponent):
 			x = self.list[cur_idx]  # x = ref, info, begin, ...
 			data.len = 0  # Don't recalculate movie list to speedup loading the list.
 			self.list[cur_idx] = (x[0], x[1], x[2], data)  # Update entry in list... so next time we don't need to recalculate.
-			if config.movielist.show_underscores.value:
-				data.txt = info.getName(serviceref)
-			else:
-				data.txt = info.getName(serviceref).replace("_", " ").strip()
-			if config.movielist.hide_extensions.value:
-				fileName, fileExtension = splitext(data.txt)
-				if fileExtension in KNOWN_EXTENSIONS:
-					data.txt = fileName
+			metadata = self.movieMetadata.get(pathName, {})
+			recordingTitle = info.item.get("recordingTitle", "") if isinstance(info, MovieListServiceInfo) else info.getName(serviceref)
+			data.txt = movieListSettings.title(pathName, recordingTitle, metadata)
+			fileInfo = movieListSettings.fileInfo(pathName, metadata, split(pathName)[1] in self.runningTimers)
+			if fileInfo:
+				data.txt = f"{data.txt} · {fileInfo}"
 			data.icon = None
 			data.part = None
 			data.partcol = None
@@ -399,11 +487,16 @@ class MovieList(GUIComponent):
 						data.partcol = 0xff001d
 			elif (self.playInBackground or self.playInForeground) and serviceref == (self.playInBackground or self.playInForeground):
 				data.icon = self.iconMoviePlay
-			else:
-				data.part = moviePlayState(f"{pathName}.cuts", serviceref, data.len)
+			elif switch in ("i", "p", "s"):
+				data.part = info.item.get("progress") if isinstance(info, MovieListServiceInfo) else moviePlayState(f"{pathName}.cuts", serviceref, data.len)
+				if pathName in getattr(self, "fileSnapshots", {}):
+					self.fileSnapshots[pathName]["progress"] = data.part
+				watchState = movieListSettings.watchState(data.part)
 				if switch == "i":
-					if data.part is not None and data.part > 0:
-						data.icon = self.iconPart[data.part // 25]
+					if watchState == "watched":
+						data.icon = self.iconPart[4]
+					elif watchState == "watching":
+						data.icon = self.iconPart[max(1, min(3, data.part // 25))]
 					else:
 						if config.usage.movielist_unseen.value:
 							data.icon = self.iconUnwatched
@@ -414,6 +507,8 @@ class MovieList(GUIComponent):
 						if config.usage.movielist_unseen.value:
 							data.part = 100
 							data.partcol = 0x206333
+			if movieListSettings.isNew(begin, data.part if data.part is not None else metadata.get("progress")):
+				data.txt = f"{_('New')} · {data.txt}"
 		len = data.len
 		len = f"{len // 60}:{len % 60:02d}" if len > 0 else ""
 		iconSize = 0
@@ -451,9 +546,10 @@ class MovieList(GUIComponent):
 				res.append(self.iconEntry(data.icon, (iconPosX, iconPosY), (iconSize, iconSize)))
 		begin_string = ""
 		if begin > 0:
-			begin_string = ", ".join(FuzzyTime(begin, inPast=True))
+			begin_string = movieListSettings.dateText(begin)
 		dateSize = serviceSize = getTextBoundarySize(self.instance, self.dateFont, self.l.getItemSize(), begin_string).width()
 		textPosX = listBeginX + iconSize + listMarginX if iconSize else listBeginX
+		displayTitle = f"✓ {data.txt}" if pathName in self.markedPaths else data.txt
 		if ext != "0":
 			getrec = info.getName(serviceref)
 			fileName, fileExtension = splitext(getrec)
@@ -461,9 +557,7 @@ class MovieList(GUIComponent):
 			picon = None
 			service = None
 			try:
-				serviceHandler = eServiceCenter.getInstance()
-				info = serviceHandler.info(serviceref)
-				desc = info.getInfoString(serviceref, iServiceInformation.sDescription)  # Get description.
+				desc = info.getInfoString(serviceref, iServiceInformation.sDescription) if self.descr_state == self.SHOW_DESCRIPTION else ""
 				ref = info.getInfoString(serviceref, iServiceInformation.sServiceref)  # Get reference.
 				service = ServiceReference(ref).getServiceName()  # Get service name.
 				serviceSize = getTextBoundarySize(self.instance, self.dateFont, self.l.getItemSize(), service).width()
@@ -477,23 +571,122 @@ class MovieList(GUIComponent):
 					print(f"[MovieList] Load picon get failed: '{str(err)}'!")
 			if fileExtension in (".ts", ".stream"):
 				if ext == "1":
-					res.append(MultiContentEntryText(pos=(textPosX, 0), size=(width - textPosX - serviceSize - listMarginX - listEndX, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=data.txt))
+					res.append(MultiContentEntryText(pos=(textPosX, 0), size=(width - textPosX - serviceSize - listMarginX - listEndX, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=displayTitle))
 					res.append(MultiContentEntryText(pos=(width - serviceSize - listEndX, textPosY), size=(serviceSize, ih), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=service))
 				if ext == "2":
 					piconSize = ih * 1.667
-					res.append(MultiContentEntryText(pos=(textPosX, 0), size=(width - textPosX - dateSize - listMarginX - listEndX, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=data.txt))
+					res.append(MultiContentEntryText(pos=(textPosX, 0), size=(width - textPosX - dateSize - listMarginX - listEndX, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=displayTitle))
 					res.append(MultiContentEntryPixmapAlphaBlend(pos=(width - piconSize - listEndX, listEndX), size=(piconSize, ih), png=picon, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO))
 				res.append(MultiContentEntryText(pos=(listBeginX, ih + textPosY), size=(width - listBeginX - dateSize - listMarginX - listEndX, ih), font=1, flags=RT_HALIGN_LEFT, text=desc))
 				res.append(MultiContentEntryText(pos=(width - dateSize - listEndX, ih + textPosY), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
 				return res
 			else:
-				res.append(MultiContentEntryText(pos=(textPosX, 0), size=(width - textPosX - dateSize - listMarginX - listEndX, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=data.txt))
+				res.append(MultiContentEntryText(pos=(textPosX, 0), size=(width - textPosX - dateSize - listMarginX - listEndX, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=displayTitle))
 				res.append(MultiContentEntryText(pos=(width - dateSize - listEndX, ih), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
 				return res
 		else:
-			res.append(MultiContentEntryText(pos=(textPosX, 0), size=(width - textPosX - dateSize - listMarginX - listEndX, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=data.txt))
+			res.append(MultiContentEntryText(pos=(textPosX, 0), size=(width - textPosX - dateSize - listMarginX - listEndX, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=displayTitle))
 			res.append(MultiContentEntryText(pos=(width - dateSize - listEndX, textPosY), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=begin_string))
 			return res
+
+	def buildStyledMovieListEntry(self, serviceRef, info, begin, data):
+		if data is not None and data != -1 and getattr(data, "styleFields", None) == self.listStyle.fields:
+			return data.styleValues
+		path = serviceRef.getPath()
+		isDirectory = bool(serviceRef.flags & eServiceReference.mustDescent)
+		metadata = self.movieMetadata.get(path, {})
+		fields = self.listStyle.fields
+		title = ""
+		date = ""
+		description = ""
+		serviceName = ""
+		status = ""
+		progress = -1  # Native progress skips values outside 0..100.
+		if isDirectory:
+			title = split(normpath(path))[1] if info is not None else ".."
+			if isinstance(info, MovieListServiceInfo):
+				title = info.getName(serviceRef)
+			kind = movieListSettings.directoryText(path) if info is not None else _("Directory")
+			kind = metadata.get("mediaStructure") or kind
+			if title == TRASHCAN:
+				title = _("Deleted items")
+				kind = _("Trashcan")
+			date = kind
+		else:
+			recordingTitle = info.item.get("recordingTitle", "") if isinstance(info, MovieListServiceInfo) else info.getName(serviceRef) if info is not None else ""
+			title = movieListSettings.title(path, recordingTitle, metadata)
+			kind = splitext(path)[1][1:].upper() if config.movielist.showFormat.value else ""
+			if "Date" in fields and begin > 0:
+				date = movieListSettings.dateText(begin)
+			if info is not None:
+				try:
+					if "Description" in fields and "description" not in metadata:
+						description = info.getInfoString(serviceRef, iServiceInformation.sDescription)
+					if "ServiceName" in fields:
+						reference = info.getInfoString(serviceRef, iServiceInformation.sServiceref)
+						serviceName = ServiceReference(reference).getServiceName() if reference else ""
+				except (OSError, RuntimeError) as error:
+					print(f"[MovieList] Unable to read movie details: {error}")
+			if fields.intersection(("Status", "Progress")):
+				if split(path)[1] in self.runningTimers:
+					status = _("Recording")
+				elif serviceRef == (self.playInBackground or self.playInForeground):
+					status = _("Playing")
+				elif config.usage.show_icons_in_movielist.value != "o":
+					progress = metadata.get("progress")
+					if progress is not None:
+						progress = max(0, min(100, progress))
+					if "progress" in metadata and (movieListSettings.watchState(progress) != "unwatched" or config.usage.movielist_unseen.value):
+						status = movieListSettings.watchText(progress)
+			if movieListSettings.isNew(begin, metadata.get("progress")):
+				status = f"{_('New')} · {status}" if status else _("New")
+		if isDirectory and not config.movielist.show_underscores.value:
+			title = title.replace("_", " ").strip()
+		data = MovieListData()
+		description = metadata.get("description", description) if self.descr_state == self.SHOW_DESCRIPTION else ""
+		data.txt = title  # Front-panel summaries and existing plugins use the legacy title field.
+		if path in self.markedPaths:
+			title = f"✓ {title}"
+		data.styleFields = fields
+		if progress is None:
+			progress = -1
+		fileInfo = movieListSettings.fileInfo(path, metadata, split(path)[1] in self.runningTimers) if not isDirectory else kind
+		if not isDirectory and fileInfo and "FileInfo" not in fields:
+			title = f"{title} · {fileInfo}"
+		data.styleValues = (title, date, description, serviceName, status, progress, kind, self.moviePosters.get(path), str(metadata.get("year", "")), str(metadata.get("rating", "")), fileInfo, self.moviePreviews.get(path))
+		index = self.l.getCurrentSelectionIndex()
+		self.list[index] = (serviceRef, info, begin, data)
+		return data.styleValues
+
+	def invalidateMoviePaths(self, paths):
+		for index, item in enumerate(self.list):
+			if item[0].getPath() in paths:
+				self.invalidateItem(index)
+				self.l.invalidateEntry(index)
+
+	def setMovieMetadata(self, items):
+		items = {x: dict(items[x]) for x in items}
+		for path, item in items.items():
+			if path in getattr(self, "fileSnapshots", {}):
+				self.fileSnapshots[path].update(item)
+		for path, item in self.movieMetadata.items():
+			if item.get("mediaStructure") or split(path)[1] in self.runningTimers:
+				items[path] = dict(items.get(path, {}), **{x: item[x] for x in ("mediaStructure", "playPath", "duration") if x in item})
+		paths = {path for path in self.movieMetadata.keys() | items.keys() if self.movieMetadata.get(path) != items.get(path)}
+		self.movieMetadata = dict(items)
+		self.moviePosters = {path: pixmap for path, pixmap in self.moviePosters.items() if path in items}
+		self.moviePreviews = {path: pixmap for path, pixmap in self.moviePreviews.items() if path in items}
+		self.invalidateMoviePaths(paths)
+
+	def setMoviePoster(self, path, pixmap):
+		if path in self.movieMetadata and self.moviePosters.get(path) is not pixmap:
+			self.moviePosters[path] = pixmap
+			self.invalidateMoviePaths((path,))
+
+	def setMoviePreview(self, path, pixmap):
+		if path in self.movieMetadata and self.moviePreviews.get(path) is not pixmap:
+			self.moviePreviews[path] = pixmap
+			self.invalidateMoviePaths((path,))
 
 	def moveToFirstMovie(self):
 		if self.firstFileEntry < len(self.list):
@@ -540,8 +733,8 @@ class MovieList(GUIComponent):
 		self.setFontsize()
 
 	def preWidgetRemove(self, instance):
-		instance.setContent(None)
 		instance.selectionChanged.get().remove(self.selectionChanged)
+		instance.setContent(None)
 
 	def reload(self, root=None, filter_tags=None):
 		if self.reloadDelayTimer is not None:
@@ -552,6 +745,9 @@ class MovieList(GUIComponent):
 		self.l.setList(self.list)
 
 	def removeService(self, service):
+		movieMaintenanceState.invalidate((service.getPath(),))
+		if service.flags & eServiceReference.mustDescent:
+			movieMaintenanceState.catalogueReady = False
 		index = self.findService(service)
 		if index is not None:
 			del self.list[index]
@@ -575,18 +771,26 @@ class MovieList(GUIComponent):
 		return self.list.__iter__()
 
 	def load(self, root, filter_tags):
+		self.setStyleMode("default")
 		del self.list[:]  # This lists our root service, then building a nice list.
+		self.movieMetadata.clear()
+		self.moviePosters.clear()
+		self.moviePreviews.clear()
 		serviceHandler = eServiceCenter.getInstance()
 		numberOfDirs = 0
-		reflist = root and serviceHandler.list(root)
-		if reflist is None:
+		rootPath = normpath(root.getPath()) if root else ""
+		lifetime = int(config.movielist.fileListCache.value) if config.movielist.fileListCache.value != "off" else 0
+		cached = movieMaintenanceState.getDirectory(rootPath, lifetime)
+		self.cached = cached is not None
+		reflist = root and serviceHandler.list(root) if cached is None else None
+		if cached is None and reflist is None:
 			print("[MovieList] Listing of movies failed!")
 			return
 		realtags = set()
 		tags = {}
-		rootPath = normpath(root.getPath())
+		hiddenFolders = set(config.movielist.hiddenFolders.value)
 		parent = None
-		if len(rootPath) > 1 and (realpath(rootPath) != config.movielist.root.value):  # Don't navigate above the "root".
+		if len(rootPath) > 1 and (rootPath if cached is not None else realpath(rootPath)) != config.movielist.root.value:  # Don't navigate above the "root".
 			parent = split(normpath(rootPath))[0]
 			currentfolder = join(normpath(rootPath), "")
 			if parent and (parent not in defaultInhibitDirs) and not currentfolder.endswith(config.usage.default_path.value):
@@ -596,17 +800,49 @@ class MovieList(GUIComponent):
 			ref.flags = eServiceReference.flagDirectory
 			self.list.append((ref, None, 0, -1))
 			numberOfDirs += 1
+		records = []
+		iterator = iter(cached) if cached is not None else None
 		while True:
-			serviceref = reflist.getNext()
-			if not serviceref.valid():
-				break
-			info = serviceHandler.info(serviceref)
-			if info is None:
-				info = justStubInfo
-			begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
+			if iterator is not None:
+				entry = next(iterator, None)
+				if entry is None:
+					break
+				serviceref, item = entry
+				info = MovieListServiceInfo(item)
+				self.movieMetadata[serviceref.getPath()] = dict(item)
+			else:
+				serviceref = reflist.getNext()
+				if not serviceref.valid():
+					break
+				if normpath(serviceref.getPath()) in hiddenFolders:
+					continue
+				info = serviceHandler.info(serviceref) or justStubInfo
+				path = serviceref.getPath()
+				item = {"path": path, "title": info.getName(serviceref), "recordedAt": info.getInfo(serviceref, iServiceInformation.sTimeCreate), "symlink": islink(normpath(path)) if lifetime or not config.movielist.showSymlinks.value else False}
+				item["recordingTitle"] = item["title"]
+				if serviceref.flags & eServiceReference.mustDescent:
+					item["title"] = split(normpath(path))[1]
+					try:
+						item["recordedAt"] = int(stat(path).st_mtime)
+					except OSError:
+						continue
+					if not item["symlink"] or config.movielist.showSymlinks.value:
+						item.update(MovieStructure.detect(path, config.movielist.recognizeDVD.value, config.movielist.recognizeBluray.value, config.movielist.recognizeMovieFolders.value))
+				elif lifetime:
+					item.update(description=info.getInfoString(serviceref, iServiceInformation.sDescription), serviceReference=info.getInfoString(serviceref, iServiceInformation.sServiceref), tags=info.getInfoString(serviceref, iServiceInformation.sTags))
+				records.append((serviceref, item))
+			if normpath(serviceref.getPath()) in hiddenFolders:
+				continue
+			if item.get("symlink") and not config.movielist.showSymlinks.value:
+				continue
+			begin = item["recordedAt"]
 			if serviceref.flags & eServiceReference.mustDescent:
-				dirname = info.getName(serviceref)
-				if not dirname.endswith(".AppleDouble/") and not dirname.endswith(".AppleDesktop/") and not dirname.endswith(".AppleDB/") and not dirname.endswith("Network Trash Folder/") and not dirname.endswith("Temporary Items/"):
+				if item.get("mediaStructure"):
+					self.movieMetadata[serviceref.getPath()] = dict(item)
+					info = MovieListServiceInfo(dict(item, title=split(normpath(serviceref.getPath()))[1]))
+				elif not config.movielist.showDirectories.value and split(normpath(serviceref.getPath()))[1] != TRASHCAN:
+					continue
+				if split(normpath(serviceref.getPath()))[1] not in (".AppleDouble", ".AppleDesktop", ".AppleDB", "Network Trash Folder", "Temporary Items"):
 					self.list.append((serviceref, info, begin, -1))
 					numberOfDirs += 1
 				continue
@@ -638,6 +874,9 @@ class MovieList(GUIComponent):
 					# print(f"[MovieList] Skipping '{name}' tags='{this_tags}' filter='{filter_tags}'.")
 					continue
 			self.list.append((serviceref, info, begin, -1))
+		if cached is None and lifetime:
+			movieMaintenanceState.cacheDirectory(rootPath, records)
+		self.fileSnapshots = {x[0].getPath(): x[1] for x in (records if cached is None else cached)} if lifetime else {}
 		self.firstFileEntry = numberOfDirs
 		self.parentDirectory = 0
 		self.list.sort(key=self.buildGroupwiseSortkey)
@@ -662,6 +901,20 @@ class MovieList(GUIComponent):
 			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaDateSortKey) + sorted(self.list[numberOfDirs:], key=self.buildAlphaDateSortKey)
 		elif self.sort_type == MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST:
 			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaDateSortKey, reverse=True) + sorted(self.list[numberOfDirs:], key=self.buildAlphaDateSortKey, reverse=True)
+		order = config.movielist.directoryOrder.value
+		if order == "mixed":
+			if self.sort_type == self.SHUFFLE:
+				shuffle(self.list)
+			else:
+				key = self.buildBeginTimeSortKey if self.sort_type in (self.SORT_RECORDED, self.SORT_RECORDED_REVERSE) else self.buildGroupwiseSortkey if self.sort_type == self.SORT_GROUPWISE else self.buildAlphaNumericFlatSortKey
+				if self.sort_type in (self.SORT_ALPHA_DATE_OLDEST_FIRST, self.SORT_ALPHAREV_DATE_NEWEST_FIRST):
+					self.list.sort(key=lambda row: (self.buildAlphaNumericFlatSortKey(row)[1], row[2]), reverse=self.sort_type == self.SORT_ALPHAREV_DATE_NEWEST_FIRST)
+				else:
+					self.list.sort(key=lambda row: key(row)[1:], reverse=self.sort_type in (self.SORT_RECORDED_REVERSE, self.SORT_ALPHANUMERIC_REVERSE, self.SORT_ALPHANUMERIC_FLAT_REVERSE))
+		elif order == "first":
+			self.list.sort(key=lambda row: not bool(row[0].flags & eServiceReference.mustDescent))
+		parents = [x for x in self.list if x[1] is None]
+		self.list = parents + [x for x in self.list if x[1] is not None]
 		for x in self.list:
 			if x[1]:
 				tmppath = x[1].getName(x[0])[:-1] if x[1].getName(x[0]).endswith("/") else x[1].getName(x[0])
@@ -684,6 +937,8 @@ class MovieList(GUIComponent):
 							self.parentDirectory = index
 							break
 		self.root = root
+		self.firstFileEntry = next((index for index, row in enumerate(self.list) if not row[0].flags & eServiceReference.mustDescent), len(self.list))
+		self.updateRecordingLengths()
 		# Finally, store a list of all tags which were found. these can be presented to the user to filter the list.
 		# ML: Only use the tags that occur more than once in the list OR that were really in the tag set of some file.
 		rtags = {}  # Reverse the dictionary to see which unique movie each tag now references.
@@ -749,7 +1004,7 @@ class MovieList(GUIComponent):
 	def buildBeginTimeSortKey(self, x):
 		ref = x[0]  # x = ref, info, begin, ...
 		if ref.flags & eServiceReference.mustDescent:
-			return 0, "", x[1] and -stat(ref.getPath()).st_mtime or 0
+			return 0, "", -x[2]
 		return 1, "", -x[2]
 
 	def buildGroupwiseSortkey(self, x):  # Sort recordings by date, sort MP3 and stuff by name.
@@ -764,10 +1019,17 @@ class MovieList(GUIComponent):
 		return False
 
 	def moveDown(self):
-		self.instance.moveSelection(self.instance.moveDown)
+		if self.isGrid:
+			if self.list:
+				self.moveToIndex(min(len(self.list) - 1, self.getCurrentIndex() + 1))
+		else:
+			self.instance.moveSelection(self.instance.moveDown)
 
 	def moveUp(self):
-		self.instance.moveSelection(self.instance.moveUp)
+		if self.isGrid:
+			self.moveToIndex(max(0, self.getCurrentIndex() - 1))
+		else:
+			self.instance.moveSelection(self.instance.moveUp)
 
 	def moveToChar(self, char, lbl=None):
 		self._char = char

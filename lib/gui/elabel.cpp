@@ -52,7 +52,7 @@ int eLabel::event(int event, void* data, void* data2) {
 				int visibleH = size().height() - m_padding.y() - m_padding.height();
 				eSize s = eSize(visibleW, visibleH);
 				eRect rec = eRect(ePoint(m_padding.x(), m_padding.y()), s);
-				painter.blit(m_textPixmap, eRect(ePoint(-srcX + m_padding.x(), -srcY + m_padding.y()), s), rec, 0);
+				painter.blit(m_textPixmap, eRect(ePoint(-srcX + m_padding.x(), -srcY + m_padding.y()), s), rec, isTransparent() ? gPainter::BT_ALPHABLEND : 0);
 
 				m_paint_pixmap = false;
 				// skip the normal renderText logic for scrolling
@@ -158,7 +158,10 @@ int eLabel::event(int event, void* data, void* data2) {
 			invalidate();
 			return 0;
 		case evtParentVisibilityChanged:
-			if (!isVisible()) {
+			if (isVisible() && m_scroll_config.direction != eScrollConfig::scrollNone) {
+				updateTextSize();
+				invalidate();
+			} else if (!isVisible()) {
 				stopScroll();
 			}
 			return 0;
@@ -271,7 +274,10 @@ void eLabel::createScrollPixmap() {
 	p.setFont(m_font);
 	p.resetClip(eRect(ePoint(0, 0), s));
 
-	if (m_have_background_color)
+	// Transparent labels must preserve the parent's background when the cache is blitted.
+	if (isTransparent())
+		p.setBackgroundColor(gRGB(0, 0, 0, 255));
+	else if (m_have_background_color)
 		p.setBackgroundColor(m_background_color);
 
 	p.clear();
@@ -542,6 +548,8 @@ void eLabel::updateScrollPosition() {
 				m_scroll_started = false;
 				scrollTimer->stop();
 				scrollTimer->start(bounceDelay);
+				m_paint_pixmap = m_scroll_config.cached && m_textPixmap;
+				invalidate();
 				return;
 			}
 		} else {
@@ -553,6 +561,8 @@ void eLabel::updateScrollPosition() {
 				scrollTimer->start(m_scroll_config.endDelay);
 				if (m_scroll_config.repeat != -1)
 					m_repeat_count++;
+				m_paint_pixmap = m_scroll_config.cached && m_textPixmap;
+				invalidate();
 				return;
 			}
 
@@ -569,6 +579,8 @@ void eLabel::updateScrollPosition() {
 					m_scroll_pos = max_scroll;
 
 				m_scroll_started = false;
+				m_end_delay_active = false;
+				m_paint_pixmap = m_scroll_config.cached && m_textPixmap;
 				scrollTimer->stop();
 				scrollTimer->start(m_scroll_config.startDelay);
 				invalidate();

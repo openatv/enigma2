@@ -26,6 +26,7 @@ from Components.Harddisk import findMountPoint, harddiskmanager
 from Components.Input import Input
 from Components.Label import Label
 from Components.MovieList import AUDIO_EXTENSIONS, DVD_EXTENSIONS, MOVIE_EXTENSIONS
+from Components.MovieListSettings import movieListSettings
 from Components.Pixmap import MovingPixmap, MultiPixmap
 from Components.PluginComponent import plugins
 from Components.ScrollLabel import ScrollLabel
@@ -59,7 +60,7 @@ from Screens.PictureInPicture import PictureInPicture
 from Screens.PiPSetup import PiPSetup
 from Screens.PVRState import PVRState, TimeshiftState
 from Screens.RdsDisplay import DABSlideDisplay, RassInteractive, RdsInfoDisplay, RdsInfoDisplaySummary
-from Screens.Screen import Screen
+from Screens.Screen import Screen, ScreenSummary
 from Screens.ScreenSaver import ScreenSaver
 from Screens.Setup import Setup
 import Screens.Standby
@@ -4779,6 +4780,8 @@ class InfoBarCueSheetSupport:
 	CUT_TYPE_OUT = 1
 	CUT_TYPE_MARK = 2
 	CUT_TYPE_LAST = 3
+	CUT_TYPE_SAVEDLAST = 4
+	CUT_TYPE_LENGTH = 5
 
 	ENABLE_RESUME_SUPPORT = False
 
@@ -4802,7 +4805,7 @@ class InfoBarCueSheetSupport:
 		self.resumeTimer.start(1000, True)
 
 	def triggerResumeLogic(self):
-		if self.is_closing:
+		if self.is_closing or isMoviePlayerInfoBar(self) and not self.execing:
 			return
 		# print("[InfoBarGenerics] InfoBarCueSheetSupport: New service started, trying to download cuts.")
 		self.downloadCuesheet()
@@ -4814,13 +4817,19 @@ class InfoBarCueSheetSupport:
 					break
 			else:
 				last = getResumePoint(self.session)
-			if last is None:
-				return
+			if isMoviePlayerInfoBar(self) and config.movielist.saveLastAsMarker.value and last and last > 0 and (last, self.CUT_TYPE_MARK) not in self.cut_list:
+				self.addMark((last, self.CUT_TYPE_MARK))
 			# Only resume if at least 10 seconds ahead, or <10 seconds before the end.
 			seekable = self.__getSeekable()
 			if seekable is None:
 				return  # Should not happen?
 			length = seekable.getLength() or (None, 0)
+			if isMoviePlayerInfoBar(self) and config.movielist.rewindWatched.value and last and length[1] and movieListSettings.watchState(100 * last / length[1]) == "watched":
+				self.startMovieBeginning(length[1], rewind=True)
+				return
+			if last is None:
+				self.startMovieBeginning(length[1])
+				return
 			# print(f"[InfoBarGenerics] InfoBarCueSheetSupport: Length returned is {length}.")
 			# Hmm, this implies we don't resume if the length is unknown.
 			if (last > 900000) and (not length[1] or (last < length[1] - 900000)):
@@ -4830,10 +4839,25 @@ class InfoBarCueSheetSupport:
 					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (last / 3600, last % 3600 / 60, last % 60))), timeout=30, default="yes" in config.usage.on_movie_start.value)
 				elif config.usage.on_movie_start.value == "resume":
 					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Resuming playback"), timeout=2, type=MessageBox.TYPE_INFO)
+				else:
+					self.startMovieBeginning(length[1])
+			else:
+				self.startMovieBeginning(length[1])
+
+	def startMovieBeginning(self, length=0, rewind=False):
+		if isMoviePlayerInfoBar(self) and (rewind or config.movielist.startAtFirstMark.value):
+			if not length:
+				seek = self.__getSeekable()
+				result = seek.getLength() if seek else None
+				length = result[1] if result and not result[0] else 0
+			position = movieListSettings.beginning(self.cut_list, length, config.movielist.startAtFirstMark.value, config.recording.margin_before.value)
+			self.doSeek(position)
 
 	def playLastCB(self, answer):
 		if answer is True and self.resume_point:
 			self.doSeek(self.resume_point)
+		else:
+			self.startMovieBeginning()
 		self.hideAfterResume()
 
 	def hideAfterResume(self):
@@ -5019,7 +5043,7 @@ class InfoBarSummarySupport:
 		return InfoBarSummary
 
 
-class InfoBarMoviePlayerSummary(Screen):
+class InfoBarMoviePlayerSummary(ScreenSummary):
 	skin = """
 	<screen position="0,0" size="132,64">
 		<widget source="global.CurrentTime" render="Label" position="62,46" size="64,18" font="Regular;16" halign="right" >
@@ -5038,7 +5062,7 @@ class InfoBarMoviePlayerSummary(Screen):
 	</screen>"""
 
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent=parent)
+		ScreenSummary.__init__(self, session, parent)
 		self["state_summary"] = StaticText()
 		self["speed_summary"] = StaticText()
 		self["statusicon_summary"] = MultiPixmap()

@@ -264,11 +264,19 @@ def reloadSkins():
 #
 def loadSkinTemplates(skinTemplatesFileNames):
 	def addTemplate(template, fileName):
-		if template.get("component", "") in ("serviceList",):  # Only serviceList now more comming
+		if template.get("component", "") in ("serviceList", "movieList"):
 			componentTemplates.add(template, fileName)
 
+	defaultTemplatesFile = resolveFilename(SCOPE_SKINS, "skinTemplates.xml")
+	if isfile(defaultTemplatesFile):
+		defaultTemplates = fileReadXML(defaultTemplatesFile, source=MODULE_NAME)
+		if defaultTemplates is not None:
+			for template in defaultTemplates.findall("template"):
+				addTemplate(template, defaultTemplatesFile)
 	if skinTemplatesFileNames:
 		for skinTemplatesFileName in skinTemplatesFileNames:
+			if skinTemplatesFileName == defaultTemplatesFile:
+				continue
 			print(f"[Skin] Loading XML templates from '{skinTemplatesFileName}'.")
 			domStyles = fileReadXML(skinTemplatesFileName, source=MODULE_NAME)
 			if domStyles is not None:

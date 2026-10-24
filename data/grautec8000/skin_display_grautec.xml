@@ -270,25 +270,10 @@
 
 <!--MovieSelection_summary-->
 <screen name="MovieSelectionSummary" position="0,0" size="400,240">
-	<ePixmap pixmap="/usr/share/enigma2/display/icon_movieplayer.png" zPosition="1" position="0,25" size="400,100" />
-	<widget source="parent.Service" render="RunningText" position="0,125" size="400,52" font="LCD1;55" halign="center" options="movetype=running,direction=left,startpoint=150,steptime=40,startdelay=2000,noWrap">
-		<convert type="ServiceName">Name</convert>
-	</widget>
-    <ePixmap pixmap="/usr/share/enigma2/display/progress-lcd1.png" zPosition="1" position="0,177" size="400,14" />
-	<widget source="global.CurrentTime" render="Label" position="0,188" size="180,50" font="LCD1;52" halign="left" valign="top" foregroundColor="oled1" backgroundColor="#000000">
-		<convert type="ClockToText">Format:%H:%M</convert>
-	</widget>
-	<widget source="parent.Service" render="Label" position="180,188" size="220,50" font="LCD1;52" halign="right" valign="top" foregroundColor="oled1" backgroundColor="#000000">
-		<convert type="MovieInfo">FileSize</convert>
-    </widget>
-    <widget source="session.RecordState" render="FixedLabel" text="REC" position="180,188" size="220,50" font="LCD1;52" halign="right" valign="top" zPosition="1" foregroundColor="#FF0000" backgroundColor="#000000" >
-	    <convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
-		<convert type="ConditionalShowHide">Blink</convert>
-	</widget>
-	<widget source="session.RecordState" render="FixedLabel" text=" " position="399,239" zPosition="2" size="1,1" font="LCD1;1" halign="left" valign="top" foregroundColor="white" backgroundColor="#FF0000">
-		<convert type="ConditionalShowHide">Blink</convert>
-	</widget>
-</screen>
+		<panel name="MovieSelectionLegacyPanel" condition="config.movielist.displayStyle.value == 'legacy'" />
+		<panel name="MovieSelectionInformationPanel" condition="config.movielist.displayStyle.value == 'information'" />
+		<panel name="MovieSelectionArtworkPanel" condition="config.movielist.displayStyle.value == 'artwork'" />
+	</screen>
 
 <!--AdvancedMovieSelection_summary-->
 <screen name="AdvancedMovieSelectionSummary" position="0,0" size="400,240">
@@ -352,7 +337,7 @@
 	<widget source="session.RecordState" render="FixedLabel" text=" " position="399,239" zPosition="2" size="1,1" font="LCD1;1" halign="left" valign="top" foregroundColor="white" backgroundColor="#FF0000">
 		  <convert type="ConditionalShowHide">Blink</convert>
 	</widget>
-</screen>
+	</screen>
 
 <!--MoviePlayerExtended_summary-->
 <screen name="MoviePlayerExtendedSummary" position="0,0" size="400,240">
@@ -961,5 +946,163 @@
 		<widget source="session.RecordState" render="FixedLabel" text="REC" position="0,214" size="200,26" font="Regular;24" noWrap="1">
 			<convert type="ConditionalShowHide" />
 		</widget>
+	</screen>
+
+	<!-- Native movie selection and player displays; legacy and EMC screens remain available. -->
+	<screen name="MovieSelectionInformationPanel" position="0,0" size="400,240">
+		<widget source="name" render="Label" position="5,5" size="390,90" font="LCD1;30" />
+		<widget source="parent.MovieDetails" render="Label" position="5,95" size="390,100" font="LCD1;20" />
+		<widget source="progress" render="Progress" position="5,200" size="390,5" borderWidth="1" />
+		<widget source="parent.MovieSelectionStatus" render="Label" position="5,210" size="261,25" font="LCD1;20" noWrap="1" />
+		<widget source="global.CurrentTime" render="Label" position="266,210" size="128,25" font="LCD1;20" halign="right" noWrap="1">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+	</screen>
+	<screen name="MovieSelectionArtworkPanel" position="0,0" size="400,240">
+		<widget source="parent.MoviePoster" render="Pixmap" position="5,5" size="133,199" scale="1" alphatest="blend" />
+		<widget source="name" render="Label" position="148,5" size="247,90" font="LCD1;30" />
+		<widget source="parent.MovieDetails" render="Label" position="148,95" size="247,100" font="LCD1;20" />
+		<widget source="progress" render="Progress" position="5,200" size="390,5" borderWidth="1" />
+		<widget source="parent.MovieSelectionStatus" render="Label" position="5,210" size="261,25" font="LCD1;20" noWrap="1" />
+		<widget source="global.CurrentTime" render="Label" position="266,210" size="128,25" font="LCD1;20" halign="right" noWrap="1">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+	</screen>
+	<screen name="MoviePlayerInformationPanel" position="0,0" size="400,240">
+		<widget source="parent.MovieTitle" render="Label" position="5,5" size="390,90" font="LCD1;30" />
+		<widget source="parent.MovieDetails" render="Label" position="5,95" size="390,100" font="LCD1;20" />
+		<widget source="session.CurrentService" render="Progress" position="5,200" size="390,5" borderWidth="1">
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+		<widget source="state_summary" render="Label" position="5,210" size="261,25" font="LCD1;20" noWrap="1" />
+		<widget source="session.CurrentService" render="Label" position="266,210" size="128,25" font="LCD1;20" halign="right" noWrap="1">
+			<convert type="ServicePosition">Remaining,Negate</convert>
+		</widget>
+	</screen>
+	<screen name="MoviePlayerArtworkPanel" position="0,0" size="400,240">
+		<widget source="parent.MoviePoster" render="Pixmap" position="5,5" size="133,199" scale="1" alphatest="blend" />
+		<widget source="parent.MovieTitle" render="Label" position="148,5" size="247,90" font="LCD1;30" />
+		<widget source="parent.MovieDetails" render="Label" position="148,95" size="247,100" font="LCD1;20" />
+		<widget source="session.CurrentService" render="Progress" position="5,200" size="390,5" borderWidth="1">
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+		<widget source="state_summary" render="Label" position="5,210" size="261,25" font="LCD1;20" noWrap="1" />
+		<widget source="session.CurrentService" render="Label" position="266,210" size="128,25" font="LCD1;20" halign="right" noWrap="1">
+			<convert type="ServicePosition">Remaining,Negate</convert>
+		</widget>
+	</screen>
+	<screen name="MovieDetailsSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionInformationPanel" condition="config.movielist.displayStyle.value != 'artwork'" />
+		<panel name="MovieSelectionArtworkPanel" condition="config.movielist.displayStyle.value == 'artwork'" />
+	</screen>
+	<!-- ScreenSummary resolves each parent skin name with the Summary suffix. -->
+<screen name="MoviePlayerSummary" position="0,0" size="400,240">
+		<panel name="InfoBarMoviePlayerSummary" condition="config.movielist.displayStyle.value == 'legacy'" />
+		<panel name="MoviePlayerInformationPanel" condition="config.movielist.displayStyle.value == 'information'" />
+		<panel name="MoviePlayerArtworkPanel" condition="config.movielist.displayStyle.value == 'artwork'" />
+	</screen>
+<screen name="MovieSelectionSlimSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MovieSelectionWideSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MovieSelectionAdvancedSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MovieLibrarySelectionSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MoviePlayerAdvancedSummary" position="0,0" size="400,240">
+		<panel name="MoviePlayerSummary" />
+	</screen>
+<screen name="MovieSelectionClassicLeftSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MovieLibraryClassicLeftSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MovieSelectionClassicBottomSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MovieLibraryClassicBottomSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MovieSelectionClassicLeftPreviewSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MovieLibraryClassicLeftPreviewSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MovieSelectionClassicBottomPreviewSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MovieLibraryClassicBottomPreviewSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MoviePlayerClassicSummary" position="0,0" size="400,240">
+		<panel name="MoviePlayerSummary" />
+	</screen>
+<screen name="MovieDetailsSimpleSummary" position="0,0" size="400,240">
+		<panel name="MovieDetailsSummary" />
+	</screen>
+<screen name="MovieSelectionAdvancedSimpleSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MoviePlayerAdvancedSimpleSummary" position="0,0" size="400,240">
+		<panel name="MoviePlayerSummary" />
+	</screen>
+<screen name="MovieSelectionClassicLeftSimpleSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MovieSelectionClassicBottomSimpleSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MovieSelectionClassicLeftPreviewSimpleSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MovieSelectionClassicBottomPreviewSimpleSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MoviePlayerClassicSimpleSummary" position="0,0" size="400,240">
+		<panel name="MoviePlayerSummary" />
+	</screen>
+<screen name="MovieSelectionOverviewSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MovieSelectionOverviewSimpleSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MovieLibraryOverviewSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MovieSelectionOverviewPreviewSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MovieSelectionOverviewPreviewSimpleSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MovieLibraryOverviewPreviewSummary" position="0,0" size="400,240">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+<screen name="MovieSelectionLegacyPanel" position="0,0" size="400,240">
+	<ePixmap pixmap="/usr/share/enigma2/display/icon_movieplayer.png" zPosition="1" position="0,25" size="400,100" />
+	<widget source="parent.Service" render="RunningText" position="0,125" size="400,52" font="LCD1;55" halign="center" options="movetype=running,direction=left,startpoint=150,steptime=40,startdelay=2000,noWrap">
+		<convert type="ServiceName">Name</convert>
+	</widget>
+    <ePixmap pixmap="/usr/share/enigma2/display/progress-lcd1.png" zPosition="1" position="0,177" size="400,14" />
+	<widget source="global.CurrentTime" render="Label" position="0,188" size="180,50" font="LCD1;52" halign="left" valign="top" foregroundColor="oled1" backgroundColor="#000000">
+		<convert type="ClockToText">Format:%H:%M</convert>
+	</widget>
+	<widget source="parent.Service" render="Label" position="180,188" size="220,50" font="LCD1;52" halign="right" valign="top" foregroundColor="oled1" backgroundColor="#000000">
+		<convert type="MovieInfo">FileSize</convert>
+    </widget>
+    <widget source="session.RecordState" render="FixedLabel" text="REC" position="180,188" size="220,50" font="LCD1;52" halign="right" valign="top" zPosition="1" foregroundColor="#FF0000" backgroundColor="#000000" >
+	    <convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
+		<convert type="ConditionalShowHide">Blink</convert>
+	</widget>
+	<widget source="session.RecordState" render="FixedLabel" text=" " position="399,239" zPosition="2" size="1,1" font="LCD1;1" halign="left" valign="top" foregroundColor="white" backgroundColor="#FF0000">
+		<convert type="ConditionalShowHide">Blink</convert>
+	</widget>
 	</screen>
 </skin>

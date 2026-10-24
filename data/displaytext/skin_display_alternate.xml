@@ -73,9 +73,8 @@
 
 <!-- movieplayer-->
 	<screen name="MovieSelectionSummary" position="0,0" size="132,64">
-		<widget source="parent.Service" render="Label" position="0,0" size="120,25" font="Regular;14">
-			<convert type="ServiceName">Name</convert>
-		</widget>
+		<panel name="MovieSelectionLegacyPanel" condition="config.movielist.displayStyle.value == 'legacy'" />
+		<panel name="MovieSelectionInformationPanel" condition="config.movielist.displayStyle.value != 'legacy'" />
 	</screen>
 
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="132,64">
@@ -235,5 +234,116 @@
 <!-- Shoutcast -->
 	<screen name="SHOUTcastLCDScreen" size="132,64">
 		<widget name="text2" position="0,0" size="120,20" font="Regular;18" halign="left" noWrap="1"  />
+	</screen>
+
+	<!-- Native movie selection and player displays; legacy and EMC screens remain available. -->
+	<screen name="MovieSelectionInformationPanel" position="0,0" size="132,64">
+		<widget source="name" render="Label" position="0,0" size="120,25" font="Regular;14"></widget>
+	</screen>
+
+
+	<screen name="MoviePlayerInformationPanel" position="0,0" size="132,64">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="120,25" halign="left" noWrap="1">
+			<convert type="ServicePosition">Remaining,ShowNoSeconds2,OnlyMinute</convert>
+		</widget>
+	</screen>
+
+
+	<screen name="MovieDetailsSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionInformationPanel" />
+	</screen>
+	<!-- ScreenSummary resolves each parent skin name with the Summary suffix. -->
+	<screen name="MoviePlayerSummary" position="0,0" size="132,64">
+		<panel name="InfoBarMoviePlayerSummary" condition="config.movielist.displayStyle.value == 'legacy'" />
+		<panel name="MoviePlayerInformationPanel" condition="config.movielist.displayStyle.value != 'legacy'" />
+	</screen>
+	<screen name="MovieSelectionSlimSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionWideSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionAdvancedSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieLibrarySelectionSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MoviePlayerAdvancedSummary" position="0,0" size="132,64">
+		<panel name="MoviePlayerSummary" />
+	</screen>
+	<screen name="MovieSelectionClassicLeftSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieLibraryClassicLeftSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionClassicBottomSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieLibraryClassicBottomSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionClassicLeftPreviewSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieLibraryClassicLeftPreviewSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionClassicBottomPreviewSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieLibraryClassicBottomPreviewSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MoviePlayerClassicSummary" position="0,0" size="132,64">
+		<panel name="MoviePlayerSummary" />
+	</screen>
+	<screen name="MovieDetailsSimpleSummary" position="0,0" size="132,64">
+		<panel name="MovieDetailsSummary" />
+	</screen>
+	<screen name="MovieSelectionAdvancedSimpleSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MoviePlayerAdvancedSimpleSummary" position="0,0" size="132,64">
+		<panel name="MoviePlayerSummary" />
+	</screen>
+	<screen name="MovieSelectionClassicLeftSimpleSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionClassicBottomSimpleSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionClassicLeftPreviewSimpleSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionClassicBottomPreviewSimpleSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MoviePlayerClassicSimpleSummary" position="0,0" size="132,64">
+		<panel name="MoviePlayerSummary" />
+	</screen>
+	<screen name="MovieSelectionOverviewSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionOverviewSimpleSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieLibraryOverviewSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionOverviewPreviewSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionOverviewPreviewSimpleSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieLibraryOverviewPreviewSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionLegacyPanel" position="0,0" size="132,64">
+		<widget source="parent.Service" render="Label" position="0,0" size="120,25" font="Regular;14">
+			<convert type="ServiceName">Name</convert>
+		</widget>
 	</screen>
 </skin>

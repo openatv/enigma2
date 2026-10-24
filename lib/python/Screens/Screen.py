@@ -427,7 +427,11 @@ class ScreenSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
 		self["Title"] = StaticText(parent.getTitle())
-		skinName = parent.skinName
+		self.updateSkinName()
+		self.skin = parent.__dict__.get("skinSummary", self.skin)  # If parent has a "skinSummary" defined, use that as default.
+
+	def updateSkinName(self):
+		skinName = self.parent.skinName
 		if not isinstance(skinName, list):
 			skinName = [skinName]
 		self.skinName = [f"{x}Summary" for x in skinName]
@@ -436,7 +440,7 @@ class ScreenSummary(Screen):
 			self.skinName.append(className)
 		self.skinName += [f"{x}_summary" for x in skinName]  # DEBUG: Old summary screens currently kept for compatibility.
 		self.skinName.append("ScreenSummary")
-		self.skin = parent.__dict__.get("skinSummary", self.skin)  # If parent has a "skinSummary" defined, use that as default.
-		# skins = "', '".join(self.skinName)
-		# print(f"[Screen] DEBUG: Skin names: '{skins}'.")
-		# print(f"[Screen] DEBUG: Skin:\n{self.skin}")
+
+	def reloadSkin(self):
+		self.updateSkinName()
+		Screen.reloadSkin(self)

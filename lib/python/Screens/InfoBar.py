@@ -1,21 +1,24 @@
 # flake8: noqa E402
 
 from glob import glob
-from os.path import splitext
+from os.path import normpath, splitext
 
 from enigma import eProfileWrite
 
 # workaround for required config entry dependencies.
 import Screens.MovieSelection
-from Components.PluginComponent import plugins
-from Plugins.Plugin import PluginDescriptor
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
 from Components.Label import Label
+from Components.MovieInformation import MovieInformation
+from Components.MovieListStyle import movieListStyles
 from Components.Pixmap import MultiPixmap
+from Components.PluginComponent import plugins
 from Components.SystemInfo import BoxInfo, getBoxDisplayName  # noqa F401
-from Tools.Directories import fileExists
+from Plugins.Plugin import PluginDescriptor
 from Screens.ButtonSetup import InfoBarButtonSetup
+from Screens.MessageBox import MessageBox
+from Screens.MovieSelectionActions import MoviePlayerFileActions
+from Screens.Screen import Screen
+from Tools.Directories import fileExists
 
 import enigma
 eProfileWrite("LOAD:enigma")
@@ -487,6 +490,10 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 
 	def __init__(self, session, service, slist=None, lastservice=None, fromMovieSelection=True):
 		Screen.__init__(self, session, enableHelp=True)
+		movieListStyles.refreshChoices()
+		self.skinName = movieListStyles.getProviderScreenNames([config.movielist.playerStyle.value, "MoviePlayer"] if config.movielist.playerStyle.value else ["MoviePlayer"])
+		self.movieInformation = MovieInformation(self)
+		self.movieFileActions = MoviePlayerFileActions(self)
 		self.pts_pvrStateDialog = ""
 		self.fromMovieSelection = fromMovieSelection
 
@@ -544,6 +551,10 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 		self.__evStart()
 
 	def __evStart(self):
+		serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
+		service = self.session.nav.getCurrentService()
+		info = service.info() if service else None
+		self.movieInformation.select(serviceRef, info.getName() if info else "")
 		self.switchAudioTimer = enigma.eTimer()
 		self.switchAudioTimer.callback.append(self.switchAudio)
 		self.switchAudioTimer.start(750, True)    # 750 is a safe-value
@@ -649,40 +660,8 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 		if answer is None:
 			return
 		if answer in ("quitanddelete", "quitanddeleteconfirmed", "deleteandmovielist", "deleteandmovielistconfirmed"):
-			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			serviceHandler = enigma.eServiceCenter.getInstance()
-			if answer in ("quitanddelete", "deleteandmovielist"):
-				msg = ''
-				if config.usage.movielist_trashcan.value:
-					import Tools.Trashcan
-					try:
-						trash = Tools.Trashcan.createTrashcan(ref.getPath())
-						Screens.MovieSelection.moveServiceFiles(ref, trash)
-						# Moved to trash, okay
-						if answer == "quitanddelete":
-							self.close()
-						else:
-							self.movielistAgain()
-						return
-					except Exception as e:
-						print("[InfoBar] Failed to move to .Trash folder:", e)
-						msg = _("Can't move to trashcan!") + "\n" + str(e) + "\n"
-				info = serviceHandler.info(ref)
-				name = info and info.getName(ref) or _("this recording")
-				msg += _("Do you really want to delete '%s'?") % name
-				if answer == "quitanddelete":
-					self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg)
-				elif answer == "deleteandmovielist":
-					self.session.openWithCallback(self.deleteAndMovielistConfirmed, MessageBox, msg)
-				return
-
-			elif answer in ("quitanddeleteconfirmed", "deleteandmovielistconfirmed"):
-				offline = serviceHandler.offlineOperations(ref)
-				if offline.deleteFromDisk(0):
-					self.session.openWithCallback(self.close, MessageBox, _("You cannot delete this!"), MessageBox.TYPE_ERROR)
-					if answer == "deleteandmovielistconfirmed":
-						self.movielistAgain()
-					return
+			self.movieFileActions.delete(answer)
+			return
 
 		if answer in ("quit", "quitanddeleteconfirmed"):
 			self.close()
@@ -725,6 +704,41 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 			return
 		if not playing:
 			return
+		mode = config.movielist.recordingEofAction.value
+		channel = self.recordingChannel()
+		seek = self.getSeek()
+		length = seek.getLength() if seek else None
+		position = seek.getPlayPosition() if seek else None
+		caughtUp = length and position and not length[0] and not position[0] and length[1] > 0 and position[1] >= length[1] - 180000
+		if channel is not None and mode != "default" and caughtUp:
+			reference = self.cur_service.toString()
+			if mode == "zap":
+				self.recordingEofConfirmed(reference, True)
+			else:
+				self.session.openWithCallback(lambda answer: self.recordingEofConfirmed(reference, answer), MessageBox, _("The recording is still running. Switch to its live channel?"), type=MessageBox.TYPE_YESNO, default=True)
+			return
+		self.movieEof()
+
+	def recordingChannel(self):
+		path = normpath(self.cur_service.getPath()) if self.cur_service else ""
+		if not path.startswith("/"):
+			return None
+		for timer in self.session.nav.RecordTimer.timer_list:
+			if timer.isRunning() and not timer.justplay and normpath(getattr(timer, "Filename", "") or "") in (path, splitext(path)[0]):
+				return timer.service_ref.ref
+		return None
+
+	def recordingEofConfirmed(self, reference, answer):
+		if not self.cur_service or self.cur_service.toString() != reference:
+			return
+		channel = self.recordingChannel()
+		if answer and channel is not None:
+			self.lastservice = channel
+			self.handleLeave("quit")
+		else:
+			self.movieEof()
+
+	def movieEof(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if ref:
 			delResumePoint(ref)
