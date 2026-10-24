@@ -34,6 +34,41 @@ RESULT SwigFromPython(ePtr<gPixmap> &res, PyObject *obj);
 
 using namespace std;
 
+class eListboxPythonText
+{
+	PyObject *buffer = nullptr;
+	const char *text;
+
+public:
+	explicit eListboxPythonText(PyObject *value)
+		: text(value && PyUnicode_Check(value) ? PyUnicode_AsUTF8(value) : "<not-a-string>")
+	{
+		// Keep Python's cached UTF-8 pointer on the normal path; allocate only on failure.
+		if (!text)
+		{
+			PyErr_Clear();
+			buffer = PyUnicode_AsEncodedString(value, "utf-8", "replace");
+			if (buffer)
+				text = PyBytes_AS_STRING(buffer);
+			else
+			{
+				PyErr_Clear();
+				text = "<invalid-text>";
+			}
+		}
+	}
+
+	~eListboxPythonText()
+	{
+		Py_XDECREF(buffer);
+	}
+
+	eListboxPythonText(const eListboxPythonText &) = delete;
+	eListboxPythonText &operator=(const eListboxPythonText &) = delete;
+
+	const char *get() const { return text; }
+};
+
 /*
 	The basic idea is to have an interface which gives all relevant list
 	processing functions, and can be used by the listbox to browse trough
@@ -180,7 +215,8 @@ int eListboxPythonStringContent::getMaxItemTextWidth() {
 			item = PyTuple_GET_ITEM(item, 0);
 		}
 		if (item != Py_None) {
-			const char* string = PyUnicode_Check(item) ? PyUnicode_AsUTF8(item) : "<not-a-string>";
+			eListboxPythonText displayText(item);
+			const char *string = displayText.get();
 			eRect textRect = eRect(0, 0, TEXT_MEASURE_MAX_WIDTH, 100);
 
 			ePtr<eTextPara> para = new eTextPara(textRect);
@@ -426,7 +462,8 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 		}
 		else
 		{
-			const char *string = PyUnicode_Check(item) ? PyUnicode_AsUTF8(item) : "<not-a-string>";
+			eListboxPythonText displayText(item);
+			const char *string = displayText.get();
 			ePoint text_offset = zoomoffs;
 			if (gray)
 				painter.setForegroundColor(gRGB(0x808080));
@@ -1681,7 +1718,8 @@ int eListboxPythonMultiContent::getMaxItemTextWidth()
 						if (pstring == Py_None)
 							continue;
 
-						const char *string = (PyUnicode_Check(pstring)) ? PyUnicode_AsUTF8(pstring) : "<not-a-string>";
+						eListboxPythonText displayText(pstring);
+						const char *string = displayText.get();
 						eRect textRect = eRect(0,0, TEXT_MEASURE_MAX_WIDTH, 100);
 
 						ePtr<eTextPara> para = new eTextPara(textRect);
@@ -2142,7 +2180,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				if (!pstring || pstring == Py_None)
 					continue;
 
-				const char *string = (PyUnicode_Check(pstring)) ? PyUnicode_AsUTF8(pstring) : "<not-a-string>";
+				eListboxPythonText displayText(pstring);
+				const char *string = displayText.get();
 
 				int x = PyFloat_Check(px) ? (int)PyFloat_AsDouble(px) : PyLong_AsLong(px);
 
