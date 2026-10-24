@@ -2,7 +2,7 @@ from datetime import datetime
 from glob import glob
 from hashlib import md5
 from os import listdir, mkdir, rename, rmdir, stat, unlink
-from os.path import basename, exists, isdir, isfile, islink, ismount, join, realpath
+from os.path import basename, exists, isdir, isfile, islink, join, realpath
 from re import search
 from struct import calcsize, error, pack, unpack
 from tempfile import mkdtemp
@@ -511,14 +511,61 @@ class MultiBootClass():
 		return "rootsubdir" in self.bootSlots[slotCode]
 
 	def getSlotImageList(self, callback):
+		if getattr(self, "slotScanRunning", False):
+			self.slotScanCallbacks.append(callback)
+			return
 		self.imageList = {}
+		self.slotScanRunning = True
+		self.slotScanCallbacks = [callback]
+		self.slotScanError = None
+		self.slotCodes = self.bootSlotsKeys[:]
 		if self.bootSlots:
-			self.callback = callback
-			self.tempDir = mkdtemp(prefix=PREFIX)
-			self.slotCodes = self.bootSlotsKeys[:]
+			try:
+				self.tempDir = realpath(mkdtemp(prefix=PREFIX))
+			except OSError as err:
+				self.completeSlotScan(f"Unable to create the temporary directory: {err}")
+				return
 			self.findSlot()
 		else:
-			callback(self.imageList)
+			self.completeSlotScan()
+
+	def isSlotMounted(self):
+		# ismount() misses same-filesystem mounts. The scan's tempDir is already
+		# canonical, so only the mount-table escape sequences need decoding here.
+		for filename, field, minimumFields in (("/proc/self/mountinfo", 4, 10), ("/proc/mounts", 1, 6)):
+			try:
+				with open(filename) as fd:
+					foundEntry = False
+					for line in fd:
+						fields = line.split()
+						if len(fields) < minimumFields:
+							raise ValueError("Incomplete mount table entry")
+						foundEntry = True
+						mountpoint = fields[field]
+						if "\\" in mountpoint:
+							mountpoint = mountpoint.replace("\\040", " ").replace("\\011", "\t").replace("\\012", "\n").replace("\\134", "\\")
+						if mountpoint == self.tempDir:
+							return True
+					if not foundEntry:
+						raise ValueError("Empty mount table")
+				return False
+			except (OSError, UnicodeError, ValueError) as err:
+				print(f"[MultiBoot] Unable to read '{filename}': {err}")
+		return None  # An unknown mount state must not permit reuse or removal.
+
+	def completeSlotScan(self, error=None):
+		if not self.slotScanRunning:
+			return
+		if error:
+			print(f"[MultiBoot] Slot scan aborted: {error}")
+			self.slotScanError = error
+			self.findSlot()  # Keep the remaining slots as unknown without mounting them.
+			return
+		self.slotScanRunning = False
+		callbacks, imageList = self.slotScanCallbacks, self.imageList
+		self.slotScanCallbacks = []
+		for callback in callbacks:
+			callback(imageList)
 
 	def findSlot(self):  # Part of getSlotImageList().
 		if self.slotCodes:
@@ -565,6 +612,8 @@ class MultiBootClass():
 				self.imageList[self.slotCode]["imagelogname"] = "Flash"
 				self.imageList[self.slotCode]["status"] = "flash"
 				self.findSlot()
+			elif self.slotScanError:
+				self.findSlot()
 			elif self.bootSlots[self.slotCode].get("device"):
 				self.device = self.bootSlots[self.slotCode]["device"]
 				# print(f"[MultiBoot] DEBUG: Analyzing slot='{self.slotCode}' ({self.device}).")
@@ -579,7 +628,12 @@ class MultiBootClass():
 				self.imageList[self.slotCode]["status"] = "unknown"
 				self.findSlot()
 		else:
-			rmdir(self.tempDir)
+			if not self.slotScanError:
+				try:
+					rmdir(self.tempDir)
+				except OSError as err:
+					self.completeSlotScan(f"Unable to remove temporary directory '{self.tempDir}': {err}")
+					return
 			if self.debugMode:
 				for slotCode in sorted(self.imageList.keys()):
 					# print(f"[MultiBoot] findSlot DEBUG: Image slot '{slotCode}': {self.imageList[slotCode]}")
@@ -594,10 +648,11 @@ class MultiBootClass():
 					print(f"[MultiBoot]     UBI device: '{"Yes" if self.imageList[slotCode].get("ubi", False) else "No"}'.")
 					print(f"[MultiBoot]     UUID device: '{"Yes" if self.imageList[slotCode].get("uuid", False) else "No"}'.")
 				print(f"[MultiBoot] {len(self.imageList)} boot slots detected.")
-			self.callback(self.imageList)
+			self.completeSlotScan()
 
 	def analyzeSlot(self, data, retVal, extraArgs):  # Part of getSlotImageList().
 		if retVal:
+			print(f"[MultiBoot] Error {retVal}: Unable to mount slot '{self.slotCode}' ({self.device}) for analysis: {data.strip()}")
 			self.imageList[self.slotCode]["detection"] = f"Error {retVal}: Unable to mount slot '{self.slotCode}' ({self.device}) for analysis"
 			self.imageList[self.slotCode]["imagename"] = _("Inaccessible")
 			self.imageList[self.slotCode]["imagelogname"] = "Inaccessible"
@@ -645,14 +700,20 @@ class MultiBootClass():
 				self.imageList[self.slotCode]["imagename"] = _("Empty")
 				self.imageList[self.slotCode]["imagelogname"] = "Empty"
 				self.imageList[self.slotCode]["status"] = "empty"
-		if ismount(self.tempDir):
-			self.console.ePopen([UMOUNT, UMOUNT, self.tempDir], self.finishSlot)
+		# A successful mount always needs an unmount; do not probe it with ismount().
+		mounted = True if not retVal else self.isSlotMounted()
+		if mounted is None:
+			self.completeSlotScan(f"Unable to determine the mount state of '{self.tempDir}' after mounting slot '{self.slotCode}' failed")
+		elif mounted:
+			self.console.ePopen((UMOUNT, UMOUNT, self.tempDir), self.finishSlot)
 		else:
 			self.findSlot()
 
 	def finishSlot(self, data, retVal, extraArgs):  # Part of getSlotImageList().
 		if retVal:
-			print(f"[MultiBoot] finishSlot Error {retVal}: Unable to unmount slot '{self.slotCode}' (self.device)!")
+			self.completeSlotScan(f"Error {retVal}: Unable to unmount slot '{self.slotCode}' ({self.device}) at '{self.tempDir}': {data.strip()}")
+		elif self.isSlotMounted() is not False:
+			self.completeSlotScan(f"Unmount of slot '{self.slotCode}' at '{self.tempDir}' could not be confirmed")
 		else:
 			self.findSlot()
 
