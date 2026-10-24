@@ -375,7 +375,7 @@ class InitInputDevices:
 			if configElement.value:
 				devName = inputDevices.getDeviceAttribute(self.currentDevice, "name")
 				if devName != configElement.value:
-					configItem = getattr(config.inputDevices, f"{self.currentDevice}.enabled")
+					configItem = getattr(config.inputDevices, self.currentDevice).enabled
 					configItem.value = False
 					configItem.save()
 		elif inputDevices.currentDevice:
