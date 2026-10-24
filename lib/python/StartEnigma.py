@@ -242,13 +242,13 @@ class Session:
 				dialog.reloadSkin()
 
 	def showInfo(self, text, timeout=4, replaceId=None):
-		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_INFO, timeout=timeout, replaceId=replaceId)
+		Toast.instance.showToast(text=text, toastType=Toast.TYPE_INFO, timeout=timeout, replaceId=replaceId)
 
 	def showWarning(self, text, timeout=5):
-		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_WARNING, timeout=timeout)
+		Toast.instance.showToast(text=text, toastType=Toast.TYPE_WARNING, timeout=timeout)
 
 	def showError(self, text, timeout=5):
-		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_ERROR, timeout=timeout)
+		Toast.instance.showToast(text=text, toastType=Toast.TYPE_ERROR, timeout=timeout)
 
 
 class PowerKey:

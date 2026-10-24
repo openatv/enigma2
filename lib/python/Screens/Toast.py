@@ -216,8 +216,7 @@ class Toast:
 		if self.queue:
 			self.showNext()
 
-	def showToast(self, text, toasttype, timeout, customIcon=None, replaceId=None):
-		toastType = toasttype
+	def showToast(self, text, toastType, timeout, customIcon=None, replaceId=None):
 		timeout = max(3, min(timeout, 60))  # Toast can be shown for a minimum 3 seconds and a maximum of 60 seconds.
 		toast = (text, toastType, timeout, customIcon, replaceId)
 		if replaceId is not None:
