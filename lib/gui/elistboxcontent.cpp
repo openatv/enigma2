@@ -3004,9 +3004,11 @@ void eListboxPythonMultiContent::entryRemoved(int idx)
 
 void eListboxPythonMultiContent::setTemplate(ePyObject tmplate)
 {
+	if (tmplate == Py_None)
+		tmplate = (PyObject *)nullptr;
+	Py_XINCREF(tmplate);
 	Py_XDECREF(m_template);
 	m_template = tmplate;
-	Py_XINCREF(m_template);
 }
 
 /* templates: a list of templates (each one a list of (TYPE, ...) tuples,
