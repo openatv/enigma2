@@ -50,6 +50,8 @@ public:
 	int slideFormat() const { return m_slide_format; }
 	int bitrate() const { return m_selected_bitrate; }
 	int language() const;
+	int programmeType() const;
+	int programmeTypeTable() const { return m_programme_type_table; }
 	std::string protection() const;
 	bool serviceFound() const { return m_selected_subchannel >= 0; }
 	bool isDABPlus() const { return m_selected_dabplus; }
@@ -91,6 +93,7 @@ private:
 		bool dabplus;
 		std::string label;
 		int language;
+		int programmeType = -1;
 		Service() : subchannel(-1), dabplus(false), language(-1) { }
 	};
 
@@ -154,6 +157,7 @@ private:
 
 	uint32_t m_service_id;
 	uint16_t m_ensemble_id;
+	int m_programme_type_table = -1;
 	AudioCallback m_audio_callback;
 	ImageCallback m_image_callback;
 	MOTCallback m_mot_callback;

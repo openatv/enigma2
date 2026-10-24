@@ -673,6 +673,11 @@ void eDABDecoder::parseFIG0(const uint8_t *data, size_t length)
 			}
 		}
 	}
+	else if (extension == 9 && !longSid && position + 3 <= length)
+	{
+		// FIG 0/9: LTO, ensemble ECC, International Table Identifier.
+		m_programme_type_table = data[position + 2];
+	}
 	else if (extension == 17 && !longSid)
 	{
 		while (position + 4 <= length)
@@ -684,6 +689,9 @@ void eDABDecoder::parseFIG0(const uint8_t *data, size_t length)
 				break;
 			if (flags & 0x20)
 				m_services[sid].language = data[position + 3];
+			// The international code follows the optional legacy language byte.
+			// Both static and dynamic FIGs update the service's current PTY.
+			m_services[sid].programmeType = data[position + 3 + ((flags & 0x20) ? 1 : 0)] & 0x1f;
 			position += recordLength;
 		}
 	}
@@ -770,6 +778,12 @@ int eDABDecoder::language() const
 	if (language != m_subchannel_languages.end() && language->second != 0)
 		return language->second;
 	return service->second.language;
+}
+
+int eDABDecoder::programmeType() const
+{
+	const auto service = m_services.find(m_service_id);
+	return service == m_services.end() ? -1 : service->second.programmeType;
 }
 
 std::string eDABDecoder::protection() const

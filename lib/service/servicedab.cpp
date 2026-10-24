@@ -526,6 +526,8 @@ void eDABWorker::updateDecoderStats()
 	m_stats.bitrate = m_decoder->bitrate();
 	m_stats.serviceFound = m_decoder->serviceFound();
 	m_stats.dabplus = m_decoder->isDABPlus();
+	m_stats.programmeType = m_decoder->programmeType();
+	m_stats.programmeTypeTable = m_decoder->programmeTypeTable();
 	const int language = m_decoder->language();
 	if (language > 0)
 		snprintf(m_stats.language, sizeof(m_stats.language), "%d", language);
@@ -1113,6 +1115,22 @@ private:
 			return;
 		}
 		const std::string bitrate = jsonValue(line, "bitrate");
+		// Numeric FIG metadata is separate from legacy programType/genre text.
+		// Empty/malformed values mean unavailable, never PTY zero.
+		const std::string pty = jsonValue(line, "pty");
+		const std::string ptyTable = jsonValue(line, "ptyTable");
+		if (!pty.empty() || !ptyTable.empty())
+		{
+			auto parseCode = [](const std::string &text, int maximum) {
+				if (text.empty() || text.find_first_not_of("0123456789") != std::string::npos || text.size() > 3)
+					return -1;
+				const int value = atoi(text.c_str());
+				return value <= maximum ? value : -1;
+			};
+			m_stats.programmeType = parseCode(pty, 31);
+			m_stats.programmeTypeTable = parseCode(ptyTable, 255);
+			m_publish_pending = true;
+		}
 		const std::string dabType = jsonValue(line, "dabType");
 		if (!bitrate.empty() && !dabType.empty())
 		{
@@ -2480,6 +2498,8 @@ void eServiceDAB::workerMessage(const eDABWorkerStats &stats)
 		strcmp(m_stats.serviceLabel, stats.serviceLabel) != 0 ||
 		strcmp(m_stats.ensembleLabel, stats.ensembleLabel) != 0 ||
 		strcmp(m_stats.language, stats.language) != 0 ||
+		m_stats.programmeType != stats.programmeType ||
+		m_stats.programmeTypeTable != stats.programmeTypeTable ||
 		strcmp(m_stats.programType, stats.programType) != 0 ||
 		strcmp(m_stats.protection, stats.protection) != 0;
 	m_transfer_bps = stats.bytes >= m_last_bytes ? stats.bytes - m_last_bytes : 0;
@@ -3467,6 +3487,10 @@ int eServiceDAB::getInfo(int w)
 		return m_stats.ficQuality;
 	case sDABMSCQuality:
 		return m_stats.mscQuality;
+	case sDABPTY:
+		return m_stats.programmeType;
+	case sDABPTYTable:
+		return m_stats.programmeTypeTable;
 	case sTransferBPS:
 		return static_cast<int>(std::min<uint64_t>(m_transfer_bps, std::numeric_limits<int>::max()));
 	case sProvider:
