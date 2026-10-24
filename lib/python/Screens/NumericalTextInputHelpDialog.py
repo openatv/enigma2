@@ -9,7 +9,7 @@ class NumericalTextInputHelpDialog(Screen):
 		self["help2"] = Label(text=">")
 		for x in (1, 2, 3, 4, 5, 6, 7, 8, 9, 0):
 			text = textInput.mapping[x]
-			self[f"key{x}"] = Label(text.decode(encoding="utf-8", error="strict") if isinstance(text, bytes) else text)
+			self[f"key{x}"] = Label(text.decode(encoding="utf-8", errors="strict") if isinstance(text, bytes) else text)
 		self.lastMarked = 0
 
 	def update(self, textInput):
