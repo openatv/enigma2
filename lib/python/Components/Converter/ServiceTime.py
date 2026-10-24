@@ -32,7 +32,7 @@ class ServiceTime(Converter):
 						event = info.getEvent(service)
 						if event:
 							duration = event.getDuration()
-					result = duration + 10  # Add 10 seconds to fix rounding to minutes.
+					result = duration + 10 if duration >= 0 else None  # Keep unknown durations empty; round known durations to minutes.
 				case self.ENDTIME:
 					begin = info.getInfo(service, iServiceInformation.sTimeCreate)
 					result = begin + info.getLength(service) + 10  # Add 10 seconds to fix rounding to minutes.
