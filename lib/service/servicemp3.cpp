@@ -5277,7 +5277,7 @@ void eServiceMP3::saveCuesheet() {
 
 	bool nativeCuesheetSupport = eSimpleConfig::getBool("config.usage.nativeCuesheetSupport", false);
 
-	if(nativeCuesheetSupport)
+	if (nativeCuesheetSupport && (m_cutlist_enabled & 2) == 0)
 	{
 
 		/* Update CUT_TYPE_LAST (type 3) with the last known play position,
@@ -5285,7 +5285,7 @@ void eServiceMP3::saveCuesheet() {
 		* m_last_seek_pos holds the cached position from getPlayPosition().
 		* m_cutlist_enabled bit 2 is the "don't remember" flag, set by
 		* MovieSelection via setCutListEnable(2) for background playback.
-		* Don't save if position is < 10 seconds or within 10 seconds of end. */
+		* Don't save a resume position below 10 seconds. */
 
 		/* Save old CUT_TYPE_LAST as CUT_TYPE_SAVEDLAST before replacing it */
 		pts_t old_last = 0;

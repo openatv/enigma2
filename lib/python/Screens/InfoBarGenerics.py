@@ -59,7 +59,7 @@ from Screens.PictureInPicture import PictureInPicture
 from Screens.PiPSetup import PiPSetup
 from Screens.PVRState import PVRState, TimeshiftState
 from Screens.RdsDisplay import DABSlideDisplay, RassInteractive, RdsInfoDisplay, RdsInfoDisplaySummary
-from Screens.Screen import Screen
+from Screens.Screen import Screen, ScreenSummary
 from Screens.ScreenSaver import ScreenSaver
 from Screens.Setup import Setup
 import Screens.Standby
@@ -4779,6 +4779,8 @@ class InfoBarCueSheetSupport:
 	CUT_TYPE_OUT = 1
 	CUT_TYPE_MARK = 2
 	CUT_TYPE_LAST = 3
+	CUT_TYPE_SAVEDLAST = 4
+	CUT_TYPE_LENGTH = 5
 
 	ENABLE_RESUME_SUPPORT = False
 
@@ -4816,6 +4818,8 @@ class InfoBarCueSheetSupport:
 				last = getResumePoint(self.session)
 			if last is None:
 				return
+			if isMoviePlayerInfoBar(self) and config.movielist.saveLastAsMarker.value and last > 0 and (last, self.CUT_TYPE_MARK) not in self.cut_list:
+				self.addMark((last, self.CUT_TYPE_MARK))
 			# Only resume if at least 10 seconds ahead, or <10 seconds before the end.
 			seekable = self.__getSeekable()
 			if seekable is None:
@@ -5019,7 +5023,7 @@ class InfoBarSummarySupport:
 		return InfoBarSummary
 
 
-class InfoBarMoviePlayerSummary(Screen):
+class InfoBarMoviePlayerSummary(ScreenSummary):
 	skin = """
 	<screen position="0,0" size="132,64">
 		<widget source="global.CurrentTime" render="Label" position="62,46" size="64,18" font="Regular;16" halign="right" >
@@ -5038,7 +5042,7 @@ class InfoBarMoviePlayerSummary(Screen):
 	</screen>"""
 
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent=parent)
+		ScreenSummary.__init__(self, session, parent)
 		self["state_summary"] = StaticText()
 		self["speed_summary"] = StaticText()
 		self["statusicon_summary"] = MultiPixmap()

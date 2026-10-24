@@ -619,10 +619,24 @@
 		<item level="0" text="Background delete option" description="Configure on which devices the background delete option should be used." indent="1">config.misc.erase_flags</item>
 		<item level="0" text="Background delete speed" description="Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance." indent="1">config.misc.erase_speed</item>
 		<item level="0" text="List Appearance And Sorting" />
-		<item level="0" text="Font size" description="This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size." indent="1">config.movielist.fontsize</item>
-		<item level="0" text="Number of rows" description="Number of rows to display." indent="1">config.movielist.itemsperpage</item>
-		<item level="0" text="Use small screen" description="Use an alternative smaller screen." indent="1">config.movielist.useslim</item>
-		<item level="0" text="Use extended List" description="Use the extended List" indent="1">config.movielist.useextlist</item>
+		<item level="0" text="Screen style" description="Select the movie selection screen layout supplied by the skin." conditional="len(config.movielist.screenStyle.choices) > 1" indent="1">config.movielist.screenStyle</item>
+		<item level="0" text="List style" description="Select a list or grid style. Text styles also work without a movie database. Poster styles require an installed metadata provider. Select legacy mode to use the existing list settings." indent="1">config.movielist.widgetStyle</item>
+		<item level="0" text="Movie database" description="Enable an installed movie library provider for metadata, artwork and the Advance Movie List. Local folders remain available if the provider is unavailable.">config.movielist.libraryProvider</item>
+		<item level="0" text="Start view" description="Select the initial view when a movie database is enabled. The View action switches between local folders and the movie library." conditional="config.movielist.libraryProvider.value != 'off'">config.movielist.startView</item>
+		<item level="0" text="Database view" description="Browse grouped movies and series or all indexed movie files without reading movie storage." conditional="config.movielist.libraryProvider.value != 'off'">config.movielist.libraryGrouping</item>
+		<item level="0" text="Database sort order" description="Sort the whole catalogue before pagination. Long PVR/File temporarily selects another order." conditional="config.movielist.libraryProvider.value != 'off'">config.movielist.librarySort</item>
+		<item level="1" text="Series episode sort order" description="Choose season and episode order, title, recording date, release year or rating." conditional="config.movielist.libraryProvider.value != 'off'">config.movielist.libraryEpisodeSort</item>
+		<item level="0" text="Movie player style" description="Select a movie information bar supplied by the skin.">config.movielist.playerStyle</item>
+		<item level="0" text="Movie front display" description="Select movie information or artwork for the receiver display. Small displays fall back to a text layout.">config.movielist.displayStyle</item>
+		<item level="1" text="Create missing EIT files" description="Save available movie information beside video files, including MKV. Existing EIT files are kept. Automatic creation applies to selected files in the folder view; database browsing does not write to sleeping storage.">config.movielist.eitMode</item>
+		<item level="0" text="Group recordings into virtual folders" description="Combine series or matching recording titles in the view. Movie files stay in their original locations. Grouping can be disabled for individual folders from the context menu.">config.movielist.virtualGrouping</item>
+		<item level="1" text="Recording title separator" description="Use the title before this separator as the virtual folder name. An empty separator groups identical titles." conditional="config.movielist.virtualGrouping.value == 'title'">config.movielist.groupSeparator</item>
+		<item level="1" text="Minimum recordings per virtual folder" description="Only create a group when at least this many matching recordings are present." conditional="config.movielist.virtualGrouping.value != 'off'">config.movielist.groupMinimum</item>
+		<item level="1" text="Virtual folders before movies" description="Show virtual folders first, or sort them among movies by the current title or recording date order.">config.movielist.groupFoldersFirst</item>
+		<item level="0" text="Font size" description="This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size." conditional="not config.movielist.widgetStyle.value" indent="1">config.movielist.fontsize</item>
+		<item level="0" text="Number of rows" description="Number of rows to display." conditional="not config.movielist.widgetStyle.value" indent="1">config.movielist.itemsperpage</item>
+		<item level="0" text="Use small screen" description="Use an alternative smaller screen." conditional="not config.movielist.screenStyle.value" indent="1">config.movielist.useslim</item>
+		<item level="0" text="Use extended List" description="Use the extended List" conditional="not config.movielist.widgetStyle.value" indent="1">config.movielist.useextlist</item>
 		<item level="0" text="Update delay for Events in List" description="Update delay for events in list. Scrolling in list is faster with higher delay, especially on big lists!" indent="1">config.movielist.eventinfo_delay</item>
 		<item level="0" text="Sort" description="Set the default sorting method." indent="1">config.movielist.moviesort</item>
 		<item level="0" text="Show extended description" description="Show or hide the extended description. This functionality may be skin dependent." indent="1">config.movielist.description</item>
@@ -630,6 +644,8 @@
 		<item level="0" text="Playback And Status" />
 		<item level="0" text="Action at end of media" description="Select what action to take when reaching the end of a media file during playback." indent="1">config.usage.on_movie_eof</item>
 		<item level="0" text="Stop service on return to movie list" description="Stop previous broadcasted service on return to movie list." indent="1">config.movielist.stop_service</item>
+		<item level="1" text="Keep previous playback position as chapter marker" description="When starting a movie, keep its previous playback position as a chapter marker. Existing chapter markers remain available." indent="1">config.movielist.saveLastAsMarker</item>
+		<item level="1" text="Enable extended cut file support" description="Save the previous playback position and movie duration in the standard .cuts file." indent="1">config.usage.nativeCuesheetSupport</item>
 		<item level="0" text="Show watch status" description="Shows the watched status of the media." indent="1">config.usage.show_icons_in_movielist</item>
 		<item level="0" text="Show icon for new/unseen items" description="Shows the icons when new/unseen, else will not show an icon." conditional="config.usage.show_icons_in_movielist.value" indent="1">config.usage.movielist_unseen</item>
 		<item level="0" text="Play audio in background" description="Keeps MovieList open whilst playing audio files." indent="1">config.movielist.play_audio_internal</item>

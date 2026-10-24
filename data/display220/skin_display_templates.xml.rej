@@ -1,0 +1,51 @@
+--- data/display220/skin_display_templates.xml
++++ data/display220/skin_display_templates.xml
+@@ -351,4 +351,48 @@
+ 			<widget name="Chapter" position="fill" font="FdLcD;12" halign="left" />
+ 		</panel>
+ 	</screen>
++
++	<!-- Native movie selection and player displays; legacy and EMC screens remain available. -->
++	<screen name="MovieSelectionSummaryAdvanced" position="0,0" size="220,176">
++		<widget source="name" render="Label" position="4,4" size="212,54" font="FdLcD;18" />
++		<widget source="parent.MovieDetails" render="Label" position="4,58" size="212,86" font="FdLcD;12" />
++		<widget source="progress" render="Progress" position="4,147" size="212,5" borderWidth="1" />
++		<widget source="parent.MovieSelectionStatus" render="Label" position="4,156" size="142,16" font="FdLcD;12" noWrap="1" />
++		<widget source="global.CurrentTime" render="Label" position="146,156" size="69,16" font="FdLcD;12" halign="right" noWrap="1">
++			<convert type="ClockToText">Default</convert>
++		</widget>
++	</screen>
++	<screen name="MovieSelectionSummaryArtwork" position="0,0" size="220,176">
++		<widget source="parent.MoviePoster" render="Pixmap" position="4,4" size="73,109" scale="1" alphatest="blend" />
++		<widget source="name" render="Label" position="85,4" size="131,54" font="FdLcD;18" />
++		<widget source="parent.MovieDetails" render="Label" position="85,58" size="131,86" font="FdLcD;12" />
++		<widget source="progress" render="Progress" position="4,147" size="212,5" borderWidth="1" />
++		<widget source="parent.MovieSelectionStatus" render="Label" position="4,156" size="142,16" font="FdLcD;12" noWrap="1" />
++		<widget source="global.CurrentTime" render="Label" position="146,156" size="69,16" font="FdLcD;12" halign="right" noWrap="1">
++			<convert type="ClockToText">Default</convert>
++		</widget>
++	</screen>
++	<screen name="MoviePlayerSummaryAdvanced" position="0,0" size="220,176">
++		<widget source="parent.MovieTitle" render="Label" position="4,4" size="212,54" font="FdLcD;18" />
++		<widget source="parent.MovieDetails" render="Label" position="4,58" size="212,86" font="FdLcD;12" />
++		<widget source="session.CurrentService" render="Progress" position="4,147" size="212,5" borderWidth="1">
++			<convert type="ServicePosition">Position</convert>
++		</widget>
++		<widget source="state_summary" render="Label" position="4,156" size="142,16" font="FdLcD;12" noWrap="1" />
++		<widget source="session.CurrentService" render="Label" position="146,156" size="69,16" font="FdLcD;12" halign="right" noWrap="1">
++			<convert type="ServicePosition">Remaining,Negate</convert>
++		</widget>
++	</screen>
++	<screen name="MoviePlayerSummaryArtwork" position="0,0" size="220,176">
++		<widget source="parent.MoviePoster" render="Pixmap" position="4,4" size="73,109" scale="1" alphatest="blend" />
++		<widget source="parent.MovieTitle" render="Label" position="85,4" size="131,54" font="FdLcD;18" />
++		<widget source="parent.MovieDetails" render="Label" position="85,58" size="131,86" font="FdLcD;12" />
++		<widget source="session.CurrentService" render="Progress" position="4,147" size="212,5" borderWidth="1">
++			<convert type="ServicePosition">Position</convert>
++		</widget>
++		<widget source="state_summary" render="Label" position="4,156" size="142,16" font="FdLcD;12" noWrap="1" />
++		<widget source="session.CurrentService" render="Label" position="146,156" size="69,16" font="FdLcD;12" halign="right" noWrap="1">
++			<convert type="ServicePosition">Remaining,Negate</convert>
++		</widget>
++	</screen>
+ </skin>

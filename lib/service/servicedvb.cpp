@@ -2179,6 +2179,11 @@ RESULT eDVBServicePlay::stop()
 		pts_t play_position, length = 0;
 		if (!getPlayPosition(play_position))
 		{
+			bool extendedCuesheet = eSimpleConfig::getBool("config.usage.nativeCuesheetSupport", false);
+			pts_t previousPosition = -1;
+			for (const auto &entry : m_cue_entries)
+				if (entry.what == 3)
+					previousPosition = entry.where;
 				/* remove last position */
 			for (std::multiset<struct cueEntry>::iterator i(m_cue_entries.begin()); i != m_cue_entries.end();)
 			{
@@ -2197,6 +2202,20 @@ RESULT eDVBServicePlay::stop()
 			if (length)
 			{
 				m_cue_entries.insert(cueEntry(play_position, 3)); /* last play position */
+			}
+			if (extendedCuesheet)
+			{
+				for (auto i = m_cue_entries.begin(); i != m_cue_entries.end();)
+				{
+					if ((i->what == 4 && previousPosition >= 0) || (i->what == 5 && length > 0))
+						i = m_cue_entries.erase(i);
+					else
+						++i;
+				}
+				if (previousPosition >= 0)
+					m_cue_entries.insert(cueEntry(previousPosition, 4));
+				if (length > 0)
+					m_cue_entries.insert(cueEntry(length, 5));
 			}
 			m_cuesheet_changed = 1;
 		}
@@ -4581,8 +4600,9 @@ void eDVBServicePlay::loadCuesheet()
 			where = be64toh(where);
 			what = ntohl(what);
 
-			if (what > 3)
-				break;
+			// Preserve extended markers (saved resume = 4, media length = 5), like servicemp3.
+			if (what >= 256)
+				continue;
 
 			m_cue_entries.insert(cueEntry(where, what));
 		}

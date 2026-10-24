@@ -99,16 +99,9 @@
 		</panel>
 	</screen>
 	<screen name="MovieSelectionSummary" position="fill">
-		<widget source="parent.Title" render="Label" position="top" size="*,40" font="FdLcD;36" halign="left" valign="top" noWrap="1" />
-		<widget source="name" render="Label" position="top" size="*,75" font="FdLcD;36" halign="left" valign="top" />
-		<panel position="bottom" size="*,36">
-			<widget source="parent.Service" render="Label" position="right" size="200,*" font="FdLcD;30" halign="right" noWrap="1">
-				<convert type="MovieInfo">FileSize</convert>
-			</widget>
-			<widget source="parent.Service" render="Label" position="fill" font="FdLcD;30" halign="left" noWrap="1">
-				<convert type="MovieInfo">RecordServiceName</convert>
-			</widget>
-		</panel>
+		<panel name="MovieSelectionLegacyPanel" condition="config.movielist.displayStyle.value == 'legacy'" />
+		<panel name="MovieSelectionInformationPanel" condition="config.movielist.displayStyle.value == 'information'" />
+		<panel name="MovieSelectionArtworkPanel" condition="config.movielist.displayStyle.value == 'artwork'" />
 	</screen>
 <!-- Mediaplayer -->
 	<screen name="MediaPlayerLCDScreen" position="0,0" size="390,240">
@@ -366,5 +359,155 @@
 		<widget source="session.RecordState" render="FixedLabel" text="REC" position="0,214" size="195,26" font="Regular;24" noWrap="1">
 			<convert type="ConditionalShowHide" />
 		</widget>
+	</screen>
+
+	<!-- Native movie selection and player displays; legacy and EMC screens remain available. -->
+	<screen name="MovieSelectionInformationPanel" position="fill" size="390,240">
+		<widget source="name" render="Label" position="4,4" size="382,90" font="FdLcD;30" />
+		<widget source="parent.MovieDetails" render="Label" position="4,94" size="382,107" font="FdLcD;19" />
+		<widget source="progress" render="Progress" position="4,204" size="382,5" borderWidth="1" />
+		<widget source="parent.MovieSelectionStatus" render="Label" position="4,213" size="256,23" font="FdLcD;19" noWrap="1" />
+		<widget source="global.CurrentTime" render="Label" position="260,213" size="126,23" font="FdLcD;19" halign="right" noWrap="1">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+	</screen>
+	<screen name="MovieSelectionArtworkPanel" position="fill" size="390,240">
+		<widget source="parent.MoviePoster" render="Pixmap" position="4,4" size="130,195" scale="1" alphatest="blend" />
+		<widget source="name" render="Label" position="142,4" size="244,90" font="FdLcD;30" />
+		<widget source="parent.MovieDetails" render="Label" position="142,94" size="244,107" font="FdLcD;19" />
+		<widget source="progress" render="Progress" position="4,204" size="382,5" borderWidth="1" />
+		<widget source="parent.MovieSelectionStatus" render="Label" position="4,213" size="256,23" font="FdLcD;19" noWrap="1" />
+		<widget source="global.CurrentTime" render="Label" position="260,213" size="126,23" font="FdLcD;19" halign="right" noWrap="1">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+	</screen>
+	<screen name="MoviePlayerInformationPanel" position="0,0" size="390,240">
+		<widget source="parent.MovieTitle" render="Label" position="4,4" size="382,90" font="FdLcD;30" />
+		<widget source="parent.MovieDetails" render="Label" position="4,94" size="382,107" font="FdLcD;19" />
+		<widget source="session.CurrentService" render="Progress" position="4,204" size="382,5" borderWidth="1">
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+		<widget source="state_summary" render="Label" position="4,213" size="256,23" font="FdLcD;19" noWrap="1" />
+		<widget source="session.CurrentService" render="Label" position="260,213" size="126,23" font="FdLcD;19" halign="right" noWrap="1">
+			<convert type="ServicePosition">Remaining,Negate</convert>
+		</widget>
+	</screen>
+	<screen name="MoviePlayerArtworkPanel" position="0,0" size="390,240">
+		<widget source="parent.MoviePoster" render="Pixmap" position="4,4" size="130,195" scale="1" alphatest="blend" />
+		<widget source="parent.MovieTitle" render="Label" position="142,4" size="244,90" font="FdLcD;30" />
+		<widget source="parent.MovieDetails" render="Label" position="142,94" size="244,107" font="FdLcD;19" />
+		<widget source="session.CurrentService" render="Progress" position="4,204" size="382,5" borderWidth="1">
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+		<widget source="state_summary" render="Label" position="4,213" size="256,23" font="FdLcD;19" noWrap="1" />
+		<widget source="session.CurrentService" render="Label" position="260,213" size="126,23" font="FdLcD;19" halign="right" noWrap="1">
+			<convert type="ServicePosition">Remaining,Negate</convert>
+		</widget>
+	</screen>
+	<screen name="MovieDetailsSummary" position="fill">
+		<panel name="MovieSelectionInformationPanel" condition="config.movielist.displayStyle.value != 'artwork'" />
+		<panel name="MovieSelectionArtworkPanel" condition="config.movielist.displayStyle.value == 'artwork'" />
+	</screen>
+	<!-- ScreenSummary resolves each parent skin name with the Summary suffix. -->
+	<screen name="MoviePlayerSummary" position="0,0" size="390,240" >
+		<panel name="InfoBarMoviePlayerSummary" condition="config.movielist.displayStyle.value == 'legacy'" />
+		<panel name="MoviePlayerInformationPanel" condition="config.movielist.displayStyle.value == 'information'" />
+		<panel name="MoviePlayerArtworkPanel" condition="config.movielist.displayStyle.value == 'artwork'" />
+	</screen>
+	<screen name="MovieSelectionSlimSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionWideSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionAdvancedSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieLibrarySelectionSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MoviePlayerAdvancedSummary" position="0,0" size="390,240" >
+		<panel name="MoviePlayerSummary" />
+	</screen>
+	<screen name="MovieSelectionClassicLeftSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieLibraryClassicLeftSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionClassicBottomSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieLibraryClassicBottomSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionClassicLeftPreviewSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieLibraryClassicLeftPreviewSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionClassicBottomPreviewSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieLibraryClassicBottomPreviewSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MoviePlayerClassicSummary" position="0,0" size="390,240" >
+		<panel name="MoviePlayerSummary" />
+	</screen>
+	<screen name="MovieDetailsSimpleSummary" position="fill">
+		<panel name="MovieDetailsSummary" />
+	</screen>
+	<screen name="MovieSelectionAdvancedSimpleSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MoviePlayerAdvancedSimpleSummary" position="0,0" size="390,240" >
+		<panel name="MoviePlayerSummary" />
+	</screen>
+	<screen name="MovieSelectionClassicLeftSimpleSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionClassicBottomSimpleSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionClassicLeftPreviewSimpleSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionClassicBottomPreviewSimpleSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MoviePlayerClassicSimpleSummary" position="0,0" size="390,240" >
+		<panel name="MoviePlayerSummary" />
+	</screen>
+	<screen name="MovieSelectionOverviewSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionOverviewSimpleSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieLibraryOverviewSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionOverviewPreviewSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionOverviewPreviewSimpleSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieLibraryOverviewPreviewSummary" position="fill">
+		<panel name="MovieSelectionSummary" />
+	</screen>
+	<screen name="MovieSelectionLegacyPanel" position="fill">
+		<widget source="parent.Title" render="Label" position="top" size="*,40" font="FdLcD;36" halign="left" valign="top" noWrap="1" />
+		<widget source="name" render="Label" position="top" size="*,75" font="FdLcD;36" halign="left" valign="top" />
+		<panel position="bottom" size="*,36">
+			<widget source="parent.Service" render="Label" position="right" size="200,*" font="FdLcD;30" halign="right" noWrap="1">
+				<convert type="MovieInfo">FileSize</convert>
+			</widget>
+			<widget source="parent.Service" render="Label" position="fill" font="FdLcD;30" halign="left" noWrap="1">
+				<convert type="MovieInfo">RecordServiceName</convert>
+			</widget>
+		</panel>
 	</screen>
 </skin>

@@ -1,37 +1,24 @@
 # -*- coding: utf-8 -*-
 # plnick@vuplus-support.org
 
-from os import path
+from os.path import basename, realpath, splitext
 
 
 def getExtendedMovieDescription(ref):
-	f = None
-	extended_desc = ""
-	name = ""
-	extensions = (".txt", ".info")
-	info_file = path.realpath(ref.getPath())
-	name = path.basename(info_file)
-	ext_pos = name.rfind('.')
-	if ext_pos > 0:
-		name = (name[:ext_pos]).replace("_", " ")
-	else:
-		name = name.replace("_", " ")
-	for ext in extensions:
-		if path.exists(info_file + ext):
-			f = info_file + ext
+	# Plain paths let background readers reuse the same parser without Enigma objects.
+	filePath = realpath(ref if isinstance(ref, str) else ref.getPath())
+	basePath = splitext(filePath)[0]
+	name = basename(basePath).replace("_", " ")
+	description = ""
+	for candidate in dict.fromkeys(f"{base}{extension}" for base in (filePath, basePath) for extension in (".txt", ".info")):
+		try:
+			with open(candidate, "rb") as stream:
+				data = stream.read(256 * 1024)
+			try:
+				description = data.decode("utf-8-sig")
+			except UnicodeDecodeError:
+				description = data.decode("latin-1")
 			break
-	if not f:
-		ext_pos = info_file.rfind('.')
-		name_len = len(info_file)
-		ext_len = name_len - ext_pos
-		if ext_len <= 5:
-			info_file = info_file[:ext_pos]
-			for ext in extensions:
-				if path.exists(info_file + ext):
-					f = info_file + ext
-					break
-	if f:
-		with open(f) as txtfile:
-			extended_desc = txtfile.read()
-
-	return (name, extended_desc)
+		except OSError:
+			continue
+	return name, description
