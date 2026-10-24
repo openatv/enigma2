@@ -1427,6 +1427,7 @@
 		<item level="2" text="Remember last service in PiP" description="Configure if and how long the latest service in the PiP will be remembered." requires="PIPAvailable" indent="1">config.usage.pip_last_service_timeout</item>
 		<item level="2" text="Other OSD Elements" />
 		<item level="2" text="Show VCR SCART on main menu" description="When enabled, the VCR SCART option will be shown on the main menu." requires="ScartSwitch" indent="1">config.usage.show_vcr_scart</item>
+		<item level="0" text="Toast fade" description="Select the speed of the fade-in and fade-out of toast messages." indent="1">config.misc.toastFade</item>
 		<item level="2" text="Spinner Position" description="Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner." indent="1">config.misc.spinnerPosition</item>
 	</setup>
 	<setup key="Video" title="Video Settings">

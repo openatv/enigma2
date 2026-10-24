@@ -79,15 +79,17 @@ def InitUsageConfig():
 	config.misc.SettingsVersion.save()
 	config.misc.useNTPminutes = ConfigSelection(default=30, choices=[(30, ngettext("%d Minute", "%d Minutes", 30) % 30)] + [(x * 60, ngettext("%d Hour", "%d Hours", x) % x) for x in (1, 24)])
 	config.misc.remotecontrol_text_support = ConfigYesNo(default=True)
-
 	config.misc.extraopkgpackages = ConfigYesNo(default=False)
 	config.misc.actionLeftRightToPageUpPageDown = ConfigYesNo(default=True)
-
 	config.misc.usegstplaybin3 = ConfigYesNo(default=False)
-
 	config.misc.spinnerPosition = ConfigSequence(default=[50, 50], limits=[(0, 1260), (0, 700)], seperator=",")
-
 	config.misc.disableServiceHiSilicon = ConfigYesNo(default=False)
+	config.misc.toastFade = ConfigSelection(default=10, choices=[
+		(0, _("Disabled")),
+		(5, _("Slow")),
+		(10, _("Medium")),
+		(20, _("Fast"))
+	])
 
 	config.workaround = ConfigSubsection()
 	config.workaround.blueswitch = ConfigSelection(default=0, choices=[
