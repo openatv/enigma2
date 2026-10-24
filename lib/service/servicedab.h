@@ -102,6 +102,8 @@ struct eDABWorkerStats
 	char programType[64];
 	char protection[32];
 	int error;
+	uint64_t sdrGeneration = 0;
+	bool sdrRestartRequired = false;
 
 	eDABWorkerStats();
 };
@@ -195,6 +197,8 @@ class eServiceDAB : public iPlayableService, public iServiceInformation, public 
 public:
 	explicit eServiceDAB(const eServiceReference &ref);
 	~eServiceDAB() override;
+	static bool prepareRTLSDRZap(iPlayableService *previous, const eServiceReference &reference,
+		ePtr<iPlayableService> &next);
 
 	RESULT connectEvent(const sigc::slot<void(iPlayableService *, int)> &event, ePtr<eConnection> &connection) override;
 	RESULT start() override;
@@ -284,6 +288,7 @@ private:
 	eFixedMessagePump<eDABWorkerStats> m_worker_pump;
 	std::unique_ptr<eDABWorker> m_worker;
 	std::unique_ptr<eDABSDRWorker> m_sdr_worker;
+	bool m_sdr_reused = false;
 	struct RTLSDRConsumer
 	{
 		std::function<void(const uint8_t *, size_t)> audioCallback;
@@ -293,6 +298,7 @@ private:
 	static eServiceDAB *s_rtlsdr_source;
 	std::mutex m_rtlsdr_consumers_mutex;
 	std::map<uint64_t, RTLSDRConsumer> m_rtlsdr_consumers;
+	bool m_rtlsdr_handover = false;
 	uint64_t m_next_rtlsdr_consumer = 1;
 	int m_socket[2];
 	bool m_running;
