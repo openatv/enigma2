@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<unicable version="20260711">
+<unicable version="20261025">
 <!--
 structure of tree
 unicable (version)
@@ -155,6 +155,14 @@ unicable (version)
 					scr1="0975" scr2="1025" scr3="1075" scr4="1125" scr5="1175" scr6="1225" scr7="1275" scr8="1325"
 					scr9="1375" scr10="1425" scr11="1475" scr12="1525" scr13="1575" scr14="1625" scr15="1675" scr16="1725"
 					scr17="1775" scr18="1825" scr19="1875" scr20="1925" scr21="1975" scr22="2025" scr23="2075" scr24="2125"/>
+			<!-- Frequency plans: manufacturer documentation; retain original UB numbering.
+			     https://www.elcoteam.com/attachment/get/31090/5ff89fc0264b7831845585-GT-Sat-GT-dLNB2T.PDF
+			     dCSS 5-16: UB 1-4 are reserved for EN50494; zero entries keep UB 5 at index 4.
+			-->
+			<product name="GT-dLNB2T - Italy (SCR 1-4)" format="EN50494" positions="1" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+			<product name="GT-dLNB2T - Italy (dCSS 5-16)" format="EN50607" positions="1"
+				scr1="0" scr2="0" scr3="0" scr4="0" scr5="985" scr6="1050" scr7="1115" scr8="1275"
+				scr9="1340" scr10="1485" scr11="1550" scr12="1615" scr13="1745" scr14="1810" scr15="1875" scr16="1940"/>
 		</manufacturer>
 		<manufacturer name="Humax">
 			<product name="150 SCR" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
@@ -218,6 +226,26 @@ unicable (version)
 		<manufacturer name="Next">
 			<product name="YE-449" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
 		</manufacturer>
+		<manufacturer name="Offel">
+			<!-- Frequency plans: manufacturer documentation; retain original UB numbering.
+			     https://www.offel.it/upload/prodotti/allegati/schede-tecniche/DataSheet_13-205_IT.pdf
+			     https://www.offel.it/upload/prodotti/allegati/schede-tecniche/DataSheet_13-207_IT.pdf
+			     https://www.offel.it/upload/prodotti/allegati/schede-tecniche/DataSheet_13-208_IT.pdf
+			     dCSS 5-16: UB 1-4 are reserved for EN50494; zero entries keep UB 5 at index 4.
+			-->
+			<product name="13-205 LNB dCSS (SCR 1-4)" format="EN50494" positions="1" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+			<product name="13-205 LNB dCSS (dCSS 5-16)" format="EN50607" positions="1"
+				scr1="0" scr2="0" scr3="0" scr4="0" scr5="985" scr6="1050" scr7="1115" scr8="1275"
+				scr9="1340" scr10="1485" scr11="1550" scr12="1615" scr13="1745" scr14="1810" scr15="1875" scr16="1940"/>
+			<product name="13-207 LNB dCSS 1 LEGACY (SCR 1-4)" format="EN50494" positions="1" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+			<product name="13-207 LNB dCSS 1 LEGACY (dCSS 5-16)" format="EN50607" positions="1"
+				scr1="0" scr2="0" scr3="0" scr4="0" scr5="985" scr6="1050" scr7="1115" scr8="1275"
+				scr9="1340" scr10="1485" scr11="1550" scr12="1615" scr13="1745" scr14="1810" scr15="1875" scr16="1940"/>
+			<product name="13-208 LNB dCSS 2 LEGACY (SCR 1-4)" format="EN50494" positions="1" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+			<product name="13-208 LNB dCSS 2 LEGACY (dCSS 5-16)" format="EN50607" positions="1"
+				scr1="0" scr2="0" scr3="0" scr4="0" scr5="985" scr6="1050" scr7="1115" scr8="1275"
+				scr9="1340" scr10="1485" scr11="1550" scr12="1615" scr13="1745" scr14="1810" scr15="1875" scr16="1940"/>
+		</manufacturer>
 		<manufacturer name="Opticum">
 			<product name="Unicable LNB"
 					scr1 ="1210" scr2= "1420" scr3= "1680" scr4= "2040" scr5= "970" scr6= "1030" scr7= "1090" scr8= "1150"/>
@@ -249,6 +277,13 @@ unicable (version)
 			scr1 ="1210" scr2 ="1420" scr3 ="1680" scr4 ="2040" scr5 ="978"  scr6= "1028" scr7 ="1072" scr8 ="1116"
 			scr9 ="1160" scr10="1271" scr11="1315" scr12="1359" scr13="1484" scr14="1528" scr15="1572" scr16="1616"
 			scr17="2084" scr18="2128" scr19="1816" scr20="1860" scr21="1904" scr22="1948" scr23="1992" scr24="1728"/>
+			<!-- Frequency plans: manufacturer documentation; retain original UB numbering.
+			     https://www.televes.com/downloadfile/LIC10180003_0_46241.pdf/LIC10180003_0.pdf
+			-->
+			<product name="747342 (PL)" format="EN50607" positions="1"
+				scr1="1210" scr2="1420" scr3="1680" scr4="2040" scr5="978" scr6="1028" scr7="1072" scr8="1116"
+				scr9="1160" scr10="1271" scr11="1315" scr12="1359" scr13="1484" scr14="1528" scr15="1572" scr16="1616"
+				scr17="2084" scr18="2128" scr19="1816" scr20="1860" scr21="1904" scr22="1948" scr23="1992" scr24="1728"/>
 		</manufacturer>
 		<manufacturer name="Triax">
 			<product name="TSC 001" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
@@ -362,12 +397,41 @@ unicable (version)
 			<product name="MS5/5+2PIP-4" positions="1" scr1="1080" scr2="1176" scr3="1237" scr4="1413" scr5="1555" scr6="1668" scr7="1842" scr8="1960" />
 			<product name="MS5/5+2PEP-4" positions="1" scr1="1080" scr2="1176" scr3="1237" scr4="1413" scr5="1555" scr6="1668" scr7="1842" scr8="1960" />
 		</manufacturer>
+		<manufacturer name="Fracarro">
+			<!-- Frequency plans: manufacturer documentation; retain original UB numbering.
+			     https://fracarro.com/wp-content/uploads/product-downloadable-contents/manuals/287412_SCD2_5416_MI.pdf
+			     dCSS 5-16: UB 1-4 are reserved for EN50494; zero entries keep UB 5 at index 4.
+			-->
+			<product name="SCD2-5416 (SCR 1-4)" format="EN50494" positions="1" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+			<product name="SCD2-5416 (dCSS 5-16)" format="EN50607" positions="1"
+				scr1="0" scr2="0" scr3="0" scr4="0" scr5="985" scr6="1050" scr7="1115" scr8="1275"
+				scr9="1340" scr10="1485" scr11="1550" scr12="1615" scr13="1745" scr14="1810" scr15="1875" scr16="1940"/>
+			<product name="SCD2-5816 (SCR 1-4)" format="EN50494" positions="1" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+			<product name="SCD2-5816 (dCSS 5-16)" format="EN50607" positions="1"
+				scr1="0" scr2="0" scr3="0" scr4="0" scr5="985" scr6="1050" scr7="1115" scr8="1275"
+				scr9="1340" scr10="1485" scr11="1550" scr12="1615" scr13="1745" scr14="1810" scr15="1875" scr16="1940"/>
+		</manufacturer>
 		<manufacturer name="Fuba">
 			<product name="MCR 212" format="EN50494" positions="1" scr1="1400" scr2="1516"/>
 			<product name="MCR 221" format="EN50607" positions="1" scr1="1280" scr2="1382"/>
 			<product name="MCR 441" format="EN50607" positions="1" scr1="1280" scr2="1382" scr3="1484" scr4="1586"/>
 			<product name="MCR 518" format="EN50494" positions="1" scr1="1076" scr2="1178" scr3="1280" scr4="1382" scr5="1484" scr6="1586" scr7="1688" scr8="1790"/>
 			<product name="MCR 918" format="EN50494" positions="2" scr1="1076" scr2="1178" scr3="1280" scr4="1382" scr5="1484" scr6="1586" scr7="1688" scr8="1790"/>
+			<!-- Frequency plans: manufacturer documentation; retain original UB numbering.
+			     https://www.fuba.de/media/download/file//b/a/ba_fmg524e-fme524e_2.pdf
+			     https://www.fuba.de/media/download/file/pre/BA_MCR532.pdf
+			-->
+			<product name="FMG 524 E" format="EN50607" positions="2"
+				scr1="975" scr2="1025" scr3="1075" scr4="1125" scr5="1175" scr6="1225" scr7="1275" scr8="1325"
+				scr9="1375" scr10="1425" scr11="1475" scr12="1525" scr13="1575" scr14="1625" scr15="1675" scr16="1725"
+				scr17="1775" scr18="1825" scr19="1875" scr20="1925" scr21="1975" scr22="2025" scr23="2075" scr24="2125"/>
+			<product name="FME 524 E" format="EN50607" positions="2"
+				scr1="975" scr2="1025" scr3="1075" scr4="1125" scr5="1175" scr6="1225" scr7="1275" scr8="1325"
+				scr9="1375" scr10="1425" scr11="1475" scr12="1525" scr13="1575" scr14="1625" scr15="1675" scr16="1725"
+				scr17="1775" scr18="1825" scr19="1875" scr20="1925" scr21="1975" scr22="2025" scr23="2075" scr24="2125"/>
+			<product name="MCR 532" format="EN50607" positions="2"
+				scr1="1076" scr2="1178" scr3="1280" scr4="1382" scr5="1484" scr6="1586" scr7="1688" scr8="1790"
+				scr9="1020" scr10="1125" scr11="1230" scr12="1330" scr13="1435" scr14="1535" scr15="1640" scr16="1735"/>
 		</manufacturer>
 		<manufacturer name="G-STAR">
 			<product name="GS-506-S1" scr1="1280" scr2="1382" scr3="1484"/>
@@ -425,6 +489,38 @@ unicable (version)
 			<product name="9762" format="JESS" positions="4" scr1="1280" scr2="1382" scr3="1484"/>
 			<product name="9762D" format="JESS" positions="4" scr1="1280" scr2="1382" scr3="1484"/>
 			<product name="9762I" format="JESS" positions="4" scr1="1210" scr2="1420" scr3="1680"/>
+			<!-- Frequency plans: manufacturer documentation; retain original UB numbering.
+			     https://www.elektroherink.cz/documents/36%209754a/cs/manual%209754-9754a-9758-9758_eng.pdf
+			     dCSS 5-16: UB 1-4 are reserved for EN50494; zero entries keep UB 5 at index 4.
+			-->
+			<product name="9754 (SCR 1-4)" format="EN50494" positions="2" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+			<product name="9754 (dCSS 5-16)" format="EN50607" positions="2"
+				scr1="0" scr2="0" scr3="0" scr4="0" scr5="985" scr6="1050" scr7="1115" scr8="1275"
+				scr9="1340" scr10="1485" scr11="1550" scr12="1615" scr13="1745" scr14="1810" scr15="1875" scr16="1940"/>
+			<product name="9754A (SCR 1-4)" format="EN50494" positions="2" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+			<product name="9754A (dCSS 5-16)" format="EN50607" positions="2"
+				scr1="0" scr2="0" scr3="0" scr4="0" scr5="985" scr6="1050" scr7="1115" scr8="1275"
+				scr9="1340" scr10="1485" scr11="1550" scr12="1615" scr13="1745" scr14="1810" scr15="1875" scr16="1940"/>
+			<product name="9758 (SCR 1-4)" format="EN50494" positions="2" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+			<product name="9758 (dCSS 5-16)" format="EN50607" positions="2"
+				scr1="0" scr2="0" scr3="0" scr4="0" scr5="985" scr6="1050" scr7="1115" scr8="1275"
+				scr9="1340" scr10="1485" scr11="1550" scr12="1615" scr13="1745" scr14="1810" scr15="1875" scr16="1940"/>
+			<product name="9758A (SCR 1-4)" format="EN50494" positions="2" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+			<product name="9758A (dCSS 5-16)" format="EN50607" positions="2"
+				scr1="0" scr2="0" scr3="0" scr4="0" scr5="985" scr6="1050" scr7="1115" scr8="1275"
+				scr9="1340" scr10="1485" scr11="1550" scr12="1615" scr13="1745" scr14="1810" scr15="1875" scr16="1940"/>
+			<product name="9754APL" format="EN50607" positions="2"
+				scr1="1210" scr2="1420" scr3="1680" scr4="2040" scr5="978" scr6="1028" scr7="1072" scr8="1116"
+				scr9="1160" scr10="1271"/>
+			<product name="9758APL" format="EN50607" positions="2"
+				scr1="1210" scr2="1420" scr3="1680" scr4="2040" scr5="978" scr6="1028" scr7="1072" scr8="1116"
+				scr9="1160" scr10="1271"/>
+			<product name="9754AMC" format="EN50607" positions="2"
+				scr1="1210" scr2="1420" scr3="1680" scr4="2040" scr5="1006" scr6="1057" scr7="1108" scr8="1159"
+				scr9="1261" scr10="1312" scr11="1363" scr12="1471" scr13="1522" scr14="1573" scr15="1624" scr16="1731"/>
+			<product name="9758AMC" format="EN50607" positions="2"
+				scr1="1210" scr2="1420" scr3="1680" scr4="2040" scr5="1006" scr6="1057" scr7="1108" scr8="1159"
+				scr9="1261" scr10="1312" scr11="1363" scr12="1471" scr13="1522" scr14="1573" scr15="1624" scr16="1731"/>
 		</manufacturer>
 		<manufacturer name="JULTEC">
 			<product name="JPS0501-12"  format="JESS" scr1="974"  scr2="1076" scr3="1178" scr4="1280" scr5="1382" scr6="1484" scr7="1586" scr8="1688" scr9="1790" scr10="1892" scr11="1994" scr12="2096"/>
@@ -500,6 +596,58 @@ unicable (version)
 			<product name="a2CSS 4Sat 4UBs (EFGH)" positions="4" positionsoffset="4" format="JESS" scr1="1375" scr2="1425" scr3="1475" scr4="1525"/>
 			<product name="a2CSS 4Sat 8UBs (EFGH)" positions="4" positionsoffset="4" format="JESS" scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"/>
 			<product name="a2CSS 4Sat 16UBs (EFGH)" positions="4" positionsoffset="4" format="JESS" scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725" scr9="1775" scr10="1825" scr11="1875" scr12="1925" scr13="1975" scr14="2025" scr15="2075" scr16="2125"/>
+			<!-- Frequency plans: manufacturer documentation; retain original UB numbering.
+			     https://www.jultec.de/a2CSS_Manual_40T16.pdf
+			     https://www.jultec.de/a2CSS2_Manual_41Y14.pdf
+			     Factory Quattro mode; use the generic a2CSS profiles for configured wideband systems.
+			-->
+			<product name="JRS0501-8 a2CSS" format="EN50607" positions="1" scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"/>
+			<product name="JRS0502-4 a2CSS" format="EN50607" positions="1" scr1="1375" scr2="1425" scr3="1475" scr4="1525"/>
+			<product name="JRS0502-8 a2CSS" format="EN50607" positions="1" scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"/>
+			<product name="JRS0502-4+4T a2CSS" format="EN50607" positions="1" scr1="1375" scr2="1425" scr3="1475" scr4="1525"/>
+			<product name="JRS0504-4 a2CSS" format="EN50607" positions="1" scr1="1375" scr2="1425" scr3="1475" scr4="1525"/>
+			<product name="JRS0506-4 a2CSS" format="EN50607" positions="1" scr1="1375" scr2="1425" scr3="1475" scr4="1525"/>
+			<product name="JRS0506-8 a2CSS" format="EN50607" positions="1" scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"/>
+			<product name="JRS0508-4 a2CSS" format="EN50607" positions="1" scr1="1375" scr2="1425" scr3="1475" scr4="1525"/>
+			<product name="JRS0508-8 a2CSS" format="EN50607" positions="1" scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"/>
+			<product name="JPS0506-8 a2CSS" format="EN50607" positions="1" scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"/>
+			<product name="JPS0506-16 a2CSS" format="EN50607" positions="1"
+				scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"
+				scr9="1775" scr10="1825" scr11="1875" scr12="1925" scr13="1975" scr14="2025" scr15="2075" scr16="2125"/>
+			<product name="JPS0901-8 a2CSS" format="EN50607" positions="2" scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"/>
+			<product name="JPS0901-16 a2CSS" format="EN50607" positions="2"
+				scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"
+				scr9="1775" scr10="1825" scr11="1875" scr12="1925" scr13="1975" scr14="2025" scr15="2075" scr16="2125"/>
+			<product name="JPS0902-8 a2CSS" format="EN50607" positions="2" scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"/>
+			<product name="JPS0902-16 a2CSS" format="EN50607" positions="2"
+				scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"
+				scr9="1775" scr10="1825" scr11="1875" scr12="1925" scr13="1975" scr14="2025" scr15="2075" scr16="2125"/>
+			<product name="JPS0904-4 a2CSS" format="EN50607" positions="2" scr1="1375" scr2="1425" scr3="1475" scr4="1525"/>
+			<product name="JPS0904-8 a2CSS" format="EN50607" positions="2" scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"/>
+			<product name="JPS0904-16 a2CSS" format="EN50607" positions="2"
+				scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"
+				scr9="1775" scr10="1825" scr11="1875" scr12="1925" scr13="1975" scr14="2025" scr15="2075" scr16="2125"/>
+			<product name="JPS0906-4 a2CSS" format="EN50607" positions="2" scr1="1375" scr2="1425" scr3="1475" scr4="1525"/>
+			<product name="JPS0906-8 a2CSS" format="EN50607" positions="2" scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"/>
+			<product name="JPS0908-4 a2CSS" format="EN50607" positions="2" scr1="1375" scr2="1425" scr3="1475" scr4="1525"/>
+			<product name="JPS0908-8 a2CSS" format="EN50607" positions="2" scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"/>
+			<product name="JPS0912-8 a2CSS" format="EN50607" positions="2" scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"/>
+			<product name="JPS1701-16 a2CSS" format="EN50607" positions="4"
+				scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"
+				scr9="1775" scr10="1825" scr11="1875" scr12="1925" scr13="1975" scr14="2025" scr15="2075" scr16="2125"/>
+			<product name="JPS1702-16 a2CSS" format="EN50607" positions="4"
+				scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"
+				scr9="1775" scr10="1825" scr11="1875" scr12="1925" scr13="1975" scr14="2025" scr15="2075" scr16="2125"/>
+			<product name="JPS1704-4 a2CSS" format="EN50607" positions="4" scr1="1375" scr2="1425" scr3="1475" scr4="1525"/>
+			<product name="JPS1704-8 a2CSS" format="EN50607" positions="4" scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"/>
+			<product name="JPS1704-16 a2CSS" format="EN50607" positions="4"
+				scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"
+				scr9="1775" scr10="1825" scr11="1875" scr12="1925" scr13="1975" scr14="2025" scr15="2075" scr16="2125"/>
+			<product name="JPS1706-4 a2CSS" format="EN50607" positions="4" scr1="1375" scr2="1425" scr3="1475" scr4="1525"/>
+			<product name="JPS1706-8 a2CSS" format="EN50607" positions="4" scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"/>
+			<product name="JPS1708-4 a2CSS" format="EN50607" positions="4" scr1="1375" scr2="1425" scr3="1475" scr4="1525"/>
+			<product name="JPS1708-8 a2CSS" format="EN50607" positions="4" scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"/>
+			<product name="JPS1712-8 a2CSS" format="EN50607" positions="4" scr1="1375" scr2="1425" scr3="1475" scr4="1525" scr5="1575" scr6="1625" scr7="1675" scr8="1725"/>
 		</manufacturer>
 		<manufacturer name="Kathrein">
 			<product name="EXD 154" positions="2" format="SCD2"
@@ -551,6 +699,11 @@ unicable (version)
 			<product name="EXD 2532 2Sat 16UBs" positions="2" format="SCD2" scr1="975" permpin1="151" scr2="1025" permpin2="052" scr3="1075" permpin3="133" scr4="1125" permpin4="124" scr5="1175" permpin5="205" scr6="1225" permpin6="196" scr7="1275" permpin7="187" scr8="1325" permpin8="178" scr9="1375" permpin9="099" scr10="1425" permpin10="232" scr11="1475" permpin11="198" scr12="1525" permpin12="111" scr13="1575" permpin13="190" scr14="1625" permpin14="002" scr15="1675" permpin15="201" scr16="1725" permpin16="140"/>
 			<product name="EXD 2532 2Sat 24UBs" positions="2" format="SCD2" scr1="975" permpin1="151" scr2="1025" permpin2="052" scr3="1075" permpin3="133" scr4="1125" permpin4="124" scr5="1175" permpin5="205" scr6="1225" permpin6="196" scr7="1275" permpin7="187" scr8="1325" permpin8="178" scr9="1375" permpin9="099" scr10="1425" permpin10="232" scr11="1475" permpin11="198" scr12="1525" permpin12="111" scr13="1575" permpin13="190" scr14="1625" permpin14="002" scr15="1675" permpin15="201" scr16="1725" permpin16="140" scr17="1775" permpin17="022" scr18="1825" permpin18="136" scr19="1875" permpin19="227" scr20="1925" permpin20="177" scr21="1975" permpin21="044" scr22="2025" permpin22="123" scr23="2075" permpin23="210" scr24="2125" permpin24="097"/>
 			<product name="EXD 2532 2Sat 30UBs" positions="2" format="SCD2" scr1="970" permpin1="151" scr2="1010" permpin2="052" scr3="1050" permpin3="133" scr4="1090" permpin4="124" scr5="1130" permpin5="205" scr6="1170" permpin6="196" scr7="1210" permpin7="187" scr8="1250" permpin8="178" scr9="1290" permpin9="099" scr10="1330" permpin10="232" scr11="1370" permpin11="198" scr12="1410" permpin12="111" scr13="1450" permpin13="190" scr14="1490" permpin14="002" scr15="1530" permpin15="201" scr16="1570" permpin16="140" scr17="1610" permpin17="022" scr18="1650" permpin18="136" scr19="1690" permpin19="227" scr20="1730" permpin20="177" scr21="1770" permpin21="044" scr22="1810" permpin22="123" scr23="1850" permpin23="210" scr24="1890" permpin24="097" scr25="1930" permpin25="125" scr26="1970" permpin26="206" scr27="2010" permpin27="072" scr28="2050" permpin28="248" scr29="2090" permpin29="192" scr30="2130" permpin30="003"/>
+			<!-- Frequency plans: manufacturer documentation; retain original UB numbering.
+			     https://germany.a.bigcontent.io/v1/static/5058470_1_P_PROD_SPEC_R100603357GebrauchsanleitungPDF
+			-->
+			<product name="EXE 1581" format="EN50607" positions="1" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
+			<product name="EXE 2581" format="EN50607" positions="1" scr1="1284" scr2="1400" scr3="1516" scr4="1632" scr5="1748" scr6="1864" scr7="1980" scr8="2096"/>
 		</manufacturer>
 		<manufacturer name="Kreiling">
 			<product name="KR 2-1-2 Uni-D" format="DiSEqC" positions="2" scr1="1400" scr2="1516"/>
@@ -571,6 +724,33 @@ unicable (version)
 			<product name="SCX53 (4/6/8/T)" format="DiSEqC" positions="1" scr1="1210" scr2="1420" scr3="1680"/>
 			<product name="SCX54 (4/6/8/T)" format="DiSEqC" positions="1" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
 			<product name="SCX94 (4/6/8/T)" format="DiSEqC" positions="2" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+			<!-- Frequency plans: manufacturer documentation; retain original UB numbering.
+			     https://lemelettronica.it/manuali/en/hybrid-dcss/manual-dcss-scw516-8.pdf
+			-->
+			<product name="SCW516/8" format="EN50607" positions="2"
+				scr1="1210" scr2="1420" scr3="1680" scr4="2040" scr5="985" scr6="1050" scr7="1115" scr8="1275"
+				scr9="1340" scr10="1485" scr11="1550" scr12="1615" scr13="1745" scr14="1810" scr15="1875" scr16="1940"/>
+		</manufacturer>
+		<manufacturer name="Polytron">
+			<!-- Frequency plans: manufacturer documentation; retain original UB numbering.
+			     https://www.polytron.de/anleitungen/0901809_Manual_SCA32_web.pdf
+			     https://www.polytron.de/anleitungen/0902814_Manual_SCA501-8.pdf
+			     https://www.polytron.de/anleitungen/0902522_Manual_SCA508-16A.pdf
+			     https://www.polytron.de/anleitungen/0901965_Manual_SCA508-4_908-4_V1_web.pdf
+			     dCSS 5-16: UB 1-4 are reserved for EN50494; zero entries keep UB 5 at index 4.
+			-->
+			<product name="SCA 32" format="EN50607" positions="1"
+				scr1="1210" scr2="1420" scr3="1680" scr4="2040" scr5="984" scr6="1020" scr7="1056" scr8="1092"
+				scr9="1128" scr10="1164" scr11="1256" scr12="1292" scr13="1328" scr14="1364" scr15="1458" scr16="1494"
+				scr17="1530" scr18="1566" scr19="1602" scr20="1638" scr21="1716" scr22="1752" scr23="1788" scr24="1824"
+				scr25="1860" scr26="1896" scr27="1932" scr28="1968" scr29="2004" scr30="2076" scr31="2112" scr32="2148"/>
+			<product name="SCA 501-8" format="EN50607" positions="1" scr1="1210" scr2="1420" scr3="1680" scr4="2040" scr5="985" scr6="1050" scr7="1115" scr8="1275"/>
+			<product name="SCA 508-16 A (SCR 1-4)" format="EN50494" positions="2" scr1="1210" scr2="1420" scr3="1680" scr4="2040"/>
+			<product name="SCA 508-16 A (dCSS 5-16)" format="EN50607" positions="2"
+				scr1="0" scr2="0" scr3="0" scr4="0" scr5="985" scr6="1050" scr7="1115" scr8="1275"
+				scr9="1340" scr10="1485" scr11="1550" scr12="1615" scr13="1745" scr14="1810" scr15="1875" scr16="1940"/>
+			<product name="SCA 508-4" format="EN50494" positions="2" scr1="1280" scr2="1484" scr3="1688" scr4="1892"/>
+			<product name="SCA 908-4" format="EN50607" positions="4" scr1="1280" scr2="1484" scr3="1688" scr4="1892"/>
 		</manufacturer>
 		<manufacturer name="Rogetech">
 			<product name="CMS-518C" format="EN50494" positions="1" scr1="1076" scr2="1178" scr3="1280" scr4="1382" scr5="1484" scr6="1586" scr7="1688" scr8="1790"/>
