@@ -554,10 +554,11 @@ class VideoCodec:  # Stream type to codec name mapping.
 		"MPEG2", "AVC", "H263", "VC1", "MPEG4-VC", "VC1-SM", "MPEG1", "HEVC", "VP8", "VP9", "XVID",
 		"N/A 11", "N/A 12", "DIVX 3.11", "DIVX 4", "DIVX 5", "AVS", "N/A 17", "VP6", "N/A 19", "N/A 20", "SPARK"
 	)
+	EXTRA_NAMES = {40: "AVS2"}
 
 	@staticmethod
 	def getName(videoType, default="N/A"):
-		return VideoCodec.NAMES[videoType] if 0 <= videoType < len(VideoCodec.NAMES) else default
+		return VideoCodec.NAMES[videoType] if 0 <= videoType < len(VideoCodec.NAMES) else VideoCodec.EXTRA_NAMES.get(videoType, default)
 
 
 BoxInfo.setItem("DebugLevel", eGetEnigmaDebugLvl())
