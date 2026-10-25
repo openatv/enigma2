@@ -1539,6 +1539,7 @@
 		<item level="2" text="Show VCR SCART on main menu" description="When enabled, the VCR SCART option will be shown on the main menu." requires="ScartSwitch" indent="1">config.usage.show_vcr_scart</item>
 		<item level="0" text="Toast fade" description="Select the speed of the fade-in and fade-out of toast messages." indent="1">config.misc.toastFade</item>
 		<item level="2" text="Spinner Position" description="Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner." indent="1">config.misc.spinnerPosition</item>
+		<item level="2" text="Spinner color" description="Select the color of the built-in busy spinner. Custom PNG spinners keep their own colors." conditional="config.usage.show_spinner.value" indent="1">config.misc.spinnerColor</item>
 	</setup>
 	<setup key="Video" title="Video Settings">
 		<!-- VideoSetup in Screens/VideoMode.py prepends the dynamic items. -->

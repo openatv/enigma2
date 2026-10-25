@@ -549,6 +549,15 @@ void setSpinnerOnOff(int onoff)
 }
 %}
 
+void setSpinnerColor(unsigned int);
+%{
+void setSpinnerColor(unsigned int color)
+{
+	gRC *rc = gRC::getInstance();
+	if (rc) rc->setSpinnerColor(color);
+}
+%}
+
 void setEnableTtCachingOnOff(int);
 %{
 void setEnableTtCachingOnOff(int onoff)

@@ -5,7 +5,7 @@ from os import makedirs, remove, unlink
 from os.path import dirname, exists, isdir, isfile, join as pathjoin, normpath, splitext
 from sys import maxsize
 
-from enigma import Misc_Options, eActionMap, eBackgroundFileEraser, eDVBDB, eDVBFrontend, eEPGCache, eEnv, eServiceEvent, eSettings, eSubtitleSettings, setEnableTtCachingOnOff, setPreferredTuner, setSpinnerOnOff, setTunerTypePriorityOrder
+from enigma import Misc_Options, eActionMap, eBackgroundFileEraser, eDVBDB, eDVBFrontend, eEPGCache, eEnv, eServiceEvent, eSettings, eSubtitleSettings, setEnableTtCachingOnOff, setPreferredTuner, setSpinnerColor, setSpinnerOnOff, setTunerTypePriorityOrder
 
 from keyids import KEYIDS
 from skin import domScreens, getcomponentTemplateNames, parameters
@@ -83,6 +83,11 @@ def InitUsageConfig():
 	config.misc.actionLeftRightToPageUpPageDown = ConfigYesNo(default=True)
 	config.misc.usegstplaybin3 = ConfigYesNo(default=False)
 	config.misc.spinnerPosition = ConfigSequence(default=[50, 50], limits=[(0, 1260), (0, 700)], seperator=",")
+	config.misc.spinnerColor = ConfigSelection(default="2b7fd9", choices=[("2b7fd9", _("Blue")), ("ffffff", _("White")), ("00c080", _("Green")), ("ffbf00", _("Yellow")), ("ff8000", _("Orange")), ("e04040", _("Red"))])
+
+	def spinnerColorChanged(configElement):
+		setSpinnerColor(int(configElement.value, 16))
+	config.misc.spinnerColor.addNotifier(spinnerColorChanged)
 	config.misc.disableServiceHiSilicon = ConfigYesNo(default=False)
 	config.misc.toastFade = ConfigSelection(default=10, choices=[
 		(0, _("Disabled")),
