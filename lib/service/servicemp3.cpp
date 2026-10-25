@@ -2575,6 +2575,9 @@ RESULT eServiceMP3::isCurrentlySeekable() {
 
 	if (!m_gst_playbin)
 		return 0;
+
+	if (m_is_live) // Assume to be not seekable if we are live
+		return 0;
 #ifdef DREAMNEXTGEN
 	/* 4: winds at every speed and backwards itself, InfoBarSeek needs no jumps; with jumps on, it jumps from 8x and backwards */
 	if (m_state == stRunning && m_prerolled)
@@ -3771,6 +3774,14 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 				if (!m_prerolled)
 					applyPendingSeek();
 				break;
+			}
+
+			if (m_send_ev_start && m_sourceinfo.is_streaming && !m_is_live) {
+				// a live network stream has no duration, a VOD stream has one
+				gint64 duration = 0;
+				if (!gst_element_query_duration(m_gst_playbin, GST_FORMAT_TIME, &duration) || duration <= 0)
+					m_is_live = true;
+				eDebug("[eServiceMP3] GST_MESSAGE_ASYNC_DONE check stream live:%d", m_is_live);
 			}
 
 			if (m_send_ev_start) {
