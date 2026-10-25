@@ -466,14 +466,14 @@ def InitAVSwitch():
 			fileWriteLine("/sys/class/amhdmitx/amhdmitx0/config", configElement.value, source=MODULE_NAME)
 
 		config.av.amlhdr10_support = ConfigSelection(default="hdr10-2", choices=[
-			("hdr10-0", _("Force enabled")),
-			("hdr10-1", _("Force disabled")),
+			("hdr10-1", _("Force enabled")),
+			("hdr10-0", _("Force disabled")),
 			("hdr10-2", _("Controlled by HDMI"))
 		])
 		config.av.amlhdr10_support.addNotifier(setAMLHDR10)
 		config.av.amlhlg_support = ConfigSelection(default="hlg-2", choices=[
-			("hlg-0", _("Force enabled")),
-			("hlg-1", _("Force disabled")),
+			("hlg-1", _("Force enabled")),
+			("hlg-0", _("Force disabled")),
 			("hlg-2", _("Controlled by HDMI"))
 		])
 		config.av.amlhlg_support.addNotifier(setAMLHLG)

@@ -30,8 +30,6 @@ Licensed under GPLv2.
 #include <lib/service/servicemp3record.h>
 #include <lib/service/servicedvb.h>
 #ifdef DREAMNEXTGEN
-#include <lib/dvb/alsa.h>
-#include <lib/dvb/volume.h>
 #include <gst/app/gstappsink.h>
 #include <libavcodec/avcodec.h>
 #include <libavcodec/codec_id.h>
@@ -156,13 +154,8 @@ static void forceSelectorCommit(GstElement*, gpointer user_data)
 static GstElement* createDashPlaybackPipeline(const std::string& uri, const std::string& useragent)
 {
 	/* HW audio sink expects stream-format=raw post-aacparse. */
-#ifdef DREAMNEXTGEN
-	const char *vsink_factory = "dreamvideosink";
-	const char *asink_factory = "dreamaudiosink";
-#else
 	const char *vsink_factory = "dvbvideosink";
 	const char *asink_factory = "dvbaudiosink";
-#endif
 	std::string pipeline =
 		"souphttpsrc name=dashsrc location=" + gstLaunchQuote(uri) + " timeout=60 retries=20 "
 		"! dashdemux name=d connection-speed=4000 max-bitrate=3200000 "
@@ -603,27 +596,19 @@ DEFINE_REF(eServiceFactoryMP3)
 static void create_gstreamer_sinks() {
 	dvb_subsink = dvb_audiosink = dvb_videosink = NULL;
 	dvb_subsink_ok = dvb_audiosink_ok = dvb_videosink_ok = false;
-#ifdef DREAMNEXTGEN
-	dvb_audiosink = gst_element_factory_make("dreamaudiosink", NULL);
-#else
 	dvb_audiosink = gst_element_factory_make("dvbaudiosink", NULL);
-#endif
 	if (dvb_audiosink) {
 		gst_object_ref_sink(dvb_audiosink);
 		eDebug("[eServiceFactoryMP3] **** dvb_audiosink created ***");
 		dvb_audiosink_ok = true;
 	} else
 		eDebug("[eServiceFactoryMP3] **** audio_sink NOT created missing plugin ****");
-#ifdef DREAMNEXTGEN
-	/* per-service vsink — see eServiceMP3 ctor */
-#else
 	dvb_videosink = gst_element_factory_make("dvbvideosink", NULL);
 	if (dvb_videosink) {
 		gst_object_ref_sink(dvb_videosink);
 		eDebug("[eServiceFactoryMP3] **** dvb_videosink created ***");
 	} else
 		eDebug("[eServiceFactoryMP3] **** dvb_videosink NOT created missing plugin ****");
-#endif
 	dvb_subsink = gst_element_factory_make("subsink", NULL);
 	if (dvb_subsink) {
 		gst_object_ref_sink(dvb_subsink);
@@ -1071,6 +1056,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	  m_pump(eApp, 1, "eServiceMP3") {
 	m_subtitle_sync_timer = eTimer::create(eApp);
 	m_dvb_subtitle_sync_timer = eTimer::create(eApp);
+	m_audio_switch_timer = eTimer::create(eApp);
 	m_dvb_subtitle_parser = new eDVBSubtitleParser();
 	m_dvb_subtitle_parser->connectNewPage(sigc::mem_fun(*this, &eServiceMP3::newDVBSubtitlePage),
 										  m_new_dvb_subtitle_page_connection);
@@ -1106,6 +1092,15 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_last_seek_count = -10;
 	m_seeking_or_paused = false;
 	m_last_trickseek_ms = 0;
+#ifdef DREAMNEXTGEN
+	m_wind_timer = eTimer::create(eApp);
+	CONNECT(m_wind_timer->timeout, eServiceMP3::windTick);
+	m_wind_ratio = 0;
+	m_wind_start = 0;
+	m_wind_start_ms = 0;
+	m_wind_seek_ms = 0;
+	m_wind_vpts = 0;
+#endif
 	m_to_paused = false;
 	m_last_seek_pos = 0;
 	m_media_lenght = 0;
@@ -1138,6 +1133,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	}
 	CONNECT(m_subtitle_sync_timer->timeout, eServiceMP3::pushSubtitles);
 	CONNECT(m_dvb_subtitle_sync_timer->timeout, eServiceMP3::pushDVBSubtitles);
+	CONNECT(m_audio_switch_timer->timeout, eServiceMP3::retryAudioSwitch);
 	CONNECT(m_pump.recv_msg, eServiceMP3::gstPoll);
 	CONNECT(m_nownext_timer->timeout, eServiceMP3::updateEpgCacheNowNext);
 	m_aspect = m_width = m_height = m_framerate = m_progressive = m_gamma = -1;
@@ -1427,11 +1423,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		m_gst_playbin = gst_element_factory_make("playbin", "playbin");
 	if (m_gst_playbin) {
 		if (dvb_audiosink) {
-#ifdef DREAMNEXTGEN
-			/* audio-only sources (mp3 radio) keep playbin autoplug. */
-			if (!m_sourceinfo.is_audio)
-				g_object_set(m_gst_playbin, "audio-sink", dvb_audiosink, NULL);
-#else
 			if (m_sourceinfo.is_audio) {
 				g_object_set(dvb_audiosink, "e2-sync", TRUE, NULL);
 				g_object_set(dvb_audiosink, "e2-async", TRUE, NULL);
@@ -1440,54 +1431,15 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 				g_object_set(dvb_audiosink, "e2-async", FALSE, NULL);
 			}
 			g_object_set(m_gst_playbin, "audio-sink", dvb_audiosink, NULL);
-#endif
 		}
-#ifdef DREAMNEXTGEN
-		/* sync=FALSE: amvideo HW pacing via kernel tsync; sync=TRUE drops
-		 * 46% frames on 1080p H.264. dream_alsa anchor handles A/V sync. */
-		if (!m_sourceinfo.is_audio) {
-			GstElement *vsink = gst_element_factory_make("dreamvideosink", NULL);
-			if (vsink) {
-				g_object_set(vsink, "sync", FALSE, NULL);
-				g_object_set(m_gst_playbin, "video-sink", vsink, NULL);
-				dvb_videosink = vsink;
-			}
-		}
-#else
 		if (dvb_videosink && !m_sourceinfo.is_audio) {
 			g_object_set(dvb_videosink, "e2-sync", FALSE, NULL);
 			g_object_set(dvb_videosink, "e2-async", FALSE, NULL);
 			g_object_set(m_gst_playbin, "video-sink", dvb_videosink, NULL);
 		}
-#endif
 
-		/* native video flag = no GStreamer video conversion. DREAMNEXTGEN
-		 * adds SOFT_VOLUME because Master mixer doesn't propagate on hw:0,X. */
+		/* native video flag = no GStreamer video conversion */
 		guint flags = GST_PLAY_FLAG_AUDIO | GST_PLAY_FLAG_VIDEO | GST_PLAY_FLAG_TEXT | GST_PLAY_FLAG_NATIVE_VIDEO;
-#ifdef DREAMNEXTGEN
-		flags |= GST_PLAY_FLAG_SOFT_VOLUME;
-		/* Inherit system volume to dreamaudiosink; playbin pinned to 1.0. */
-		{
-			eDVBVolumecontrol *vc = eDVBVolumecontrol::getInstance();
-			if (vc) {
-				int v = vc->getVolume();
-				if (v < 0) v = 0;
-				if (v > 100) v = 100;
-				if (dvb_audiosink)
-					g_object_set(dvb_audiosink, "volume", (gdouble)v / 100.0, NULL);
-				g_object_set(m_gst_playbin, "volume", (gdouble)1.0, NULL);
-			}
-		}
-		/* Follow eAudioDecoder to the Bluetooth sink (audio_source 2). */
-		if (dvb_audiosink) {
-			int port = 0;
-			CFile::parseInt(&port, "/sys/class/amhdmitx/amhdmitx0/audio_source");
-			g_object_set(dvb_audiosink, "device", port == 2 ? "dreambt" : "dreamhdmi", NULL);
-		}
-		/* dreamaudiosink and eAlsaOutput share the dmix slave on
-		 * dreamhdmi; only the first writer's bytes get forwarded. */
-		eAlsaOutput::instance()->releaseHandle();
-#endif
 
 		if (m_sourceinfo.is_streaming) {
 			m_notify_source_handler_id =
@@ -1625,9 +1577,6 @@ eServiceMP3::~eServiceMP3() {
 		gst_tag_list_free(m_stream_tags);
 
 	if (m_gst_playbin) {
-#ifdef DREAMNEXTGEN
-		dvb_videosink = NULL;     /* per-service vsink dies with the playbin */
-#endif
 		gst_object_unref(GST_OBJECT(m_gst_playbin));
 		m_ref.path.clear();
 		m_ref.name.clear();
@@ -1823,6 +1772,9 @@ RESULT eServiceMP3::stop() {
 
 	eDebug("[eServiceMP3] stop %s", m_ref.path.c_str());
 	m_state = stStopped;
+#ifdef DREAMNEXTGEN
+	windStop();
+#endif
 
 	GstStateChangeReturn ret;
 	GstState state, pending;
@@ -1918,8 +1870,112 @@ RESULT eServiceMP3::setSlowMotion(int ratio) {
  */
 RESULT eServiceMP3::setFastForward(int ratio) {
 	eDebug("[eServiceMP3] setFastForward ratio=%.1f", (gdouble)ratio);
+#ifdef DREAMNEXTGEN
+	if (m_state != stRunning || !ratio || !canWind())
+		return -1;
+	/* files wind forward by rate, dvbvideosink scales the PTS; a rate seek
+	 * blocks an adaptive demuxer and many demuxers cannot play backwards,
+	 * those wind by key frame seeks */
+	if (ratio > 0 && !m_is_adaptive_stream && !m_sourceinfo.is_hls) {
+		windStop();
+		return trickSeek(ratio);
+	}
+	struct timespec ts;
+	clock_gettime(CLOCK_MONOTONIC, &ts);
+	int64_t now_ms = (int64_t)ts.tv_sec * 1000 + ts.tv_nsec / 1000000;
+	pts_t start;
+	if (m_wind_ratio)
+		start = windTarget(now_ms); /* a new speed winds on from here */
+	else if (getPlayPosition(start) < 0)
+		return -1;
+	m_wind_start = start;
+	m_wind_start_ms = now_ms;
+	m_wind_ratio = ratio;
+	/* the sink writes nothing while paused, the picture plays on between
+	 * the seeks */
+	if (m_paused) {
+		m_to_paused = false;
+		gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
+	}
+	m_wind_timer->start(0, true);
+	return 0;
+#else
 	return trickSeek(ratio);
+#endif
 }
+
+#ifdef DREAMNEXTGEN
+bool eServiceMP3::canWind() {
+	if (!m_gst_playbin || m_is_live)
+		return false;
+	/* a live playlist prerolls like a file but has no length to wind in */
+	gboolean seekable = FALSE;
+	gint64 duration = 0;
+	GstQuery* query = gst_query_new_seeking(GST_FORMAT_TIME);
+	if (gst_element_query(m_gst_playbin, query))
+		gst_query_parse_seeking(query, NULL, &seekable, NULL, NULL);
+	gst_query_unref(query);
+	return seekable && gst_element_query_duration(m_gst_playbin, GST_FORMAT_TIME, &duration) && duration > 0;
+}
+
+pts_t eServiceMP3::windTarget(int64_t now_ms) {
+	pts_t target = m_wind_start + (pts_t)m_wind_ratio * (now_ms - m_wind_start_ms) * 90;
+	pts_t length = 0;
+	if (target < 0)
+		target = 0;
+	/* hold short of the end, an EOS would end the playback */
+	if (getLength(length) == 0 && length > 90000 && target > length - 90000)
+		target = length - 90000;
+	return target;
+}
+
+static unsigned int windVideoPts() {
+	unsigned int vpts = 0;
+	FILE* f = fopen("/sys/class/tsync/pts_video", "r");
+	if (f) {
+		if (fscanf(f, "%x", &vpts) != 1)
+			vpts = 0;
+		fclose(f);
+	}
+	return vpts;
+}
+
+void eServiceMP3::windTick() {
+	if (!m_wind_ratio || !m_gst_playbin)
+		return;
+	struct timespec ts;
+	clock_gettime(CLOCK_MONOTONIC, &ts);
+	int64_t now_ms = (int64_t)ts.tv_sec * 1000 + ts.tv_nsec / 1000000;
+	/* the next seek waits for the picture of the last one, a seek before
+	 * would flush it unseen and a network source would pile them up */
+	if (m_wind_seek_ms && now_ms - m_wind_seek_ms < 2000 && windVideoPts() == m_wind_vpts) {
+		m_wind_timer->start(50, true);
+		return;
+	}
+	pts_t target = windTarget(now_ms);
+	if (target != m_last_seek_pos) {
+		m_wind_seek_ms = now_ms;
+		m_wind_vpts = windVideoPts();
+		m_last_seek_pos = target;
+		gst_element_seek(m_gst_playbin, 1.0, GST_FORMAT_TIME,
+						 (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT | GST_SEEK_FLAG_TRICKMODE | GST_SEEK_FLAG_TRICKMODE_NO_AUDIO),
+						 GST_SEEK_TYPE_SET, (gint64)(target * 11111LL), GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE);
+	}
+	m_wind_timer->start(400, true);
+}
+
+void eServiceMP3::windStop() {
+	if (!m_wind_ratio)
+		return;
+	m_wind_timer->stop();
+	m_wind_ratio = 0;
+	m_wind_seek_ms = 0;
+	/* back to a plain segment with sound at the last target */
+	if (m_state == stRunning)
+		gst_element_seek(m_gst_playbin, 1.0, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT),
+						 GST_SEEK_TYPE_SET, (gint64)(m_last_seek_pos * 11111LL), GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE);
+}
+#endif
 
 // iPausableService
 
@@ -1939,6 +1995,9 @@ RESULT eServiceMP3::pause() {
 	m_subtitles_paused = true;
 	m_subtitle_sync_timer->start(1, true);
 	eDebug("[eServiceMP3] pause");
+#ifdef DREAMNEXTGEN
+	windStop();
+#endif
 	if (!m_paused)
 		trickSeek(0.0);
 	else
@@ -1963,8 +2022,11 @@ RESULT eServiceMP3::unpause() {
 	m_subtitles_paused = false;
 	m_decoder_time_valid_state = 0;
 	m_subtitle_sync_timer->start(1, true);
+#ifdef DREAMNEXTGEN
+	windStop();
+#endif
 	/* no need to unpase if we are not paused already */
-	if (m_currentTrickRatio == 1.0 && !m_paused) {
+	if (m_currentTrickRatio == 1.0 && !m_paused && !m_to_paused) {
 		eDebug("[eServiceMP3] trickSeek no need to unpause!");
 		return 0;
 	}
@@ -2052,8 +2114,6 @@ RESULT eServiceMP3::seekToImpl(pts_t to) {
 		return 0;
 	}
 	m_last_trickseek_ms = now_ms_k;
-#ifdef DREAMNEXTGEN
-#endif
 	if (!gst_element_seek(m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME,
 						  (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT), GST_SEEK_TYPE_SET,
 						  (gint64)(m_last_seek_pos * 11111LL), GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE)) {
@@ -2163,9 +2223,6 @@ RESULT eServiceMP3::trickSeek(gdouble ratio) {
 		}
 		m_last_trickseek_ms = now_ms;
 	}
-#ifdef DREAMNEXTGEN
-	/* dreamaudiosink handles trick-mode via GstBaseSink TRICKMODE_NO_AUDIO. */
-#endif
 	GstState state, pending;
 	GstStateChangeReturn ret;
 	int pos_ret = -1;
@@ -2177,8 +2234,14 @@ RESULT eServiceMP3::trickSeek(gdouble ratio) {
 		m_to_paused = true;
 		gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
 		// m_paused = true;
+#ifdef DREAMNEXTGEN
+		/* the sinks pause in place at once; the state completes with the
+		 * next buffer the unsynced video sink gets, a seek would jump */
+		return 0;
+#else
 		if (pos_ret >= 0)
 			seekTo(pts);
+#endif
 		/* pipeline sometimes block due to audio track issue off gstreamer.
 		If the pipeline is blocked up on pending state change to paused ,
 		this issue is solved by seek to playposition*/
@@ -2213,6 +2276,10 @@ RESULT eServiceMP3::trickSeek(gdouble ratio) {
 		GstElement* source = NULL;
 		GstElementFactory* factory = NULL;
 		const gchar* name = NULL;
+		/* the DASH pipeline has no playbin source; a seek in a live
+		 * manifest breaks dashdemux, it resumes where it paused */
+		if (m_is_dash_pipeline)
+			goto resume;
 		g_object_get(m_gst_playbin, "source", &source, NULL);
 		if (!source) {
 			eDebugNoNewLineStart("[eServiceMP3] trickSeek - cannot get source");
@@ -2234,6 +2301,7 @@ RESULT eServiceMP3::trickSeek(gdouble ratio) {
 		 * If there are other sources which will not timeout, add them here
 		 */
 		if (!strcmp(name, "filesrc") || !strcmp(name, "souphttpsrc")) {
+		resume:
 			/* previous state was already ok if we come here just give all elements time to unpause */
 			m_to_paused = false;
 			gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
@@ -2254,6 +2322,13 @@ RESULT eServiceMP3::trickSeek(gdouble ratio) {
 
 	bool validposition = false;
 	gint64 pos = 0;
+#ifdef DREAMNEXTGEN
+	/* wind on from the picture on screen, the last seek may be long ago */
+	if (getPlayPosition(pts) >= 0) {
+		validposition = true;
+		pos = pts * 11111LL;
+	} else
+#endif
 	if (m_last_seek_pos > 0) {
 		validposition = true;
 		pos = m_last_seek_pos * 11111LL;
@@ -2274,17 +2349,24 @@ RESULT eServiceMP3::trickSeek(gdouble ratio) {
 	}
 
 	if (validposition) {
+		GstSeekFlags flags = (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_TRICKMODE | GST_SEEK_FLAG_TRICKMODE_NO_AUDIO);
+#ifdef DREAMNEXTGEN
+		if (ratio == 1.0) {
+			/* back to normal play with sound */
+			flags = (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT);
+		} else {
+			/* the decoder takes every frame up to about 60 per second, beyond
+			 * and backwards it gets the key frames only */
+			int fps = m_framerate > 1000 ? m_framerate / 1000 : 25;
+			if (ratio < 0.0 || ratio * fps > 60.0)
+				flags = (GstSeekFlags)(flags | GST_SEEK_FLAG_TRICKMODE_KEY_UNITS);
+		}
+#endif
 		if (ratio >= 0.0) {
-			gst_element_seek(
-				m_gst_playbin, ratio, GST_FORMAT_TIME,
-				(GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_TRICKMODE | GST_SEEK_FLAG_TRICKMODE_NO_AUDIO),
-				GST_SEEK_TYPE_SET, pos, GST_SEEK_TYPE_SET, -1);
+			gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME, flags, GST_SEEK_TYPE_SET, pos, GST_SEEK_TYPE_SET, -1);
 		} else {
 			/* note that most elements will not support negative speed */
-			gst_element_seek(
-				m_gst_playbin, ratio, GST_FORMAT_TIME,
-				(GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_TRICKMODE | GST_SEEK_FLAG_TRICKMODE_NO_AUDIO),
-				GST_SEEK_TYPE_SET, 0, GST_SEEK_TYPE_SET, pos);
+			gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME, flags, GST_SEEK_TYPE_SET, 0, GST_SEEK_TYPE_SET, pos);
 		}
 	}
 
@@ -2397,27 +2479,15 @@ RESULT eServiceMP3::getPlayPosition(pts_t& pts) {
 	if ((dvb_audiosink || dvb_videosink) && !m_paused && !m_seeking_or_paused) {
 		// eDebug("[eServiceMP3] getPlayPosition Check dvb_audiosink or dvb_videosink");
 		if (m_sourceinfo.is_audio && dvb_audiosink) {
-#ifdef DREAMNEXTGEN
-			/* dreamaudiosink has no get-decoder-time; fall through to query_position. */
-#else
 			g_signal_emit_by_name(dvb_audiosink, "get-decoder-time", &pos);
 			/* Some audio decoders keep reporting zero during playback. Use the
 			 * synchronized playbin position instead of resetting the cache to zero. */
 			if (GST_CLOCK_TIME_IS_VALID(pos) && pos > 0)
 				got_decoder_time = true;
-#endif
 		} else if (!m_sourceinfo.is_audio) {
 			/* most stb's work better when pts is taken by audio but some video must be taken cause
 			 * audio is 0 or invalid */
 			/* avoid taking the audio play position if audio sink is in state NULL */
-#ifdef DREAMNEXTGEN
-			/* dreamvideosink keeps get-decoder-time; ask it instead. */
-			if (dvb_videosink) {
-				g_signal_emit_by_name(dvb_videosink, "get-decoder-time", &pos);
-				if (GST_CLOCK_TIME_IS_VALID(pos))
-					got_decoder_time = true;
-			}
-#else
 			if (!m_audiosink_not_running && dvb_audiosink) {
 				g_signal_emit_by_name(dvb_audiosink, "get-decoder-time", &pos);
 				if (!GST_CLOCK_TIME_IS_VALID(pos) && dvb_videosink)
@@ -2429,7 +2499,6 @@ RESULT eServiceMP3::getPlayPosition(pts_t& pts) {
 				if (GST_CLOCK_TIME_IS_VALID(pos))
 				got_decoder_time = true;
 			}
-#endif
 		}
 	}
 
@@ -2506,6 +2575,14 @@ RESULT eServiceMP3::isCurrentlySeekable() {
 
 	if (!m_gst_playbin)
 		return 0;
+
+	if (m_is_live) // Assume to be not seekable if we are live
+		return 0;
+#ifdef DREAMNEXTGEN
+	/* 4: winds at every speed and backwards itself, InfoBarSeek needs no jumps; with jumps on, it jumps from 8x and backwards */
+	if (m_state == stRunning && m_prerolled)
+		return canWind() ? (eConfigManager::getConfigBoolValue("config.seek.withjumps", true) ? 3 : 7) : 0;
+#endif
 
 	return ret;
 }
@@ -3037,6 +3114,33 @@ RESULT eServiceMP3::selectTrack(unsigned int i) {
 	return result;
 }
 
+/**
+ * @brief Applies a deferred audio stream switch once the pipeline settled.
+ *
+ * A flushing seek on a source that cannot seek may leave the pipeline short
+ * of the PAUSED->PLAYING transition the deferred switch waits for. Switch
+ * without the flush after two seconds.
+ */
+void eServiceMP3::retryAudioSwitch() {
+	if (m_audio_switch_deferred < 0)
+		return;
+	if (++m_audio_switch_retries < 8) {
+		if (pipelineSettledInPlaying(m_gst_playbin)) {
+			m_audio_switch_retrying = true;
+			applyAudioSelection();
+			m_audio_switch_retrying = false;
+		} else
+			m_audio_switch_timer->start(250, true);
+		return;
+	}
+	int i = m_audio_switch_deferred;
+	m_audio_switch_deferred = -1;
+	if (selectAudioStream(i, true, false) == 0) {
+		eDebug("[eServiceMP3] switched to audio stream %d without a flush, the pipeline did not settle", i);
+		setCacheEntry(true, i);
+	}
+}
+
 void eServiceMP3::applyAudioSelection() {
 	if (m_is_dash_pipeline || m_audioStreams.empty() || !pipelineSettledInPlaying(m_gst_playbin))
 		return;
@@ -3138,8 +3242,14 @@ int eServiceMP3::selectAudioStream(int i, bool skipAudioFix, bool remember) {
 	   clearBuffers() would deadlock on the audio selector. Applied on the next
 	   PAUSED->PLAYING transition instead. */
 	if (!skipAudioFix && i != m_currentAudioStream && !pipelineSettledInPlaying(m_gst_playbin)) {
-		// eDebug("[eServiceMP3] pipeline not settled in PLAYING, deferring switch to audio stream %d", i);
+		GstState state = GST_STATE_NULL, pending = GST_STATE_VOID_PENDING;
+		gst_element_get_state(m_gst_playbin, &state, &pending, 0);
+		eDebug("[eServiceMP3] pipeline %s, pending %s: deferring the switch to audio stream %d",
+			gst_element_state_get_name(state), gst_element_state_get_name(pending), i);
 		m_audio_switch_deferred = i;
+		if (!m_audio_switch_retrying)
+			m_audio_switch_retries = 0;
+		m_audio_switch_timer->start(250, true);
 		return 0;
 	}
 	if (!skipAudioFix)
@@ -3151,10 +3261,29 @@ int eServiceMP3::selectAudioStream(int i, bool skipAudioFix, bool remember) {
 		m_currentAudioStream = i;
 		if (!skipAudioFix) {
 			eDebug("[eServiceMP3] switched to audio stream %d", current_audio);
-			clearBuffers();
+			/* the flushing seek drops the queued audio of the previous stream; a
+			   source that cannot seek restarts at a wrong position after it */
+			GstQuery* query = gst_query_new_seeking(GST_FORMAT_TIME);
+			gboolean seekable = FALSE;
+			if (gst_element_query(m_gst_playbin, query))
+				gst_query_parse_seeking(query, NULL, &seekable, NULL, NULL);
+			gst_query_unref(query);
+			if (seekable)
+				clearBuffers();
+			else
+				eDebug("[eServiceMP3] the source cannot seek, the queued audio plays out");
 			if (remember)
 				setCacheEntry(true, i);
 		}
+		return 0;
+	}
+	if (!skipAudioFix) {
+		/* playbin may refuse the switch while the flush of the previous one is still running */
+		eDebug("[eServiceMP3] current-audio stays %d, retrying the switch to audio stream %d", current_audio, i);
+		m_audio_switch_deferred = i;
+		if (!m_audio_switch_retrying)
+			m_audio_switch_retries = 0;
+		m_audio_switch_timer->start(250, true);
 		return 0;
 	}
 	return -1;
@@ -3645,6 +3774,14 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 				if (!m_prerolled)
 					applyPendingSeek();
 				break;
+			}
+
+			if (m_send_ev_start && m_sourceinfo.is_streaming && !m_is_live) {
+				// a live network stream has no duration, a VOD stream has one
+				gint64 duration = 0;
+				if (!gst_element_query_duration(m_gst_playbin, GST_FORMAT_TIME, &duration) || duration <= 0)
+					m_is_live = true;
+				eDebug("[eServiceMP3] GST_MESSAGE_ASYNC_DONE check stream live:%d", m_is_live);
 			}
 
 			if (m_send_ev_start) {

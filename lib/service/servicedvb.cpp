@@ -17,9 +17,6 @@
 #include <lib/dvb/db.h>
 #include <lib/dvb/decoder.h>
 #include <lib/dvb/warmstart.h>
-#ifdef DREAMNEXTGEN
-#include <lib/dvb/alsa.h>
-#endif
 
 #include <lib/base/cfile.h>
 #include <lib/dvb/pmtparse.h>
@@ -2448,12 +2445,6 @@ RESULT eDVBServicePlay::getLength(pts_t &len)
 RESULT eDVBServicePlay::pause()
 {
 	eDebug("[eDVBServicePlay] pause");
-#ifdef DREAMNEXTGEN
-	/* Hold ALSA writer (drain + park, FIFO preserved) before decoder
-	 * freezes its kernel state. */
-	if (eAlsaOutput *a = eAlsaOutput::instance(nullptr))
-		a->pauseWriter();
-#endif
 	setFastForward_internal(0, m_slowmotion || m_fastforward > 1 || m_skipmode != 0);
 	// Check SoftDecoder first (only if session is active AND not in timeshift playback)
 	// During timeshift playback, we use the normal decoder for the timeshift file
@@ -2483,10 +2474,6 @@ RESULT eDVBServicePlay::pause()
 RESULT eDVBServicePlay::unpause()
 {
 	eDebug("[eDVBServicePlay] unpause");
-#ifdef DREAMNEXTGEN
-	/* Writer wakes AFTER decoder kernel state has resumed. First writei
-	 * hits EBADFD → handler runs snd_pcm_prepare + re-anchor. */
-#endif
 	setFastForward_internal(0, m_slowmotion || m_fastforward > 1 || m_skipmode != 0);
 	// Check SoftDecoder first (only if session is active AND not in timeshift playback)
 	// During timeshift playback, we use the normal decoder for the timeshift file
@@ -2502,8 +2489,6 @@ RESULT eDVBServicePlay::unpause()
 		RESULT r = m_soft_decoder->play();
 #ifdef DREAMNEXTGEN
 		m_soft_decoder->setUserPauseActive(false);
-		if (eAlsaOutput *a = eAlsaOutput::instance(nullptr))
-			a->resumeWriter();
 #endif
 		return r;
 	}
@@ -2524,8 +2509,6 @@ RESULT eDVBServicePlay::unpause()
 		RESULT r = m_decoder->play();
 #ifdef DREAMNEXTGEN
 		m_decoder->setUserPauseActive(false);
-		if (eAlsaOutput *a = eAlsaOutput::instance(nullptr))
-			a->resumeWriter();
 #endif
 		return r;
 	} else
@@ -2552,14 +2535,6 @@ RESULT eDVBServicePlay::seekTo(pts_t to)
 	m_cue->seekTo(0, to);
 	m_dvb_subtitle_pages.clear();
 	m_subtitle_pages.clear();
-#ifdef DREAMNEXTGEN
-	/* Drop FIFO + re-arm anchor + signal kernel discontinuity so the new
-	 * post-seek PCR epoch becomes the next anchor target. Without this the
-	 * old in-flight chunks keep playing while pts_video jumps to the new
-	 * file offset (audio "wo ganz anders"). */
-	if (eAlsaOutput *a = eAlsaOutput::instance(nullptr))
-		a->flushOnSeek();
-#endif
 
 	return 0;
 }
@@ -2592,10 +2567,6 @@ RESULT eDVBServicePlay::seekRelative(int direction, pts_t to)
 	m_cue->seekTo(mode, to);
 	m_dvb_subtitle_pages.clear();
 	m_subtitle_pages.clear();
-#ifdef DREAMNEXTGEN
-	if (eAlsaOutput *a = eAlsaOutput::instance(nullptr))
-		a->flushOnSeek();
-#endif
 	return 0;
 }
 
@@ -4291,18 +4262,6 @@ void eDVBServicePlay::switchToTimeshift()
 	pause();
 	updateDecoder(true); /* mainly to switch off PCR, and to set pause */
 
-#ifdef DREAMNEXTGEN
-	/* Re-point eAlsaOutput's PCR demux fd to the timeshift demux. Live
-	 * and timeshift often share the same demux ID — force a close+reopen
-	 * so setPcrDemux doesn't early-return on the matching id. */
-	if (m_decode_demux) {
-		uint8_t did = 0;
-		m_decode_demux->getCADemuxID(did);
-		eAlsaOutput::instance()->setPcrDemux(0, -1);   /* force close cached fd */
-		eAlsaOutput::instance()->setPcrDemux(0, did);  /* re-open on timeshift demux */
-		eDebug("[eDVBServicePlay] timeshift entry: re-opened PCR fd on adapter0/demux%d", did);
-	}
-#endif
 }
 
 void eDVBServicePlay::ciRoutingChanged(int tuner)

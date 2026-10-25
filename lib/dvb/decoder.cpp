@@ -6,6 +6,9 @@
 #include <lib/base/wrappers.h>
 #include <lib/dvb/decoder.h>
 #include <lib/dvb/hevc_hdr_detector.h>
+#ifdef DREAMNEXTGEN
+#include <lib/dvb/videoswdemux.h>
+#endif
 #include <lib/components/tuxtxtapp.h>
 #include <linux/dvb/audio.h>
 #include <linux/dvb/video.h>
@@ -21,9 +24,7 @@
 
 #include <lib/dvb/fccdecoder.h>
 #ifdef DREAMNEXTGEN
-#include <lib/dvb/alsa.h>
 #include <lib/dvb/avsync_core.h>
-#include <lib/dvb/iec61937.h>
 #endif
 
 #ifndef VIDEO_SOURCE_HDMI
@@ -62,7 +63,12 @@ eDVBAudio::eDVBAudio(eDVBDemux *demux, int dev)
 	:m_demux(demux), m_dev(dev), m_bypass(-1)
 {
 	char filename[128];
+#ifdef DREAMNEXTGEN
+	/* the SoC has no audio decoder; dreamaudiod decodes for this device */
+	sprintf(filename, "/dev/dvb/adapter%d/dreamaudio%d", demux ? demux->adapter : 0, dev);
+#else
 	sprintf(filename, "/dev/dvb/adapter%d/audio%d", demux ? demux->adapter : 0, dev);
+#endif
 	m_fd = ::open(filename, O_RDWR | O_CLOEXEC);
 	if (m_fd < 0)
 		eWarning("[eDVBAudio] %s: %m", filename);
@@ -78,14 +84,10 @@ eDVBAudio::eDVBAudio(eDVBDemux *demux, int dev)
 		m_fd_demux = -1;
 	}
 
-#ifndef DREAMNEXTGEN
 	if (m_fd >= 0)
 	{
 		::ioctl(m_fd, AUDIO_SELECT_SOURCE, demux ? AUDIO_SOURCE_DEMUX : AUDIO_SOURCE_HDMI);
 	}
-#else
-	m_TsPaser = new eTsParser();
-#endif
 
 	if (eDVBAudio::m_debug < 0)
 		eDVBAudio::m_debug = eSimpleConfig::getBool("config.crash.debugDVB", false) ? 1 : 0;
@@ -101,17 +103,7 @@ int eDVBAudio::startPid(int pid, int type)
 
 		pes.pid      = pid;
 		pes.input    = DMX_IN_FRONTEND;
-#ifdef DREAMNEXTGEN
-		pes.output   = DMX_OUT_TSDEMUX_TAP;
-		/* Default kernel demux buffer is only ~8 KB. On high-bitrate channels
-		 * (e.g. Sky Krimi HD) the audio TS-tap overflows and audio packets get
-		 * dropped, leading to a ~60% effective audio rate -> XRUNs. 2 MB matches
-		 * what the other dvbmediasink-based boxes do for hw audio demux. */
-		if (::ioctl(m_fd_demux, DMX_SET_BUFFER_SIZE, 2 * 1024 * 1024) < 0)
-			eDebug("[eDVBAudio%d] DMX_SET_BUFFER_SIZE 2MB failed: %m", m_dev);
-#else
 		pes.output   = DMX_OUT_DECODER;
-#endif
 		switch (m_dev)
 		{
 		case 0:
@@ -221,12 +213,6 @@ int eDVBAudio::startPid(int pid, int type)
 			::ioctl(m_fd, AUDIO_PLAY);
 
 	}
-#ifdef DREAMNEXTGEN
-	if (m_fd_demux >= 0)
-	{	
-		m_TsPaser->startPid(m_fd_demux);
-	}
-#endif
 	return 0;
 }
 
@@ -258,10 +244,6 @@ void eDVBAudio::stop()
 		}
 		else
 			::ioctl(m_fd_demux, DMX_STOP);
-
-#ifdef DREAMNEXTGEN
-		m_TsPaser->stop();
-#endif
 	}
 }
 
@@ -281,12 +263,6 @@ void eDVBAudio::flush()
 			::ioctl(m_fd, AUDIO_CLEAR_BUFFER);
 
 	}
-#ifdef DREAMNEXTGEN
-	if (m_fd_demux >= 0)
-	{	
-		m_TsPaser->flush();
-	}
-#endif
 }
 
 void eDVBAudio::freeze()
@@ -304,12 +280,6 @@ void eDVBAudio::freeze()
 		else
 			::ioctl(m_fd, AUDIO_PAUSE);
 	}
-#ifdef DREAMNEXTGEN
-	if (m_fd_demux >= 0)
-	{	
-		m_TsPaser->freeze();
-	}
-#endif
 }
 
 void eDVBAudio::unfreeze()
@@ -327,12 +297,6 @@ void eDVBAudio::unfreeze()
 		else
 			::ioctl(m_fd, AUDIO_CONTINUE);
 	}
-#ifdef DREAMNEXTGEN
-	if (m_fd_demux >= 0)
-	{	
-		m_TsPaser->unfreeze();
-	}
-#endif
 }
 
 void eDVBAudio::setChannel(int channel)
@@ -367,23 +331,12 @@ int eDVBAudio::getPTS(pts_t &now)
 		if (::ioctl(m_fd, AUDIO_GET_PTS, &now) < 0)
 			eDebug("[eDVBAudio%d] AUDIO_GET_PTS failed: %m", m_dev);
 	}
-#ifdef DREAMNEXTGEN
-	if (m_fd_demux >= 0)
-	{	
-		m_TsPaser->getPTS(now);
-	}
-#endif
 	return 0;
 }
 
 eDVBAudio::~eDVBAudio()
 {
 	unfreeze();  // why unfreeze here... but not unfreeze video in ~eDVBVideo ?!?
-#ifdef DREAMNEXTGEN
-	if(m_TsPaser)
-		delete m_TsPaser;
-	m_TsPaser = 0;
-#endif
 	if (m_fd >= 0)
 		::close(m_fd);
 	if (m_fd_demux >= 0)
@@ -455,6 +408,18 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev, bool fcc_enable)
 	{
 		::ioctl(m_fd, VIDEO_SELECT_SOURCE, demux ? VIDEO_SOURCE_DEMUX : VIDEO_SOURCE_HDMI);
 	}
+#else
+	/* the hardware demux only feeds the first decoder (as DreamOS) */
+	if (demux && m_dev > 0 && m_fd >= 0)
+	{
+		if (m_fd_demux >= 0)
+			::close(m_fd_demux);
+		m_fd_demux = -1;
+		/* a demux takes one tap per type; the mosaic decoders 2..5 run
+		 * without the main and PiP decoder and use all four types */
+		static const dmx_pes_type_t tapType[] = { DMX_PES_VIDEO0, DMX_PES_VIDEO1, DMX_PES_VIDEO2, DMX_PES_VIDEO3 };
+		m_sw_demux = new eDVBVideoSwDemux(demux, m_fd, tapType[m_dev & 3], m_dev >= 2);
+	}
 #endif
 
 	if (m_close_invalidates_attributes < 0)
@@ -492,15 +457,26 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev, bool fcc_enable)
 #define VIDEO_STREAMTYPE_MPEG4_H264 1
 #define VIDEO_STREAMTYPE_VC1 3
 #define VIDEO_STREAMTYPE_MPEG4_Part2 4
+#ifdef DREAMNEXTGEN
+/* meson64 passes a stream type it does not map on as the decoder format */
+#define VIDEO_STREAMTYPE_VC1_SM 17
+#define VIDEO_STREAMTYPE_MPEG1 0
+#else
 #define VIDEO_STREAMTYPE_VC1_SM 5
 #define VIDEO_STREAMTYPE_MPEG1 6
+#endif
 #ifdef DREAMBOX
 #define VIDEO_STREAMTYPE_H265_HEVC 22
 #else
 #define VIDEO_STREAMTYPE_H265_HEVC 7
 #endif
+#ifdef DREAMNEXTGEN
+#define VIDEO_STREAMTYPE_AVS 7
+#define VIDEO_STREAMTYPE_AVS2 15
+#else
 #define VIDEO_STREAMTYPE_AVS 16
 #define VIDEO_STREAMTYPE_AVS2 40
+#endif
 
 int eDVBVideo::startPid(int pid, int type)
 {
@@ -522,6 +498,20 @@ int eDVBVideo::startPid(int pid, int type)
 			m_hdr_detector->start(pid);
 		return 0;
 	}
+
+#ifdef DREAMNEXTGEN
+	/*
+	 * The PiP layer cannot line skip compressed 4K frames: the PiP decoder
+	 * gets a quarter size double write buffer. The decoder reads the module
+	 * parameter when it is created.
+	 */
+	static const char *doubleWriteMode = "/sys/module/amvdec_h265/parameters/double_write_mode";
+	int doubleWriteRestore = -1;
+	if (m_dev > 0 && type == H265_HEVC && m_fd >= 0 && CFile::parseInt(&doubleWriteRestore, doubleWriteMode) == 0)
+		CFile::writeInt(doubleWriteMode, 2);
+	else
+		doubleWriteRestore = -1;
+#endif
 
 	if (m_fd >= 0)
 	{
@@ -648,6 +638,22 @@ int eDVBVideo::startPid(int pid, int type)
 #endif
 
 	}
+#ifdef DREAMNEXTGEN
+	if (doubleWriteRestore >= 0)
+		CFile::writeInt(doubleWriteMode, doubleWriteRestore);
+	if (m_sw_demux)
+	{
+		eDVBVideoSwDemux::Codec codec = eDVBVideoSwDemux::OTHER;
+		if (type == MPEG2 || type == MPEG1)
+			codec = eDVBVideoSwDemux::MPEG2;
+		else if (type == MPEG4_H264)
+			codec = eDVBVideoSwDemux::H264;
+		else if (type == H265_HEVC)
+			codec = eDVBVideoSwDemux::HEVC;
+		if (m_sw_demux->start(pid, codec, m_pcrpid) < 0)
+			return -1;
+	}
+#endif
 	if (type == H265_HEVC && m_hdr_detector)
 		m_hdr_detector->start(pid);
 	return 0;
@@ -661,6 +667,10 @@ void eDVBVideo::stop()
 	if (m_fcc_enable)
 		return;
 
+#ifdef DREAMNEXTGEN
+	if (m_sw_demux)
+		m_sw_demux->stop();
+#endif
 	if (m_fd_demux >= 0)
 	{
 		if(eDVBVideo::m_debug)
@@ -673,7 +683,6 @@ void eDVBVideo::stop()
 		}
 		else
 			::ioctl(m_fd_demux, DMX_STOP);
-
 	}
 
 	if (m_fd >= 0)
@@ -875,6 +884,8 @@ eDVBVideo::~eDVBVideo()
 #ifdef DREAMNEXTGEN
 	if (m_sysfs_poll_timer)
 		m_sysfs_poll_timer->stop();
+	delete m_sw_demux;
+	m_sw_demux = nullptr;
 #endif
 	if (m_fd >= 0)
 		::close(m_fd);
@@ -1522,9 +1533,13 @@ int eTSMPEGDecoder::setState()
 	}
 
 #ifdef DREAMNEXTGEN
+	/* a mosaic window ran the system clock since the main sync was set up */
+	static bool s_mosaic_clock = false;
+
 	/* Kernel-tsync PCRMASTER bootstrap: STOP_TSYNC_PCR (clear previous
-	 * pts_start) then SET_DEMUX_INFO, before eDVBVideo::startPid. */
-	if (changed & (changeState|changeVideo|changePCR))
+	 * pts_start) then SET_DEMUX_INFO, before eDVBVideo::startPid.
+	 * The sync belongs to the main decoder; PiP has none. */
+	if (m_decoder == 0 && (changed & (changeState|changeVideo|changePCR)))
 	{
 		eAVSyncCore *avsync = eAVSyncCore::getInstance();
 		bool stopping = (m_state != statePlay && m_state != statePause);
@@ -1542,7 +1557,7 @@ int eTSMPEGDecoder::setState()
 			new_demux = did;
 		}
 
-		bool video_unchanged = !stopping
+		bool video_unchanged = !stopping && !s_mosaic_clock
 			&& s_last_vpid   == new_vpid
 			&& s_last_pcrpid == new_pcr
 			&& s_last_demux  == new_demux
@@ -1553,7 +1568,6 @@ int eTSMPEGDecoder::setState()
 			 * running undisturbed. */
 		} else if (stopping) {
 			avsync->stopPCRSync();
-			eAlsaOutput::instance()->setPcrDemux(0, -1);
 			s_last_vpid = s_last_pcrpid = s_last_demux = -1;
 		} else if ((m_vpid > 0 && m_vpid < 0x1FFF) ||
 		           (m_apid > 0 && m_apid < 0x1FFF) ||
@@ -1561,25 +1575,27 @@ int eTSMPEGDecoder::setState()
 		{
 			avsync->stopPCRSync();
 			avsync->enableKernelSync();
-			/* 75ms reset; final value computed in eAlsaOutput::pushData(). */
+			/* the video lags the PCR by 75ms */
 			avsync->setPCROffset(0x1a5e);
 			avsync->setAutoPCROffset(0);
-			eAlsaOutput::setVideoType(m_vtype);
-			if (new_demux >= 0) {
+			if (new_demux >= 0)
 				avsync->setDemuxInfo(new_demux, 0, new_vpid, new_apid, new_pcr);
-				int adapter = m_demux ? m_demux->adapter : 0;
-				eAlsaOutput::instance()->setPcrDemux(adapter, new_demux);
-			}
 			s_last_vpid   = new_vpid;
 			s_last_pcrpid = new_pcr;
 			s_last_demux  = new_demux;
+			s_mosaic_clock = false;
 		}
 	}
 #endif
 
 	if (m_changed & changePCR)
 	{
+#ifdef DREAMNEXTGEN
+		/* no PCR decoder for PiP, the PiP layer paces itself */
+		if ((m_pcrpid >= 0) && (m_pcrpid < 0x1FFF) && m_decoder == 0)
+#else
 		if ((m_pcrpid >= 0) && (m_pcrpid < 0x1FFF))
+#endif
 		{
 			m_pcr = new eDVBPCR(m_demux, m_decoder);
 			if (m_pcr->startPid(m_pcrpid))
@@ -1595,6 +1611,16 @@ int eTSMPEGDecoder::setState()
 			if (m_audio->startPid(m_apid, m_atype))
 				res = -1;
 		}
+#ifdef DREAMNEXTGEN
+		/* the mosaic window playing the audio runs the system clock */
+		if (m_mosaic_audio)
+		{
+			CFile::writeInt(("/proc/stb/vmpeg/" + std::to_string(m_decoder) + "/clock").c_str(), m_audio ? 1 : 0);
+			/* the main decoder sets its sync up again afterwards */
+			if (m_audio)
+				s_mosaic_clock = true;
+		}
+#endif
 		m_changed &= ~changeAudio;
 	}
 	if (m_changed & changeVideo)
@@ -1603,6 +1629,9 @@ int eTSMPEGDecoder::setState()
 		{
 			m_video = new eDVBVideo(m_demux, m_decoder, m_fcc_enable);
 			m_video->connectEvent(sigc::mem_fun(*this, &eTSMPEGDecoder::video_event), m_video_event_conn);
+#ifdef DREAMNEXTGEN
+			m_video->setPcrPid(m_pcrpid);
+#endif
 			if (m_video->startPid(m_vpid, m_vtype))
 				res = -1;
 		}
@@ -1647,7 +1676,9 @@ int eTSMPEGDecoder::setState()
 		/* trick/FF/slowmotion → play: FREEZE+PLAY pair to flush the AML
 		 * video pacer's stuck-iframe state before resuming normal play. */
 		static int s_dnxt_prev_state = stateStop;
-		bool dnxt_recovery = m_video
+		/* trick and pause state is tracked for the main decoder only */
+		const bool dnxt_main = m_decoder == 0;
+		bool dnxt_recovery = dnxt_main && m_video
 			&& m_state == statePlay
 			&& (s_dnxt_prev_state == stateDecoderFastForward
 				|| s_dnxt_prev_state == stateTrickmode
@@ -1687,7 +1718,7 @@ int eTSMPEGDecoder::setState()
 		/* PVR/Timeshift pause: AMSTREAM_IOC_VPAUSE freezes STC via vsync
 		 * ISR gate; DMX_STOP halts the PCR feed. DVB VIDEO_FREEZE alone
 		 * doesn't reach timestamp_pcrscr_enable() on our kernel build. */
-		if (m_user_pause_active) {
+		if (dnxt_main && m_user_pause_active) {
 			auto aml_vpause = [](int arg) {
 				int fd = ::open("/dev/amvideo", O_RDWR | O_CLOEXEC);
 				if (fd < 0) return;
@@ -1704,7 +1735,8 @@ int eTSMPEGDecoder::setState()
 				eDebug("[eTSMPEGDecoder] unpause: DMX_START PCR demux + VPAUSE(0)");
 			}
 		}
-		s_dnxt_prev_state = m_state;
+		if (dnxt_main)
+			s_dnxt_prev_state = m_state;
 #endif
 		if (changed & (changeState|changeAudio) && m_audio)
 		{
@@ -1732,10 +1764,6 @@ RESULT eTSMPEGDecoder::setHwPCMDelay(int delay)
 	{
 		CFile::writeIntHex("/proc/stb/audio/audio_delay_pcm", delay*90);
 		m_pcm_delay = delay;
-#ifdef DREAMNEXTGEN
-		eAlsaOutput *o = eAlsaOutput::instance();
-		if (o && !o->passthrough()) o->applyAudioPtsOffset();
-#endif
 		return 0;
 	}
 	return -1;
@@ -1747,10 +1775,6 @@ RESULT eTSMPEGDecoder::setHwAC3Delay(int delay)
 	{
 		CFile::writeIntHex("/proc/stb/audio/audio_delay_bitstream", delay*90);
 		m_ac3_delay = delay;
-#ifdef DREAMNEXTGEN
-		eAlsaOutput *o = eAlsaOutput::instance();
-		if (o && o->passthrough()) o->applyAudioPtsOffset();
-#endif
 		return 0;
 	}
 	return -1;
@@ -1783,6 +1807,14 @@ eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder)
 	char filename[128] = {};
 	sprintf(filename, "/dev/dvb/adapter%d/audio%d", m_demux ? m_demux->adapter : 0, m_decoder);
 	m_has_audio = !access(filename, W_OK);
+	m_mosaic_audio = false;
+#ifdef DREAMNEXTGEN
+	if (m_decoder >= 2)
+	{
+		sprintf(filename, "/dev/dvb/adapter%d/dreamaudio%d", m_demux ? m_demux->adapter : 0, m_decoder);
+		m_mosaic_audio = !access(filename, W_OK);
+	}
+#endif
 
 	if (eTSMPEGDecoder::m_debugTXT < 0)
 		eTSMPEGDecoder::m_debugTXT = eSimpleConfig::getBool("config.crash.debugTeletext", false) ? 1 : 0;
@@ -1830,7 +1862,7 @@ RESULT eTSMPEGDecoder::setVideoPID(int vpid, int type)
 RESULT eTSMPEGDecoder::setAudioPID(int apid, int type)
 {
 	/* do not set an audio pid on decoders without audio support */
-	if (!m_has_audio) apid = -1;
+	if (!m_has_audio && !m_mosaic_audio) apid = -1;
 
 	if ((m_apid != apid) || (m_atype != type))
 	{
@@ -2467,635 +2499,3 @@ RESULT eTSMPEGDecoder::fccFreeFD()
 
 	return 0;
 }
-
-#ifdef DREAMNEXTGEN
-
-#if LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(59, 37, 100) // ffmpeg >= 5.1.x
-static void resolve_in_layout(AVChannelLayout *dst, const AVFrame *f, const AVCodecContext *ctx)
-{
-    if (f && f->ch_layout.nb_channels) {
-        av_channel_layout_copy(dst, &f->ch_layout);
-    } else if (ctx && ctx->ch_layout.nb_channels) {
-        av_channel_layout_copy(dst, &ctx->ch_layout);
-    } else {
-        av_channel_layout_default(dst, 2);
-    }
-    /* UNSPEC = no downmix matrix in swresample → promote to default. */
-    if (dst->order == AV_CHANNEL_ORDER_UNSPEC && dst->nb_channels > 0) {
-        const int n = dst->nb_channels;
-        av_channel_layout_uninit(dst);
-        av_channel_layout_default(dst, n);
-    }
-}
-
-/* Cache configured params so we only re-init on real change (re-init
- * loses the resampler's delay buffer -> audible glitch on 5.1->stereo). */
-static AVChannelLayout    s_swr_in_chl  = {};
-static AVChannelLayout    s_swr_out_chl = {};
-static enum AVSampleFormat s_swr_in_fmt  = AV_SAMPLE_FMT_NONE;
-static enum AVSampleFormat s_swr_out_fmt = AV_SAMPLE_FMT_NONE;
-static int                s_swr_in_rate  = 0;
-static int                s_swr_out_rate = 0;
-
-static bool swr_configure(SwrContext **s,
-                          const AVChannelLayout *in_ch, enum AVSampleFormat in_fmt, int in_rate,
-                          const AVChannelLayout *out_ch, enum AVSampleFormat out_fmt, int out_rate)
-{
-    if (!*s) *s = swr_alloc();
-    if (!*s) return false;
-
-    if (swr_is_initialized(*s)
-        && s_swr_in_fmt  == in_fmt
-        && s_swr_out_fmt == out_fmt
-        && s_swr_in_rate  == in_rate
-        && s_swr_out_rate == out_rate
-        && av_channel_layout_compare(&s_swr_in_chl,  in_ch)  == 0
-        && av_channel_layout_compare(&s_swr_out_chl, out_ch) == 0)
-        return true;
-
-    swr_close(*s);
-
-    av_opt_set_chlayout(*s, "in_chlayout",  in_ch,  0);
-    av_opt_set_int     (*s, "in_sample_rate", in_rate, 0);
-    av_opt_set_sample_fmt(*s, "in_sample_fmt", in_fmt, 0);
-
-    av_opt_set_chlayout(*s, "out_chlayout", out_ch, 0);
-    av_opt_set_int     (*s, "out_sample_rate", out_rate, 0);
-    av_opt_set_sample_fmt(*s, "out_sample_fmt", out_fmt, 0);
-
-    /* Matrix peak cap: 1.0 anti-clips 5.1; 3.0 keeps 7.1.4 audible. */
-    av_opt_set_double(*s, "rematrix_maxval",
-                      (in_ch->nb_channels >= 10) ? 3.0 : 1.0, 0);
-
-    if (swr_init(*s) < 0)
-        return false;
-
-    av_channel_layout_uninit(&s_swr_in_chl);
-    av_channel_layout_uninit(&s_swr_out_chl);
-    av_channel_layout_copy(&s_swr_in_chl,  in_ch);
-    av_channel_layout_copy(&s_swr_out_chl, out_ch);
-    s_swr_in_fmt  = in_fmt;
-    s_swr_out_fmt = out_fmt;
-    s_swr_in_rate  = in_rate;
-    s_swr_out_rate = out_rate;
-    return true;
-}
-#else
-static uint64_t resolve_in_layout_mask(const AVFrame *f, const AVCodecContext *ctx)
-{
-    if (f && f->channel_layout) return f->channel_layout;
-    if (ctx->channel_layout)    return ctx->channel_layout;
-    return av_get_default_channel_layout(ctx->channels > 0 ? ctx->channels : 2);
-}
-static bool swr_configure(SwrContext **s,
-                          uint64_t in_layout, enum AVSampleFormat in_fmt, int in_rate,
-                          uint64_t out_layout, enum AVSampleFormat out_fmt, int out_rate)
-{
-    swr_free(s);
-    *s = swr_alloc_set_opts(NULL,
-                            (int64_t)out_layout, out_fmt, out_rate,
-                            (int64_t)in_layout,  in_fmt,  in_rate,
-                            0, NULL);
-    if (!*s) return false;
-    /* Prevent 5.1→stereo downmix clipping (see comment in new API path). */
-    av_opt_set_double(*s, "rematrix_maxval", 1.0, 0);
-    return swr_init(*s) >= 0;
-}
-#endif
-
-eAudioDecoder::eAudioDecoder():
-    m_sample_rate(0),
-    m_bytes_per_sample(0),
-    m_AlsaOutput(0),
-    m_alsa_channels(0),
-    m_alsa_sample_rate(0),
-    m_alsa_dec_rate(0),
-    m_stop(0),
-    m_audio_port(0)
-{
-    int port = 0;
-    CFile::parseInt(&port, "/sys/class/amhdmitx/amhdmitx0/audio_source");
-    m_audio_port = port;
-
-    if ((port == 1) || (port == 2))
-        CFile::writeStr("/sys/class/amhdmitx/amhdmitx0/config", "audio_off");
-    else
-        CFile::writeStr("/sys/class/amhdmitx/amhdmitx0/config", "audio_on");
-
-    /* Named PCMs (dmix + softvol) — dmix absorbs underrun without HW freeze. */
-    const char *device = "dreamhdmi";
-    if (port == 1) device = "dreamspdif";
-    else if (port == 2) device = "dreambt";
-    /* Singleton: ALSA handle persists across channel zaps. */
-    m_AlsaOutput = eAlsaOutput::instance(device);
-
-    m_frame = av_frame_alloc();
-    m_avpkt = av_packet_alloc();
-    m_avpkt->data = NULL;
-    m_avpkt->size = 0;
-}
-
-eAudioDecoder::~eAudioDecoder()
-{
-    eDebug("[eAudioDecoder] delete eAudioDecoder");
-
-    m_stop = 1;
-
-    /* Flush any remaining PCM through the AC3 encoder so the last
-     * IEC61937 burst gets out before we drop the iec61937 handle. */
-    if (m_enc_ctx) drainEncoderFifo(true);
-    freeEncoder();
-
-    if (m_codec_ctx)
-#if LIBAVCODEC_VERSION_MAJOR >= 62
-        avcodec_free_context(&m_codec_ctx);
-#else
-        avcodec_close(m_codec_ctx);
-#endif
-    m_codec_ctx = NULL;
-
-    if (m_avpkt) av_packet_free(&m_avpkt);
-    if (m_frame) av_frame_free(&m_frame);
-    if (m_swr_ctx) swr_free(&m_swr_ctx);
-    m_swr_ctx = NULL;
-
-    /* Singleton: only stop the thread, never delete — ALSA stays open
-     * for the next decoder instance, dmix attach persists. */
-    if (m_AlsaOutput) {
-        m_AlsaOutput->stop();
-        m_AlsaOutput = NULL;
-    }
-}
-
-void eAudioDecoder::updateAudioOutputDevice()
-{
-    int port = 0;
-    if (CFile::parseInt(&port, "/sys/class/amhdmitx/amhdmitx0/audio_source") < 0)
-        port = 0;
-
-    if (port == m_audio_port)
-        return;
-
-    eDebug("[eAudioDecoder] audio_source %d -> %d, reopening ALSA", m_audio_port, port);
-
-    if ((port == 1) || (port == 2))
-        CFile::writeStr("/sys/class/amhdmitx/amhdmitx0/config", "audio_off");
-    else
-        CFile::writeStr("/sys/class/amhdmitx/amhdmitx0/config", "audio_on");
-
-    /* Use the same named PCMs as the constructor — dmix-routed,
-     * consistent with the singleton path. Earlier code used raw
-     * hw:0,N here which bypassed dmix entirely. */
-    const char *device = "dreamhdmi";
-    if (port == 1) device = "dreamspdif";
-    else if (port == 2) device = "dreambt";
-    /* Singleton switchDevice: drains+close+open inside the existing
-     * instance; eAudioDecoder keeps its reference. */
-    m_AlsaOutput = eAlsaOutput::instance(device);
-
-    m_audio_port = port;
-    m_alsa_channels = 0;       /* force re-configure on next frame */
-    m_alsa_sample_rate = 0;
-    m_alsa_dec_rate = 0;
-}
-
-/* AAC → AC3 transcode path: PCM out from the decoder is re-encoded to
- * AC3 frames and pushed to eIec61937Passthrough as a bitstream burst. */
-
-int eAudioDecoder::startEncoder()
-{
-    if (m_transcode_to != AV_CODEC_ID_AC3) return -1;
-    const AVCodec *enc = avcodec_find_encoder(AV_CODEC_ID_AC3);
-    if (!enc) { eDebug("[eAudioDecoder] transcode: AC3 encoder not built"); return -1; }
-    m_enc_ctx = avcodec_alloc_context3(enc);
-    if (!m_enc_ctx) return -1;
-    m_enc_ctx->sample_fmt  = AV_SAMPLE_FMT_FLTP;
-    m_enc_ctx->sample_rate = 48000;
-    m_enc_ctx->bit_rate    = 192000;
-#if LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(59, 37, 100)
-    av_channel_layout_default(&m_enc_ctx->ch_layout, 2);
-#else
-    m_enc_ctx->channels        = 2;
-    m_enc_ctx->channel_layout  = AV_CH_LAYOUT_STEREO;
-#endif
-    if (avcodec_open2(m_enc_ctx, enc, NULL) < 0) {
-        eDebug("[eAudioDecoder] transcode: avcodec_open2(AC3 enc) failed");
-        avcodec_free_context(&m_enc_ctx);
-        return -1;
-    }
-    m_enc_fifo = av_audio_fifo_alloc(AV_SAMPLE_FMT_FLTP, 2,
-                                     m_enc_ctx->frame_size > 0 ? m_enc_ctx->frame_size * 4 : 8192);
-    m_enc_pkt   = av_packet_alloc();
-    m_enc_frame = av_frame_alloc();
-    if (!m_enc_fifo || !m_enc_pkt || !m_enc_frame) { freeEncoder(); return -1; }
-
-    m_iec61937 = new eIec61937Passthrough();
-    if (m_iec61937->start(AV_CODEC_ID_AC3, 48000) < 0) {
-        eDebug("[eAudioDecoder] transcode: iec61937 start(AC3) failed");
-        delete m_iec61937; m_iec61937 = nullptr;
-        freeEncoder();
-        return -1;
-    }
-    m_enc_next_pts = 0;
-    eDebug("[eAudioDecoder] transcode: AAC -> AC3 -> IEC61937 active, frame_size=%d",
-           m_enc_ctx->frame_size);
-    return 0;
-}
-
-void eAudioDecoder::freeEncoder()
-{
-    if (m_iec61937) { m_iec61937->stop(); delete m_iec61937; m_iec61937 = nullptr; }
-    if (m_enc_ctx)  { avcodec_free_context(&m_enc_ctx); }
-    if (m_enc_pkt)  { av_packet_free(&m_enc_pkt); }
-    if (m_enc_frame){ av_frame_free(&m_enc_frame); }
-    if (m_enc_fifo) { av_audio_fifo_free(m_enc_fifo); m_enc_fifo = nullptr; }
-    if (m_enc_swr)  { swr_free(&m_enc_swr); }
-}
-
-int eAudioDecoder::drainEncoderFifo(bool flush)
-{
-    if (!m_enc_ctx || !m_enc_fifo) return -1;
-    const int fsz = m_enc_ctx->frame_size;
-    while (av_audio_fifo_size(m_enc_fifo) >= fsz || (flush && av_audio_fifo_size(m_enc_fifo) > 0)) {
-        int take = av_audio_fifo_size(m_enc_fifo);
-        if (take > fsz) take = fsz;
-        av_frame_unref(m_enc_frame);
-        m_enc_frame->nb_samples  = fsz;     /* AC3 wants exact frame_size */
-        m_enc_frame->format      = AV_SAMPLE_FMT_FLTP;
-        m_enc_frame->sample_rate = 48000;
-#if LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(59, 37, 100)
-        av_channel_layout_copy(&m_enc_frame->ch_layout, &m_enc_ctx->ch_layout);
-#else
-        m_enc_frame->channels = 2;
-        m_enc_frame->channel_layout = AV_CH_LAYOUT_STEREO;
-#endif
-        if (av_frame_get_buffer(m_enc_frame, 0) < 0) return -1;
-        /* Read `take` samples; if short of frame_size, zero-pad. */
-        if (av_audio_fifo_read(m_enc_fifo, (void **)m_enc_frame->data, take) < take) return -1;
-        if (take < fsz) {
-            const int pad_bytes = (fsz - take) * sizeof(float);
-            memset(m_enc_frame->data[0] + take * sizeof(float), 0, pad_bytes);
-            memset(m_enc_frame->data[1] + take * sizeof(float), 0, pad_bytes);
-        }
-        m_enc_frame->pts = m_enc_next_pts;
-        m_enc_next_pts  += fsz;
-
-        if (avcodec_send_frame(m_enc_ctx, m_enc_frame) < 0) {
-            eDebug("[eAudioDecoder] transcode: send_frame(AC3) failed");
-            continue;
-        }
-        while (avcodec_receive_packet(m_enc_ctx, m_enc_pkt) == 0) {
-            if (m_iec61937)
-                m_iec61937->pushFrame(m_enc_pkt->data, m_enc_pkt->size, m_last_pts);
-            av_packet_unref(m_enc_pkt);
-        }
-    }
-    return 0;
-}
-
-int eAudioDecoder::feedEncoder(AVFrame *pcm)
-{
-    if (!m_enc_ctx || !m_enc_fifo) return -1;
-    /* Convert decoder output (any rate / layout / fmt) -> 48k stereo FLTP. */
-    const int in_rate = pcm->sample_rate ? pcm->sample_rate : m_codec_ctx->sample_rate;
-#if LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(59, 37, 100)
-    AVChannelLayout in_chl;  resolve_in_layout(&in_chl, pcm, m_codec_ctx);
-    AVChannelLayout out_chl; av_channel_layout_copy(&out_chl, &m_enc_ctx->ch_layout);
-    if (!m_enc_swr) {
-        m_enc_swr = swr_alloc();
-        if (!m_enc_swr) return -1;
-        av_opt_set_chlayout (m_enc_swr, "in_chlayout",       &in_chl,       0);
-        av_opt_set_int      (m_enc_swr, "in_sample_rate",     in_rate,      0);
-        av_opt_set_sample_fmt(m_enc_swr, "in_sample_fmt",     (AVSampleFormat)pcm->format, 0);
-        av_opt_set_chlayout (m_enc_swr, "out_chlayout",      &out_chl,      0);
-        av_opt_set_int      (m_enc_swr, "out_sample_rate",    48000,        0);
-        av_opt_set_sample_fmt(m_enc_swr, "out_sample_fmt",    AV_SAMPLE_FMT_FLTP, 0);
-        av_opt_set_double   (m_enc_swr, "rematrix_maxval",    1.0,          0);
-        if (swr_init(m_enc_swr) < 0) { swr_free(&m_enc_swr); return -1; }
-    }
-#else
-    const uint64_t in_mask  = resolve_in_layout_mask(pcm, m_codec_ctx);
-    const uint64_t out_mask = AV_CH_LAYOUT_STEREO;
-    if (!m_enc_swr) {
-        m_enc_swr = swr_alloc_set_opts(NULL,
-                                       (int64_t)out_mask, AV_SAMPLE_FMT_FLTP, 48000,
-                                       (int64_t)in_mask,  (AVSampleFormat)pcm->format, in_rate,
-                                       0, NULL);
-        if (!m_enc_swr) return -1;
-        av_opt_set_double(m_enc_swr, "rematrix_maxval", 1.0, 0);
-        if (swr_init(m_enc_swr) < 0) { swr_free(&m_enc_swr); return -1; }
-    }
-#endif
-    const int out_max = swr_get_out_samples(m_enc_swr, pcm->nb_samples);
-    if (out_max <= 0) return 0;
-    uint8_t *out[2] = {nullptr, nullptr};
-    int linesize = 0;
-    if (av_samples_alloc(out, &linesize, 2, out_max, AV_SAMPLE_FMT_FLTP, 0) < 0) return -1;
-    const uint8_t *src[AV_NUM_DATA_POINTERS] = {0};
-    for (int i = 0; i < AV_NUM_DATA_POINTERS; ++i) src[i] = pcm->extended_data[i];
-    int got = swr_convert(m_enc_swr, out, out_max, src, pcm->nb_samples);
-    if (got > 0)
-        av_audio_fifo_write(m_enc_fifo, (void **)out, got);
-    av_freep(&out[0]);
-    /* av_samples_alloc allocates a single contiguous buffer; out[1] points
-     * into it, no separate free. */
-    return drainEncoderFifo(false);
-}
-
-int eAudioDecoder::getCodecDelayMs() const
-{
-    if (!m_codec_ctx) return 0;
-    const char *key = "config.av.generalPCMdelay";
-    switch (m_codec_ctx->codec_id) {
-    case AV_CODEC_ID_AC3:
-    case AV_CODEC_ID_EAC3:
-    case AV_CODEC_ID_DTS:
-        key = "config.av.generalAC3delay";
-        break;
-    default:
-        break;
-    }
-    return eSimpleConfig::getInt(key, 0);
-}
-
-int eAudioDecoder::start(int sample_rate, int channels, int bytes_per_sample, enum AVCodecID codec_id)
-{
-    /* Fresh stream — clear any stale skip directive from previous channel. */
-    g_audio_skip_until_pts.store(AV_NOPTS_VALUE, std::memory_order_relaxed);
-    m_codec = avcodec_find_decoder(codec_id);
-    if (!m_codec) {
-        av_log(NULL, AV_LOG_ERROR, "Failed to find decoder \n");
-        return AVERROR_DECODER_NOT_FOUND;
-    }
-    m_codec_ctx = avcodec_alloc_context3(m_codec);
-    if (!m_codec_ctx) {
-        av_log(NULL, AV_LOG_ERROR, "Failed to allocate the decoder context\n");
-        return AVERROR(ENOMEM);
-    }
-
-#if LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(59, 37, 100)
-    m_codec_ctx->sample_fmt = AV_SAMPLE_FMT_S16;
-    m_codec_ctx->ch_layout.order = AV_CHANNEL_ORDER_NATIVE;
-    m_codec_ctx->ch_layout.nb_channels = 2;
-    m_codec_ctx->ch_layout.u.mask = AV_CH_LAYOUT_STEREO;
-#else
-    m_codec_ctx->request_sample_fmt = AV_SAMPLE_FMT_S16;
-    m_codec_ctx->request_channel_layout = AV_CH_LAYOUT_STEREO;
-#endif
-    /* Ask codec for native stereo downmix (faster than libswresample fallback). */
-    const char *opt_key = nullptr;
-    switch (codec_id) {
-        case AV_CODEC_ID_AC3:
-        case AV_CODEC_ID_EAC3: opt_key = "config.av.downmix_ac3"; break;
-        case AV_CODEC_ID_DTS:  opt_key = "config.av.downmix_dts"; break;
-        case AV_CODEC_ID_AAC:  opt_key = "config.av.downmix_aac"; break;
-        default: break;
-    }
-    if (opt_key && eSimpleConfig::getBool(opt_key, true)) {
-        av_opt_set(m_codec_ctx, "downmix", "stereo", AV_OPT_SEARCH_CHILDREN);
-        av_opt_set_int(m_codec_ctx, "request_channel_layout", AV_CH_LAYOUT_STEREO, AV_OPT_SEARCH_CHILDREN);
-    }
-    /* AC3/EAC3 loudness normalisation against the encoded dialnorm value.
-     * -24 dBFS = ATSC A/85 broadcast-loud reference. */
-    if (codec_id == AV_CODEC_ID_AC3 || codec_id == AV_CODEC_ID_EAC3) {
-        av_opt_set_int(m_codec_ctx, "target_level", -24, AV_OPT_SEARCH_CHILDREN);
-        av_opt_set_int(m_codec_ctx, "heavy_compr", 1, AV_OPT_SEARCH_CHILDREN);
-    }
-    int ret = avcodec_open2(m_codec_ctx, m_codec, NULL);
-    if (ret < 0) {
-        av_log(NULL, AV_LOG_ERROR, "Failed to open decoder\n");
-        return ret;
-    }
-
-    eDebug("[eAudioDecoder] using audio codec ID %#06x (%s) '%s'",
-           codec_id, avcodec_get_name(codec_id), m_codec->long_name);
-
-    (void)channels;     /* m_alsa_channels is tracked separately per frame */
-    m_sample_rate = sample_rate;
-    m_bytes_per_sample = bytes_per_sample;
-    m_last_pts = AV_NOPTS_VALUE;
-
-    if (m_transcode_to == AV_CODEC_ID_AC3 && startEncoder() < 0) {
-        eDebug("[eAudioDecoder] transcode init failed — falling back to PCM");
-        m_transcode_to = AV_CODEC_ID_NONE;
-    }
-    return 0;
-}
-
-std::atomic<int64_t> g_audio_skip_until_pts{AV_NOPTS_VALUE};
-std::atomic<bool>    g_audio_request_codec_flush{false};
-
-int eAudioDecoder::decode(uint8_t *framedata, int framesize, int64_t pts, int64_t dts)
-{
-#if LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(59, 37, 100)
-    AVChannelLayout out_ch_layout = AV_CHANNEL_LAYOUT_STEREO;
-#endif
-    int ret = 0;
-    int len = 0;
-
-    if (m_stop) {
-        eDebug("[eAudioDecoder] decode stop");
-        return -1;
-    }
-    if (!m_codec_ctx) {
-        eDebug("[eAudioDecoder] decoder context need init");
-        return -1;
-    }
-
-    /* Seek requested by alsa: drop libavcodec delay buffer so the next
-     * frame inherits the post-seek PTS, not a stale pre-seek one. */
-    if (g_audio_request_codec_flush.exchange(false, std::memory_order_relaxed)) {
-        avcodec_flush_buffers(m_codec_ctx);
-        eDebug("[eAudioDecoder] codec flush (seek)");
-    }
-
-    /* PCR-skip: drop incoming PES until PTS >= g_audio_skip_until_pts
-     * (set by eAlsaOutput when pcrscr jumped past audio PTS). */
-    {
-        int64_t skip_target = g_audio_skip_until_pts.load(std::memory_order_relaxed);
-        if (skip_target != AV_NOPTS_VALUE && pts != AV_NOPTS_VALUE) {
-            int32_t lag = (int32_t)((uint32_t)skip_target - (uint32_t)pts) / 90;
-            if (lag > 0) {
-                return 0;   /* still behind target, skip silently */
-            }
-            eDebug("[eAudioDecoder] PCR-skip done at pts=%lx (target=%lx)",
-                   (long)pts, (long)skip_target);
-            g_audio_skip_until_pts.store(AV_NOPTS_VALUE, std::memory_order_relaxed);
-            avcodec_flush_buffers(m_codec_ctx);
-        }
-    }
-
-    updateAudioOutputDevice();
-
-    m_avpkt->data = framedata;
-    m_avpkt->size = framesize;
-    m_avpkt->pts = pts;
-    m_avpkt->dts = dts;
-
-    len = avcodec_send_packet(m_codec_ctx, m_avpkt);
-    if (len < 0) {
-        char errbuf[64] = {0};
-        av_strerror(len, errbuf, sizeof(errbuf));
-        eDebug("[eAudioDecoder] send_packet failed: %s (%d) framesize=%d", errbuf, len, framesize);
-        av_packet_unref(m_avpkt);
-        return -1;
-    }
-
-    while ((len >= 0) && (!m_stop))
-    {
-        len = avcodec_receive_frame(m_codec_ctx, m_frame);
-        if (len == AVERROR(EAGAIN) || len == AVERROR_EOF) break;
-        if (len < 0) {
-            eDebug("[eAudioDecoder] error during decoding");
-            ret = -1;
-            goto end;
-        }
-
-        if (m_frame->pts != AV_NOPTS_VALUE)
-            m_last_pts = m_frame->pts;
-        else if (m_last_pts != AV_NOPTS_VALUE)
-            m_last_pts = m_frame->pts = m_last_pts +
-                (m_frame->nb_samples / av_q2d(m_codec_ctx->pkt_timebase) / m_frame->sample_rate);
-        /* PTS passed per-chunk to pushData() via marker queue. */
-
-        /* Transcode mode: decoded PCM goes through AC3 encoder → IEC61937
-         * burst instead of the ALSA PCM path. ALSA singleton is left alone. */
-        if (m_transcode_to == AV_CODEC_ID_AC3 && m_enc_ctx) {
-            feedEncoder(m_frame);
-            av_frame_unref(m_frame);
-            continue;
-        }
-
-        /* PCM stereo at decoded rate (passthrough goes via eIec61937Passthrough). */
-        {
-            const int dec_rate = m_frame->sample_rate ? m_frame->sample_rate : m_codec_ctx->sample_rate;
-            /* Compare against m_alsa_dec_rate (decoder-side), NOT m_alsa_sample_rate
-             * which holds the HW-promoted rate (e.g. 48000) and would never match dec_rate=44100. */
-            if ((int)m_alsa_dec_rate != dec_rate || m_alsa_channels != 2)
-            {
-                m_alsa_channels    = 2;
-                m_alsa_dec_rate    = dec_rate;
-                m_sample_rate      = dec_rate;
-                m_alsa_sample_rate = dec_rate;
-                if (m_AlsaOutput) {
-                    if (m_AlsaOutput->start(m_alsa_sample_rate, m_alsa_channels, m_bytes_per_sample, 0, getCodecDelayMs()) < 0)
-                    { ret = -1; goto end; }
-                    m_alsa_sample_rate = m_AlsaOutput->sample_rate();
-                    m_sample_rate      = m_alsa_sample_rate;
-                }
-                if (m_swr_ctx) { swr_free(&m_swr_ctx); m_swr_ctx = NULL; }
-            }
-        }
-
-        /* Resample to S16 stereo @ ALSA rate. */
-        {
-            const int in_rate  = m_frame->sample_rate ? m_frame->sample_rate : m_codec_ctx->sample_rate;
-            const int out_rate = m_sample_rate;
-            const AVSampleFormat in_fmt  = (AVSampleFormat)m_frame->format;
-            const AVSampleFormat out_fmt = AV_SAMPLE_FMT_S16;
-
-#if LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(59, 37, 100)
-            AVChannelLayout in_chl;
-            resolve_in_layout(&in_chl, m_frame, m_codec_ctx);
-            /* librempeg leaves ch[1+] full of low-level junk for immersive —
-             * latch full layout only when their peak reaches >= 30% of ch[0]
-             * peak for 8 consecutive frames; otherwise fall back to mono. */
-            if (m_codec_ctx->codec_id == AV_CODEC_ID_AC4 && in_chl.nb_channels > 2) {
-                if (!m_ac4_immersive_ok && in_fmt == AV_SAMPLE_FMT_FLTP) {
-                    const int probe = (m_frame->nb_samples < 1024) ? m_frame->nb_samples : 1024;
-                    float peak0 = 0.0f, peak_rest = 0.0f;
-                    const float *d0 = (const float *)m_frame->extended_data[0];
-                    if (d0) for (int i = 0; i < probe; ++i) {
-                        float a = fabsf(d0[i]); if (a > peak0) peak0 = a;
-                    }
-                    for (int c = 1; c < in_chl.nb_channels; ++c) {
-                        const float *d = (const float *)m_frame->extended_data[c];
-                        if (!d) continue;
-                        for (int i = 0; i < probe; ++i) {
-                            float a = fabsf(d[i]); if (a > peak_rest) peak_rest = a;
-                        }
-                    }
-                    if (peak0 > 0.01f && peak_rest > peak0 * 0.3f) {
-                        if (++m_ac4_probe_streak >= 8) {
-                            m_ac4_immersive_ok = true;
-                            eDebug("[eAudioDecoder] AC-4 immersive live (peak0=%.3f rest=%.3f), full layout", peak0, peak_rest);
-                        }
-                    } else {
-                        m_ac4_probe_streak = 0;
-                    }
-                }
-                if (!m_ac4_immersive_ok) {
-                    av_channel_layout_uninit(&in_chl);
-                    av_channel_layout_default(&in_chl, 1);
-                }
-            }
-            AVChannelLayout out_chl = out_ch_layout;
-
-            if (!swr_configure(&m_swr_ctx, &in_chl, in_fmt, in_rate, &out_chl, out_fmt, out_rate)) {
-                if (m_swr_ctx) { swr_free(&m_swr_ctx); m_swr_ctx = NULL; }
-                ret = -1; goto end;
-            }
-
-            const int out_max = swr_get_out_samples(m_swr_ctx, m_frame->nb_samples);
-            if (out_max <= 0) { ret = 0; goto after_push; }
-
-            uint8_t *out = NULL;
-            int out_linesize = 0;
-            const int out_nb_ch = out_chl.nb_channels;
-            const int out_bps   = av_get_bytes_per_sample(out_fmt);
-
-            if (av_samples_alloc(&out, &out_linesize, out_nb_ch, out_max, out_fmt, 0) < 0)
-            { ret = -1; goto after_push; }
-
-            /* extended_data is sized for nb_channels; local AV_NUM_DATA_POINTERS=8
-             * copy would overflow for 7.1.4 (12 channels). */
-            int got = swr_convert(m_swr_ctx, &out, out_max,
-                                  (const uint8_t **)m_frame->extended_data,
-                                  m_frame->nb_samples);
-            if (got > 0 && m_AlsaOutput) {
-                const int bytes = got * out_nb_ch * out_bps;
-                m_AlsaOutput->pushData(out, bytes, m_last_pts);
-            }
-            av_freep(&out);
-#else
-            const uint64_t in_mask  = resolve_in_layout_mask(m_frame, m_codec_ctx);
-            const uint64_t out_mask = AV_CH_LAYOUT_STEREO;
-
-            if (!swr_configure(&m_swr_ctx, in_mask, in_fmt, in_rate, out_mask, out_fmt, out_rate)) {
-                if (m_swr_ctx) { swr_free(&m_swr_ctx); m_swr_ctx = NULL; }
-                ret = -1; goto end;
-            }
-
-            const int out_max = swr_get_out_samples(m_swr_ctx, m_frame->nb_samples);
-            if (out_max <= 0) { ret = 0; goto after_push; }
-
-            uint8_t *out = NULL;
-            int out_linesize = 0;
-            const int out_nb_ch = 2;
-            const int out_bps   = av_get_bytes_per_sample(out_fmt);
-
-            if (av_samples_alloc(&out, &out_linesize, out_nb_ch, out_max, out_fmt, 0) < 0)
-            { ret = -1; goto after_push; }
-
-            int got = swr_convert(m_swr_ctx, &out, out_max,
-                                  (const uint8_t **)m_frame->extended_data,
-                                  m_frame->nb_samples);
-            if (got > 0 && m_AlsaOutput) {
-                const int bytes = got * out_nb_ch * out_bps;
-                m_AlsaOutput->pushData(out, bytes, m_last_pts);
-            }
-            av_freep(&out);
-#endif
-        }
-
-after_push:
-        ;
-    }
-
-end:
-    av_packet_unref(m_avpkt);
-    av_frame_unref(m_frame);
-    return ret;
-}
-
-#endif // DREAMNEXTGEN

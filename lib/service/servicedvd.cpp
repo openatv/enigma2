@@ -180,6 +180,7 @@ eServiceDVD::eServiceDVD(eServiceReference ref):
 
 	m_sn = eSocketNotifier::create(eApp, ddvd_get_messagepipe_fd(m_ddvdconfig), eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Error|eSocketNotifier::Hungup);
 	eDebug("[eServiceDVD] construct!");
+	m_resume_info = {};
 	// create handle
 	ddvd_set_dvd_path(m_ddvdconfig, ref.path.c_str());
 	ddvd_set_ac3thru(m_ddvdconfig, 0);
@@ -880,7 +881,7 @@ RESULT eServiceDVD::getLength(pts_t &len)
 RESULT eServiceDVD::seekTo(pts_t to)
 {
 	eDebug("[eServiceDVD] seekTo(%lld)",to);
-	if (to > 0)
+	if (to > 0 && m_resume_info.title > 0) // only with a complete cue file
 	{
 		if(m_resume_info.block > 8000)
 			m_resume_info.block = m_resume_info.block - 4000; //resume - 10 seconds
@@ -1069,14 +1070,18 @@ void eServiceDVD::loadCuesheet()
 	{
 		unsigned long long where;
 		unsigned int what;
+		struct ddvd_resume resume_info = {};
 
 		if (fread(&where, sizeof(where), 1, f))
 			if (fread(&what, sizeof(what), 1, f))
 				if (ntohl(what) == 3)
-					if (fread(&m_resume_info, sizeof(m_resume_info), 1, f))
+					if (fread(&resume_info, sizeof(resume_info), 1, f))
 						if (fread(&what, sizeof(what), 1, f))
 							if (ntohl(what) == 4)
+							{
+								m_resume_info = resume_info;
 								m_cue_pts = be64toh(where);
+							}
 		fclose(f);
 		if (m_cue_pts)
 		{
