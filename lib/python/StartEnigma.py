@@ -297,7 +297,7 @@ class PowerKey:
 		elif action == "show_menu":
 			print("[StartEnigma] Show shutdown menu.")
 			menu = findMenu("shutdown")
-			if menu:
+			if menu is not None:
 				self.session.infobar = self
 				self.session.openWithCallback(self.MenuClosed, Menu, menu)
 				return
