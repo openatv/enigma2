@@ -12,6 +12,7 @@
 #undef SYNC_PAINT
 
 #include <pthread.h>
+#include <atomic>
 #include <stack>
 #include <list>
 #include <vector>
@@ -24,6 +25,7 @@
 #include <lib/gdi/region.h>
 #include <lib/gdi/gfont.h>
 #include <lib/gdi/compositing.h>
+#include <lib/gdi/spinner.h>
 
 class eTextPara;
 
@@ -271,6 +273,7 @@ public:
 
 	void setSpinnerDC(gDC *dc) { m_spinner_dc = dc; }
 	void setSpinnerOnOff(int onoff) { m_spinneronoff = onoff; }
+	void setSpinnerColor(unsigned int color);
 
 	static gRC *getInstance();
 };
@@ -416,6 +419,15 @@ protected:
 	eRect m_spinner_pos_HD;
 	eRect m_spinner_pos_FHD;
 	int m_spinner_num, m_spinner_i;
+	bool m_nativeSpinner = false, m_nativeSpinnerVisible = false;
+	std::atomic<unsigned int> m_spinnerColor{0x2b7fd9};
+	gSpinner m_spinnerRenderer;
+	ePtr<gPixmap> m_nativeSpinnerFrame, m_nativeSpinnerSaved, m_nativeSpinnerTemp;
+	ePoint m_nativeSpinnerPosition;
+	eRect m_nativeSpinnerRect;
+	eSize m_nativeSpinnerScreen;
+	uint64_t m_nativeSpinnerStart = 0;
+	void drawNativeSpinner();
 	void discardOpcode(const gOpcode *opcode);
 
 public:
@@ -437,6 +449,10 @@ public:
 	virtual void disableSpinner();
 	virtual void incrementSpinner();
 	virtual void setSpinner(eRect pos, ePtr<gPixmap> *pic, int len);
+	void setNativeSpinner(ePoint position, unsigned int color);
+	void setSpinnerColor(unsigned int color) { m_spinnerColor.store(color, std::memory_order_relaxed); }
+	int spinnerInterval() const { return m_nativeSpinner ? 33 : 100; }
+	void invalidateNativeSpinner() { m_nativeSpinnerVisible = false; m_nativeSpinnerScreen = eSize(); }
 
 };
 

@@ -532,6 +532,7 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 #endif
 
 	m_pixmap = new gPixmap(&surface);
+	invalidateNativeSpinner();
 
 #ifdef CONFIG_ION
 	if (grc)
