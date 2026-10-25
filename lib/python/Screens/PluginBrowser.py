@@ -402,7 +402,7 @@ class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 		else:
 			text = PackageAction.getInternetErrorText(result)
 			print(f"[PluginBrowser] Error: {text}")
-			Toast.instance.showToast(text=_(text), toasttype=Toast.TYPE_ERROR, timeout=5)
+			Toast.instance.showToast(text=_(text), toastType=Toast.TYPE_ERROR, timeout=5)
 
 	def openDownloadScreen(self, mode):
 		self.session.openWithCallback(self.childScreenClosedCallback, PackageAction, mode)

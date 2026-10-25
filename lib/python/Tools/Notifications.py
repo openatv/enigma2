@@ -171,13 +171,13 @@ class NotificationCenter:
 			self.nextModalTimer.start(500, True)
 
 	def showInfo(self, text, timeout=4):
-		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_INFO, timeout=timeout)
+		Toast.instance.showToast(text=text, toastType=Toast.TYPE_INFO, timeout=timeout)
 
 	def showWarning(self, text, timeout=5):
-		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_WARNING, timeout=timeout)
+		Toast.instance.showToast(text=text, toastType=Toast.TYPE_WARNING, timeout=timeout)
 
 	def showError(self, text, timeout=5):
-		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_ERROR, timeout=timeout)
+		Toast.instance.showToast(text=text, toastType=Toast.TYPE_ERROR, timeout=timeout)
 
 
 notificationCenter = NotificationCenter()
