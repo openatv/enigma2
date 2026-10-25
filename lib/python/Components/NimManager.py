@@ -2089,14 +2089,17 @@ def InitNimManager(nimmgr, update_slots=None):
 							scrlist_append = scrlist.append
 							vcolist = unicableproducts[manufacturer][article].get("frequencies")
 							tmp.vco[article] = ConfigSubList()
+							defaultScr = None  # Keep SCR indices for SEC, but default to the first usable user band.
 							for cnt in range(1, len(vcolist) + 1):
 								vcofreq = int(vcolist[cnt - 1])
+								if vcofreq and defaultScr is None:
+									defaultScr = f"{cnt}"
 								if vcofreq == 0 and vco_null_check:
 									scrlist_append((f"{cnt}", f"SCR {cnt} " + _("not used")))
 								else:
 									scrlist_append((f"{cnt}", f"SCR {cnt}"))
 								tmp.vco[article].append(ConfigInteger(default=vcofreq, limits=(vcofreq, vcofreq)))
-							tmp.scr[article] = ConfigSelection(choices=scrlist, default=scrlist[0][0])
+							tmp.scr[article] = ConfigSelection(choices=scrlist, default=defaultScr or scrlist[0][0])
 							tmp.lofl[article] = ConfigSubList()
 							tmp.lofh[article] = ConfigSubList()
 							tmp.loft[article] = ConfigSubList()
@@ -2137,7 +2140,7 @@ def InitNimManager(nimmgr, update_slots=None):
 				default = UnicableLnbManufacturers[0]
 			defaultProduct = rootDefaults.get("unicable_lnb_product", None) if defaultSlot else lnbTemplateProduct(template, "unicableLnb", default)
 			section.unicableLnbManufacturer = ConfigSelection(UnicableLnbManufacturers, default)
-			section.unicableLnb = fillUnicableConf(unicablelnbproducts, False, defaultProduct, defaultSlot)
+			section.unicableLnb = fillUnicableConf(unicablelnbproducts, True, defaultProduct, defaultSlot)
 			# TODO satpositions for satcruser.
 			section.bootuptimeuser = ConfigInteger(default=lnbTemplateValue(template, "bootuptimeuser", 2700), limits=(0, 15000))
 			section.dictionuser = ConfigSelection(advanced_lnb_diction_user_choices, default=lnbTemplateValue(template, "dictionuser", "EN50494"))
