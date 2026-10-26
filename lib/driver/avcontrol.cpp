@@ -10,6 +10,7 @@ Licensed under GPLv2.
 #include <sys/ioctl.h>
 #include <string.h>
 #include <algorithm>
+#include <cctype>
 #include <cstdlib>
 #include <regex>
 
@@ -34,6 +35,7 @@ const char *proc_videomode = "/sys/class/display/mode";			 // NOSONAR
 const char *proc_videoaspect_r = "/sys/class/video/screen_mode"; // NOSONAR
 const char *proc_videoaspect_w = "/sys/class/video/screen_mode"; // NOSONAR
 const char *proc_osd_alpha = "/sys/class/graphics/fb0/osd_plane_alpha";	 // NOSONAR
+const char *proc_hdmi_attr = "/sys/class/amhdmitx/amhdmitx0/attr";	 // NOSONAR
 #else
 const char *proc_policy169 = "/proc/stb/video/policy2";		 // NOSONAR
 const char *proc_policy43 = "/proc/stb/video/policy";		 // NOSONAR
@@ -434,6 +436,9 @@ void eAVControl::setVideoMode(const std::string &newMode, int flags) const
 		return;
 	}
 #endif
+#ifdef DREAMNEXTGEN
+	writeHDMIColorFormat(driverMode, flags);
+#endif
 #ifdef VIDEO_MODE_50
 	// gigablue driver bug
 	CFile::writeStr(proc_videomode_50, driverMode, __MODULE__, flags);
@@ -458,6 +463,52 @@ void eAVControl::setVideoMode(const std::string &newMode, int flags) const
 
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: %s (%s)", __MODULE__, "setVideoMode", newMode.c_str(), driverMode.c_str());
+}
+
+/// @brief Write the HDMI colour format for a video mode
+/// @param driverMode
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
+void eAVControl::writeHDMIColorFormat(const std::string &driverMode, int flags) const
+{
+#ifdef DREAMNEXTGEN
+	// Without a format the driver sends the deepest colour the TV reports.
+	// RGB as on DreamOS, YCbCr 4:2:0 for 2160p above 30 Hz, other colour spaces there can leave the TV without a picture.
+	bool uhd = driverMode.rfind("2160p", 0) == 0 || driverMode.rfind("smpte", 0) == 0;
+	bool lowRate = driverMode.find("23hz") != std::string::npos || driverMode.find("24hz") != std::string::npos || driverMode.find("25hz") != std::string::npos || driverMode.find("29hz") != std::string::npos || driverMode.find("30hz") != std::string::npos;
+	std::string colorspace = uhd && !lowRate ? "420" : "rgb";
+	std::string colordepth = m_hdmi_colordepth == "auto" ? "8bit" : m_hdmi_colordepth;
+	CFile::writeStr(proc_hdmi_attr, colorspace + "," + colordepth, __MODULE__, flags);
+	if (flags & FLAGS_DEBUG)
+		eDebug("[%s] %s: %s %s,%s", __MODULE__, "writeHDMIColorFormat", driverMode.c_str(), colorspace.c_str(), colordepth.c_str());
+#endif
+}
+
+/// @brief Apply the HDMI colour format to the current video mode
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
+void eAVControl::applyHDMIColorFormat(int flags) const
+{
+#ifdef DREAMNEXTGEN
+	if (!m_encoder_active)
+		return;
+	std::string driverMode = CFile::read(proc_videomode, __MODULE__, flags);
+	driverMode.erase(std::remove_if(driverMode.begin(), driverMode.end(), ::isspace), driverMode.end());
+	if (driverMode.empty() || driverMode == "null")
+		return;
+	writeHDMIColorFormat(driverMode, flags);
+	// The driver applies a new format only with the next mode write.
+	CFile::writeStr(proc_videomode, driverMode, __MODULE__, flags);
+#endif
+}
+
+/// @brief Set the HDMI colour depth
+/// @param colordepth auto, 8bit, 10bit or 12bit
+/// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
+void eAVControl::setHDMIColordepth(const std::string &colordepth, int flags)
+{
+	if (colordepth == m_hdmi_colordepth)
+		return;
+	m_hdmi_colordepth = colordepth;
+	applyHDMIColorFormat(flags);
 }
 
 /// @brief Set video modes for 50Hz, 60Hz and 24Hz

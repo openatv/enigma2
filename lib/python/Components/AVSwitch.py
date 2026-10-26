@@ -404,11 +404,14 @@ def InitAVSwitch():
 	else:
 		config.av.boxmode = ConfigNothing()
 	colorDepth = fileReadLine("/proc/stb/video/hdmi_colordepth", default=None, source=MODULE_NAME)
-	colorDepth = colorDepth.split() if colorDepth else False
+	colorDepth = colorDepth.split() if colorDepth else MACHINEBUILD in ("dreamone", "dreamtwo")
 	BoxInfo.setItem("havehdmicolordepth", colorDepth)
 	if colorDepth:
 		def setColorDepth(configElement):
-			fileWriteLine("/proc/stb/video/hdmi_colordepth", configElement.value, source=MODULE_NAME)
+			if MACHINEBUILD in ("dreamone", "dreamtwo"):
+				eAVControl.getInstance().setHDMIColordepth(configElement.value)
+			else:
+				fileWriteLine("/proc/stb/video/hdmi_colordepth", configElement.value, source=MODULE_NAME)
 
 		config.av.hdmicolordepth = ConfigSelection(default="auto", choices=[
 			("auto", _("Auto")),
