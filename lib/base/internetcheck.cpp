@@ -37,15 +37,16 @@ std::string getActiveAdapter()
 										  ifa->ifa_addr->sa_family == AF_INET6))
 		{
 
-			if (strstr(ifa->ifa_name, "eth") || strstr(ifa->ifa_name, "wlan"))
-			{
-				eDebug("[Enigma] getActiveAdapter: Active network interface: %s.", ifa->ifa_name);
-				ret = ifa->ifa_name;
+			// Interface names depend on the driver (for example ra0 for Ralink WLAN).
+			// Keep checking past disconnected adapters so an unplugged LAN cannot hide WLAN.
+			ret = ifa->ifa_name;
+			if (ifa->ifa_flags & IFF_RUNNING)
 				break;
-			}
 		}
 	}
 	freeifaddrs(ifaddr);
+	if (!ret.empty())
+		eDebug("[Enigma] getActiveAdapter: Active network interface: %s.", ret.c_str());
 	return ret;
 }
 
