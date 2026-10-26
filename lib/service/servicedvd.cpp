@@ -889,6 +889,15 @@ RESULT eServiceDVD::seekTo(pts_t to)
 			m_resume_info.title, m_resume_info.chapter, m_resume_info.block, m_resume_info.audio_id, m_resume_info.audio_lock, m_resume_info.spu_id, m_resume_info.spu_lock);
 		ddvd_set_resume_pos(m_ddvdconfig, m_resume_info);
 	}
+	else if (to > 0) // no DVD position: go there by time
+	{
+		pts_t pos = 0;
+		getPlayPosition(pos);
+		int seconds = (to - pos) / 90000;
+		eDebug("[eServiceDVD] seekTo without resume info, skip %d seconds", seconds);
+		if (seconds)
+			ddvd_skip_seconds(m_ddvdconfig, seconds);
+	}
 	return 0;
 }
 
