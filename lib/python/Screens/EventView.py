@@ -84,6 +84,22 @@ class EventViewBase:
 	def nextEvent(self):
 		self.callbackMethod(self.setEvent, self.setService, +1)
 
+	def getAdjacentEvent(self, direction, fallbackEvents=()):
+		adjacentEvent = None
+		if self.event and not self.isRecording and direction and self.serviceRef.ref.valid():
+			beginTime = self.event.getBeginTime()
+			if beginTime > 0:
+				direction = 1 if direction > 0 else -1
+				epgCache = eEPGCache.getInstance()
+				cachedEvent = epgCache.lookupEventTime(self.serviceRef.ref, beginTime, direction) if epgCache else None
+				# Keep broadcast now/next data usable when the schedule cache is incomplete.
+				for event in (cachedEvent, *fallbackEvents):
+					if event:
+						distance = (event.getBeginTime() - beginTime) * direction
+						if distance > 0 and (adjacentEvent is None or distance < (adjacentEvent.getBeginTime() - beginTime) * direction):
+							adjacentEvent = event
+		return adjacentEvent
+
 	def getCurrentService(self):
 		return self.serviceRef
 
