@@ -53,6 +53,7 @@ public:
 	void setAspectRatio(int ratio, int flags = 0) const;
 	void setAspect(const std::string &newFormat, int flags = 0) const;
 	void setColorFormat(const std::string &newFormat, int flags = 0) const;
+	void setHDMIColordepth(const std::string &colordepth, int flags = 0);
 
 	void setVideoMode(const std::string &newMode, int flags = 0) const;
 	void setVideoModeMulti(const std::string &mode50, const std::string &mode60, const std::string &mode24, int flags = 0) const;
@@ -116,6 +117,7 @@ private:
 	std::string m_video_mode_60;
 	std::string m_videomode_choices;
 	std::string m_standby_video_mode;
+	std::string m_hdmi_colordepth = "auto";
 
 	bool m_b_has_proc_osd_alpha;
 	bool m_b_has_proc_hdmi_rx_monitor;
@@ -130,6 +132,8 @@ private:
 	ePtr<eSocketNotifier> m_fp_notifier;
 
 	std::string readAvailableModes(int flags = 0) const;
+	void writeHDMIColorFormat(const std::string &driverMode, int flags = 0) const;
+	void applyHDMIColorFormat(int flags = 0) const;
 	bool checkScartSwitch(int flags = 0) const;
 };
 
