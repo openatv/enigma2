@@ -21,6 +21,16 @@ extern "C" {
 }
 #include "servicedvd.h"
 
+// A DVD can carry garbage in the language field; Python needs valid UTF-8.
+static std::string languageCode(uint16_t code)
+{
+	unsigned char first = (code >> 8) & 0xff;
+	unsigned char second = code & 0xff;
+	if (first < 0x20 || first > 0x7e || second < 0x20 || second > 0x7e)
+		return "";
+	return std::string{(char)first, (char)second};
+}
+
 // eServiceFactoryDVD
 
 eServiceFactoryDVD::eServiceFactoryDVD()
@@ -523,8 +533,8 @@ RESULT eServiceDVD::getTrackInfo(struct iAudioTrackInfo &info, unsigned int audi
 	int audio_type;
 	uint16_t audio_lang;
 	ddvd_get_audio_byid(m_ddvdconfig, audio_id, &audio_lang, &audio_type);
-	char audio_string[3]={(char) ((audio_lang >> 8) & 0xff), (char)(audio_lang & 0xff), 0};
-	eDebug("[eServiceDVD] getTrackInfo: audio id=%d lang=%s type=%d", audio_id, audio_string, audio_type);
+	std::string audio_string = languageCode(audio_lang);
+	eDebug("[eServiceDVD] getTrackInfo: audio id=%d lang=%s type=%d", audio_id, audio_string.c_str(), audio_type);
 	info.m_pid = audio_id + 1;
 	info.m_language = audio_string;
 	switch(audio_type)
@@ -732,10 +742,10 @@ ePtr<iServiceInfoContainer> eServiceDVD::getInfoObject(int w)
 			int audio_id,audio_type;
 			uint16_t audio_lang;
 			ddvd_get_last_audio(m_ddvdconfig, &audio_id, &audio_lang, &audio_type);
-			char audio_string[3]={(char) ((audio_lang >> 8) & 0xff), (char)(audio_lang & 0xff), 0};
-			eDebug("[eServiceDVD] getInfoObject sUser+6: audio_id=%d lang=%s type=%d", audio_id, audio_string, audio_type);
+			std::string audio_string = languageCode(audio_lang);
+			eDebug("[eServiceDVD] getInfoObject sUser+6: audio_id=%d lang=%s type=%d", audio_id, audio_string.c_str(), audio_type);
 			container->addInteger(audio_id + 1);
-			container->addString(audio_string);
+			container->addString(audio_string.c_str());
 			switch (audio_type)
 			{
 				case DDVD_MPEG:
@@ -758,8 +768,8 @@ ePtr<iServiceInfoContainer> eServiceDVD::getInfoObject(int w)
 			int spu_id;
 			uint16_t spu_lang;
 			ddvd_get_last_spu(m_ddvdconfig, &spu_id, &spu_lang);
-			char spu_string[3]={(char) ((spu_lang >> 8) & 0xff), (char)(spu_lang & 0xff), 0};
-			eDebug("[eServiceDVD] getInfoObject sUser+7: spu_id=%d lang=%s", spu_id, spu_string);
+			std::string spu_string = languageCode(spu_lang);
+			eDebug("[eServiceDVD] getInfoObject sUser+7: spu_id=%d lang=%s", spu_id, spu_string.c_str());
 			if (spu_id == -1)
 			{
 				container->addInteger(0);
@@ -768,7 +778,7 @@ ePtr<iServiceInfoContainer> eServiceDVD::getInfoObject(int w)
 			else
 			{
 				container->addInteger(spu_id + 1);
-				container->addString(spu_string);
+				container->addString(spu_string.c_str());
 			}
 			break;
 		}
@@ -847,8 +857,8 @@ RESULT eServiceDVD::getSubtitleList(std::vector<struct SubtitleTrack> &subtitlel
 			continue;
 		}
 
-		char spu_string[3] = {(char)((spu_lang >> 8) & 0xff), (char)(spu_lang & 0xff), 0};
-		eDebug("[eServiceDVD] getSubtitleList: spu_id=%d lang=%s", spu_id, spu_string);
+		std::string spu_string = languageCode(spu_lang);
+		eDebug("[eServiceDVD] getSubtitleList: spu_id=%d lang=%s", spu_id, spu_string.c_str());
 
 		track.type = 2;
 		track.pid = spu_id + 1;
