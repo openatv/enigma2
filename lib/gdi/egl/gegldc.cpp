@@ -4172,8 +4172,9 @@ gEGLDC::gEGLDC(INativeWindowProvider* window_provider, int width, int height) : 
 		if (!((xres == 720 && yres == 576) || (xres == 1280 && yres == 720) || (xres == 1920 && yres == 1080) || (xres == 2560 && yres == 1440))) {
 			xres = 1280;
 			yres = 720;
-			bpp = 32;
 		}
+		// The boot loader may leave the framebuffer at 16 bpp, but the EGL configs are RGBA8888.
+		bpp = 32;
 #if defined(DREAMNEXTGEN) || defined(HAVE_VUPLUS_MIPSEL_EGL) || defined(HAVE_HISILICON_EGL) || defined(HAVE_DREAMBCM_EGL) || defined(HAVE_NXPL_EGL) || defined(HAVE_V3DPLATFORM_EGL)
 		if (m_fb && m_fb->Available()) {
 			m_fb->SetMode(xres, yres, bpp);
