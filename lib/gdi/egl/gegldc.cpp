@@ -3358,11 +3358,58 @@ bool gEGLDC::runPendingListboxAnimation() {
 }
 
 eRect gEGLDC::currentSpinnerRect() const {
+	if (m_nativeSpinner)
+		return m_nativeSpinnerRect;
 	return m_width >= 1920 ? m_spinner_pos_FHD : m_spinner_pos_HD;
 }
 
 gPixmap* gEGLDC::currentSpinnerBackground() const {
+	if (m_nativeSpinner)
+		return m_nativeSpinnerSaved;
 	return m_width >= 1920 ? m_spinner_saved_FHD : m_spinner_saved_HD;
+}
+
+void gEGLDC::updateNativeSpinnerGeometry() {
+	const eSize screen(m_width, m_height);
+	if (screen == m_nativeSpinnerScreen)
+		return;
+
+	// Same geometry as gDC::drawNativeSpinner().
+	const int diameter = std::min(std::min(screen.width(), screen.height()), std::max(8, (32 * screen.height() + 360) / 720));
+	const int x = std::max(0, std::min(screen.width() - diameter, m_nativeSpinnerPosition.x() * screen.width() / 1280));
+	const int y = std::max(0, std::min(screen.height() - diameter, m_nativeSpinnerPosition.y() * screen.height() / 720));
+	const eSize spinner_size(diameter, diameter);
+	m_nativeSpinnerRect = eRect(ePoint(x, y), spinner_size);
+	m_nativeSpinnerFrame = new gPixmap(spinner_size, 32, gPixmap::accelNever);
+	m_nativeSpinnerSaved = new gPixmap(spinner_size, 32, gPixmap::accelNever);
+	m_spinnerRenderer.resize(diameter);
+	m_nativeSpinnerScreen = screen;
+	m_nativeSpinnerVisible = false;
+	invalidateSpinnerBackground();
+}
+
+void gEGLDC::drawNativeSpinnerFrame(const eRect& rect) {
+	if (!m_nativeSpinnerFrame || !m_nativeSpinnerFrame->surface || !m_nativeSpinnerFrame->surface->data)
+		return;
+
+	struct timespec now;
+	clock_gettime(CLOCK_MONOTONIC, &now);
+	const uint64_t milliseconds = uint64_t(now.tv_sec) * 1000 + now.tv_nsec / 1000000;
+	if (!m_nativeSpinnerVisible) {
+		m_nativeSpinnerStart = milliseconds;
+		m_nativeSpinnerVisible = true;
+	}
+
+	gUnmanagedSurface* surface = m_nativeSpinnerFrame->surface;
+	m_texture_manager.prepareSurface(surface);
+	if (surface->gl_texture_id) {
+		m_texture_manager.queueForDeletion(surface->gl_texture_id);
+		surface->gl_texture_id = 0;
+	}
+	m_spinnerRenderer.render(surface->data, surface->stride, milliseconds - m_nativeSpinnerStart, m_spinnerColor.load(std::memory_order_relaxed));
+	surface->cpu_content_valid = true;
+	surface->gl_content_valid = false;
+	drawPixmap(m_nativeSpinnerFrame, rect, gPixmap::blitAlphaBlend);
 }
 
 void gEGLDC::invalidateSpinnerBackground(bool clear_pending) {
@@ -3443,6 +3490,12 @@ bool gEGLDC::captureSpinnerBackground() {
 
 void gEGLDC::enableSpinner() {
 	flushTextBatch();
+	if (m_nativeSpinner) {
+		if (m_width < 8 || m_height < 8)
+			return;
+		updateNativeSpinnerGeometry();
+		m_nativeSpinnerVisible = false;
+	}
 	captureSpinnerBackground();
 	incrementSpinner();
 }
@@ -3459,12 +3512,17 @@ void gEGLDC::disableSpinner() {
 		else
 			drawPixmap(currentSpinnerBackground(), rect, 0);
 	}
+	m_nativeSpinnerVisible = false;
 	invalidateSpinnerBackground();
 }
 
 void gEGLDC::incrementSpinner() {
 	flushTextBatch();
-	if (!m_spinner_pic || !m_spinner_num)
+	if (m_nativeSpinner) {
+		if (m_width < 8 || m_height < 8)
+			return;
+		updateNativeSpinnerGeometry();
+	} else if (!m_spinner_pic || !m_spinner_num)
 		return;
 
 	if (!m_spinner_background_valid || m_spinner_background_width != m_width || m_spinner_background_height != m_height)
@@ -3476,6 +3534,10 @@ void gEGLDC::incrementSpinner() {
 			clearSpinnerRect(rect);
 		else
 			drawPixmap(currentSpinnerBackground(), rect, 0);
+	}
+	if (m_nativeSpinner) {
+		drawNativeSpinnerFrame(rect);
+		return;
 	}
 	if (m_spinner_pic[m_spinner_i])
 		drawPixmap(m_spinner_pic[m_spinner_i], rect, gPixmap::blitAlphaBlend);
