@@ -288,6 +288,8 @@ private:
 	void clearSpinnerRect(const eRect& rect);
 	bool clearSpinnerBackgroundPixmap(gPixmap* background);
 	bool captureSpinnerBackground();
+	void updateNativeSpinnerGeometry();
+	void drawNativeSpinnerFrame(const eRect& rect);
 	void invalidateSpinnerBackground(bool clear_pending = false);
 	void resetRectangleState();
 	void resetBlitState();
