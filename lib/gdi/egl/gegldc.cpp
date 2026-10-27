@@ -2693,10 +2693,16 @@ bool gEGLDC::copyCurrentFrameToTexture(GLuint& texture) {
 void gEGLDC::captureCurrentFrameAsLast() {
 	flushTextBatch();
 	const unsigned long long start_us = e2eglNowUs();
+	m_last_frame_presented = false;
 	m_last_frame_valid = copyCurrentFrameToTexture(m_last_frame_texture);
 	m_frame_stats.capture_us += e2eglNowUs() - start_us;
 	if (m_last_frame_valid)
 		++m_frame_stats.frame_captures;
+}
+
+void gEGLDC::capturePresentedFrame() {
+	captureCurrentFrameAsLast();
+	m_last_frame_presented = m_last_frame_valid;
 }
 
 void gEGLDC::restoreFrameIfNeeded() {
@@ -3166,8 +3172,9 @@ void gEGLDC::executeListboxAnimationOpcode(const gOpcode* op) {
 		const eRect from = clampToScreen(info->from);
 		const eRect to = clampToScreen(info->to);
 		if (!from.empty() && !to.empty() && from.size() == to.size() && from.topLeft() != to.topLeft()) {
+			const bool presented_ready = m_last_frame_valid && m_last_frame_presented;
 			const bool scene_animation_ready = beginSceneFramebufferAnimation();
-			if (!scene_animation_ready)
+			if (!scene_animation_ready && !presented_ready)
 				captureCurrentFrameAsLast();
 			if (scene_animation_ready || m_last_frame_valid) {
 				m_pending_listbox_animation.active = true;
@@ -3250,7 +3257,7 @@ bool gEGLDC::runPendingListboxAnimation() {
 	GLuint old_frame = 0;
 	GLuint new_frame = 0;
 	if (use_scene_frames) {
-		old_frame = m_scene_animation_old_texture;
+		old_frame = m_last_frame_valid && m_last_frame_presented ? m_last_frame_texture : m_scene_animation_old_texture;
 		new_frame = m_scene_frame_texture;
 	} else {
 		const unsigned long long capture_start_us = e2eglNowUs();
@@ -3303,6 +3310,14 @@ bool gEGLDC::runPendingListboxAnimation() {
 		// destination from the old frame as well, then animate only the focus bar.
 		drawCopiedFrameTexture(old_frame, to, to, 1.0f, false);
 		drawListboxSelection(moving, animation);
+		// Inside the old and new row the bar is taken from the frame that shows
+		// that row selected, so the row text stays on top of the bar.
+		const eRect moving_from = moving & from;
+		const eRect moving_to = moving & to;
+		if (!moving_from.empty())
+			drawCopiedFrameTexture(old_frame, moving_from, moving_from, 1.0f, false);
+		if (!moving_to.empty())
+			drawCopiedFrameTexture(new_frame, moving_to, moving_to, 1.0f, false);
 		glDisable(GL_BLEND);
 		m_frame_stats.draw_us += e2eglNowUs() - draw_start_us;
 
@@ -3760,7 +3775,7 @@ void gEGLDC::exec(const gOpcode* opcode) {
 			draw_time_recorded = true;
 			if (!runPendingWindowAnimation() && !runPendingListboxAnimation()) {
 				if (!m_preserved_swap && !sceneFramebufferActive())
-					captureCurrentFrameAsLast();
+					capturePresentedFrame();
 				flip();
 			}
 			gDC::exec(opcode);
@@ -4702,6 +4717,10 @@ void gEGLDC::flip() {
 		if (sceneFramebufferWanted())
 			bindSceneFramebuffer();
 		flushTextBatch();
+		// A listbox repaints its rows before it sends the animation opcode, so
+		// its old frame has to be the one presented here.
+		if (s_egl_animation_listbox && (m_preserved_swap || sceneFramebufferActive()))
+			capturePresentedFrame();
 		const bool scene_presented = presentSceneFramebuffer();
 		const bool swapped = swapWindowFramebuffer();
 		if (swapped) {

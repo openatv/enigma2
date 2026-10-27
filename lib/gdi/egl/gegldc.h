@@ -94,6 +94,7 @@ private:
 	GLuint m_scene_spare_framebuffer;
 	GLuint m_scene_animation_old_texture;
 	bool m_last_frame_valid;
+	bool m_last_frame_presented = false;
 	bool m_frame_restore_pending;
 	bool m_frame_texture_surface;
 	bool m_frame_texture_scene_scaled;
@@ -268,6 +269,7 @@ private:
 	void finishSceneFramebufferAnimation();
 	bool swapWindowFramebuffer();
 	void captureCurrentFrameAsLast();
+	void capturePresentedFrame();
 	void restoreFrameIfNeeded();
 	void executeWindowAnimationOpcode(const gOpcode* op, bool show);
 	bool runPendingWindowAnimation();
