@@ -621,7 +621,7 @@ esac
 
 is_nxpl_egl_box=no
 case "$BOXTYPE" in
-  et10000|et1x000|triplex|hd2400|8100s|gb7252|gb72604|dags72604|hd51|vs1500|h7|h17|sf4008)
+  et10000|et1x000|triplex|hd2400|8100s|gb7252|gb72604|dags72604|hd51|vs1500|h7|h17|sf4008|vuduo4klite)
     is_nxpl_egl_box=yes
     ;;
 esac
@@ -688,14 +688,26 @@ AS_IF([test "x$with_egl" != "xno"], [
 
 AS_IF([test "x$have_gles2" = "xyes"], [
   saved_CPPFLAGS="$CPPFLAGS"
+  saved_LIBS="$LIBS"
   CPPFLAGS="$CPPFLAGS $EGL_CFLAGS $GLES2_CFLAGS"
-  AC_CHECK_HEADERS([GLES3/gl3.h], [have_gles3=yes], [have_gles3=no])
+  LIBS="$LIBS $GLES2_LIBS $EGL_LIBS $NXPL_LIBS $VUPL_LIBS $V3DPLATFORM_LIBS"
+  AC_CHECK_HEADERS([GLES3/gl3.h], [have_gles3_header=yes], [have_gles3_header=no])
+  # Some SDKs ship GLES3/gl3.h but a GLESv2-only library, verify the GLES3 entry points link.
+  AS_IF([test "x$have_gles3_header" = "xyes"], [
+    AC_MSG_CHECKING([whether libGLESv2 provides GLES3 entry points])
+    AC_LINK_IFELSE([AC_LANG_PROGRAM(
+      [[#include <GLES3/gl3.h>]],
+      [[GLuint vao; glGenVertexArrays(1, &vao); glBindVertexArray(vao);]])],
+      [have_gles3=yes], [have_gles3=no])
+    AC_MSG_RESULT([$have_gles3])
+  ], [have_gles3=no])
   AC_CHECK_HEADERS([EGL/fbdev_window.h])
   AC_CHECK_TYPES([fbdev_window],
     [AC_DEFINE([HAVE_FBDEV_WINDOW_TYPE], [1], [Define if EGL exposes the fbdev_window type])],
     [],
     [[#include <EGL/egl.h>]])
   CPPFLAGS="$saved_CPPFLAGS"
+  LIBS="$saved_LIBS"
 ])
 
 AS_IF([test "x$with_egl" = "xyes"], [
