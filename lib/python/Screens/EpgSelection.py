@@ -307,10 +307,10 @@ class EPGSelectionBase(Screen):
 	def addEditAutoTimer(self):
 		self.closeEventViewDialog()
 		event, service = self[f"list{self.activeList}"].getCurrent()[:2]
-		if event is None:
+		if event is None or service is None:
 			return
-		timer = self.session.nav.RecordTimer.getTimerForEvent(service, event)
-		if timer is not None and hasattr(timer, 'autoTimerId') and timer.autoTimerId:
+		timer = self.getRecordEvent(service.ref.toCompareString(), event)
+		if timer is not None and getattr(timer, "autoTimerId", None):
 			self._editAutoTimer(timer)
 		else:
 			self.addAutoTimer()
