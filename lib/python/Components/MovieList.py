@@ -749,7 +749,13 @@ class MovieList(GUIComponent):
 	def buildBeginTimeSortKey(self, x):
 		ref = x[0]  # x = ref, info, begin, ...
 		if ref.flags & eServiceReference.mustDescent:
-			return 0, "", x[1] and -stat(ref.getPath()).st_mtime or 0
+			begin = 0
+			if x[1]:
+				try:
+					begin = -stat(ref.getPath()).st_mtime
+				except OSError as error:
+					print(f"[MovieList] Unable to read directory modification time for '{ref.getPath()}': {error}")
+			return 0, "", begin
 		return 1, "", -x[2]
 
 	def buildGroupwiseSortkey(self, x):  # Sort recordings by date, sort MP3 and stuff by name.
