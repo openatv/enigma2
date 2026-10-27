@@ -49,6 +49,9 @@ private:
 	bool m_native_window_ready;
 	bool m_video_mode_surface_active;
 	bool m_graphics_suspended;
+	bool m_egl_client_released;
+	bool m_surface_lost;
+	unsigned long long m_surface_retry_us;
 	std::recursive_mutex m_egl_mutex;
 
 	gShader m_basic_shader;
@@ -213,6 +216,8 @@ private:
 	void applySwapBehavior();
 	void primeEGLSurface(bool preserve_scene = false);
 	void cleanupEGL();
+	// Frees the surface and GL objects; releaseClient also terminates the EGL display and context.
+	bool releaseGraphics(bool releaseClient);
 
 	// dedicated opcode handlers
 	void executeFill(const gOpcode* op);
@@ -250,6 +255,7 @@ private:
 	bool ensureSceneFramebuffer();
 	bool ensureSpareSceneFramebuffer();
 	void deleteSceneFramebuffer();
+	void markSurfaceLost();
 	bool bindSceneFramebuffer();
 	void bindWindowFramebuffer();
 	eRect osdDestinationLogical() const;
