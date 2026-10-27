@@ -5,15 +5,25 @@
 #include <algorithm>
 #include <cstdlib>
 #include <cstring>
+#include <mutex>
 
 static gTextureManager* s_active_manager = nullptr;
 
+// Guards s_active_manager: surfaces queue deletions from any thread while the manager may be torn down.
+// Leaked on purpose so it outlives static destructors that free pixmaps.
+static std::mutex& activeManagerMutex() {
+	static std::mutex* m = new std::mutex();
+	return *m;
+}
+
 gTextureManager::gTextureManager() : m_egl_display(EGL_NO_DISPLAY), m_content_texture_use_counter(0), m_content_texture_bytes(0), m_offscreen_advanced_shader_initialized(false),
 	m_offscreen_texture_shader_initialized(false), m_context_generation(1) {
+	std::lock_guard<std::mutex> guard(activeManagerMutex());
 	s_active_manager = this;
 }
 
 gTextureManager::~gTextureManager() {
+	std::lock_guard<std::mutex> guard(activeManagerMutex());
 	if (s_active_manager == this)
 		s_active_manager = nullptr;
 }
@@ -983,6 +993,7 @@ bool gTextureManager::syncSurfaceToCPU(gUnmanagedSurface* surface) {
 
 extern "C" void egl_queue_texture_deletion(unsigned int gl_texture_id, unsigned int context_generation);
 void egl_queue_texture_deletion(unsigned int gl_texture_id, unsigned int context_generation) {
+	std::lock_guard<std::mutex> guard(activeManagerMutex());
 	if (s_active_manager) {
 		s_active_manager->queueForDeletion(gl_texture_id, context_generation);
 	}
@@ -990,6 +1001,7 @@ void egl_queue_texture_deletion(unsigned int gl_texture_id, unsigned int context
 
 extern "C" void egl_queue_framebuffer_deletion(unsigned int gl_framebuffer_id, unsigned int context_generation);
 void egl_queue_framebuffer_deletion(unsigned int gl_framebuffer_id, unsigned int context_generation) {
+	std::lock_guard<std::mutex> guard(activeManagerMutex());
 	if (s_active_manager) {
 		s_active_manager->queueFramebufferForDeletion(gl_framebuffer_id, context_generation);
 	}
