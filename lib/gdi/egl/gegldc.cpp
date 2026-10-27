@@ -6,6 +6,7 @@
 #include <lib/gdi/egl/gles_version.h>
 #include <lib/gdi/fb.h>
 #include <algorithm>
+#include <condition_variable>
 #include <fstream>
 #include <iterator>
 #include <errno.h>
@@ -75,23 +76,6 @@ static bool hasExtension(const char* extensions, const char* name) {
 		start += name_len;
 	}
 	return false;
-}
-
-static bool e2eglKeepContextBetweenOpcodes() {
-	static int keep = -1;
-	if (keep < 0) {
-		const char* env = getenv("E2EGL_KEEP_CONTEXT");
-		if (env && *env)
-			keep = atoi(env) != 0;
-		else {
-#if defined(HAVE_VUPLUS_EGL) || defined(HAVE_VUPLUS_MIPSEL_EGL) || defined(HAVE_NXPL_EGL)
-			keep = 1;
-#else
-			keep = 0;
-#endif
-		}
-	}
-	return keep != 0;
 }
 
 static bool e2eglForceDestroyedSwap() {
@@ -901,14 +885,62 @@ bool gEGLDC::makeCurrent() {
 	return true;
 }
 
-bool gEGLDC::releaseCurrent(bool force) {
-	if (!force && e2eglKeepContextBetweenOpcodes())
+bool gEGLDC::releaseCurrent() {
+	// The render thread keeps the context for good, only other threads hand it back.
+	if (onRenderThread())
 		return false;
 	if (m_egl_display != EGL_NO_DISPLAY && eglGetCurrentContext() == m_egl_context) {
 		eglMakeCurrent(m_egl_display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
 		return true;
 	}
 	return false;
+}
+
+void gEGLDC::unbindContext() {
+	// EGL keeps a surface alive while it is current, so unbind before destroying it.
+	if (m_egl_display != EGL_NO_DISPLAY && eglGetCurrentContext() == m_egl_context)
+		eglMakeCurrent(m_egl_display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
+}
+
+bool gEGLDC::onRenderThread() const {
+	return m_render_thread_known && pthread_equal(pthread_self(), m_render_thread);
+}
+
+bool gEGLDC::runOnRenderThread(const std::function<void()>& function) {
+	static thread_local bool direct_call = false;
+	if (direct_call || onRenderThread())
+		return false;
+
+	gRC* rc = gRC::getInstance();
+	{
+		std::lock_guard<std::recursive_mutex> egl_lock(m_egl_mutex);
+		if (!rc || !m_render_thread_known) {
+			// No render thread yet (or no more): run here, the lock keeps it from binding the context meanwhile.
+			direct_call = true;
+			function();
+			direct_call = false;
+			return true;
+		}
+	}
+
+	std::mutex mutex;
+	std::condition_variable done_condition;
+	bool done = false;
+	std::function<void()> call = [&]() {
+		function();
+		std::lock_guard<std::mutex> lock(mutex);
+		done = true;
+		done_condition.notify_all();
+	};
+	gOpcode o;
+	o.opcode = gOpcode::invoke;
+	o.dc = this;
+	AddRef();
+	o.parm.invoke = &call;
+	rc->submit(o);
+	std::unique_lock<std::mutex> lock(mutex);
+	done_condition.wait(lock, [&]() { return done; });
+	return true;
 }
 
 void gEGLDC::applySwapBehavior() {
@@ -1113,8 +1145,7 @@ bool gEGLDC::initEGL() {
 	primeEGLSurface();
 
 	eDebug("[gEGLDC] GLES%d successfully initialised (%dx%d)", m_gles_version, m_width, m_height);
-	eDebug("[gEGLDC] EGL context keep-between-opcodes: %s", e2eglKeepContextBetweenOpcodes() ? "yes" : "no");
-	releaseCurrent(true);
+	releaseCurrent();
 	startCaptureServer();
 	return true;
 }
@@ -1264,12 +1295,10 @@ void gEGLDC::logAndResetFrameStats() {
 	const bool slow_enough = !slow_us || frame_us >= slow_us;
 
 	if (e2eglTraceGlEnabled() && under_limit && slow_enough) {
-		eDebug("[e2egl:frame] #%u frame_us=%llu draw_us=%llu other_us=%llu swap_us=%llu cap_us=%llu restore_us=%llu fill_us=%llu rect_us=%llu clear_us=%llu line_us=%llu blit_us=%llu text_build_us=%llu text_us=%llu state_us=%llu overlap_us=%llu tex_gc_us=%llu copy_us=%llu ctx_make_us=%llu ctx_release_us=%llu ctx=%u/%u preserved=%d scene=%d anim=%d fill=%u/%u/%llupx solid=%u/%u clear=%u/%u/%llupx rect=%u/%u/%llupx grad=%u round=%u line=%u/%u blit=%u/%u/%llupx glyph=%u text_ops=%u text_batches=%u/%u text_flush=%u/%u/%u/%u/%u/%u/%u/%u text_overlap=%u/%u font_up=%u/%llupx tex_up=%u dmabuf=%u bgra=%u rgba_conv=%u clut8=%u lum8=%u tex_cache=%u/%u tex_px=%llu tex_kib=%llu copies=%u/%llupx restores=%u",
+		eDebug("[e2egl:frame] #%u frame_us=%llu draw_us=%llu other_us=%llu swap_us=%llu cap_us=%llu restore_us=%llu fill_us=%llu rect_us=%llu clear_us=%llu line_us=%llu blit_us=%llu text_build_us=%llu text_us=%llu state_us=%llu overlap_us=%llu tex_gc_us=%llu copy_us=%llu preserved=%d scene=%d anim=%d fill=%u/%u/%llupx solid=%u/%u clear=%u/%u/%llupx rect=%u/%u/%llupx grad=%u round=%u line=%u/%u blit=%u/%u/%llupx glyph=%u text_ops=%u text_batches=%u/%u text_flush=%u/%u/%u/%u/%u/%u/%u/%u text_overlap=%u/%u font_up=%u/%llupx tex_up=%u dmabuf=%u bgra=%u rgba_conv=%u clut8=%u lum8=%u tex_cache=%u/%u tex_px=%llu tex_kib=%llu copies=%u/%llupx restores=%u",
 			m_frame_stats_index, frame_us, m_frame_stats.draw_us, other_us, m_frame_stats.swap_us, m_frame_stats.capture_us, m_frame_stats.restore_us,
 			m_frame_stats.fill_us, m_frame_stats.rect_us, m_frame_stats.clear_us, m_frame_stats.line_us, m_frame_stats.blit_us, m_frame_stats.text_build_us, m_frame_stats.text_us,
 			m_frame_stats.state_us, m_frame_stats.overlap_us, m_frame_stats.texture_gc_us, m_frame_stats.copy_us,
-			m_frame_stats.context_make_us, m_frame_stats.context_release_us,
-			m_frame_stats.context_make_calls, m_frame_stats.context_release_calls,
 			m_preserved_swap ? 1 : 0, sceneFramebufferActive() ? 1 : 0, s_egl_animation_current,
 			m_frame_stats.fill_ops, m_frame_stats.fill_rects, m_frame_stats.fill_pixels,
 			m_frame_stats.solid_batches, m_frame_stats.solid_vertices,
@@ -2019,6 +2048,10 @@ bool gEGLDC::readFramebufferRegion(const eRect& pos, gPixmap* pixmap) {
 }
 
 bool gEGLDC::readOSDToBGRA(std::vector<unsigned char>& pixels, int& width, int& height) {
+	bool result = false;
+	if (runOnRenderThread([&]() { result = readOSDToBGRA(pixels, width, height); }))
+		return result;
+
 	pixels.clear();
 	width = 0;
 	height = 0;
@@ -2060,7 +2093,7 @@ bool gEGLDC::readOSDToBGRA(std::vector<unsigned char>& pixels, int& width, int& 
 		glBindFramebuffer(GL_FRAMEBUFFER, previous_framebuffer);
 		glPixelStorei(GL_PACK_ALIGNMENT, previous_pack_alignment);
 		if (!already_current)
-			releaseCurrent(true);
+			releaseCurrent();
 		return false;
 	}
 
@@ -2075,7 +2108,7 @@ bool gEGLDC::readOSDToBGRA(std::vector<unsigned char>& pixels, int& width, int& 
 	glBindFramebuffer(GL_FRAMEBUFFER, previous_framebuffer);
 	glPixelStorei(GL_PACK_ALIGNMENT, previous_pack_alignment);
 	if (!already_current)
-		releaseCurrent(true);
+		releaseCurrent();
 
 	if (error != GL_NO_ERROR) {
 		eDebug("[gEGLDC] e2egl capture glReadPixels failed: 0x%x", error);
@@ -3706,6 +3739,17 @@ void gEGLDC::flushTextBatch() {
 void gEGLDC::exec(const gOpcode* opcode) {
 	std::lock_guard<std::recursive_mutex> lock(m_egl_mutex);
 
+	if (!m_render_thread_known) {
+		m_render_thread = pthread_self();
+		m_render_thread_known = true;
+	}
+	if (opcode->opcode == gOpcode::invoke) {
+		if (isInitialized() && m_egl_display != EGL_NO_DISPLAY && m_egl_surface != EGL_NO_SURFACE)
+			makeCurrent();
+		(*opcode->parm.invoke)();
+		return;
+	}
+
 	/*
 	 * fbClass::lock() prevents new paint commands while an external GLES
 	 * client is active. Commands which were already queued still have to be
@@ -3737,13 +3781,8 @@ void gEGLDC::exec(const gOpcode* opcode) {
 	}
 
 	const bool already_current = eglGetCurrentContext() == m_egl_context;
-	if (!already_current) {
-		const unsigned long long context_make_start_us = e2eglNowUs();
-		if (!makeCurrent())
-			return;
-		m_frame_stats.context_make_us += e2eglNowUs() - context_make_start_us;
-		++m_frame_stats.context_make_calls;
-	}
+	if (!already_current && !makeCurrent())
+		return;
 
 	const unsigned long long draw_start_us = e2eglNowUs();
 	bool draw_time_recorded = false;
@@ -3875,12 +3914,7 @@ void gEGLDC::exec(const gOpcode* opcode) {
 	if (!draw_time_recorded)
 		m_frame_stats.draw_us += e2eglNowUs() - draw_start_us;
 
-	const bool present_opcode = opcode->opcode == gOpcode::flush || opcode->opcode == gOpcode::flip;
-	const unsigned long long context_release_start_us = e2eglNowUs();
-	if (releaseCurrent(present_opcode)) {
-		m_frame_stats.context_release_us += e2eglNowUs() - context_release_start_us;
-		++m_frame_stats.context_release_calls;
-	}
+	releaseCurrent();
 }
 
 std::string gEGLDC::getGraphicsWindowProvider() const
@@ -3960,6 +3994,10 @@ bool gEGLDC::suspendGraphics()
 
 bool gEGLDC::releaseGraphics(bool releaseClient)
 {
+	bool result = false;
+	if (runOnRenderThread([&]() { result = releaseGraphics(releaseClient); }))
+		return result;
+
 	std::lock_guard<std::recursive_mutex> lock(m_egl_mutex);
 
 	if (m_graphics_suspended)
@@ -3988,7 +4026,7 @@ bool gEGLDC::releaseGraphics(bool releaseClient)
 		}
 		m_texture_manager.processDeletions();
 		glFinish();
-		releaseCurrent(true);
+		unbindContext();
 	}
 
 	if (m_egl_surface != EGL_NO_SURFACE) {
@@ -4084,6 +4122,10 @@ bool gEGLDC::releaseGraphics(bool releaseClient)
 
 bool gEGLDC::resumeGraphics()
 {
+	bool result = false;
+	if (runOnRenderThread([&]() { result = resumeGraphics(); }))
+		return result;
+
 	std::lock_guard<std::recursive_mutex> lock(m_egl_mutex);
 
 	if (!m_graphics_suspended)
@@ -4152,6 +4194,10 @@ bool gEGLDC::setOSDPosition(int left, int top, int width, int height)
 	if (width < 1 || height < 1)
 		return false;
 
+	bool result = false;
+	if (runOnRenderThread([&]() { result = setOSDPosition(left, top, width, height); }))
+		return result;
+
 	std::lock_guard<std::recursive_mutex> lock(m_egl_mutex);
 	const bool old_osd_fullscreen = m_osd_left == 0 && m_osd_top == 0 && m_osd_width == m_width && m_osd_height == m_height;
 	const bool egl_ready = isInitialized() && m_egl_display != EGL_NO_DISPLAY && m_egl_surface != EGL_NO_SURFACE && m_egl_context != EGL_NO_CONTEXT;
@@ -4204,7 +4250,7 @@ bool gEGLDC::setOSDPosition(int left, int top, int width, int height)
 		const bool swapped = swapWindowFramebuffer();
 		if (swapped && frame_presented && sceneFramebufferActive())
 			bindSceneFramebuffer();
-		releaseCurrent(true);
+		releaseCurrent();
 	}
 
 	const eRect surface_rect = osdDestinationSurface();
@@ -4379,6 +4425,9 @@ gEGLDC::~gEGLDC() {
 }
 
 void gEGLDC::cleanupEGL() {
+	if (runOnRenderThread([this]() { cleanupEGL(); }))
+		return;
+
 	std::lock_guard<std::recursive_mutex> lock(m_egl_mutex);
 
 	if (m_egl_display != EGL_NO_DISPLAY) {
@@ -4392,7 +4441,7 @@ void gEGLDC::cleanupEGL() {
 			m_texture_shader.release();
 			m_text_shader.release();
 #endif
-			releaseCurrent(true);
+			unbindContext();
 		}
 		if (m_egl_context != EGL_NO_CONTEXT) {
 			eglDestroyContext(m_egl_display, m_egl_context);
@@ -4441,6 +4490,9 @@ void gEGLDC::markSurfaceLost() {
 }
 
 void gEGLDC::setResolution(int xres, int yres, int bpp) {
+	if (runOnRenderThread([=]() { setResolution(xres, yres, bpp); }))
+		return;
+
 	std::lock_guard<std::recursive_mutex> lock(m_egl_mutex);
 
 	int surface_xres = xres;
@@ -4507,7 +4559,7 @@ void gEGLDC::setResolution(int xres, int yres, int bpp) {
 		glFinish();
 	}
 	if (egl_ready && eglGetCurrentContext() == m_egl_context)
-		releaseCurrent(true);
+		unbindContext();
 	if (egl_ready && (surface_size_changed || native_window_must_recreate) && m_egl_surface != EGL_NO_SURFACE) {
 		eglDestroySurface(m_egl_display, m_egl_surface);
 		m_egl_surface = EGL_NO_SURFACE;
@@ -4614,12 +4666,15 @@ void gEGLDC::setResolution(int xres, int yres, int bpp) {
 			m_text_shader.setResolution((float)m_width, (float)m_height);
 			primeEGLSurface();
 			eDebug("[gEGLDC] resized EGL surface to %dx%d logical=%dx%d", surfaceWidth(), surfaceHeight(), m_width, m_height);
-			releaseCurrent(true);
+			releaseCurrent();
 		}
 	}
 }
 
 void gEGLDC::refresh() {
+	if (runOnRenderThread([this]() { refresh(); }))
+		return;
+
 	std::lock_guard<std::recursive_mutex> lock(m_egl_mutex);
 
 	if (!isInitialized() || m_egl_display == EGL_NO_DISPLAY || m_egl_context == EGL_NO_CONTEXT)
@@ -4634,7 +4689,7 @@ void gEGLDC::refresh() {
 			glFlush();
 			preserve_scene = m_scene_frame_valid;
 		}
-		releaseCurrent(true);
+		releaseCurrent();
 	}
 #endif
 
@@ -4643,7 +4698,7 @@ void gEGLDC::refresh() {
 		if (makeCurrent()) {
 			applyWindowViewport();
 			eglSwapInterval(m_egl_display, 1);
-			releaseCurrent(true);
+			releaseCurrent();
 		}
 		eDebug("[gEGLDC] Vuplus MIPS refresh keeps existing EGL surface at %dx%d logical=%dx%d",
 			surfaceWidth(), surfaceHeight(), m_width, m_height);
@@ -4697,7 +4752,7 @@ void gEGLDC::refresh() {
 #endif
 
 	if (eglGetCurrentContext() == m_egl_context)
-		releaseCurrent(true);
+		unbindContext();
 	if (m_egl_surface != EGL_NO_SURFACE) {
 		eglDestroySurface(m_egl_display, m_egl_surface);
 		m_egl_surface = EGL_NO_SURFACE;
@@ -4760,7 +4815,7 @@ void gEGLDC::refresh() {
 				bindSceneFramebuffer();
 		}
 		eDebug("[gEGLDC] refreshed EGL surface at %dx%d logical=%dx%d", surfaceWidth(), surfaceHeight(), m_width, m_height);
-		releaseCurrent(true);
+		releaseCurrent();
 	}
 }
 
@@ -4769,13 +4824,8 @@ void gEGLDC::flip() {
 
 	if (isInitialized() && m_egl_display != EGL_NO_DISPLAY && m_egl_surface != EGL_NO_SURFACE) {
 		const bool already_current = eglGetCurrentContext() == m_egl_context;
-		if (!already_current) {
-			const unsigned long long context_make_start_us = e2eglNowUs();
-			if (!makeCurrent())
-				return;
-			m_frame_stats.context_make_us += e2eglNowUs() - context_make_start_us;
-			++m_frame_stats.context_make_calls;
-		}
+		if (!already_current && !makeCurrent())
+			return;
 		if (sceneFramebufferWanted())
 			bindSceneFramebuffer();
 		flushTextBatch();
@@ -4788,22 +4838,12 @@ void gEGLDC::flip() {
 		if (swapped) {
 			if (scene_presented)
 				bindSceneFramebuffer();
-			if (!already_current) {
-				const unsigned long long context_release_start_us = e2eglNowUs();
-				if (releaseCurrent(true)) {
-					m_frame_stats.context_release_us += e2eglNowUs() - context_release_start_us;
-					++m_frame_stats.context_release_calls;
-				}
-			}
+			if (!already_current)
+				releaseCurrent();
 			logAndResetFrameStats();
 			m_frame_restore_pending = !scene_presented && !m_preserved_swap && m_last_frame_valid;
 		}
-		if (!already_current && !swapped) {
-			const unsigned long long context_release_start_us = e2eglNowUs();
-			if (releaseCurrent(true)) {
-				m_frame_stats.context_release_us += e2eglNowUs() - context_release_start_us;
-				++m_frame_stats.context_release_calls;
-			}
-		}
+		if (!already_current && !swapped)
+			releaseCurrent();
 	}
 }

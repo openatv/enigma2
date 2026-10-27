@@ -13,6 +13,7 @@
 
 #include <pthread.h>
 #include <atomic>
+#include <functional>
 #include <stack>
 #include <list>
 #include <vector>
@@ -82,6 +83,7 @@ struct gOpcode
 		sendShow,
 		sendHide,
 		sendListboxAnimation,
+		invoke,
 	} opcode;
 	gDC *dc;
 	union para
@@ -210,6 +212,8 @@ struct gOpcode
 			uint8_t radiusEdges;
 			gPixmap *selectionPixmap;
 		} *listboxAnimation;
+
+		std::function<void()> *invoke;
 	} parm;
 };
 

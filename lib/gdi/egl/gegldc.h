@@ -16,6 +16,7 @@
 #include <lib/gdi/gfont_atlas.h>
 #include <lib/gdi/gmaindc.h>
 #include <atomic>
+#include <functional>
 #include <mutex>
 #include <pthread.h>
 #include <vector>
@@ -53,6 +54,9 @@ private:
 	bool m_surface_lost;
 	unsigned long long m_surface_retry_us;
 	std::recursive_mutex m_egl_mutex;
+	// The context stays bound to the gRC render thread; other threads hand GL work to it.
+	std::atomic<bool> m_render_thread_known{false};
+	pthread_t m_render_thread;
 
 	gShader m_basic_shader;
 	gAdvancedShader m_advanced_shader;
@@ -157,8 +161,6 @@ private:
 		unsigned int texture_8_luma_uploads = 0;
 		unsigned int texture_content_cache_hits = 0;
 		unsigned int texture_content_cache_misses = 0;
-		unsigned int context_make_calls = 0;
-		unsigned int context_release_calls = 0;
 		unsigned long long fill_pixels = 0;
 		unsigned long long clear_pixels = 0;
 		unsigned long long rect_pixels = 0;
@@ -183,8 +185,6 @@ private:
 		unsigned long long overlap_us = 0;
 		unsigned long long texture_gc_us = 0;
 		unsigned long long copy_us = 0;
-		unsigned long long context_make_us = 0;
-		unsigned long long context_release_us = 0;
 	};
 	FrameStats m_frame_stats;
 	unsigned int m_frame_stats_index;
@@ -213,7 +213,10 @@ private:
 
 	bool tryInitEGL(int version);
 	bool makeCurrent();
-	bool releaseCurrent(bool force = false);
+	bool releaseCurrent();
+	void unbindContext();
+	bool onRenderThread() const;
+	bool runOnRenderThread(const std::function<void()>& function);
 	void applySwapBehavior();
 	void primeEGLSurface(bool preserve_scene = false);
 	void cleanupEGL();
