@@ -22,9 +22,7 @@ def InitOSDCalibration():
 			if exists(fileName):
 				fileWriteLine(fileName, "1", source=MODULE_NAME)
 		elif BoxInfo.getItem("CanChangeOsdPositionAML"):
-			value = f"{config.osd.dst_left.value} {config.osd.dst_top.value} {config.osd.dst_width.value} {config.osd.dst_height.value}"
-			fileWriteLine("/sys/class/graphics/fb0/window_axis", value, source=MODULE_NAME)
-			fileWriteLine("/sys/class/graphics/fb0/free_scale", "0x10001", source=MODULE_NAME)
+			eAVControl.getInstance().setOSDPosition(config.osd.dst_left.value, config.osd.dst_top.value, config.osd.dst_width.value, config.osd.dst_height.value, 1)
 
 	def setLeft(configElement):
 		setPositionParameter("left", configElement.value)
