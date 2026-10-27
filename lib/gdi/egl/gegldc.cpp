@@ -170,7 +170,7 @@ static std::string e2eglReadWholeFile(const char* filename) {
 	return std::string((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 }
 
-static bool e2eglExtractXmlIntAttribute(const std::string& tag, const char* name, int& value) {
+static bool e2eglExtractXmlAttribute(const std::string& tag, const char* name, std::string& value) {
 	const std::string key(name);
 	size_t pos = tag.find(key);
 	if (pos != std::string::npos) {
@@ -185,20 +185,44 @@ static bool e2eglExtractXmlIntAttribute(const std::string& tag, const char* name
 		const size_t end = tag.find(quote_char, quote + 1);
 		if (end == std::string::npos)
 			return false;
-		value = atoi(tag.substr(quote + 1, end - quote - 1).c_str());
-		return value > 0;
+		value = tag.substr(quote + 1, end - quote - 1);
+		return true;
 	}
 	return false;
 }
 
-static bool e2eglReadSkinResolution(const char* skin_file, int& width, int& height, int& bpp) {
-	const std::string skin = e2eglReadWholeFile(skin_file);
+static bool e2eglExtractXmlIntAttribute(const std::string& tag, const char* name, int& value) {
+	std::string text;
+	if (!e2eglExtractXmlAttribute(tag, name, text))
+		return false;
+	value = atoi(text.c_str());
+	return value > 0;
+}
+
+static bool e2eglReadSkinResolution(const std::string& skin_file, int& width, int& height, int& bpp, int level = 0) {
+	const std::string skin = e2eglReadWholeFile(skin_file.c_str());
 	if (skin.empty())
 		return false;
 
 	const size_t resolution_start = skin.find("<resolution");
-	if (resolution_start == std::string::npos)
+	if (resolution_start == std::string::npos) {
+		// Skins like MetrixHD keep the resolution in an included file.
+		if (level >= 3)
+			return false;
+		for (size_t include_start = skin.find("<include"); include_start != std::string::npos; include_start = skin.find("<include", include_start + 1)) {
+			const size_t include_end = skin.find('>', include_start);
+			if (include_end == std::string::npos)
+				break;
+			std::string filename;
+			if (!e2eglExtractXmlAttribute(skin.substr(include_start, include_end - include_start + 1), "filename", filename) || filename.empty())
+				continue;
+			if (filename[0] != '/')
+				filename = skin_file.substr(0, skin_file.rfind('/') + 1) + filename;
+			if (e2eglReadSkinResolution(filename, width, height, bpp, level + 1))
+				return true;
+		}
 		return false;
+	}
 	const size_t resolution_end = skin.find('>', resolution_start);
 	if (resolution_end == std::string::npos)
 		return false;
@@ -225,10 +249,9 @@ static bool e2eglReadSkinResolutionFromValue(std::string skin, int& width, int& 
 		return false;
 
 	if (skin[0] == '/')
-		return e2eglReadSkinResolution(skin.c_str(), width, height, bpp);
+		return e2eglReadSkinResolution(skin, width, height, bpp);
 
-	const std::string skin_path = std::string("/usr/share/enigma2/") + skin;
-	return e2eglReadSkinResolution(skin_path.c_str(), width, height, bpp);
+	return e2eglReadSkinResolution(std::string("/usr/share/enigma2/") + skin, width, height, bpp);
 }
 
 static bool e2eglReadConfiguredSkinResolution(int& width, int& height, int& bpp) {
@@ -3630,6 +3653,12 @@ void gEGLDC::exec(const gOpcode* opcode) {
 		return;
 	}
 
+	if (m_surface_lost && m_egl_surface == EGL_NO_SURFACE && e2eglNowUs() - m_surface_retry_us > 500000ULL) {
+		m_surface_retry_us = e2eglNowUs();
+		eDebug("[gEGLDC] retrying lost EGL window surface at %dx%d logical=%dx%d", surfaceWidth(), surfaceHeight(), m_width, m_height);
+		refresh();
+	}
+
 	const bool already_current = eglGetCurrentContext() == m_egl_context;
 	if (!already_current) {
 		const unsigned long long context_make_start_us = e2eglNowUs();
@@ -3841,6 +3870,19 @@ bool gEGLDC::getGraphicsPreservedSwap() const
 
 bool gEGLDC::suspendGraphics()
 {
+	if (!islocked())
+		eDebug("[gEGLDC] suspending graphics without fbClass lock; callers should lock painting first");
+#ifdef HAVE_DREAMBCM_EGL
+	// Dream BCM keeps an inter-process device lock while EGLDisplay/EGLContext remain alive;
+	// a second EGL application then blocks before reaching main().
+	return releaseGraphics(true);
+#else
+	return releaseGraphics(false);
+#endif
+}
+
+bool gEGLDC::releaseGraphics(bool releaseClient)
+{
 	std::lock_guard<std::recursive_mutex> lock(m_egl_mutex);
 
 	if (m_graphics_suspended)
@@ -3848,9 +3890,6 @@ bool gEGLDC::suspendGraphics()
 
 	if (!isInitialized() || m_egl_display == EGL_NO_DISPLAY || m_egl_context == EGL_NO_CONTEXT)
 		return false;
-
-	if (!islocked())
-		eDebug("[gEGLDC] suspending graphics without fbClass lock; callers should lock painting first");
 
 	if (m_egl_surface != EGL_NO_SURFACE) {
 		if (!makeCurrent()) {
@@ -3863,16 +3902,13 @@ bool gEGLDC::suspendGraphics()
 		deleteSceneFramebuffer();
 		deleteFrameTextures();
 		m_font_atlas.release();
-#ifdef HAVE_DREAMBCM_EGL
-		/*
-		 * libvc5dream permits only one active EGL client. Release every GL
-		 * object before terminating Enigma2's Dream EGL client below.
-		 */
-		m_basic_shader.release();
-		m_advanced_shader.release();
-		m_texture_shader.release();
-		m_text_shader.release();
-#endif
+		if (releaseClient) {
+			// The EGL client is terminated below, so release every GL object first.
+			m_basic_shader.release();
+			m_advanced_shader.release();
+			m_texture_shader.release();
+			m_text_shader.release();
+		}
 		m_texture_manager.processDeletions();
 		glFinish();
 		releaseCurrent(true);
@@ -3887,31 +3923,27 @@ bool gEGLDC::suspendGraphics()
 		m_egl_surface = EGL_NO_SURFACE;
 	}
 
-#ifdef HAVE_DREAMBCM_EGL
-	/*
-	 * Surface-only suspension works on the other EGL providers. Dream BCM
-	 * keeps an inter-process device lock while EGLDisplay/EGLContext remain
-	 * alive; a second EGL application then blocks before reaching main().
-	 */
-	if (m_egl_context != EGL_NO_CONTEXT) {
-		eglDestroyContext(m_egl_display, m_egl_context);
-		m_egl_context = EGL_NO_CONTEXT;
+	if (releaseClient) {
+		if (m_egl_context != EGL_NO_CONTEXT) {
+			eglDestroyContext(m_egl_display, m_egl_context);
+			m_egl_context = EGL_NO_CONTEXT;
+		}
+		if (m_egl_display != EGL_NO_DISPLAY) {
+			eglTerminate(m_egl_display);
+			m_egl_display = EGL_NO_DISPLAY;
+		}
+		eglReleaseThread();
+		m_egl_major = 0;
+		m_egl_minor = 0;
+		m_gles_version = 0;
+		m_max_texture_size = 0;
+		m_preserved_swap = false;
+		gles::version = 0;
+		m_texture_manager.setDisplay(EGL_NO_DISPLAY);
+		m_texture_manager.resetContextGeneration();
+		m_egl_client_released = true;
+		eDebug("[gEGLDC] EGL display and context released");
 	}
-	if (m_egl_display != EGL_NO_DISPLAY) {
-		eglTerminate(m_egl_display);
-		m_egl_display = EGL_NO_DISPLAY;
-	}
-	eglReleaseThread();
-	m_egl_major = 0;
-	m_egl_minor = 0;
-	m_gles_version = 0;
-	m_max_texture_size = 0;
-	m_preserved_swap = false;
-	gles::version = 0;
-	m_texture_manager.setDisplay(EGL_NO_DISPLAY);
-	m_texture_manager.resetContextGeneration();
-	eDebug("[gEGLDC] Dream BCM EGL display and context released for external client");
-#endif
 
 #ifdef HAVE_VUPLUS_EGL
 	/*
@@ -3980,27 +4012,29 @@ bool gEGLDC::resumeGraphics()
 	if (!m_graphics_suspended)
 		return true;
 
-#ifdef HAVE_DREAMBCM_EGL
-	m_pixmap = new gPixmap(eSize(std::max(1, m_width), std::max(1, m_height)), 32, gPixmap::accelNever);
-	m_text_batch_buffer.reserve(MAX_BATCH_GLYPHS * 48);
-	m_text_batch_rects.reserve(MAX_BATCH_GLYPHS);
-	m_fill_batch_buffer.reserve(1024 * 36);
-	m_native_window_ready = m_window_provider && m_window_provider->init(surfaceWidth(), surfaceHeight());
-	if (!m_native_window_ready || !initEGL()) {
-		cleanupEGL();
-		m_graphics_suspended = true;
-		m_pixmap = new gPixmap(eSize(1, 1), 32, gPixmap::accelNever);
-		std::vector<float>().swap(m_text_batch_buffer);
-		std::vector<eRect>().swap(m_text_batch_rects);
-		std::vector<float>().swap(m_fill_batch_buffer);
-		eDebug("[gEGLDC] Dream BCM graphics resume failed; EGL client could not be recreated");
-		return false;
+	if (m_egl_client_released) {
+		m_pixmap = new gPixmap(eSize(std::max(1, m_width), std::max(1, m_height)), 32, gPixmap::accelNever);
+		m_text_batch_buffer.reserve(MAX_BATCH_GLYPHS * 48);
+		m_text_batch_rects.reserve(MAX_BATCH_GLYPHS);
+		m_fill_batch_buffer.reserve(1024 * 36);
+		m_native_window_ready = m_window_provider && m_window_provider->init(surfaceWidth(), surfaceHeight());
+		if (!m_native_window_ready || !initEGL()) {
+			cleanupEGL();
+			m_graphics_suspended = true;
+			m_pixmap = new gPixmap(eSize(1, 1), 32, gPixmap::accelNever);
+			std::vector<float>().swap(m_text_batch_buffer);
+			std::vector<eRect>().swap(m_text_batch_rects);
+			std::vector<float>().swap(m_fill_batch_buffer);
+			eDebug("[gEGLDC] graphics resume failed; EGL client could not be recreated");
+			return false;
+		}
+		m_egl_client_released = false;
+		m_graphics_suspended = false;
+		eDebug("[gEGLDC] graphics resumed with a new EGL display and context at %dx%d logical=%dx%d",
+			surfaceWidth(), surfaceHeight(), m_width, m_height);
+		return true;
 	}
-	m_graphics_suspended = false;
-	eDebug("[gEGLDC] Dream BCM graphics resumed with a new EGL display and context at %dx%d logical=%dx%d",
-		surfaceWidth(), surfaceHeight(), m_width, m_height);
-	return true;
-#else
+
 	if (!isInitialized() || m_egl_display == EGL_NO_DISPLAY || m_egl_context == EGL_NO_CONTEXT)
 		return false;
 
@@ -4029,7 +4063,6 @@ bool gEGLDC::resumeGraphics()
 
 	eDebug("[gEGLDC] graphics resumed at %dx%d logical=%dx%d", surfaceWidth(), surfaceHeight(), m_width, m_height);
 	return true;
-#endif
 }
 
 std::string gEGLDC::getOSDAxis() const
@@ -4202,6 +4235,9 @@ gEGLDC::gEGLDC(INativeWindowProvider* window_provider, int width, int height) : 
 	m_preserved_swap = false;
 	m_native_window_ready = false;
 	m_graphics_suspended = false;
+	m_egl_client_released = false;
+	m_surface_lost = false;
+	m_surface_retry_us = 0;
 	m_egl_display = EGL_NO_DISPLAY;
 	m_egl_surface = EGL_NO_SURFACE;
 	m_egl_context = EGL_NO_CONTEXT;
@@ -4319,6 +4355,13 @@ void gEGLDC::cleanupEGL() {
 	gles::version = 0;
 }
 
+void gEGLDC::markSurfaceLost() {
+	if (!m_surface_lost)
+		eDebug("[gEGLDC] EGL window surface lost, retrying every 500 ms");
+	m_surface_lost = true;
+	m_surface_retry_us = e2eglNowUs();
+}
+
 void gEGLDC::setResolution(int xres, int yres, int bpp) {
 	std::lock_guard<std::recursive_mutex> lock(m_egl_mutex);
 
@@ -4365,6 +4408,26 @@ void gEGLDC::setResolution(int xres, int yres, int bpp) {
 
 	const bool osd_was_fullscreen = m_osd_left == 0 && m_osd_top == 0 && m_osd_width == m_width && m_osd_height == m_height;
 	const bool egl_ready = isInitialized() && m_egl_display != EGL_NO_DISPLAY && m_egl_context != EGL_NO_CONTEXT;
+#ifdef HAVE_HISILICON_EGL
+	// While fb0 is held open, the Mali driver only allocates a larger window surface for a new EGL client.
+	if (egl_ready && !m_graphics_suspended && m_egl_surface != EGL_NO_SURFACE && (surface_xres > m_surface_width || surface_yres > m_surface_height)) {
+		if (releaseGraphics(true)) {
+			setResolution(xres, yres, bpp);
+			if (!resumeGraphics())
+				eDebug("[gEGLDC] EGL could not be recreated after resizing to %dx%d", xres, yres);
+			return;
+		}
+	}
+#endif
+	if (egl_ready && surface_size_changed && m_egl_surface != EGL_NO_SURFACE && makeCurrent()) {
+		// Release GPU memory before the window buffers are reallocated at the new size.
+		flushTextBatch();
+		deleteSceneFramebuffer();
+		deleteFrameTextures();
+		m_texture_manager.clearContentTextureCache();
+		m_texture_manager.processDeletions();
+		glFinish();
+	}
 	if (egl_ready && eglGetCurrentContext() == m_egl_context)
 		releaseCurrent(true);
 	if (egl_ready && (surface_size_changed || native_window_must_recreate) && m_egl_surface != EGL_NO_SURFACE) {
@@ -4433,6 +4496,7 @@ void gEGLDC::setResolution(int xres, int yres, int bpp) {
 		if (!m_native_window_ready) {
 			eDebug("[gEGLDC] native window provider resize init failed for %dx%d logical=%dx%d",
 				surfaceWidth(), surfaceHeight(), m_width, m_height);
+			markSurfaceLost();
 			return;
 		}
 	}
@@ -4443,14 +4507,17 @@ void gEGLDC::setResolution(int xres, int yres, int bpp) {
 			if (!native_window && e2eglRequiresNativeWindow()) {
 				eDebug("[gEGLDC] native window is not available while resizing to %dx%d logical=%dx%d",
 					surfaceWidth(), surfaceHeight(), m_width, m_height);
+				markSurfaceLost();
 				return;
 			}
 			m_egl_surface = eglCreateWindowSurface(m_egl_display, m_egl_config, native_window, nullptr);
 			if (m_egl_surface == EGL_NO_SURFACE) {
 				eDebug("[gEGLDC] eglCreateWindowSurface failed while resizing to %dx%d logical=%dx%d. EGL error: 0x%x",
 					surfaceWidth(), surfaceHeight(), m_width, m_height, eglGetError());
+				markSurfaceLost();
 				return;
 			}
+			m_surface_lost = false;
 			applySwapBehavior();
 		}
 		if (makeCurrent()) {
@@ -4567,6 +4634,7 @@ void gEGLDC::refresh() {
 		if (!m_native_window_ready) {
 			eDebug("[gEGLDC] native window provider refresh init failed for %dx%d logical=%dx%d",
 				surfaceWidth(), surfaceHeight(), m_width, m_height);
+			markSurfaceLost();
 			return;
 		}
 	}
@@ -4575,14 +4643,17 @@ void gEGLDC::refresh() {
 	if (!native_window && e2eglRequiresNativeWindow()) {
 		eDebug("[gEGLDC] native window is not available while refreshing %dx%d logical=%dx%d",
 			surfaceWidth(), surfaceHeight(), m_width, m_height);
+		markSurfaceLost();
 		return;
 	}
 	m_egl_surface = eglCreateWindowSurface(m_egl_display, m_egl_config, native_window, nullptr);
 	if (m_egl_surface == EGL_NO_SURFACE) {
 		eDebug("[gEGLDC] eglCreateWindowSurface failed while refreshing %dx%d logical=%dx%d. EGL error: 0x%x",
 			surfaceWidth(), surfaceHeight(), m_width, m_height, eglGetError());
+		markSurfaceLost();
 		return;
 	}
+	m_surface_lost = false;
 	applySwapBehavior();
 
 	if (makeCurrent()) {
