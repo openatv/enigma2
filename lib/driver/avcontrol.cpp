@@ -1205,7 +1205,8 @@ void eAVControl::setOSDPosition(int left, int top, int width, int height, int fl
 	}
 
 	if (procWritable(sys_osd_window_axis) && procWritable(sys_osd_free_scale)) {
-		CFile::writeStr(sys_osd_window_axis, rectToString(left, top, width, height), __MODULE__, flags);
+		// window_axis takes the inclusive end coordinates.
+		CFile::writeStr(sys_osd_window_axis, rectToString(left, top, left + width - 1, top + height - 1), __MODULE__, flags);
 		CFile::writeStr(sys_osd_free_scale, "0x10001", __MODULE__, flags);
 		if (flags & FLAGS_DEBUG)
 			eDebug("[%s] %s/aml: L:%d T:%d W:%d H:%d", __MODULE__, "setOSDPosition", left, top, width, height);
