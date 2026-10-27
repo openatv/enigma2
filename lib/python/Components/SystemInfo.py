@@ -3,10 +3,10 @@ from binascii import hexlify
 from glob import glob
 from hashlib import md5
 from locale import format_string
-from os import listdir, readlink, stat
+from os import listdir, readlink, stat, uname
 from os.path import basename, exists, isfile, islink, join
 from platform import libc_ver
-from re import search
+from re import fullmatch, search
 from sys import version as pyversion
 from time import localtime, strftime
 
@@ -422,6 +422,15 @@ def getRCFile(ext):
 	return filename
 
 
+def getKernelVersion():  # Version of the package of the running kernel, with its git revision when it is built from git.
+	result = BoxInfo.getItem("kernel")
+	version = next((line[9:].strip() for line in fileReadLines(f"/var/lib/opkg/info/kernel-image-{uname().release}.control", default=[], source=MODULE_NAME) if line.startswith("Version:")), "")
+	if version:
+		parts = version.split(":", 1)[-1].rsplit("-", 1)[0].split("+")
+		result = f"{parts[0]} ({parts[-1][:10]})" if len(parts) > 1 and fullmatch(r"[0-9a-f]{7,40}", parts[-1]) else parts[0]
+	return result
+
+
 def getChipsetString():
 	if MODEL in ("dm7080", "dm820"):
 		chipset = "7435"
@@ -563,6 +572,7 @@ class VideoCodec:  # Stream type to codec name mapping.
 
 BoxInfo.setItem("DebugLevel", eGetEnigmaDebugLvl())
 BoxInfo.setItem("InDebugMode", eGetEnigmaDebugLvl() >= 4)
+BoxInfo.setItem("KernelVersion", getKernelVersion())
 
 BoxInfo.setItem("RCImage", getRCFile("png"))
 BoxInfo.setItem("RCMapping", getRCFile("xml"))
