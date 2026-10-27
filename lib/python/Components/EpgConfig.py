@@ -316,7 +316,7 @@ def initEPGConfig():
 		])
 
 	# 0 uses the item height or row count of the skin.
-	choices = [(0, _("Use skin default"))] + [(i, _("%d") % i) for i in range(1, 5)]
+	choices = [(0, _("Use skin default"))] + [(i, str(i)) for i in range(1, 5)]
 	config.epgselection.infobar.itemsperpage = ConfigSelection(default=2, choices=choices)
 
 	config.epgselection.infobar.roundto = ConfigSelection(default="15", choices=[
@@ -374,7 +374,7 @@ def initEPGConfig():
 	config.epgselection.single.preview_mode = ConfigYesNo(default=True)
 	config.epgselection.single.eventfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
 	# 0 uses the item height or row count of the skin.
-	choices = [(0, _("Use skin default"))] + [(i, _("%d") % i) for i in range(1, 41)]
+	choices = [(0, _("Use skin default"))] + [(i, str(i)) for i in range(1, 41)]
 	config.epgselection.single.itemsperpage = ConfigSelection(default=16, choices=choices)
 	config.epgselection.single.btn_ok = ConfigSelection(choices=okActions, default="zap")
 	config.epgselection.single.btn_oklong = ConfigSelection(choices=okActions, default="zapExit")
@@ -401,7 +401,7 @@ def initEPGConfig():
 	config.epgselection.multi.preview_mode = ConfigYesNo(default=True)
 	config.epgselection.multi.eventfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
 	# 0 uses the item height or row count of the skin.
-	choices = [(0, _("Use skin default"))] + [(i, _("%d") % i) for i in range(8, 41)]
+	choices = [(0, _("Use skin default"))] + [(i, str(i)) for i in range(8, 41)]
 	config.epgselection.multi.itemsperpage = ConfigSelection(default=16, choices=choices)
 	# config.epgselection.multi.servicewidth = ConfigSelectionNumber(default=7, stepwidth=1, min=5, max=20, wraparound=True)  # Not implemented yet.
 	config.epgselection.multi.btn_ok = ConfigSelection(choices=okActions, default="zap")
@@ -474,7 +474,7 @@ def initEPGConfig():
 	config.epgselection.grid.timeline24h = ConfigYesNo(default=True)
 
 	# 0 uses the item height or row count of the skin.
-	choices = [(0, _("Use skin default"))] + [(i, _("%d") % i) for i in range(3, 21)]
+	choices = [(0, _("Use skin default"))] + [(i, str(i)) for i in range(3, 21)]
 	config.epgselection.grid.itemsperpage = ConfigSelection(default=8, choices=choices)
 
 	config.epgselection.grid.pig = ConfigYesNo(default=False)

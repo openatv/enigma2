@@ -45,9 +45,9 @@ class DABMetadata:
 			names = (
 				"", _("News"), _("Current Affairs"), _("Information"), _("Sport"),
 				_("Education"), _("Drama"), _("Culture"), _("Science"), _("Varied"),
-				_("Pop Music"), _("Rock Music"), _("Easy Listening Music"),
+				_("Pop Music"), _("Rock Music"), _("Easy Listening"),
 				_("Light Classical"), _("Serious Classical"), _("Other Music"),
-				_("Weather/meteorology"), _("Finance/Business"), _("Children's programmes"),
+				_("Weather/meteorology"), _("Finance/Business"), _("Children's"),
 				_("Social Affairs"), _("Religion"), _("Phone In"), _("Travel"),
 				_("Leisure"), _("Jazz Music"), _("Country Music"), _("National Music"),
 				_("Oldies Music"), _("Folk Music"), _("Documentary")
