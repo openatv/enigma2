@@ -66,7 +66,7 @@ DABAudioMode dabAudioMode()
 
 bool defaultDABPCMCompatibility()
 {
-#if defined(HWDM7080) || defined(HWDM820) || defined(HWDM900) || defined(HWDM920) || defined(HWOSMIO4K) || defined(HWOSMIO4KPLUS) || defined(HWSF4008)
+#if defined(HWDM7435) || defined(HWDM7252S) || defined(HWOSMIO4K) || defined(HWOSMIO4KPLUS) || defined(HWSF4008)
 	return true;
 #else
 	return false;

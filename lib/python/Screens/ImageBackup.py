@@ -498,7 +498,7 @@ class ImageBackup(Screen):
 				lines.append("\t<Part Sel=\"1\" PartitionName=\"deviceinfo\" FlashType=\"emmc\" FileSystem=\"none\" Start=\"14M\" Length=\"4M\" SelectFile=\"deviceinfo.bin\"/>")
 				lines.append("\t<Part Sel=\"1\" PartitionName=\"loader\" FlashType=\"emmc\" FileSystem=\"none\" Start=\"26M\" Length=\"32M\" SelectFile=\"apploader.bin\"/>")
 				lines.append("\t<Part Sel=\"1\" PartitionName=\"linuxkernel1\" FlashType=\"emmc\" FileSystem=\"none\" Start=\"66M\" Length=\"16M\" SelectFile=\"kernel.bin\"/>")
-				lines.append(f"\t<Part Sel=\"1\" PartitionName=\"userdata\" FlashType=\"emmc\" FileSystem=\"ext3/4\" Start=\"130M\" Length=\"{"3580" if model == "sf8008m" else "7000"}M\" SelectFile=\"rootfs.ext4\"/>")
+				lines.append(f"\t<Part Sel=\"1\" PartitionName=\"userdata\" FlashType=\"emmc\" FileSystem=\"ext3/4\" Start=\"130M\" Length=\"{"3580" if BoxInfo.getItem("machinebuild") == "sf8008m" else "7000"}M\" SelectFile=\"rootfs.ext4\"/>")
 				lines.append("</Partition_Info>")
 				cmdLines.append(f"{self.echoCmd} '{"\n".join(lines)}' > {workDir}emmc_partitions.xml")
 				cmdLines.append(f"{self.mkupdateCmd} -s 00000003-00000001-01010101 -f {workDir}emmc_partitions.xml -d {workDir}{emmcing}")
@@ -532,7 +532,7 @@ class ImageBackup(Screen):
 				cmdLines.append(f"\t{self.copyCmd} {backupRoot}etc/image-version {mainDestination}")
 				cmdLines.append("fi")
 				if not recovery:
-					if model in ("dm800se", "dm500hd", "dreamone", "dreamtwo"):
+					if model in ("dm7405nand", "dms922x"):
 						cmdLines.append(f"{self.touchCmd} {mainDestination}{kernelFile}")
 					elif MultiBoot.canMultiBoot() or mtdKernel.startswith("mmcblk0") or model in ("h8", "h8se", "hzero"):
 						cmdLines.append(f"{self.moveCmd} {workDir}{kernelFile} {mainDestination}")
@@ -540,7 +540,7 @@ class ImageBackup(Screen):
 						cmdLines.append(f"{self.moveCmd} {workDir}vmlinux.gz {mainDestination}{kernelFile}")
 					rootFile = "rootfs.tar.bz2" if smallBoxBackup else (slotInfo.get("rootfile") or BoxInfo.getItem("rootfile"))
 					if rootFile in ("rootfs.tar.bz2", "rootfs-two.tar.bz2", "rootfs-one.tar.bz2"):
-						if model in ("dreamone", "dreamtwo"):
+						if model == "dms922x":
 							cmdLines.append(f"{self.moveCmd} {workDir}rootfs.tar.bz2 {mainDestination}{rootFile}")
 						else:
 							cmdLines.append(f"{self.moveCmd} {workDir}{rootFile} {mainDestination}")

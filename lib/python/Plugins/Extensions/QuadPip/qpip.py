@@ -826,7 +826,7 @@ class QuadPipScreen(Screen, FocusShowHide):
 		self.labelPositionMap["ch4"] = (w / 8 + w / 2, h / 4 - h / 36 + h / 2, w / 4, h18)
 
 		# DreamOne/DreamTwo: the mosaic decoders follow the main and PiP decoders
-		self.decoderIdxMap = [None, 2, 3, 4, 5] if BoxInfo.getItem("model") in ("dreamone", "dreamtwo") else [None, 0, 1, 2, 3]
+		self.decoderIdxMap = [None, 2, 3, 4, 5] if BoxInfo.getItem("model") == "dms922x" else [None, 0, 1, 2, 3]
 
 		self.fontSize = {1080: 40, 720: 28, 576: 18}.get(h, 40)
 		# The buttons in one row at the bottom, on a bar inside the focus frame

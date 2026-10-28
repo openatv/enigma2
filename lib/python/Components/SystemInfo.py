@@ -136,9 +136,9 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 		model = self.getItem("model")
 		if model in ("hzero", "h8", "sfx6008", "sfx6018"):
 			result = 1200
-		elif model in ("dreamone", "dreamtwo", "dreamseven"):
+		elif model in ("dms922x", "dreamseven"):
 			result = 1800
-		elif model in ("vuduo4k",):
+		elif model == "vu7376duo":
 			result = 2100
 		return result
 
@@ -432,15 +432,15 @@ def getKernelVersion():  # Version of the package of the running kernel, with it
 
 
 def getChipsetString():
-	if MODEL in ("dm7080", "dm820"):
+	if MODEL == "dm7435":
 		chipset = "7435"
 	elif MODEL in ("dm520", "dm525"):
 		chipset = "73625"
-	elif MODEL in ("dm900", "dm920", "et13000"):
+	elif MODEL in ("dm7252s", "et13000"):
 		chipset = "7252S"
 	elif MODEL in ("hd51", "vs1500", "h7", "h17"):
 		chipset = "7251S"
-	elif MODEL in ("dreamone", "dreamtwo"):
+	elif MODEL == "dms922x":
 		chipset = "S922X"
 	else:
 		chipset = fileReadLine("/proc/stb/info/chipset", default=_("Undefined"), source=MODULE_NAME)
@@ -625,10 +625,10 @@ BoxInfo.setItem("canMultiBoot", MultiBoot.canMultiBoot())
 BoxInfo.setItem("HasNewNativeMultiboot", exists("/.newMB"))
 BoxInfo.setItem("HasKexecMultiboot", fileHas("/proc/cmdline", "kexec=1"))
 BoxInfo.setItem("cankexec", BoxInfo.getItem("kexecmb") and fileExists("/usr/bin/kernel_auto.bin") and fileExists("/usr/bin/STARTUP.cpio.gz") and not BoxInfo.getItem("HasKexecMultiboot"))
-BoxInfo.setItem("HasChkrootMultiboot", (MultiBoot.isFat32("/dev/block/by-name/others") or fileExists("/dev/block/by-name/startup")) and MODEL not in ("dreamone", "dreamtwo"))
+BoxInfo.setItem("HasChkrootMultiboot", (MultiBoot.isFat32("/dev/block/by-name/others") or fileExists("/dev/block/by-name/startup")) and MODEL != "dms922x")
 BoxInfo.setItem("canchkroot", (BoxInfo.getItem("hasUBIMB") or fileExists("/dev/block/by-name/others")) and not BoxInfo.getItem("HasChkrootMultiboot") and not fileExists("/etc/.disableChkroot"))
-BoxInfo.setItem("CanNotDoSimultaneousTranscodeAndPIP", MODEL in ("vusolo4k", "gbquad4k", "gbquad4kpro", "gbue4k", "vuduo4klite"))
-BoxInfo.setItem("canRecovery", MODEL in ("hd51", "vs1500", "h7", "8100s") and ("disk.img", "mmcblk0p1") or MODEL in ("xc7439", "osmio4k", "osmio4kplus", "osmini4k") and ("emmc.img", "mmcblk1p1") or MODEL in ("gbmv200", "sf8008", "sf8008m", "sx988", "ip8", "ustym4kpro", "ustym4kottpremium", "ustym4ks2ottx", "beyonwizv2", "viper4k", "og2ott4k", "og2s4k", "sx88v2", "sx888") and ("usb_update.bin", "none"))
+BoxInfo.setItem("CanNotDoSimultaneousTranscodeAndPIP", MACHINEBUILD == "vusolo4k" or MODEL in ("gbquad4k", "gbquad4kpro", "gbue4k", "vuduo4klite"))
+BoxInfo.setItem("canRecovery", MODEL in ("hd51", "vs1500", "h7", "8100s") and ("disk.img", "mmcblk0p1") or MODEL in ("xc7439", "ed72604") and ("emmc.img", "mmcblk1p1") or MODEL in ("gbmv200", "ocmv200", "sx988", "ip8", "ustym4kpro", "ustym4kottpremium", "ustym4ks2ottx", "beyonwizv2", "viper4k", "og2ott4k", "og2s4k", "sx88v2", "sx888") and ("usb_update.bin", "none"))
 BoxInfo.setItem("CanUse3DModeChoices", fileExists("/proc/stb/fb/3dmode_choices") and True or False)
 BoxInfo.setItem("ChipsetString", getChipsetString(), immutable=True)
 BoxInfo.setItem("CIPlusHelper", exists("/usr/bin/ciplushelper"))
@@ -651,11 +651,11 @@ except ValueError:
 	colorFrontpanel = False
 BoxInfo.setItem("ColorFrontpanelDisplay", bool(BoxInfo.getItem("FrontpanelDisplay") and DISPLAYTYPE not in ("7segment", "textlcd") and (colorFrontpanel or BoxInfo.getItem("grautec") or DISPLAYTYPE in ("colorlcd220", "colorlcd240", "colorlcd390", "colorlcd400", "colorlcd480", "colorlcd720", "colorlcd800"))))
 BoxInfo.setItem("GraphicLCD", MACHINEBUILD in ("vuultimo", "xpeedlx3", "et10000", "mutant2400", "quadbox2400", "sezammarvel", "atemionemesis", "mbultra", "beyonwizt4", "osmio4kplus"))
-BoxInfo.setItem("HasExternalPIP", MODEL not in ("et9x00", "et6x00", "et5x00") and fileCheck("/proc/stb/vmpeg/1/external"))
+BoxInfo.setItem("HasExternalPIP", MODEL != "xt7413" and fileCheck("/proc/stb/vmpeg/1/external"))
 BoxInfo.setItem("HasFullHDSkinSupport", MACHINEBUILD not in ("et4000", "et5000", "sh1", "hd500c", "hd1100", "xp1000", "lc"))
 BoxInfo.setItem("HasHiSi", pathExists("/proc/hisi"))
 BoxInfo.setItem("hasPIPVisibleProc", fileCheck("/proc/stb/vmpeg/1/visible"))
-BoxInfo.setItem("HasGPT", MODEL in ("dreamone", "dreamtwo") and pathExists("/dev/mmcblk0p7"))
+BoxInfo.setItem("HasGPT", MODEL == "dms922x" and pathExists("/dev/mmcblk0p7"))
 BoxInfo.setItem("HasMMC", fileHas("/proc/cmdline", "root=/dev/mmcblk") or MultiBoot.canMultiBoot() and fileHas("/proc/cmdline", "root=/dev/sda"))
 BoxInfo.setItem("HasSDmmc", MultiBoot.canMultiBoot() and "sd" in MultiBoot.getBootSlots().get("2", "") and "mmcblk" in MTDROOTFS)
 BoxInfo.setItem("HasSDswap", MODEL in ("h9", "i55plus") and pathExists("/dev/mmcblk0p1"))
@@ -692,7 +692,7 @@ BoxInfo.setItem("Power4x7Standby", fileExists("/proc/stb/fp/power4x7standby"))
 BoxInfo.setItem("Power4x7Suspend", fileExists("/proc/stb/fp/power4x7suspend"))
 BoxInfo.setItem("PowerLed", fileExists("/proc/stb/power/powerled"))
 BoxInfo.setItem("PowerLed2", fileExists("/proc/stb/power/powerled2"))
-BoxInfo.setItem("RecoveryMode", fileCheck("/proc/stb/fp/boot_mode") or MODEL in ("dreamone", "dreamtwo"))
+BoxInfo.setItem("RecoveryMode", fileCheck("/proc/stb/fp/boot_mode") or MODEL == "dms922x")
 BoxInfo.setItem("Satfinder", isPluginInstalled("Satfinder"))
 BoxInfo.setItem("SmallFlash", BoxInfo.getItem("smallflash"))
 BoxInfo.setItem("SmallBoxWizard", fileExists("/etc/smallbox-wizard.done"))
@@ -710,8 +710,8 @@ BoxInfo.setItem("WakeOnLAN", fileCheck("/proc/stb/power/wol") or fileCheck("/pro
 BoxInfo.setItem("WakeOnLANType", getWakeOnLANType(BoxInfo.getItem("WakeOnLAN")))
 BoxInfo.setItem("XcoreVFD", MODEL in ("xc7346", "xc7439"))
 BoxInfo.setItem("ZapMode", fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode"))
-BoxInfo.setItem("DisplaySetup", MODEL not in ("dreamone",))
-BoxInfo.setItem("DM9X0", MODEL in ("dm900", "dm920"))
+BoxInfo.setItem("DisplaySetup", MACHINEBUILD != "dreamone")
+BoxInfo.setItem("DM9X0", MODEL == "dm7252s")
 
 
 # Dont't sort.

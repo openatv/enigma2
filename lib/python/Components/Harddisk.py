@@ -13,7 +13,7 @@ from Components.SystemInfo import BoxInfo
 from Tools.CList import CList
 from Tools.Directories import fileReadLine, fileReadLines, fileWriteLines
 
-MODEL = BoxInfo.getItem("model")
+MACHINEBUILD = BoxInfo.getItem("machinebuild")
 MODULE_NAME = __name__.split(".")[-1]
 
 
@@ -153,7 +153,7 @@ class Harddisk:
 		internal = False
 		if "sdhci" in self.phys_path:
 			ret += " (SD/MMC)"
-		elif MODEL == "sf8008":
+		elif MACHINEBUILD == "sf8008":
 			internal = ("usb1/1-1/1-1.1/1-1.1:1.0" in self.phys_path) or ("usb1/1-1/1-1.4/1-1.4:1.0" in self.phys_path)
 		else:
 			internal = ("pci" in self.phys_path or "ahci" in self.phys_path)

@@ -539,7 +539,7 @@ class KexecInit(Screen, ProtectedScreen):
 
 	def rootInit(self):
 		def rootInitCallback(*args, **kwargs):
-			model = BoxInfo.getItem("model")
+			model = BoxInfo.getItem("machinebuild")
 			for usbSlot in range(1, 4):
 				if exists(f"/media/hdd/{model}/linuxrootfs{usbSlot}"):
 					Console().ePopen(f"/bin/cp -R /media/hdd/{model}/linuxrootfs{usbSlot} . /")
@@ -639,7 +639,7 @@ class KexecSlotManager(Setup):
 				print(f"[KexecSlotManager] Error {err.errno}: Unable to remove obsolete additional STARTUP files.  ({err.strerror})")
 				self.session.open(MessageBox, _("Unable to remove the obsolete additional STARTUP files!"), MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
 				return
-			model = BoxInfo.getItem("model")[2:]
+			model = BoxInfo.getItem("machinebuild")[2:]
 			for slot in range(4, self.kexecSlotManagerSlots.value + 4):
 				rootWait = ""
 				if model == "duo4k":

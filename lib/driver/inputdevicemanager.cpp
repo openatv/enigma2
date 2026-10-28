@@ -355,7 +355,7 @@ eInputDeviceManager::~eInputDeviceManager()
 
 void eInputDeviceManager::start()
 {
-#if defined(DREAMNEXTGEN) || defined(HWDM7080) || defined(HWDM900) || defined(HWDM920)
+#if defined(DREAMNEXTGEN) || defined(HWDM7080) || defined(HWDM7252S)
 	if (m_fd >= 0)
 		return;
 
@@ -707,7 +707,7 @@ int eInputDeviceManager::sendCommand(uint8_t command, const uint8_t *payload, si
 		memcpy(buf + 1, payload, payloadLen);
 
 	ssize_t written = ::write(m_fd, buf, payloadLen + 1);
-#if defined(HWDM7080) || defined(HWDM900) || defined(HWDM920)
+#if defined(HWDM7080) || defined(HWDM7252S)
 	/* The DM7080/DM9x0 drivers return the payload byte count, excluding the command. */
 	if (written == (ssize_t)payloadLen)
 		return 0;

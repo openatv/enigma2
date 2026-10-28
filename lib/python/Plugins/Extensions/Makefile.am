@@ -6,11 +6,7 @@ if HAVE_LIBDDVD
 SUBDIRS += DVDPlayer
 endif
 
-if VUSOLO4K
-SUBDIRS += MiniTV QuadPip
-endif
-
-if VUULTIMO4K
+if VU7376
 SUBDIRS += MiniTV QuadPip
 endif
 
@@ -30,11 +26,7 @@ if VUUNO4KSE
 SUBDIRS += MiniTV QuadPip
 endif
 
-if VUDUO4K
-SUBDIRS += MiniTV QuadPip
-endif
-
-if VUDUO4KSE
+if VU7376DUO
 SUBDIRS += MiniTV QuadPip
 endif
 
