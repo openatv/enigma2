@@ -1,889 +1,466 @@
-# e2egl / GLES OSD backend
-
-Diese Datei beschreibt den technischen Stand des neuen EGL/GLES-Backends fuer
-Enigma2. Der Name im Code und in den Build-Features ist `e2egl`. Das ist nicht
-der alte VU/libvugles2-Pfad und hat nichts mit CU-GLES zu tun.
-
-Ziel ist ein OpenATV-Master, der auf normalen Boxen weiter den bisherigen
-Framebuffer-DC benutzt und auf DreamNextGen sowie testweise Vu+ optional einen
-EGL/GLES-OSD-Pfad aktivieren kann. Ohne aktiviertes `e2egl`-Feature darf sich
-am klassischen gFBC/gFBDC-Verhalten nichts aendern.
-
-## Zielbild
-
-Der langfristige Zielzustand ist:
-
-- Enigma2 benutzt die bestehende `gPainter`/`gDC` API weiter.
-- Die konkrete Ausgabe geht je nach Build/Box ueber den klassischen gFBDC oder
-  ueber `gEGLDC`.
-- Rechtecke, Linien, Text, Pixmaps, Alpha, Scaling, runde Ecken, Gradienten,
-  Animationen und spaeter weitere OSD-Effekte laufen auf dem GLES-Pfad ueber
-  GPU/Shader statt ueber CPU-gerechnete `gPixmap`-Zwischenbilder.
-- DreamNextGen nutzt EGL/fbdev/Mali fuer die finale OSD-Ausgabe und GE2D fuer
-  die Faelle, in denen Enigma2 weiterhin softwareseitige Surfaces braucht.
-- Andere Boxen bleiben ungestoert. Vu+ nutzt keinen alten `libvugles2`-Pfad,
-  sondern einen eigenen `e2egl`-Native-Window-Provider direkt ueber
-  Broadcom `NxClient`/`NXPL`.
-
-## Build-Gating
-
-Der neue Pfad muss hart build- und feature-gesteuert bleiben.
-
-Wichtige Schalter:
-
-- `MACHINE_FEATURES += "e2egl"` aktiviert den EGL/GLES-Backend-Build.
-- `HAVE_EGL` wird daraus in der Enigma2-Konfiguration abgeleitet.
-- `HAVE_GLES3` aktiviert GLES3-Shader, sonst wird GLES2 verwendet.
-- `DREAMNEXTGEN` ist die Plattform-Klammer fuer Dream One/Two spezifische
-  Amlogic/fbdev/GE2D Teile.
-- `HAVE_VUPLUS_EGL` aktiviert den Vu+ Broadcom/NXPL Native-Window-Provider.
-- Auf Vu+ muss `virtual/egl virtual/libgles2` ein `nxpl.pc` in den Sysroot
-  installieren. Das aktuelle Vu+-`libgles`-Recipe liefert dort
-  `-lnxpl -ldvb_client -ldvb_base`.
-
-Wichtige Build-Dateien:
-
-- `configure.ac`
-- `lib/gdi/Makefile.inc`
-- `lib/python/Plugins/SystemPlugins/Makefile.am`
-- Image/Recipe-/bbappend-Seite im jeweiligen OpenEmbedded-Layer
-
-Wichtig: `DREAMNEXTGEN` allein bedeutet nicht automatisch, dass der EGL-Pfad
-benutzt werden muss. Die Box soll ohne `e2egl` weiterhin auf dem heutigen
-Framebuffer-Pfad laufen koennen.
-
-## Initialisierung
-
-Die Initialisierung liegt in:
-
-- `lib/gdi/egl/egl_init.cpp`
-- `lib/gdi/egl/gegldc.cpp`
-- `lib/gdi/egl/gegldc.h`
-- `lib/gdi/egl/platform/amlogic/amlogic_window_provider.cpp`
-- `lib/gdi/egl/platform/vuplus/vuplus_window_provider.cpp`
-
-Der Ablauf:
-
-1. `gEGLDCAutoInit` wird frueh vor dem klassischen `gFBDC` initialisiert.
-2. Wenn bereits ein `gMainDC` existiert, wird `gEGLDC` uebersprungen.
-3. Auf DreamNextGen wird ein `AmlogicWindowProvider` verwendet.
-   Auf Vu+ wird bei `HAVE_VUPLUS_EGL` ein `VuplusWindowProvider` verwendet.
-4. `gEGLDC::initEGL()` versucht zuerst GLES3, dann GLES2.
-5. Der erkannte GLES-Level wird in `gles::version` abgelegt, damit Shader zur
-   Laufzeit zwischen GLES2/GLES3 unterscheiden koennen.
-6. Wenn EGL/GLES nicht initialisiert werden kann, soll der klassische FBDC-Pfad
-   als Fallback erhalten bleiben.
-
-DreamNextGen benutzt hier einen Mali-fbdev/EGL-Pfad. Es gibt kein X11,
-Wayland oder GBM-Fenster. `AmlogicWindowProvider` liefert im Kern nur die
-fbdev-Window-Groesse und `EGL_DEFAULT_DISPLAY`.
-
-Vu+ benutzt fuer den Broadcom-Port dieselbe Abstraktion, aber direkt ueber den
-Nexus-Multi-Process-Pfad:
-
-- `NxClient_Join(NULL)`
-- `NXPL_RegisterNexusDisplayPlatform(&handle, NULL)`
-- `NXPL_GetDefaultNativeWindowInfoEXT(&window_info)`
-- `NXPL_CreateNativeWindowEXT(&window_info)`
-- `eglGetDisplay(EGL_DEFAULT_DISPLAY)`
-- `eglCreateWindowSurface(..., window, NULL)`
-
-Das entspricht dem direkten V3D/NXPL-Weg aus den Broadcom-Nexus-Beispielen.
-`KodiGLESPL`, `xbmc.helper`, der alte `libvugles2`-Pfad und Python-basierte
-VU-Animationen werden fuer e2egl nicht verwendet.
-
-## Haupt-Renderpfad
-
-Enigma2 erzeugt weiterhin `gOpcode`-Kommandos ueber `gPainter`. Der aktive DC
-entscheidet, wie diese Kommandos gerendert werden.
-
-Klassischer Pfad:
-
-- `gFBDC` rendert in ein `gPixmap`, das direkt den Framebuffer bzw. Backbuffer
-  repraesentiert.
-- `flip/flush` pannt oder kopiert Pages.
-- Viele Operationen laufen CPU/GE2D-seitig.
-
-EGL-Pfad:
-
-- `gEGLDC` ist ein `gMainDC`.
-- `gEGLDC::exec()` verarbeitet `gOpcode` direkt in der EGLSurface.
-- `fill`, `clear`, `line`, `rectangle`, `blit`, `renderText`, Spinner und
-  Animationen haben eigene GLES-Implementierungen.
-- `flip()` ruft `eglSwapBuffers()`.
-- Der Backbuffer muss erhalten bleiben, weil Enigma2 im Immediate-Mode oft nur
-  Dirty-Regions neu malt.
-
-Wichtige Datei:
-
-- `lib/gdi/egl/gegldc.cpp`
-
-## Externe GLES-Anwendungen und Speichersuspend
-
-Chromium2 sperrt den klassischen Painter bereits ueber `fbClass::lock()`.
-Das verhindert neue OSD-Draws, gab bislang aber weder die EGL-Window-Surface
-noch deren Swap-Puffer frei. Fuer speicherarme 4K-Receiver stellt `gMainDC`
-darum folgende plattformneutrale API bereit:
-
-- `suspendGraphics()`
-- `resumeGraphics()`
-- `isGraphicsSuspended()`
-
-`gEGLDC::suspendGraphics()` behaelt EGLDisplay und EGLContext, gibt aber die
-Window-Surface, interne Framebuffer-/Frame-Texturen, den Glyph-Atlas und
-transiente Textur-Caches frei. Auf NXPL wird zusaetzlich das native OSD-Window
-entfernt, damit dessen letzter Buffer nicht durch transparente Videoflaechen
-einer externen Anwendung sichtbar bleibt. Das kleine 1x1-CPU-Pixmap dient nur noch dazu,
-bereits vor dem Lock eingereihte OpCodes korrekt zu entsorgen. Der EGLContext
-bleibt absichtlich bestehen: So werden Textur-IDs noch lebender Skin-Pixmaps
-nicht ungueltig.
-
-Beim Beenden der externen Anwendung setzt das Plugin zuerst die urspruengliche
-logische Aufloesung und OSD-Position. `resumeGraphics()` baut danach
-CPU-Pixmap, Glyph-Atlas und EGL-Window-Surface neu auf; der folgende
-Desktop-Resize erzwingt den kompletten OSD-Neuaufbau.
-
-Die Reihenfolge fuer normale Portal-Anwendungen ist:
-
-1. DVB-Service stoppen.
-2. `fbClass.lock()` und RCU fuer Enigma2 sperren.
-3. `gMainDC.suspendGraphics()`.
-4. Chromium starten.
-5. Chromium stoppen und Aufloesung/OSD-Ziel wiederherstellen.
-6. Framebuffer entsperren, `gMainDC.resumeGraphics()` und Desktop neu zeichnen.
-
-HbbTV verwendet diesen Vollsuspend nicht, weil Live-TV und transparente
-Broadcast-Overlays aktiv bleiben muessen. Beim Entsperren verwendet das
-HbbTV-Plugin deshalb `fbClass.unlock(False)`: Painter und Spinner werden wieder
-freigegeben, ohne unter der noch lebenden EGL-Window-Surface erneut
-`FBIOPUT_VSCREENINFO` auszufuehren. Der normale parameterlose `unlock()`-Aufruf
-behaelt fuer alle bestehenden Nutzer den bisherigen Mode- und Palette-Restore.
-Das ist insbesondere auf Dream BCM wichtig, weil ein Mode-Reset dort das
-native ARGB-Layout aendern und anschliessend OSD-Farben vertauschen kann.
-
-## Swap-Verhalten und Dirty-Regions
-
-Ein wichtiger Unterschied zum klassischen Framebuffer ist, dass EGL nach
-`eglSwapBuffers()` den Backbuffer nicht automatisch erhalten muss. Enigma2
-erwartet aber im Immediate-Mode ein persistentes Ziel, weil viele Repaints nur
-Dirty-Regions neu zeichnen.
-
-Darum setzt `gEGLDC`:
-
-- Config-Wunsch: `EGL_SWAP_BEHAVIOR_PRESERVED_BIT`
-- Surface-Attribut: `EGL_SWAP_BEHAVIOR = EGL_BUFFER_PRESERVED`
-
-Wenn der Treiber das nicht kann, gibt es einen Fallback:
-
-- Vor dem Flip wird der aktuelle Frame in eine GL-Texture kopiert.
-- Vor dem naechsten echten Draw wird dieser Frame zurueckgezeichnet.
-
-Wichtige Logzeilen:
-
-```text
-[gEGLDC] EGL swap behavior: preserved
-[gEGLDC] EGL preserved swap unavailable...
-[gEGLDC] restoring previous frame after non-preserved swap
-```
-
-DreamNextGen/Mali kann aktuell `preserved`; dadurch bleibt das OSD stabil.
-
-## Texturen und PNGs
-
-Texturen werden in `gTextureManager` verwaltet:
-
-- `lib/gdi/egl/gtexture_manager.cpp`
-- `lib/gdi/egl/gtexture_manager.h`
-
-Moegliche Upload-Pfade:
-
-1. dma-buf Import ueber `EGL_EXT_image_dma_buf_import`
-2. direkter CPU-Upload in eine GLES-Texture
-
-Auf DreamNextGen wird fuer 32-bit Pixmaps aktuell der sichere RGBA-Upload
-verwendet. Das Rendering bleibt trotzdem GPU/GLES; nur das einmalige
-Textur-Staging beim Upload konvertiert BGRA/ARGB-Layout in ein Format, das
-der Mali-Treiber korrekt sampelt.
-
-Das ist wichtig fuer kleine Skin-PNGs und Spinner:
-
-- `alphatest="on"` muss wie der Softwarepfad einen Alpha-Threshold benutzen.
-- Der GLES-Texture-Shader verwirft bei Alpha-Test Pixel mit `alpha < 0.5`.
-- Ohne diesen Threshold werden halbtransparente Randpixel als schwarze Bloecke
-  sichtbar.
-- Kleine CPU-seitige 8-bit Pixmaps werden content-basiert gecacht. Das hilft
-  bei Skins, die gleiche CLUT/PNG-Icons wiederholt neu erzeugen. Im Frame-Log
-  zeigt `tex_cache=hits/misses`, ob dieser Cache greift.
-
-Der GLES-Content-Cache ist fuer Picons groesser als der reine Dateicache-Pfad
-und kann zur Diagnose angepasst werden:
-
-```sh
-export E2EGL_TEXTURE_CACHE_MB=48
-export E2EGL_TEXTURE_CACHE_ENTRIES=256
-```
-
-Bei 256x256-CLUT-Picons entspricht 48 MiB grob 192 RGBA-Texturen. Wenn beim
-Scrollen weiterhin viele `tex_cache=0/1`-Misses auftauchen, kann dieser Wert
-testweise erhoeht werden. Das ist nur der GLES-Content-Cache; der klassische
-FBDC-Pfad nutzt ihn nicht.
-
-Wichtige Datei:
-
-- `lib/gdi/egl/shader/gtexture_shader.cpp`
-
-## SVG
-
-SVG wird aktuell weiterhin ueber NanoSVG geladen:
-
-- `lib/gdi/epng.cpp` / `loadSVG()`
-- `lib/gdi/picload.cpp` / `svg_load()`
-
-GLES kann SVG nicht direkt rendern. OpenGL ES rendert Texturen und Dreiecke;
-SVG ist dagegen XML mit Pfaden, Strokes, Fills, Gradienten, Transforms und
-Clipping. Ein Parser und ein Umsetzungs-Schritt bleiben also immer noetig.
-
-Der aktuelle stabile Pfad ist:
-
-1. SVG mit NanoSVG parsen.
-2. In ein 32-bit `gPixmap` rasterisieren.
-3. Das Pixmap als GLES-Textur hochladen und cachen.
-
-Das ist fuer Skin-Icons und selten geladene Bilder akzeptabel, weil der teure
-Teil nicht pro Frame passieren sollte. Ein spaeterer GPU-Pfad waere moeglich,
-aber nicht automatisch durch GLES vorhanden:
-
-- NanoSVG oder ein anderer Parser liefert Pfade.
-- Ein Tessellator erzeugt Dreiecke fuer Fills/Strokes, oder einfache Icons
-  werden als SDF/MSDF-Texturen gecacht.
-- Gradienten, Alpha und Transforms werden per Shader umgesetzt.
-- Nicht unterstuetzte SVG-Features fallen auf den heutigen Rasterizer zurueck.
-
-Darum NanoSVG im ersten DreamNextGen-`e2egl`-Schritt nicht entfernen. Erst wenn
-Tracing zeigt, dass SVG-Laden wirklich ein relevanter Block ist, lohnt ein
-gezielter SVG-GPU-Cache oder Vector-Renderer.
-
-## Text-Rendering
-
-Text wird nicht als komplette CPU-Pixmap fuer jeden Label-Fall gerendert,
-sondern ueber Glyph-Masken und einen Atlas:
-
-- `lib/gdi/gfont_atlas.*`
-- `lib/gdi/egl/shader/gtext_shader.*`
-- `gEGLDC::renderGlyph()`
-- `gEGLDC::flushTextBatch()`
-
-Der Ablauf:
-
-1. Font-Code liefert 8-bit Glyph-Masken.
-2. `gEGLDC::renderGlyph()` legt Glyphen in den Atlas.
-3. Glyph-Quads werden gesammelt.
-4. `flushTextBatch()` rendert viele Glyphen mit einem Shader-Batch.
-
-Damit ist normaler UI-Text auf dem GLES-Pfad.
-
-Der EGL-Pfad sammelt Text ueber mehrere `renderText`/`renderPara`-OpCodes,
-solange kein echter Draw oder Clip-relevanter State-Wechsel dazwischenkommt.
-Dadurch sollen Listboxen und Menues weniger kleine Text-Drawcalls erzeugen.
-Im Frame-Log ist das an kleineren `text_batches=*/...`-Werten und weniger
-`text_us` bei aehnlicher `glyph=`-Zahl zu erkennen.
-
-Der Textshader nutzt einen dynamisch wachsenden VBO. `gEGLDC` darf dadurch
-groessere Textmengen, z. B. ChannelSelection mit EPG-Text, in einem Batch
-sammeln, ohne bei 1024 Glyphen kuenstlich zu splitten. Die aktuelle
-Batch-Obergrenze im DC liegt bei 4096 Glyphen.
-
-Draw-Operationen wie Fill, Rectangle, Clear, Blit, Line und
-Text-Hintergruende leeren einen pending Textbatch nur noch, wenn ihre
-tatsaechlich geclippte Zielregion den pending Textbereich schneidet. Das ist
-fuer Listboxen wichtig: ein Hintergrund der naechsten Zeile muss den Text der
-vorherigen Zeile nicht flushen, solange sich die Bereiche nicht ueberlappen.
-Die Overlap-Pruefung benutzt nicht nur die grosse Union-Box des Textbatches,
-sondern die tatsaechlich geclippten Glyph-Rechtecke. Dadurch loesen Fills
-zwischen Zeilen keinen falschen Textflush mehr aus.
-Damit diese Pruefung bei langen EPG-Zeilen nicht selbst teuer wird, werden
-benachbarte Glyph-Rechtecke innerhalb eines Textlaufs zu groesseren Run-
-Rechtecken zusammengefasst. Das bleibt konservativ fuer die Zeichenreihenfolge,
-reduziert aber die Anzahl der Rechtecktests deutlich.
-
-Glyphen werden beim Aufbau des Textbatches direkt gegen die aktuell gueltige
-Clip-Region geschnitten. Dadurch ist `flushTextBatch()` nicht mehr vom
-aktuellen `m_current_clip` abhaengig und `setClip`/`addClip`/`popClip` koennen
-pending Text stehen lassen. Im Frame-Log bedeutet `text_batches=a/b` nun:
-`a` echte GLES-Textdraws, `b` geclippte Glyph-Quads im Batch.
-
-Einfache Fill- und Textbackground-Flaechen werden ebenfalls gesammelt. Der
-DC legt Solid-Fill-Rechtecke mit Vertex-Farben in einen Batch und flushed ihn
-erst vor Text, ueberlappenden Blits/Rectangles/Lines/Clears, Frame-Copies oder
-Flip. Farbwechsel trennen den Batch dadurch nicht mehr; nur Blend-State und
-echte Ueberlappungs-/Frame-Grenzen bleiben Barrieren. `fill=` zaehlt weiterhin
-die Skin-/Opcode-Fills, waehrend `solid=` zeigt, wie viele echte GLES-Solid-
-Draws daraus geworden sind.
-
-Der Atlas laedt nach der ersten Textur-Anlage nicht mehr zwingend eine grosse
-Bounding-Box hoch, sondern mehrere zusammengefuehrte Dirty-Rechtecke. Dadurch
-soll `font_up=*/...px` im Frame-Log weniger Pixel enthalten, auch wenn die Zahl
-der Sub-Uploads in manchen Frames hoeher sein kann.
-
-Cached Scrolling-Text in `eLabel` und `eListboxPythonStringContent` wird bei
-aktivem Hardware-DC nicht mehr zuerst in eine CPU-`gPixmap` gerendert. Der
-e2egl-Pfad rendert den scrollenden Text direkt ueber `gPainter::renderText`;
-der alte Pixmap-Cache bleibt fuer Software-DC/gFBC erhalten.
-Im Glyph-Blit werden fuer Hardware-DC ausserdem keine Software-Farblookup-
-Tabellen mehr aufgebaut; der Pfad geht direkt in den Glyph-Atlas und
-Textbatch.
-Einfache scrollende Texte ohne Border/Underline/Marked-Text koennen den
-fertigen `eTextPara` wiederverwenden. Dadurch muss bei jedem Scrolltick nicht
-mehr der komplette Text neu geformt und ausgerichtet werden; nur der
-Glyph-/Batch-Ausgabepfad laeuft pro Frame weiter.
-
-Noch nicht vollstaendig geloest sind andere Sonderfaelle, die Text oder
-Text-nahe Inhalte zuerst in eine separate `gPixmap` rendern und diese dann
-wieder blitten. Diese Pfade sollten spaeter auf FBO/Texture-Render-Targets
-oder direkte GLES-Kommandos umgestellt werden.
-
-## Rechtecke, Gradienten und runde Ecken
-
-Der EGL-Pfad hat Shader fuer einfache und komplexere Rechtecke:
-
-- `lib/gdi/egl/shader/gshader.*`
-- `lib/gdi/egl/shader/gadvanced_shader.*`
-- `gEGLDC::executeRectangle()`
-
-`gAdvancedShader` kann bereits:
-
-- runde Ecken
-- einzelne Corner-Masks
-- Gradienten
-- Alpha-Blending
-
-Das gilt fuer direkte `gPainter::drawRectangle()`-Kommandos auf dem aktiven
-`gEGLDC`.
-
-Wichtig: Nicht alle runden Ecken im heutigen Enigma2 laufen direkt ueber diesen
-Pfad. Es gibt weiterhin Code, der zuerst in ein CPU-`gPixmap` rendert:
-
-- `gPixmap::drawRectangle()`
-- Skin-/Listbox-/Selection-Hintergruende
-- gecachte Text-/Scroll-Pixmaps
-- einige `ePixmap`/Canvas-Sonderfaelle
-
-Diese CPU-Pfade sind der naechste grosse Optimierungsblock. Ziel ist nicht, sie
-dauerhaft in CPU zu lassen, sondern sie schrittweise auf GPU-Render-Targets
-oder direkte GLES-Kommandos zu bringen.
-
-## GE2D im aktuellen Stand
-
-DreamNextGen nutzt GE2D weiter fuer klassische Surface-Faelle:
-
-- `lib/gdi/dreamge2d.cpp`
-- `lib/gdi/dreamge2d.h`
-- `lib/gdi/accel.cpp`
-
-GE2D ist aktuell nuetzlich fuer:
-
-- beschleunigte Fills/Blits auf softwareseitigen `gPixmap`-Surfaces
-- dma-buf Surface-Allokation
-- Page-/OSD-Kopien im klassischen FBDC-Pfad
-
-Im EGL-Zielbild ist GE2D nicht der finale Compositor fuer das OSD, sondern ein
-Hilfsbeschleuniger fuer kompatible Altpfade. Neue visuelle Features sollten
-moeglichst direkt als GLES-Shader oder FBO-Pass implementiert werden.
-
-## gPixmap-Altpfad-Tracing
-
-Damit die naechsten Optimierungen nicht geraten werden muessen, gibt es eine
-abschaltbare Laufzeit-Instrumentierung fuer klassische `gPixmap`-Operationen.
-Sie ist per Default aus und aendert ohne Env-Flag kein Verhalten.
-
-Aktivieren auf der Box:
-
-```sh
-export E2EGL_TRACE_GPIXMAP=1
-export E2EGL_TRACE_GPIXMAP_LIMIT=512
-enigma2
-```
-
-Die Logzeilen beginnen mit:
-
-```text
-[e2egl:gPixmap]
-```
-
-Erfasst werden aktuell:
-
-- `fill-*-cpu` und `fill-*-ge2d`
-- `fill-*-gles` fuer 32-bit Pixmap-Fills, die direkt in eine GLES/FBO-Texture
-  geschrieben wurden
-- `drawRectangle-solid-gles` fuer einfache solide 32-bit Offscreen-Rechtecke
-- `drawRectangle-gradient-gles`, `drawRectangle-rounded-gles` und
-  `drawRectangle-new-gles` fuer komplexere 32-bit Offscreen-Rechtecke, die
-  ueber den Advanced-Shader in eine FBO-Texture geschrieben wurden
-- `blit-rounded-gles` und `blit-rounded-scale-gles` fuer 32-bit nach 32-bit
-  Offscreen-Blits mit Radius, die ueber den Texture-Shader in eine FBO-Texture
-  geschrieben wurden
-- `drawRectangle-*-cpu`
-- `blit-cpu`, `blit-scale-cpu`, `blit-rounded-cpu`
-- `blit-ge2d`, `blit-scale-ge2d`
-- `mergePalette-cpu`
-- `line-gles` fuer horizontale/vertikale 32-bit Offscreen-Linien
-- `line-cpu`
-
-Wenn `E2EGL_TRACE_GPIXMAP_LIMIT` erreicht wird, und noch einmal beim sauberen
-Beenden von Enigma2, wird eine Summary mit Zaehlern, Pixel-Byte-Summe und
-Laufzeit pro Operation ausgegeben:
-
-```text
-[e2egl:gPixmap] summary op=drawRectangle-gradient-cpu count=42 bytes=6720000 time_us=58000 avg_us=1380 max_us=6100 kib_s=113
-[e2egl:gPixmap] summary op=blit-rounded-cpu count=18 bytes=921600 time_us=19000 avg_us=1055 max_us=2400 kib_s=47
-```
-
-Beispiel:
-
-```text
-[e2egl:gPixmap] drawRectangle-gradient-cpu path=cpu dst=1920x1080x32 ... area=0,0 500x80 bytes=160000 rects=1 flags=0x0 radius=12 edges=0xf
-```
-
-Wichtige Felder:
-
-- `path=cpu`: Dieser Pfad rendert in CPU-Speicher und ist ein Kandidat fuer
-  GLES/FBO-Umbau.
-- `path=ge2d`: Dieser Pfad nutzt die bestehende GE2D-Beschleunigung fuer ein
-  klassisches Pixmap. Das ist besser als reine CPU, aber noch kein GLES-Shader.
-- `path=gles`: Dieser Pfad hat ein klassisches `gPixmap` ueber eine
-  GLES-Texture/FBO bearbeitet.
-- `gltex`: Wenn hier vor der Operation eine Texture-ID stand, wurde ein bereits
-  hochgeladenes Pixmap durch CPU/GE2D-Schreibzugriff wieder ungueltig.
-- `fbo`, `glvalid`, `cpuvalid`: zeigen, ob ein Pixmap aktuell eine
-  Offscreen-FBO-Texture besitzt und ob der gueltige Inhalt auf GPU, CPU oder
-  beiden Seiten liegt.
-- `flags`, `radius`, `edges`: Helfen zu erkennen, ob Alpha, Scaling oder
-  gerundete Ecken den langsamen Pfad ausloesen.
-- `time_us`: Gesamtzeit dieses Operationstyps seit Trace-Start.
-- `avg_us`: Durchschnitt pro Operation.
-- `max_us`: langsamster Einzelaufruf.
-- `kib_s`: grober Pixeldurchsatz. Dieser Wert ist nur ein Vergleichswert fuer
-  denselben Box-Test, kein absoluter Benchmark.
-
-Typische Testreihen:
-
-- StartWizard oeffnen und die ersten sichtbaren Logs sichern.
-- Hauptmenue/Listbox schnell hoch/runter scrollen.
-- Skin mit vielen runden Ecken/Gradienten testen.
-- OSD Animation Settings mit Fade/Slide testen und auf `blit-scale-cpu` achten.
-
-Diese Daten bestimmen die Reihenfolge des naechsten Umbaus. Wenn z. B.
-`drawRectangle-gradient-cpu` dominiert, muss zuerst `gPixmap::drawRectangle()`
-einen GLES/FBO-Pfad bekommen. Wenn `blit-rounded-cpu` dominiert, ist rounded
-texture compositing der naechste Hebel. Wenn fast nur `blit-ge2d` auftaucht,
-ist der Altpfad zwar noch nicht ideal, aber nicht der schlimmste CPU-Block.
-
-Der erste Offscreen-Schritt ist vorhanden: 32-bit `gPixmap::fill()` kann bei
-aktivem EGL-Kontext direkt in eine GLES-Texture mit FBO schreiben. Wenn danach
-ein alter CPU/GE2D-Pfad die Pixel lesen oder veraendern muss, wird der
-GPU-Inhalt vor dem CPU-Zugriff zurueckgelesen. Zum Gegencheck kann der Pfad
-deaktiviert werden:
-
-```sh
-export E2EGL_GPIXMAP_GLES=0
-```
-
-`E2EGL_TRACE_GL=1` schreibt ausserdem `draw_us` in die Frame-Zeile. Im
-Gegensatz zu `frame_us` misst dieser Wert nur die Zeit, in der der EGL-Pfad
-mit aktivem Kontext Renderarbeit erledigt. EGL-Context-Bind/Release wird
-separat als `ctx_make_us` und `ctx_release_us` geloggt.
-
-`other_us` ist der Rest von `draw_us`, der nicht bereits durch die
-Render-Teilzaehler unten erklaert wird. Wenn `other_us` gross ist, steckt die
-Zeit also nicht in den bekannten GLES-Fill/Text/Blit/Rectangle-Timern, sondern
-in noch nicht einzeln instrumentiertem Render-State, Sync-Kosten innerhalb des
-Draw-Aufrufs oder sonstiger Arbeit in `gEGLDC::exec()`. Swap steht separat in
-`swap_us`; Frame-Texture-Copies und Animation-Captures werden separat in
-`copy_us`/`cap_us` gezeigt und nicht mehr als `other_us` gewertet.
-
-`ctx_make_us` und `ctx_release_us` zeigen die EGL-Kontextkosten. `ctx=a/b`
-zaehlt Make-/Release-Vorgaenge. Der Kontext wird nach den Opcodes wieder
-freigegeben, weil Enigma2 auch Spinner- und Nebenpfade aus anderen Threads
-treffen kann. Ein Test mit gehaltenem Kontext blockierte auf DreamNextGen die
-OSD-Ausgabe und bleibt deshalb aus dem stabilen Pfad entfernt.
-
-Reine State-Opcodes wie Font/Farbe/Clip/Offset/Gradient/Radius/Border laufen
-ohne EGL-Context-Bind durch `gDC::exec()`, solange sie pending Text sicher
-stehen lassen koennen. Damit sollten `ctx=*/...` und `ctx_release_us` in
-Listbox-/Menue-Frames deutlich sinken, ohne den Spinnerpfad zu blockieren.
-
-Zusaetzlich gibt es eine grobe Zeitaufteilung pro Frame:
-
-- `fill_us`: Flush-Zeit fuer gesammelte Solid-Fills und Text-Hintergruende
-- `rect_us`: Rectangle-Kommandos inklusive Gradienten und runden Ecken
-- `clear_us`: Clear-Kommandos
-- `line_us`: Linien-Kommandos
-- `blit_us`: Pixmap-Blits inklusive Texturzugriff/Erst-Upload
-- `text_build_us`: CPU-Zeit fuer `renderText`/`renderPara`, also Layout,
-  Glyph-Aufbau und Atlas-Lookups vor dem eigentlichen Batch-Flush
-- `text_us`: Glyph-Batch-Rendering inklusive Font-Atlas-Subuploads
-- `state_us`: klassische `gDC::exec()`-Zeit fuer State-OpCodes wie Clip,
-  Font, Farben, Radius, Border und aehnliche Nicht-Draw-Kommandos
-- `overlap_us`: Zeit fuer die praezise Pending-Text-Overlap-Pruefung gegen
-  geclippte Glyph-Rechtecke
-- `tex_gc_us`: Zeit fuer verzoegerte GLES-Texture-Loeschungen im TextureManager
-- `copy_us`: Frame-Texture-Copies fuer Animation/Restore-Compositing
-- `ctx_make_us`/`ctx_release_us`: EGL-Context-Bind/Release ausserhalb der
-  eigentlichen GLES-Draw-Timer
-
-Bei ChannelSelection/EPG-Scrolltests ist wichtig, `draw_us`, `text_build_us`,
-`text_us`, `glyph=`, `text_ops=` und `text_batches=*/...` zusammen zu lesen.
-Wenn `text_build_us` dominiert, steckt der Blocker im CPU-Textaufbau/Layout.
-Wenn `text_us` dominiert, liegt er im Font-Atlas-Upload oder in zu vielen
-Glyph-Batch-Draws. Wenn `fill=` hoch bleibt, `solid=` aber niedrig ist, greift
-das Fill-Batching. Bleiben `solid=` und `fill_us` hoch, werden die Fills noch
-zu oft durch ueberlappende Draws, Blendwechsel oder Frame-Grenzen getrennt.
-
-`text_flush=a/b/c/d/e/f/g/h` erklaert, warum pending Text innerhalb eines
-Frames vorzeitig gezeichnet werden musste:
-
-- `a`: ueberlappender Fill oder Text-Hintergrund
-- `b`: ueberlappendes Rectangle, inklusive Gradient/runder Ecke
-- `c`: ueberlappende Linie
-- `d`: ueberlappender Pixmap-Blit, z. B. Picon oder Icon
-- `e`: ueberlappender Clear
-- `f`: sonstiger State-/Opcode-Wechsel, der pending Text nicht halten darf
-- `g`: Font-Atlas musste erweitert werden
-- `h`: Textbatch-Limit wurde erreicht
-
-Wenn `text_batches=` hoch ist, aber `text_flush=` fast nur Nullen zeigt, kommt
-die Trennung hauptsaechlich von normalen Frame-/Flip-Grenzen. Wenn dagegen
-z. B. `text_flush=0/6/0/0/0/0/0/0` steht, trennen Rectangles/Gradienten den
-Textbatch und der naechste Umbau muss dort ansetzen.
-
-`text_overlap=a/b` zeigt, wie oft die praezise Pending-Text-Overlap-Pruefung
-nach der schnellen Bounds-Pruefung aktiv wurde und wie viele zusammengefasste
-Text-Run-Rechtecke dabei getestet wurden. Wenn `text_flush` sinkt,
-`text_overlap` aber nur klein steigt, war die genauere Pruefung ein guter
-Tausch.
-
-Die Channellist-Picons sind im Frame-Log meist als 8-bit PNG/CLUT-Texturen zu
-erkennen, z. B. `tex_up=1 clut8=1 tex_px=65536` fuer ein 256x256-Picon. Wenn
-dabei `tex_cache=0/1` steht, wurde das Picon in diesem Frame erstmals als
-GLES-Textur angelegt. Wiederholte Picons sollten spaeter als Cache-Hit
-auftauchen. Die kleinen `240x80x16` gPixmap-Zeilen gehoeren zum
-LCD/Summary-Pfad; sie koennen Picon/Summary-Inhalte enthalten, sind aber nicht
-allein der Hauptindikator fuer das Channellist-Scrollen auf dem TV-OSD.
-
-## Animationen
-
-Animationen sind im EGL-Pfad wieder aktiv:
-
-- `gEGLDC::supportsShowHideAnimations()`
-- `gEGLDC::executeWindowAnimationOpcode()`
-- `gEGLDC::runPendingWindowAnimation()`
-- `lib/python/Screens/AnimationSetup.py`
-- `data/setup.xml` mit dem Setup-Key `AnimationSetup`
-
-e2egl-Systeme routen `setAnimation_current()` direkt auf
-`gEGLDCSetAnimationCurrent()`. Profilwerte fuer Dialoge, Popup-/Panel-Fenster
-und Toast-artige Hinweise laufen ueber `setAnimation_profiles()` nach
-`gEGLDCSetAnimationProfiles()`. Auf nicht-e2egl Boxen bleiben die Python-Aufrufe
-gueltig, der native Teil macht dort aber nichts. Der alte native
-Framebuffer-Animationspfad wurde entfernt, damit es keine zwei
-Animation-Backends gleichzeitig gibt. Die Konfiguration ist als Core-Screen
-unter OSD eingebunden, wird aus `setup.xml` erzeugt und nur angezeigt, wenn
-`BoxInfo["e2egl"]` aktiv ist.
-
-Default ist sicher:
-
-- `config.misc.animation.default = 15` auf e2egl-Systemen
-- `config.misc.animation.default = 0` auf nicht-e2egl-Systemen
-- Animationen laufen nur, wenn AnimationSetup einen Wert > 0 setzt.
-- Im OSD-Animation-Menue kann der Nutzer jederzeit auf `Disable Animations`
-  zurueckschalten.
-- Die klassischen Modi `1` bis `14` stehen nicht mehr einzeln in der
-  Hauptauswahl. Sie sind unter `Classic animation` zusammengefasst und werden
-  ueber `Classic animation style` gewaehlt.
-- Adaptive Profile koennen Dialoge/MessageBoxen, Popup-/Panel-Fenster und
-  Toast-artige Hinweise getrennt animieren. Sie greifen nur bei den modernen
-  Basis-Modi (`15`/`16`), damit klassische Effekte wie Slide, Zoom oder Stripes
-  exakt unveraendert bleiben.
-- Toast-Profile nutzen auf e2egl per Default `17` fuer Fade in / fade out.
-  `Toast.py` laesst den alten Alpha-Timer nur auf nicht-e2egl-Systemen laufen;
-  auf e2egl wird der Toast direkt sichtbar gesetzt und Show/Hide wird ueber
-  den GLES-Animationspfad animiert. Damit gibt es keinen doppelten Fade.
-- `config.misc.animation.toast_speed = 10` steuert nur die Toast-Fade-Dauer.
-  Der Ablauf ist: kurzer Fade-in, Toast-Timeout als lesbare Standzeit, kurzer
-  Fade-out. Die normale Fenster-Animationsgeschwindigkeit bleibt davon
-  getrennt.
-
-Die AnimationSetup-IDs sind einheitlich fuer alle Boxen:
-
-- `0`: Disable Animations
-- `1`: Simple fade
-- `2`: Simple zoom
-- `3`: Grow drop
-- `4`: Grow from left
-- `5`: Extrude from left
-- `6`: Popup
-- `7`: Slide drop
-- `8`: Slide from left
-- `9`: Slide left to right
-- `10`: Slide right to left
-- `11`: Slide top to bottom
-- `12`: Zoom from left
-- `13`: Zoom from right
-- `14`: Stripes
-- `15`: Basis animation, ein GLES-Modus mit positionsabhaengiger Bewegung:
-  kleine Dialoge nutzen Fade/Popup, untere Panels gleiten leicht von unten,
-  seitliche Panels gleiten leicht seitlich, grosse Screens bleiben ruhig und
-  blenden nur dezent.
-- `16`: Modern adaptive
-- `17`: Fade in / fade out
-- `18`: Dialog pop
-- `19`: Toast slide
-- `20`: Side sheet
-- `21`: Zoom and fade
-
-Der Animationspfad kopiert alten und neuen Frame in Texturen und rendert daraus
-die Fade/Zoom/Slide/Stripe-Effekte im GLES-Pfad.
-
-DreamOS hat zusaetzlich Widget-Crossfades fuer Text/Bilder. openATV/e2egl
-aktiviert derzeit nur Fenster- und Profilanimationen; ein echter Widget-
-Crossfade waere ein spaeterer separater Renderer-Umbau.
-
-Auf Treibern mit `EGL_BUFFER_PRESERVED` nutzt der Animationspfad Dirty-Areas:
-pro Animationsframe wird nur der betroffene Fensterbereich aus der alten bzw.
-neuen Frame-Textur wiederhergestellt. Dadurch sollte `copies=*/...px` deutlich
-kleiner werden als ein Fullscreen-Copy. Zum Gegencheck kann der alte
-Fullscreen-Animationspfad erzwungen werden:
-
-```sh
-export E2EGL_ANIMATION_DAMAGE=0
-```
-
-## Video-Mode und Surface-Refresh
-
-Wenn AVSwitch den Videomode setzt, muss die EGLSurface neu aufgebaut werden:
-
-- `lib/python/Components/AVSwitch.py`
-- `gMainDC::refresh()`
-- `gEGLDC::refresh()`
-
-Nach `refresh()` wird der Desktop einmal komplett neu gemalt, damit Dirty-State
-und neue EGLSurface wieder synchron sind. Ohne diesen Repaint werden manche
-Texte oder Widgets erst sichtbar, wenn eine spaetere Eingabe eine Dirty-Region
-ausloest.
-
-## Was aktuell funktioniert
-
-Aktueller DreamNextGen-Teststand:
-
-- EGL/GLES init auf Dream Two
-- GLES3-Kontext
-- Preserved swap
-- OSD sichtbar
-- PNGs sichtbar
-- Spinner sichtbar
-- Font/Glyph-Rendering sichtbar
-- AnimationSetup funktioniert
-- Videomode-Refresh funktioniert
-- Alpha-Test fuer kleine PNGs
-- mehrere framebuffer pages wieder moeglich, kein Single-Buffer-Diagnosemodus
-- erstes GLES-Offscreen-FBO fuer 32-bit `gPixmap::fill()`
-- einfache solide 32-bit `gPixmap::drawRectangle()`-Faelle ohne Radius,
-  Gradient, Border und Alpha-Blend laufen ueber denselben GLES/FBO-Pfad
-- komplexere 32-bit `gPixmap::drawRectangle()`-Faelle mit Gradient, Radius,
-  Border oder New/Alpha-Blend koennen ueber den GLES/FBO-Advanced-Shader laufen
-- 32-bit `gPixmap::blit()`-Faelle mit Radius, inklusive skalierter Radius-
-  Blits, koennen ueber den GLES/FBO-Texture-Shader laufen
-- horizontale/vertikale 32-bit `gPixmap::line()`-Faelle laufen ueber den
-  GLES/FBO-Fill-Pfad; diagonale Linien bleiben Fallback
-- Frame-Log zeigt neben `frame_us` auch `draw_us` und `*_us` pro Teilpfad
-- Frame-Log trennt EGL-Context-Kosten in `ctx_make_us`/`ctx_release_us`
-- reine State-Opcodes laufen ohne EGL-Context-Bind, damit Listbox-/Menue-
-  Frames weniger `eglMakeCurrent`/`eglMakeCurrent(...NO_CONTEXT)` Paare haben
-- Frame-Log trennt CPU-Textaufbau (`text_build_us`) und GLES-Textflush
-  (`text_us`)
-- Frame-Log zeigt `tex_cache=hits/misses`
-- GLES-Content-Cache fuer kleine 8-bit/CLUT-Pixmaps ist per Env tunebar
-- Font-Atlas nutzt Dirty-Rect-Uploads
-- Text-OpCodes werden ueber sichere State-Grenzen hinweg gebatcht
-- Textshader-VBO waechst dynamisch fuer grosse EPG-/Listbox-Batches
-- Nicht ueberlappende Fill/Blit/Rect/Line/Textbackground-Draws duerfen pending
-  Text stehen lassen, um Listbox-Text besser zu sammeln
-- Glyph-Quads werden beim Batch-Aufbau geclippt, damit Clip-State-Wechsel den
-  Textbatch nicht mehr zwangsweise leeren
-- Fill-/Textbackground-Rechtecke werden mit Vertex-Farben als Solid-Batch
-  gesammelt; `solid=` zeigt die echten GLES-Draws dafuer
-- Animationen reduzieren bei preserved swap die Copy-Flaeche
-
-## Bekannte Grenzen
-
-Folgende Punkte sind noch nicht final:
-
-- Nicht alle OSD-Operationen sind GPU-native; einige erzeugen weiterhin
-  CPU-`gPixmap`-Zwischenbilder.
-- `gPixmap::drawRectangle()` hat einen ersten GLES/FBO-Pfad fuer runde Ecken,
-  Gradienten, Border und Alpha-Blend. Der alte CPU-Pfad bleibt Fallback, wenn
-  kein aktiver EGL-Kontext/FBO vorhanden ist oder ein Sonderfall nicht sicher
-  ueber den Shader abbildbar ist.
-- Runde 32-bit Offscreen-Blits haben einen ersten GLES/FBO-Pfad. 8-bit
-  Quellen, Self-Blits und andere Sonderfaelle bleiben bewusst auf dem alten
-  Fallback.
-- Cached scrolling text in `eLabel`/`eListbox` benutzt teils separate Pixmaps.
-- dma-buf Import fuer kleine/CPU-geladene PNGs ist noch nicht als Standardpfad
-  freigegeben; sicherer RGBA-Upload ist stabiler.
-- Texture-Cache-Invalidation muss bei allen CPU/GE2D-mutierten Surfaces sauber
-  bleiben.
-- Animationen brauchen mehr Box-Tests mit verschiedenen Skins und
-  Aufloesungen.
-- Der Vu+ Broadcom/NXPL-Pfad ist neu und braucht Box-Tests mit `vuduo4kse`:
-  `NxClient_Join`, `NXPL_RegisterNexusDisplayPlatform`, NativeWindow-Groesse,
-  EGL-Init, Swap-Verhalten, OSD-Painting und Cleanup beim Beenden muessen im
-  Log geprueft werden.
-
-## Roadmap zu mehr GLES und weniger CPU
-
-### 1. GPU-Render-Targets fuer Offscreen-Pixmaps
-
-Viele CPU-Rueckfaelle entstehen, weil bestehender Code in ein `gPixmap` rendert
-und dieses Pixmap spaeter blitted. Fuer `e2egl` sollte es einen
-GPU-kompatiblen Offscreen-Typ geben:
-
-- FBO + GL-Texture als Renderziel
-- optional dma-buf/GE2D-kompatible Surface nur fuer Altpfade
-- klare Ownership zwischen CPU-Daten, GE2D-Daten und GL-Texture
-- Dirty/Sync-Regeln: CPU writes invalidate GL texture, GL writes invalidate CPU
-  copy, GE2D writes brauchen Cache/texture invalidation
-
-Damit koennen runde Ecken, Gradienten, gecachte Texte und Skin-Kompositionen
-auf der GPU entstehen, statt vorher in CPU-Pixel geschrieben zu werden.
-
-### 2. gPixmap-Operationen auf GLES abbilden
-
-Aktuelle CPU-Kandidaten:
-
-- `gPixmap::fill()`
-- `gPixmap::drawRectangle()`
-- weitere `gPixmap::blit()`-Sonderfaelle ausserhalb der ersten 32-bit
-  Rounded-Texture-Pfade
-- 8-bit/palettierte Blits
-- AlphaBlend/AlphaTest-Sonderfaelle
-
-Ziel:
-
-- Wenn Ziel und Quelle GPU-faehig sind: GLES/FBO-Pfad.
-- Wenn Quelle/Ziel nur CPU sind: alter Pfad bleibt Fallback.
-- Wenn GE2D schneller/passender ist: GE2D nur fuer einfache copy/fill/blend
-  verwenden, nicht fuer komplexe Shader-Effekte.
-
-### 3. Kompositor modernisieren
-
-Der aktuelle Immediate-Mode wurde fuer persistente Framebuffer entwickelt.
-Ein moderner EGL-Pfad sollte mittelfristig besser zwischen diesen Modi waehlen:
-
-- Immediate direkt in EGLSurface fuer einfache Faelle.
-- Buffered/FBO-Komposition fuer komplexe Skins.
-- Finale Composition als ein GLES-Pass auf die EGLSurface.
-- Optional damage tracking, aber mit sicherem Full-Repaint nach Surface-Reset.
-
-Das reduziert Flicker-/Dirty-Probleme und macht Animationen sauberer.
-
-### 4. Shader-Bibliothek erweitern
-
-Sinnvolle Shader-Bausteine:
-
-- solid rect
-- gradient rect
-- rounded rect
-- rounded texture
-- texture alpha-test
-- texture alpha-blend
-- 8-bit mask + color
-- glyph batch
-- shadow/outline text
-- simple blur/drop-shadow optional spaeter
-
-Jeder Shader sollte GLES2-kompatible Fallbacks haben, solange GLES2 relevant
-ist.
-
-### 5. Textpfade vereinheitlichen
-
-Normaler Text laeuft schon ueber Glyph-Atlas. Bereits umgebaut:
-
-- cached scrolling text in `eLabel` bei Hardware-DC
-- cached listbox text in `eListboxPythonStringContent` bei Hardware-DC
-- einfacher `eTextPara`-Cache fuer scrollende Label-/StringContent-Texte bei Hardware-DC
-
-Weiter zu pruefen/umzubauen:
-
-- Text mit Border/Shadow
-- RT_BLEND/RT_WRAP/Sonderausrichtungen
-- sehr grosse Glyph-Atlanten und Atlas-Eviction
-
-Ziel ist: Kein kompletter Text mehr als CPU-Bitmap, wenn ein aktiver
-Hardware-DC vorhanden ist.
-
-### 6. Texture-Upload und dma-buf stabilisieren
-
-Fuer Performance sollten grosse Pixmaps spaeter wieder dma-buf-importiert
-werden koennen. Dafuer fehlen noch sichere Regeln:
-
-- Cache-Sync nach CPU writes
-- Cache-Sync nach GE2D writes
-- korrekte DRM FourCCs fuer ARGB/BGRA
-- Pitch/Offset korrekt pruefen
-- Fallback auf RGBA Upload bei Treiberproblemen
-- Debug-Logs nur begrenzt, damit Startup nicht zugemuellt wird
-
-Kleine Skin-PNGs sind mit normalem `glTexImage2D` oft schnell genug. Grosse
-Picons/Hintergruende koennen spaeter gezielt dma-buf nutzen, wenn Sync und
-Format sicher sind.
-
-### 7. Tests und Debug
-
-Sinnvolle Testfaelle:
-
-- Spinner waehrend busy main thread
-- StartWizard/LocaleWizard
-- MetrixHD Hauptmenues
-- Listbox Scroll hoch/runter
-- kleine alphatest PNGs
-- grosse Hintergrund-PNGs
-- Picons
-- RT_BLEND Text
-- runde Ecken mit und ohne Gradient
-- 720p, 1080p und 2160p Videomode-Wechsel
-- OSD Animation Settings: fade, popup, slide, stripes
-
-Wichtige Logs:
-
-```text
-[gEGLDC] EGL swap behavior: preserved
-[gEGLDC] dmabuf import: yes/no
-[gTextureManager] using RGBA texture upload...
-[gTextureManager] glTexImage2D 32-bit upload failed...
-[gFontAtlas] initialized...
-[dreamGE2D] acceleration active...
-[e2egl:gPixmap] drawRectangle-gradient-cpu...
-[e2egl:gPixmap] blit-rounded-cpu...
-```
-
-## Leitlinien fuer neue Arbeit
-
-- Neue Features zuerst ueber bestehende `gPainter`/`gDC` Semantik anbinden.
-- Kein alter VU/libvugles2-Code reaktivieren.
-- Kein DreamOS-Closed-Source blind nachbauen; nur beobachtetes Verhalten und
-  offene Schnittstellen verwenden.
-- Fallbacks erhalten: Wenn EGL oder ein Shader nicht geht, darf die Box nicht
-  unbootbar werden.
-- Nicht-`e2egl`-Boxen duerfen keine Verhaltensaenderung bekommen.
-- Debug-Logs begrenzen, wenn ein Problem geloest ist.
-- CPU-Pfade nur als Kompatibilitaets-Fallback behalten, nicht als Zielzustand.
-
-## Kurzfassung fuer Entwickler
-
-`e2egl` ersetzt nicht Enigma2s UI-Modell. Es ersetzt den Ausgabekanal unter der
-bestehenden `gPainter`/`gDC` API. Alles, was direkt auf dem aktiven `gEGLDC`
-landet, kann GPU-native gerendert werden. Alles, was vorher in ein klassisches
-`gPixmap` rendert, bleibt vorerst CPU/GE2D-lastig. Die naechste grosse Aufgabe
-ist deshalb nicht nur "mehr Shader", sondern ein sauberer GPU-Offscreen-Pfad
-fuer Pixmaps/FBOs, damit auch runde Ecken, Gradienten, gecachte Texte und
-komplexe Skin-Kompositionen vollstaendig ueber GLES laufen koennen.
+# e2egl: GLES OSD backend
+
+`gEGLDC` is a `gMainDC` implementation that renders the enigma2 OSD with
+OpenGL ES 2.0 or 3.0 through EGL instead of drawing into the framebuffer with
+the CPU. It consumes the normal `gRC` opcode stream, so skins, widgets and
+Python code keep working unchanged. If the backend cannot initialise, enigma2
+falls back to `gFBDC`.
+
+Main files:
+
+| Area | Files |
+| --- | --- |
+| Device context | `lib/gdi/egl/gegldc.cpp`, `lib/gdi/egl/gegldc.h` |
+| Startup | `lib/gdi/egl/egl_init.cpp`, `lib/gdi/egl/egl_config.*` |
+| Runtime GLES version | `lib/gdi/egl/gles_version.*` |
+| Textures, offscreen pixmaps | `lib/gdi/egl/gtexture_manager.*` |
+| Shaders | `lib/gdi/egl/shader/gshader.*`, `gadvanced_shader.*`, `gtexture_shader.*`, `gtext_shader.*` |
+| Glyph atlas | `lib/gdi/gfont_atlas.*` |
+| Native windows | `lib/gdi/egl/inative_window_provider.h`, `lib/gdi/egl/platform/*` |
+| DreamNextGen output | `lib/gdi/egl/platform/amlogic/amlogic_fb_output.*` |
+| Opcodes, render thread | `lib/gdi/grc.*` |
+| Backend interface | `lib/gdi/gmaindc.*` |
+
+## Build
+
+The backend is enabled with `--with-egl`. In OE the recipe passes it when the
+machine has `e2egl` in `MACHINE_FEATURES` and then also depends on
+`virtual/egl` and `virtual/libgles2` (`enigma2.bb`).
+
+`configure.ac` looks up `egl` and `glesv2` via pkg-config (falling back to
+`-lEGL`/`-lGLESv2`) and selects the native window integration from
+`$BOXTYPE`. After the machine consolidation `BOXTYPE` is the platform name for
+consolidated machines (`dms922x`, `dm7252s`, `dm7435`, `vu7376`, `vu7376duo`,
+`ocmv200`, `abmv200`, `ed72604`, ...); single boxes still use the box name.
+
+| configure list | Define / conditional | Provider | `BOXTYPE` values |
+| --- | --- | --- | --- |
+| `DREAMNEXTGEN` | `DREAMNEXTGEN` | `amlogic` + `AmlogicFramebufferOutput` | `dms922x` |
+| `is_vuplus_egl_box` | `HAVE_VUPLUS_EGL` (needs `nxpl`) | `vuplus` | `vu7376duo vu7376 vuuno4k vuuno4kse vuzero4k` |
+| `is_vuplus_mips_egl_box` | `HAVE_VUPLUS_MIPSEL_EGL` (needs `libvupl`) | `vuplus_mips` | `vuduo2 vusolo2 vusolose` |
+| `is_nxpl_egl_box` | `HAVE_NXPL_EGL` (needs `nxpl`) | `nxpl` | `et10000 et1x000 triplex hd2400 8100s gb7252 gb72604 dags72604 hd51 vs1500 h7 h17 sf4008 vuduo4klite`, plus `MACHINEBUILD=formuler1` |
+| `is_v3dplatform_egl_box` | `HAVE_V3DPLATFORM_EGL` (needs `v3dplatform`) | `v3dplatform` | `ed72604 xc7346` |
+| `is_dreambcm_egl_box` | `HAVE_DREAMBCM_EGL`, adds `-DBROADCOM_PLATFORM` | `dreambcm` | `dm520 dm525 dm7435 dm7252s` |
+| `is_hisilicon_egl_box` | `HAVE_HISILICON_EGL` | `hisilicon` | the HiSilicon list in `configure.ac` (`u5 ... u57`, `ocmv200`, `abmv200`, `gbmv200`, `sfx6008`, `h9`, `hd60`, ...) |
+
+With `--with-egl`, configure fails if EGL/GLESv2 or the platform library
+required for the box (`nxpl`, `libvupl`, `v3dplatform`) is missing. `gb7252`
+additionally defines `E2EGL_NXPL_SYNC_FB_DST` (see "OSD position").
+
+`HAVE_GLES3` is defined only if `GLES3/gl3.h` exists **and** a test program
+calling `glGenVertexArrays`/`glBindVertexArray` links, because some SDKs ship
+the header with a GLES2-only library. The DreamNextGen output needs GLES3
+(`glBlitFramebuffer`) and fails to compile without it.
+
+`lib/gdi/Makefile.inc` builds `lib/gdi/egl/*` and the shaders under
+`HAVE_EGL`, plus exactly the provider sources of the active conditional. The
+`sdl` and `wayland` providers in `lib/gdi/egl/platform/` are not part of the
+build.
+
+## Startup
+
+`gEGLDCAutoInit` (`lib/gdi/egl/egl_init.cpp`) runs at
+`eAutoInitNumbers::graphic - 2`, before `gFBDC` (`graphic - 1`). It returns
+without creating a DC if no provider define is set or a `gMainDC` already
+exists. If `gEGLDC::initEGL()` fails, the DC is dropped and `gFBDC` takes over.
+
+The `gEGLDC` constructor:
+
+1. Opens its own `fbClass` on all platforms except Vu+ ARM and reads the
+   current mode. HiSilicon instead takes the `<resolution>` of the configured
+   skin from `/etc/enigma2/settings` (falling back to `MetrixHD`, then
+   `skin_default`, then 1280x720).
+2. Accepts only 720x576, 1280x720, 1920x1080 and 2560x1440 as logical size,
+   otherwise 1280x720, and always sets the framebuffer to 32 bpp (EGL configs
+   are RGBA8888; a 16 bpp mode left by the boot loader makes
+   `eglCreateWindowSurface` fail with `EGL_BAD_MATCH`).
+3. Creates the platform provider and calls `init(surfaceWidth, surfaceHeight)`.
+
+`initEGL()` tries a GLES3 context first, then GLES2, and publishes the result
+in `gles::version`. All shaders and the atlas choose their ES3 or ES2 code
+path from `gles::isGLES3()`; without `HAVE_GLES3` only the ES2 sources are
+compiled. The EGL config is RGBA8888 without depth/stencil. Outside
+DreamNextGen a config with `EGL_SWAP_BEHAVIOR_PRESERVED_BIT` is preferred,
+except on V3D, NXPL, Vu+ ARM and Vu+ MIPS, where destroyed swap is forced.
+On Vu+ ARM a rejected video mode sized surface is retried at 1280x720.
+Afterwards the shaders and the glyph atlas are created, `eglSwapInterval(1)`
+is set, all pages/buffers are cleared ("primed") and the OSD capture socket is
+started.
+
+`getGraphicsInfo()` (`lib/python/enigma_python.i`) exposes the state to
+Python: `backend` (`"e2egl"`), `window_provider`, `accelerator`, `buffering`,
+`buffer_pages`, logical and surface size, EGL and GLES version,
+`preserved_swap`, `suspended`, `hardware_accelerated`,
+`animations_supported`. `lib/python/Components/SystemInfo.py` sets the mutable
+`BoxInfo` item `e2egl` from `backend`.
+
+## Threading
+
+The EGL context is made current once on the `gRC` render thread (the thread
+that runs `gEGLDC::exec()`, recorded on the first call) and is never released
+there. The only exception is unbinding right before a window surface is
+destroyed, because EGL keeps a current surface alive.
+
+Public entry points that can be called from other threads hand their work to
+the render thread with the `gOpcode::invoke` opcode and wait for it:
+`setResolution()`, `refresh()`, `setOSDPosition()`, `suspendGraphics()`,
+`resumeGraphics()`, `readOSDToBGRA()` (OSD capture) and `cleanupEGL()`
+(`gEGLDC::runOnRenderThread()`). The invoke payload is a
+`std::function<void()>*`; `exec()` makes the context current if needed and
+runs it. Until the render thread has executed its first opcode (or when there
+is no `gRC`), these calls run directly on the calling thread while holding
+`m_egl_mutex`, which `exec()` also takes.
+
+GL objects owned by `gPixmap` surfaces may die on any thread. Their texture and
+framebuffer names are queued in `gTextureManager` under a mutex
+(`egl_queue_texture_deletion()`, `egl_queue_framebuffer_deletion()`) and
+deleted by `processDeletions()` at the start of every `exec()`. The pointer to
+the active manager is guarded by its own mutex.
+
+## Render path
+
+### Scene framebuffer
+
+Drawing opcodes normally go into an offscreen scene FBO (RGBA texture) that
+keeps its content between frames. Only the regions a widget invalidates are
+redrawn into it, so a partial update costs only the redrawn area plus one
+copy of the scene at present time. Whether the scene FBO is used
+(`sceneFramebufferWanted()`):
+
+- DreamNextGen: always.
+- V3D, NXPL, Vu+ ARM, Vu+ MIPS: always (destroyed swap is forced).
+- HiSilicon, Dreambox BCM: only if the window surface does not report
+  `EGL_BUFFER_PRESERVED`. With preserved swap, drawing goes straight to the
+  window surface.
+
+The scene has the logical size. If that exceeds `GL_MAX_TEXTURE_SIZE` while
+the surface size fits, the scene is created at surface size and all rects are
+scaled. Without a scene FBO and without preserved swap, the presented frame is
+captured into a texture before each flip and restored before the next draw.
+
+### Present via window surface
+
+On all platforms except DreamNextGen, `flip()` clears the default framebuffer,
+draws the scene texture with the texture shader into the OSD destination
+viewport and calls `eglSwapBuffers()`. Dreambox BCM adds a `glFinish()`
+because its driver can otherwise expose an unfinished render-to-texture frame.
+
+If the native window or the window surface cannot be recreated during
+`setResolution()` or `refresh()`, the surface is marked lost and `exec()`
+retries `refresh()` every 500 ms.
+
+### Present on DreamNextGen (dreamone/dreamtwo)
+
+There is no EGL window surface. The context is bound to a 1x1 pbuffer
+placeholder and `AmlogicFramebufferOutput` renders into fb0 directly:
+
+1. `FBIOGET_OSD_DMABUF` (`0x46fc`) exports the fb0 memory as one dma-buf.
+   Each page is imported with `eglCreateImageKHR(EGL_LINUX_DMA_BUF_EXT,
+   DRM_FORMAT_ARGB8888, offset = page * line_length * yres)`, bound to a
+   texture with `glEGLImageTargetTexture2DOES` and attached to its own FBO.
+2. Exactly three pages are required (`yres_virtual / yres` and `smem_len` must
+   allow them); otherwise `create()` fails. The first back page is the one
+   after the page currently shown (`yoffset`).
+3. `presentSceneFramebuffer()` blits the scene into the back page with
+   `glBlitFramebuffer`, Y-flipped (the scene is stored bottom-up, the page is
+   scanned out top-down), with `GL_LINEAR` only if the OSD destination is
+   scaled. The page is cleared first unless the destination is full screen.
+4. `present()` calls `glFinish()`, pans to the page with `FBIOPAN_DISPLAY`
+   (`fbClass::setOffset()`) and advances to the next page.
+
+A pan takes effect at the next vsync, so the page just hidden may still be
+scanned out. Instead of waiting after each pan, the time a page was hidden is
+stored. Before a page is drawn into again (`waitBackPage()`), the code waits
+with `FBIO_WAITFORVSYNC_64` (`_IOW('F', 0x21, ...)`, returns the
+`CLOCK_MONOTONIC` vsync time) only if the page was hidden less than one vsync
+period ago, and keeps waiting until a vsync stamped after the pan arrives. The
+period is measured from consecutive waits (43 ms is assumed until then). With
+three pages the page drawn next has usually been off screen long enough.
+
+On a mode change the page objects are rebuilt for the new size; the context
+and the placeholder surface stay. `getGraphicsAccelerator()` reports
+`GLES/EGL, e2ge / Dream GE2D` (plus `active`), and the constructor sets
+`DREAM_GE2D_SURFACE_ACCEL`, `DREAM_GE2D_ACCEL_FILL` and
+`DREAM_GE2D_ACCEL_BLIT` to `1` unless already set.
+
+## Drawing
+
+### Shaders
+
+| Shader | Use |
+| --- | --- |
+| `gShader` (basic) | solid quads, solid rect batches, per-vertex coloured batches, lines |
+| `gAdvancedShader` | rounded rectangles (per-corner edge mask), gradients with up to 16 stops, orientation and alpha blend |
+| `gTextureShader` | pixmaps and frame copies; global alpha, rounded clip mask, alpha test (`alpha < 0.5` is discarded), luminance textures |
+| `gTextShader` | batched glyph quads sampling the 8-bit atlas |
+
+Each shader has GLSL ES 3.00 and 1.00 sources; the ES2 variants replace the
+integer edge mask by four per-corner floats. Projection matrices map logical
+coordinates; `setFramebufferResolution()` installs a top-down projection for
+drawing straight into a DreamNextGen page.
+
+Colours: enigma2 stores `gRGB::a` as transparency (0 = opaque); GL alpha is
+`1 - a/255`. Blending uses
+`glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA)`.
+A `clear` with a fully transparent background becomes `glClear` (full frame
+or scissored per clip rect).
+
+### Fills and rectangles
+
+`fill`, `fillRegion` and opaque `clear` append coloured quads to a fill batch
+that is drawn in one call; it is flushed when blending changes or another
+operation overlaps its bounds. Plain rectangles are drawn as one basic shader
+batch per clip region.
+
+Rounded rectangles and their borders with a solid colour
+(`drawRoundedSolidRect()`) run the advanced shader only over the up to four
+corner squares (scissored), the remaining three bands are flat quads drawn
+with the basic shader. Gradient rectangles still run the advanced shader over
+the whole area, once per clip rect.
+
+### Pixmaps and textures
+
+`blit` uploads the pixmap through `gTextureManager::getTexture()` and draws it
+per clip rect with the texture shader, honouring alignment, scaling, keep
+aspect ratio, alpha test/blend and the corner radius. Alpha textures use
+`GL_NEAREST`, others `GL_LINEAR`.
+
+Upload paths (`gTextureManager::createTextureFromSurface()`):
+
+- 32 bpp with a physical address: dma-buf import if
+  `EGL_EXT_image_dma_buf_import` and `GL_OES_EGL_image` are available (on
+  DreamNextGen via `dreamGE2DGetDmabuf()`, with `CONFIG_ION` via the accel
+  memory fd).
+- 32 bpp otherwise: per-pixel BGRA to RGBA conversion. Direct BGRA upload is
+  only used on builds without a box provider and only with
+  `GL_EXT_texture_format_BGRA8888`.
+- 8 bpp with CLUT: expanded to RGBA.
+- 8 bpp without CLUT: `GL_LUMINANCE` (ES2) or `GL_R8` (ES3).
+
+Small CPU pixmaps are additionally deduplicated by content: 8 bpp surfaces
+with CPU data, no physical address and at most 262144 pixels are hashed
+(size, bpp, CLUT, transparency, pixels) and their texture is shared. The cache
+is trimmed least recently used first to `E2EGL_TEXTURE_CACHE_ENTRIES` entries
+and `E2EGL_TEXTURE_CACHE_MB`. If a 32 bpp upload fails with
+`GL_OUT_OF_MEMORY`, the least recently used entries for the size of that
+upload are released and the upload is retried; only if that fails as well is
+the whole cache cleared and the upload tried once more.
+
+`gPixmap` drawing into 32 bpp offscreen pixmaps (fill, rectangle, axis-aligned
+lines, blit) can be done on the GPU through FBOs attached to the pixmap
+texture (`egl_gpixmap_*()` in `gtexture_manager.cpp`, called from
+`lib/gdi/gpixmap.cpp`). This needs a current context, so it only takes effect
+on the render thread; elsewhere, or for unsupported cases, the CPU path is
+used. Content is synced back to CPU memory on demand
+(`egl_sync_surface_to_cpu()`).
+
+### Text
+
+`renderGlyph()` keys each glyph by a 64-bit FNV-1a hash of its 8-bit mask
+(size, pitch, pixels) and packs it into a 2048x2048 8-bit atlas
+(`gFontAtlas`, `stb_rect_pack`). Quads are clipped per clip rect and collected
+in a text batch of up to 4096 quads that is drawn with one call. The batch is
+flushed when a fill, rectangle, line, blit or clear overlaps it, on state
+opcodes that cannot keep pending text, at present time, when it is full, or
+before the atlas is reset. A full atlas is reset completely. Dirty atlas rects
+are uploaded with `glTexSubImage2D` before drawing: GLES3 uploads only the
+dirty rect (`GL_UNPACK_ROW_LENGTH`), GLES2 the full rows.
+
+### Spinner
+
+Both skin spinner pixmaps and the native spinner of `gSpinner` are drawn over
+a saved copy of the background. While a video mode changes, `eAVControl`
+suspends the spinner and resumes it after a 1000 ms hold
+(`lib/driver/avcontrol.cpp`).
+
+## Animations
+
+### Opcodes
+
+- `eWindow::show()`/`hide()` send `sendShow`/`sendHide` with the window
+  geometry if the window's animation mode has the show (`0x01`) or hide
+  (`0x10`) bit set; the default is `0x11` when the desktop's DC supports
+  animations (`lib/gui/ewindow.cpp`).
+- `eListbox` sends `sendListboxAnimation` from its paint when the selection
+  moves within a stable viewport and old and new row are fully visible
+  (`lib/gui/elistbox.cpp`). It carries both rects, the selection colour,
+  gradient, corner radius and selection pixmap.
+
+On `sendShow`/`sendHide` the backend keeps the current frame as the old frame:
+with a scene FBO by copying it into a spare FBO and swapping the two, without
+one by capturing the frame into a texture. At the next `flush`/`flip` the new
+frame is complete and the animation runs instead of the plain present.
+
+### Pacing
+
+Animations run synchronously on the render thread. Progress is taken from the
+elapsed time (`animationProgress()`), not from a frame count, and the loop
+ends once progress reaches 1, so the duration does not depend on the output
+rate. Frames are at least 16 ms apart (`waitForNextAnimationFrame()`), which
+matters where presenting does not wait for the display.
+
+- Windows: duration `speed * 6` ms (`* 12` on DreamNextGen), clamped to
+  80-420 ms; toast-like windows use the toast speed, clamped to 60-240 ms.
+  Ease-out.
+- Listbox: duration `speed * 7` ms, clamped to 90-210 ms. Ease-in-out.
+
+With a scene FBO each animation frame is composed from the old and new scene
+textures. On DreamNextGen this is drawn straight into the back fb0 page with
+a top-down viewport and projection and shown with a pan; elsewhere it goes to
+the window surface. Without a scene FBO but with preserved swap, only the
+damaged area is redrawn per frame (`E2EGL_ANIMATION_DAMAGE`).
+
+### Window animation types
+
+| Value | Type | Value | Type |
+| --- | --- | --- | --- |
+| 0 | off | 12 | zoom from left |
+| 1 | simple fade | 13 | zoom from right |
+| 2 | simple zoom | 14 | stripes (8 strips) |
+| 3 | grow drop | 15 | basis (default) |
+| 4 | grow from left | 16 | modern adaptive |
+| 5 | extrude from left | 17 | fade in / fade out |
+| 6 | popup | 18 | dialog pop |
+| 7 | slide drop | 19 | toast slide |
+| 8 | slide from left | 20 | side sheet |
+| 9 | slide left to right | 21 | zoom and fade |
+| 10 | slide right to left | | |
+| 11 | slide top to bottom | | |
+
+15 and 16 adapt to the window geometry (bottom/top panel, left/right panel,
+small dialog, large window). With profiles enabled and a base animation of 15
+or 16, the type is chosen per window: toast-like windows (8-94 % of the
+screen width, under 28 % of its height, near the top or bottom) use the toast
+profile, small dialogs (under 68 % in both directions) the dialog profile,
+side panels and popup panels the popup profile.
+
+### Listbox selection
+
+The listbox animation draws the new frame, restores the target row from the
+old frame and moves the selection bar (selection pixmap or advanced shader
+rect) with 0.82 alpha. Inside the old and the new row the bar is taken from
+the frame that shows that row selected, so the row text stays above it.
+Because the listbox repaints both rows before it sends the opcode, the
+presented frame is captured at every flip while listbox animations are on and
+used as the old frame.
+
+### Settings
+
+`lib/python/Screens/AnimationSetup.py` and the `AnimationSetup` section of
+`data/setup.xml` ("OSD Animation Settings", menu entry `requires="e2egl"`):
+
+| Config | Default | Native setter |
+| --- | --- | --- |
+| `config.misc.animation.default` | 15 on e2egl, else 0; 100 = classic group | `setAnimation_current()` |
+| `config.misc.animation.classic` | 1 (types 1-14) | |
+| `config.misc.animation.speed` | 15, range 15-30 (5-30 on dreamone/dreamtwo) | `setAnimation_speed()` |
+| `config.misc.animation.toast_speed` | 10, range 5-30 | `setAnimation_toast_speed()` |
+| `config.misc.animation.listbox` | off | `setAnimation_current_listbox()` |
+| `config.misc.animation.profiles` | on | `setAnimation_profiles()` |
+| `config.misc.animation.dialog` / `popup` / `toast` | 18 / 16 / 17 | `setAnimation_profiles()` |
+
+The setters (`main/enigma.cpp`) only forward to `gEGLDCSet*()` if the main DC
+is `e2egl` with animations. Changes apply immediately; the blue key previews
+the selected type. Screens with the skin attribute `animationPaused` disable
+window animations while they are open. With e2egl, `Screens/Toast.py` skips
+its own alpha fade.
+
+## External GLES clients and teletext
+
+`suspendGraphics()` frees the OSD for another GLES/framebuffer client:
+pending batches are flushed, the texture cache, scene FBOs, frame textures and
+the atlas are released, the window surface is destroyed and the CPU backing
+pixmap is shrunk to 1x1. Queued opcodes are then discarded without drawing
+(`gDC::discardOpcode()`) so their references are still released.
+Platform specifics:
+
+- Dreambox BCM: shaders, context and display are destroyed as well and
+  `eglTerminate()`/`eglReleaseThread()` are called, because the driver holds
+  an inter-process lock while a display/context exists. The texture manager
+  starts a new context generation so stale GL names on surfaces are ignored.
+  `resumeGraphics()` recreates everything via `initEGL()`.
+- Vu+ ARM and NXPL: the native window is destroyed as well, because the
+  compositor would keep showing the last buffer.
+- DreamNextGen: the fb0 page imports are released.
+
+`resumeGraphics()` (other platforms) restores the backing pixmap and the atlas
+and calls `refresh()`; it fails if no surface could be created.
+
+`eTuxtxtApp::startUi()` (`lib/components/tuxtxtapp.cpp`) and
+`FlashManager.lockGraphics()` lock `fbClass` if an instance exists and call
+`suspendGraphics()` only otherwise. While `fbClass` is locked, `gEGLDC::islocked()`
+reports it and `gPainter` stops submitting. After teletext on Vu+ ARM the last
+teletext page is pushed with `FBIO_BLIT`.
+
+## Video mode, resolution and OSD position
+
+`setResolution()` (skin resolution) and `refresh()` (video mode change)
+release the scene FBO, frame textures and content texture cache before the
+surface is reallocated, so old and new buffers are not held at the same time.
+The surface size follows the platform:
+
+- DreamNextGen, HiSilicon, Dreambox BCM: the framebuffer mode is set
+  (`fbClass::SetMode`, 32 bpp) and its result used as surface size.
+- Vu+ ARM: surface size from `/proc/stb/video/videomode`, capped to
+  1920x1080; the logical size can be larger.
+- NXPL on `hd2400`, `mutant2400`, `quadbox2400`, `triplex`, `et10000`,
+  `formuler1`, `formuler1tc`, `f1` (by `machinebuild` or
+  `/proc/stb/info/boxtype`): surface and framebuffer follow the video mode.
+- V3D recreates its native window on refresh; Vu+ MIPS keeps an existing
+  surface.
+
+Dreambox BCM and DreamNextGen keep the scene content across `refresh()` and
+present it again.
+
+The OSD position is applied by the backend itself: `eAVControl::setOSDPosition()`
+first calls `gMainDC::setOSDPosition()` and only falls back to
+`/proc/stb/fb/dst_*` or the Amlogic `window_axis` (written as inclusive end
+coordinates) if the DC does not handle it. `gEGLDC` stores the rect in logical
+coordinates, presents the scene into that destination viewport (scaled) and
+reports `getOSDAxis()` as `0 0 <logical width> <logical height>`. With
+`E2EGL_NXPL_SYNC_FB_DST` (gb7252) the rect is also written to
+`/proc/stb/fb/dst_*` and applied.
+
+## OSD capture
+
+`initEGL()` starts a thread serving the Unix socket `/tmp/e2egl-osd.socket`.
+Each connection receives one frame: a header (`char magic[8] = "E2EGL01"`,
+`uint32_t width, height, stride, format`, format 1 = BGRA) followed by
+straight (non-premultiplied) BGRA pixels, at logical size when a scene FBO
+is active and at surface size otherwise. The read runs on the
+render thread.
+
+## Environment variables
+
+All variables are read once at first use.
+
+| Variable | Default | Effect |
+| --- | --- | --- |
+| `E2EGL_ANIMATION_DAMAGE` | on | Unset, empty or anything but `0`: window animations without a scene FBO but with preserved swap redraw only the damaged area per frame. `0` redraws the full frame. |
+| `E2EGL_DREAMBCM_WINDOW` | unset | Dreambox BCM: unset, empty, `0`, `none` or `null` passes a null native window to `eglCreateWindowSurface` (driver default window); any other value passes an `fbdev_window` with the surface size. |
+| `E2EGL_GPIXMAP_GLES` | on | A value starting with `0`, `n`, `N`, `f` or `F` disables the GPU path for `gPixmap` offscreen drawing. |
+| `E2EGL_NXPL_RELEASE_NXPL` | off | NXPL: non-empty and not starting with `0` destroys the native window, unregisters the display and leaves the platform at shutdown; otherwise teardown is skipped. |
+| `E2EGL_NXPL_UNINIT_NEXUS` | off | NXPL: with `E2EGL_NXPL_RELEASE_NXPL` on and a join via `NxClient_Join`, also calls `NxClient_Uninit` at shutdown; otherwise the client stays joined. |
+| `E2EGL_TEXTURE_CACHE_ENTRIES` | 256 | Maximum entries of the content texture cache, clamped to 32-1024. |
+| `E2EGL_TEXTURE_CACHE_MB` | 48 | Maximum size of the content texture cache in MiB, clamped to 4-256. |
+| `E2EGL_TRACE_GL` | off | Non-empty and not `0`: one `[e2egl:frame]` line per presented frame (timings, op counts, uploads, cache hits/misses) plus `[e2egl:animation]`/`[e2egl:listbox]` start and end lines. |
+| `E2EGL_TRACE_GL_LIMIT` | 240 | Number of frames logged by `E2EGL_TRACE_GL`, `0` = unlimited. The frame index restarts on `refresh()`. |
+| `E2EGL_TRACE_GL_SLOW_US` | 0 | Log only frames taking at least this many microseconds, `0` = all. |
+| `E2EGL_TRACE_GPIXMAP` | off | Logs `gPixmap` operations as `[e2egl:gPixmap]` and a per-operation summary at exit. Values starting with `0`, `n`, `f` or `o` (any case) leave it off, so use e.g. `1`. |
+| `E2EGL_TRACE_GPIXMAP_LIMIT` | 256 | Number of logged `gPixmap` operations, `0` = unlimited. |
+| `E2EGL_TRACE_OPS` | off | Non-empty and not `0`: one `[e2egl:op]` line per fill, rectangle, clear and blit. |
+| `E2EGL_VUPLUS_RELEASE_NXPL` | off | Vu+ ARM: like `E2EGL_NXPL_RELEASE_NXPL`. |
+| `E2EGL_VUPLUS_UNINIT_NEXUS` | off | Vu+ ARM: with `E2EGL_VUPLUS_RELEASE_NXPL` on, also calls `NxClient_Uninit` at shutdown. |
+
+## Known limitations
+
+- Animations block the render thread for their duration; no other opcode is
+  executed meanwhile.
+- Every present copies the whole scene; there is no damage-limited swap.
+- DreamNextGen needs GLES3 and three fb0 pages; otherwise EGL init fails and
+  `gFBDC` is used, or after a mode change the output is retried every 500 ms.
+- 32 bpp CPU pixmaps on the supported boxes are converted per pixel on upload;
+  only 8 bpp pixmaps are content cached.
+- A full glyph atlas is reset completely, so all glyphs are uploaded again.
+- GPU drawing into offscreen `gPixmap`s only happens on the render thread.
+- The `sdl` and `wayland` window providers are not built.
