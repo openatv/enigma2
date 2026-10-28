@@ -6,6 +6,7 @@
 #include <lib/gdi/egl/gles_version.h>
 #include <lib/gdi/fb.h>
 #include <algorithm>
+#include <cmath>
 #include <condition_variable>
 #include <fstream>
 #include <iterator>
@@ -1709,11 +1710,9 @@ void gEGLDC::executeRectangle(const gOpcode* op) {
 			glDisable(GL_BLEND);
 		}
 		const int border_width = std::min(m_border_width, std::min(area.width(), area.height()) / 2);
-		for (unsigned int i = 0; i < clip.rects.size(); ++i) {
-			setGlScissor(clip.rects[i]);
-			logColorOp("rect-border", area, m_border_color, blend_border);
-			m_advanced_shader.drawAdvancedRect(area.x(), area.y(), area.width(), area.height(), m_radius, m_radius_edges, std::vector<gRGB>(), 0, false, 0, colorAlpha(m_border_color), m_border_color);
-		}
+		logColorOp("rect-border", area, m_border_color, blend_border);
+		drawRoundedSolidRect(clip, area, m_radius, m_radius_edges, m_border_color);
+		glEnable(GL_SCISSOR_TEST);
 		if (blend_border)
 			glDisable(GL_BLEND);
 
@@ -1735,6 +1734,12 @@ void gEGLDC::executeRectangle(const gOpcode* op) {
 		int inner_radius = m_radius;
 		if (m_border_width > 0)
 			inner_radius = std::max(0, m_radius - m_border_width);
+		if (m_gradient_colors.empty()) {
+			logColorOp("rect-rounded", area, m_background_color_rgb, blend_rect);
+			drawRoundedSolidRect(clip, area, inner_radius, m_radius_edges, m_background_color_rgb);
+			glDisable(GL_BLEND);
+			return;
+		}
 		for (unsigned int i = 0; i < clip.rects.size(); ++i) {
 			setGlScissor(clip.rects[i]);
 			logColorOp(m_gradient_colors.size() > 0 ? "rect-gradient" : "rect-rounded", area, m_background_color_rgb, blend_rect);
@@ -1772,6 +1777,55 @@ void gEGLDC::executeRectangle(const gOpcode* op) {
 	}
 
 	glDisable(GL_SCISSOR_TEST);
+}
+
+void gEGLDC::drawRoundedSolidRect(const gRegion& clip, const eRect& area, int radius, int edges, const gRGB& color) {
+	// Only the corner squares need the coverage shader, inside the rest it outputs the plain colour.
+	const int corner = (int)std::ceil(std::min((float)radius, std::min(area.width(), area.height()) * 0.5f));
+	const int left = area.left();
+	const int top = area.top();
+	const int right = area.right();
+	const int bottom = area.bottom();
+	const eRect corners[4] = {
+		(edges & 1) ? eRect(left, top, corner, corner) : eRect(),
+		(edges & 2) ? eRect(right - corner, top, corner, corner) : eRect(),
+		(edges & 4) ? eRect(left, bottom - corner, corner, corner) : eRect(),
+		(edges & 8) ? eRect(right - corner, bottom - corner, corner, corner) : eRect()};
+	const int top_left = corners[0].empty() ? left : left + corner;
+	const int top_right = corners[1].empty() ? right : right - corner;
+	const int bottom_left = corners[2].empty() ? left : left + corner;
+	const int bottom_right = corners[3].empty() ? right : right - corner;
+	const eRect bands[3] = {
+		eRect(top_left, top, top_right - top_left, corner),
+		eRect(left, top + corner, area.width(), area.height() - 2 * corner),
+		eRect(bottom_left, bottom - corner, bottom_right - bottom_left, corner)};
+
+	std::vector<float> vertices;
+	vertices.reserve(clip.rects.size() * 3 * 12);
+	for (const eRect& clip_rect : clip.rects) {
+		const eRect visible = clip_rect & area & eRect(0, 0, m_width, m_height);
+		if (visible.empty())
+			continue;
+		for (const eRect& band : bands) {
+			const eRect draw = band & visible;
+			if (!draw.empty())
+				appendRectVertices(vertices, draw);
+		}
+		for (const eRect& corner_rect : corners) {
+			const eRect draw = corner_rect & visible;
+			if (draw.empty())
+				continue;
+			glEnable(GL_SCISSOR_TEST);
+			setGlScissor(draw);
+			m_advanced_shader.drawAdvancedRect(area.x(), area.y(), area.width(), area.height(), radius, edges, std::vector<gRGB>(), 0, false, 0, colorAlpha(color), color);
+		}
+	}
+	glDisable(GL_SCISSOR_TEST);
+	if (!vertices.empty()) {
+		m_basic_shader.drawRectBatch(vertices.data(), vertices.size() / 2, colorComponent(color.r), colorComponent(color.g), colorComponent(color.b), colorAlpha(color));
+		++m_frame_stats.solid_batches;
+		m_frame_stats.solid_vertices += vertices.size() / 2;
+	}
 }
 
 void gEGLDC::executeClear(const gOpcode*) {
