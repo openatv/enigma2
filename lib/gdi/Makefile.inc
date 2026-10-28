@@ -74,8 +74,10 @@ gdiinclude_HEADERS += \
 
 if DREAMNEXTGEN
 gdi_libenigma_gdi_a_SOURCES += \
+	gdi/egl/platform/amlogic/amlogic_fb_output.cpp \
 	gdi/egl/platform/amlogic/amlogic_window_provider.cpp
 gdiinclude_HEADERS += \
+	gdi/egl/platform/amlogic/amlogic_fb_output.h \
 	gdi/egl/platform/amlogic/amlogic_window_provider.h
 endif
 

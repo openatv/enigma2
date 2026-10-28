@@ -813,6 +813,19 @@ bool gEGLDC::tryInitEGL(int version) {
 	// 3. choose EGL config for the requested GLES version
 	EGLint renderable_type = (version >= 3) ? EGL_OPENGL_ES3_BIT_KHR : EGL_OPENGL_ES2_BIT;
 
+#ifdef DREAMNEXTGEN
+	// The GPU draws into the framebuffer pages, the context only needs a placeholder surface.
+	const EGLint config_attribs[] = {
+		EGL_SURFACE_TYPE, EGL_PBUFFER_BIT, EGL_RENDERABLE_TYPE, renderable_type, EGL_RED_SIZE, 8, EGL_GREEN_SIZE, 8, EGL_BLUE_SIZE, 8, EGL_ALPHA_SIZE, 8, EGL_DEPTH_SIZE, 0, EGL_STENCIL_SIZE, 0,
+		EGL_NONE};
+
+	EGLint num_configs = 0;
+	m_preserved_swap = false;
+	if (!eglChooseConfig(m_egl_display, config_attribs, &m_egl_config, 1, &num_configs) || num_configs == 0) {
+		eDebug("[gEGLDC] no suitable EGL config found for GLES%d.", version);
+		return false;
+	}
+#else
 	const EGLint preserved_config_attribs[] = {
 		EGL_SURFACE_TYPE, EGL_WINDOW_BIT | EGL_SWAP_BEHAVIOR_PRESERVED_BIT, EGL_RENDERABLE_TYPE, renderable_type, EGL_RED_SIZE, 8, EGL_GREEN_SIZE, 8, EGL_BLUE_SIZE, 8, EGL_ALPHA_SIZE, 8,
 		EGL_DEPTH_SIZE, 0, EGL_STENCIL_SIZE, 0, EGL_NONE};
@@ -828,6 +841,7 @@ bool gEGLDC::tryInitEGL(int version) {
 		eDebug("[gEGLDC] no suitable EGL config found for GLES%d.", version);
 		return false;
 	}
+#endif
 	logEGLConfig(m_egl_display, m_egl_config, version);
 
 	// 4. create the context
@@ -839,6 +853,14 @@ bool gEGLDC::tryInitEGL(int version) {
 		return false;
 	}
 
+#ifdef DREAMNEXTGEN
+	// 5. bind the context to the framebuffer pages
+	if (!createFramebufferOutput()) {
+		eglDestroyContext(m_egl_display, m_egl_context);
+		m_egl_context = EGL_NO_CONTEXT;
+		return false;
+	}
+#else
 	// 5. create the window surface
 	EGLNativeWindowType native_window = m_window_provider->getNativeWindow();
 	if (!native_window && e2eglRequiresNativeWindow()) {
@@ -865,10 +887,43 @@ bool gEGLDC::tryInitEGL(int version) {
 		m_egl_context = EGL_NO_CONTEXT;
 		return false;
 	}
+#endif
 
 	m_gles_version = version;
 	return true;
 }
+
+#ifdef DREAMNEXTGEN
+#ifndef HAVE_GLES3
+#error "DreamNextGen framebuffer output needs GLES3 (glBlitFramebuffer)"
+#endif
+bool gEGLDC::createFramebufferOutput() {
+	if (m_egl_surface == EGL_NO_SURFACE) {
+		const EGLint pbuffer_attribs[] = {EGL_WIDTH, 1, EGL_HEIGHT, 1, EGL_NONE};
+		m_egl_surface = eglCreatePbufferSurface(m_egl_display, m_egl_config, pbuffer_attribs);
+		if (m_egl_surface == EGL_NO_SURFACE) {
+			eDebug("[gEGLDC] eglCreatePbufferSurface failed. EGL error: 0x%x", eglGetError());
+			return false;
+		}
+	}
+	if (eglGetCurrentContext() != m_egl_context || eglGetCurrentSurface(EGL_DRAW) != m_egl_surface) {
+		if (!eglMakeCurrent(m_egl_display, m_egl_surface, m_egl_surface, m_egl_context)) {
+			eDebug("[gEGLDC] eglMakeCurrent failed. EGL error: 0x%x", eglGetError());
+			eglDestroySurface(m_egl_display, m_egl_surface);
+			m_egl_surface = EGL_NO_SURFACE;
+			return false;
+		}
+	}
+	if (!m_fb_output.create(m_egl_display, surfaceWidth(), surfaceHeight())) {
+		// Without a surface exec() keeps retrying through refresh().
+		unbindContext();
+		eglDestroySurface(m_egl_display, m_egl_surface);
+		m_egl_surface = EGL_NO_SURFACE;
+		return false;
+	}
+	return true;
+}
+#endif
 
 bool gEGLDC::makeCurrent() {
 	if (!isInitialized() || m_egl_display == EGL_NO_DISPLAY || m_egl_surface == EGL_NO_SURFACE)
@@ -968,13 +1023,13 @@ void gEGLDC::applySwapBehavior() {
 }
 
 void gEGLDC::primeEGLSurface(bool preserve_scene) {
-#ifndef HAVE_DREAMBCM_EGL
+#if !defined(HAVE_DREAMBCM_EGL) && !defined(DREAMNEXTGEN)
 	(void)preserve_scene;
 #endif
 #if defined(HAVE_VUPLUS_EGL) || defined(HAVE_VUPLUS_MIPSEL_EGL) || defined(HAVE_NXPL_EGL) || defined(HAVE_V3DPLATFORM_EGL) || defined(HAVE_HISILICON_EGL) || defined(HAVE_DREAMBCM_EGL) || defined(DREAMNEXTGEN)
 	if (m_egl_display == EGL_NO_DISPLAY || m_egl_surface == EGL_NO_SURFACE || m_egl_context == EGL_NO_CONTEXT)
 		return;
-#ifdef HAVE_DREAMBCM_EGL
+#if defined(HAVE_DREAMBCM_EGL) || defined(DREAMNEXTGEN)
 	const bool scene_preserved = preserve_scene && sceneFramebufferActive() && m_scene_frame_valid;
 #else
 	const bool scene_preserved = false;
@@ -991,15 +1046,16 @@ void gEGLDC::primeEGLSurface(bool preserve_scene) {
 	const int swap_count = 3;
 #elif defined(HAVE_VUPLUS_EGL)
 	const int swap_count = 5;
-#elif defined(DREAMNEXTGEN)
-	// DreamNextGen uses three framebuffer pages. Clear every page after
-	// recreating the EGL surface so no stale OSD content can become visible.
-	const int swap_count = 3;
 #elif defined(HAVE_NXPL_EGL)
 	const int swap_count = e2eglNxplUseVideoModeSurface() ? 5 : (m_preserved_swap ? 1 : 3);
-#else
+#elif !defined(DREAMNEXTGEN)
 	const int swap_count = m_preserved_swap ? 1 : 3;
 #endif
+#ifdef DREAMNEXTGEN
+	// The pages are drawn directly, so no stale OSD content can become visible after clearing them.
+	m_fb_output.clearPages();
+	const int cleared_swaps = m_fb_output.pages();
+#else
 	int cleared_swaps = 0;
 	for (int i = 0; i < swap_count; ++i) {
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -1009,6 +1065,7 @@ void gEGLDC::primeEGLSurface(bool preserve_scene) {
 		}
 		++cleared_swaps;
 	}
+#endif
 
 	glClear(GL_COLOR_BUFFER_BIT);
 	glFlush();
@@ -2308,7 +2365,9 @@ void gEGLDC::deleteFrameTextures() {
 }
 
 bool gEGLDC::sceneFramebufferWanted() const {
-#if (defined(HAVE_VUPLUS_EGL) || defined(HAVE_VUPLUS_MIPSEL_EGL) || defined(HAVE_NXPL_EGL) || defined(HAVE_V3DPLATFORM_EGL) || defined(HAVE_HISILICON_EGL) || defined(HAVE_DREAMBCM_EGL)) && !defined(DREAMNEXTGEN)
+#ifdef DREAMNEXTGEN
+	return true;
+#elif defined(HAVE_VUPLUS_EGL) || defined(HAVE_VUPLUS_MIPSEL_EGL) || defined(HAVE_NXPL_EGL) || defined(HAVE_V3DPLATFORM_EGL) || defined(HAVE_HISILICON_EGL) || defined(HAVE_DREAMBCM_EGL)
 	if (e2eglForceDestroyedSwap())
 		return true;
 	return !m_preserved_swap;
@@ -2360,8 +2419,35 @@ bool gEGLDC::currentFramebufferIsScene() const {
 }
 
 void gEGLDC::bindWindowFramebuffer() {
+#ifdef DREAMNEXTGEN
+	m_fb_output.waitBackPage();
+	glBindFramebuffer(GL_FRAMEBUFFER, m_fb_output.backFramebuffer());
+#else
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+#endif
 	applyWindowViewport();
+}
+
+void gEGLDC::bindAnimationFramebuffer() {
+#ifdef DREAMNEXTGEN
+	// The page is scanned out top-down, so draw the animation with a top-down viewport and projection.
+	m_fb_output.waitBackPage();
+	glBindFramebuffer(GL_FRAMEBUFFER, m_fb_output.backFramebuffer());
+	const eRect dst = osdDestinationSurface();
+	glViewport(dst.x(), dst.y(), dst.width(), dst.height());
+	m_texture_shader.setFramebufferResolution((float)m_width, (float)m_height);
+	m_advanced_shader.setFramebufferResolution((float)m_width, (float)m_height);
+#else
+	bindWindowFramebuffer();
+#endif
+}
+
+bool gEGLDC::presentAnimationFrame() {
+#ifdef DREAMNEXTGEN
+	m_texture_shader.setResolution((float)m_width, (float)m_height);
+	m_advanced_shader.setResolution((float)m_width, (float)m_height);
+#endif
+	return swapWindowFramebuffer();
 }
 
 eRect gEGLDC::osdDestinationLogical() const {
@@ -2592,6 +2678,36 @@ bool gEGLDC::presentSceneFramebuffer() {
 	if (!sceneFramebufferActive())
 		return false;
 
+#ifdef DREAMNEXTGEN
+	if (!m_fb_output.active())
+		return false;
+	{
+		// Waiting for the page to leave the screen is what a blocking swap would do.
+		e2eglScopedTimer wait_timer(m_frame_stats.swap_us);
+		m_fb_output.waitBackPage();
+	}
+	e2eglScopedTimer timer(m_frame_stats.copy_us);
+	const eRect dst = osdDestinationSurface();
+	const bool fullscreen = dst.x() == 0 && dst.y() == 0 && dst.width() == surfaceWidth() && dst.height() == surfaceHeight();
+	bindWindowFramebuffer();
+	glDisable(GL_SCISSOR_TEST);
+	glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+	if (!fullscreen || !m_scene_frame_valid) {
+		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+	}
+	if (m_scene_frame_valid) {
+		// The scene is stored bottom-up like a window surface, the page top-down as scanned out.
+		const bool scaled = dst.width() != m_scene_frame_width || dst.height() != m_scene_frame_height;
+		glBindFramebuffer(GL_READ_FRAMEBUFFER, m_scene_framebuffer);
+		glBlitFramebuffer(0, 0, m_scene_frame_width, m_scene_frame_height, dst.x(), dst.y() + dst.height(), dst.x() + dst.width(), dst.y(),
+			GL_COLOR_BUFFER_BIT, scaled ? GL_LINEAR : GL_NEAREST);
+		++m_frame_stats.frame_copy_draws;
+		m_frame_stats.frame_copy_pixels += rectPixels(dst);
+		bindWindowFramebuffer();
+	}
+	return true;
+#else
 	bindWindowFramebuffer();
 	glDisable(GL_SCISSOR_TEST);
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -2606,6 +2722,7 @@ bool gEGLDC::presentSceneFramebuffer() {
 	glFinish();
 #endif
 	return true;
+#endif
 }
 
 bool gEGLDC::beginSceneFramebufferAnimation() {
@@ -2655,10 +2772,15 @@ void gEGLDC::finishSceneFramebufferAnimation() {
 
 bool gEGLDC::swapWindowFramebuffer() {
 	const unsigned long long swap_start_us = e2eglNowUs();
+#ifdef DREAMNEXTGEN
+	if (!m_fb_output.present(m_fb))
+		return false;
+#else
 	if (!eglSwapBuffers(m_egl_display, m_egl_surface)) {
 		eDebug("[gEGLDC] eglSwapBuffers failed. EGL error: 0x%x", eglGetError());
 		return false;
 	}
+#endif
 
 	m_frame_stats.swap_us += e2eglNowUs() - swap_start_us;
 	if (m_flip_count < 8) {
@@ -3120,7 +3242,7 @@ bool gEGLDC::runPendingWindowAnimation() {
 		const float visible_progress = show ? progress : (1.0f - progress);
 
 		if (use_scene_frames)
-			bindWindowFramebuffer();
+			bindAnimationFramebuffer();
 		glDisable(GL_SCISSOR_TEST);
 		if (damage_only) {
 			eRect damage = effectiveWindowAnimationForRect(source, m_width, m_height) == 14 ? stripedWindowDamageRect(source) : animatedWindowDestRect(source, visible_progress, show);
@@ -3151,7 +3273,7 @@ bool gEGLDC::runPendingWindowAnimation() {
 		glDisable(GL_BLEND);
 		m_frame_stats.draw_us += e2eglNowUs() - animation_draw_start_us;
 		if (use_scene_frames) {
-			if (swapWindowFramebuffer())
+			if (presentAnimationFrame())
 				logAndResetFrameStats();
 		} else {
 			flip();
@@ -3331,7 +3453,7 @@ bool gEGLDC::runPendingListboxAnimation() {
 		const eRect moving(x, y, from.width(), from.height());
 
 		if (use_scene_frames)
-			bindWindowFramebuffer();
+			bindAnimationFramebuffer();
 		glDisable(GL_SCISSOR_TEST);
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -3355,7 +3477,7 @@ bool gEGLDC::runPendingListboxAnimation() {
 		m_frame_stats.draw_us += e2eglNowUs() - draw_start_us;
 
 		if (use_scene_frames) {
-			if (swapWindowFramebuffer())
+			if (presentAnimationFrame())
 				logAndResetFrameStats();
 		} else
 			flip();
@@ -4025,6 +4147,9 @@ bool gEGLDC::releaseGraphics(bool releaseClient)
 			m_text_shader.release();
 		}
 		m_texture_manager.processDeletions();
+#ifdef DREAMNEXTGEN
+		m_fb_output.destroy();
+#endif
 		glFinish();
 		unbindContext();
 	}
@@ -4435,6 +4560,9 @@ void gEGLDC::cleanupEGL() {
 			m_texture_manager.releaseGLResources();
 			deleteSceneFramebuffer();
 			deleteFrameTextures();
+#ifdef DREAMNEXTGEN
+			m_fb_output.destroy();
+#endif
 #ifdef HAVE_DREAMBCM_EGL
 			m_basic_shader.release();
 			m_advanced_shader.release();
@@ -4443,6 +4571,10 @@ void gEGLDC::cleanupEGL() {
 #endif
 			unbindContext();
 		}
+#ifdef DREAMNEXTGEN
+		// Without a current context only the EGL images and the dma-buf are left to release.
+		m_fb_output.destroy();
+#endif
 		if (m_egl_context != EGL_NO_CONTEXT) {
 			eglDestroyContext(m_egl_display, m_egl_context);
 		}
@@ -4556,14 +4688,20 @@ void gEGLDC::setResolution(int xres, int yres, int bpp) {
 		deleteFrameTextures();
 		m_texture_manager.clearContentTextureCache();
 		m_texture_manager.processDeletions();
+#ifdef DREAMNEXTGEN
+		// The page layout changes with the mode, the placeholder surface and the context stay.
+		m_fb_output.destroy();
+#endif
 		glFinish();
 	}
+#ifndef DREAMNEXTGEN
 	if (egl_ready && eglGetCurrentContext() == m_egl_context)
 		unbindContext();
 	if (egl_ready && (surface_size_changed || native_window_must_recreate) && m_egl_surface != EGL_NO_SURFACE) {
 		eglDestroySurface(m_egl_display, m_egl_surface);
 		m_egl_surface = EGL_NO_SURFACE;
 	}
+#endif
 
 	m_width = xres;
 	m_height = yres;
@@ -4632,6 +4770,14 @@ void gEGLDC::setResolution(int xres, int yres, int bpp) {
 	}
 
 	if (egl_ready) {
+#ifdef DREAMNEXTGEN
+		if (!createFramebufferOutput()) {
+			eDebug("[gEGLDC] framebuffer output unavailable after resizing to %dx%d", m_width, m_height);
+			markSurfaceLost();
+			return;
+		}
+		m_surface_lost = false;
+#else
 		if (m_egl_surface == EGL_NO_SURFACE) {
 			EGLNativeWindowType native_window = m_window_provider ? m_window_provider->getNativeWindow() : (EGLNativeWindowType)0;
 			if (!native_window && e2eglRequiresNativeWindow()) {
@@ -4650,6 +4796,7 @@ void gEGLDC::setResolution(int xres, int yres, int bpp) {
 			m_surface_lost = false;
 			applySwapBehavior();
 		}
+#endif
 		if (makeCurrent()) {
 			deleteSceneFramebuffer();
 			deleteFrameTextures();
@@ -4681,7 +4828,7 @@ void gEGLDC::refresh() {
 		return;
 
 	bool preserve_scene = false;
-#ifdef HAVE_DREAMBCM_EGL
+#if defined(HAVE_DREAMBCM_EGL) || defined(DREAMNEXTGEN)
 	if (m_egl_surface != EGL_NO_SURFACE && makeCurrent()) {
 		if (sceneFramebufferActive()) {
 			bindSceneFramebuffer();
@@ -4751,6 +4898,14 @@ void gEGLDC::refresh() {
 		surfaceWidth(), surfaceHeight(), m_width, m_height);
 #endif
 
+#ifdef DREAMNEXTGEN
+	if (!createFramebufferOutput()) {
+		eDebug("[gEGLDC] framebuffer output unavailable while refreshing %dx%d", m_width, m_height);
+		markSurfaceLost();
+		return;
+	}
+	m_surface_lost = false;
+#else
 	if (eglGetCurrentContext() == m_egl_context)
 		unbindContext();
 	if (m_egl_surface != EGL_NO_SURFACE) {
@@ -4788,6 +4943,7 @@ void gEGLDC::refresh() {
 	}
 	m_surface_lost = false;
 	applySwapBehavior();
+#endif
 
 	if (makeCurrent()) {
 		deleteFrameTextures();

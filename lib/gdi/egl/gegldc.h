@@ -15,6 +15,9 @@
 #include <lib/gdi/egl/shader/gtexture_shader.h>
 #include <lib/gdi/gfont_atlas.h>
 #include <lib/gdi/gmaindc.h>
+#ifdef DREAMNEXTGEN
+#include <lib/gdi/egl/platform/amlogic/amlogic_fb_output.h>
+#endif
 #include <atomic>
 #include <functional>
 #include <mutex>
@@ -57,6 +60,10 @@ private:
 	// The context stays bound to the gRC render thread; other threads hand GL work to it.
 	std::atomic<bool> m_render_thread_known{false};
 	pthread_t m_render_thread;
+#ifdef DREAMNEXTGEN
+	// No EGL window surface: the scene is copied into the framebuffer pages.
+	AmlogicFramebufferOutput m_fb_output;
+#endif
 
 	gShader m_basic_shader;
 	gAdvancedShader m_advanced_shader;
@@ -219,6 +226,9 @@ private:
 	bool runOnRenderThread(const std::function<void()>& function);
 	void applySwapBehavior();
 	void primeEGLSurface(bool preserve_scene = false);
+#ifdef DREAMNEXTGEN
+	bool createFramebufferOutput();
+#endif
 	void cleanupEGL();
 	// Frees the surface and GL objects; releaseClient also terminates the EGL display and context.
 	bool releaseGraphics(bool releaseClient);
@@ -262,6 +272,8 @@ private:
 	void markSurfaceLost();
 	bool bindSceneFramebuffer();
 	void bindWindowFramebuffer();
+	void bindAnimationFramebuffer();
+	bool presentAnimationFrame();
 	eRect osdDestinationLogical() const;
 	eRect osdDestinationSurface() const;
 	eRect logicalToSurfaceRect(const eRect& rect) const;
