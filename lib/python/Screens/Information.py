@@ -1342,7 +1342,7 @@ class InformationReceiver(InformationBase):
 		if self.extraSpacing:
 			info.append("")
 		info.append(self.formatLine("P1", _("Drivers version"), formatDate(BoxInfo.getItem("driversdate"))))
-		info.append(self.formatLine("P1", _("Kernel version"), BoxInfo.getItem("kernel")))
+		info.append(self.formatLine("P1", _("Kernel version"), BoxInfo.getItem("KernelVersion")))
 		deviceId = fileReadLine("/proc/device-tree/amlogic-dt-id", source=MODULE_NAME)
 		if deviceId:
 			info.append(self.formatLine("P1", _("Device id"), deviceId))
