@@ -11,9 +11,7 @@ AmlogicWindowProvider::~AmlogicWindowProvider() {
 }
 
 bool AmlogicWindowProvider::init(int width, int height) {
-	// The Amlogic/Mali-fbdev backend needs no display connection or
-	// surface object — the kernel driver opens the fbdev node by itself.
-	// We simply record the requested dimensions and return success.
+	// Nothing to connect: gEGLDC renders into a pbuffer and copies each frame into the fb0 pages itself.
 	m_native_window.width = static_cast<unsigned short>(width);
 	m_native_window.height = static_cast<unsigned short>(height);
 	eDebug("[AmlogicWindowProvider] init %dx%d", width, height);
@@ -21,16 +19,15 @@ bool AmlogicWindowProvider::init(int width, int height) {
 }
 
 EGLNativeDisplayType AmlogicWindowProvider::getNativeDisplay() {
-	// Mali fbdev EGL resolves the display internally from the fbdev node.
-	// EGL_DEFAULT_DISPLAY is the correct value here.
+	// Mali EGL opens its display without a native handle.
 	return EGL_DEFAULT_DISPLAY;
 }
 
 EGLNativeWindowType AmlogicWindowProvider::getNativeWindow() {
-	// Mali fbdev EGL expects a pointer to the fbdev_window struct.
+	// Unused: no window surface is created for the fb0 output.
 	return reinterpret_cast<EGLNativeWindowType>(&m_native_window);
 }
 
 void AmlogicWindowProvider::cleanup() {
-	// Nothing to release: no display connection, no allocated surface.
+	// Nothing to release.
 }
