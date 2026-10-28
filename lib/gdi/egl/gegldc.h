@@ -237,6 +237,7 @@ private:
 	void executeFill(const gOpcode* op);
 	void executeFillRegion(const gOpcode* op);
 	void executeRectangle(const gOpcode* op);
+	void drawRoundedSolidRect(const gRegion& clip, const eRect& area, int radius, int edges, const gRGB& color);
 	void executeLine(const gOpcode* op);
 	void executeBlit(const gOpcode* op);
 	void executeDrawGlyph(const gOpcode* op);
