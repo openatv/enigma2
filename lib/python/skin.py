@@ -24,7 +24,7 @@ USER_SKIN_TEMPLATE = "skin_user_%s.xml"
 SUBTITLE_SKIN = "skin_subtitles.xml"
 
 GUI_SKIN_ID = 0  # Main frame-buffer.
-DISPLAY_SKIN_ID = 2 if BoxInfo.getItem("model").startswith("dm") else 1  # Front panel / display / LCD.
+DISPLAY_SKIN_ID = 2 if BoxInfo.getItem("machinebuild").startswith("dm") else 1  # Front panel / display / LCD.
 
 # MANDATORY_WIDGETS AUTOGENERATION
 # START

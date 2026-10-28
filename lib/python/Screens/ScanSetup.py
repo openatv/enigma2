@@ -325,7 +325,7 @@ class CableTransponderSearchSupport:
 		except Exception:
 			# older API
 			if nim_idx < 2:
-				if BoxInfo.getItem("model") == "dm500hd":
+				if BoxInfo.getItem("machinebuild") == "dm500hd":
 					bus = 2
 				else:
 					bus = nim_idx

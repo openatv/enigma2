@@ -25,11 +25,7 @@ else
 SUBDIRS += VideoEnhancement
 endif
 
-if DM900
-SUBDIRS += FSBLUpdater
-endif
-
-if DM920
+if DM7252S
 SUBDIRS += FSBLUpdater
 endif
 
