@@ -632,6 +632,19 @@ static unsigned long long e2eglNowUs() {
 	return (unsigned long long)ts.tv_sec * 1000000ULL + (unsigned long long)ts.tv_nsec / 1000ULL;
 }
 
+// Animation progress follows the elapsed time, so the duration does not depend on the output frame rate.
+static float animationProgress(unsigned long long start_us, int duration_ms) {
+	return duration_ms > 0 ? clampFloat((float)(e2eglNowUs() - start_us) / ((float)duration_ms * 1000.0f), 0.0f, 1.0f) : 1.0f;
+}
+
+// Keeps animation frames at least 16 ms apart where presenting does not wait for the display.
+static void waitForNextAnimationFrame(unsigned long long frame_start_us) {
+	const unsigned long long next_us = frame_start_us + 16000ULL;
+	const unsigned long long now_us = e2eglNowUs();
+	if (next_us > now_us)
+		usleep((useconds_t)(next_us - now_us));
+}
+
 class e2eglScopedTimer {
 public:
 	e2eglScopedTimer(unsigned long long& target) : m_target(target), m_start_us(e2eglNowUs()) {}
@@ -3228,16 +3241,15 @@ bool gEGLDC::runPendingWindowAnimation() {
 	const bool show = m_pending_window_animation.show;
 	const eRect full_frame(0, 0, m_width, m_height);
 	const int duration_ms = windowAnimationDurationMs(source, m_width, m_height);
-	const int frames = clampInt(duration_ms / 16, 4, 30);
 	const bool damage_only = !use_scene_frames && m_preserved_swap && e2eglAnimationDamageEnabled();
 	eRect previous_damage = source;
 	if (e2eglTraceGlEnabled())
-		eDebug("[e2egl:animation] start type=%d show=%d rect=%d,%d %dx%d duration_ms=%d frames=%d scene=%d source_sync_us=%llu",
-			animation, show ? 1 : 0, source.x(), source.y(), source.width(), source.height(), duration_ms, frames, use_scene_frames ? 1 : 0, source_sync_us);
+		eDebug("[e2egl:animation] start type=%d show=%d rect=%d,%d %dx%d duration_ms=%d scene=%d source_sync_us=%llu",
+			animation, show ? 1 : 0, source.x(), source.y(), source.width(), source.height(), duration_ms, use_scene_frames ? 1 : 0, source_sync_us);
 
-	for (int frame = 0; frame < frames; ++frame) {
+	int frames = 0;
+	for (float t = 0.0f;; t = animationProgress(animation_start_us, duration_ms)) {
 		const unsigned long long animation_draw_start_us = e2eglNowUs();
-		const float t = frames <= 1 ? 1.0f : (float)frame / (float)(frames - 1);
 		const float progress = easeOut(t);
 		const float visible_progress = show ? progress : (1.0f - progress);
 
@@ -3278,8 +3290,10 @@ bool gEGLDC::runPendingWindowAnimation() {
 		} else {
 			flip();
 		}
-		if (frame + 1 < frames)
-			usleep(1000 * std::max(1, duration_ms / frames));
+		++frames;
+		if (t >= 1.0f)
+			break;
+		waitForNextAnimationFrame(animation_draw_start_us);
 	}
 
 	const unsigned long long animation_final_draw_start_us = e2eglNowUs();
@@ -3288,7 +3302,7 @@ bool gEGLDC::runPendingWindowAnimation() {
 		m_frame_stats.draw_us += e2eglNowUs() - animation_final_draw_start_us;
 		flip();
 		if (e2eglTraceGlEnabled())
-			eDebug("[e2egl:animation] end type=%d show=%d elapsed_us=%llu", animation, show ? 1 : 0, e2eglNowUs() - animation_start_us);
+			eDebug("[e2egl:animation] end type=%d show=%d frames=%d elapsed_us=%llu", animation, show ? 1 : 0, frames, e2eglNowUs() - animation_start_us);
 		return true;
 	}
 
@@ -3314,7 +3328,7 @@ bool gEGLDC::runPendingWindowAnimation() {
 	m_frame_stats.draw_us += e2eglNowUs() - animation_final_draw_start_us;
 	flip();
 	if (e2eglTraceGlEnabled())
-		eDebug("[e2egl:animation] end type=%d show=%d elapsed_us=%llu", animation, show ? 1 : 0, e2eglNowUs() - animation_start_us);
+		eDebug("[e2egl:animation] end type=%d show=%d frames=%d elapsed_us=%llu", animation, show ? 1 : 0, frames, e2eglNowUs() - animation_start_us);
 	return true;
 }
 
@@ -3439,14 +3453,13 @@ bool gEGLDC::runPendingListboxAnimation() {
 	const unsigned long long animation_start_us = e2eglNowUs();
 	const eRect full_frame(0, 0, m_width, m_height);
 	const int duration_ms = clampInt(s_egl_animation_speed * 7, 90, 210);
-	const int frames = clampInt((duration_ms + 15) / 16 + 1, 7, 15);
 	if (e2eglTraceGlEnabled())
-		eDebug("[e2egl:listbox] start from=%d,%d %dx%d to=%d,%d duration_ms=%d frames=%d scene=%d",
-			from.x(), from.y(), from.width(), from.height(), to.x(), to.y(), duration_ms, frames, use_scene_frames ? 1 : 0);
+		eDebug("[e2egl:listbox] start from=%d,%d %dx%d to=%d,%d duration_ms=%d scene=%d",
+			from.x(), from.y(), from.width(), from.height(), to.x(), to.y(), duration_ms, use_scene_frames ? 1 : 0);
 
-	for (int frame = 0; frame < frames; ++frame) {
+	int frames = 0;
+	for (float t = 0.0f;; t = animationProgress(animation_start_us, duration_ms)) {
 		const unsigned long long draw_start_us = e2eglNowUs();
-		const float t = frames <= 1 ? 1.0f : (float)frame / (float)(frames - 1);
 		const float progress = easeInOut(t);
 		const int x = from.x() + (int)((to.x() - from.x()) * progress);
 		const int y = from.y() + (int)((to.y() - from.y()) * progress);
@@ -3481,13 +3494,10 @@ bool gEGLDC::runPendingListboxAnimation() {
 				logAndResetFrameStats();
 		} else
 			flip();
-		if (frame + 1 < frames) {
-			const unsigned long long target_us = animation_start_us +
-				(unsigned long long)(frame + 1) * (unsigned long long)duration_ms * 1000ULL / (unsigned long long)(frames - 1);
-			const unsigned long long now_us = e2eglNowUs();
-			if (target_us > now_us)
-				usleep((useconds_t)(target_us - now_us));
-		}
+		++frames;
+		if (t >= 1.0f)
+			break;
+		waitForNextAnimationFrame(draw_start_us);
 	}
 
 	const unsigned long long final_draw_start_us = e2eglNowUs();
@@ -3508,7 +3518,7 @@ bool gEGLDC::runPendingListboxAnimation() {
 	}
 
 	if (e2eglTraceGlEnabled())
-		eDebug("[e2egl:listbox] end elapsed_us=%llu", e2eglNowUs() - animation_start_us);
+		eDebug("[e2egl:listbox] end frames=%d elapsed_us=%llu", frames, e2eglNowUs() - animation_start_us);
 	return true;
 }
 
