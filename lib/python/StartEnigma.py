@@ -79,18 +79,40 @@ class Session:
 		callback = self.current_dialog.callback
 		retVal = self.current_dialog.returnValue
 		if self.current_dialog.isTmp:
-			self.current_dialog.doClose()
+			if self.pendingCallbacks:
+				# Earlier callbacks can still use this screen, including through a closure.
+				# Keep its cleanup before its own callback, but after those earlier callbacks.
+				self.pendingCallbacks.append((None, (), self.current_dialog))
+			else:
+				self.current_dialog.doClose()
 			# dump(self.current_dialog)
 			del self.current_dialog
 		else:
 			del self.current_dialog.callback
-		self.popCurrent()
-		if callback is not None:
-			self.pendingCallbacks.append((callback, retVal))
-		# A dialog that closed itself on exec begin leaves the session out of exec until its own processDelay.
-		while self.pendingCallbacks and (self.in_exec or self.current_dialog is None):
-			callback, retVal = self.pendingCallbacks.pop(0)
-			callback(*retVal)
+		try:
+			self.popCurrent()
+			if callback is not None:
+				self.pendingCallbacks.append((callback, retVal, None))
+			# Cleanup needs no modal context. Callbacks must wait until the resumed screen stays in exec.
+			while self.pendingCallbacks:
+				callback, retVal, dialog = self.pendingCallbacks[0]
+				if dialog is None and not (self.in_exec or self.current_dialog is None):
+					break
+				self.pendingCallbacks.pop(0)
+				if dialog is not None:
+					dialog.doClose()
+				else:
+					callback(*retVal)
+		except Exception:
+			# Do not leave closed screens alive when a callback or execBegin fails.
+			pendingCallbacks, self.pendingCallbacks = self.pendingCallbacks, []
+			for callback, retVal, dialog in pendingCallbacks:
+				if dialog is not None:
+					try:
+						dialog.doClose()
+					except Exception as error:
+						print(f"[StartEnigma] Error: Deferred dialog cleanup failed: {error}")
+			raise
 
 	def execBegin(self, first=True, do_show=True):
 		if self.in_exec:
