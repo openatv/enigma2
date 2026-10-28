@@ -318,14 +318,22 @@ GLuint gTextureManager::createTextureFromSurface(gUnmanagedSurface* surface) {
 			err = glGetError();
 		}
 		if (err == GL_OUT_OF_MEMORY && !m_content_texture_cache.empty()) {
+			// Release the least recently used cached textures for the size of this upload first, the whole cache only if that is not enough.
 			const size_t cached_entries = m_content_texture_cache.size();
 			const unsigned long long cached_bytes = m_content_texture_bytes;
-			clearContentTextureCache();
+			const unsigned long long needed_bytes = (unsigned long long)width * height * 4;
+			trimContentTextureCache(cached_entries, cached_bytes > needed_bytes ? cached_bytes - needed_bytes : 0);
 			processDeletions();
-			eDebug("[gTextureManager] texture memory pressure: released %zu cached texture(s), %llu KiB; retrying %dx%d upload",
-				cached_entries, cached_bytes / 1024ULL, width, height);
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, upload_format, GL_UNSIGNED_BYTE, upload_data);
 			err = glGetError();
+			if (err == GL_OUT_OF_MEMORY && !m_content_texture_cache.empty()) {
+				clearContentTextureCache();
+				processDeletions();
+				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, upload_format, GL_UNSIGNED_BYTE, upload_data);
+				err = glGetError();
+			}
+			eDebug("[gTextureManager] texture memory pressure: released %zu of %zu cached texture(s), %llu KiB, for a %dx%d upload",
+				cached_entries - m_content_texture_cache.size(), cached_entries, (cached_bytes - m_content_texture_bytes) / 1024ULL, width, height);
 		}
 		if (err != GL_NO_ERROR) {
 			eDebug("[gTextureManager] glTexImage2D 32-bit upload failed: 0x%x for %dx%d stride=%d", err, width, height, surface->stride);
@@ -509,8 +517,12 @@ GLuint gTextureManager::storeContentTexture(uint64_t key, GLuint texture_id, uns
 
 void gTextureManager::trimContentTextureCache()
 {
-	const size_t max_entries = contentTextureCacheMaxEntries();
-	const unsigned long long max_bytes = contentTextureCacheMaxBytes();
+	trimContentTextureCache(contentTextureCacheMaxEntries(), contentTextureCacheMaxBytes());
+}
+
+// Drops the least recently used cached textures until both limits are met.
+void gTextureManager::trimContentTextureCache(size_t max_entries, unsigned long long max_bytes)
+{
 	while (m_content_texture_cache.size() > max_entries || m_content_texture_bytes > max_bytes) {
 		auto oldest = m_content_texture_cache.end();
 		for (auto it = m_content_texture_cache.begin(); it != m_content_texture_cache.end(); ++it) {
