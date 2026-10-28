@@ -66,6 +66,7 @@ private:
 	GLuint findContentTexture(uint64_t key);
 	GLuint storeContentTexture(uint64_t key, GLuint texture_id, unsigned long long bytes);
 	void trimContentTextureCache();
+	void trimContentTextureCache(size_t max_entries, unsigned long long max_bytes);
 	bool ensureOffscreenAdvancedShader();
 	bool ensureOffscreenTextureShader();
 
