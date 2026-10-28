@@ -53,6 +53,7 @@ class Session:
 		self.delay_timer = enigma.eTimer()
 		self.delay_timer.callback.append(self.processDelay)
 		self.pendingCallbacks = []
+		self.pendingDialogCloses = []
 		self.current_dialog = None
 		self.dialog_stack = []
 		self.summary_stack = []
@@ -79,7 +80,10 @@ class Session:
 		callback = self.current_dialog.callback
 		retVal = self.current_dialog.returnValue
 		if self.current_dialog.isTmp:
-			self.current_dialog.doClose()
+			if self.pendingCallbacks:  # A queued callback may still belong to this dialog.
+				self.pendingDialogCloses.append(self.current_dialog)
+			else:
+				self.current_dialog.doClose()
 			# dump(self.current_dialog)
 			del self.current_dialog
 		else:
@@ -87,10 +91,15 @@ class Session:
 		self.popCurrent()
 		if callback is not None:
 			self.pendingCallbacks.append((callback, retVal))
-		# A dialog that closed itself on exec begin leaves the session out of exec until its own processDelay.
-		while self.pendingCallbacks and (self.in_exec or self.current_dialog is None):
-			callback, retVal = self.pendingCallbacks.pop(0)
-			callback(*retVal)
+		try:
+			# A dialog that closed itself on exec begin leaves the session out of exec until its own processDelay.
+			while self.pendingCallbacks and (self.in_exec or self.current_dialog is None):
+				callback, retVal = self.pendingCallbacks.pop(0)
+				callback(*retVal)
+		finally:
+			if not self.pendingCallbacks:
+				while self.pendingDialogCloses:
+					self.pendingDialogCloses.pop(0).doClose()
 
 	def execBegin(self, first=True, do_show=True):
 		if self.in_exec:
