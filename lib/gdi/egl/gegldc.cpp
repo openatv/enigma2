@@ -122,9 +122,10 @@ static bool e2eglWriteIntProc(const char* filename, int value)
 	return ok;
 }
 
-static void e2eglSyncNxplFramebufferDestination(int left, int top, int width, int height)
+// The driver expects the fb destination in a 720x576 space, independent of the OSD resolution.
+static void e2eglSyncNxplFramebufferDestination(int left, int top, int width, int height, int logicalWidth, int logicalHeight)
 {
-	if (width < 1 || height < 1)
+	if (width < 1 || height < 1 || logicalWidth < 1 || logicalHeight < 1)
 		return;
 
 	static const char* dst_left = "/proc/stb/fb/dst_left";
@@ -135,15 +136,19 @@ static void e2eglSyncNxplFramebufferDestination(int left, int top, int width, in
 	if (access(dst_left, W_OK) || access(dst_top, W_OK) || access(dst_width, W_OK) || access(dst_height, W_OK))
 		return;
 
-	const bool ok = e2eglWriteHexProc(dst_left, left) &&
-	                e2eglWriteHexProc(dst_top, top) &&
-	                e2eglWriteHexProc(dst_width, width) &&
-	                e2eglWriteHexProc(dst_height, height);
+	const int dstLeft = left * 720 / logicalWidth;
+	const int dstTop = top * 576 / logicalHeight;
+	const int dstWidth = width * 720 / logicalWidth;
+	const int dstHeight = height * 576 / logicalHeight;
+	const bool ok = e2eglWriteHexProc(dst_left, dstLeft) &&
+	                e2eglWriteHexProc(dst_top, dstTop) &&
+	                e2eglWriteHexProc(dst_width, dstWidth) &&
+	                e2eglWriteHexProc(dst_height, dstHeight);
 	if (ok && !access(dst_apply, W_OK))
 		e2eglWriteIntProc(dst_apply, 1);
 
-	eDebug("[gEGLDC] NXPL framebuffer OSD destination %s logical=%d,%d %dx%d",
-		ok ? "synced" : "sync failed", left, top, width, height);
+	eDebug("[gEGLDC] NXPL framebuffer OSD destination %s logical=%d,%d %dx%d of %dx%d dst=%d,%d %dx%d",
+		ok ? "synced" : "sync failed", left, top, width, height, logicalWidth, logicalHeight, dstLeft, dstTop, dstWidth, dstHeight);
 }
 #endif
 
@@ -4406,7 +4411,7 @@ bool gEGLDC::setOSDPosition(int left, int top, int width, int height)
 	m_osd_width = width;
 	m_osd_height = height;
 #if defined(HAVE_NXPL_EGL) && defined(E2EGL_NXPL_SYNC_FB_DST)
-	e2eglSyncNxplFramebufferDestination(m_osd_left, m_osd_top, m_osd_width, m_osd_height);
+	e2eglSyncNxplFramebufferDestination(m_osd_left, m_osd_top, m_osd_width, m_osd_height, m_width, m_height);
 #endif
 
 	if (egl_current) {
@@ -4538,7 +4543,7 @@ gEGLDC::gEGLDC(INativeWindowProvider* window_provider, int width, int height) : 
 	m_osd_width = width;
 	m_osd_height = height;
 #if defined(HAVE_NXPL_EGL) && defined(E2EGL_NXPL_SYNC_FB_DST)
-	e2eglSyncNxplFramebufferDestination(m_osd_left, m_osd_top, m_osd_width, m_osd_height);
+	e2eglSyncNxplFramebufferDestination(m_osd_left, m_osd_top, m_osd_width, m_osd_height, m_width, m_height);
 #endif
 	m_egl_major = 0;
 	m_egl_minor = 0;
@@ -4779,7 +4784,7 @@ void gEGLDC::setResolution(int xres, int yres, int bpp) {
 		m_osd_height = yres;
 	}
 #if defined(HAVE_NXPL_EGL) && defined(E2EGL_NXPL_SYNC_FB_DST)
-	e2eglSyncNxplFramebufferDestination(m_osd_left, m_osd_top, m_osd_width, m_osd_height);
+	e2eglSyncNxplFramebufferDestination(m_osd_left, m_osd_top, m_osd_width, m_osd_height, m_width, m_height);
 #endif
 	m_pixmap = new gPixmap(eSize(xres, yres), bpp, gPixmap::accelNever);
 	invalidateSpinnerBackground();
@@ -4955,7 +4960,7 @@ void gEGLDC::refresh() {
 		eDebug("[gEGLDC] NXPL framebuffer mode refreshed to %dx%dx%d logical=%dx%d", fb_xres, fb_yres, fb_bpp, m_width, m_height);
 	}
 #if defined(HAVE_NXPL_EGL) && defined(E2EGL_NXPL_SYNC_FB_DST)
-	e2eglSyncNxplFramebufferDestination(m_osd_left, m_osd_top, m_osd_width, m_osd_height);
+	e2eglSyncNxplFramebufferDestination(m_osd_left, m_osd_top, m_osd_width, m_osd_height, m_width, m_height);
 #endif
 #elif defined(HAVE_V3DPLATFORM_EGL)
 	eDebug("[gEGLDC] V3D OSD refresh recreates EGL window surface at %dx%d logical=%dx%d",
