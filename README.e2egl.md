@@ -420,7 +420,8 @@ coordinates) if the DC does not handle it. `gEGLDC` stores the rect in logical
 coordinates, presents the scene into that destination viewport (scaled) and
 reports `getOSDAxis()` as `0 0 <logical width> <logical height>`. With
 `E2EGL_NXPL_SYNC_FB_DST` (gb7252, vuduo4klite) the rect is also written to
-`/proc/stb/fb/dst_*` and applied.
+`/proc/stb/fb/dst_*`, scaled to the 720x576 space the driver expects, and
+applied.
 
 ## OSD capture
 
