@@ -45,7 +45,8 @@ consolidated machines (`dms922x`, `dm7252s`, `dm7435`, `vu7376`, `vu7376duo`,
 
 With `--with-egl`, configure fails if EGL/GLESv2 or the platform library
 required for the box (`nxpl`, `libvupl`, `v3dplatform`) is missing. `gb7252`
-additionally defines `E2EGL_NXPL_SYNC_FB_DST` (see "OSD position").
+and `vuduo4klite` additionally define `E2EGL_NXPL_SYNC_FB_DST` (see "OSD
+position").
 
 `HAVE_GLES3` is defined only if `GLES3/gl3.h` exists **and** a test program
 calling `glGenVertexArrays`/`glBindVertexArray` links, because some SDKs ship
@@ -418,7 +419,7 @@ first calls `gMainDC::setOSDPosition()` and only falls back to
 coordinates) if the DC does not handle it. `gEGLDC` stores the rect in logical
 coordinates, presents the scene into that destination viewport (scaled) and
 reports `getOSDAxis()` as `0 0 <logical width> <logical height>`. With
-`E2EGL_NXPL_SYNC_FB_DST` (gb7252) the rect is also written to
+`E2EGL_NXPL_SYNC_FB_DST` (gb7252, vuduo4klite) the rect is also written to
 `/proc/stb/fb/dst_*` and applied.
 
 ## OSD capture

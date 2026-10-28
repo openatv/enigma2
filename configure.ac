@@ -233,7 +233,7 @@ AS_IF([test "$MACHINEBUILD" == "gbquad4kpro"],[AC_DEFINE(HWGBQUAD4KPRO, 1,[gbqua
 AS_IF([test "$MACHINEBUILD" == "gbtrio4k"],[AC_DEFINE(HWGBTRIO4K, 1,[gbtrio4k])])
 AS_IF([test "$MACHINEBUILD" == "gbtrio4kpro"],[AC_DEFINE(HWGBTRIO4KPRO, 1,[gbtrio4kpro])])
 AS_IF([test "$MACHINEBUILD" == "gbue4k"],[AC_DEFINE(HWGBUE4K, 1,[gbue4k])])
-AS_IF([test "$BOXTYPE" == "gb7252"],[AC_DEFINE(E2EGL_NXPL_SYNC_FB_DST, 1,[GB7252 NXPL MiniTV framebuffer destination workaround])])
+AS_IF([test "$BOXTYPE" == "gb7252" -o "$BOXTYPE" == "vuduo4klite"],[AC_DEFINE(E2EGL_NXPL_SYNC_FB_DST, 1,[BCM7252S NXPL MiniTV framebuffer destination workaround])])
 AS_IF([test "$BOXTYPE" == "h7"],[AC_DEFINE(HWH7, 1,[h7])])
 AS_IF([test "$BOXTYPE" == "h9"],[AC_DEFINE(HWH9, 1,[h9])])
 AS_IF([test "$BOXTYPE" == "h9combo"],[AC_DEFINE(HWH9COMBO, 1,[h9combo])])
