@@ -32,6 +32,19 @@ RadioText/RtpText support explicit fontScale or scrollText attributes.
 The optional technical status line and front-panel display mode remain
 controlled by DAB settings. Disable the automatic technical line if your
 skin provides its own ServiceInfo/DABTechnical widget.
+
+Additional ServiceInfo converters for session.CurrentService:
+  DABCodec       - transmitted AAC-LC, HE-AAC, HE-AAC v2 or MPEG Layer II
+  DABSampleRate  - audio rate after SBR, e.g. "48 kHz" (value: Hz, -1 unknown)
+  DABChannelMode - translated Mono/Stereo/Joint stereo/Dual channel/Surround
+  DABStereo      - boolean for a stereo icon; text is the same channel mode
+Rate and mode stay empty until detected. PS reconstructs stereo from a mono
+AAC core; forcing PCM output does not change the displayed source format.
+DABStereo is false for mono, dual channel, surround and unknown formats.
+Use render="Label" for text, or ConditionalShowHide with DABStereo for icons.
+These fields use existing service events; they do not poll the tuner.
+SDR requires the welle-cli source-format reporting patch (r9).
+
 Broadcast RASS, DVB radio and audio decoding are not changed by this skin.
 -->
 <skin>

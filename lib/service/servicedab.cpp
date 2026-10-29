@@ -527,6 +527,7 @@ void eDABWorker::updateDecoderStats()
 	m_stats.bitrate = m_decoder->bitrate();
 	m_stats.serviceFound = m_decoder->serviceFound();
 	m_stats.dabplus = m_decoder->isDABPlus();
+	m_stats.audioFormat = m_decoder->audioFormat();
 	m_stats.programmeType = m_decoder->programmeType();
 	m_stats.programmeTypeTable = m_decoder->programmeTypeTable();
 	const int language = m_decoder->language();
@@ -1016,6 +1017,8 @@ private:
 				m_audio_callback(m_audio.data() + offset, frame.length, frame.durationNs, frame.dabplus);
 				offset += frame.length;
 				m_stats.dabplus = frame.dabplus;
+				if (!frame.dabplus)
+					m_stats.audioFormat = frame.format;
 				++m_stats.audioFrames;
 				m_stats.serviceFound = true;
 				m_publish_pending = true;
@@ -1244,6 +1247,24 @@ private:
 			{
 				snprintf(destination, destinationSize, "%s", dlPlusValue.c_str());
 				++m_stats.dlPlusRevision;
+				m_publish_pending = true;
+			}
+			return;
+		}
+		const std::string audioCodec = jsonValue(line, "audioCodec");
+		if (!audioCodec.empty())
+		{
+			// Metadata belongs to the selected programme, never the PCM sink.
+			if (jsonValue(line, "audioServiceId") != std::to_string(m_service_id))
+				return;
+			const std::string rate = jsonValue(line, "audioSampleRate");
+			const unsigned sampleRate = !rate.empty() && rate.size() <= 6 &&
+				rate.find_first_not_of("0123456789") == std::string::npos ? strtoul(rate.c_str(), nullptr, 10) : 0;
+			eDABAudioFormat format;
+			format.setMetadata(audioCodec, sampleRate, jsonValue(line, "audioChannelMode"));
+			if (m_stats.audioFormat != format)
+			{
+				m_stats.audioFormat = format;
 				m_publish_pending = true;
 			}
 			return;
@@ -2700,6 +2721,7 @@ void eServiceDAB::workerMessage(const eDABWorkerStats &stats)
 	const bool epgChanged = m_stats.spiRevision != stats.spiRevision;
 	const bool logoChanged = m_stats.logoRevision != stats.logoRevision;
 	const bool radioMetaChanged = m_stats.serviceFound != stats.serviceFound ||
+		m_stats.audioFormat != stats.audioFormat ||
 		m_stats.dabplus != stats.dabplus || m_stats.bitrate != stats.bitrate ||
 		strcmp(m_stats.serviceLabel, stats.serviceLabel) != 0 ||
 		strcmp(m_stats.ensembleLabel, stats.ensembleLabel) != 0 ||
@@ -3693,6 +3715,8 @@ int eServiceDAB::getInfo(int w)
 		return m_stats.programmeType;
 	case sDABPTYTable:
 		return m_stats.programmeTypeTable;
+	case sDABSampleRate:
+		return m_stats.audioFormat.sampleRate ? static_cast<int>(m_stats.audioFormat.sampleRate) : resNA;
 	case sTransferBPS:
 		return static_cast<int>(std::min<uint64_t>(m_transfer_bps, std::numeric_limits<int>::max()));
 	case sProvider:
@@ -3702,6 +3726,7 @@ int eServiceDAB::getInfo(int w)
 	case sTagArtist:
 	case sTagComment:
 	case sTagCodec:
+	case sTagChannelMode:
 	case sTagBitrate:
 	case sTagGenre:
 	case sTagLanguageCode:
@@ -3742,7 +3767,11 @@ std::string eServiceDAB::getInfoString(int w)
 	case sTagArtist:
 		return m_stats.dlPlusItemArtist;
 	case sTagCodec:
-		return m_stats.serviceFound ? (m_stats.dabplus ? "DAB+ HE-AAC" : "DAB MPEG Audio Layer II") : "DAB (probing)";
+		if (m_stats.audioFormat.codec != eDABAudioFormat::Unknown)
+			return m_stats.audioFormat.codecName();
+		return m_stats.serviceFound ? (m_stats.dabplus ? "DAB+ AAC" : "DAB MPEG Audio Layer II") : "DAB (probing)";
+	case sTagChannelMode:
+		return m_stats.audioFormat.modeName();
 	case sTagBitrate:
 		snprintf(text, sizeof(text), "%d kbit/s", m_stats.bitrate);
 		return text;
