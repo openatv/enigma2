@@ -48,6 +48,7 @@ private:
 	sigc::signal<void(struct iTSMPEGDecoder::videoEvent)> m_event;
 	int m_width, m_height, m_framerate, m_aspect, m_progressive, m_gamma, m_streamtype;
 	static int readApiSize(int fd, int &xres, int &yres, int &aspect);
+	void clearLastFrame();
 
 	// HEVC HDR fallback for drivers which do not expose a usable sGamma.
 	eHEVCHDRDetector *m_hdr_detector;
