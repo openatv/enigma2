@@ -209,8 +209,8 @@ class MultiBootManager(Screen, ProtectedScreen):
 						if slotData.get(boot) is None:
 							slotData[boot] = []
 						active = activeMsg if boot == bootCode and slot == slotCode else ""
-						device = slotInfo.get("device") or _("Unknown")
-						slotType = "eMMC" if "mmcblk" in device else "MTD" if "mtd" in device else "UBI" if "ubi" in device else "USB"
+						device = slotInfo.get("device") or ""
+						slotType = "eMMC" if "mmcblk" in device else "MTD" if "mtd" in device else "UBI" if "ubi" in device else "USB" if device.startswith("/dev/") else ""
 						slotData[boot].append(ChoiceEntryComponent("none" if boot else "", (slotMsg % (slot, slotType, slotInfo.get("imagename") or _("Unknown"), active), (slot, boot, status, slotInfo.get("ubi", False), active != ""))))
 				for bootCode in sorted(slotData.keys()):
 					if bootCode == "":
