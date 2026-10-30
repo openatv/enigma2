@@ -1169,7 +1169,7 @@ class InformationPicture(Screen):
 	def layoutFinished(self):
 		self["name"].setText(f"{DISPLAY_BRAND} {DISPLAY_MODEL}  -  {_("%s View") % self.pictures[self.pictureIndex][0]}")
 		if self.pictureMax > 1:
-			self["key_yellow"].setText(self.pictures[(self.pictureIndex - 1) % self.pictureMax][0])
+			self["key_yellow"].setText(self.pictures[(self.pictureIndex - 1) % self.pictureMax][0] if self.pictureMax > 2 else "")
 			self["key_blue"].setText(self.pictures[(self.pictureIndex + 1) % self.pictureMax][0])
 			self["pictureActions"].setEnabled(True)
 		else:
