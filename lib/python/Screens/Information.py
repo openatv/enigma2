@@ -15,6 +15,7 @@ from Components.About import about
 from Components.ActionMap import HelpableActionMap
 from Components.config import config
 from Components.Console import Console
+from Components.DateTimes import dateTimes
 from Components.Harddisk import harddiskmanager
 from Components.InputDevice import remoteControl
 from Components.Label import Label
@@ -332,7 +333,8 @@ class InformationCommit(InformationBase):
 					log = loads(fd.read())
 				info = []
 				for data in log:
-					date = datetime.strptime(data["commit"]["committer"]["date"], "%Y-%m-%dT%H:%M:%SZ").strftime(f"{config.usage.date.daylong.value} {config.usage.time.long.value}")
+					commitTime = datetime.strptime(data["commit"]["committer"]["date"], "%Y-%m-%dT%H:%M:%SZ").timetuple()
+					date = f"{dateTimes.getDateShortDayShortMonth(commitTime)} {dateTimes.getTime(commitTime)}"
 					author = data["commit"]["author"]["name"]
 					# committer = data["commit"]["committer"]["name"]
 					message = [x.rstrip() for x in data["commit"]["message"].split("\n")]

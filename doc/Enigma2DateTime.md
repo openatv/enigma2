@@ -24,7 +24,7 @@ Care should be taken before enabling the time options in a skin, particularly th
 | Converter | `Components/Converter/ClockToText.py` | Gives skins access to the formats. |
 | Skin switch | `skin.py` | `onReload` list. `dateTimes.updateDatesAndTimes()` is registered there so the formats follow a skin change without a restart. |
 
-`dateTimes.updateDatesAndTimes()` rebuilds every format. It runs at start up, after a skin reload, on every change in the settings screen and when the settings screen is saved or closed.
+`dateTimes.updateDatesAndTimes()` rebuilds every format. It runs at start up, after a skin reload, on a locale change and whenever a format option changes. The option notifiers remain active outside the settings screen, including for OpenWebif changes. The screen adds its own preview notifiers and removes only those when it closes.
 
 ## Skin parameter
 
@@ -60,11 +60,11 @@ When a part is disabled the formats are fixed and depend only on the language. T
 | `en_AU`, `en_GB` | `%d/%m/%Y` | `%d/%m` | `%H:%M:%S` | `%H:%M` |
 | all others | `%m/%d/%Y` | `%m/%d` | `%H:%M:%S` | `%H:%M` |
 
-In this mode there are no day or month names. The options that carry a day name or a month name in the enabled mode (for example `Date`, `LongDate`, `Full`) give the same numeric date. `DateShortDayNoMonthNoYear` gives `%a %d`. The date and the time are separated by two spaces in `DateTime`.
+In this mode there are no day or month names. The date options use the numeric date variants above. `Full` still includes the date without year and the time. `DateShortDayNoMonthNoYear` gives `%a %d`. The date and the time are separated by two spaces in the combined formats. Locale-dependent fallback formats are refreshed when the language changes.
 
 ## User settings
 
-The settings are in "Date and Time Settings" (below the time zone and time synchronisation items). The screen shows a preview of the date and time in the footnote while one of the date or time items is selected.
+The settings are in "Date and Time Settings" (below the time zone and time synchronisation items). The screen shows a preview of the date and time in the footnote while one of the date or time items is selected. Save and Cancel also process options that became hidden, such as the day separator after selecting no day name or the meridiem after selecting a 24 hour clock.
 
 Date items (shown when the skin enables dates):
 
@@ -78,7 +78,7 @@ Date items (shown when the skin enables dates):
 | First separator | `config.usage.date.firstSeparator` | Between the first two date elements |
 | Second separator | `config.usage.date.secondSeparator` | Between the second two date elements |
 | Suffix character | `config.usage.date.suffix` | None, period or comma appended to the date |
-| Time separator | `config.usage.date.timeSeparator` | Between date and time in `DateTime`: one space, two spaces or space hyphen space |
+| Time separator | `config.usage.date.timeSeparator` | Between date and time in the combined formats: one space, two spaces or space hyphen space |
 
 Time items (shown when the skin enables times):
 
@@ -108,6 +108,8 @@ The formats are built from two layout strings. The placeholders are replaced wit
 
 Date layouts: `%A+%d=%m#%Y`, `%A+%m=%d#%Y` and `%A+%Y=%m#%d`. Time layout: `%H=%M=%S%P`. The variants without day name or year are built from the same strings by removing the `%A+` and year parts.
 
+The date separator options store stable IDs (`space`, `hyphen`, `period`, `periodSpace`, `comma`, `commaSpace`, `colon`, `semicolon`, `slash`). The date/time separator stores `space`, `twoSpaces` or `spacedHyphen`. `DateTimes.SEPARATORS` maps these IDs to display text. This preserves spaces across a settings save/reload, since the settings parser strips whitespace from stored values. Old format preferences are not migrated.
+
 ### Defaults
 
 | Locale | Layout | Day sep. | Date | Month | First / second sep. |
@@ -132,7 +134,8 @@ The examples below are for the skin parameter `1,1`, the default settings of the
 |---|---|---|---|---|
 | (empty), `Default`, `Display`, `DisplayTime`, `TimeShort` | Hours and minutes with meridiem for 12 hour clocks | `16:28` | `16:28` | `16:28` |
 | `TimeShortNoMeridiem` | Hours and minutes, never a meridiem | `16:28` | `16:28` | `16:28` |
-| `Time`, `TimeLong`, `WithSeconds` | Hours, minutes, seconds (if enabled) and meridiem | `16:28` | `16:28` | `16:28` |
+| `Time`, `TimeLong` | Hours, minutes, seconds (if enabled) and meridiem | `16:28` | `16:28` | `16:28` |
+| `WithSeconds` | Hours, minutes, seconds and meridiem, regardless of the optional seconds setting | `16:28:42` | `16:28:42` | `16:28:42` |
 | `TimeNoMeridiem` | As `Time` without meridiem | `16:28` | `16:28` | `16:28` |
 | `Mixed`, `TimeMixed` | Time with seconds (if enabled) for 24 hour clocks, hours and minutes with meridiem for 12 hour clocks | `16:28` | `16:28` | `16:28` |
 | `Date` | Day name, date, month, year | `Wednesday, 28.10.2026` | `Wednesday, 28-October-2026` | `Wednesday 10/28/2026` |
@@ -143,10 +146,11 @@ The examples below are for the skin parameter `1,1`, the default settings of the
 | `DateNoYear`, `LongDate` | Day name, date, month, no year | `Wednesday, 28.10` | `Wednesday, 28-October` | `Wednesday 10/28` |
 | `DateShortDay`, `FullDate` | Abbreviated day name | `Wed, 28.10.2026` | `Wed, 28-October-2026` | `Wed 10/28/2026` |
 | `DateShortDayNoMonthNoYear` | Abbreviated day name and date only | `Wed, 28` | `Wed, 28` | `Wed 28` |
-| `DateShortDayShortMonth`, `Full`, `ShortFullDate` | Abbreviated day name and month | `Wed, 28.Oct.2026` | `Wed, 28-Oct-2026` | `Wed Oct/28/2026` |
+| `DateShortDayShortMonth`, `ShortFullDate` | Abbreviated day name and month | `Wed, 28.Oct.2026` | `Wed, 28-Oct-2026` | `Wed Oct/28/2026` |
+| `Full` | Abbreviated day and month, no year, followed by time without seconds | `Wed, 28.Oct  16:28` | `Wed, 28-Oct  16:28` | `Wed Oct/28  16:28` |
 | `DateShortDayShortMonthNoYear`, `DisplayDayDate`, `ShortDate` | Abbreviated day name and month, no year | `Wed, 28.Oct` | `Wed, 28-Oct` | `Wed Oct/28` |
 | `DateTime` | `Date`, the date and time separator, then `Time` | `Wednesday, 28.10.2026  16:28` | `Wednesday, 28-October-2026  16:28` | `Wednesday 10/28/2026  16:28` |
-| `LongFullDate` | Abbreviated day and month, year and the time without seconds | `Wed, 28.Oct.2026 16:28` | `Wed, 28-Oct-2026 16:28` | `Wed Oct/28/2026 16:28` |
+| `LongFullDate` | Abbreviated day and month, year and the time without seconds | `Wed, 28.Oct.2026  16:28` | `Wed, 28-Oct-2026  16:28` | `Wed Oct/28/2026  16:28` |
 
 When the "Display seconds" setting is "Yes" the options marked "(if enabled)" show `16:28:42`. With a 12 hour clock and the "am/pm" meridiem they show `4:28pm` (hour format `%-I`) or `04:28pm` (`%I`).
 
@@ -159,7 +163,7 @@ Front panel display options:
 | `VFD14` | Date and time, trimmed to 14 characters | `28.10 16:28` | `28-10 16:28` | `10/28 16:28` |
 | `VFD18` | Abbreviated day name, date and time, trimmed to 18 characters | `Wed, 28.10 16:28` | `Wed, 28-10 16:28` | `Wed 10/28 16:28` |
 
-The front panel options always show the month as a number, to save space. The date comes before the time. If the text is longer than the limit the end is cut. For `VFD12` the meridiem is dropped completely if it does not fit, so that a half meridiem is never shown. For `VFD14` and `VFD18` the end of the text is simply cut, so the meridiem can be lost.
+The front panel options always show the month as a number, to save space. The date comes before the time. If the text exceeds the character limit, the whole meridiem is dropped first. If necessary, spaces in the date are removed and then only the date is shortened. Hours and minutes remain complete; partial AM/PM suffixes are not shown.
 
 Other options (unchanged by the date and time infrastructure):
 
@@ -190,7 +194,7 @@ Examples:
 ```xml
 <convert type="ClockToText"></convert>                 <!-- "16:28", same as Default -->
 <convert type="ClockToText">Default</convert>          <!-- "16:28" -->
-<convert type="ClockToText">LongFullDate</convert>     <!-- "Wed, 28-Oct-2026 16:28" (en_GB) -->
+<convert type="ClockToText">LongFullDate</convert>     <!-- "Wed, 28-Oct-2026  16:28" (en_GB) -->
 <convert type="ClockToText">Default,Default</convert>  <!-- for a tuple: "16:30 - 17:30" -->
 <convert type="ClockToText">Separator: ~ ,Default</convert>  <!-- for a tuple: "16:30 ~ 17:30" -->
 ```
@@ -199,61 +203,31 @@ When designing or modifying skins, allow about 50% to 60% more width for each ti
 
 ## Config variables for Python code
 
-`config.usage.date` and `config.usage.time` contain the user settings (see above) and a set of ready made strftime formats. The formats are not saved. They are updated whenever the settings, the skin or the language change, so read them when you need them and do not cache the value.
+`config.usage.date` and `config.usage.time` contain the user settings (see above). Only five generated format values remain for existing plugins. They are `NoSave` values rebuilt from the new options; old saved format preferences are not migrated.
 
-Date formats (`config.usage.date.<name>`):
-
-| Name | Content | Default example (`en_GB`) |
+| Plugin format | Format on `dateTimes` | Content |
 |---|---|---|
-| `date` | Day name, date, month and year | `Wednesday, 28-October-2026` |
-| `noDay` | No day name | `28-October-2026` |
-| `noDayNoYear` | No day name, no year | `28-October` |
-| `noDayShortMonth` | No day name, abbreviated month | `28-Oct-2026` |
-| `noDayShortMonthNoYear` | No day name, abbreviated month, no year | `28-Oct` |
-| `noYear` | Day name, no year | `Wednesday, 28-October` |
-| `shortDay` | Abbreviated day name | `Wed, 28-October-2026` |
-| `shortDayNoMonthNoYear` | Abbreviated day name and date only | `Wed, 28` |
-| `shortDayShortMonth` | Abbreviated day name and month | `Wed, 28-Oct-2026` |
-| `shortDayShortMonthNoYear` | Abbreviated day name and month, no year | `Wed, 28-Oct` |
+| `config.usage.date.dayshort` | `dateShortDayShortMonthNoYear` | Abbreviated day and month, no year |
+| `config.usage.date.full` | `dateNoDay` | Date, month, year |
+| `config.usage.date.short` | `dateNoDayShortMonthNoYear` | Date, abbreviated month |
+| `config.usage.time.long` | `time` | Hours, minutes, optional seconds and meridiem |
+| `config.usage.time.short` | `timeShort` | Hours, minutes and meridiem |
 
-Time formats (`config.usage.time.<name>`):
+`config.usage.time.wide` remains a Boolean status flag for `ConfigClock` and plugin layouts that need more room for AM/PM. It is not a format string. Other status values are `config.usage.date.enabled`, `config.usage.time.enabled` and `config.usage.time.meridiemActive`.
 
-| Name | Content | Default example |
-|---|---|---|
-| `time` | Hours, minutes, seconds (if enabled) and meridiem | `16:28` |
-| `noMeridiem` | As `time` without meridiem | `16:28` |
-| `short` | Hours, minutes and meridiem | `16:28` |
-| `shortNoMeridiem` | Hours and minutes | `16:28` |
-| `mixed` | `short` for 12 hour clocks, `time` for 24 hour clocks | `16:28` |
-| `wide` | Boolean. True if a 12 hour style with am/pm or AM/PM is active and the time needs more space. | `False` |
+Generated formats are stored on `dateTimes` and updated whenever settings, skin or locale change. Internal code uses its formatting methods directly. Controls such as `ConfigDateTime`, which require an unformatted strftime string, use the corresponding `dateTimes` attribute.
 
-Status: `config.usage.date.enabled`, `config.usage.time.enabled` (set from the skin parameter) and `config.usage.time.meridiemActive` (the active meridiem format, empty for 24 hour clocks).
-
-### Legacy names
-
-The older names are kept so that existing code and plugins keep working. They are not saved, so they cannot be set by an old settings file.
-
-| Legacy name | Same as | Former content |
-|---|---|---|
-| `config.usage.date.dayfull` | `date` | Day name, date, month, year |
-| `config.usage.date.daylong` | `shortDayShortMonth` | Abbreviated day and month, year |
-| `config.usage.date.dayshort` | `shortDayShortMonthNoYear` | Abbreviated day and month, no year |
-| `config.usage.date.full` | `noDay` | Date, month, year |
-| `config.usage.date.long` | `noDayShortMonth` | Date, abbreviated month, year |
-| `config.usage.date.short` | `noDayShortMonthNoYear` | Date, abbreviated month |
-| `config.usage.time.long` | `time` | Time with seconds |
-| `config.usage.time.short`, `mixed`, `wide` | (as above) | |
-
-Names that were removed together with their settings:
+Removed config formats:
 
 | Removed | Use instead |
 |---|---|
-| `config.usage.date.shortdayfull` | `config.usage.date.shortDay` |
-| `config.usage.date.dayshortfull` | `config.usage.date.noYear` |
-| `config.usage.date.daysmall` | `config.usage.date.shortDayNoMonthNoYear` |
+| `config.usage.date.dayfull`, `daylong`, `long`, `dayshortfull`, `shortdayfull`, `daysmall`; `config.usage.time.mixed` | The corresponding `dateTimes.get...()` method. `ClockToText` already uses these methods. |
 | `config.usage.date.compact`, `compressed`, `displayday`, `display_template`, `display`; `config.usage.time.display`, `wide_display`, `disabled`; `enabled_display` (date and time) | The front panel is formatted by the `VFD...` options of `ClockToText` or by `dateTimes.getVfdDisplay..()`. |
+| Generated config copies such as `config.usage.date.noDay` or `config.usage.time.noMeridiem` | Use `dateTimes.getDateNoDay()` or `dateTimes.getTimeNoMeridiem()` directly. |
 
 A value that a user saved earlier for `config.usage.date.dayfull`, `config.usage.date.display` or `config.usage.time.display` is no longer used. The formats now follow the settings of "Date and Time Settings".
+
+The settings screen is `Screens.DateTime.DateTime`. The unused `Screens/Time.py` forwarding module has been removed. The screen still accepts the `Time`, `setup_Time` and `SetupTime` skin names for existing layouts; this does not migrate saved preferences.
 
 ## The `dateTimes` object
 
@@ -269,13 +243,14 @@ dateTimes.getTimeShort()                                         # The current t
 
 All methods take a `time.struct_time` (the default is the current time) and return a string.
 
-| Method | Same as |
+| Method | Format on `dateTimes` / purpose |
 |---|---|
-| `getDate()` | `config.usage.date.date` |
-| `getDateNoDay()`, `getDateNoDayNoYear()`, `getDateNoDayShortMonth()`, `getDateNoDayShortMonthNoYear()`, `getDateNoYear()` | `...noDay`, `...noDayNoYear`, `...noDayShortMonth`, `...noDayShortMonthNoYear`, `...noYear` |
-| `getDateShortDay()`, `getDateShortDayNoMonthNoYear()`, `getDateShortDayShortMonth()`, `getDateShortDayShortMonthNoYear()` | `...shortDay`, `...shortDayNoMonthNoYear`, `...shortDayShortMonth`, `...shortDayShortMonthNoYear` |
-| `getDateTime()`, `getDateTimeShortDayShortMonthNoSeconds()` | Date and time together |
-| `getTime()`, `getTimeMixed()`, `getTimeNoMeridiem()`, `getTimeShort()`, `getTimeShortNoMeridiem()` | `config.usage.time.time`, `mixed`, `noMeridiem`, `short`, `shortNoMeridiem` |
+| `getDate()` | `date` |
+| `getDateNoDay()`, `getDateNoDayNoYear()`, `getDateNoDayShortMonth()`, `getDateNoDayShortMonthNoYear()`, `getDateNoYear()` | `dateNoDay`, `dateNoDayNoYear`, `dateNoDayShortMonth`, `dateNoDayShortMonthNoYear`, `dateNoYear` |
+| `getDateShortDay()`, `getDateShortDayNoMonthNoYear()`, `getDateShortDayShortMonth()`, `getDateShortDayShortMonthNoYear()` | `dateShortDay`, `dateShortDayNoMonthNoYear`, `dateShortDayShortMonth`, `dateShortDayShortMonthNoYear` |
+| `getDateTime()`, `getDateTimeShortDayShortMonthNoSeconds()`, `getDateTimeShortDayShortMonthNoYear()` | Date and time together |
+| `getTime()`, `getTimeMixed()`, `getTimeNoMeridiem()`, `getTimeShort()`, `getTimeShortNoMeridiem()` | `time`, `timeMixed`, `timeNoMeridiem`, `timeShort`, `timeShortNoMeridiem` |
+| `getTimeWithSeconds()` | Time with explicit seconds, independent of the optional seconds setting |
 | `getVfdDisplay08()`, `getVfdDisplay12()`, `getVfdDisplay14()`, `getVfdDisplay18()` | The front panel formats used by `ClockToText` |
 
 The date methods (except `getDateShortDayNoMonthNoYear()`) accept `forceNumeric=True`. This replaces the month name by the month number, so the date can be shown in a narrow space. `dataFormat` replaces the default format with any strftime format. The front panel methods have `forceNumeric=True` by default.
@@ -289,8 +264,8 @@ from time import localtime, strftime
 from Components.config import config
 
 t = localtime(beginTime)
-if hasattr(config.usage.date, "shortDayShortMonthNoYear"):
-	dateText = strftime(config.usage.date.shortDayShortMonthNoYear.value, t)
+if hasattr(config.usage.date, "dayshort"):
+	dateText = strftime(config.usage.date.dayshort.value, t)
 	timeText = strftime(config.usage.time.short.value, t)
 else:
 	dateText = strftime("%a %d %b", t)
@@ -323,4 +298,4 @@ Use fixed padding between columns and size the time column from the content, ins
 
 ## Conclusion
 
-For all Enigma2 builds there is a significant legacy of code and skins that needs to be preserved and protected. The infrastructure is conservative: nothing changes for a skin until its author adds the `AllowUserDatesAndTimes` parameter, legacy config names keep working, and plugins can adopt the formats in a way that still supports builds without them.
+For all Enigma2 builds there is a significant legacy of code and skins that needs to be preserved and protected. The infrastructure is conservative: nothing changes for a skin until its author adds the `AllowUserDatesAndTimes` parameter, the five plugin format names remain available, and plugins can adopt the formats in a way that still supports builds without them.

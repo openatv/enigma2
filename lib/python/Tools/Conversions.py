@@ -2,12 +2,13 @@ from locale import format_string
 from time import localtime, strftime, strptime, time
 
 from Components.config import config
+from Components.DateTimes import dateTimes
 
 
 def formatDate(date):  # "date" must be a string "YYYY-MM-DD", "YYYYMMDD" or integer YYYYMMDD.
 	try:
 		date = str(date) if isinstance(date, int) else date.strip().replace("-", "").replace("/", "").replace(":", "").replace(",", "").replace(".", "").replace(" ", "")
-		return strftime(config.usage.date.long.value, strptime(date, "%Y%m%d"))
+		return dateTimes.getDateNoDayShortMonth(strptime(date, "%Y%m%d"))
 	except Exception:
 		pass
 	return _("Unknown")
@@ -25,12 +26,12 @@ def fuzzyDate(date, inPast=False):
 		formattedDate = strftime("%a", dateLocal)
 	elif dateLocal[0] == nowLocal[0]:  # Time is in the same year.
 		if inPast:  # The day is wanted in MediaList.
-			formattedDate = strftime(config.usage.date.dayshort.value, dateLocal)
+			formattedDate = dateTimes.getDateShortDayShortMonthNoYear(dateLocal)
 		else:
-			formattedDate = strftime(config.usage.date.short.value, dateLocal)
+			formattedDate = dateTimes.getDateNoDayShortMonthNoYear(dateLocal)
 	else:
-		formattedDate = strftime(config.usage.date.long.value, dateLocal)
-	timeLocal = strftime(config.usage.time.short.value, dateLocal)
+		formattedDate = dateTimes.getDateNoDayShortMonth(dateLocal)
+	timeLocal = dateTimes.getTimeShort(dateLocal)
 	return formattedDate, timeLocal
 
 
