@@ -153,6 +153,34 @@
 		<item level="0" text="DVB CI Delay" description="Set DVB CI delay." requires="CommonInterfaceCIDelay">config.cimisc.dvbCiDelay</item>
 		<item level="0" text="CI Boot Delay" description="Set CI Boot delay.">config.cimisc.bootDelay</item>
 	</setup>
+	<setup key="DateTime" title="Date and Time Settings" showOpenWebif="yes">
+		<item level="0" text="Time zone area" description="Select your time zone area or region.">config.timezone.area</item>
+		<item level="0" text="Time zone" description="Select the time zone within the area or region.">config.timezone.val</item>
+		<item level="0" text="Sync time using" description="Synchronize system time using transponder or Internet.">config.misc.SyncTimeUsing</item>
+		<if conditional="config.misc.SyncTimeUsing.value == '1'">
+			<item level="0" text="NTP server" description="Configure your NTP server.">config.misc.NTPserver</item>
+			<item level="0" text="Sync NTP every" description="Setup network time synchronization interval.">config.misc.useNTPminutes</item>
+		</if>
+		<if requires="config.usage.date.enabled">
+			<item level="0" text="Date Format" />
+			<item level="0" text="Date style" description="Select the style for displaying dates." indent="1">config.usage.date.layout</item>
+			<item level="0" text="Day display style" description="Select the display style for day of the week. The screen display will be based on your choice but can be influenced by the skin." indent="1">config.usage.date.dayFormat</item>
+			<item level="0" text="Date display style" description="Select the display style for dates. The screen display will be based on your choices but can be influenced by the skin." indent="1">config.usage.date.dateFormat</item>
+			<item level="0" text="Month display style" description="Select the display style for months. The screen display will be based on your choices but can be influenced by the skin." indent="1">config.usage.date.monthFormat</item>
+			<item level="0" text="Day separator" description="Select the separator between the day and the date elements." indent="1" conditional="config.usage.date.dayFormat.value">config.usage.date.daySeparator</item>
+			<item level="0" text="First separator" description="Select the separator between the first two date elements." indent="1">config.usage.date.firstSeparator</item>
+			<item level="0" text="Second separator" description="Select the separator between the second two date elements." indent="1">config.usage.date.secondSeparator</item>
+			<item level="0" text="Suffix character" description="Select the suffix character to be appended to the date string. This is used for some locales." indent="1">config.usage.date.suffix</item>
+			<item level="0" text="Time separator" description="Select the separator between the date and the time elements." indent="1">config.usage.date.timeSeparator</item>
+		</if>
+		<if requires="config.usage.time.enabled">
+			<item level="0" text="Time Format" />
+			<item level="0" text="Hour display style" description="Select the display style for hours/times." indent="1">config.usage.time.hourFormat</item>
+			<item level="0" text="Meridiem (AM/PM) display" description="Select the AM/PM indication for a 12 hour clock. This is ignored for a 24 hour clock." indent="1" conditional="config.usage.time.hourFormat.value in ('%-I', '%l', '%I')">config.usage.time.meridiemFormat</item>
+			<item level="0" text="Display seconds" description="When enabled, seconds will be shown in time displays. The seconds display will be based on your selection but will be influenced by code and space requirements and the skin." indent="1">config.usage.time.secondsFormat</item>
+			<item level="0" text="Time separator" description="Select the separator between the time elements." indent="1">config.usage.time.separator</item>
+		</if>
+	</setup>
 	<setup key="Display" title="Display Settings" showOpenWebif="yes">
 		<item level="0" text="Brightness And Contrast" />
 		<item level="0" text="Clone TV screen to LCD" description="Shows live TV or informations on LCD." requires="FBLCDDisplay" indent="1">config.lcd.fblcddisplay</item>
@@ -212,9 +240,6 @@
 			<item level="1" text="Scrolling speed (software renderer)" description="Set the scrolling speed of text on the front display, this is used by software renderer in some skins." indent="1">config.lcd.scrollSpeed</item>
 			<item level="1" text="Scrolling delay (software renderer)" description="Set the delay time between repeated loops, this is used by software renderer in some skins." indent="1">config.lcd.scrollDelay</item>
 		</if>
-		<item level="0" text="Date And Time" />
-		<item level="0" text="Date style" description="Choose the front panel display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.date.enabled_display" indent="1">config.usage.date.display</item>
-		<item level="0" text="Time style" description="Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes. ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin." requires="config.usage.time.enabled_display" indent="1">config.usage.time.display</item>
 	</setup>
 	<setup key="DNS" title="DNS Settings">
 		<item level="0" text="Hostname" description="Enter the network hostname to be used to identify this receiver.">self.hostname</item>
@@ -1339,17 +1364,6 @@
 		<item level="2" text="Set fps for external subtitles" description="Can be used for different fps between external subtitles and video." indent="1">config.subtitles.pango_subtitles_fps</item>
 		<item level="2" text="HI-cleanup for external subtitles" description="Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)." indent="1">config.subtitles.pango_subtitle_removehi</item>
 		<item level="2" text="Automatically turn on external subtitles" description="When enabled, external subtitles will be always turned on for playback movie." indent="1">config.subtitles.pango_autoturnon</item>
-	</setup>
-	<setup key="Time" title="Time Settings" showOpenWebif="yes">
-		<item level="0" text="Time zone area" description="Select your time zone area or region.">config.timezone.area</item>
-		<item level="0" text="Time zone" description="Select the time zone within the area or region.">config.timezone.val</item>
-		<item level="0" text="Sync time using" description="Synchronize system time using transponder or Internet.">config.misc.SyncTimeUsing</item>
-		<if conditional="config.misc.SyncTimeUsing.value == '1'">
-			<item level="0" text="NTP server" description="Configure your NTP server.">config.misc.NTPserver</item>
-			<item level="0" text="Sync NTP every" description="Setup network time synchronization interval.">config.misc.useNTPminutes</item>
-		</if>
-		<item level="0" text="Date style" description="Choose the display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.date.enabled">config.usage.date.dayfull</item>
-		<item level="0" text="Time style" description="Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds. ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.time.enabled">config.usage.time.long</item>
 	</setup>
 	<setup key="Timeshift" title="Time Shift Settings" level="1" showOpenWebif="yes">
 		<item level="1" text="General Time Shift Behavior" />

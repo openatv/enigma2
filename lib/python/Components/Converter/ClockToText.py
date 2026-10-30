@@ -1,66 +1,54 @@
 from time import localtime, strftime
 
-from Components.config import config
 from Components.Element import cached
 from Components.Converter.Converter import Converter
+from Components.DateTimes import dateTimes
 
 
 class ClockToText(Converter):
 	TIME_OPTIONS = {
-		# 		TRANSLATORS: short time representation hour:minute (Same as "Default")
-		"": lambda t: strftime(config.usage.time.short.value, localtime(t)),  # _("%R")
-		#
+		"": lambda t: dateTimes.getTimeShort(localtime(t)),  # Hours Minutes Meridiem; Time in hours, minutes and meridiem (AM/PM) for a 12 hour clock.
 		"AsLength": lambda t: "" if t < 0 else f"{int(t // 60)}:{int(t % 60):02d}",
 		"AsLengthHours": lambda t: "" if t < 0 else f"{int(t // 3600)}:{int(t // 60 % 60):02d}",
 		"AsLengthSeconds": lambda t: "" if t < 0 else f"{int(t // 3600)}:{int(t // 60 % 60):02d}:{int(t % 60):02d}",
-		# 		TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
-		"Date": lambda t: strftime(config.usage.date.dayfull.value, localtime(t)),  # _("%A %e %B %Y")
-		# 		TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
-		"Default": lambda t: strftime(config.usage.time.short.value, localtime(t)),  # _("%R")
-		# 		TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
-		"Display": lambda t: strftime(config.usage.time.display.value, localtime(t)),  # _("%R")
-		# 		TRANSLATORS: short date representation daynum short monthname in strftime() format! See 'man strftime'
-		"DisplayDate": lambda t: strftime(config.usage.date.display.value, localtime(t)),  # _("%e %b")
-		# 		TRANSLATORS: short date representation daynum short monthname in strftime() format! See 'man strftime'
-		"DisplayDayDate": lambda t: strftime(config.usage.date.displayday.value, localtime(t)),  # _("%a %e %b")
-		# 		TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
-		"DisplayTime": lambda t: strftime(config.usage.time.display.value, localtime(t)),  # _("%R")
-		# 		TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
-		"Full": lambda t: strftime(f"{config.usage.date.dayshort.value} {config.usage.time.short.value}", localtime(t)),  # _("%a %e %b %R")
-		# 		TRANSLATORS: full date representations short dayname daynum monthname long year in strftime() format! See 'man strftime'
-		"FullDate": lambda t: strftime(config.usage.date.shortdayfull.value, localtime(t)),  # _("%a %e %B %Y")
-		#
+		"Date": lambda t: dateTimes.getDate(localtime(t)),  # Day Date Month Year; Day and month names in full words.
+		"DateNoDay": lambda t: dateTimes.getDateNoDay(localtime(t)),  # Date Month Year; No day and month name in full word.
+		"DateNoDayNoYear": lambda t: dateTimes.getDateNoDayNoYear(localtime(t)),  # Date Month; No day, month name in full word and no year.
+		"DateNoDayShortMonth": lambda t: dateTimes.getDateNoDayShortMonth(localtime(t)),  # Date Mon Year; No day and month name in short word.
+		"DateNoDayShortMonthNoYear": lambda t: dateTimes.getDateNoDayShortMonthNoYear(localtime(t)),  #  Date Mon; No day, month name in short word and no year.
+		"DateNoYear": lambda t: dateTimes.getDateNoYear(localtime(t)),  # Day Date Month; Day and month names in full words and no year.
+		"DateShortDay": lambda t: dateTimes.getDateShortDay(localtime(t)),  # Day Date Month Year; Day name in short word and month name full word.
+		"DateShortDayNoMonthNoYear": lambda t: dateTimes.getDateShortDayNoMonthNoYear(localtime(t)),  # Day Date; Day name in short word and no month or year.
+		"DateShortDayShortMonth": lambda t: dateTimes.getDateShortDayShortMonth(localtime(t)),  # Day Date Mon Year; Day and month names in short words.
+		"DateShortDayShortMonthNoYear": lambda t: dateTimes.getDateShortDayShortMonthNoYear(localtime(t)),  # Day Date Mon; Day and month names in short words and no year.
+		"DateTime": lambda t: dateTimes.getDateTime(localtime(t)),  # "Date" followed by the date/time separator then "Time".
+		"Default": lambda t: dateTimes.getTimeShort(localtime(t)),  # Hours Minutes Meridiem; Time in hours, minutes and meridiem (AM/PM) for a 12 hour clock.
+		"Display": lambda t: dateTimes.getTimeShort(localtime(t)),  # Hours Minutes Meridiem; Time in hours, minutes and meridiem (AM/PM) for a 12 hour clock.
+		"DisplayDate": lambda t: dateTimes.getDateNoDayShortMonthNoYear(localtime(t)),  #  Date Mon; No day, month name in short word and no year.
+		"DisplayDayDate": lambda t: dateTimes.getDateShortDayShortMonthNoYear(localtime(t)),  #  Day Date Mon; Day and month names in short words and no year.
+		"DisplayTime": lambda t: dateTimes.getTimeShort(localtime(t)),  # Hours Minutes Meridiem; Time in hours, minutes and meridiem (AM/PM).
+		"Full": lambda t: dateTimes.getDateShortDayShortMonth(localtime(t)),  # Day Date Mon Year; Day and month names in short words.
+		"FullDate": lambda t: dateTimes.getDateShortDay(localtime(t)),  # Day Date Month Year; Day name in short word and month name full word.
 		"InMinutes": lambda t: ngettext("%d Min", "%d Mins", (t // 60)) % (t // 60),
-		# 		TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
-		"LongDate": lambda t: strftime(config.usage.date.dayshortfull.value, localtime(t)),  # _("%A %e %B")
-		# 		TRANSLATORS: long date representation short dayname daynum short monthname year hour:minute in strftime() format! See 'man strftime'
-		"LongFullDate": lambda t: strftime(f"{config.usage.date.daylong.value}  {config.usage.time.short.value}", localtime(t)),  # _("%a %e %b %Y  %R")
-		# 		TRANSLATORS: mixed time representation hour:minute:seconds for 24 hour clock and hour:minute for 12 hour clocks
-		"Mixed": lambda t: strftime(config.usage.time.mixed.value, localtime(t)),  # _("%T") or _("%-I:%M%p")
-		# 		TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
-		"ShortDate": lambda t: strftime(config.usage.date.dayshort.value, localtime(t)),  # _("%a %e/%m")
-		# 		TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
-		"ShortFullDate": lambda t: strftime(config.usage.date.daylong.value, localtime(t)),  # _("%a %e %b %Y")
-		#
+		"LongDate": lambda t: dateTimes.getDateNoYear(localtime(t)),  # Day Date Month; Day and month names in full words.
+		"LongFullDate": lambda t: dateTimes.getDateTimeShortDayShortMonthNoSeconds(localtime(t)),  # Day Date Mon Year Hours Minutes Meridiem; Day and month names in short words and time with no seconds and meridiem (AM/PM) for 12 hour clocks.
+		"Mixed": lambda t: dateTimes.getTimeMixed(localtime(t)),  # Hours Minutes Seconds / Hours Minutes Meridiem; Time in hours, minutes and seconds for 24 hour clocks; hours, minutes and meridiem (AM/PM) for 12 hour clocks.
+		"ShortDate": lambda t: dateTimes.getDateShortDayShortMonthNoYear(localtime(t)),  #  Date Mon; Month name in short word and no day or year.
+		"ShortFullDate": lambda t: dateTimes.getDateShortDayShortMonth(localtime(t)),  # Day Date Mon Year; Day and month names in short words.
+		"Time": lambda t: dateTimes.getTime(localtime(t)),  # Hours Minutes Seconds Meridiem; Time in hours, minutes, seconds and meridiem (AM/PM).
+		"TimeLong": lambda t: dateTimes.getTime(localtime(t)),  # Hours Minutes Seconds Meridiem; Time in hours, minutes, seconds and meridiem (AM/PM).
+		"TimeMixed": lambda t: dateTimes.getTimeMixed(localtime(t)),  # Hours Minutes Seconds / Hours Minutes Meridiem; Time in hours, minutes and seconds for 24 hour clocks; hours, minutes and meridiem (AM/PM) for 12 hour clocks.
+		"TimeNoMeridiem": lambda t: dateTimes.getTimeNoMeridiem(localtime(t)),  # Hours Minutes Seconds; Time in hours, minutes, seconds and no meridiem (AM/PM).
+		"TimeShort": lambda t: dateTimes.getTimeShort(localtime(t)),  # Hours Minutes Meridiem; Time in hours, minutes and meridiem (AM/PM) for a 12 hour clock.
+		"TimeShortNoMeridiem": lambda t: dateTimes.getTimeShortNoMeridiem(localtime(t)),  # Hours Minutes; Time in hours, minutes and no meridiem (AM/PM) for a 12 hour clock.
 		"Timestamp": lambda t: str(t),
-		# 		TRANSLATORS: VFD daynum short monthname hour:minute in strftime() format! See 'man strftime'
-		"VFD": lambda t: strftime(f"{config.usage.date.compact.value}{config.usage.time.display.value}", localtime(t)),  # _("%e%m%R")
-		# 		TRANSLATORS: VFD08 hour:minute in strftime() format! See 'man strftime'
-		"VFD08": lambda t: strftime(config.usage.time.display.value, localtime(t)),  # _("%R")
-		# 		TRANSLATORS: VFD daynum short monthname hour:minute in strftime() format! See 'man strftime'
-		"VFD11": lambda t: strftime(f"{config.usage.date.compressed.value}{config.usage.time.display.value}", localtime(t)),  # _("%e%b%R")
-		# 		TRANSLATORS: VFD daynum short monthname hour:minute in strftime() format! See 'man strftime'
-		"VFD12": lambda t: strftime(f"{config.usage.date.compact.value}{config.usage.time.display.value}", localtime(t)),  # _("%e%b%R")
-		# 		TRANSLATORS: VFD daynum short monthname hour:minute in strftime() format! See 'man strftime'
-		"VFD14": lambda t: strftime(f"{config.usage.date.short.value} {config.usage.time.display.value}", localtime(t)),  # _("%e/%b %R")
-		# 		TRANSLATORS: VFD daynum short monthname hour:minute in strftime() format! See 'man strftime'
-		"VFD18": lambda t: strftime(f"{config.usage.date.dayshort.value} {config.usage.time.display.value}", localtime(t)),  # _("%a %e/%b %R")
-		# 		TRANSLATORS: full time representation hour:minute:seconds
-		"WithSeconds": lambda t: strftime(config.usage.time.long.value, localtime(t))  # _("%T")
+		"VFD": lambda t: dateTimes.getVfdDisplay12(localtime(t)),  # Same as "VFD12".
+		"VFD08": lambda t: dateTimes.getVfdDisplay08(localtime(t)),  # Hours Minutes Seconds Meridiem; Time in hours, minutes and meridiem (AM/PM) for a 12 hour clock.
+		"VFD12": lambda t: dateTimes.getVfdDisplay12(localtime(t)),  # Date Month Hours Minutes Meridiem; Date, month in digits with time in hours, minutes and meridiem (AM/PM) for a 12 hour clock trimmed to 12 characters (meridiem is dropped if it does not fit).
+		"VFD14": lambda t: dateTimes.getVfdDisplay14(localtime(t)),  # Date Month Hours Minutes Meridiem; Date, month in digits with time in hours, minutes and meridiem (AM/PM) for a 12 hour clock trimmed to 14 characters (meridiem may be lost).
+		"VFD18": lambda t: dateTimes.getVfdDisplay18(localtime(t)),  # Day Date Month Hours Minutes Meridiem; Day, Month in digits with time in hours, minutes and meridiem (AM/PM) for a 12 hour clock trimmed to 18 characters (meridiem may be lost).
+		"WithSeconds": lambda t: dateTimes.getTime(localtime(t))  # Hours Minutes Seconds Meridiem; Time in hours, minutes, seconds and meridiem (AM/PM).
 	}
-
-	# Add: date, date as string, weekday, ...
-	# (whatever you need!)
 
 	def __init__(self, tokens):
 		Converter.__init__(self, tokens)

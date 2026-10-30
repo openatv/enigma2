@@ -211,7 +211,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				</menu>
 				<item key="hdmicec" level="0" text="HDMI-CEC Settings" weight="55" requires="HDMICEC"><screen module="HDMICEC" screen="HDMICECSetup" /></item>
 				<item key="script_manager" level="1" text="Script Manager" weight="56"><screen module="ScriptRunner" screen="ScriptRunner" /></item>
-				<item key="time_setup" level="0" text="Time Settings" weight="60"><screen module="Time" screen="Time" /></item>
+				<item key="time_setup" level="0" text="Date and Time Settings" weight="60"><screen module="DateTime" screen="DateTime" /></item>
 				<item key="logs_setup" level="0" text="Logs Settings" weight="70"><setup setupKey="Logs" /></item>
 				<item key="rfmod_setup" level="1" text="RF Output Settings" weight="80" requires="RfModulator"><setup setupKey="RFModulator" /></item>
 				<item key="factory_reset" level="0" text="Factory Reset" weight="99"><screen module="FactoryReset" screen="FactoryReset" /></item>

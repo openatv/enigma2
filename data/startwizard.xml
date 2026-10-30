@@ -160,7 +160,7 @@ self.condition = BoxInfo.getItem("SmallFlash") and not self.smallBoxPrepared and
 		<colorButtonLabels yellow="Use Geolocation" />
 		<text value="Set the time options.\n\nPress YELLOW to set the time zone via geolocation."/>
 		<displaytext value="Set time options"/>
-		<config screen="Time" module="Time" type="ConfigList"/>
+		<config screen="DateTime" module="DateTime" type="ConfigList"/>
 	</step>
 
 	<step id="nima">
