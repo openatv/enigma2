@@ -23,8 +23,8 @@ class InputDevices:
 		self.devices = {}
 		self.currentDevice = None
 		for device in sorted(listdir("/dev/input/")):
-
-			if isdir(join("/dev/input", device)):
+			# EVIOCGNAME is only supported by event devices, not mice or joystick nodes.
+			if not device.startswith("event") or not device[5:].isdigit() or isdir(join("/dev/input", device)):
 				continue
 			try:
 				_buffer = "\0" * 512
