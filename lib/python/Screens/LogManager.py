@@ -375,22 +375,23 @@ class LogManagerViewLog(Screen):
 		fontwidth = getTextBoundarySize(self.instance, font, self["list"].instance.size(), " ").width()
 		listwidth = int(self["list"].instance.size().width() / fontwidth)
 		if exists(self.logfile):
-			for line in open(self.logfile).readlines():
-				line = line.replace('\t', ' ' * 9)
-				if len(line) > listwidth:
-					pos = 0
-					offset = 0
-					readyline = True
-					while readyline:
-						a = " " * offset + line[pos:pos + listwidth - offset]
-						self.log.append(a)
-						if len(line[pos + listwidth - offset:]):
-							pos += listwidth - offset
-							offset = 20
-						else:
-							readyline = False
-				else:
-					self.log.append(line)
+			with open(self.logfile, encoding="UTF-8", errors="replace") as logFile:
+				for line in logFile:
+					line = line.replace('\t', ' ' * 9)
+					if len(line) > listwidth:
+						pos = 0
+						offset = 0
+						readyline = True
+						while readyline:
+							a = " " * offset + line[pos:pos + listwidth - offset]
+							self.log.append(a)
+							if len(line[pos + listwidth - offset:]):
+								pos += listwidth - offset
+								offset = 20
+							else:
+								readyline = False
+					else:
+						self.log.append(line)
 		else:
 			self.log = [_("file can not displayed - file not found")]
 		self["list"].setList(self.log)

@@ -1,5 +1,5 @@
 from os import R_OK, access, listdir, lstat, sep
-from os.path import basename, dirname, exists, isdir, islink, join, normpath, realpath, splitext
+from os.path import basename, commonpath, dirname, exists, isdir, islink, join, normpath, realpath, splitext
 from re import compile
 
 from enigma import BT_SCALE, BT_VALIGN_CENTER, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eServiceCenter, eServiceReference, eServiceReferenceFS, gFont
@@ -490,7 +490,8 @@ class FileListBase(MenuList):
 	def inParentDirs(self, path, parents):
 		path = realpath(path)
 		for parent in parents:
-			if path.startswith(parent):
+			parent = realpath(parent)
+			if commonpath((path, parent)) == parent:
 				return True
 		return False
 

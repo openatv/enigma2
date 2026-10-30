@@ -1,6 +1,7 @@
 from os import listdir, remove, rename
 from os.path import join
 from time import localtime, strftime, time
+from weakref import ref as weakrefRef
 
 from enigma import eActionMap, eDBoxLCD, eDVBDB, eEPGCache, ePoint, eRCInput, eServiceCenter, eServiceReference, eServiceReferenceDVB, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, loadPNG
 
@@ -2691,9 +2692,16 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if enable_pipzap and self.dopipzap:
 			ref = self.session.pip.getCurrentService()
 			if ref is None or ref != nref:
+				pipReference = weakrefRef(self.session.pip)
+
+				def zapAfterPin(ref, forceRestart=False):
+					pip = pipReference()
+					if pip is not None and self.dopipzap and getattr(self.session, "pip", None) is pip:
+						self.zap(enable_pipzap=True, checkParentalControl=False, ref=ref)
+
 				nref = self.session.pip.resolveAlternatePipService(nref)
-				if nref and (not checkParentalControl or parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False))):
-					zap_res = self.session.pip.playService(nref)
+				if nref and (not checkParentalControl or parentalControl.isServicePlayable(nref, zapAfterPin)):
+					zap_res = self.session.pip.playService(nref, checkParentalControl=False)
 					if zap_res == 1:
 						self.__evServiceStart()
 						self.showPipzapMessage()

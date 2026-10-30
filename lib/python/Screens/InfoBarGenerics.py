@@ -26,6 +26,7 @@ from Components.Harddisk import findMountPoint, harddiskmanager
 from Components.Input import Input
 from Components.Label import Label
 from Components.MovieList import AUDIO_EXTENSIONS, DVD_EXTENSIONS, MOVIE_EXTENSIONS
+from Components.ParentalControl import parentalControl
 from Components.Pixmap import MovingPixmap, MultiPixmap
 from Components.PluginComponent import plugins
 from Components.ScrollLabel import ScrollLabel
@@ -3832,7 +3833,9 @@ class InfoBarPiP:  # Depends on InfoBarExtensions.
 	def extShowHideName(self):
 		return _("Disable Picture in Picture") if self.session.pipshown else _("Activate Picture in Picture")
 
-	def showPiP(self):
+	def showPiP(self, ref=None, forceRestart=False):
+		if forceRestart and self.session.pipshown:
+			return  # A pending PIN callback must not close or replace an already opened PiP.
 		self.lastPiPServiceTimeoutTimer.stop()
 		slist = self.servicelist
 		if not slist:  # MoviePlayer without a channel list.
@@ -3862,22 +3865,27 @@ class InfoBarPiP:  # Depends on InfoBarExtensions.
 			if info:
 				xres = str(info.getInfo(iServiceInformation.sVideoWidth))
 			if info and int(xres) <= 720 or BoxInfo.getItem("model") != "blackbox7405":
+				if isStandardInfoBar(self):
+					newservice = ref or self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or slist.getCurrentSelection()
+				else:
+					newservice = ref or self.lastPiPService or slist.getCurrentSelection()
+				if newservice and not forceRestart and not parentalControl.isServicePlayable(newservice, self.showPiP):
+					return
 				self.session.pip = self.session.instantiateDialog(PictureInPicture)
 				self.session.pip.setAnimationMode(0)
 				self.session.pip.show()
-				if isStandardInfoBar(self):
-					newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or slist.getCurrentSelection()
-				else:
-					newservice = self.lastPiPService or slist.getCurrentSelection()
-				if self.session.pip.playService(newservice):
+				if self.session.pip.playService(newservice, checkParentalControl=False):
 					self.session.pipshown = True
 					self.session.pip.servicePath = slist.getCurrentServicePath()
 					if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
 						print("[InfoBarGenerics] [LCDMiniTV] enable PiP")
 						eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value, True)
 				else:
-					newservice = self.session.nav.getCurrentlyPlayingServiceReference() or slist.servicelist.getCurrent()
-					if self.session.pip.playService(newservice):
+					fallbackService = self.session.nav.getCurrentlyPlayingServiceReference() or slist.servicelist.getCurrent()
+					if fallbackService and fallbackService != newservice and not parentalControl.isServicePlayable(fallbackService, self.showPiP):
+						del self.session.pip
+						return
+					if self.session.pip.playService(fallbackService, checkParentalControl=False):
 						self.session.pipshown = True
 						self.session.pip.servicePath = slist.getCurrentServicePath()
 						if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
@@ -3915,7 +3923,7 @@ class InfoBarPiP:  # Depends on InfoBarExtensions.
 				currentServicePath = self.servicelist.getCurrentServicePath()
 				currentBouquet = self.servicelist and self.servicelist.getRoot()
 				self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
-				self.session.pip.playService(swapService)
+				self.session.pip.playService(swapService, checkParentalControl=False)  # The live service is already authorized.
 				self.session.nav.stopService()  # Stop portal.
 				self.session.nav.playService(pipServiceReference, checkParentalControl=False, adjust=False)
 				self.session.pip.servicePath = currentServicePath

@@ -415,8 +415,8 @@ int eDVBTSTools::fixupPTS(const off_t &offset, pts_t &now)
 		if ((now < pos) && ((pos - now) < 90000 * 10))
 		{
 			if (m_debugSeek)
-				eDebug("[eDVBTSTools] fixupPTS: now is %lld before begin (<10s) - clamp-to-0 branch. NOTE: this leaves 'now' UNCHANGED (%lld) - only the local 'pos' is set to 0!", pos - now, now);
-			pos = 0;
+				eDebug("[eDVBTSTools] fixupPTS: now is %lld before begin (<10s) - clamping relative PTS to 0", pos - now);
+			now = 0;
 			return 0;
 		}
 

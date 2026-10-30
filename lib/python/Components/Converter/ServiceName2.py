@@ -53,7 +53,8 @@ class ServiceName2(Converter):
 			"Provider": self.PROVIDER,
 			"Reference": self.REFERENCE,
 			"Satellite": self.SATELLITE,
-			"TpansponderInfo": self.TPRDATA
+			"TpansponderInfo": self.TPRDATA,  # Retain the legacy spelling for existing skins.
+			"TransponderInfo": self.TPRDATA
 		}.get(token, self.FORMAT if token else self.NAME)
 		if self.type == self.FORMAT:
 			self.sfmt = token[:]
