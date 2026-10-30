@@ -1712,6 +1712,8 @@ class UBISlotManager(Setup):
 		self.UBISlotManagerLocation = ConfigSelection(default=None, choices=[(None, _("<Select a device>"))])
 		self.UBISlotManagerSlots = ConfigInteger(default=10, limits=(1, 20))
 		self.UBISlotManagerDevice = None
+		# GB7325 keeps ext4 modular to fit the kernel partition; early boot uses ext3.
+		self.rootFsType = "ext3" if BoxInfo.getItem("machinebuild") in ("gb800se", "gb800ue") else "ext4"
 		Setup.__init__(self, session=session, setup="UBISlotManager")
 		self.setTitle(_("Slot Manager"))
 		self["fullUIActions"] = HelpableActionMap(self, ["CancelSaveActions"], {
@@ -1769,11 +1771,11 @@ class UBISlotManager(Setup):
 			cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} mklabel gpt")
 			cmdlist.append(f"/usr/sbin/partprobe {TARGET_DEVICE}")
 			cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} mkpart startup fat32 8192s 5MB")
-			cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} unit MiB mkpart rootfs ext4 5MiB -- -{MULTIBOOT_SWAP_SIZE_MIB}MiB")
+			cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} unit MiB mkpart rootfs {self.rootFsType} 5MiB -- -{MULTIBOOT_SWAP_SIZE_MIB}MiB")
 			cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} unit MiB mkpart swap linux-swap -- -{MULTIBOOT_SWAP_SIZE_MIB}MiB 100%")
 			cmdlist.append(f"/usr/sbin/partprobe {TARGET_DEVICE}")
 			cmdlist.append(f"/usr/sbin/mkfs.vfat -F 32 -n STARTUP {PART(1)}")
-			cmdlist.append(f"/sbin/mkfs.ext4 -O ^64bit,^extent,^flex_bg,^huge_file,^dir_nlink,^extra_isize,^metadata_csum {MKFS_EXT4_FAST_OPTIONS} -F -L rootfs {PART(2)}")
+			cmdlist.append(f"/sbin/mke2fs -t {self.rootFsType} -O ^64bit,^extent,^flex_bg,^huge_file,^dir_nlink,^extra_isize,^metadata_csum {MKFS_EXT4_FAST_OPTIONS} -F -L rootfs {PART(2)}")
 			cmdlist.append(f"/sbin/mkswap -L swap {PART(3)}")
 			cmdlist.append(f"/bin/mkdir -p {MOUNTPOINT}")
 			cmdlist.append(f"/bin/umount {MOUNTPOINT} > /dev/null 2>&1")
@@ -1802,7 +1804,7 @@ class UBISlotManager(Setup):
 			fd.write(startupContent)
 		count = min(diskSize, self.UBISlotManagerSlots.value)
 		for i in range(1, count + 1):
-			startupContent = f"kernel=/dev/{mtdKernel} root=UUID={uuidRootFS} rootsubdir=linuxrootfs{i} rootfstype=ext4\n"
+			startupContent = f"kernel=/dev/{mtdKernel} root=UUID={uuidRootFS} rootsubdir=linuxrootfs{i} rootfstype={self.rootFsType}\n"
 			with open(f"{MOUNTPOINT}/STARTUP_{i}", "w") as fd:
 				fd.write(startupContent)
 		Console().ePopen(["/bin/sync"])
