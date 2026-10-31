@@ -457,17 +457,22 @@ class EPGSelectionBase(Screen):
 		self.doInstantTimer(zap=1, zaprecord=0)
 
 	def editTimer(self, timer):
+		self.session.openWithCallback(self.editTimerCallback, TimerEntry, timer)
+
+	def editTimerCallback(self, result):
 		# FallbackTimerList handles external (e.g. satellite) timers.
-		prevExternal = timer.external
-		self.session.open(TimerEntry, timer)
-		if prevExternal and not timer.external:
-			def fallbackInitDone():
-				fallbackTimer.removeTimer(timer, self.refreshlist)
-			fallbackTimer = FallbackTimerList(self, fallbackInitDone)
-		elif timer.external:
-			def fallbackInitDone():
-				fallbackTimer.editTimer(timer, self.refreshlist)
-			fallbackTimer = FallbackTimerList(self, fallbackInitDone)
+		if isinstance(result, bool) and result:  # Special case for close recursive.
+			self.close(True)
+		elif result[0]:
+			timer = result[1]
+			if timer.external_prev != timer.external:  # Timer moved between local and fallback tuner.
+				def fallbackInitDone():
+					fallbackTimer.moveTimer(timer, lambda newEntry: self.finishedAdd((True, newEntry)), self.refreshlist)
+				fallbackTimer = FallbackTimerList(self, fallbackInitDone)
+			elif timer.external:
+				def fallbackInitDone():
+					fallbackTimer.editTimer(timer, self.refreshlist)
+				fallbackTimer = FallbackTimerList(self, fallbackInitDone)
 
 	def removeTimer(self, timer):
 		self.closeChoiceBoxDialog()
