@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 19:43+0000\n"
+"POT-Creation-Date: 2026-10-26 13:51+0100\n"
 "PO-Revision-Date: 2026-08-17 22:30+0000\n"
 "Last-Translator: ikvat <ikvat@hotmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -1504,6 +1504,9 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
+msgid "2 tuners: 2 SAT sockets, 1 C/T socket"
+msgstr ""
+
 msgid "2nd InfoBar"
 msgstr "2ème infobarre"
 
@@ -2075,6 +2078,9 @@ msgstr "Ajouter un service à la liste"
 msgid "Add a timer for the current event"
 msgstr "Ajouter une minuterie pour l'événement en cours"
 
+msgid "Add an existing swap file"
+msgstr ""
+
 msgid "Add an AutoTimer for the current event"
 msgstr "Ajouter un timer automatique pour l'évènement courant"
 
@@ -2214,6 +2220,9 @@ msgstr "Adulte"
 
 msgid "Adult Audience, Strong Violence 15+"
 msgstr "Public adulte, Forte violence 15+"
+
+msgid "Adult Hits"
+msgstr ""
 
 msgid "Adult movie/Drama"
 msgstr "film/drame pour adultes"
@@ -2574,6 +2583,9 @@ msgid "Animations"
 msgstr "Animations"
 
 msgid "Anonymize client IPs"
+msgstr ""
+
+msgid "Another swap operation is still running."
 msgstr ""
 
 msgid "Antarctica"
@@ -3062,10 +3074,10 @@ msgstr "BER :"
 msgid "BLUDISC RECORDABLE"
 msgstr "BLUDISC enregistrable"
 
-msgid "BLUE button"
+msgid "BLUE"
 msgstr "Bouton Bleu"
 
-msgid "BLUE long"
+msgid "BLUE (Long press)"
 msgstr "Bleu long"
 
 msgid "BLUE switch: BLUE/BLUE long"
@@ -3499,6 +3511,9 @@ msgid "Broadcom default"
 msgstr ""
 
 msgid "Browse"
+msgstr ""
+
+msgid "Browse mode"
 msgstr ""
 
 msgid "Browse, install or remove plugins on a one by one basis."
@@ -4250,7 +4265,7 @@ msgstr "Nom de la chaîne"
 msgid "Channel number"
 msgstr ""
 
-msgid "Channel preview mode"
+msgid "Service preview mode"
 msgstr "Mode prévisualisation chaîne"
 
 msgid "Channel selection configuration"
@@ -4496,6 +4511,9 @@ msgstr "Circulaire droite"
 msgid "City"
 msgstr "Ville"
 
+msgid "Classic Rock"
+msgstr ""
+
 msgid "Classical"
 msgstr ""
 
@@ -4643,6 +4661,9 @@ msgstr ""
 msgid "Close the screen without saving any changes"
 msgstr ""
 
+msgid "Close the swap manager"
+msgstr ""
+
 msgid "Close the window"
 msgstr "Ferme la fenêtre"
 
@@ -4672,6 +4693,9 @@ msgstr "Nom de la collection"
 
 msgid "Collection settings"
 msgstr "Paramètres de la collection"
+
+msgid "College"
+msgstr ""
 
 msgid "Colombia"
 msgstr "Colombie"
@@ -5159,6 +5183,9 @@ msgstr "Configurer votre serveur NTP."
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "Configurez vos paramètres réseau, puis appuyez sur OK pour lancer le scan"
 
+msgid "Configured in /etc/fstab. Starting or stopping here only changes the current session."
+msgstr ""
+
 msgid "Configures which video output connector will be used."
 msgstr "Configure le type de sortie vidéo qui sera utilisé."
 
@@ -5481,6 +5508,9 @@ msgstr ""
 msgid "Country"
 msgstr "Pays"
 
+msgid "Country Music"
+msgstr ""
+
 msgid "Country for EPG event genre information"
 msgstr "Pays pour les informations sur le genre d’événement EPG"
 
@@ -5521,6 +5551,9 @@ msgstr "Créer un ISO"
 msgid "Create Slots"
 msgstr ""
 
+msgid "Create Zap Timer"
+msgstr ""
+
 msgid "Create a directory"
 msgstr ""
 
@@ -5531,6 +5564,9 @@ msgid "Create a separate bouquet for radio services. When disabled, radio servic
 msgstr ""
 
 msgid "Create a settings backup"
+msgstr ""
+
+msgid "Create a swap file"
 msgstr ""
 
 msgid "Create a symbolic link"
@@ -5582,6 +5618,9 @@ msgstr ""
 msgid "Create swap"
 msgstr ""
 
+msgid "Create swap file"
+msgstr ""
+
 msgid "Create tar file of root file system."
 msgstr ""
 
@@ -5609,6 +5648,15 @@ msgstr ""
 
 msgid "Creating partition"
 msgstr "Création de la partition"
+
+msgid "Creating swap file. This can take several minutes."
+msgstr ""
+
+#, python-format
+msgid ""
+"Creating the swap file failed.\n"
+"%s"
+msgstr ""
 
 msgid "Credentials"
 msgstr ""
@@ -5644,6 +5692,9 @@ msgstr "Cuba"
 msgid "Cult"
 msgstr "Culte"
 
+msgid "Culture"
+msgstr ""
+
 msgid "Curacao"
 msgstr "Curaçao"
 
@@ -5654,6 +5705,9 @@ msgid "Current"
 msgstr ""
 
 msgid "Current 1/1"
+msgstr ""
+
+msgid "Current Affairs"
 msgstr ""
 
 msgid "Current CEC address"
@@ -6514,6 +6568,12 @@ msgstr "Supprimer l’entrée de la liste de lecture"
 msgid "Delete saved play list"
 msgstr "Supprimer la liste de lecture sauvegardée"
 
+#, python-format
+msgid ""
+"Delete swap file '%s'?\n"
+"An active file will be stopped first. Its swap entry in /etc/fstab will also be removed."
+msgstr ""
+
 msgid "Delete the character to the left of text cursor"
 msgstr "Supprimer le caractère à gauche du curseur du texte"
 
@@ -6543,6 +6603,9 @@ msgid "Delete the flash expander in the selected device"
 msgstr ""
 
 msgid "Delete the selected locally stored image"
+msgstr ""
+
+msgid "Delete the selected swap file"
 msgstr ""
 
 #, python-format
@@ -6683,6 +6746,10 @@ msgid "Device name:"
 msgstr "Nom du périphérique :"
 
 msgid "Device number"
+msgstr ""
+
+#, python-format
+msgid "Device: %s"
 msgstr ""
 
 msgid "Devices"
@@ -7463,6 +7530,9 @@ msgid "East limit set"
 msgstr "Fixer limite Est"
 
 msgid "Eastern satellites"
+msgstr ""
+
+msgid "Easy Listening Music"
 msgstr ""
 
 msgid "Easy listening"
@@ -9165,6 +9235,9 @@ msgstr "Délai du défilement final"
 msgid "Finance"
 msgstr "Finance"
 
+msgid "Finance/Business"
+msgstr ""
+
 msgid "Find Currently Playing Service"
 msgstr "Trouver le service courant"
 
@@ -9298,6 +9371,9 @@ msgstr "Plat par position sur distance"
 msgid "Flush Cache and Rescan"
 msgstr ""
 
+msgid "Folk Music"
+msgstr ""
+
 msgid "Folk and Country"
 msgstr ""
 
@@ -9355,6 +9431,9 @@ msgstr "force activée"
 msgid "Force progressive for streams and files"
 msgstr ""
 
+msgid "Foreign Language"
+msgstr ""
+
 msgid "Foreign countries/Expeditions"
 msgstr "Pays étrangers/Expéditions"
 
@@ -9393,6 +9472,10 @@ msgstr ""
 
 msgid "Free memory"
 msgstr "Mémoire libre"
+
+#, python-format
+msgid "Free space: %s"
+msgstr ""
 
 msgid "Free swap"
 msgstr ""
@@ -9469,6 +9552,9 @@ msgstr ""
 msgid "Full factory reset"
 msgstr ""
 
+msgid "Full path of the existing swap file"
+msgstr ""
+
 msgid "Full range (no clipping)"
 msgstr ""
 
@@ -9490,10 +9576,10 @@ msgstr "Formation continue"
 msgid "G"
 msgstr "G"
 
-msgid "GREEN button"
+msgid "GREEN"
 msgstr "Bouton Vert"
 
-msgid "GREEN long"
+msgid "GREEN (Long press)"
 msgstr "Vert long"
 
 msgid "GStreamer debug log category *"
@@ -10681,7 +10767,7 @@ msgstr "Indonésien"
 msgid "Info"
 msgstr "Info"
 
-msgid "Info button (long)"
+msgid "INFO (Long press)"
 msgstr "Bouton info (long)"
 
 msgid "Info button (short)"
@@ -10933,6 +11019,9 @@ msgstr ""
 msgid "Invalid location!"
 msgstr "Emplacement non valide"
 
+msgid "Invalid swap file size."
+msgstr ""
+
 msgid "Invalid transponder data"
 msgstr "Données du transpondeur non valides"
 
@@ -11003,6 +11092,9 @@ msgid "Javanese"
 msgstr "Javanais"
 
 msgid "Jazz"
+msgstr ""
+
+msgid "Jazz Music"
 msgstr ""
 
 msgid "Jersey"
@@ -11452,6 +11544,9 @@ msgstr ""
 msgid "Legacy mode"
 msgstr ""
 
+msgid "Leisure"
+msgstr ""
+
 msgid "Leisure hobbies"
 msgstr "Passe-temps/loisirs"
 
@@ -11488,6 +11583,9 @@ msgstr "Liechtenstein"
 
 msgid "Lifestyle"
 msgstr "Mode de vie"
+
+msgid "Light Classical"
+msgstr ""
 
 msgid "Light Grey"
 msgstr "Gris léger"
@@ -12114,6 +12212,9 @@ msgstr "Médical"
 msgid "Medicine/Physiology/Psychology"
 msgstr "Médecine/Physiologie/Psychologie"
 
+msgid "Medium"
+msgstr ""
+
 msgid "Medium is not a writeable DVD!"
 msgstr "Le support n'est pas un DVD inscriptible !"
 
@@ -12377,6 +12478,10 @@ msgid "Mount or unmount the selected share"
 msgstr ""
 
 msgid "Mount point"
+msgstr ""
+
+#, python-format
+msgid "Mount point: %s"
 msgstr ""
 
 msgid "Mount root file system."
@@ -13408,6 +13513,9 @@ msgstr "Aucun tuner satellite convenable trouvé !"
 msgid "No supported DAB+ feeds are available for the satellite positions configured on this box."
 msgstr ""
 
+msgid "No swap files or partitions found. Use Create to add a swap file."
+msgstr ""
+
 msgid "No system softcam configured!"
 msgstr ""
 
@@ -13453,6 +13561,9 @@ msgstr ""
 msgid "No tuners are currently streaming."
 msgstr ""
 
+msgid "No unused swap file name is available."
+msgstr ""
+
 msgid "No update required!"
 msgstr "Aucune mise à jour requise !"
 
@@ -13477,6 +13588,9 @@ msgstr ""
 
 msgid "No valid region details were found"
 msgstr "Aucun détail de région valide n'a été trouvé"
+
+msgid "No writable ext2, ext3 or ext4 storage is available for a swap file."
+msgstr ""
 
 msgid "No, but restart from begin"
 msgstr "Non, mais relancer depuis le début"
@@ -13556,6 +13670,9 @@ msgstr "Bokml norvégien"
 msgid "Norwegian Nynorsk"
 msgstr "Norvégien Nynorsk"
 
+msgid "Nostalgia"
+msgstr ""
+
 msgid "Not Classified"
 msgstr "Non classifié"
 
@@ -13592,6 +13709,9 @@ msgstr ""
 #, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "Espace disque insuffisant. Veuillez libérer de l'espace disque et réessayer. (%d MB requis, %d MB disponible)"
+
+msgid "Not enough free space for this swap file."
+msgstr ""
 
 msgid "Not found"
 msgstr ""
@@ -13688,7 +13808,7 @@ msgstr ""
 msgid "OK"
 msgstr "OK"
 
-msgid "OK button (long)"
+msgid "OK (Long press)"
 msgstr "OK bouton (long)"
 
 msgid "OK button (short)"
@@ -13804,6 +13924,12 @@ msgstr ""
 msgid "Ojibwa"
 msgstr "Ojibwa"
 
+msgid "Oldies"
+msgstr ""
+
+msgid "Oldies Music"
+msgstr ""
+
 msgid "Olympic blue"
 msgstr ""
 
@@ -13865,6 +13991,9 @@ msgid "Only on startup"
 msgstr "Seulement au démarrage"
 
 msgid "Only one network share can be used as HDD replacement. Disable 'Use as HDD replacement' on the other share first."
+msgstr ""
+
+msgid "Only swap files can be deleted."
 msgstr ""
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
@@ -14171,6 +14300,9 @@ msgstr "Autre"
 
 msgid "Other Actions"
 msgstr "Autres actions"
+
+msgid "Other Music"
+msgstr ""
 
 msgid "Other OSD Elements"
 msgstr ""
@@ -14517,6 +14649,9 @@ msgstr ""
 msgid "Persian"
 msgstr "Iranien"
 
+msgid "Personality"
+msgstr ""
+
 msgid "Personalize your Skin"
 msgstr "Personnalisez votre skin"
 
@@ -14525,6 +14660,9 @@ msgstr "Pérou"
 
 msgid "Philippines"
 msgstr "Philippines"
+
+msgid "Phone In"
+msgstr ""
 
 msgid "PiP"
 msgstr "PiP"
@@ -14556,6 +14694,9 @@ msgstr ""
 msgid "Picon and service name"
 msgstr "Picon et nom de service"
 
+msgid "Picon and service number"
+msgstr ""
+
 msgid "Picon install location"
 msgstr ""
 
@@ -14572,6 +14713,9 @@ msgstr ""
 
 msgid "Picon width"
 msgstr "Largeur picon"
+
+msgid "Picon, service number and service name"
+msgstr ""
 
 msgid "Picture In Picture"
 msgstr ""
@@ -14824,9 +14968,6 @@ msgstr "Veuillez choisir une résolution…"
 msgid "Please select an aspect ratio..."
 msgstr "Veuillez choisir un ratio d'aspect…"
 
-msgid "Please select device to use as swap file location"
-msgstr "Veuillez choisir un support à utiliser comme emplacement pour le fichier de swap"
-
 msgid "Please select medium to be scanned"
 msgstr "Veuillez choisir le média à analyser"
 
@@ -14930,6 +15071,9 @@ msgstr ""
 msgid "Please wait while the plugin is updated."
 msgstr ""
 
+msgid "Please wait while the swap file is stopped and deleted."
+msgstr ""
+
 msgid "Please wait while unused locales/languages are purged..."
 msgstr ""
 
@@ -14952,6 +15096,9 @@ msgid "Please wait, loading picture..."
 msgstr ""
 
 msgid "Please wait, swap is being created. This could take a few minutes to complete."
+msgstr ""
+
+msgid "Please wait. Stopping swap can take a while."
 msgstr ""
 
 msgid "Please wait..."
@@ -15024,6 +15171,9 @@ msgid "Polish"
 msgstr "Polonais"
 
 msgid "Politics"
+msgstr ""
+
+msgid "Pop Music"
 msgstr ""
 
 msgid "Popular culture/Traditional arts"
@@ -15542,6 +15692,9 @@ msgstr "Opérateurs :"
 msgid "Proxy detected"
 msgstr ""
 
+msgid "Public"
+msgstr ""
+
 msgid "Public IP"
 msgstr ""
 
@@ -15695,13 +15848,13 @@ msgstr "REC Symbole en cours d'utilisation"
 msgid "REC symbol"
 msgstr "Symbole REC"
 
-msgid "RED button"
+msgid "RED"
 msgstr "Bouton Rouge"
 
 msgid "RED button / HbbTV"
 msgstr "Bouton ROUGE/ HbbTV"
 
-msgid "RED long"
+msgid "RED (Long press)"
 msgstr "Rouge long"
 
 msgid "RF Output Settings"
@@ -16082,6 +16235,9 @@ msgstr ""
 msgid "Refresh the update-able package list"
 msgstr ""
 
+msgid "Refresh, add an existing swap file or change autostart"
+msgstr ""
+
 # TODO
 msgid "Regard Deep Standby as Standby"
 msgstr "Gérer la mise en veille profonde comme en veille"
@@ -16105,6 +16261,12 @@ msgid "Religion"
 msgstr "Religion"
 
 msgid "Religious"
+msgstr ""
+
+msgid "Religious Music"
+msgstr ""
+
+msgid "Religious Talk"
 msgstr ""
 
 msgid "Reload Bookmarks"
@@ -16746,6 +16908,9 @@ msgstr "Vitesses rembobinage"
 msgid "Rewrap subtitles"
 msgstr "Envelopper les sous-titres"
 
+msgid "Rhythm and Blues"
+msgstr ""
+
 msgid "Right"
 msgstr "Droite"
 
@@ -16772,6 +16937,12 @@ msgstr ""
 
 msgid "Right, wrapped"
 msgstr "droite, enveloppé"
+
+msgid "Rock"
+msgstr ""
+
+msgid "Rock Music"
+msgstr ""
 
 msgid "Rock/Pop"
 msgstr "Rock/Pop"
@@ -17251,6 +17422,9 @@ msgstr[1] ""
 msgid "Scanning for shares..."
 msgstr ""
 
+msgid "Scanning swap devices..."
+msgstr ""
+
 msgid "Scanning..."
 msgstr "Recherche en cours..."
 
@@ -17544,7 +17718,7 @@ msgstr ""
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr ""
 
-msgid "Select 'Yes' to hide channels without EPG data."
+msgid "When enabled, services without EPG data will be hidden."
 msgstr "Si mis à 'oui' les chaînes sans EPG ne seront pas affichées."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
@@ -17872,6 +18046,9 @@ msgstr ""
 msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
 msgstr ""
 
+msgid "Select a swap file on local storage."
+msgstr ""
+
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
 msgstr ""
 
@@ -17927,6 +18104,9 @@ msgstr ""
 msgid "Select copy destination for:"
 msgstr "Sélectionnez la destination de la copie pour :"
 
+msgid "Select current service"
+msgstr ""
+
 msgid "Select default EPG type"
 msgstr "Choisir le type d'EPG par défaut…"
 
@@ -17947,6 +18127,9 @@ msgstr "Choisir les fichiers à exclure de la sauvegarde"
 
 msgid "Select files/folders to backup"
 msgstr "Sélectionner les fichiers/dossiers pour sauvegarde"
+
+msgid "Select first service in bouquet"
+msgstr ""
 
 msgid "Select how long a correctly entered service PIN is remembered. This does not unlock protected settings or system actions."
 msgstr ""
@@ -18056,6 +18239,9 @@ msgstr "Sélectionner le périphérique entrée"
 msgid "Select input device."
 msgstr "Choisir le périphérique d'entrée."
 
+msgid "Select last browsed service"
+msgstr ""
+
 msgid "Select movie"
 msgstr "Sélectionner un film"
 
@@ -18136,9 +18322,6 @@ msgstr ""
 msgid "Select the Softcam protocol."
 msgstr ""
 
-msgid "Select the Swap File Size:"
-msgstr "Sélectionnez la taille du fichier d'échange :"
-
 msgid "Select the Unicable channel to be assigned to this tuner. This is a unique value. Be certain that no other device connected to this same Unicable system is allocated to the same Unicable channel."
 msgstr "Sélectionnez le canal Unicable à attribuer à ce tuner. C'est une valeur unique. Assurez-vous qu'aucun autre appareil connecté à ce même système Unicable n'est affecté au même canal Unicable."
 
@@ -18210,6 +18393,9 @@ msgid "Select the character set (iocharset) to be used to match/translate remote
 msgstr ""
 
 msgid "Select the color depth to be used with the HDMI attached UHD capable TV/monitor."
+msgstr ""
+
+msgid "Select the color of the built-in busy spinner. Custom PNG spinners keep their own colors."
 msgstr ""
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
@@ -18521,6 +18707,9 @@ msgstr ""
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr ""
 
+msgid "Select the speed of the fade-in and fade-out of toast messages."
+msgstr ""
+
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
@@ -18801,6 +18990,9 @@ msgstr "N° de série"
 msgid "Serial number"
 msgstr ""
 
+msgid "Serious Classical"
+msgstr ""
+
 msgid "Serious music/Classic music"
 msgstr "Musique classique"
 
@@ -18905,6 +19097,9 @@ msgid ""
 msgstr ""
 "Service non trouvé !\n"
 "(SID non trouvé dans PAT)"
+
+msgid "Service number and picon"
+msgstr ""
 
 msgid "Service number and service name"
 msgstr "Numéro de service et nom de service"
@@ -19088,6 +19283,9 @@ msgstr "Définir la méthode de tri par défaut."
 msgid "Set the delay time between repeated loops, this is used by software renderer in some skins."
 msgstr "Définir le délai avant de répéter une boucle, cela est utilisé par le rendu logiciel dans certains thèmes/skins."
 
+msgid "Set the desired primetime (hour and minute)."
+msgstr ""
+
 msgid "Set the hostname or IP address."
 msgstr ""
 
@@ -19201,13 +19399,7 @@ msgstr ""
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Si ce paramètre est réglé sur 'Yes' ; les mêmes commandes seront envoyées au téléviseur pour les événements de mise en veille profonde que pour les événements de mise en veille normale."
 
-msgid "Set to the desired primetime hour."
-msgstr "Définir le temps du primetime (heure)."
-
-msgid "Set to the desired primetime minutes."
-msgstr "Définir le temps du primetime (minutes)."
-
-msgid "Set to what you want the button to do."
+msgid "Select the action that this button will perform."
 msgstr "Définir l'action que vous avez choisie pour un bouton."
 
 msgid "Set to yes for debugging the root cause of a spinner."
@@ -19402,6 +19594,9 @@ msgstr "Seychelles"
 
 msgid "Share View"
 msgstr "Afficher les partages"
+
+msgid "Shared SAT and C/T inputs"
+msgstr ""
 
 msgid "Shares"
 msgstr "Partages"
@@ -20575,6 +20770,9 @@ msgstr "feuilleton/mélodrame/folklorique"
 msgid "Soccer"
 msgstr "Football"
 
+msgid "Social Affairs"
+msgstr ""
+
 msgid "Social/Political issues/Economics"
 msgstr "Questions sociales/Politiques/Economie (général)"
 
@@ -20589,6 +20787,15 @@ msgstr "Société & Culture"
 
 msgid "Socket"
 msgstr "Prise"
+
+msgid "Soft"
+msgstr ""
+
+msgid "Soft Rhythm and Blues"
+msgstr ""
+
+msgid "Soft Rock"
+msgstr ""
 
 msgid "Soft mount"
 msgstr ""
@@ -20700,9 +20907,6 @@ msgstr "Désolé, %s n'a pas été installé !"
 
 msgid "Sorry, no backups found!"
 msgstr "Désolé, aucune sauvegarde n'a été trouvée !"
-
-msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
-msgstr "Désolé, aucun périphérique physique qui supporte SWAP n'est branché. Impossible de créer un fichier swap sur le réseau ou sur un système de fichier FAT32"
 
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
@@ -20845,6 +21049,9 @@ msgstr ""
 msgid "Spinner Position"
 msgstr ""
 
+msgid "Spinner color"
+msgstr ""
+
 msgid "Split preview mode"
 msgstr "Mode aperçu séparé"
 
@@ -20912,6 +21119,9 @@ msgstr ""
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start all available swap files and partitions when Enigma2 starts. Entries marked noauto in /etc/fstab are excluded. System autostart from /etc/fstab is independent of this setting."
+msgstr ""
+
 msgid "Start an instant recording"
 msgstr ""
 
@@ -20946,6 +21156,9 @@ msgid "Start offline decode"
 msgstr "Démarrer le décodage hors ligne"
 
 msgid "Start or Stop service"
+msgstr ""
+
+msgid "Start or stop the selected swap"
 msgstr ""
 
 msgid "Start recording current event"
@@ -21051,9 +21264,6 @@ msgstr "État de l'affichage en mode veille"
 
 msgid "Status unavailable!"
 msgstr "Statut non disponible!"
-
-msgid "Status:"
-msgstr "Statut :"
 
 msgid "Stay in time shift at buffer end (for plugins)"
 msgstr ""
@@ -21174,6 +21384,9 @@ msgstr ""
 
 msgid "Storage Devices"
 msgstr "Liste des Périphériques de Stockage"
+
+msgid "Storage device"
+msgstr ""
 
 msgid "Storage device full!"
 msgstr "Disque plein ?"
@@ -21387,9 +21600,6 @@ msgstr ""
 msgid "Swap File Manager"
 msgstr "Gestionnaire du fichier de swap"
 
-msgid "Swap File not found. You have to create the file before to activate."
-msgstr "Fichier swap introuvable. Vous devez créer le fichier avant de l'activer."
-
 msgid "Swap Manager"
 msgstr "Gestionnaire de swap"
 
@@ -21399,14 +21609,20 @@ msgstr "Permuter PiP"
 msgid "Swap PiP and main picture"
 msgstr "Inverser PiP et image principale"
 
-msgid "Swap Place:"
-msgstr "Localisation :"
-
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr "Remplacer le SNR dans '%' par le SNR dans 'db'"
 
-msgid "Swap Size:"
-msgstr "Taille du swap :"
+msgid "Swap autostart"
+msgstr ""
+
+msgid "Swap file"
+msgstr ""
+
+msgid "Swap partition"
+msgstr ""
+
+msgid "Swap partition detection failed. Active and configured swaps are still listed."
+msgstr ""
 
 msgid "Swap services"
 msgstr "Inverser fenêtres services"
@@ -21663,6 +21879,9 @@ msgstr "Tadjik"
 
 msgid "Tajikistan"
 msgstr "Tadjikistan"
+
+msgid "Talk"
+msgstr ""
 
 msgid "Talk show"
 msgstr "Débat télévisé"
@@ -22044,6 +22263,9 @@ msgstr "Le paramètre par défaut de l'heure de démarrage est : -5 minutes et d
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+msgid "The device is still mounted. Stop recordings and time shift before checking the file system."
+msgstr ""
+
 msgid "The directory/file no longer exists."
 msgstr ""
 
@@ -22060,6 +22282,15 @@ msgstr ""
 
 #, python-format
 msgid "The file '%s' has been changed. Do you want to save it?"
+msgstr ""
+
+msgid "The file does not contain a valid swap header."
+msgstr ""
+
+msgid "The file is created inactive. Start it in the swap manager when needed."
+msgstr ""
+
+msgid "The file system was repaired. Restart the receiver before using this device."
 msgstr ""
 
 #, python-format
@@ -22114,6 +22345,9 @@ msgstr ""
 msgid "The positioner tuner is currently unavailable. Stop recordings or other services using this tuner and try again."
 msgstr ""
 
+msgid "The previous mount point is already in use."
+msgstr ""
+
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
 msgstr ""
@@ -22140,6 +22374,9 @@ msgstr ""
 msgid "The running Enigma2 version cannot safely save an active time shift buffer."
 msgstr ""
 
+msgid "The running system's file system cannot be checked."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr "Le code PIN sauvegardé a été effacé."
 
@@ -22152,6 +22389,9 @@ msgid "The selected device is not a supported removable block device."
 msgstr ""
 
 msgid "The selected device is too small. At least 3 GB is required."
+msgstr ""
+
+msgid "The selected storage device is no longer available."
 msgstr ""
 
 msgid "The service list is reloaded."
@@ -22168,6 +22408,15 @@ msgid ""
 msgstr ""
 
 msgid "The storage check did not finish. Please check the device or network and try again."
+msgstr ""
+
+msgid "The swap device has changed. Refresh the list and try again."
+msgstr ""
+
+msgid "The swap file has changed. Refresh the list and try again."
+msgstr ""
+
+msgid "The swap file is still active and cannot be deleted."
 msgstr ""
 
 msgid "The time is multiplied by the current repeat counter."
@@ -22302,6 +22551,9 @@ msgstr ""
 msgid "This channel requires an HbbTV plugin. Please install a compatible HbbTV plugin."
 msgstr ""
 
+msgid "This device has multiple mount points. Unmount them before checking the file system."
+msgstr ""
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Ce champ vous permet de chercher un taux de symbole additionnel de %s."
@@ -22311,6 +22563,9 @@ msgstr ""
 
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "Il s'agit d'une solution de contournement pour certains appareils qui se réveillent à nouveau après avoir été mis en veille. Les commandes de réveil des autres appareils seront ignorées pendant quelques secondes."
+
+msgid "This is not a regular swap file."
+msgstr ""
 
 msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
 msgstr ""
@@ -22621,6 +22876,10 @@ msgstr ""
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr ""
 
+# TODO
+msgid "Time shift not possible!"
+msgstr "Le décalage temporel n'est pas possible !"
+
 msgid "Time shift save action on zap"
 msgstr "PauseDirect - sauvegarde lorsqu'on zappe"
 
@@ -22699,6 +22958,9 @@ msgid "Timer Defaults And Retention"
 msgstr ""
 
 msgid "Timer Log Actions"
+msgstr ""
+
+msgid "Timer Menu"
 msgstr ""
 
 # TODO
@@ -22791,6 +23053,9 @@ msgstr ""
 
 #, python-format
 msgid "To where would you like to extract '%s'?"
+msgstr ""
+
+msgid "Toast fade"
 msgstr ""
 
 msgid "Today"
@@ -22906,6 +23171,9 @@ msgstr "Tonga"
 
 msgid "Top"
 msgstr "Haut"
+
+msgid "Top 40"
+msgstr ""
 
 msgid "Top and Bottom"
 msgstr "Haut et Bas"
@@ -23228,6 +23496,12 @@ msgstr ""
 msgid "Two lines"
 msgstr "Deux lignes"
 
+msgid "Two tuners share one SAT input and one C/T input. Reception types switch automatically. Use compatible SAT settings and separate Unicable User Bands. Cable and terrestrial reception cannot run together."
+msgstr ""
+
+msgid "Two tuners, two SAT sockets, one shared C/T socket. Two frequencies of the same reception type can run together. Cable and terrestrial cannot run together."
+msgstr ""
+
 msgid "Type"
 msgstr "Type"
 
@@ -23328,6 +23602,12 @@ msgid "Ukrainian"
 msgstr "Ukrainien"
 
 #, python-format
+msgid ""
+"Unable to change swap state for '%s'.\n"
+"%s"
+msgstr ""
+
+#, python-format
 msgid "Unable to check HDD replacement: %s"
 msgstr ""
 
@@ -23358,6 +23638,9 @@ msgstr ""
 msgid "Unable to prepare the time shift storage device."
 msgstr ""
 
+msgid "Unable to read the list of mounted file systems."
+msgstr ""
+
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr ""
@@ -23375,9 +23658,6 @@ msgid "Unable to save network configuration!"
 msgstr ""
 
 msgid "Unable to save network mount configuration!"
-msgstr ""
-
-msgid "Unable to start RAM time shift."
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
@@ -23857,6 +24137,9 @@ msgstr "Utiliser les paramètres individuels pour chaque répertoire"
 msgid "Use power measurement"
 msgstr "Utiliser la mesure de puissance"
 
+msgid "Use skin default"
+msgstr ""
+
 msgid "Use small screen"
 msgstr "Utiliser l'écran fin"
 
@@ -23946,6 +24229,10 @@ msgstr "Type de recherche de service utilisé"
 
 msgid "Used:"
 msgstr "Utilisé :"
+
+#, python-format
+msgid "Used: %s"
+msgstr ""
 
 msgid "User  (keymap.usr)"
 msgstr "Utilisateur (keymap.usr)"
@@ -24087,6 +24374,9 @@ msgstr ""
 
 msgid "Vanuatu"
 msgstr "Vanuatu"
+
+msgid "Varied"
+msgstr ""
 
 msgid "Variety"
 msgstr "Variété"
@@ -24383,12 +24673,6 @@ msgstr "WSS sur 4:3"
 msgid "Wait for timesync at startup"
 msgstr "Attendre la synchronisation au démarrage"
 
-msgid "Wait please while creating swap file..."
-msgstr "Veuillez patienter, création du fichier de swap…"
-
-msgid "Wait please while scanning..."
-msgstr "Veuillez patienter pendant l'analyse en cours…"
-
 msgid "Waiting"
 msgstr "Attendez"
 
@@ -24482,6 +24766,9 @@ msgid "Weather"
 msgstr "Météo"
 
 msgid "Weather settings"
+msgstr ""
+
+msgid "Weather/meteorology"
 msgstr ""
 
 msgid "Web Interface"
@@ -24855,6 +25142,9 @@ msgstr "Lorsque que vous êtes sur un service le système va normalement scanner
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Où sauvegarder les enregistrements temporaires de timeshift ?"
 
+msgid "Select which service to use when opening the EPG."
+msgstr ""
+
 msgid "Which time shift buffer event do you want to save?"
 msgstr "Quel événement voulez-vous sauvegarder de façon permanente ?"
 
@@ -25016,10 +25306,10 @@ msgstr "Xhosa"
 msgid "Y-Resolution"
 msgstr ""
 
-msgid "YELLOW button"
+msgid "YELLOW"
 msgstr "Bouton Jaune"
 
-msgid "YELLOW long"
+msgid "YELLOW (Long press)"
 msgstr "Jaune long"
 
 msgid "Year"
@@ -25133,9 +25423,6 @@ msgstr "Vous n'avez aucun script à exécuter."
 
 msgid "You have selected no logs to delete."
 msgstr "Vous n'avez pas choisi de logs à supprimer."
-
-msgid "You have to create a Swap File before to activate the autostart."
-msgstr "Vous devez créer un fichier swap avant d'activer le démarrage automatique."
 
 #, python-format
 msgid "You have to wait %s!"
@@ -26064,6 +26351,42 @@ msgstr "Oui (garder feeds)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Please select device to use as swap file location"
+#~ msgstr "Veuillez choisir un support à utiliser comme emplacement pour le fichier de swap"
+
+#~ msgid "Select the Swap File Size:"
+#~ msgstr "Sélectionnez la taille du fichier d'échange :"
+
+#~ msgid "Set to the desired primetime hour."
+#~ msgstr "Définir le temps du primetime (heure)."
+
+#~ msgid "Set to the desired primetime minutes."
+#~ msgstr "Définir le temps du primetime (minutes)."
+
+#~ msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
+#~ msgstr "Désolé, aucun périphérique physique qui supporte SWAP n'est branché. Impossible de créer un fichier swap sur le réseau ou sur un système de fichier FAT32"
+
+#~ msgid "Status:"
+#~ msgstr "Statut :"
+
+#~ msgid "Swap File not found. You have to create the file before to activate."
+#~ msgstr "Fichier swap introuvable. Vous devez créer le fichier avant de l'activer."
+
+#~ msgid "Swap Place:"
+#~ msgstr "Localisation :"
+
+#~ msgid "Swap Size:"
+#~ msgstr "Taille du swap :"
+
+#~ msgid "Wait please while creating swap file..."
+#~ msgstr "Veuillez patienter, création du fichier de swap…"
+
+#~ msgid "Wait please while scanning..."
+#~ msgstr "Veuillez patienter pendant l'analyse en cours…"
+
+#~ msgid "You have to create a Swap File before to activate the autostart."
+#~ msgstr "Vous devez créer un fichier swap avant d'activer le démarrage automatique."
+
 #~ msgid "Aspect"
 #~ msgstr "Aspect"
 
@@ -26211,10 +26534,6 @@ msgstr "®"
 #~ msgstr ""
 #~ "Le système de fichier de votre périphérique pour le PauseDirect ne supporte pas les liens matériels.\n"
 #~ "Soyez certains qu'il est formaté en ext2, ext3 ou ext4 !"
-
-# TODO
-#~ msgid "Time shift not possible!"
-#~ msgstr "Le décalage temporel n'est pas possible !"
 
 #~ msgid "Time shift save failed!"
 #~ msgstr "La sauvegarde du PauseDirect a échoué !"

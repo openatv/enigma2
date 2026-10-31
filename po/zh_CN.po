@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 19:43+0000\n"
-"PO-Revision-Date: 2026-10-26 09:51+0000\n"
+"POT-Creation-Date: 2026-10-26 13:51+0100\n"
+"PO-Revision-Date: 2026-10-30 12:17+0000\n"
 "Last-Translator: Mark Stone <mstone@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -1507,6 +1507,9 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
+msgid "2 tuners: 2 SAT sockets, 1 C/T socket"
+msgstr "2调谐器：2个卫星接口，1个有线/地面波接口"
+
 msgid "2nd InfoBar"
 msgstr "第二信息栏"
 
@@ -2079,6 +2082,9 @@ msgstr "添加频道到音量偏移列表"
 msgid "Add a timer for the current event"
 msgstr "为当前事件添加定时器"
 
+msgid "Add an existing swap file"
+msgstr "添加现有交换文件"
+
 msgid "Add an AutoTimer for the current event"
 msgstr "为当前事件添加自动定时器"
 
@@ -2217,6 +2223,9 @@ msgstr "成人"
 
 msgid "Adult Audience, Strong Violence 15+"
 msgstr "成人观众，强烈暴力15+"
+
+msgid "Adult Hits"
+msgstr "成人热门金曲"
 
 msgid "Adult movie/Drama"
 msgstr "成人电影／戏剧"
@@ -2576,6 +2585,9 @@ msgstr "动画"
 
 msgid "Anonymize client IPs"
 msgstr "匿名化客户端 IP"
+
+msgid "Another swap operation is still running."
+msgstr "另一个交换操作仍在运行。"
 
 msgid "Antarctica"
 msgstr "南极洲"
@@ -3063,10 +3075,10 @@ msgstr "误码率："
 msgid "BLUDISC RECORDABLE"
 msgstr "可刻录蓝光光盘"
 
-msgid "BLUE button"
+msgid "BLUE"
 msgstr "蓝键"
 
-msgid "BLUE long"
+msgid "BLUE (Long press)"
 msgstr "长按蓝键"
 
 msgid "BLUE switch: BLUE/BLUE long"
@@ -3501,6 +3513,9 @@ msgstr "博通默认"
 
 msgid "Browse"
 msgstr "浏览"
+
+msgid "Browse mode"
+msgstr "浏览模式"
 
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "逐一浏览、安装或删除插件。"
@@ -4249,7 +4264,7 @@ msgstr "频道名称"
 msgid "Channel number"
 msgstr "频道号"
 
-msgid "Channel preview mode"
+msgid "Service preview mode"
 msgstr "频道预览模式"
 
 msgid "Channel selection configuration"
@@ -4495,6 +4510,9 @@ msgstr "右旋"
 msgid "City"
 msgstr "城市"
 
+msgid "Classic Rock"
+msgstr "经典摇滚"
+
 msgid "Classical"
 msgstr "古典"
 
@@ -4641,6 +4659,9 @@ msgstr "关闭屏幕并停止正在运行的扫描"
 msgid "Close the screen without saving any changes"
 msgstr "关闭屏幕，不保存任何更改"
 
+msgid "Close the swap manager"
+msgstr "关闭交换管理器"
+
 msgid "Close the window"
 msgstr "关闭此窗口"
 
@@ -4670,6 +4691,9 @@ msgstr "集合名称"
 
 msgid "Collection settings"
 msgstr "集合设置"
+
+msgid "College"
+msgstr "校园广播"
 
 msgid "Colombia"
 msgstr "哥伦比亚"
@@ -5160,6 +5184,9 @@ msgstr "配置 NTP 服务器。"
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "配置网络设置，然后按 OK 键开始扫描"
 
+msgid "Configured in /etc/fstab. Starting or stopping here only changes the current session."
+msgstr "已在 /etc/fstab 中配置。在此处启动或停止仅会更改当前会话。"
+
 msgid "Configures which video output connector will be used."
 msgstr "配置哪个视频输出连接器会被使用。"
 
@@ -5493,6 +5520,9 @@ msgstr ""
 msgid "Country"
 msgstr "国家(地区)"
 
+msgid "Country Music"
+msgstr "乡村音乐"
+
 msgid "Country for EPG event genre information"
 msgstr "EPG 事件类型信息的国家/地区"
 
@@ -5533,6 +5563,9 @@ msgstr "创建 ISO"
 msgid "Create Slots"
 msgstr "创建槽位"
 
+msgid "Create Zap Timer"
+msgstr "创建换台定时器"
+
 msgid "Create a directory"
 msgstr "创建一个目录"
 
@@ -5544,6 +5577,9 @@ msgstr "为广播频道创建单独的频道分组。禁用后，广播频道将
 
 msgid "Create a settings backup"
 msgstr "创建“设置”备份"
+
+msgid "Create a swap file"
+msgstr "创建一个交换文件"
 
 msgid "Create a symbolic link"
 msgstr "创建符号链接"
@@ -5594,6 +5630,9 @@ msgstr "为所选设备创建插槽"
 msgid "Create swap"
 msgstr "创建交换分区"
 
+msgid "Create swap file"
+msgstr "创建交换文件"
+
 msgid "Create tar file of root file system."
 msgstr "创建根文件系统的 tar 文件。"
 
@@ -5624,6 +5663,17 @@ msgstr ""
 
 msgid "Creating partition"
 msgstr "正在创建分区"
+
+msgid "Creating swap file. This can take several minutes."
+msgstr "正在创建交换文件。这可能需要几分钟。"
+
+#, python-format
+msgid ""
+"Creating the swap file failed.\n"
+"%s"
+msgstr ""
+"创建交换文件失败。\n"
+"%s"
 
 msgid "Credentials"
 msgstr "凭据"
@@ -5659,6 +5709,9 @@ msgstr "古巴"
 msgid "Cult"
 msgstr "宗教信仰"
 
+msgid "Culture"
+msgstr "文化"
+
 msgid "Curacao"
 msgstr "库拉索"
 
@@ -5670,6 +5723,9 @@ msgstr "当前"
 
 msgid "Current 1/1"
 msgstr "当前 1/1"
+
+msgid "Current Affairs"
+msgstr "时事"
 
 msgid "Current CEC address"
 msgstr "当前 CEC 地址"
@@ -6531,6 +6587,12 @@ msgstr "删除播放列表条目"
 msgid "Delete saved play list"
 msgstr "删除已保存的播放列表"
 
+#, python-format
+msgid ""
+"Delete swap file '%s'?\n"
+"An active file will be stopped first. Its swap entry in /etc/fstab will also be removed."
+msgstr ""
+
 msgid "Delete the character to the left of text cursor"
 msgstr "删除文本光标左侧的字符"
 
@@ -6561,6 +6623,9 @@ msgstr "删除所选设备中的闪存扩展器"
 
 msgid "Delete the selected locally stored image"
 msgstr "删除选定的本地存储镜像"
+
+msgid "Delete the selected swap file"
+msgstr ""
 
 #, python-format
 msgid "Delete these %d directories/files?"
@@ -6700,6 +6765,10 @@ msgstr "设备名:"
 
 msgid "Device number"
 msgstr "设备编号"
+
+#, python-format
+msgid "Device: %s"
+msgstr ""
 
 msgid "Devices"
 msgstr "设备"
@@ -7483,6 +7552,9 @@ msgstr "东限制"
 
 msgid "Eastern satellites"
 msgstr "东经卫星"
+
+msgid "Easy Listening Music"
+msgstr ""
 
 msgid "Easy listening"
 msgstr "轻音乐"
@@ -9185,6 +9257,9 @@ msgstr "最终滚动延迟"
 msgid "Finance"
 msgstr "金融"
 
+msgid "Finance/Business"
+msgstr ""
+
 msgid "Find Currently Playing Service"
 msgstr "查找当前正在播放的频道"
 
@@ -9318,6 +9393,9 @@ msgstr "按遥控器上的位置排列"
 msgid "Flush Cache and Rescan"
 msgstr "刷新缓存并重新扫描"
 
+msgid "Folk Music"
+msgstr ""
+
 msgid "Folk and Country"
 msgstr "民谣和乡村"
 
@@ -9375,6 +9453,9 @@ msgstr "强制启用"
 msgid "Force progressive for streams and files"
 msgstr "强制对串流和文件使用逐行扫描"
 
+msgid "Foreign Language"
+msgstr ""
+
 msgid "Foreign countries/Expeditions"
 msgstr "外国/探险"
 
@@ -9413,6 +9494,10 @@ msgstr "剩余闪存"
 
 msgid "Free memory"
 msgstr "剩余内存"
+
+#, python-format
+msgid "Free space: %s"
+msgstr ""
 
 msgid "Free swap"
 msgstr "剩余交换空间"
@@ -9489,6 +9574,9 @@ msgstr "全屏拉伸"
 msgid "Full factory reset"
 msgstr "完全恢复出厂设置"
 
+msgid "Full path of the existing swap file"
+msgstr ""
+
 msgid "Full range (no clipping)"
 msgstr "全范围（无裁剪）"
 
@@ -9510,10 +9598,10 @@ msgstr "继续教育"
 msgid "G"
 msgstr "G"
 
-msgid "GREEN button"
+msgid "GREEN"
 msgstr "绿键"
 
-msgid "GREEN long"
+msgid "GREEN (Long press)"
 msgstr "长按绿键"
 
 msgid "GStreamer debug log category *"
@@ -10704,7 +10792,7 @@ msgstr "印尼语"
 msgid "Info"
 msgstr "信息"
 
-msgid "Info button (long)"
+msgid "INFO (Long press)"
 msgstr "INFO 键 （长按）"
 
 msgid "Info button (short)"
@@ -10956,6 +11044,9 @@ msgstr "无效的帮助页面"
 msgid "Invalid location!"
 msgstr "无效位置!"
 
+msgid "Invalid swap file size."
+msgstr ""
+
 msgid "Invalid transponder data"
 msgstr "无效的转发器数据"
 
@@ -11027,6 +11118,9 @@ msgstr "爪哇语"
 
 msgid "Jazz"
 msgstr "爵士"
+
+msgid "Jazz Music"
+msgstr ""
 
 msgid "Jersey"
 msgstr "泽西岛"
@@ -11475,6 +11569,9 @@ msgstr "传统（SMB1）"
 msgid "Legacy mode"
 msgstr "传统模式"
 
+msgid "Leisure"
+msgstr ""
+
 msgid "Leisure hobbies"
 msgstr "休闲爱好"
 
@@ -11511,6 +11608,9 @@ msgstr "列支敦士登"
 
 msgid "Lifestyle"
 msgstr "生活方式"
+
+msgid "Light Classical"
+msgstr ""
 
 msgid "Light Grey"
 msgstr "浅灰色"
@@ -12136,6 +12236,9 @@ msgstr "医疗"
 msgid "Medicine/Physiology/Psychology"
 msgstr "医学/生理学/心理学"
 
+msgid "Medium"
+msgstr ""
+
 msgid "Medium is not a writeable DVD!"
 msgstr "媒介不是可写DVD!"
 
@@ -12400,6 +12503,10 @@ msgstr "挂载或制裁所选共享"
 
 msgid "Mount point"
 msgstr "挂载点"
+
+#, python-format
+msgid "Mount point: %s"
+msgstr ""
 
 msgid "Mount root file system."
 msgstr "挂载根文件系统。"
@@ -13435,6 +13542,9 @@ msgstr "没有找到合适的卫星调谐器！"
 msgid "No supported DAB+ feeds are available for the satellite positions configured on this box."
 msgstr "此设备所配置的卫星位置上没有可用的 DAB+ 传送源。"
 
+msgid "No swap files or partitions found. Use Create to add a swap file."
+msgstr ""
+
 msgid "No system softcam configured!"
 msgstr "未配置系统 softcam！"
 
@@ -13480,6 +13590,9 @@ msgstr ""
 msgid "No tuners are currently streaming."
 msgstr "目前没有调谐器在串流。"
 
+msgid "No unused swap file name is available."
+msgstr ""
+
 msgid "No update required!"
 msgstr "无需更新!"
 
@@ -13504,6 +13617,9 @@ msgstr "找不到'%s'的有效挂载！"
 
 msgid "No valid region details were found"
 msgstr "找不到有效的区域详细信息"
+
+msgid "No writable ext2, ext3 or ext4 storage is available for a swap file."
+msgstr ""
 
 msgid "No, but restart from begin"
 msgstr "否，但从开始重新启动"
@@ -13583,6 +13699,9 @@ msgstr "挪威语"
 msgid "Norwegian Nynorsk"
 msgstr "挪威语尼诺斯克语"
 
+msgid "Nostalgia"
+msgstr ""
+
 msgid "Not Classified"
 msgstr "未分类"
 
@@ -13619,6 +13738,9 @@ msgstr "未定义"
 #, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "没有足够的磁盘空间。请释放一些空间后重试。（需要 %d MB，可用 %d MB）"
+
+msgid "Not enough free space for this swap file."
+msgstr ""
 
 msgid "Not found"
 msgstr "未发现"
@@ -13715,7 +13837,7 @@ msgstr "OEM 型号"
 msgid "OK"
 msgstr "确定"
 
-msgid "OK button (long)"
+msgid "OK (Long press)"
 msgstr "OK 键 （长按）"
 
 msgid "OK button (short)"
@@ -13831,6 +13953,12 @@ msgstr "偏移并关闭 CA 设备"
 msgid "Ojibwa"
 msgstr "奥吉布瓦"
 
+msgid "Oldies"
+msgstr ""
+
+msgid "Oldies Music"
+msgstr ""
+
 msgid "Olympic blue"
 msgstr "奥运蓝"
 
@@ -13893,6 +14021,9 @@ msgstr "仅在启动时"
 
 msgid "Only one network share can be used as HDD replacement. Disable 'Use as HDD replacement' on the other share first."
 msgstr "只能有一个网络共享用作硬盘替代。请先禁用其他共享上的“用作硬盘替代”。"
+
+msgid "Only swap files can be deleted."
+msgstr ""
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
 msgstr "仅使用实施 DNS-over-HTTPS 协议的DNS服务器。这将使 DNS 查询通过加密的 HTTPS 协议进行。"
@@ -14196,6 +14327,9 @@ msgstr "其他"
 
 msgid "Other Actions"
 msgstr "其他动作"
+
+msgid "Other Music"
+msgstr ""
 
 msgid "Other OSD Elements"
 msgstr "其他 OSD 组件"
@@ -14542,6 +14676,9 @@ msgstr "权限"
 msgid "Persian"
 msgstr "波斯语"
 
+msgid "Personality"
+msgstr ""
+
 msgid "Personalize your Skin"
 msgstr "个性化皮肤"
 
@@ -14550,6 +14687,9 @@ msgstr "秘鲁"
 
 msgid "Philippines"
 msgstr "菲律宾"
+
+msgid "Phone In"
+msgstr ""
 
 msgid "PiP"
 msgstr "画中画"
@@ -14581,6 +14721,9 @@ msgstr "频道图标设置"
 msgid "Picon and service name"
 msgstr "频道图标和频道名"
 
+msgid "Picon and service number"
+msgstr ""
+
 msgid "Picon install location"
 msgstr "频道图标安装位置"
 
@@ -14597,6 +14740,9 @@ msgstr "频道图标搜索模式"
 
 msgid "Picon width"
 msgstr "频道图标宽度"
+
+msgid "Picon, service number and service name"
+msgstr ""
 
 msgid "Picture In Picture"
 msgstr "画中画"
@@ -14849,9 +14995,6 @@ msgstr "请选择分辨率..."
 msgid "Please select an aspect ratio..."
 msgstr "请选择画面比例...."
 
-msgid "Please select device to use as swap file location"
-msgstr "请选择要用作交换文件位置的设备"
-
 msgid "Please select medium to be scanned"
 msgstr "请选择要扫描的介质"
 
@@ -14958,6 +15101,9 @@ msgstr "正在更换插件，请稍候。"
 msgid "Please wait while the plugin is updated."
 msgstr "正在更新插件，请稍候。"
 
+msgid "Please wait while the swap file is stopped and deleted."
+msgstr ""
+
 msgid "Please wait while unused locales/languages are purged..."
 msgstr "正在清除未使用的区域设置/语言，请稍候..."
 
@@ -14981,6 +15127,9 @@ msgstr "请稍候，正在加载镜像..."
 
 msgid "Please wait, swap is being created. This could take a few minutes to complete."
 msgstr "请稍候，正在创建交换。这可能需要几分钟才能完成。"
+
+msgid "Please wait. Stopping swap can take a while."
+msgstr ""
 
 msgid "Please wait..."
 msgstr "请等待..."
@@ -15053,6 +15202,9 @@ msgstr "波兰语"
 
 msgid "Politics"
 msgstr "政治"
+
+msgid "Pop Music"
+msgstr ""
 
 msgid "Popular culture/Traditional arts"
 msgstr "流行文化/传统艺术"
@@ -15570,6 +15722,9 @@ msgstr "供应商："
 msgid "Proxy detected"
 msgstr "检测到代理"
 
+msgid "Public"
+msgstr ""
+
 msgid "Public IP"
 msgstr "公网 IP"
 
@@ -15723,13 +15878,13 @@ msgstr "使用 REC 符号"
 msgid "REC symbol"
 msgstr "REC 字符"
 
-msgid "RED button"
+msgid "RED"
 msgstr "红键"
 
 msgid "RED button / HbbTV"
 msgstr "红键 / HbbTV"
 
-msgid "RED long"
+msgid "RED (Long press)"
 msgstr "长按红键"
 
 msgid "RF Output Settings"
@@ -16110,6 +16265,9 @@ msgstr "刷新屏幕"
 msgid "Refresh the update-able package list"
 msgstr "刷新可更新包列表"
 
+msgid "Refresh, add an existing swap file or change autostart"
+msgstr ""
+
 msgid "Regard Deep Standby as Standby"
 msgstr "把深度待机当作待机"
 
@@ -16133,6 +16291,12 @@ msgstr "宗教"
 
 msgid "Religious"
 msgstr "宗教"
+
+msgid "Religious Music"
+msgstr ""
+
+msgid "Religious Talk"
+msgstr ""
 
 msgid "Reload Bookmarks"
 msgstr "重新加载书签"
@@ -16772,6 +16936,9 @@ msgstr "快退速度"
 msgid "Rewrap subtitles"
 msgstr "重新封装字幕"
 
+msgid "Rhythm and Blues"
+msgstr ""
+
 msgid "Right"
 msgstr "右"
 
@@ -16798,6 +16965,12 @@ msgstr "右侧，前置 USB"
 
 msgid "Right, wrapped"
 msgstr "右，覆盖"
+
+msgid "Rock"
+msgstr ""
+
+msgid "Rock Music"
+msgstr ""
 
 msgid "Rock/Pop"
 msgstr "摇滚/流行"
@@ -17276,6 +17449,9 @@ msgstr[1] "扫描完成，找到 %d 个频道。"
 msgid "Scanning for shares..."
 msgstr "正在扫描共享..."
 
+msgid "Scanning swap devices..."
+msgstr ""
+
 msgid "Scanning..."
 msgstr "正在扫描..."
 
@@ -17569,7 +17745,7 @@ msgstr "选择“是”以启用 DNSCrypt 子系统的监控界面网页界面�
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "选择“是”以启用左/右按钮作为上页/下页功能（当左/右按钮未定义其他功能时）。此功能为偏好传统导航方式的用户提供支持。"
 
-msgid "Select 'Yes' to hide channels without EPG data."
+msgid "When enabled, services without EPG data will be hidden."
 msgstr "选择“是”隐藏没有 EPG 数据的频道。"
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
@@ -17897,6 +18073,9 @@ msgstr "选择特定的 NFS 版本，以强制使用指定的 NFS 协议版本�
 msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
 msgstr "选择要使用的特定SMB协议版本，而非允许自动协商。仅当服务器过于老旧、不支持更新且更安全的SMB2/SMB3协议时，才使用“旧版（SMB1）”。"
 
+msgid "Select a swap file on local storage."
+msgstr ""
+
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
 msgstr "设置在换台定时器切换频道前弹出确认提示的时间。用户可在期间取消切换。选‘禁用’则不提示直接换台。"
 
@@ -17952,6 +18131,9 @@ msgstr "选择频道集"
 msgid "Select copy destination for:"
 msgstr "选择复制目标为："
 
+msgid "Select current service"
+msgstr ""
+
 msgid "Select default EPG type"
 msgstr "选择默认 EPG 类型"
 
@@ -17972,6 +18154,9 @@ msgstr "选择要从备份中排除的文件"
 
 msgid "Select files/folders to backup"
 msgstr "选择 文件/文件夹 来备份"
+
+msgid "Select first service in bouquet"
+msgstr ""
 
 msgid "Select how long a correctly entered service PIN is remembered. This does not unlock protected settings or system actions."
 msgstr "选择正确输入的频道 PIN 码被记住的时长。这不会解锁受保护的设置或系统操作。"
@@ -18081,6 +18266,9 @@ msgstr "选择输入设备"
 msgid "Select input device."
 msgstr "选择输入设备。"
 
+msgid "Select last browsed service"
+msgstr ""
+
 msgid "Select movie"
 msgstr "选择影片"
 
@@ -18161,9 +18349,6 @@ msgstr "选择“%s”的 Softcam"
 msgid "Select the Softcam protocol."
 msgstr "选择 Softcam 协议。"
 
-msgid "Select the Swap File Size:"
-msgstr "选择交换文件大小："
-
 msgid "Select the Unicable channel to be assigned to this tuner. This is a unique value. Be certain that no other device connected to this same Unicable system is allocated to the same Unicable channel."
 msgstr "选择要分配给该调谐器的 Unicable 通道。 这是一个独特的值。 确保没有其他连接到同一 Unicable 系统的设备被分配到同一 Unicable 通道。"
 
@@ -18236,6 +18421,9 @@ msgstr "选择用于匹配/转换远程文件名字符集（iocharset）。"
 
 msgid "Select the color depth to be used with the HDMI attached UHD capable TV/monitor."
 msgstr "选择用于 HDMI 连接的超高清兼容电视/显示器的色深。"
+
+msgid "Select the color of the built-in busy spinner. Custom PNG spinners keep their own colors."
+msgstr ""
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
 msgstr "选择接收机在运行状态下前面板电源 LED 的颜色。此选项也可将 LED 禁用/关闭。"
@@ -18546,6 +18734,9 @@ msgstr "选择插件浏览器菜单项的排序顺序。用户定义还允许隐
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "选择菜单项的排序顺序。用户定义还允许隐藏菜单项。"
 
+msgid "Select the speed of the fade-in and fade-out of toast messages."
+msgstr ""
+
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr "选择此定时器可被激活的最早起始时间。早于此时限，即使满足其他所有条件，定时器也不会启动。"
 
@@ -18829,6 +19020,9 @@ msgstr "序列号"
 msgid "Serial number"
 msgstr "序列号"
 
+msgid "Serious Classical"
+msgstr ""
+
 msgid "Serious music/Classic music"
 msgstr "严肃音乐/经典音乐"
 
@@ -18933,6 +19127,9 @@ msgid ""
 msgstr ""
 "没有找到频道！\n"
 "（PAT 里没有找到 SID）"
+
+msgid "Service number and picon"
+msgstr ""
 
 msgid "Service number and service name"
 msgstr "频道编号和频率名称"
@@ -19115,6 +19312,9 @@ msgstr "设置默认的排序方法."
 msgid "Set the delay time between repeated loops, this is used by software renderer in some skins."
 msgstr "设置重复循环之间的延迟时间，用于某些皮肤中的软件渲染器。"
 
+msgid "Set the desired primetime (hour and minute)."
+msgstr ""
+
 msgid "Set the hostname or IP address."
 msgstr "设置主机名或 IP 地址。"
 
@@ -19231,13 +19431,7 @@ msgstr "设为'启用'，可在待机模式下对已排队的加扰内容执行�
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "如果设置为“是”，那么对于深度待机事件，将向电视发送相同的命令，就像在常规待机事件期间发送的一样。"
 
-msgid "Set to the desired primetime hour."
-msgstr "设置为所需的黄金时段（小时）。"
-
-msgid "Set to the desired primetime minutes."
-msgstr "设置为所需的黄金时段（分钟）。"
-
-msgid "Set to what you want the button to do."
+msgid "Select the action that this button will perform."
 msgstr "设置按键功能。"
 
 msgid "Set to yes for debugging the root cause of a spinner."
@@ -19435,6 +19629,9 @@ msgstr "塞舌尔"
 
 msgid "Share View"
 msgstr "共享视图"
+
+msgid "Shared SAT and C/T inputs"
+msgstr ""
 
 msgid "Shares"
 msgstr "共享"
@@ -20605,6 +20802,9 @@ msgstr "肥皂 /音乐剧/民俗"
 msgid "Soccer"
 msgstr "足球"
 
+msgid "Social Affairs"
+msgstr ""
+
 msgid "Social/Political issues/Economics"
 msgstr "社会/政治问题/经济（常规）"
 
@@ -20619,6 +20819,15 @@ msgstr "社会与文化"
 
 msgid "Socket"
 msgstr "插口"
+
+msgid "Soft"
+msgstr ""
+
+msgid "Soft Rhythm and Blues"
+msgstr ""
+
+msgid "Soft Rock"
+msgstr ""
 
 msgid "Soft mount"
 msgstr "软挂载"
@@ -20732,9 +20941,6 @@ msgstr "抱歉， %s 还未安装！"
 
 msgid "Sorry, no backups found!"
 msgstr "抱歉，没有找到备份！"
-
-msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
-msgstr "抱歉，没有支持SWAP的物理设备连接。 无法在网络或 fat32 文件系统上创建交换文件"
 
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
@@ -20877,6 +21083,9 @@ msgstr "速度"
 msgid "Spinner Position"
 msgstr "旋转器位置"
 
+msgid "Spinner color"
+msgstr ""
+
 msgid "Split preview mode"
 msgstr "分割预览模式"
 
@@ -20944,6 +21153,9 @@ msgstr "开始时间（最晚优先）"
 msgid "Start Wizard"
 msgstr "开始向导"
 
+msgid "Start all available swap files and partitions when Enigma2 starts. Entries marked noauto in /etc/fstab are excluded. System autostart from /etc/fstab is independent of this setting."
+msgstr ""
+
 msgid "Start an instant recording"
 msgstr "开始即时录制"
 
@@ -20979,6 +21191,9 @@ msgstr "开始离线解码"
 
 msgid "Start or Stop service"
 msgstr "启动或停止服务"
+
+msgid "Start or stop the selected swap"
+msgstr ""
 
 msgid "Start recording current event"
 msgstr "开始录制当前事件"
@@ -21083,9 +21298,6 @@ msgstr "启动机顶盒进入待机状态"
 
 msgid "Status unavailable!"
 msgstr "状态不可用！"
-
-msgid "Status:"
-msgstr "状态："
 
 msgid "Stay in time shift at buffer end (for plugins)"
 msgstr "缓冲结束时保持时移（供插件使用）"
@@ -21206,6 +21418,9 @@ msgstr "存储与删除"
 
 msgid "Storage Devices"
 msgstr "存储设备"
+
+msgid "Storage device"
+msgstr ""
 
 msgid "Storage device full!"
 msgstr "存储设备已满！"
@@ -21414,9 +21629,6 @@ msgstr "交换"
 msgid "Swap File Manager"
 msgstr "交换文件管理器"
 
-msgid "Swap File not found. You have to create the file before to activate."
-msgstr "没有找到交换文件。激活前必须创建文件。"
-
 msgid "Swap Manager"
 msgstr "Swap 管理器"
 
@@ -21426,14 +21638,20 @@ msgstr "交换画中画"
 msgid "Swap PiP and main picture"
 msgstr "交换画中画和主画面"
 
-msgid "Swap Place:"
-msgstr "交换空间："
-
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr "把信噪比单位“%”换成“db”"
 
-msgid "Swap Size:"
-msgstr "Swap 大小："
+msgid "Swap autostart"
+msgstr ""
+
+msgid "Swap file"
+msgstr ""
+
+msgid "Swap partition"
+msgstr ""
+
+msgid "Swap partition detection failed. Active and configured swaps are still listed."
+msgstr ""
 
 msgid "Swap services"
 msgstr "交换频道"
@@ -21689,6 +21907,9 @@ msgstr "塔吉克"
 
 msgid "Tajikistan"
 msgstr "塔吉克斯坦"
+
+msgid "Talk"
+msgstr ""
 
 msgid "Talk show"
 msgstr "脱口秀"
@@ -22086,6 +22307,9 @@ msgstr "默认设置为唤醒时间 - 5 分钟和定时器开始时间+ 5 分钟
 msgid "The detailed information is intended for developers only."
 msgstr "详细信息仅供开发人员使用。"
 
+msgid "The device is still mounted. Stop recordings and time shift before checking the file system."
+msgstr ""
+
 msgid "The directory/file no longer exists."
 msgstr "目录/文件已不存在。"
 
@@ -22106,6 +22330,15 @@ msgstr "文件“%s”已更改。 是否要放弃更改？"
 #, python-format
 msgid "The file '%s' has been changed. Do you want to save it?"
 msgstr "文件“%s”已更改。 是否要保存？"
+
+msgid "The file does not contain a valid swap header."
+msgstr ""
+
+msgid "The file is created inactive. Start it in the swap manager when needed."
+msgstr ""
+
+msgid "The file system was repaired. Restart the receiver before using this device."
+msgstr ""
 
 #, python-format
 msgid "The following files are related to '%s':"
@@ -22159,6 +22392,9 @@ msgstr "频道图标目录已存在，必须删除。是否要继续？"
 msgid "The positioner tuner is currently unavailable. Stop recordings or other services using this tuner and try again."
 msgstr "极轴马达调谐器当前不可用。请停止使用该调谐器的录制或其他服务后重试。"
 
+msgid "The previous mount point is already in use."
+msgstr ""
+
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
 msgstr "该操作预计需要约 %d 分钟完成。"
@@ -22188,6 +22424,9 @@ msgstr "厂商 STARTUP 文件中的根子目录无法安全扩展。"
 msgid "The running Enigma2 version cannot safely save an active time shift buffer."
 msgstr "当前运行的Enigma2版本无法安全保存活动的时移缓冲。"
 
+msgid "The running system's file system cannot be checked."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr "已清除保存的 PIN 码。"
 
@@ -22203,6 +22442,9 @@ msgstr "所选设备不是受支持的可移动块设备。"
 
 msgid "The selected device is too small. At least 3 GB is required."
 msgstr "所选设备容量太小。至少需要 2561 MiB。"
+
+msgid "The selected storage device is no longer available."
+msgstr ""
 
 msgid "The service list is reloaded."
 msgstr "频道列表被重新加载。"
@@ -22222,6 +22464,15 @@ msgstr ""
 
 msgid "The storage check did not finish. Please check the device or network and try again."
 msgstr "存储检查未完成。请检查设备或网络后重试。"
+
+msgid "The swap device has changed. Refresh the list and try again."
+msgstr ""
+
+msgid "The swap file has changed. Refresh the list and try again."
+msgstr ""
+
+msgid "The swap file is still active and cannot be deleted."
+msgstr ""
 
 msgid "The time is multiplied by the current repeat counter."
 msgstr "时间乘以重复计数器并添加到最小发送间隔。"
@@ -22352,6 +22603,9 @@ msgstr "该频道当前停播。"
 msgid "This channel requires an HbbTV plugin. Please install a compatible HbbTV plugin."
 msgstr "此频道需要 HbbTV 插件。请安装兼容的 HbbTV 插件。"
 
+msgid "This device has multiple mount points. Unmount them before checking the file system."
+msgstr ""
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "此字段允许您搜索高达 %s 的附加符号率。"
@@ -22361,6 +22615,9 @@ msgstr "此功能不可用，因为处理大文件可能需要很长时间才能
 
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "这是某些设备在切换到待机状态后再次唤醒的解决方法。 来自其他设备的唤醒命令将被忽略几秒钟。"
+
+msgid "This is not a regular swap file."
+msgstr ""
 
 msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
 msgstr "这是单个调谐器的一种接收类型。已启用的接收类型将自动切换，并各自独立执行扫描。"
@@ -22669,6 +22926,9 @@ msgstr "时移无法启动。请检查存储设备和可用空间。"
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr "如果没有可接受的目录，时移可能无法正常工作。"
 
+msgid "Time shift not possible!"
+msgstr "不能时移！"
+
 msgid "Time shift save action on zap"
 msgstr "换台时的时移保存操作"
 
@@ -22746,6 +23006,9 @@ msgstr "定时器默认设置及保留策略"
 
 msgid "Timer Log Actions"
 msgstr "定时器日志动作"
+
+msgid "Timer Menu"
+msgstr ""
 
 msgid "Timer Sanity Error"
 msgstr "定时器健全性错误"
@@ -22837,6 +23100,9 @@ msgstr "要恢复镜像，请使用“软件管理器”菜单中的“在线刷
 #, python-format
 msgid "To where would you like to extract '%s'?"
 msgstr "要将“%s”提取到哪里？"
+
+msgid "Toast fade"
+msgstr ""
 
 msgid "Today"
 msgstr "今天"
@@ -22948,6 +23214,9 @@ msgstr "汤加"
 
 msgid "Top"
 msgstr "头部"
+
+msgid "Top 40"
+msgstr ""
 
 msgid "Top and Bottom"
 msgstr "顶部和底部"
@@ -23269,6 +23538,12 @@ msgstr "双调谐器"
 msgid "Two lines"
 msgstr "2 行"
 
+msgid "Two tuners share one SAT input and one C/T input. Reception types switch automatically. Use compatible SAT settings and separate Unicable User Bands. Cable and terrestrial reception cannot run together."
+msgstr ""
+
+msgid "Two tuners, two SAT sockets, one shared C/T socket. Two frequencies of the same reception type can run together. Cable and terrestrial cannot run together."
+msgstr ""
+
 msgid "Type"
 msgstr "类型"
 
@@ -23369,6 +23644,12 @@ msgid "Ukrainian"
 msgstr "乌克兰语"
 
 #, python-format
+msgid ""
+"Unable to change swap state for '%s'.\n"
+"%s"
+msgstr ""
+
+#, python-format
 msgid "Unable to check HDD replacement: %s"
 msgstr "无法检查硬盘替代：%s"
 
@@ -23399,6 +23680,9 @@ msgstr "无法准备频道分组更新。扫描将继续，但不会更新频道
 msgid "Unable to prepare the time shift storage device."
 msgstr "无法准备时移存储设备。"
 
+msgid "Unable to read the list of mounted file systems."
+msgstr ""
+
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr "无法读取厂商 STARTUP 文件“%s”！"
@@ -23417,9 +23701,6 @@ msgstr "无法保存网络配置！"
 
 msgid "Unable to save network mount configuration!"
 msgstr "无法保存网络挂载配置！"
-
-msgid "Unable to start RAM time shift."
-msgstr "无法启动内存时移。"
 
 msgid "Unable to start the DAB+ feed"
 msgstr "无法启动 DAB+ 传送源"
@@ -23901,6 +24182,9 @@ msgstr "使用每个目录设置"
 msgid "Use power measurement"
 msgstr "使用功率测量"
 
+msgid "Use skin default"
+msgstr ""
+
 msgid "Use small screen"
 msgstr "使用小屏幕"
 
@@ -23990,6 +24274,10 @@ msgstr "使用的频道扫描类型"
 
 msgid "Used:"
 msgstr "使用："
+
+#, python-format
+msgid "Used: %s"
+msgstr ""
 
 msgid "User  (keymap.usr)"
 msgstr "用户 (keymap.usr)"
@@ -24157,6 +24445,9 @@ msgstr "有效"
 
 msgid "Vanuatu"
 msgstr "瓦努阿图"
+
+msgid "Varied"
+msgstr ""
 
 msgid "Variety"
 msgstr "多样"
@@ -24458,12 +24749,6 @@ msgstr "4:3宽高比时显示宽屏幕信号"
 msgid "Wait for timesync at startup"
 msgstr "启动时等待时间同步"
 
-msgid "Wait please while creating swap file..."
-msgstr "正在创建交换文件，请等待..."
-
-msgid "Wait please while scanning..."
-msgstr "正在扫描，请等待..."
-
 msgid "Waiting"
 msgstr "正在等待"
 
@@ -24558,6 +24843,9 @@ msgstr "天气"
 
 msgid "Weather settings"
 msgstr "天气设置"
+
+msgid "Weather/meteorology"
+msgstr ""
 
 msgid "Web Interface"
 msgstr "Web界面"
@@ -24933,6 +25221,9 @@ msgstr "当调谐到频道时，系统通常会扫描转发器的任何改动并
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "您希望将临时时移录制保存到哪里？"
 
+msgid "Select which service to use when opening the EPG."
+msgstr "打开 EPG 时选择哪个频道。"
+
 msgid "Which time shift buffer event do you want to save?"
 msgstr "您要永久保存哪个事件？"
 
@@ -25094,10 +25385,10 @@ msgstr "科萨语"
 msgid "Y-Resolution"
 msgstr "Y 分辨率"
 
-msgid "YELLOW button"
+msgid "YELLOW"
 msgstr "黄键"
 
-msgid "YELLOW long"
+msgid "YELLOW (Long press)"
 msgstr "长按黄键"
 
 msgid "Year"
@@ -25211,9 +25502,6 @@ msgstr "没有要运行的脚本。"
 
 msgid "You have selected no logs to delete."
 msgstr "还未选择要删除的日志。"
-
-msgid "You have to create a Swap File before to activate the autostart."
-msgstr "您必须先创建一个交换文件才能激活自动启动。"
 
 #, python-format
 msgid "You have to wait %s!"
@@ -26137,6 +26425,45 @@ msgstr "是（保留订阅源）"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Please select device to use as swap file location"
+#~ msgstr "请选择要用作交换文件位置的设备"
+
+#~ msgid "Select the Swap File Size:"
+#~ msgstr "选择交换文件大小："
+
+#~ msgid "Set to the desired primetime hour."
+#~ msgstr "设置为所需的黄金时段（小时）。"
+
+#~ msgid "Set to the desired primetime minutes."
+#~ msgstr "设置为所需的黄金时段（分钟）。"
+
+#~ msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
+#~ msgstr "抱歉，没有支持SWAP的物理设备连接。 无法在网络或 fat32 文件系统上创建交换文件"
+
+#~ msgid "Status:"
+#~ msgstr "状态："
+
+#~ msgid "Swap File not found. You have to create the file before to activate."
+#~ msgstr "没有找到交换文件。激活前必须创建文件。"
+
+#~ msgid "Swap Place:"
+#~ msgstr "交换空间："
+
+#~ msgid "Swap Size:"
+#~ msgstr "Swap 大小："
+
+#~ msgid "Unable to start RAM time shift."
+#~ msgstr "无法启动内存时移。"
+
+#~ msgid "Wait please while creating swap file..."
+#~ msgstr "正在创建交换文件，请等待..."
+
+#~ msgid "Wait please while scanning..."
+#~ msgstr "正在扫描，请等待..."
+
+#~ msgid "You have to create a Swap File before to activate the autostart."
+#~ msgstr "您必须先创建一个交换文件才能激活自动启动。"
+
 #~ msgid "Aspect"
 #~ msgstr "长宽比"
 
@@ -26300,9 +26627,6 @@ msgstr "®"
 #~ msgstr ""
 #~ "时移存储设备不可用。\n"
 #~ "请检查设备和时移路径。"
-
-#~ msgid "Time shift not possible!"
-#~ msgstr "不能时移！"
 
 #~ msgid "Time shift save failed!"
 #~ msgstr "时移保存失败！"

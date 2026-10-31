@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 19:43+0000\n"
+"POT-Creation-Date: 2026-10-26 13:51+0100\n"
 "PO-Revision-Date: 2026-08-16 18:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1503,6 +1503,9 @@ msgstr ""
 msgid "2"
 msgstr "2"
 
+msgid "2 tuners: 2 SAT sockets, 1 C/T socket"
+msgstr ""
+
 msgid "2nd InfoBar"
 msgstr "Infobar thứ 2"
 
@@ -2079,6 +2082,9 @@ msgstr ""
 msgid "Add a timer for the current event"
 msgstr ""
 
+msgid "Add an existing swap file"
+msgstr ""
+
 msgid "Add an AutoTimer for the current event"
 msgstr "Thêm bộ hẹn giờ tự động cho sự kiện hiện tại"
 
@@ -2216,6 +2222,9 @@ msgid "Adult"
 msgstr ""
 
 msgid "Adult Audience, Strong Violence 15+"
+msgstr ""
+
+msgid "Adult Hits"
 msgstr ""
 
 msgid "Adult movie/Drama"
@@ -2581,6 +2590,9 @@ msgid "Animations"
 msgstr "Ảnh động"
 
 msgid "Anonymize client IPs"
+msgstr ""
+
+msgid "Another swap operation is still running."
 msgstr ""
 
 msgid "Antarctica"
@@ -3075,10 +3087,10 @@ msgstr "BER:"
 msgid "BLUDISC RECORDABLE"
 msgstr "BLUDISC RECORDABLE"
 
-msgid "BLUE button"
+msgid "BLUE"
 msgstr "Nút màu xanh"
 
-msgid "BLUE long"
+msgid "BLUE (Long press)"
 msgstr "Xanh dài"
 
 msgid "BLUE switch: BLUE/BLUE long"
@@ -3516,6 +3528,9 @@ msgid "Broadcom default"
 msgstr ""
 
 msgid "Browse"
+msgstr ""
+
+msgid "Browse mode"
 msgstr ""
 
 msgid "Browse, install or remove plugins on a one by one basis."
@@ -4264,7 +4279,7 @@ msgstr "Tên kênh"
 msgid "Channel number"
 msgstr ""
 
-msgid "Channel preview mode"
+msgid "Service preview mode"
 msgstr "Chế độ xem trước kênh"
 
 msgid "Channel selection configuration"
@@ -4514,6 +4529,9 @@ msgstr "Thông tư phải"
 msgid "City"
 msgstr ""
 
+msgid "Classic Rock"
+msgstr ""
+
 msgid "Classical"
 msgstr ""
 
@@ -4659,6 +4677,9 @@ msgstr ""
 msgid "Close the screen without saving any changes"
 msgstr ""
 
+msgid "Close the swap manager"
+msgstr ""
+
 msgid "Close the window"
 msgstr ""
 
@@ -4688,6 +4709,9 @@ msgstr "Tên bộ sưu tập"
 
 msgid "Collection settings"
 msgstr "Cài đặt bộ sưu tập"
+
+msgid "College"
+msgstr ""
 
 msgid "Colombia"
 msgstr "Colombia"
@@ -5179,6 +5203,9 @@ msgstr "Cấu hình máy chủ NTP của bạn."
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "Định cấu hình cài đặt mạng của bạn và nhấn OK để quét"
 
+msgid "Configured in /etc/fstab. Starting or stopping here only changes the current session."
+msgstr ""
+
 msgid "Configures which video output connector will be used."
 msgstr "Định cấu hình trình kết nối đầu ra video nào sẽ được sử dụng."
 
@@ -5506,6 +5533,9 @@ msgstr ""
 msgid "Country"
 msgstr "Quốc gia"
 
+msgid "Country Music"
+msgstr ""
+
 #, fuzzy
 msgid "Country for EPG event genre information"
 msgstr "Thông tin về phần mềm"
@@ -5548,6 +5578,9 @@ msgstr "Tạo ISO"
 msgid "Create Slots"
 msgstr ""
 
+msgid "Create Zap Timer"
+msgstr ""
+
 msgid "Create a directory"
 msgstr ""
 
@@ -5558,6 +5591,9 @@ msgid "Create a separate bouquet for radio services. When disabled, radio servic
 msgstr ""
 
 msgid "Create a settings backup"
+msgstr ""
+
+msgid "Create a swap file"
 msgstr ""
 
 msgid "Create a symbolic link"
@@ -5609,6 +5645,9 @@ msgstr ""
 msgid "Create swap"
 msgstr ""
 
+msgid "Create swap file"
+msgstr ""
+
 msgid "Create tar file of root file system."
 msgstr ""
 
@@ -5636,6 +5675,15 @@ msgstr ""
 
 msgid "Creating partition"
 msgstr "Tạo phân vùng"
+
+msgid "Creating swap file. This can take several minutes."
+msgstr ""
+
+#, python-format
+msgid ""
+"Creating the swap file failed.\n"
+"%s"
+msgstr ""
 
 msgid "Credentials"
 msgstr ""
@@ -5672,6 +5720,9 @@ msgstr "Cuba"
 msgid "Cult"
 msgstr ""
 
+msgid "Culture"
+msgstr ""
+
 msgid "Curacao"
 msgstr "Curacao"
 
@@ -5682,6 +5733,9 @@ msgid "Current"
 msgstr ""
 
 msgid "Current 1/1"
+msgstr ""
+
+msgid "Current Affairs"
 msgstr ""
 
 msgid "Current CEC address"
@@ -6553,6 +6607,12 @@ msgstr "Xóa mục nhập danh sách phát"
 msgid "Delete saved play list"
 msgstr "Xóa danh sách phát đã lưu"
 
+#, python-format
+msgid ""
+"Delete swap file '%s'?\n"
+"An active file will be stopped first. Its swap entry in /etc/fstab will also be removed."
+msgstr ""
+
 #, fuzzy
 msgid "Delete the character to the left of text cursor"
 msgstr "Xóa ký tự bên trái con trỏ bộ đệm văn bản"
@@ -6584,6 +6644,9 @@ msgid "Delete the flash expander in the selected device"
 msgstr ""
 
 msgid "Delete the selected locally stored image"
+msgstr ""
+
+msgid "Delete the selected swap file"
 msgstr ""
 
 #, python-format
@@ -6724,6 +6787,10 @@ msgid "Device name:"
 msgstr "Tên thiết bị:"
 
 msgid "Device number"
+msgstr ""
+
+#, python-format
+msgid "Device: %s"
 msgstr ""
 
 msgid "Devices"
@@ -7505,6 +7572,9 @@ msgid "East limit set"
 msgstr "Giới hạn đông"
 
 msgid "Eastern satellites"
+msgstr ""
+
+msgid "Easy Listening Music"
 msgstr ""
 
 msgid "Easy listening"
@@ -9214,6 +9284,9 @@ msgstr "Độ trễ cuộn cuối cùng"
 msgid "Finance"
 msgstr "Pháp"
 
+msgid "Finance/Business"
+msgstr ""
+
 msgid "Find Currently Playing Service"
 msgstr "tìm dịch vụ hiện đang chơi"
 
@@ -9350,6 +9423,9 @@ msgstr "Vị trí cuối cùng tại"
 msgid "Flush Cache and Rescan"
 msgstr ""
 
+msgid "Folk Music"
+msgstr ""
+
 msgid "Folk and Country"
 msgstr ""
 
@@ -9408,6 +9484,9 @@ msgstr "kích hoạt lực"
 msgid "Force progressive for streams and files"
 msgstr ""
 
+msgid "Foreign Language"
+msgstr ""
+
 msgid "Foreign countries/Expeditions"
 msgstr "nước ngoài / cuộc thám hiểm"
 
@@ -9446,6 +9525,10 @@ msgstr ""
 
 msgid "Free memory"
 msgstr "Bộ nhớ trống"
+
+#, python-format
+msgid "Free space: %s"
+msgstr ""
 
 msgid "Free swap"
 msgstr ""
@@ -9523,6 +9606,9 @@ msgstr ""
 msgid "Full factory reset"
 msgstr ""
 
+msgid "Full path of the existing swap file"
+msgstr ""
+
 msgid "Full range (no clipping)"
 msgstr ""
 
@@ -9545,10 +9631,10 @@ msgstr "giáo dục nâng cao"
 msgid "G"
 msgstr "GB"
 
-msgid "GREEN button"
+msgid "GREEN"
 msgstr "Nút màu xanh lá cây"
 
-msgid "GREEN long"
+msgid "GREEN (Long press)"
 msgstr "Xanh dài"
 
 msgid "GStreamer debug log category *"
@@ -10753,7 +10839,7 @@ msgstr "Tiếng Indonesia"
 msgid "Info"
 msgstr "Thông tin"
 
-msgid "Info button (long)"
+msgid "INFO (Long press)"
 msgstr "Nút thông tin (dài)"
 
 msgid "Info button (short)"
@@ -11007,6 +11093,9 @@ msgstr ""
 msgid "Invalid location!"
 msgstr "Vị trí không hợp lệ"
 
+msgid "Invalid swap file size."
+msgstr ""
+
 msgid "Invalid transponder data"
 msgstr "Dữ liệu transponder không hợp lệ"
 
@@ -11079,6 +11168,9 @@ msgid "Javanese"
 msgstr ""
 
 msgid "Jazz"
+msgstr ""
+
+msgid "Jazz Music"
 msgstr ""
 
 msgid "Jersey"
@@ -11536,6 +11628,9 @@ msgstr ""
 msgid "Legacy mode"
 msgstr ""
 
+msgid "Leisure"
+msgstr ""
+
 msgid "Leisure hobbies"
 msgstr "Sở thích giải trí"
 
@@ -11573,6 +11668,9 @@ msgstr "Liechtenstein"
 #, fuzzy
 msgid "Lifestyle"
 msgstr "Phong cách thời gian"
+
+msgid "Light Classical"
+msgstr ""
 
 msgid "Light Grey"
 msgstr "Xám nhạt"
@@ -12215,6 +12313,9 @@ msgstr "Phương tiện truyền thông"
 msgid "Medicine/Physiology/Psychology"
 msgstr "y học / sinh lý / tâm lý"
 
+msgid "Medium"
+msgstr ""
+
 msgid "Medium is not a writeable DVD!"
 msgstr "Medium không phải là DVD có thể ghi!"
 
@@ -12485,6 +12586,10 @@ msgid "Mount or unmount the selected share"
 msgstr ""
 
 msgid "Mount point"
+msgstr ""
+
+#, python-format
+msgid "Mount point: %s"
 msgstr ""
 
 msgid "Mount root file system."
@@ -13550,6 +13655,9 @@ msgstr "Không tìm thấy sat tuner phù hợp!"
 msgid "No supported DAB+ feeds are available for the satellite positions configured on this box."
 msgstr ""
 
+msgid "No swap files or partitions found. Use Create to add a swap file."
+msgstr ""
+
 msgid "No system softcam configured!"
 msgstr ""
 
@@ -13594,6 +13702,9 @@ msgstr ""
 msgid "No tuners are currently streaming."
 msgstr ""
 
+msgid "No unused swap file name is available."
+msgstr ""
+
 msgid "No update required!"
 msgstr "Không cần cập nhật!"
 
@@ -13617,6 +13728,9 @@ msgid "No valid mount for '%s' found!"
 msgstr ""
 
 msgid "No valid region details were found"
+msgstr ""
+
+msgid "No writable ext2, ext3 or ext4 storage is available for a swap file."
 msgstr ""
 
 msgid "No, but restart from begin"
@@ -13700,6 +13814,9 @@ msgstr "Na Uy"
 msgid "Norwegian Nynorsk"
 msgstr "Na Uy"
 
+msgid "Nostalgia"
+msgstr ""
+
 #, fuzzy
 msgid "Not Classified"
 msgstr "Không liên quan"
@@ -13738,6 +13855,9 @@ msgstr ""
 #, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "Không đủ dung lượng đĩa. Vui lòng giải phóng không gian đĩa và thử lại. (Yêu cầu%d MB,%d MB khả dụng)"
+
+msgid "Not enough free space for this swap file."
+msgstr ""
 
 msgid "Not found"
 msgstr ""
@@ -13835,7 +13955,7 @@ msgstr ""
 msgid "OK"
 msgstr "Đồng ý"
 
-msgid "OK button (long)"
+msgid "OK (Long press)"
 msgstr "Nút OK (dài)"
 
 msgid "OK button (short)"
@@ -13951,6 +14071,12 @@ msgstr ""
 msgid "Ojibwa"
 msgstr ""
 
+msgid "Oldies"
+msgstr ""
+
+msgid "Oldies Music"
+msgstr ""
+
 msgid "Olympic blue"
 msgstr ""
 
@@ -14012,6 +14138,9 @@ msgid "Only on startup"
 msgstr "Chỉ khi khởi động"
 
 msgid "Only one network share can be used as HDD replacement. Disable 'Use as HDD replacement' on the other share first."
+msgstr ""
+
+msgid "Only swap files can be deleted."
 msgstr ""
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
@@ -14333,6 +14462,9 @@ msgstr "Khác"
 #, fuzzy
 msgid "Other Actions"
 msgstr "giáo dục nâng cao"
+
+msgid "Other Music"
+msgstr ""
 
 msgid "Other OSD Elements"
 msgstr ""
@@ -14686,6 +14818,9 @@ msgstr ""
 msgid "Persian"
 msgstr "Ba Tư"
 
+msgid "Personality"
+msgstr ""
+
 msgid "Personalize your Skin"
 msgstr "Cá nhân hóa làn da của bạn"
 
@@ -14694,6 +14829,9 @@ msgstr "Peru"
 
 msgid "Philippines"
 msgstr "Philippines"
+
+msgid "Phone In"
+msgstr ""
 
 msgid "PiP"
 msgstr "PiP"
@@ -14725,6 +14863,9 @@ msgstr ""
 msgid "Picon and service name"
 msgstr "Tên dịch vụ và Picon"
 
+msgid "Picon and service number"
+msgstr ""
+
 msgid "Picon install location"
 msgstr ""
 
@@ -14741,6 +14882,9 @@ msgstr ""
 
 msgid "Picon width"
 msgstr "Chiều rộng Picon"
+
+msgid "Picon, service number and service name"
+msgstr ""
 
 msgid "Picture In Picture"
 msgstr ""
@@ -14992,9 +15136,6 @@ msgstr "Vui lòng chọn độ phân giải ..."
 msgid "Please select an aspect ratio..."
 msgstr "Vui lòng chọn tỷ lệ khung hình ..."
 
-msgid "Please select device to use as swap file location"
-msgstr "Vui lòng chọn thiết bị để sử dụng làm vị trí hoán đổi"
-
 msgid "Please select medium to be scanned"
 msgstr "Vui lòng chọn phương tiện để được quét"
 
@@ -15097,6 +15238,9 @@ msgstr ""
 msgid "Please wait while the plugin is updated."
 msgstr ""
 
+msgid "Please wait while the swap file is stopped and deleted."
+msgstr ""
+
 msgid "Please wait while unused locales/languages are purged..."
 msgstr ""
 
@@ -15119,6 +15263,9 @@ msgid "Please wait, loading picture..."
 msgstr ""
 
 msgid "Please wait, swap is being created. This could take a few minutes to complete."
+msgstr ""
+
+msgid "Please wait. Stopping swap can take a while."
 msgstr ""
 
 msgid "Please wait..."
@@ -15191,6 +15338,9 @@ msgid "Polish"
 msgstr "Đánh bóng"
 
 msgid "Politics"
+msgstr ""
+
+msgid "Pop Music"
 msgstr ""
 
 msgid "Popular culture/Traditional arts"
@@ -15718,6 +15868,9 @@ msgstr "Các nhà cung cấp:"
 msgid "Proxy detected"
 msgstr ""
 
+msgid "Public"
+msgstr ""
+
 msgid "Public IP"
 msgstr ""
 
@@ -15873,13 +16026,13 @@ msgstr "Biểu tượng REC đang sử dụng"
 msgid "REC symbol"
 msgstr "Biểu tượng REC"
 
-msgid "RED button"
+msgid "RED"
 msgstr "Nút màu đỏ"
 
 msgid "RED button / HbbTV"
 msgstr "Nút màu đỏ ..."
 
-msgid "RED long"
+msgid "RED (Long press)"
 msgstr "Đỏ dài"
 
 msgid "RF Output Settings"
@@ -16267,6 +16420,9 @@ msgstr ""
 msgid "Refresh the update-able package list"
 msgstr ""
 
+msgid "Refresh, add an existing swap file or change autostart"
+msgstr ""
+
 msgid "Regard Deep Standby as Standby"
 msgstr "Coi chế độ chờ sâu như chế độ chờ"
 
@@ -16290,6 +16446,12 @@ msgid "Religion"
 msgstr "tôn giáo"
 
 msgid "Religious"
+msgstr ""
+
+msgid "Religious Music"
+msgstr ""
+
+msgid "Religious Talk"
 msgstr ""
 
 msgid "Reload Bookmarks"
@@ -16932,6 +17094,9 @@ msgstr "Tốc độ tua lại"
 msgid "Rewrap subtitles"
 msgstr "Viết lại phụ đề"
 
+msgid "Rhythm and Blues"
+msgstr ""
+
 msgid "Right"
 msgstr "Đúng"
 
@@ -16958,6 +17123,12 @@ msgstr ""
 
 msgid "Right, wrapped"
 msgstr "phải, bọc"
+
+msgid "Rock"
+msgstr ""
+
+msgid "Rock Music"
+msgstr ""
 
 msgid "Rock/Pop"
 msgstr "nhạc rock / pop"
@@ -17443,6 +17614,9 @@ msgstr[0] ""
 msgid "Scanning for shares..."
 msgstr ""
 
+msgid "Scanning swap devices..."
+msgstr ""
+
 msgid "Scanning..."
 msgstr "Đang quét ..."
 
@@ -17736,7 +17910,7 @@ msgstr ""
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr ""
 
-msgid "Select 'Yes' to hide channels without EPG data."
+msgid "When enabled, services without EPG data will be hidden."
 msgstr "Nếu được đặt thành các kênh 'có' mà không có EPG sẽ không được hiển thị."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
@@ -18064,6 +18238,9 @@ msgstr ""
 msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
 msgstr ""
 
+msgid "Select a swap file on local storage."
+msgstr ""
+
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
 msgstr ""
 
@@ -18119,6 +18296,9 @@ msgstr ""
 msgid "Select copy destination for:"
 msgstr "Chọn đích sao chép cho:"
 
+msgid "Select current service"
+msgstr ""
+
 msgid "Select default EPG type"
 msgstr "Chọn loại EPG mặc định ..."
 
@@ -18139,6 +18319,9 @@ msgstr "Chọn tệp để loại trừ khỏi bản sao lưu"
 
 msgid "Select files/folders to backup"
 msgstr "Chọn tập tin / thư mục để sao lưu"
+
+msgid "Select first service in bouquet"
+msgstr ""
 
 msgid "Select how long a correctly entered service PIN is remembered. This does not unlock protected settings or system actions."
 msgstr ""
@@ -18248,6 +18431,9 @@ msgstr "Chọn thiết bị đầu vào"
 msgid "Select input device."
 msgstr "Chọn thiết bị đầu vào."
 
+msgid "Select last browsed service"
+msgstr ""
+
 msgid "Select movie"
 msgstr "Chọn phim"
 
@@ -18328,9 +18514,6 @@ msgstr ""
 msgid "Select the Softcam protocol."
 msgstr ""
 
-msgid "Select the Swap File Size:"
-msgstr "Chọn Kích thước tệp hoán đổi:"
-
 msgid "Select the Unicable channel to be assigned to this tuner. This is a unique value. Be certain that no other device connected to this same Unicable system is allocated to the same Unicable channel."
 msgstr "Chọn kênh Unicable sẽ được chỉ định cho bộ chỉnh này. Đây là một giá trị độc đáo. Hãy chắc chắn rằng không có thiết bị nào khác được kết nối với cùng hệ thống Unicable này được phân bổ cho cùng một kênh Unicable."
 
@@ -18403,6 +18586,9 @@ msgid "Select the character set (iocharset) to be used to match/translate remote
 msgstr ""
 
 msgid "Select the color depth to be used with the HDMI attached UHD capable TV/monitor."
+msgstr ""
+
+msgid "Select the color of the built-in busy spinner. Custom PNG spinners keep their own colors."
 msgstr ""
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
@@ -18717,6 +18903,9 @@ msgstr ""
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr ""
 
+msgid "Select the speed of the fade-in and fade-out of toast messages."
+msgstr ""
+
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
@@ -19000,6 +19189,9 @@ msgstr "Không có nối tiếp"
 msgid "Serial number"
 msgstr ""
 
+msgid "Serious Classical"
+msgstr ""
+
 msgid "Serious music/Classic music"
 msgstr "nhạc nghiêm túc / nhạc cổ điển"
 
@@ -19106,6 +19298,9 @@ msgid ""
 msgstr ""
 "Không tìm thấy dịch vụ!\n"
 "(Không tìm thấy SID trong PAT)"
+
+msgid "Service number and picon"
+msgstr ""
 
 msgid "Service number and service name"
 msgstr "Số dịch vụ và tên dịch vụ"
@@ -19289,6 +19484,9 @@ msgstr "Đặt phương thức sắp xếp mặc định."
 msgid "Set the delay time between repeated loops, this is used by software renderer in some skins."
 msgstr "Đặt thời gian trễ giữa các vòng lặp lặp lại, điều này được sử dụng bởi trình kết xuất phần mềm trong một số giao diện."
 
+msgid "Set the desired primetime (hour and minute)."
+msgstr ""
+
 msgid "Set the hostname or IP address."
 msgstr ""
 
@@ -19402,13 +19600,7 @@ msgstr ""
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
 
-msgid "Set to the desired primetime hour."
-msgstr "Đặt thời gian gốc mong muốn (giờ)."
-
-msgid "Set to the desired primetime minutes."
-msgstr "Đặt thời gian ban đầu mong muốn (phút."
-
-msgid "Set to what you want the button to do."
+msgid "Select the action that this button will perform."
 msgstr "Đặt thành những gì bạn muốn nút để làm."
 
 msgid "Set to yes for debugging the root cause of a spinner."
@@ -19603,6 +19795,9 @@ msgstr "Đảo Seychelles"
 
 msgid "Share View"
 msgstr "Chia sẻ xem"
+
+msgid "Shared SAT and C/T inputs"
+msgstr ""
 
 msgid "Shares"
 msgstr "Chia sẻ"
@@ -20780,6 +20975,9 @@ msgstr "xà phòng / melodram / dân gian"
 msgid "Soccer"
 msgstr ""
 
+msgid "Social Affairs"
+msgstr ""
+
 msgid "Social/Political issues/Economics"
 msgstr "các vấn đề xã hội / chính trị / kinh tế (nói chung)"
 
@@ -20794,6 +20992,15 @@ msgstr ""
 
 msgid "Socket"
 msgstr "Ổ cắm"
+
+msgid "Soft"
+msgstr ""
+
+msgid "Soft Rhythm and Blues"
+msgstr ""
+
+msgid "Soft Rock"
+msgstr ""
 
 msgid "Soft mount"
 msgstr ""
@@ -20907,9 +21114,6 @@ msgstr "Xin lỗi,%s chưa được cài đặt!"
 
 msgid "Sorry, no backups found!"
 msgstr "Xin lỗi, không tìm thấy bản sao lưu!"
-
-msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
-msgstr "Xin lỗi, không có thiết bị vật lý nào hỗ trợ SWAP kèm theo. Không thể tạo Swapfile trên hệ thống tệp hoặc mạng fat32"
 
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
@@ -21055,6 +21259,9 @@ msgstr ""
 msgid "Spinner Position"
 msgstr ""
 
+msgid "Spinner color"
+msgstr ""
+
 msgid "Split preview mode"
 msgstr "Chia chế độ xem trước"
 
@@ -21124,6 +21331,9 @@ msgstr ""
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start all available swap files and partitions when Enigma2 starts. Entries marked noauto in /etc/fstab are excluded. System autostart from /etc/fstab is independent of this setting."
+msgstr ""
+
 msgid "Start an instant recording"
 msgstr ""
 
@@ -21158,6 +21368,9 @@ msgid "Start offline decode"
 msgstr "Bắt đầu giải mã ngoại tuyến"
 
 msgid "Start or Stop service"
+msgstr ""
+
+msgid "Start or stop the selected swap"
 msgstr ""
 
 msgid "Start recording current event"
@@ -21264,9 +21477,6 @@ msgstr "Trạng thái hiển thị ở chế độ chờ"
 
 msgid "Status unavailable!"
 msgstr ""
-
-msgid "Status:"
-msgstr "Bắt đầu:"
 
 msgid "Stay in time shift at buffer end (for plugins)"
 msgstr ""
@@ -21387,6 +21597,9 @@ msgstr ""
 
 msgid "Storage Devices"
 msgstr "Thiết bị lưu trữ"
+
+msgid "Storage device"
+msgstr ""
 
 #, fuzzy
 msgid "Storage device full!"
@@ -21601,9 +21814,6 @@ msgstr ""
 msgid "Swap File Manager"
 msgstr "Trao đổi quản lý tập tin"
 
-msgid "Swap File not found. You have to create the file before to activate."
-msgstr "Không tìm thấy tập tin hoán đổi. Bạn phải tạo tập tin trước để kích hoạt."
-
 msgid "Swap Manager"
 msgstr "Quản lý hoán đổi"
 
@@ -21613,14 +21823,20 @@ msgstr "Hoán đổi PIP"
 msgid "Swap PiP and main picture"
 msgstr "Hoán đổi PiP và hình ảnh chính"
 
-msgid "Swap Place:"
-msgstr "Nơi đổi chỗ:"
-
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr "Hoán đổi SNR bằng '%' bằng SNR bằng 'db'"
 
-msgid "Swap Size:"
-msgstr "Kích thước hoán đổi:"
+msgid "Swap autostart"
+msgstr ""
+
+msgid "Swap file"
+msgstr ""
+
+msgid "Swap partition"
+msgstr ""
+
+msgid "Swap partition detection failed. Active and configured swaps are still listed."
+msgstr ""
 
 msgid "Swap services"
 msgstr "Dịch vụ hoán đổi"
@@ -21882,6 +22098,9 @@ msgstr "Tajikistan"
 
 msgid "Tajikistan"
 msgstr "Tajikistan"
+
+msgid "Talk"
+msgstr ""
 
 #, fuzzy
 msgid "Talk show"
@@ -22265,6 +22484,9 @@ msgstr "Cài đặt mặc định là thời gian thức dậy - 5 phút và th�
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+msgid "The device is still mounted. Stop recordings and time shift before checking the file system."
+msgstr ""
+
 msgid "The directory/file no longer exists."
 msgstr ""
 
@@ -22281,6 +22503,15 @@ msgstr ""
 
 #, python-format
 msgid "The file '%s' has been changed. Do you want to save it?"
+msgstr ""
+
+msgid "The file does not contain a valid swap header."
+msgstr ""
+
+msgid "The file is created inactive. Start it in the swap manager when needed."
+msgstr ""
+
+msgid "The file system was repaired. Restart the receiver before using this device."
 msgstr ""
 
 #, python-format
@@ -22335,6 +22566,9 @@ msgstr ""
 msgid "The positioner tuner is currently unavailable. Stop recordings or other services using this tuner and try again."
 msgstr ""
 
+msgid "The previous mount point is already in use."
+msgstr ""
+
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
 msgstr ""
@@ -22361,6 +22595,9 @@ msgstr ""
 msgid "The running Enigma2 version cannot safely save an active time shift buffer."
 msgstr ""
 
+msgid "The running system's file system cannot be checked."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr "Mã PIN đã lưu đã bị xóa."
 
@@ -22373,6 +22610,9 @@ msgid "The selected device is not a supported removable block device."
 msgstr ""
 
 msgid "The selected device is too small. At least 3 GB is required."
+msgstr ""
+
+msgid "The selected storage device is no longer available."
 msgstr ""
 
 msgid "The service list is reloaded."
@@ -22389,6 +22629,15 @@ msgid ""
 msgstr ""
 
 msgid "The storage check did not finish. Please check the device or network and try again."
+msgstr ""
+
+msgid "The swap device has changed. Refresh the list and try again."
+msgstr ""
+
+msgid "The swap file has changed. Refresh the list and try again."
+msgstr ""
+
+msgid "The swap file is still active and cannot be deleted."
 msgstr ""
 
 msgid "The time is multiplied by the current repeat counter."
@@ -22524,6 +22773,9 @@ msgstr ""
 msgid "This channel requires an HbbTV plugin. Please install a compatible HbbTV plugin."
 msgstr ""
 
+msgid "This device has multiple mount points. Unmount them before checking the file system."
+msgstr ""
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Trường này cho phép bạn tìm kiếm tỷ lệ biểu tượng bổ sung lên đến%s."
@@ -22532,6 +22784,9 @@ msgid "This function is not available as processing of large files may take too 
 msgstr ""
 
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
+msgstr ""
+
+msgid "This is not a regular swap file."
 msgstr ""
 
 msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
@@ -22844,6 +23099,9 @@ msgstr ""
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr ""
 
+msgid "Time shift not possible!"
+msgstr "Timeshift không thể!"
+
 msgid "Time shift save action on zap"
 msgstr "Timeshift-lưu hành động trên zap"
 
@@ -22922,6 +23180,9 @@ msgid "Timer Defaults And Retention"
 msgstr ""
 
 msgid "Timer Log Actions"
+msgstr ""
+
+msgid "Timer Menu"
 msgstr ""
 
 msgid "Timer Sanity Error"
@@ -23014,6 +23275,9 @@ msgstr ""
 
 #, python-format
 msgid "To where would you like to extract '%s'?"
+msgstr ""
+
+msgid "Toast fade"
 msgstr ""
 
 msgid "Today"
@@ -23128,6 +23392,9 @@ msgstr "Lưỡi"
 
 msgid "Top"
 msgstr "hàng đầu"
+
+msgid "Top 40"
+msgstr ""
 
 msgid "Top and Bottom"
 msgstr "Trên và dưới"
@@ -23454,6 +23721,12 @@ msgstr ""
 msgid "Two lines"
 msgstr "Hai dòng"
 
+msgid "Two tuners share one SAT input and one C/T input. Reception types switch automatically. Use compatible SAT settings and separate Unicable User Bands. Cable and terrestrial reception cannot run together."
+msgstr ""
+
+msgid "Two tuners, two SAT sockets, one shared C/T socket. Two frequencies of the same reception type can run together. Cable and terrestrial cannot run together."
+msgstr ""
+
 msgid "Type"
 msgstr "Kiểu"
 
@@ -23555,6 +23828,12 @@ msgid "Ukrainian"
 msgstr "Tiếng Ukraina"
 
 #, python-format
+msgid ""
+"Unable to change swap state for '%s'.\n"
+"%s"
+msgstr ""
+
+#, python-format
 msgid "Unable to check HDD replacement: %s"
 msgstr ""
 
@@ -23585,6 +23864,9 @@ msgstr ""
 msgid "Unable to prepare the time shift storage device."
 msgstr ""
 
+msgid "Unable to read the list of mounted file systems."
+msgstr ""
+
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr ""
@@ -23602,9 +23884,6 @@ msgid "Unable to save network configuration!"
 msgstr ""
 
 msgid "Unable to save network mount configuration!"
-msgstr ""
-
-msgid "Unable to start RAM time shift."
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
@@ -24088,6 +24367,9 @@ msgstr "Sử dụng các cài đặt riêng cho từng thư mục"
 msgid "Use power measurement"
 msgstr "Sử dụng đo năng lượng"
 
+msgid "Use skin default"
+msgstr ""
+
 msgid "Use small screen"
 msgstr "Sử dụng màn hình mỏng"
 
@@ -24177,6 +24459,10 @@ msgstr "Loại quét dịch vụ đã sử dụng"
 
 msgid "Used:"
 msgstr "Đã sử dụng:"
+
+#, python-format
+msgid "Used: %s"
+msgstr ""
 
 msgid "User  (keymap.usr)"
 msgstr "Người dùng  (keymap.usr)"
@@ -24320,6 +24606,9 @@ msgstr ""
 
 msgid "Vanuatu"
 msgstr "Vanuatu"
+
+msgid "Varied"
+msgstr ""
 
 #, fuzzy
 msgid "Variety"
@@ -24624,12 +24913,6 @@ msgstr "WSS on 4:3"
 msgid "Wait for timesync at startup"
 msgstr "Đợi thời gian đồng bộ khi khởi động"
 
-msgid "Wait please while creating swap file..."
-msgstr "Xin vui lòng chờ trong khi tạo hoán đổi ..."
-
-msgid "Wait please while scanning..."
-msgstr "Vui lòng đợi trong khi quét ..."
-
 msgid "Waiting"
 msgstr "Đang chờ đợi"
 
@@ -24725,6 +25008,9 @@ msgid "Weather"
 msgstr "Khác"
 
 msgid "Weather settings"
+msgstr ""
+
+msgid "Weather/meteorology"
 msgstr ""
 
 msgid "Web Interface"
@@ -25100,6 +25386,9 @@ msgstr "Khi được điều chỉnh đến một dịch vụ, hệ thống thư
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Lưu bản ghi timeshift tạm thời ở đâu?"
 
+msgid "Select which service to use when opening the EPG."
+msgstr ""
+
 msgid "Which time shift buffer event do you want to save?"
 msgstr "Sự kiện nào bạn muốn lưu vĩnh viễn?"
 
@@ -25262,10 +25551,10 @@ msgstr ""
 msgid "Y-Resolution"
 msgstr ""
 
-msgid "YELLOW button"
+msgid "YELLOW"
 msgstr "Màu vàng"
 
-msgid "YELLOW long"
+msgid "YELLOW (Long press)"
 msgstr "Vàng dài"
 
 msgid "Year"
@@ -25380,9 +25669,6 @@ msgstr "Bạn không có kịch bản để chạy."
 
 msgid "You have selected no logs to delete."
 msgstr "Bạn đã chọn không có nhật ký để xóa."
-
-msgid "You have to create a Swap File before to activate the autostart."
-msgstr "Bạn phải tạo một tập tin hoán đổi trước để kích hoạt tự động khởi động."
 
 #, python-format
 msgid "You have to wait %s!"
@@ -26315,6 +26601,42 @@ msgstr "có (giữ thức ăn)"
 msgid "®"
 msgstr ""
 
+#~ msgid "Please select device to use as swap file location"
+#~ msgstr "Vui lòng chọn thiết bị để sử dụng làm vị trí hoán đổi"
+
+#~ msgid "Select the Swap File Size:"
+#~ msgstr "Chọn Kích thước tệp hoán đổi:"
+
+#~ msgid "Set to the desired primetime hour."
+#~ msgstr "Đặt thời gian gốc mong muốn (giờ)."
+
+#~ msgid "Set to the desired primetime minutes."
+#~ msgstr "Đặt thời gian ban đầu mong muốn (phút."
+
+#~ msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
+#~ msgstr "Xin lỗi, không có thiết bị vật lý nào hỗ trợ SWAP kèm theo. Không thể tạo Swapfile trên hệ thống tệp hoặc mạng fat32"
+
+#~ msgid "Status:"
+#~ msgstr "Bắt đầu:"
+
+#~ msgid "Swap File not found. You have to create the file before to activate."
+#~ msgstr "Không tìm thấy tập tin hoán đổi. Bạn phải tạo tập tin trước để kích hoạt."
+
+#~ msgid "Swap Place:"
+#~ msgstr "Nơi đổi chỗ:"
+
+#~ msgid "Swap Size:"
+#~ msgstr "Kích thước hoán đổi:"
+
+#~ msgid "Wait please while creating swap file..."
+#~ msgstr "Xin vui lòng chờ trong khi tạo hoán đổi ..."
+
+#~ msgid "Wait please while scanning..."
+#~ msgstr "Vui lòng đợi trong khi quét ..."
+
+#~ msgid "You have to create a Swap File before to activate the autostart."
+#~ msgstr "Bạn phải tạo một tập tin hoán đổi trước để kích hoạt tự động khởi động."
+
 #~ msgid "Aspect"
 #~ msgstr "Tỷ lệ khung hình"
 
@@ -26449,9 +26771,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Hệ thống tập tin trên Timeshift-Device của bạn không hỗ trợ các liên kết cứng.\n"
 #~ "Hãy chắc chắn rằng nó được định dạng trong EXT2, EXT3 hoặc EXT4!"
-
-#~ msgid "Time shift not possible!"
-#~ msgstr "Timeshift không thể!"
 
 #~ msgid "Time shift save failed!"
 #~ msgstr "Lưu thời gian không thành công!"

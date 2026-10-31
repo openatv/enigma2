@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 19:43+0000\n"
+"POT-Creation-Date: 2026-10-26 13:51+0100\n"
 "PO-Revision-Date: 2026-08-17 22:31+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1537,6 +1537,9 @@ msgstr ""
 msgid "2"
 msgstr "2"
 
+msgid "2 tuners: 2 SAT sockets, 1 C/T socket"
+msgstr ""
+
 msgid "2nd InfoBar"
 msgstr "Második információs sáv megjelenítése"
 
@@ -2113,6 +2116,9 @@ msgstr ""
 msgid "Add a timer for the current event"
 msgstr "Időzítés hozzáadása az aktuális eseményről"
 
+msgid "Add an existing swap file"
+msgstr ""
+
 msgid "Add an AutoTimer for the current event"
 msgstr "AutoTimer időzítő hozzáadása az aktuális eseményhez"
 
@@ -2251,6 +2257,9 @@ msgstr "Felnőtt"
 
 msgid "Adult Audience, Strong Violence 15+"
 msgstr "Felnőtt közönség, erős erőszak 15+"
+
+msgid "Adult Hits"
+msgstr ""
 
 msgid "Adult movie/Drama"
 msgstr "felnőtt/dráma"
@@ -2611,6 +2620,9 @@ msgid "Animations"
 msgstr "Animációk"
 
 msgid "Anonymize client IPs"
+msgstr ""
+
+msgid "Another swap operation is still running."
 msgstr ""
 
 msgid "Antarctica"
@@ -3103,10 +3115,10 @@ msgstr "BER:"
 msgid "BLUDISC RECORDABLE"
 msgstr "BLUDISC RECORDABLE"
 
-msgid "BLUE button"
+msgid "BLUE"
 msgstr "Kék gomb"
 
-msgid "BLUE long"
+msgid "BLUE (Long press)"
 msgstr "Kék hosszan"
 
 msgid "BLUE switch: BLUE/BLUE long"
@@ -3544,6 +3556,9 @@ msgid "Broadcom default"
 msgstr ""
 
 msgid "Browse"
+msgstr ""
+
+msgid "Browse mode"
 msgstr ""
 
 msgid "Browse, install or remove plugins on a one by one basis."
@@ -4284,7 +4299,7 @@ msgstr "Csatornanév"
 msgid "Channel number"
 msgstr ""
 
-msgid "Channel preview mode"
+msgid "Service preview mode"
 msgstr "Csatorna előnézeti mód"
 
 msgid "Channel selection configuration"
@@ -4532,6 +4547,9 @@ msgstr "Jobbraforgó"
 msgid "City"
 msgstr ""
 
+msgid "Classic Rock"
+msgstr ""
+
 msgid "Classical"
 msgstr ""
 
@@ -4678,6 +4696,9 @@ msgstr ""
 msgid "Close the screen without saving any changes"
 msgstr ""
 
+msgid "Close the swap manager"
+msgstr ""
+
 msgid "Close the window"
 msgstr ""
 
@@ -4707,6 +4728,9 @@ msgstr "Gyűjtemény neve"
 
 msgid "Collection settings"
 msgstr "Gyűjtemény beállítások"
+
+msgid "College"
+msgstr ""
 
 msgid "Colombia"
 msgstr "Kolumbia"
@@ -5196,6 +5220,9 @@ msgstr "Állítsa be az NTP szervert."
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "Állítsa be a hálózati beállításokat, és nyomja meg az OK gombot a keresés indításához"
 
+msgid "Configured in /etc/fstab. Starting or stopping here only changes the current session."
+msgstr ""
+
 msgid "Configures which video output connector will be used."
 msgstr "Állítsa be, hogy melyik videó kimeneti csatlakozó van bekötve, használva."
 
@@ -5521,6 +5548,9 @@ msgstr ""
 msgid "Country"
 msgstr "Ország"
 
+msgid "Country Music"
+msgstr ""
+
 msgid "Country for EPG event genre information"
 msgstr "Ország az EPG esemény műfaj információknak"
 
@@ -5561,6 +5591,9 @@ msgstr "ISO készítés"
 msgid "Create Slots"
 msgstr ""
 
+msgid "Create Zap Timer"
+msgstr ""
+
 msgid "Create a directory"
 msgstr ""
 
@@ -5571,6 +5604,9 @@ msgid "Create a separate bouquet for radio services. When disabled, radio servic
 msgstr ""
 
 msgid "Create a settings backup"
+msgstr ""
+
+msgid "Create a swap file"
 msgstr ""
 
 msgid "Create a symbolic link"
@@ -5622,6 +5658,9 @@ msgstr ""
 msgid "Create swap"
 msgstr ""
 
+msgid "Create swap file"
+msgstr ""
+
 msgid "Create tar file of root file system."
 msgstr ""
 
@@ -5649,6 +5688,15 @@ msgstr ""
 
 msgid "Creating partition"
 msgstr "Partíció létrehozása"
+
+msgid "Creating swap file. This can take several minutes."
+msgstr ""
+
+#, python-format
+msgid ""
+"Creating the swap file failed.\n"
+"%s"
+msgstr ""
 
 msgid "Credentials"
 msgstr ""
@@ -5684,6 +5732,9 @@ msgstr "Kuba"
 msgid "Cult"
 msgstr "Kultusz"
 
+msgid "Culture"
+msgstr ""
+
 msgid "Curacao"
 msgstr "Curaçao"
 
@@ -5694,6 +5745,9 @@ msgid "Current"
 msgstr ""
 
 msgid "Current 1/1"
+msgstr ""
+
+msgid "Current Affairs"
 msgstr ""
 
 msgid "Current CEC address"
@@ -6563,6 +6617,12 @@ msgstr "Lejátszási lista bejegyzés törlése"
 msgid "Delete saved play list"
 msgstr "Mentett lejátszási lista törlése"
 
+#, python-format
+msgid ""
+"Delete swap file '%s'?\n"
+"An active file will be stopped first. Its swap entry in /etc/fstab will also be removed."
+msgstr ""
+
 #, fuzzy
 msgid "Delete the character to the left of text cursor"
 msgstr "A karakter törlése a szövegpuffer kurzortól balra"
@@ -6594,6 +6654,9 @@ msgid "Delete the flash expander in the selected device"
 msgstr ""
 
 msgid "Delete the selected locally stored image"
+msgstr ""
+
+msgid "Delete the selected swap file"
 msgstr ""
 
 #, python-format
@@ -6734,6 +6797,10 @@ msgid "Device name:"
 msgstr "Eszköznév:"
 
 msgid "Device number"
+msgstr ""
+
+#, python-format
+msgid "Device: %s"
 msgstr ""
 
 msgid "Devices"
@@ -7509,6 +7576,9 @@ msgid "East limit set"
 msgstr "Keleti limit beállítás"
 
 msgid "Eastern satellites"
+msgstr ""
+
+msgid "Easy Listening Music"
 msgstr ""
 
 msgid "Easy listening"
@@ -9213,6 +9283,9 @@ msgstr "Görgetés végének késleltetése"
 msgid "Finance"
 msgstr "Pénzügy"
 
+msgid "Finance/Business"
+msgstr ""
+
 msgid "Find Currently Playing Service"
 msgstr "éppen nézett csatorna megkeresése"
 
@@ -9348,6 +9421,9 @@ msgstr "Végleges pozíció"
 msgid "Flush Cache and Rescan"
 msgstr ""
 
+msgid "Folk Music"
+msgstr ""
+
 msgid "Folk and Country"
 msgstr ""
 
@@ -9405,6 +9481,9 @@ msgstr "kényszerített engedélyezés"
 msgid "Force progressive for streams and files"
 msgstr ""
 
+msgid "Foreign Language"
+msgstr ""
+
 msgid "Foreign countries/Expeditions"
 msgstr "külföldi országok/kirándulás"
 
@@ -9443,6 +9522,10 @@ msgstr ""
 
 msgid "Free memory"
 msgstr "Szabad memória"
+
+#, python-format
+msgid "Free space: %s"
+msgstr ""
 
 msgid "Free swap"
 msgstr ""
@@ -9519,6 +9602,9 @@ msgstr ""
 msgid "Full factory reset"
 msgstr ""
 
+msgid "Full path of the existing swap file"
+msgstr ""
+
 msgid "Full range (no clipping)"
 msgstr ""
 
@@ -9541,10 +9627,10 @@ msgstr "továbboktatás"
 msgid "G"
 msgstr "GB"
 
-msgid "GREEN button"
+msgid "GREEN"
 msgstr "Zöld gomb"
 
-msgid "GREEN long"
+msgid "GREEN (Long press)"
 msgstr "Zöld hosszan"
 
 msgid "GStreamer debug log category *"
@@ -10742,7 +10828,7 @@ msgstr "Indonéz"
 msgid "Info"
 msgstr "Információ"
 
-msgid "Info button (long)"
+msgid "INFO (Long press)"
 msgstr "Info gomb (hosszan)"
 
 msgid "Info button (short)"
@@ -10995,6 +11081,9 @@ msgstr ""
 msgid "Invalid location!"
 msgstr "Érvénytelen hely"
 
+msgid "Invalid swap file size."
+msgstr ""
+
 msgid "Invalid transponder data"
 msgstr "Érvénytelen transzponder adat"
 
@@ -11067,6 +11156,9 @@ msgid "Javanese"
 msgstr ""
 
 msgid "Jazz"
+msgstr ""
+
+msgid "Jazz Music"
 msgstr ""
 
 msgid "Jersey"
@@ -11525,6 +11617,9 @@ msgstr ""
 msgid "Legacy mode"
 msgstr ""
 
+msgid "Leisure"
+msgstr ""
+
 msgid "Leisure hobbies"
 msgstr "Pihenés/Hobby"
 
@@ -11561,6 +11656,9 @@ msgstr "Liechtenstein"
 
 msgid "Lifestyle"
 msgstr "Életmód"
+
+msgid "Light Classical"
+msgstr ""
 
 msgid "Light Grey"
 msgstr "Világosszürke"
@@ -12200,6 +12298,9 @@ msgstr "Orvosi"
 msgid "Medicine/Physiology/Psychology"
 msgstr "egészség"
 
+msgid "Medium"
+msgstr ""
+
 msgid "Medium is not a writeable DVD!"
 msgstr "Az adathordozó nem írható DVD!"
 
@@ -12468,6 +12569,10 @@ msgid "Mount or unmount the selected share"
 msgstr ""
 
 msgid "Mount point"
+msgstr ""
+
+#, python-format
+msgid "Mount point: %s"
 msgstr ""
 
 msgid "Mount root file system."
@@ -13519,6 +13624,9 @@ msgstr "Nincs megfelelő műholdas tuner!"
 msgid "No supported DAB+ feeds are available for the satellite positions configured on this box."
 msgstr ""
 
+msgid "No swap files or partitions found. Use Create to add a swap file."
+msgstr ""
+
 msgid "No system softcam configured!"
 msgstr ""
 
@@ -13563,6 +13671,9 @@ msgstr ""
 msgid "No tuners are currently streaming."
 msgstr ""
 
+msgid "No unused swap file name is available."
+msgstr ""
+
 msgid "No update required!"
 msgstr "Nincs elérhető frissítés!"
 
@@ -13587,6 +13698,9 @@ msgstr ""
 
 msgid "No valid region details were found"
 msgstr "Nem található érvényes régiórészlet"
+
+msgid "No writable ext2, ext3 or ext4 storage is available for a swap file."
+msgstr ""
 
 msgid "No, but restart from begin"
 msgstr "Nem, de indítsa elölröl"
@@ -13669,6 +13783,9 @@ msgstr "Norvég"
 msgid "Norwegian Nynorsk"
 msgstr "Norvég"
 
+msgid "Nostalgia"
+msgstr ""
+
 msgid "Not Classified"
 msgstr "Nem minősített"
 
@@ -13706,6 +13823,9 @@ msgstr ""
 #, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "Nincs elég tárhely. Kérem, szabadítson fel némi helyet és próbálja meg újra. (%d MB területre lenne szükség, %d MB hely szabad jelenleg)"
+
+msgid "Not enough free space for this swap file."
+msgstr ""
 
 msgid "Not found"
 msgstr ""
@@ -13802,7 +13922,7 @@ msgstr ""
 msgid "OK"
 msgstr "OK"
 
-msgid "OK button (long)"
+msgid "OK (Long press)"
 msgstr "OK gomb (hosszan)"
 
 msgid "OK button (short)"
@@ -13918,6 +14038,12 @@ msgstr ""
 msgid "Ojibwa"
 msgstr ""
 
+msgid "Oldies"
+msgstr ""
+
+msgid "Oldies Music"
+msgstr ""
+
 msgid "Olympic blue"
 msgstr ""
 
@@ -13979,6 +14105,9 @@ msgid "Only on startup"
 msgstr "Csak indításkor"
 
 msgid "Only one network share can be used as HDD replacement. Disable 'Use as HDD replacement' on the other share first."
+msgstr ""
+
+msgid "Only swap files can be deleted."
 msgstr ""
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
@@ -14300,6 +14429,9 @@ msgstr "Egyéb"
 #, fuzzy
 msgid "Other Actions"
 msgstr "továbboktatás"
+
+msgid "Other Music"
+msgstr ""
 
 msgid "Other OSD Elements"
 msgstr ""
@@ -14649,6 +14781,9 @@ msgstr ""
 msgid "Persian"
 msgstr "Perzsa"
 
+msgid "Personality"
+msgstr ""
+
 msgid "Personalize your Skin"
 msgstr "Személyre szabhatja a Kinézetet (Skin)"
 
@@ -14657,6 +14792,9 @@ msgstr "Peru"
 
 msgid "Philippines"
 msgstr "Fülöp-szigetek"
+
+msgid "Phone In"
+msgstr ""
 
 msgid "PiP"
 msgstr "Kép-a-Képben"
@@ -14688,6 +14826,9 @@ msgstr ""
 msgid "Picon and service name"
 msgstr "Pikon és csatornanév"
 
+msgid "Picon and service number"
+msgstr ""
+
 msgid "Picon install location"
 msgstr ""
 
@@ -14704,6 +14845,9 @@ msgstr ""
 
 msgid "Picon width"
 msgstr "Picon szélessége"
+
+msgid "Picon, service number and service name"
+msgstr ""
 
 msgid "Picture In Picture"
 msgstr ""
@@ -14957,9 +15101,6 @@ msgstr "Válasszon egy felbontást..."
 msgid "Please select an aspect ratio..."
 msgstr "Válasszon egy képarányt..."
 
-msgid "Please select device to use as swap file location"
-msgstr "Válasszon eszközt amin a swapfile-t használja"
-
 msgid "Please select medium to be scanned"
 msgstr "Kérem, válassza ki, hogy honnan történjen a telepítés"
 
@@ -15063,6 +15204,9 @@ msgstr ""
 msgid "Please wait while the plugin is updated."
 msgstr ""
 
+msgid "Please wait while the swap file is stopped and deleted."
+msgstr ""
+
 msgid "Please wait while unused locales/languages are purged..."
 msgstr ""
 
@@ -15085,6 +15229,9 @@ msgid "Please wait, loading picture..."
 msgstr ""
 
 msgid "Please wait, swap is being created. This could take a few minutes to complete."
+msgstr ""
+
+msgid "Please wait. Stopping swap can take a while."
 msgstr ""
 
 msgid "Please wait..."
@@ -15157,6 +15304,9 @@ msgid "Polish"
 msgstr "Lengyel"
 
 msgid "Politics"
+msgstr ""
+
+msgid "Pop Music"
 msgstr ""
 
 msgid "Popular culture/Traditional arts"
@@ -15677,6 +15827,9 @@ msgstr "Szolgáltatók:"
 msgid "Proxy detected"
 msgstr ""
 
+msgid "Public"
+msgstr ""
+
 msgid "Public IP"
 msgstr ""
 
@@ -15832,13 +15985,13 @@ msgstr "FELV szimbólum használatban"
 msgid "REC symbol"
 msgstr "FELV szimbólum"
 
-msgid "RED button"
+msgid "RED"
 msgstr "Piros gomb"
 
 msgid "RED button / HbbTV"
 msgstr "Piros gomb..."
 
-msgid "RED long"
+msgid "RED (Long press)"
 msgstr "Piros hosszan"
 
 msgid "RF Output Settings"
@@ -16219,6 +16372,9 @@ msgstr ""
 msgid "Refresh the update-able package list"
 msgstr ""
 
+msgid "Refresh, add an existing swap file or change autostart"
+msgstr ""
+
 msgid "Regard Deep Standby as Standby"
 msgstr "A kikapcsolás legyen az alapértelmezett készenlét"
 
@@ -16241,6 +16397,12 @@ msgid "Religion"
 msgstr "Vallás"
 
 msgid "Religious"
+msgstr ""
+
+msgid "Religious Music"
+msgstr ""
+
+msgid "Religious Talk"
 msgstr ""
 
 msgid "Reload Bookmarks"
@@ -16879,6 +17041,9 @@ msgstr "Visszatekerési sebességek"
 msgid "Rewrap subtitles"
 msgstr "Feliratok újratördelése"
 
+msgid "Rhythm and Blues"
+msgstr ""
+
 msgid "Right"
 msgstr "Jobb"
 
@@ -16905,6 +17070,12 @@ msgstr ""
 
 msgid "Right, wrapped"
 msgstr "jobb oldalon sortöréssel"
+
+msgid "Rock"
+msgstr ""
+
+msgid "Rock Music"
+msgstr ""
 
 msgid "Rock/Pop"
 msgstr "Rock/Pop"
@@ -17390,6 +17561,9 @@ msgstr[1] ""
 msgid "Scanning for shares..."
 msgstr ""
 
+msgid "Scanning swap devices..."
+msgstr ""
+
 msgid "Scanning..."
 msgstr "Keresés..."
 
@@ -17684,7 +17858,7 @@ msgstr ""
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr ""
 
-msgid "Select 'Yes' to hide channels without EPG data."
+msgid "When enabled, services without EPG data will be hidden."
 msgstr "Ha az 'igen'-t választja, akkor a műsor nélküli csatornák nem jelennek meg."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
@@ -18012,6 +18186,9 @@ msgstr ""
 msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
 msgstr ""
 
+msgid "Select a swap file on local storage."
+msgstr ""
+
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
 msgstr ""
 
@@ -18067,6 +18244,9 @@ msgstr ""
 msgid "Select copy destination for:"
 msgstr "Másolási cél kiválasztása ehhez:"
 
+msgid "Select current service"
+msgstr ""
+
 msgid "Select default EPG type"
 msgstr "Válassza ki az alapértelmezett EPG típusát ..."
 
@@ -18087,6 +18267,9 @@ msgstr "Válassza ki a kizárandó fájlokat a mentésből"
 
 msgid "Select files/folders to backup"
 msgstr "Válasszon fájlokat/mappákat a biztonsági mentéshez"
+
+msgid "Select first service in bouquet"
+msgstr ""
 
 msgid "Select how long a correctly entered service PIN is remembered. This does not unlock protected settings or system actions."
 msgstr ""
@@ -18196,6 +18379,9 @@ msgstr "Válasszon beviteli eszközt"
 msgid "Select input device."
 msgstr "Válasszon beviteli eszközt."
 
+msgid "Select last browsed service"
+msgstr ""
+
 msgid "Select movie"
 msgstr "Felvétel kiválasztása"
 
@@ -18276,9 +18462,6 @@ msgstr ""
 msgid "Select the Softcam protocol."
 msgstr ""
 
-msgid "Select the Swap File Size:"
-msgstr "Válassza ki a Swap fájl fájlméret:"
-
 msgid "Select the Unicable channel to be assigned to this tuner. This is a unique value. Be certain that no other device connected to this same Unicable system is allocated to the same Unicable channel."
 msgstr "Válassza ki a tunerhez hozzárendelendő Unicable csatornát. Ez egy egyedi érték. Győződjen meg arról, hogy nincs más, ugyanahhoz az unicable csatornához csatlakoztatott eszköz ugyanahhoz az Unicable csatornához rendelve."
 
@@ -18351,6 +18534,9 @@ msgid "Select the character set (iocharset) to be used to match/translate remote
 msgstr ""
 
 msgid "Select the color depth to be used with the HDMI attached UHD capable TV/monitor."
+msgstr ""
+
+msgid "Select the color of the built-in busy spinner. Custom PNG spinners keep their own colors."
 msgstr ""
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
@@ -18665,6 +18851,9 @@ msgstr ""
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr ""
 
+msgid "Select the speed of the fade-in and fade-out of toast messages."
+msgstr ""
+
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
@@ -18946,6 +19135,9 @@ msgstr "Sorozatszám"
 msgid "Serial number"
 msgstr ""
 
+msgid "Serious Classical"
+msgstr ""
+
 msgid "Serious music/Classic music"
 msgstr "komolyzene"
 
@@ -19052,6 +19244,9 @@ msgid ""
 msgstr ""
 "A csatorna nem található!\n"
 "(Nincs SID a PAT-ban)"
+
+msgid "Service number and picon"
+msgstr ""
 
 msgid "Service number and service name"
 msgstr "Csatorna száma és Csatorna neve"
@@ -19234,6 +19429,9 @@ msgstr "Alapértelmezett rendezési mód beállítása."
 msgid "Set the delay time between repeated loops, this is used by software renderer in some skins."
 msgstr "Állítsa be a késleltetési időt a megismételt görgetés között, ezt a szoftver renderer használja bizonyos kinézeteknél."
 
+msgid "Set the desired primetime (hour and minute)."
+msgstr ""
+
 msgid "Set the hostname or IP address."
 msgstr ""
 
@@ -19347,13 +19545,7 @@ msgstr ""
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
 
-msgid "Set to the desired primetime hour."
-msgstr "Adja meg, hogy a fő műsoridő melyik órában kezdődjön."
-
-msgid "Set to the desired primetime minutes."
-msgstr "Adja meg, hogy a fő műsoridő az adott óra melyik percében kezdődjön."
-
-msgid "Set to what you want the button to do."
+msgid "Select the action that this button will perform."
 msgstr "Adja meg, hogy a gomb megnyomásával mit szeretne csinálni."
 
 msgid "Set to yes for debugging the root cause of a spinner."
@@ -19548,6 +19740,9 @@ msgstr "Seychelle-szigetek"
 
 msgid "Share View"
 msgstr "Megosztás nézet"
+
+msgid "Shared SAT and C/T inputs"
+msgstr ""
 
 msgid "Shares"
 msgstr "Megosztások"
@@ -20723,6 +20918,9 @@ msgstr "szappanopera/melodráma"
 msgid "Soccer"
 msgstr "Foci"
 
+msgid "Social Affairs"
+msgstr ""
+
 msgid "Social/Political issues/Economics"
 msgstr "szociális/politikai/gazdasági (általános)"
 
@@ -20737,6 +20935,15 @@ msgstr "Társadalom és Kultúra"
 
 msgid "Socket"
 msgstr "Aljzat"
+
+msgid "Soft"
+msgstr ""
+
+msgid "Soft Rhythm and Blues"
+msgstr ""
+
+msgid "Soft Rock"
+msgstr ""
 
 msgid "Soft mount"
 msgstr ""
@@ -20850,9 +21057,6 @@ msgstr "Sajnálom, a %s nincs feltelepítve!"
 
 msgid "Sorry, no backups found!"
 msgstr "Nincs rendszerbeállítás mentés!"
-
-msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
-msgstr "Sajnáljuk, nincs olyan fizikai eszköz, amely támogatja a SWAP csatolását. Nem hozható létre Swapfile a hálózati vagy fat32 fájlrendszereken"
 
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
@@ -20997,6 +21201,9 @@ msgstr ""
 msgid "Spinner Position"
 msgstr ""
 
+msgid "Spinner color"
+msgstr ""
+
 msgid "Split preview mode"
 msgstr "Megosztott előnézeti mód"
 
@@ -21065,6 +21272,9 @@ msgstr ""
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start all available swap files and partitions when Enigma2 starts. Entries marked noauto in /etc/fstab are excluded. System autostart from /etc/fstab is independent of this setting."
+msgstr ""
+
 msgid "Start an instant recording"
 msgstr ""
 
@@ -21099,6 +21309,9 @@ msgid "Start offline decode"
 msgstr "Offline dekódolás indítása"
 
 msgid "Start or Stop service"
+msgstr ""
+
+msgid "Start or stop the selected swap"
 msgstr ""
 
 msgid "Start recording current event"
@@ -21204,9 +21417,6 @@ msgstr "A kijelző állapota készenléti üzemmódban"
 
 msgid "Status unavailable!"
 msgstr ""
-
-msgid "Status:"
-msgstr "Állapot:"
 
 msgid "Stay in time shift at buffer end (for plugins)"
 msgstr ""
@@ -21327,6 +21537,9 @@ msgstr ""
 
 msgid "Storage Devices"
 msgstr "Tárolóeszközök"
+
+msgid "Storage device"
+msgstr ""
 
 msgid "Storage device full!"
 msgstr "Lemez megtelt?"
@@ -21537,9 +21750,6 @@ msgstr ""
 msgid "Swap File Manager"
 msgstr "Swap File Manager"
 
-msgid "Swap File not found. You have to create the file before to activate."
-msgstr "A Swap fájl nem található. El kell készíteni a fájlt az aktiválás előtt."
-
 msgid "Swap Manager"
 msgstr "Swap Manager"
 
@@ -21549,14 +21759,20 @@ msgstr "Kép-a-Képben felcserélése"
 msgid "Swap PiP and main picture"
 msgstr "Kép-a-Képben és főkép felcserélése"
 
-msgid "Swap Place:"
-msgstr "Swap helye:"
-
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr "Cserélje ki a SNR '%'-t 'db-ra'"
 
-msgid "Swap Size:"
-msgstr "Swap mérete:"
+msgid "Swap autostart"
+msgstr ""
+
+msgid "Swap file"
+msgstr ""
+
+msgid "Swap partition"
+msgstr ""
+
+msgid "Swap partition detection failed. Active and configured swaps are still listed."
+msgstr ""
 
 msgid "Swap services"
 msgstr "Csatornák felcserélése"
@@ -21824,6 +22040,9 @@ msgstr "Tádzsikisztán"
 
 msgid "Tajikistan"
 msgstr "Tádzsikisztán"
+
+msgid "Talk"
+msgstr ""
 
 msgid "Talk show"
 msgstr "Talk show"
@@ -22208,6 +22427,9 @@ msgstr "Az alapértelmezett beállítás: az ébresztési idő - 5 perc és az i
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+msgid "The device is still mounted. Stop recordings and time shift before checking the file system."
+msgstr ""
+
 msgid "The directory/file no longer exists."
 msgstr ""
 
@@ -22224,6 +22446,15 @@ msgstr ""
 
 #, python-format
 msgid "The file '%s' has been changed. Do you want to save it?"
+msgstr ""
+
+msgid "The file does not contain a valid swap header."
+msgstr ""
+
+msgid "The file is created inactive. Start it in the swap manager when needed."
+msgstr ""
+
+msgid "The file system was repaired. Restart the receiver before using this device."
 msgstr ""
 
 #, python-format
@@ -22278,6 +22509,9 @@ msgstr ""
 msgid "The positioner tuner is currently unavailable. Stop recordings or other services using this tuner and try again."
 msgstr ""
 
+msgid "The previous mount point is already in use."
+msgstr ""
+
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
 msgstr ""
@@ -22304,6 +22538,9 @@ msgstr ""
 msgid "The running Enigma2 version cannot safely save an active time shift buffer."
 msgstr ""
 
+msgid "The running system's file system cannot be checked."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr "Mentett PIN törölve."
 
@@ -22316,6 +22553,9 @@ msgid "The selected device is not a supported removable block device."
 msgstr ""
 
 msgid "The selected device is too small. At least 3 GB is required."
+msgstr ""
+
+msgid "The selected storage device is no longer available."
 msgstr ""
 
 msgid "The service list is reloaded."
@@ -22332,6 +22572,15 @@ msgid ""
 msgstr ""
 
 msgid "The storage check did not finish. Please check the device or network and try again."
+msgstr ""
+
+msgid "The swap device has changed. Refresh the list and try again."
+msgstr ""
+
+msgid "The swap file has changed. Refresh the list and try again."
+msgstr ""
+
+msgid "The swap file is still active and cannot be deleted."
 msgstr ""
 
 msgid "The time is multiplied by the current repeat counter."
@@ -22465,6 +22714,9 @@ msgstr ""
 msgid "This channel requires an HbbTV plugin. Please install a compatible HbbTV plugin."
 msgstr ""
 
+msgid "This device has multiple mount points. Unmount them before checking the file system."
+msgstr ""
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Ebben a mezőben további szimbólumsebességben kereshet %s-ig."
@@ -22473,6 +22725,9 @@ msgid "This function is not available as processing of large files may take too 
 msgstr ""
 
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
+msgstr ""
+
+msgid "This is not a regular swap file."
 msgstr ""
 
 msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
@@ -22782,6 +23037,9 @@ msgstr ""
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr ""
 
+msgid "Time shift not possible!"
+msgstr "Timeshift nem lehetséges!"
+
 msgid "Time shift save action on zap"
 msgstr "Timeshift mentése csatornaváltáskor"
 
@@ -22858,6 +23116,9 @@ msgid "Timer Defaults And Retention"
 msgstr ""
 
 msgid "Timer Log Actions"
+msgstr ""
+
+msgid "Timer Menu"
 msgstr ""
 
 msgid "Timer Sanity Error"
@@ -22950,6 +23211,9 @@ msgstr ""
 
 #, python-format
 msgid "To where would you like to extract '%s'?"
+msgstr ""
+
+msgid "Toast fade"
 msgstr ""
 
 msgid "Today"
@@ -23064,6 +23328,9 @@ msgstr "Tonga"
 
 msgid "Top"
 msgstr "teteje"
+
+msgid "Top 40"
+msgstr ""
 
 msgid "Top and Bottom"
 msgstr "Felső és alsó"
@@ -23389,6 +23656,12 @@ msgstr ""
 msgid "Two lines"
 msgstr "Kettő sor"
 
+msgid "Two tuners share one SAT input and one C/T input. Reception types switch automatically. Use compatible SAT settings and separate Unicable User Bands. Cable and terrestrial reception cannot run together."
+msgstr ""
+
+msgid "Two tuners, two SAT sockets, one shared C/T socket. Two frequencies of the same reception type can run together. Cable and terrestrial cannot run together."
+msgstr ""
+
 msgid "Type"
 msgstr "Típus"
 
@@ -23490,6 +23763,12 @@ msgid "Ukrainian"
 msgstr "Ukrán"
 
 #, python-format
+msgid ""
+"Unable to change swap state for '%s'.\n"
+"%s"
+msgstr ""
+
+#, python-format
 msgid "Unable to check HDD replacement: %s"
 msgstr ""
 
@@ -23520,6 +23799,9 @@ msgstr ""
 msgid "Unable to prepare the time shift storage device."
 msgstr ""
 
+msgid "Unable to read the list of mounted file systems."
+msgstr ""
+
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr ""
@@ -23537,9 +23819,6 @@ msgid "Unable to save network configuration!"
 msgstr ""
 
 msgid "Unable to save network mount configuration!"
-msgstr ""
-
-msgid "Unable to start RAM time shift."
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
@@ -24019,6 +24298,9 @@ msgstr "Beállítások mentése egyedileg mappánként"
 msgid "Use power measurement"
 msgstr "Teljesítmény-felvétel mérése"
 
+msgid "Use skin default"
+msgstr ""
+
 msgid "Use small screen"
 msgstr "Használjon vékony képernyőt"
 
@@ -24108,6 +24390,10 @@ msgstr "Csatornakeresés típusa"
 
 msgid "Used:"
 msgstr "Felhasználva:"
+
+#, python-format
+msgid "Used: %s"
+msgstr ""
 
 msgid "User  (keymap.usr)"
 msgstr "User  (keymap.usr)"
@@ -24251,6 +24537,9 @@ msgstr ""
 
 msgid "Vanuatu"
 msgstr "Vanuatu"
+
+msgid "Varied"
+msgstr ""
 
 msgid "Variety"
 msgstr "Különböző"
@@ -24553,12 +24842,6 @@ msgstr "WSS 4:3-on"
 msgid "Wait for timesync at startup"
 msgstr "Időszinkronizálásra várás az indításkor"
 
-msgid "Wait please while creating swap file..."
-msgstr "Kérem várjon, mialatt a Swap fájl létrejön..."
-
-msgid "Wait please while scanning..."
-msgstr "Kérem várjon, mialatt a keresés folyik..."
-
 msgid "Waiting"
 msgstr "Várakozás"
 
@@ -24652,6 +24935,9 @@ msgid "Weather"
 msgstr "Időjárás"
 
 msgid "Weather settings"
+msgstr ""
+
+msgid "Weather/meteorology"
 msgstr ""
 
 msgid "Web Interface"
@@ -25026,6 +25312,9 @@ msgstr "Ha letiltja a csatornakeresést a háttérben, akkor a keresés során m
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Hová kerüljenek az átmeneti Timeshift felvételek?"
 
+msgid "Select which service to use when opening the EPG."
+msgstr ""
+
 msgid "Which time shift buffer event do you want to save?"
 msgstr "Melyik műsort szeretné tartósan menteni?"
 
@@ -25187,10 +25476,10 @@ msgstr ""
 msgid "Y-Resolution"
 msgstr ""
 
-msgid "YELLOW button"
+msgid "YELLOW"
 msgstr "Sárga gomb"
 
-msgid "YELLOW long"
+msgid "YELLOW (Long press)"
 msgstr "Sárga hosszan"
 
 msgid "Year"
@@ -25305,9 +25594,6 @@ msgstr "Nincs parancsfájlod a futáshoz."
 
 msgid "You have selected no logs to delete."
 msgstr "Nem választotta ki a törölni kívánt naplót."
-
-msgid "You have to create a Swap File before to activate the autostart."
-msgstr "Az automatikus indítás aktiválásához létre kell hoznia egy Swap fájlt."
 
 #, python-format
 msgid "You have to wait %s!"
@@ -26236,6 +26522,42 @@ msgstr "igen (állapotok megtartása)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Please select device to use as swap file location"
+#~ msgstr "Válasszon eszközt amin a swapfile-t használja"
+
+#~ msgid "Select the Swap File Size:"
+#~ msgstr "Válassza ki a Swap fájl fájlméret:"
+
+#~ msgid "Set to the desired primetime hour."
+#~ msgstr "Adja meg, hogy a fő műsoridő melyik órában kezdődjön."
+
+#~ msgid "Set to the desired primetime minutes."
+#~ msgstr "Adja meg, hogy a fő műsoridő az adott óra melyik percében kezdődjön."
+
+#~ msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
+#~ msgstr "Sajnáljuk, nincs olyan fizikai eszköz, amely támogatja a SWAP csatolását. Nem hozható létre Swapfile a hálózati vagy fat32 fájlrendszereken"
+
+#~ msgid "Status:"
+#~ msgstr "Állapot:"
+
+#~ msgid "Swap File not found. You have to create the file before to activate."
+#~ msgstr "A Swap fájl nem található. El kell készíteni a fájlt az aktiválás előtt."
+
+#~ msgid "Swap Place:"
+#~ msgstr "Swap helye:"
+
+#~ msgid "Swap Size:"
+#~ msgstr "Swap mérete:"
+
+#~ msgid "Wait please while creating swap file..."
+#~ msgstr "Kérem várjon, mialatt a Swap fájl létrejön..."
+
+#~ msgid "Wait please while scanning..."
+#~ msgstr "Kérem várjon, mialatt a keresés folyik..."
+
+#~ msgid "You have to create a Swap File before to activate the autostart."
+#~ msgstr "Az automatikus indítás aktiválásához létre kell hoznia egy Swap fájlt."
+
 #~ msgid "Aspect"
 #~ msgstr "Képarány"
 
@@ -26370,9 +26692,6 @@ msgstr "®"
 #~ msgstr ""
 #~ "A Timeshift-eszközén található fájlrendszer nem támogatja a hardlink-et.\n"
 #~ "Győződjen meg róla, hogy az EXT2, EXT3 vagy EXT4 formátumban van formázva!"
-
-#~ msgid "Time shift not possible!"
-#~ msgstr "Timeshift nem lehetséges!"
 
 #~ msgid "Time shift save failed!"
 #~ msgstr "Timeshift felvétel mentése sikertelen!"
