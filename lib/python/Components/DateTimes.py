@@ -16,11 +16,11 @@ class DateTimes:
 	SECOND_SEPARATOR = 7  # Default second separator.
 	SUFFIX = 8  # Default date suffix.
 	DEFAULTS = {
-		"de_DE": ("%A+%d=%m#%Y", "%d.%m.%Y", "%d.%m", ", ", "%d", "%m", ".", ".", ""),
-		"en_AU": ("%A+%d=%m#%Y", "%d/%m/%Y", "%d/%m", ", ", "%d", "%B", "-", "-", ""),
-		"en_GB": ("%A+%d=%m#%Y", "%d/%m/%Y", "%d/%m", ", ", "%d", "%B", "-", "-", ""),
+		"de_DE": ("%A+%d=%m#%Y", "%d.%m.%Y", "%d.%m", ",_", "%d", "%m", ".", ".", ""),
+		"en_AU": ("%A+%d=%m#%Y", "%d/%m/%Y", "%d/%m", ",_", "%d", "%B", "-", "-", ""),
+		"en_GB": ("%A+%d=%m#%Y", "%d/%m/%Y", "%d/%m", ",_", "%d", "%B", "-", "-", ""),
 	}
-	DEFAULTS_US = ("%A+%m=%d#%Y", "%m/%d/%Y", "%m/%d", " ", "%-d", "%m", "/", "/", "")
+	DEFAULTS_US = ("%A+%m=%d#%Y", "%m/%d/%Y", "%m/%d", "_", "%-d", "%m", "/", "/", "")
 
 	def initConfig(self):
 		defaults = self.DEFAULTS.get(config.misc.locale.value, self.DEFAULTS_US)
@@ -49,12 +49,12 @@ class DateTimes:
 			("%B", _("Full month name"))
 		])
 		choices = [
-			(" ", _("Space ' '")),
+			("_", _("Space ' '")),
 			("-", _("Hyphen '-'")),
 			(".", _("Period '.'")),
-			(". ", _("Period and space '. '")),
+			("._", _("Period and space '. '")),
 			(",", _("Comma ','")),
-			(", ", _("Comma and space ', '")),
+			(",_", _("Comma and space ', '")),
 			(":", _("Colon ':'")),
 			(";", _("Semicolon ';'")),
 			("/", _("Forward slash '/'"))
@@ -67,10 +67,10 @@ class DateTimes:
 			(".", _("Period '.'")),
 			(",", _("Comma ','"))
 		])
-		date.timeSeparator = ConfigSelection(default="  ", choices=[
-			(" ", _("One space ' '")),
-			("  ", _("Two spaces '  '")),
-			(" - ", _("Space Hyphen Space ' - '"))
+		date.timeSeparator = ConfigSelection(default="__", choices=[
+			("_", _("One space ' '")),
+			("__", _("Two spaces '  '")),
+			("_-_", _("Space Hyphen Space ' - '"))
 		])
 		#
 		config.usage.time = ConfigSubsection()
@@ -119,20 +119,22 @@ class DateTimes:
 		date = config.usage.date
 		date.enabled.value = dateEnabled
 		if dateEnabled:
-			daySeparator = "" if date.dayFormat.value == "" else date.daySeparator.value
-			self.date = date.layout.value.replace("%A", date.dayFormat.value).replace("+", daySeparator).replace("%d", date.dateFormat.value).replace("%m", date.monthFormat.value).replace("=", date.firstSeparator.value).replace("#", date.secondSeparator.value)
+			daySeparator = "" if date.dayFormat.value == "" else date.daySeparator.value.replace("_", " ")
+			firstSeparator = date.firstSeparator.value.replace("_", " ")
+			secondSeparator = date.secondSeparator.value.replace("_", " ")
+			self.date = date.layout.value.replace("%A", date.dayFormat.value).replace("+", daySeparator).replace("%d", date.dateFormat.value).replace("%m", date.monthFormat.value).replace("=", firstSeparator).replace("#", secondSeparator)
 			if suffix := date.suffix.value:
 				self.date = f"{self.date}{suffix}"
-			self.dateNoDay = date.layout.value.replace("%A+", "").replace("%d", date.dateFormat.value).replace("%m", date.monthFormat.value).replace("=", date.firstSeparator.value).replace("#", date.secondSeparator.value)
-			self.dateNoDayNoYear = date.layout.value.replace("%A+", "").replace("%d", date.dateFormat.value).replace("%m", date.monthFormat.value).replace("#%Y", "").replace("%Y=", "").replace("=", date.firstSeparator.value).replace("#", date.secondSeparator.value)
-			self.dateNoDayShortMonth = date.layout.value.replace("%A+", "").replace("%d", date.dateFormat.value).replace("%m", "%b").replace("=", date.firstSeparator.value).replace("#", date.secondSeparator.value)
-			self.dateNoDayShortMonthNoYear = date.layout.value.replace("%A+", "").replace("%d", date.dateFormat.value).replace("%m", "%b").replace("#%Y", "").replace("%Y=", "").replace("=", date.firstSeparator.value).replace("#", date.secondSeparator.value)
-			self.dateNoYear = date.layout.value.replace("%A", date.dayFormat.value).replace("+", daySeparator).replace("%d", date.dateFormat.value).replace("%m", date.monthFormat.value).replace("#%Y", "").replace("%Y=", "").replace("=", date.firstSeparator.value).replace("#", date.secondSeparator.value)
-			self.dateShortDay = date.layout.value.replace("%A", "%a").replace("+", date.daySeparator.value).replace("%d", date.dateFormat.value).replace("%m", date.monthFormat.value).replace("=", date.firstSeparator.value).replace("#", date.secondSeparator.value)
-			self.dateShortDayNoMonthNoYear = f"%a{config.usage.date.daySeparator.value}{config.usage.date.dateFormat.value}"
-			self.dateShortDayShortMonth = date.layout.value.replace("%A", "%a").replace("+", date.daySeparator.value).replace("%d", date.dateFormat.value).replace("%m", "%b").replace("=", date.firstSeparator.value).replace("#", date.secondSeparator.value)
-			self.dateShortDayShortMonthNoYear = date.layout.value.replace("%A", "%a").replace("+", date.daySeparator.value).replace("%d", date.dateFormat.value).replace("%m", "%b").replace("#%Y", "").replace("%Y=", "").replace("=", date.firstSeparator.value).replace("#", date.secondSeparator.value)
-			timeSeparator = date.timeSeparator.value
+			self.dateNoDay = date.layout.value.replace("%A+", "").replace("%d", date.dateFormat.value).replace("%m", date.monthFormat.value).replace("=", firstSeparator).replace("#", secondSeparator)
+			self.dateNoDayNoYear = date.layout.value.replace("%A+", "").replace("%d", date.dateFormat.value).replace("%m", date.monthFormat.value).replace("#%Y", "").replace("%Y=", "").replace("=", firstSeparator).replace("#", secondSeparator)
+			self.dateNoDayShortMonth = date.layout.value.replace("%A+", "").replace("%d", date.dateFormat.value).replace("%m", "%b").replace("=", firstSeparator).replace("#", secondSeparator)
+			self.dateNoDayShortMonthNoYear = date.layout.value.replace("%A+", "").replace("%d", date.dateFormat.value).replace("%m", "%b").replace("#%Y", "").replace("%Y=", "").replace("=", firstSeparator).replace("#", secondSeparator)
+			self.dateNoYear = date.layout.value.replace("%A", date.dayFormat.value).replace("+", daySeparator).replace("%d", date.dateFormat.value).replace("%m", date.monthFormat.value).replace("#%Y", "").replace("%Y=", "").replace("=", firstSeparator).replace("#", secondSeparator)
+			self.dateShortDay = date.layout.value.replace("%A", "%a").replace("+", daySeparator).replace("%d", date.dateFormat.value).replace("%m", date.monthFormat.value).replace("=", firstSeparator).replace("#", secondSeparator)
+			self.dateShortDayNoMonthNoYear = f"%a{daySeparator}{config.usage.date.dateFormat.value}"
+			self.dateShortDayShortMonth = date.layout.value.replace("%A", "%a").replace("+", daySeparator).replace("%d", date.dateFormat.value).replace("%m", "%b").replace("=", firstSeparator).replace("#", secondSeparator)
+			self.dateShortDayShortMonthNoYear = date.layout.value.replace("%A", "%a").replace("+", daySeparator).replace("%d", date.dateFormat.value).replace("%m", "%b").replace("#%Y", "").replace("%Y=", "").replace("=", firstSeparator).replace("#", secondSeparator)
+			timeSeparator = date.timeSeparator.value.replace("_", " ")
 		else:
 			defaults = self.DEFAULTS.get(config.misc.locale.value, self.DEFAULTS_US)
 			self.date = defaults[self.LEGACY]
@@ -190,7 +192,7 @@ class DateTimes:
 			(date, "full", self.dateNoDay),
 			(date, "long", self.dateNoDayShortMonth),
 			(date, "short", self.dateNoDayShortMonthNoYear),
-			(time, "long", self.dateTime)
+			(time, "long", self.time)
 		)
 		for key, attribute, value in configItems:
 			if init:
@@ -223,7 +225,7 @@ class DateTimes:
 			time.secondsFormat,
 			time.separator
 		)
-		
+
 	def getDate(self, timestamp=None, forceNumeric=False, dataFormat=None):  # Day Date Month Year; Day and month names in full words.
 		if timestamp is None:
 			timestamp = localtime()

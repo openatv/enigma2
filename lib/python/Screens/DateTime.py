@@ -46,6 +46,16 @@ class DateTime(Setup):
 		if Setup.getCurrentItem(self) in self.configElements:
 			self.setFootnote(f"{_("Preview")}:  {dateTimes.getDateTime()}")
 
+	def keySave(self):
+		config.usage.date.daySeparator.save()  # Save this value in case it is hidden.
+		config.usage.time.meridiemFormat.save()  # Save this value in case it is hidden.
+		Setup.keySave(self)
+
+	def keyCancel(self):
+		config.usage.date.daySeparator.cancel()  # Cancel any changes to this value in case it is hidden.
+		config.usage.time.meridiemFormat.cancel()  # Cancel any changes to this value in case it is hidden.
+		Setup.keyCancel(self)
+
 	def keyUseGeolocation(self):
 		def keyUseGeolocationCallback(geolocationData):
 			if geolocationData.get("proxy", True):
