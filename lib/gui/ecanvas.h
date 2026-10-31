@@ -30,6 +30,8 @@ public:
 	eCanvas(eWidget *parent);
 
 	void setSize(eSize size);
+	void beginContentUpdate() { contentUpdateActive = beginContentChange(); }
+	void endContentUpdate() { if (contentUpdateActive) endContentChange(); contentUpdateActive = false; }
 
 	void clear(gRGB color);
 	void fillRect(eRect rect, gRGB color);
@@ -41,6 +43,14 @@ public:
 	int event(int event, void *data = nullptr, void *data2 = nullptr) override;
 
 private:
+	bool contentUpdateActive = false;
+#ifndef SWIG
+	ePtr<gPixmap> captureAnimationContent() override { return eWidget::captureAnimationContent(); }
+	unsigned long long contentAnimationBytes() override { return eWidget::contentAnimationBytes(); }
+	bool contentIsPremultiplied() const override { return true; }
+	int contentBlitFlags() const override { return 0; } // Canvas fills replace the destination alpha during native replay.
+	int contentCornerRadius() override { return 0; }
+#endif
 	/* --- command recording ------------------------------------------------ */
 	enum OpType
 	{

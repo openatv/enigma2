@@ -135,7 +135,7 @@ int eLabel::event(int event, void* data, void* data2) {
 			// build render flags
 			int flags = buildFlags();
 
-			if (isGradientSet() || m_blend)
+			if (isGradientSet() || m_blend || contentCapturing)
 				flags |= gPainter::RT_BLEND;
 
 			int posX = m_padding.x();
@@ -209,7 +209,7 @@ int eLabel::event(int event, void* data, void* data2) {
 					painter.renderPara(m_scrollPara, paraOffset + rollOffset);
 				}
 			} else {
-				painter.renderText(shadowposition, m_text, flags, m_text_border_color, m_text_border_width, m_pos, &m_text_offset, m_tab_width);
+				painter.renderText(shadowposition, m_text, flags, m_text_border_color, m_text_border_width, m_pos, contentCapturing ? nullptr : &m_text_offset, m_tab_width);
 
 				// draw main text (foreground or shadowed)
 				if (m_have_shadow_color) {
@@ -219,7 +219,7 @@ int eLabel::event(int event, void* data, void* data2) {
 						painter.setForegroundColor(m_foreground_color);
 
 					painter.setBackgroundColor(m_shadow_color);
-					painter.renderText(position, m_text, flags, gRGB(), 0, m_pos, &m_text_shaddowoffset, m_tab_width);
+					painter.renderText(position, m_text, flags, gRGB(), 0, m_pos, contentCapturing ? nullptr : &m_text_shaddowoffset, m_tab_width);
 				}
 
 				if (m_scroll_text && m_scroll_config.mode == eScrollConfig::scrollModeRoll) {
@@ -496,10 +496,12 @@ void eLabel::createScrollPixmap() {
 void eLabel::setText(const std::string& string) {
 	if (m_text == string)
 		return;
+	const bool animate = !m_scroll_config.direction && m_pos == -1 && beginContentChange();
 	m_text = string;
 	stopScroll();
 	updateTextSize();
 	event(evtChangedText);
+	if (animate) endContentChange();
 }
 
 void eLabel::setMarkedPos(int markedPos) {

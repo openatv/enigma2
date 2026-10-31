@@ -2,6 +2,8 @@
 #include <lib/gdi/egl/platform/amlogic/amlogic_fb_output.h>
 #include <lib/gdi/fb.h>
 #include <algorithm>
+#include <climits>
+#include <cerrno>
 #include <fcntl.h>
 #include <linux/fb.h>
 #include <sys/ioctl.h>
@@ -46,6 +48,15 @@ static int64_t monotonicNs() {
 	return (int64_t)now.tv_sec * 1000000000LL + now.tv_nsec;
 }
 
+static bool waitForGPU() {
+	GLsync fence = glFenceSync(GL_SYNC_GPU_COMMANDS_COMPLETE, 0);
+	if (!fence)
+		return false;
+	const GLenum result = glClientWaitSync(fence, GL_SYNC_FLUSH_COMMANDS_BIT, 200000000ULL);
+	glDeleteSync(fence);
+	return result == GL_ALREADY_SIGNALED || result == GL_CONDITION_SATISFIED;
+}
+
 AmlogicFramebufferOutput::~AmlogicFramebufferOutput() {
 	destroy();
 }
@@ -68,14 +79,23 @@ bool AmlogicFramebufferOutput::create(EGLDisplay display, int width, int height)
 	}
 	m_dmabuf_fd = (int)dmabuf.fd;
 
-	if ((int)var.xres != width || (int)var.yres != height || var.bits_per_pixel != 32 || var.yres == 0) {
+	if (width <= 0 || height <= 0 || (int)var.xres != width || (int)var.yres != height || var.bits_per_pixel != 32 ||
+		var.xres_virtual < var.xres || var.yres_virtual < var.yres || var.xoffset || var.yoffset % var.yres ||
+		fix.line_length < static_cast<uint64_t>(width) * 4 || fix.line_length % 4 || fix.line_length > INT_MAX ||
+		var.red.offset != 16 || var.green.offset != 8 || var.blue.offset != 0 || var.transp.offset != 24 ||
+		var.red.length != 8 || var.green.length != 8 || var.blue.length != 8 || var.transp.length != 8 ||
+		var.red.msb_right || var.green.msb_right || var.blue.msb_right || var.transp.msb_right || m_dmabuf_fd < 0) {
 		eDebug("[AmlogicFramebufferOutput] framebuffer is %ux%ux%u, expected %dx%dx32", var.xres, var.yres, var.bits_per_pixel, width, height);
 		destroy();
 		return false;
 	}
-	const unsigned long page_size = (unsigned long)fix.line_length * var.yres;
+	if (fcntl(m_dmabuf_fd, F_SETFD, FD_CLOEXEC) < 0) {
+		destroy();
+		return false;
+	}
+	const uint64_t page_size = static_cast<uint64_t>(fix.line_length) * var.yres;
 	const int pages = std::min<int>({MAX_PAGES, (int)(var.yres_virtual / var.yres), (int)(fix.smem_len / page_size)});
-	if (pages < MAX_PAGES) {
+	if (pages < MAX_PAGES || page_size * (pages - 1) > INT_MAX || var.yoffset / var.yres >= static_cast<unsigned>(pages)) {
 		eDebug("[AmlogicFramebufferOutput] only %d framebuffer page(s) available, %d needed", pages, MAX_PAGES);
 		destroy();
 		return false;
@@ -137,11 +157,24 @@ bool AmlogicFramebufferOutput::create(EGLDisplay display, int width, int height)
 	// Start on the page after the one currently shown.
 	m_shown_page = (int)(var.yoffset / var.yres) % pages;
 	m_back_page = (m_shown_page + 1) % pages;
+	watchRunning = true;
+	try {
+		vsyncThread = std::thread(&AmlogicFramebufferOutput::watchVsync, this);
+	} catch (const std::system_error& error) {
+		eWarning("[AmlogicFramebufferOutput] VSync observer unavailable: %s", error.what());
+		destroy();
+		return false;
+	}
 	eDebug("[AmlogicFramebufferOutput] %d framebuffer pages %dx%d stride=%u active, back page %d", pages, width, height, fix.line_length, m_back_page);
 	return true;
 }
 
 void AmlogicFramebufferOutput::destroy() {
+	watchRunning = false;
+	vsyncChanged.notify_all();
+	// This driver's FBIO_WAITFORVSYNC has a kernel timeout of one second.
+	// Keep the fd alive until the observer has left that ioctl.
+	if (vsyncThread.joinable()) vsyncThread.join();
 	const bool gl_current = eglGetCurrentContext() != EGL_NO_CONTEXT;
 	PFNEGLDESTROYIMAGEKHRPROC eglDestroyImageKHR = (PFNEGLDESTROYIMAGEKHRPROC)eglGetProcAddress("eglDestroyImageKHR");
 	for (int page = 0; page < MAX_PAGES; ++page) {
@@ -166,38 +199,60 @@ void AmlogicFramebufferOutput::destroy() {
 	m_back_page = 0;
 	m_shown_page = 0;
 	m_height = 0;
-	m_vsync_period_ns = 0;
-	m_last_vsync_ns = 0;
+	observedVsync = 0;
+	vsyncFailed = false;
+	pageReady = true;
 	for (int64_t& hidden_since : m_hidden_since_ns)
 		hidden_since = 0;
 }
 
-void AmlogicFramebufferOutput::waitUntilHidden(int page) {
-	if (!m_hidden_since_ns[page])
-		return;
-	const int64_t period = m_vsync_period_ns ? m_vsync_period_ns : MAX_VSYNC_PERIOD_NS;
-	if (monotonicNs() - m_hidden_since_ns[page] >= period + VSYNC_MARGIN_NS) {
-		m_hidden_since_ns[page] = 0;
-		return;
-	}
-	// The wakeup can belong to a vsync just before the pan, so wait until one is stamped after it.
-	int64_t vsync = 0;
-	for (int attempt = 0; attempt < 3 && vsync <= m_hidden_since_ns[page]; ++attempt) {
-		if (ioctl(m_fb_fd, FBIO_WAITFORVSYNC_64, &vsync) < 0) {
-			eDebug("[AmlogicFramebufferOutput] FBIO_WAITFORVSYNC_64 failed: %m");
-			return;
+void AmlogicFramebufferOutput::watchVsync() {
+	while (watchRunning) {
+		int64_t vsync = 0;
+		const int result = ioctl(m_fb_fd, FBIO_WAITFORVSYNC_64, &vsync);
+		if (result < 0 && errno == EINTR) continue;
+		// A disabled HDMI clock can time out without a new timestamp. Keep
+		// observing; waitUntilHidden still refuses an unconfirmed page.
+		if (result == 0 && vsync == observedVsync) continue;
+		{
+			std::lock_guard<std::mutex> lock(vsyncMutex);
+			if (result < 0 || vsync <= observedVsync || vsync > monotonicNs()) {
+				vsyncFailed = watchRunning.load();
+				vsyncChanged.notify_all();
+				return;
+			}
+			observedVsync = vsync;
 		}
-		// Back-to-back waits are one period apart, longer gaps only overestimate it.
-		const int64_t delta = vsync - m_last_vsync_ns;
-		if (m_last_vsync_ns && delta > 10000000 && delta < MAX_VSYNC_PERIOD_NS && (!m_vsync_period_ns || delta < m_vsync_period_ns))
-			m_vsync_period_ns = delta;
-		m_last_vsync_ns = vsync;
+		vsyncChanged.notify_all();
 	}
+}
+
+bool AmlogicFramebufferOutput::waitUntilHidden(int page) {
+	if (!m_hidden_since_ns[page]) return true;
+	std::unique_lock<std::mutex> lock(vsyncMutex);
+	const int64_t hidden = m_hidden_since_ns[page];
+	if (!vsyncChanged.wait_for(lock, std::chrono::milliseconds(120), [&] { return observedVsync > hidden || vsyncFailed || !watchRunning; }) || vsyncFailed)
+		return false;
+	const int64_t vsync = observedVsync;
 	// That vsync has latched every pan issued before it.
 	for (int64_t& hidden_since : m_hidden_since_ns) {
 		if (hidden_since && hidden_since < vsync)
 			hidden_since = 0;
 	}
+	return m_hidden_since_ns[page] == 0;
+}
+
+bool AmlogicFramebufferOutput::waitBackPage() {
+	// Standby disables the HDMI clock. Keep the pending page protected and
+	// discard output into the existing 1x1 EGL pbuffer until VSync resumes.
+	// No new full-size buffer, no guessed retirement and no restart loop.
+	if (!pageReady && monotonicNs() - observedVsync.load() > 120000000LL)
+		return false;
+	const bool ready = active() && waitUntilHidden(m_back_page);
+	if (ready != pageReady)
+		eDebug("[AmlogicFramebufferOutput] output %s: framebuffer retirement %s", ready ? "resumed" : "deferred", ready ? "confirmed" : "pending");
+	pageReady = ready;
+	return ready;
 }
 
 void AmlogicFramebufferOutput::clearPages() {
@@ -211,15 +266,19 @@ void AmlogicFramebufferOutput::clearPages() {
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
 	glBindFramebuffer(GL_FRAMEBUFFER, previous_framebuffer);
-	glFinish();
+	if (!waitForGPU())
+		eFatal("[AmlogicFramebufferOutput] timed out clearing framebuffer pages");
 }
 
 bool AmlogicFramebufferOutput::present(fbClass* fb) {
-	if (!active() || !fb)
+	if (!active() || !fb || !pageReady)
 		return false;
 
 	// The display reads the page as soon as it is panned, so the GPU has to be done with it.
-	glFinish();
+	if (!waitForGPU()) {
+		eWarning("[AmlogicFramebufferOutput] GPU completion failed; page not presented");
+		return false;
+	}
 	if (fb->setOffset(m_back_page * m_height) < 0) {
 		eDebug("[AmlogicFramebufferOutput] FBIOPAN_DISPLAY to page %d failed: %m", m_back_page);
 		return false;

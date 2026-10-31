@@ -12,6 +12,8 @@ class Element:
 	CHANGED_CLEAR = 2  # We're expecting a real update soon, don't bother polling NOW, but clear data.
 	CHANGED_SPECIFIC = 3  # Second tuple will specify what exactly changed.
 	CHANGED_POLL = 4  # A timer has expired.
+	CHANGED_ANIMATED = 5
+	ANIMATION_EXCLUDED = {"ServicePosition", "FrontendInfo", "TunerInfo", "FrontendStatus"}
 
 	SINGLE_SOURCE = True
 
@@ -23,6 +25,26 @@ class Element:
 		self.__suspended = True
 		self.cache = None
 		self.onChanged = []
+		self.animationEnabled = None
+
+	def getIsAnimated(self):
+		if self.animationEnabled is not None:
+			return self.animationEnabled
+		if type(self).__name__ in self.ANIMATION_EXCLUDED:
+			return False
+		if type(self).__name__ == "ClockToText" and any(x in getattr(self, "converter_arguments", "") for x in ("WithSeconds", "Timestamp", "Format", "AsLength", "Mixed")):
+			return False
+		return all(x.isAnimated for x in self.sources)
+
+	def setIsAnimated(self, enabled):
+		self.animationEnabled = bool(enabled)
+		self.updateAnimationPolicy()
+
+	isAnimated = property(getIsAnimated, setIsAnimated)
+
+	def updateAnimationPolicy(self):
+		for element in self.downstream_elements:
+			element.updateAnimationPolicy()
 
 	def connectDownstream(self, downstream):
 		self.downstream_elements.append(downstream)

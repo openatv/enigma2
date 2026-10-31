@@ -180,6 +180,7 @@ class Picon(Renderer):
 		self.changed((self.CHANGED_DEFAULT,))
 
 	def changed(self, what):
+		self.updateAnimationPolicy()
 		if self.instance:
 			pngname = ""
 			match what[0]:

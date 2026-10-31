@@ -1,6 +1,17 @@
 #ifndef __DREAMGE2D_H
 #define __DREAMGE2D_H
 
+#include <cstddef>
+
+// Exported ION allocation. The caller owns fd and must close it. Pixel storage
+// stays owned by the surface; the duplicate fd retains its backing allocation.
+struct DreamDmaBuffer {
+	int fd = -1;
+	int width = 0, height = 0, stride = 0;
+	size_t length = 0;
+	unsigned int flags = 0, heapMask = 0;
+};
+
 class eRect;
 struct gUnmanagedSurface;
 
@@ -12,6 +23,8 @@ bool dreamGE2DAllocSurface(gUnmanagedSurface *surface, int stride, int size);
 bool dreamGE2DFreeSurface(gUnmanagedSurface *surface);
 bool dreamGE2DIsManagedSurface(const gUnmanagedSurface *surface);
 bool dreamGE2DGetDmabuf(const gUnmanagedSurface *surface, int *fd, int *width, int *height, int *stride, int *offset);
+bool dreamGE2DExportSurface(const gUnmanagedSurface *surface, DreamDmaBuffer &buffer);
+bool dreamGE2DSyncBuffer(int fd, bool forCPU);
 void dreamGE2DReleaseAccelMemory();
 
 bool dreamGE2DFill(gUnmanagedSurface *dst, const eRect &area, unsigned long col);

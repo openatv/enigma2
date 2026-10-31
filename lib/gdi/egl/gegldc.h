@@ -80,6 +80,7 @@ private:
 		int style = 0;
 		int durationMs = 0;
 		bool explicitStyle = false;
+		gAnimationToken completion;
 		PendingWindowAnimation() : active(false), show(true), rect(eRect()) {}
 	};
 
@@ -113,9 +114,10 @@ private:
 		int durationMs = 0;
 		int style = 0;
 		int frames = 0;
+		gAnimationToken completion;
 	} m_event_animation;
 	std::atomic<unsigned long long> m_animation_deadline{0};
-	bool startEventAnimation(GLuint oldFrame, GLuint newFrame, bool scene, const eRect& source, bool show, int durationMs, const PendingListboxAnimation* selection = nullptr, int style = 0, bool compact = false);
+	bool startEventAnimation(GLuint oldFrame, GLuint newFrame, bool scene, const eRect& source, bool show, int durationMs, const PendingListboxAnimation* selection = nullptr, int style = 0, bool compact = false, gAnimationToken completion = {});
 	void finishEventAnimation(bool present);
 	GLuint m_compactOld = 0;
 	GLuint m_compactNew = 0;
@@ -191,6 +193,15 @@ private:
 		unsigned long long ionAvoidedBytes = 0;
 #endif
 		unsigned int texture_dmabuf_uploads = 0;
+		unsigned int nativeImportFailures = 0;
+		unsigned int nativeWrites = 0;
+		unsigned int contentBlits = 0;
+		unsigned int nativeSyncFailures = 0;
+		unsigned long long cpuUploadBytes = 0;
+		unsigned long long importedBytes = 0;
+		unsigned long long nativeWaitUs = 0;
+		unsigned long long nativeSyncUs = 0;
+		unsigned long long nativeBytes = 0;
 		unsigned int texture_32_direct_uploads = 0;
 		unsigned int texture16Uploads = 0;
 		unsigned int texture_32_converted_uploads = 0;
@@ -365,6 +376,7 @@ private:
 
 	bool isHardwareAccelerated() const override { return true; }
 	bool supportsShowHideAnimations() const override { return true; }
+	bool supportsContentAnimations() const override { return true; }
 	bool supportsListboxAnimations() const override;
 	void fillTextBackground(const gRegion& clip) override;
 	void renderGlyph(const ePoint& pos, gPixmap* glyph_mask, const gRGB& color) override;

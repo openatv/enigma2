@@ -1098,8 +1098,8 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 	dc.getPixmap(target);
 	gUnmanagedSurface *surface = target->surface;
 	const bool hardware = dc.isHardwareAccelerated();
-	if (!hardware)
-		target->ensureCPUContent();
+	if (!hardware && !target->prepareCPUWrite())
+		return;
 	gRGB currentforeground = foreground;
 	const gRGB background = (m_blend && surface->bpp == 32 && !marked) ? gRGB(currentforeground.r, currentforeground.g, currentforeground.b, 200) : cbackground;
 

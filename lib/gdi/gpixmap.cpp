@@ -212,10 +212,16 @@ static inline void added_pixmap(int size) {}
 static inline void removed_pixmap(int size) {}
 #endif
 
-static void invalidate_gl_texture(gUnmanagedSurface *surface)
+static void invalidate_gl_texture(gUnmanagedSurface *surface, bool release = false)
 {
 	if (!surface)
 		return;
+	if (surface->nativeImported && !release) {
+		// The CPU edits the imported allocation; keep its EGLImage and FBO.
+		surface->gl_content_valid = false;
+		surface->cpu_content_valid = true;
+		return;
+	}
 
 	if (surface->gl_framebuffer_id)
 	{
@@ -236,11 +242,14 @@ static void invalidate_gl_texture(gUnmanagedSurface *surface)
 	surface->gl_content_valid = false;
 	surface->cpu_content_valid = true;
 	surface->gl_native_shared = false;
+	surface->nativeImported = false;
 }
 
 static bool sync_gl_texture_to_cpu(gUnmanagedSurface *surface)
 {
-	if (!surface || (surface->cpu_content_valid && !surface->gl_native_shared))
+	if (surface && surface->nativeAccessFailed)
+		return false;
+	if (!surface || (surface->cpu_content_valid && !surface->nativeGPUAccessPending))
 		return true;
 
 	extern bool egl_sync_surface_to_cpu(gUnmanagedSurface *surface) __attribute__((weak));
@@ -251,27 +260,35 @@ static bool sync_gl_texture_to_cpu(gUnmanagedSurface *surface)
 	return false;
 }
 
-static void prepare_cpu_write(gUnmanagedSurface *surface)
+static bool prepare_cpu_write(gUnmanagedSurface *surface)
 {
-	sync_gl_texture_to_cpu(surface);
+	if (!sync_gl_texture_to_cpu(surface))
+		return false;
 	invalidate_gl_texture(surface);
+	return true;
 }
 
-static void prepare_cpu_read(gUnmanagedSurface *surface)
+static bool prepare_cpu_read(gUnmanagedSurface *surface)
 {
-	sync_gl_texture_to_cpu(surface);
+	return sync_gl_texture_to_cpu(surface);
 }
 
 static bool e2egl_gpixmap_gles_enabled(const gUnmanagedSurface *surface)
 {
-	if (!surface || !surface->data_phys || surface->bpp != 32 || surface->stride != surface->x * 4)
+	if (!surface || surface->nativeAccessFailed || !surface->data_phys || surface->bpp != 32 || surface->x <= 0 || surface->stride / 4 < surface->x)
 		return false;
 	static int enabled = -1;
 	if (enabled < 0)
 	{
 		// The former weak hooks were unresolved. Activate the repaired bridge only
 		// for the explicitly enabled native target experiment, with CPU fallback.
-		const char *env = getenv("E2EGL_DREAMBCM_ION_TARGET");
+		const char *env = getenv(
+#ifdef DREAMNEXTGEN
+			"E2EGL_AML_NATIVE_TARGET"
+#else
+			"E2EGL_DREAMBCM_ION_TARGET"
+#endif
+		);
 		enabled = env && *env == '1';
 	}
 	return enabled;
@@ -609,7 +626,7 @@ gSurface::gSurface(int width, int height, int _bpp, int accel):
 
 gSurface::~gSurface()
 {
-	invalidate_gl_texture(this);
+	invalidate_gl_texture(this, true);
 	gAccel::getInstance()->accelFree(this);
 
 	if (data)
@@ -634,7 +651,8 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 
 		if (surface->bpp == 8)
 		{
-			prepare_cpu_write(surface);
+			if (!prepare_cpu_write(surface))
+				return;
 			e2egl_trace_gpixmap_op("fill-indexed-cpu", surface, area, 1);
 			e2egl_gpixmap_trace_scope trace_scope("fill-indexed-cpu");
 			for (int y = area.top(); y < area.bottom(); y++)
@@ -642,7 +660,8 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 		}
 		else if (surface->bpp == 16)
 		{
-			prepare_cpu_write(surface);
+			if (!prepare_cpu_write(surface))
+				return;
 			e2egl_trace_gpixmap_op("fill-16-cpu", surface, area, 1);
 			e2egl_gpixmap_trace_scope trace_scope("fill-16-cpu");
 			uint32_t icol;
@@ -683,7 +702,8 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 				continue;
 			}
 
-			prepare_cpu_write(surface);
+			if (!prepare_cpu_write(surface))
+				return;
 
 #ifdef GPIXMAP_DEBUG
 			Stopwatch s;
@@ -757,7 +777,8 @@ void gPixmap::fill(const gRegion &region, const gRGB &color)
 				continue;
 			}
 
-			prepare_cpu_write(surface);
+			if (!prepare_cpu_write(surface))
+				return;
 
 #ifdef GPIXMAP_DEBUG
 			Stopwatch s;
@@ -804,7 +825,8 @@ void gPixmap::fill(const gRegion &region, const gRGB &color)
 		}
 		else if (surface->bpp == 16)
 		{
-			prepare_cpu_write(surface);
+			if (!prepare_cpu_write(surface))
+				return;
 			e2egl_trace_gpixmap_op("fill-rgb-16-cpu", surface, area, 1);
 			e2egl_gpixmap_trace_scope trace_scope("fill-rgb-16-cpu");
 			uint32_t icol = color.argb();
@@ -895,7 +917,8 @@ static void convert_palette(uint32_t *pal, const gPalette &clut)
 #define FIX 0x10000
 
 void gPixmap::drawRectangleNew(const gRegion& region, const eRect& area, const gRGB& borderColor, int borderWidth, int radius, uint8_t edges, const gRGB& fillColor) {
-	prepare_cpu_write(surface);
+	if (!prepare_cpu_write(surface))
+		return;
 
 	for (unsigned int i = 0; i < region.rects.size(); ++i) {
 		eRect reg = area;
@@ -1110,7 +1133,8 @@ void gPixmap::drawRectangle(const gRegion& region, const eRect& area, const gRGB
 	const char *trace_op = useNew ? "drawRectangle-new-cpu" : (direction ? "drawRectangle-gradient-cpu" : "drawRectangle-solid-cpu");
 
 	if (surface->bpp < 32) {
-		prepare_cpu_write(surface);
+		if (!prepare_cpu_write(surface))
+			return;
 		e2egl_trace_gpixmap_op(trace_op, surface, area, region.rects.size(), 0, 0, radius, edges);
 		e2egl_gpixmap_trace_scope trace_scope(trace_op);
 		eWarning("[gPixmap] couldn't rgbfill %d bpp", surface->bpp);
@@ -1134,7 +1158,8 @@ void gPixmap::drawRectangle(const gRegion& region, const eRect& area, const gRGB
 		return;
 	}
 
-	prepare_cpu_write(surface);
+	if (!prepare_cpu_write(surface))
+		return;
 	e2egl_trace_gpixmap_op(trace_op, surface, area, region.rects.size(), 0, 0, radius, edges);
 	e2egl_gpixmap_trace_scope trace_scope(trace_op);
 
@@ -2467,10 +2492,11 @@ void gPixmap::blit(const gPixmap& src, const eRect& _pos, const gRegion& clip, i
 	bool cpu_prepared = false;
 	auto prepare_cpu_blit = [&]() {
 		if (cpu_prepared)
-			return;
-		prepare_cpu_read(src.surface);
-		prepare_cpu_write(surface);
+			return true;
+		if (!prepare_cpu_read(src.surface) || !prepare_cpu_write(surface))
+			return false;
 		cpu_prepared = true;
+		return true;
 	};
 
 	for (unsigned int i = 0; i < clip.rects.size(); ++i) {
@@ -2507,7 +2533,8 @@ void gPixmap::blit(const gPixmap& src, const eRect& _pos, const gRegion& clip, i
 				e2egl_trace_gpixmap_end_time(trace_op, gles_trace_start);
 				continue;
 			}
-			prepare_cpu_blit();
+			if (!prepare_cpu_blit())
+				return;
 			e2egl_trace_gpixmap_op((flag & blitScale) ? "blit-rounded-scale-cpu" : "blit-rounded-cpu",
 				surface, area, 1, src.surface, flag, cornerRadius, edges);
 			e2egl_gpixmap_trace_scope trace_scope((flag & blitScale) ? "blit-rounded-scale-cpu" : "blit-rounded-cpu");
@@ -2530,7 +2557,8 @@ void gPixmap::blit(const gPixmap& src, const eRect& _pos, const gRegion& clip, i
 			continue;
 		}
 
-		prepare_cpu_blit();
+		if (!prepare_cpu_blit())
+			return;
 
 #ifdef FORCE_NO_ACCELNEVER
 		accel = false;
@@ -2956,7 +2984,8 @@ void gPixmap::blit(const gPixmap& src, const eRect& _pos, const gRegion& clip, i
 
 void gPixmap::mergePalette(const gPixmap &target)
 {
-	prepare_cpu_write(surface);
+	if (!prepare_cpu_write(surface))
+		return;
 
 	if ((!surface->clut.colors) || (!target.surface->clut.colors))
 		return;
@@ -3044,7 +3073,8 @@ void gPixmap::line(const gRegion &clip, ePoint start, ePoint dst, unsigned int c
 		return;
 	}
 
-	prepare_cpu_write(surface);
+	if (!prepare_cpu_write(surface))
+		return;
 
 	uint8_t *srf8 = 0;
 	uint16_t *srf16 = 0;
@@ -3261,6 +3291,16 @@ gPixmap::~gPixmap()
 void gPixmap::ensureCPUContent()
 {
 	prepare_cpu_read(surface);
+}
+
+bool gPixmap::checkCPUContent()
+{
+	return prepare_cpu_read(surface);
+}
+
+bool gPixmap::prepareCPUWrite()
+{
+	return prepare_cpu_write(surface);
 }
 
 static void donot_delete_surface(gPixmap *pixmap)

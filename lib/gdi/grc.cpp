@@ -569,6 +569,43 @@ void gPainter::blit(gPixmap *pixmap, ePoint pos, const eRect &clip, int flags)
 	blit(pixmap, eRect(pos, eSize()), clip, flags);
 }
 
+std::atomic<unsigned long long> gContentTransition::liveBytes{0};
+std::atomic<unsigned long long> gContentTransition::limitBytes{32ULL * 1024 * 1024};
+
+std::shared_ptr<gContentTransition> gContentTransition::reserve(unsigned long long bytes)
+{
+	unsigned long long live = liveBytes.load();
+	do {
+		const unsigned long long limit = limitBytes.load();
+		if (!bytes || bytes > limit || live > limit - bytes)
+			return {};
+	} while (!liveBytes.compare_exchange_weak(live, live + bytes));
+	try {
+		auto result = std::make_shared<gContentTransition>();
+		result->bytes = bytes;
+		return result;
+	} catch (...) {
+		liveBytes -= bytes;
+		return {};
+	}
+}
+
+gContentTransition::~gContentTransition()
+{
+	liveBytes -= bytes;
+}
+
+void gPainter::blitTransition(std::shared_ptr<gContentTransition> content, const eRect& position, float progress)
+{
+	if (m_dc->islocked() || !content || !content->after)
+		return;
+	gOpcode opcode;
+	opcode.opcode = gOpcode::blitTransition;
+	opcode.dc = m_dc.grabRef();
+	opcode.parm.blitTransition = new gOpcode::para::pblitTransition{content, position, progress};
+	m_rc->submit(opcode);
+}
+
 void gPainter::blit(gPixmap *pixmap, const eRect &pos, const eRect &clip, int flags)
 {
 	if (m_dc->islocked())
@@ -786,31 +823,29 @@ void gPainter::end()
 
 void gPainter::sendShow(ePoint point, eSize size, int animation, int durationMs)
 {
-	if (m_dc->islocked())
-		return;
-	gOpcode o;
-	o.opcode = gOpcode::sendShow;
-	o.dc = m_dc.grabRef();
-	o.parm.setShowHideInfo = new gOpcode::para::psetShowHideInfo;
-	o.parm.setShowHideInfo->point = point;
-	o.parm.setShowHideInfo->size = size;
-	o.parm.setShowHideInfo->animation = animation;
-	o.parm.setShowHideInfo->durationMs = durationMs;
-	m_rc->submit(o);
+	sendWindowAnimation(true, point, size, animation, durationMs, {});
 }
 
 void gPainter::sendHide(ePoint point, eSize size, int animation, int durationMs)
 {
-	if (m_dc->islocked())
+	sendWindowAnimation(false, point, size, animation, durationMs, {});
+}
+
+void gPainter::sendWindowAnimation(bool show, ePoint point, eSize size, int animation, int durationMs, gAnimationToken completion)
+{
+	if (m_dc->islocked()) {
+		if (completion) completion->done = true;
 		return;
+	}
 	gOpcode o;
-	o.opcode = gOpcode::sendHide;
+	o.opcode = show ? gOpcode::sendShow : gOpcode::sendHide;
 	o.dc = m_dc.grabRef();
 	o.parm.setShowHideInfo = new gOpcode::para::psetShowHideInfo;
 	o.parm.setShowHideInfo->point = point;
 	o.parm.setShowHideInfo->size = size;
 	o.parm.setShowHideInfo->animation = animation;
 	o.parm.setShowHideInfo->durationMs = durationMs;
+	o.parm.setShowHideInfo->completion = completion;
 	m_rc->submit(o);
 }
 
@@ -863,6 +898,9 @@ void gDC::discardOpcode(const gOpcode *o)
 {
 	switch (o->opcode)
 	{
+	case gOpcode::blitTransition:
+		delete o->parm.blitTransition;
+		break;
 	case gOpcode::renderText:
 		if (o->parm.renderText->text)
 			free(o->parm.renderText->text);
@@ -930,6 +968,8 @@ void gDC::discardOpcode(const gOpcode *o)
 		break;
 	case gOpcode::sendShow:
 	case gOpcode::sendHide:
+		if (o->parm.setShowHideInfo->completion)
+			o->parm.setShowHideInfo->completion->done = true;
 		delete o->parm.setShowHideInfo;
 		break;
 	case gOpcode::sendListboxAnimation:
@@ -1215,6 +1255,16 @@ void gDC::exec(const gOpcode *o)
 			m_pixmap->fill(m_current_clip, m_background_color_rgb);
 		delete o->parm.fill;
 		break;
+	case gOpcode::blitTransition:
+	{
+		const auto& content = o->parm.blitTransition->content;
+		eRect position = o->parm.blitTransition->position;
+		position.moveBy(m_current_offset);
+		if (content && content->after)
+			m_pixmap->blit(*content->after, position, m_current_clip, content->radius, content->edges, gPixmap::blitScale | content->blitFlags);
+		delete o->parm.blitTransition;
+		break;
+	}
 	case gOpcode::blit:
 	{
 #ifdef GFX_DEBUG_DRAWRECT
@@ -1338,8 +1388,10 @@ void gDC::exec(const gOpcode *o)
 	case gOpcode::flush:
 		break;
 	case gOpcode::sendShow:
-		break;
 	case gOpcode::sendHide:
+		if (o->parm.setShowHideInfo->completion)
+			o->parm.setShowHideInfo->completion->done = true;
+		delete o->parm.setShowHideInfo;
 		break;
 	case gOpcode::sendListboxAnimation:
 		if (o->parm.listboxAnimation->selectionPixmap)

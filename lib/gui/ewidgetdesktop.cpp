@@ -689,6 +689,16 @@ void eWidgetDesktop::sendHide(ePoint point, eSize size, int animation, int durat
 	painter.sendHide(point, size, animation, durationMs);
 }
 
+void eWidgetDesktop::sendWindowAnimation(bool show, const eRect& rect, int animation, int durationMs, gAnimationToken completion)
+{
+	if (!supportsShowHideAnimations()) {
+		completion->done = true;
+		return;
+	}
+	gPainter painter(m_screen.m_dc);
+	painter.sendWindowAnimation(show, rect.topLeft(), rect.size(), animation, durationMs, completion);
+}
+
 eRect eWidgetDesktop::bounds() const
 {
 	const eSize size = m_screen.m_screen_size;

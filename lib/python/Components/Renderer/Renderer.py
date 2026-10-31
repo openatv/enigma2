@@ -8,7 +8,13 @@ class Renderer(GUIComponent, Element):
 		GUIComponent.__init__(self)
 
 	def onShow(self):
+		self.updateAnimationPolicy()
 		self.suspended = False
+
+	def updateAnimationPolicy(self):
+		if self.instance is not None:
+			self.instance.setDefaultAnimationEnabled(bool(self.source and self.source.isAnimated))
+		Element.updateAnimationPolicy(self)
 
 	def onHide(self):
 		self.suspended = True

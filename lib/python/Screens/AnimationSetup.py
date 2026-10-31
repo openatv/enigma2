@@ -1,4 +1,4 @@
-from enigma import eTimer, getDesktop, getGraphicsInfo, setAnimation_current, setAnimation_current_listbox, setAnimation_profiles, setAnimation_speed, setAnimation_toast_speed, supportsEGLAnimations
+from enigma import eTimer, eWidget, getDesktop, getGraphicsInfo, setAnimation_current, setAnimation_current_listbox, setAnimation_profiles, setAnimation_speed, setAnimation_toast_speed, supportsEGLAnimations
 
 from Components.ActionMap import ActionMap
 from Components.config import ConfigSelection, ConfigSelectionNumber, ConfigSubsection, ConfigYesNo, config
@@ -59,8 +59,20 @@ CLASSIC_ANIMATION_CHOICES = [
 
 class InfoBarAnimations:
 	CHOICES = [(0, _("Disabled")), (17, _("Fade in / fade out")), (22, _("Slide in from bottom / out to bottom")), (23, _("Slide from bottom with fade"))]
+	NEVER_ANIMATE = {"Volume", "Mute", "Dish", "Dishpip", "RdsInfoDisplay", "PVRState", "TimeshiftState", "PictureInPicture", "UnhandledKey", "ServiceErrorPopup"}
 
 	def applyScreen(self, screen):
+		if not E2EGL_ANIMATIONS or not screen.instance:
+			return
+		if getattr(screen, "neverAnimate", False) or any(x.__name__ in self.NEVER_ANIMATE for x in type(screen).__mro__):
+			screen.instance.setAnimationStyle(0)
+			screen.instance.setContentAnimationAllowed(False)
+			return
+		if type(screen).__name__ == "ToastScreen":
+			style = _animationSelectionValue(config.misc.animation.default)
+			if config.misc.animation.profiles.value and style in (15, 16):
+				style = _animationSelectionValue(config.misc.animation.toast)
+			screen.instance.setAnimationStyle(style, int(config.misc.animation.toastDuration.value))
 		profile = getattr(screen, "animationProfile", None)
 		if E2EGL_ANIMATIONS and profile in ("infobar", "mediaInfobar") and screen.instance:
 			style = int(getattr(config.misc.animation, profile).value)
@@ -85,6 +97,15 @@ config.misc.animation.toast = ConfigSelection(choices=ANIMATION_CHOICES, default
 config.misc.animation.infobar = ConfigSelection(choices=InfoBarAnimations.CHOICES, default=0)
 config.misc.animation.mediaInfobar = ConfigSelection(choices=InfoBarAnimations.CHOICES, default=0)
 config.misc.animation.infobarDuration = ConfigSelectionNumber(100, 1000, 50, default=250)
+config.misc.animation.widgetContent = ConfigYesNo(default=False)
+config.misc.animation.widgetDuration = ConfigSelectionNumber(50, 1000, 50, default=400)
+config.misc.animation.widgetMemory = ConfigSelection(choices=[(str(x), f"{x} MiB") for x in (8, 16, 32, 64, 128)], default="32")
+config.misc.animation.displayWidgets = ConfigYesNo(default=False)
+config.misc.animation.wizardSteps = ConfigYesNo(default=False)
+config.misc.animation.pictureFade = ConfigYesNo(default=False)
+config.misc.animation.pictureDuration = ConfigSelectionNumber(250, 2500, 250, default=2000)
+config.misc.animation.toastDuration = ConfigSelectionNumber(100, 1000, 50, default=300)
+BoxInfo.setItem("ContentAnimationDisplay", bool(getDesktop(1) and getDesktop(1).supportsContentAnimations()))
 
 ANIMATION_CONFIGS = (
 	config.misc.animation.default,
@@ -99,6 +120,14 @@ ANIMATION_CONFIGS = (
 	config.misc.animation.infobar,
 	config.misc.animation.mediaInfobar,
 	config.misc.animation.infobarDuration,
+	config.misc.animation.widgetContent,
+	config.misc.animation.widgetDuration,
+	config.misc.animation.widgetMemory,
+	config.misc.animation.displayWidgets,
+	config.misc.animation.wizardSteps,
+	config.misc.animation.pictureFade,
+	config.misc.animation.pictureDuration,
+	config.misc.animation.toastDuration,
 )
 
 animationPaused = False
@@ -119,6 +148,7 @@ def _animationSelectionValue(configElement):
 
 
 def applyAnimationSettings():
+	eWidget.setContentAnimationDefaults(config.misc.animation.widgetContent.value, int(config.misc.animation.widgetDuration.value), int(config.misc.animation.widgetMemory.value), config.misc.animation.displayWidgets.value)
 	setAnimation_current(_animationSelectionValue(config.misc.animation.default))
 	setAnimation_speed(int(config.misc.animation.speed.value))
 	setAnimation_toast_speed(int(config.misc.animation.toast_speed.value))
@@ -182,7 +212,10 @@ class AnimationSetup(Setup):
 			profile = "mediaInfobar" if current is config.misc.animation.mediaInfobar else "infobar"
 			self.session.open(InfoBarAnimationPreview, profile)
 			return
-		if current in ANIMATION_CONFIGS and current is not config.misc.animation.speed and current is not config.misc.animation.profiles and current is not config.misc.animation.listbox:
+		if current in (config.misc.animation.widgetContent, config.misc.animation.widgetDuration, config.misc.animation.widgetMemory):
+			self.session.open(ContentAnimationPreview)
+			return
+		if current in (config.misc.animation.default, config.misc.animation.classic, config.misc.animation.dialog, config.misc.animation.popup, config.misc.animation.toast):
 			previewAnimation = _animationSelectionValue(current)
 		else:
 			previewAnimation = _animationSelectionValue(config.misc.animation.default)
@@ -191,6 +224,34 @@ class AnimationSetup(Setup):
 
 	def previewClosed(self, *result):
 		applyAnimationSettings()
+
+
+class ContentAnimationPreview(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.skin = '<screen name="ContentAnimationPreview" position="center,center" size="700,240" title="Content animation"><widget name="text" position="30,30" size="640,180" font="Regular;32" foregroundColor="#00ffffff" transparent="1" /></screen>'
+		self["text"] = Label(_("First content"))
+		self["actions"] = ActionMap(["OkCancelActions"], {"ok": self.close, "cancel": self.close}, -1)
+		self.version = 0
+		self.previewTimer = eTimer()
+		self.previewTimer.callback.append(self.changeContent)
+		self.onLayoutFinish.append(self.startPreview)
+		self.onClose.append(self.stopPreview)
+
+	def startPreview(self):
+		self["text"].instance.setContentAnimation(int(config.misc.animation.widgetDuration.value) if config.misc.animation.widgetContent.value else 0)
+		self.previewTimer.start(1200)
+
+	def changeContent(self):
+		self.version += 1
+		if self.version >= 5:
+			self.close()
+		else:
+			self["text"].setText(_("Second content") if self.version % 2 else _("First content"))
+
+	def stopPreview(self):
+		self.previewTimer.stop()
+		self.previewTimer.callback.remove(self.changeContent)
 
 
 class InfoBarAnimationPreview(Screen):

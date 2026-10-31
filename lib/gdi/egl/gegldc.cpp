@@ -529,6 +529,7 @@ static bool opcodeDrawsToSurface(gOpcode::Opcode opcode) {
 	case gOpcode::fillRegion:
 	case gOpcode::clear:
 	case gOpcode::blit:
+	case gOpcode::blitTransition:
 	case gOpcode::gradient:
 	case gOpcode::rectangle:
 	case gOpcode::line:
@@ -1046,7 +1047,7 @@ void gEGLDC::applySwapBehavior() {
 
 bool gEGLDC::runSurfaceOperation(const std::function<bool(gTextureManager&)>& operation)
 {
-#if defined(DREAMBCM_ION_ACCEL) && defined(HAVE_DREAMBCM_EGL) && defined(HAVE_GLES3)
+#if (defined(DREAMNEXTGEN) || (defined(DREAMBCM_ION_ACCEL) && defined(HAVE_DREAMBCM_EGL))) && defined(HAVE_GLES3)
 	bool result = false;
 	if (runOnRenderThread([&]() { result = runSurfaceOperation(operation); }))
 		return result;
@@ -1404,9 +1405,14 @@ void gEGLDC::resetFrameStats(unsigned long long now_us) {
 void gEGLDC::addTextureUploadStats() {
 	gTextureUploadStats upload_stats;
 	m_texture_manager.takeUploadStats(upload_stats);
-	if (!upload_stats.textures && !upload_stats.content_cache_hits && !upload_stats.content_cache_misses)
-		return;
-
+	m_frame_stats.nativeImportFailures += upload_stats.importFailures;
+	m_frame_stats.nativeWrites += upload_stats.nativeWrites;
+	m_frame_stats.nativeSyncFailures += upload_stats.nativeSyncFailures;
+	m_frame_stats.cpuUploadBytes += upload_stats.cpuUploadBytes;
+	m_frame_stats.importedBytes += upload_stats.importedBytes;
+	m_frame_stats.nativeWaitUs += upload_stats.nativeWaitUs;
+	m_frame_stats.nativeSyncUs += upload_stats.nativeSyncUs;
+	m_frame_stats.nativeBytes = std::max(m_frame_stats.nativeBytes, upload_stats.nativeBytes);
 	m_frame_stats.texture_uploads += upload_stats.textures;
 #ifdef ENABLE_GLES_TESTLAB
 	m_frame_stats.ionUploads += upload_stats.ionUploads;
@@ -1469,7 +1475,11 @@ void gEGLDC::logAndResetFrameStats() {
 		m_frame_stats.ionUploads, m_frame_stats.ionAvoidedBytes, m_frame_stats.texture_8_clut_uploads,
 		m_frame_stats.texture_32_converted_uploads, m_frame_stats.fill_ops, m_frame_stats.gradient_ops,
 		m_frame_stats.rounded_ops, m_frame_stats.blit_ops, m_frame_stats.glyphs,
-		m_frame_stats.frame_copy_draws, m_frame_stats.frame_copy_pixels, m_frame_stats.texture16Uploads}}});
+		m_frame_stats.frame_copy_draws, m_frame_stats.frame_copy_pixels, m_frame_stats.texture16Uploads,
+		m_frame_stats.texture_dmabuf_uploads, m_frame_stats.nativeImportFailures, m_frame_stats.cpuUploadBytes,
+		m_frame_stats.importedBytes, m_frame_stats.nativeWrites, m_frame_stats.nativeWaitUs,
+		m_frame_stats.nativeSyncUs, m_frame_stats.nativeSyncFailures, m_frame_stats.nativeBytes,
+		m_frame_stats.contentBlits, gContentTransition::liveBytes.load()}}});
 #endif
 	resetFrameStats(now_us);
 }
@@ -2482,6 +2492,7 @@ eRect gEGLDC::clampToScreen(const eRect& rect) const {
 }
 
 void gEGLDC::deleteFrameTextures() {
+	completeAnimation(m_event_animation.completion);
 	m_animation_deadline = 0;
 	m_event_animation.selection.selection_pixmap = nullptr;
 	if (!isInitialized()) {
@@ -2572,6 +2583,7 @@ bool gEGLDC::currentFramebufferIsScene() const {
 void gEGLDC::bindWindowFramebuffer() {
 #ifdef DREAMNEXTGEN
 	m_fb_output.waitBackPage();
+	// A deferred page binds the existing pbuffer instead of scanout memory.
 	glBindFramebuffer(GL_FRAMEBUFFER, m_fb_output.backFramebuffer());
 #else
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -2761,6 +2773,7 @@ bool gEGLDC::ensureSpareSceneFramebuffer() {
 }
 
 void gEGLDC::deleteSceneFramebuffer() {
+	completeAnimation(m_event_animation.completion);
 	m_animation_deadline = 0;
 	deleteCompactTextures();
 	m_event_animation.selection.selection_pixmap = nullptr;
@@ -2838,7 +2851,8 @@ bool gEGLDC::presentSceneFramebuffer() {
 	{
 		// Waiting for the page to leave the screen is what a blocking swap would do.
 		e2eglScopedTimer wait_timer(m_frame_stats.swap_us);
-		m_fb_output.waitBackPage();
+		if (!m_fb_output.waitBackPage())
+			return false;
 	}
 	e2eglScopedTimer timer(m_frame_stats.copy_us);
 	const eRect dst = osdDestinationSurface();
@@ -3357,6 +3371,7 @@ void gEGLDC::drawCompactTexture(GLuint texture, const eRect& dest, float alpha, 
 
 void gEGLDC::executeWindowAnimationOpcode(const gOpcode* op, bool show) {
 	if (op->parm.setShowHideInfo) {
+		gAnimationCompletionGuard completionGuard(op->parm.setShowHideInfo->completion);
 		const bool explicitStyle = op->parm.setShowHideInfo->animation >= 0;
 		// InfoBar show/hide also toggles companion windows before the same repaint.
 		// Their generic effects must not replace the user's explicit InfoBar effect.
@@ -3371,6 +3386,7 @@ void gEGLDC::executeWindowAnimationOpcode(const gOpcode* op, bool show) {
 		if (animation > 0 && !rect.empty()) {
 			if (m_compactOld && m_pending_window_animation.rect != rect) {
 				deleteCompactTextures();
+				completeAnimation(m_pending_window_animation.completion);
 				m_pending_window_animation.active = false;
 			}
 			bool compactReady = m_compactOld != 0;
@@ -3385,6 +3401,10 @@ void gEGLDC::executeWindowAnimationOpcode(const gOpcode* op, bool show) {
 			if (!compactReady && !scene_animation_ready)
 				captureCurrentFrameAsLast();
 			if (compactReady || scene_animation_ready || m_last_frame_valid) {
+				if (m_pending_window_animation.completion)
+					m_pending_window_animation.completion->done = true;
+				m_pending_window_animation.completion = op->parm.setShowHideInfo->completion;
+				completionGuard.transfer();
 				m_pending_listbox_animation.active = false;
 				m_pending_listbox_animation.selection_pixmap = nullptr;
 				m_pending_window_animation.active = true;
@@ -3405,6 +3425,10 @@ bool gEGLDC::runPendingWindowAnimation() {
 	if (!m_pending_window_animation.active)
 		return false;
 
+	gAnimationToken completion = m_pending_window_animation.completion;
+	m_pending_window_animation.completion.reset();
+	gAnimationCompletionGuard completionGuard(completion);
+	completeAnimation(m_pending_window_animation.completion);
 	m_pending_window_animation.active = false;
 	if (m_compactOld) {
 		const PendingWindowAnimation& pending = m_pending_window_animation;
@@ -3421,8 +3445,10 @@ bool gEGLDC::runPendingWindowAnimation() {
 			eDebug("[e2egl:compact-animation] snapshot_bytes=%llu full_scene_bytes=%llu rect=%d,%d %dx%d",
 				rectPixels(logicalToSceneRect(pending.rect)) * 8ULL, (unsigned long long)m_scene_frame_width * m_scene_frame_height * 4ULL,
 				pending.rect.x(), pending.rect.y(), pending.rect.width(), pending.rect.height());
-			if (startEventAnimation(m_compactOld, m_compactNew, true, pending.rect, pending.show, duration, nullptr, pending.style, true))
+			if (startEventAnimation(m_compactOld, m_compactNew, true, pending.rect, pending.show, duration, nullptr, pending.style, true, completion)) {
+				completionGuard.transfer();
 				return true;
+			}
 		}
 		deleteCompactTextures();
 		bindSceneFramebuffer();
@@ -3489,8 +3515,10 @@ bool gEGLDC::runPendingWindowAnimation() {
 	const bool show = m_pending_window_animation.show;
 	const eRect full_frame(0, 0, m_width, m_height);
 	const int duration_ms = m_pending_window_animation.durationMs > 0 ? clampInt(m_pending_window_animation.durationMs, 60, 1500) : windowAnimationDurationMs(source, m_width, m_height);
-	if (startEventAnimation(old_frame, new_frame, use_scene_frames, source, show, duration_ms, nullptr, animation))
+	if (startEventAnimation(old_frame, new_frame, use_scene_frames, source, show, duration_ms, nullptr, animation, false, completion)) {
+		completionGuard.transfer();
 		return true;
+	}
 	const bool damage_only = !use_scene_frames && m_preserved_swap && e2eglAnimationDamageEnabled();
 	eRect previous_damage = source;
 	if (e2eglTraceGlEnabled())
@@ -3774,7 +3802,7 @@ bool gEGLDC::runPendingListboxAnimation() {
 	return true;
 }
 
-bool gEGLDC::startEventAnimation(GLuint oldFrame, GLuint newFrame, bool scene, const eRect& source, bool show, int durationMs, const PendingListboxAnimation* selection, int style, bool compact)
+bool gEGLDC::startEventAnimation(GLuint oldFrame, GLuint newFrame, bool scene, const eRect& source, bool show, int durationMs, const PendingListboxAnimation* selection, int style, bool compact, gAnimationToken completion)
 {
 #ifdef SYNC_PAINT
 	return false;
@@ -3782,6 +3810,7 @@ bool gEGLDC::startEventAnimation(GLuint oldFrame, GLuint newFrame, bool scene, c
 	const char* enabled = getenv("E2EGL_EVENT_ANIMATION");
 	if (!enabled || enabled[0] != '1')
 		return false;
+	m_event_animation.completion = completion;
 	m_event_animation.frames = 0;
 	m_event_animation.selection.selection_pixmap = nullptr;
 	m_event_animation.listbox = selection != nullptr;
@@ -3811,6 +3840,8 @@ void gEGLDC::finishEventAnimation(bool present)
 	if (!m_animation_deadline.exchange(0))
 		return;
 	const EventAnimation animation = m_event_animation;
+	gAnimationCompletionGuard completionGuard(animation.completion);
+	m_event_animation.completion.reset();
 	m_event_animation.selection.selection_pixmap = nullptr;
 	if (animation.compact)
 		deleteCompactTextures();
@@ -3840,6 +3871,10 @@ void gEGLDC::renderAnimationFrame()
 	if (!m_animation_deadline)
 		return;
 	if (m_graphics_suspended || !isInitialized() || !makeCurrent()) {
+		if (m_event_animation.completion)
+			m_event_animation.completion->done = true;
+		m_event_animation.completion.reset();
+		completeAnimation(m_event_animation.completion);
 		m_animation_deadline = 0;
 		m_event_animation.selection.selection_pixmap = nullptr;
 		return;
@@ -4273,8 +4308,10 @@ void gEGLDC::exec(const gOpcode* opcode) {
 		return;
 	}
 
-	if (!isInitialized())
+	if (!isInitialized()) {
+		discardOpcode(opcode);
 		return;
+	}
 
 	if (opcodeCanRunWithoutEGLContext(opcode->opcode)) {
 		const unsigned long long draw_start_us = e2eglNowUs();
@@ -4293,8 +4330,10 @@ void gEGLDC::exec(const gOpcode* opcode) {
 	}
 
 	const bool already_current = eglGetCurrentContext() == m_egl_context;
-	if (!already_current && !makeCurrent())
+	if (!already_current && !makeCurrent()) {
+		discardOpcode(opcode);
 		return;
+	}
 
 	const unsigned long long draw_start_us = e2eglNowUs();
 	bool draw_time_recorded = false;
@@ -4365,6 +4404,38 @@ void gEGLDC::exec(const gOpcode* opcode) {
 			delete opcode->parm.line;
 			break;
 
+		case gOpcode::blitTransition:
+		{
+			++m_frame_stats.contentBlits;
+			flushTextBatch();
+			flushFillBatch();
+			const auto& transition = *opcode->parm.blitTransition;
+			GLuint current = m_texture_manager.getTexture(transition.content->after);
+			GLuint previous = m_texture_manager.getTexture(transition.content->before);
+			eRect position = transition.position;
+			position.moveBy(m_current_offset);
+			if (current && !position.empty()) {
+				if (transition.content->blitFlags & gPixmap::blitAlphaBlend) {
+					glEnable(GL_BLEND);
+					glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+				} else
+					glDisable(GL_BLEND);
+				glEnable(GL_SCISSOR_TEST);
+				for (const eRect& rect : m_current_clip.rects) {
+					const eRect clipped = rect & position;
+					if (clipped.empty()) continue;
+					setGlScissor(clipped);
+					m_texture_shader.drawTexture(position.x(), position.y(), position.width(), position.height(), current,
+						1.0f, transition.content->radius, transition.content->edges, 0, 0, 1, 1, transition.content->blitFlags & gPixmap::blitAlphaTest, false, 0, 0, -1, -1, false, previous, previous ? transition.progress : 1.0f,
+						transition.content->afterPremultiplied, transition.content->beforePremultiplied);
+					++m_frame_stats.blit_rects;
+					m_frame_stats.blit_pixels += rectPixels(clipped);
+				}
+				++m_frame_stats.blit_ops;
+			}
+			delete opcode->parm.blitTransition;
+			break;
+		}
 		case gOpcode::blit:
 			{
 				eRect area = blitDrawBounds(opcode->parm.blit);
@@ -4631,6 +4702,7 @@ bool gEGLDC::releaseGraphics(bool releaseClient)
 #endif
 
 	m_preserved_swap = false;
+	completeAnimation(m_pending_window_animation.completion);
 	m_pending_window_animation.active = false;
 	m_pending_listbox_animation.active = false;
 	m_pending_listbox_animation.selection_pixmap = nullptr;
@@ -4755,6 +4827,7 @@ bool gEGLDC::setOSDPosition(int left, int top, int width, int height)
 #endif
 
 	if (egl_current) {
+		completeAnimation(m_pending_window_animation.completion);
 		m_pending_window_animation.active = false;
 		m_pending_listbox_animation.active = false;
 		m_pending_listbox_animation.selection_pixmap = nullptr;
@@ -5211,6 +5284,7 @@ void gEGLDC::setResolution(int xres, int yres, int bpp) {
 		if (makeCurrent()) {
 			deleteSceneFramebuffer();
 			deleteFrameTextures();
+			completeAnimation(m_pending_window_animation.completion);
 			m_pending_window_animation.active = false;
 			m_pending_listbox_animation.active = false;
 			m_pending_listbox_animation.selection_pixmap = nullptr;
@@ -5361,6 +5435,7 @@ void gEGLDC::refresh() {
 		if (!preserve_scene)
 			deleteSceneFramebuffer();
 		m_scene_framebuffer_unavailable = false;
+		completeAnimation(m_pending_window_animation.completion);
 		m_pending_window_animation.active = false;
 		m_pending_listbox_animation.active = false;
 		m_pending_listbox_animation.selection_pixmap = nullptr;
@@ -5402,6 +5477,11 @@ void gEGLDC::flip() {
 			capturePresentedFrame();
 		const bool scene_presented = presentSceneFramebuffer();
 		const bool swapped = swapWindowFramebuffer();
+#ifdef DREAMNEXTGEN
+		// Keep composing the latest scene while HDMI output is suspended.
+		if (!swapped && sceneFramebufferActive())
+			bindSceneFramebuffer();
+#endif
 		if (swapped) {
 			if (scene_presented)
 				bindSceneFramebuffer();

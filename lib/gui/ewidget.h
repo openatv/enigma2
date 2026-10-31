@@ -102,9 +102,28 @@ public:
 
 	int getTag() const { return m_tag; }
 	void setTag(int tag) { m_tag = tag; }
+	void setDefaultAnimationEnabled(bool enabled);
+	void setContentAnimationAllowed(bool allowed) { contentAllowed = allowed; }
+	void setContentAnimation(int durationMs);
+	static void setContentAnimationDefaults(bool enabled, int durationMs = 400, int budgetMiB = 32, bool display = false);
+	bool supportsContentAnimations() const;
 
 private:
 	eWidgetDesktop* m_desktop;
+#ifndef SWIG
+	std::shared_ptr<gContentTransition> contentTransition;
+	ePtr<eTimer> contentTimer;
+	unsigned long long contentStarted = 0;
+	int contentDuration = -1;
+	int contentRunningDuration = 0;
+	bool contentEligible = true;
+	bool contentAllowed = true;
+	bool contentWasTransparent = false;
+	bool contentVisibilityChanged = false;
+	void contentTick();
+	void cancelContentTransition();
+	float contentProgress() const;
+#endif
 
 	enum {
 		wVisShow = 1,
@@ -147,6 +166,18 @@ private:
 	int m_tag;
 
 protected:
+	bool beginContentChange();
+	void endContentChange();
+	void abortContentChange();
+	bool contentCapturing = false;
+#ifndef SWIG
+	virtual ePtr<gPixmap> captureAnimationContent();
+	virtual unsigned long long contentAnimationBytes();
+	virtual bool contentIsPremultiplied() const { return true; }
+	virtual bool contentPaintBackground() const { return true; }
+	virtual int contentBlitFlags() const { return gPixmap::blitAlphaBlend; }
+	virtual int contentCornerRadius() { return 0; }
+#endif
 	void mayKillFocus();
 
 	gRGB m_background_color;
