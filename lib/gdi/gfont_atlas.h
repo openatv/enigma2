@@ -38,7 +38,7 @@ public:
     gFontAtlas();
     ~gFontAtlas();
 
-    bool init(int width = 2048, int height = 2048);
+    bool init(int width = 0, int height = 0);
     void release();
     
     bool getGlyph(glyph_key_t key, glyph_uv &uv);

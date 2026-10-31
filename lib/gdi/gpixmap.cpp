@@ -235,11 +235,12 @@ static void invalidate_gl_texture(gUnmanagedSurface *surface)
 
 	surface->gl_content_valid = false;
 	surface->cpu_content_valid = true;
+	surface->gl_native_shared = false;
 }
 
 static bool sync_gl_texture_to_cpu(gUnmanagedSurface *surface)
 {
-	if (!surface || surface->cpu_content_valid)
+	if (!surface || (surface->cpu_content_valid && !surface->gl_native_shared))
 		return true;
 
 	extern bool egl_sync_surface_to_cpu(gUnmanagedSurface *surface) __attribute__((weak));
@@ -261,20 +262,24 @@ static void prepare_cpu_read(gUnmanagedSurface *surface)
 	sync_gl_texture_to_cpu(surface);
 }
 
-static bool e2egl_gpixmap_gles_enabled()
+static bool e2egl_gpixmap_gles_enabled(const gUnmanagedSurface *surface)
 {
+	if (!surface || !surface->data_phys || surface->bpp != 32 || surface->stride != surface->x * 4)
+		return false;
 	static int enabled = -1;
 	if (enabled < 0)
 	{
-		const char *env = getenv("E2EGL_GPIXMAP_GLES");
-		enabled = !(env && (*env == '0' || *env == 'n' || *env == 'N' || *env == 'f' || *env == 'F'));
+		// The former weak hooks were unresolved. Activate the repaired bridge only
+		// for the explicitly enabled native target experiment, with CPU fallback.
+		const char *env = getenv("E2EGL_DREAMBCM_ION_TARGET");
+		enabled = env && *env == '1';
 	}
 	return enabled;
 }
 
 static bool try_gles_fill(gUnmanagedSurface *surface, const eRect &area, uint32_t color)
 {
-	if (!e2egl_gpixmap_gles_enabled() || !surface || surface->bpp != 32 || area.empty())
+	if (!e2egl_gpixmap_gles_enabled(surface) || area.empty())
 		return false;
 
 	extern bool egl_gpixmap_fill(gUnmanagedSurface *surface, int x, int y, int w, int h, uint32_t color) __attribute__((weak));
@@ -508,7 +513,7 @@ static bool is_a_candidate_for_accel(const gUnmanagedSurface* surface)
 
 static bool try_gles_draw_solid_rect(gUnmanagedSurface *surface, const gRegion &region, const eRect &area, uint32_t color)
 {
-	if (!e2egl_gpixmap_gles_enabled() || !surface || surface->bpp != 32 || area.empty() || region.rects.empty())
+	if (!e2egl_gpixmap_gles_enabled(surface) || area.empty() || region.rects.empty())
 		return false;
 
 	bool drew = false;
@@ -527,7 +532,7 @@ static bool try_gles_draw_solid_rect(gUnmanagedSurface *surface, const gRegion &
 static bool try_gles_draw_rectangle(gUnmanagedSurface *surface, const gRegion &region, const eRect &area, const gRGB &backgroundColor, const gRGB &borderColor, int borderWidth,
 	const std::vector<gRGB> &gradientColors, uint8_t direction, int radius, uint8_t edges, bool alphablend, int gradientFullSize, bool useNew)
 {
-	if (!e2egl_gpixmap_gles_enabled() || !surface || surface->bpp != 32 || area.empty() || region.rects.empty())
+	if (!e2egl_gpixmap_gles_enabled(surface) || area.empty() || region.rects.empty())
 		return false;
 	if (direction && gradientColors.size() < 2)
 		return false;
@@ -544,7 +549,7 @@ static bool try_gles_draw_rectangle(gUnmanagedSurface *surface, const gRegion &r
 
 static bool try_gles_draw_axis_aligned_line(gUnmanagedSurface *surface, const gRegion &clip, ePoint start, ePoint dst, uint32_t color, eRect *line_area)
 {
-	if (!e2egl_gpixmap_gles_enabled() || !surface || surface->bpp != 32 || clip.rects.empty())
+	if (!e2egl_gpixmap_gles_enabled(surface) || clip.rects.empty())
 		return false;
 
 	const int xa = start.x();
@@ -576,11 +581,8 @@ static bool try_gles_draw_axis_aligned_line(gUnmanagedSurface *surface, const gR
 
 static bool try_gles_blit(gUnmanagedSurface *dst, gUnmanagedSurface *src, const eRect &pos, const eRect &area, int flag, int cornerRadius, uint8_t edges)
 {
-	if (!e2egl_gpixmap_gles_enabled() || !dst || !src || dst == src || dst->bpp != 32 || src->bpp != 32 || pos.empty() || area.empty())
+	if (!e2egl_gpixmap_gles_enabled(dst) || !src || dst == src || src->bpp != 32 || pos.empty() || area.empty())
 		return false;
-	if (!cornerRadius)
-		return false;
-
 	extern bool egl_gpixmap_blit(gUnmanagedSurface *dst, gUnmanagedSurface *src, int dx, int dy, int dw, int dh, int ax, int ay, int aw, int ah, int flags, int radius, uint8_t edges)
 		__attribute__((weak));
 	if (!egl_gpixmap_blit)

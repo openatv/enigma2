@@ -32,6 +32,8 @@ static const char* fragment_shader_es3 = R"(#version 300 es
     uniform float u_radius;
     uniform int u_edges;
     uniform vec4 u_solid_color;
+    uniform float u_border_width;
+    uniform vec4 u_border_color;
     
     uniform int u_num_stops;
     uniform vec4 u_gradient_colors[16];
@@ -47,10 +49,12 @@ static const char* fragment_shader_es3 = R"(#version 300 es
         return clamp(0.5 - dist, 0.0, 1.0);
     }
 
-    float roundedCoverage(vec2 local) {
-        float w = u_rect_size.z;
-        float h = u_rect_size.w;
-        float r = min(u_radius, min(w, h) * 0.5);
+    float roundedCoverage(vec2 local, vec2 size, float inset) {
+        float w = size.x;
+        float h = size.y;
+        if (w <= 0.0 || h <= 0.0 || local.x < 0.0 || local.y < 0.0 || local.x >= w || local.y >= h)
+            return 0.0;
+        float r = max(0.0, min(u_radius, min(u_rect_size.z, u_rect_size.w) * 0.5) - inset);
         float c = 1.0;
         if ((u_edges & 1) != 0 && local.x < r && local.y < r)
             c = cornerCoverage(r, vec2(r - local.x, r - local.y));
@@ -66,7 +70,7 @@ static const char* fragment_shader_es3 = R"(#version 300 es
     void main() {
         float coverage = 1.0;
         if (u_radius > 0.0) {
-            coverage = roundedCoverage(v_pos - u_rect_size.xy);
+            coverage = roundedCoverage(v_pos - u_rect_size.xy, u_rect_size.zw, 0.0);
             if (coverage <= 0.0)
                 discard;
         }
@@ -102,7 +106,17 @@ static const char* fragment_shader_es3 = R"(#version 300 es
             final_color = grad_color;
         }
         
-        frag_color = vec4(final_color.rgb, final_color.a * coverage);
+        if (u_border_width > 0.0) {
+            float inner = min(coverage, roundedCoverage(v_pos - u_rect_size.xy - vec2(u_border_width),
+                u_rect_size.zw - vec2(2.0 * u_border_width), u_border_width));
+            float fill_alpha = final_color.a * inner;
+            float border_alpha = u_border_color.a * (coverage - inner);
+            float alpha = fill_alpha + border_alpha;
+            vec3 rgb = alpha > 0.0 ? (final_color.rgb * fill_alpha + u_border_color.rgb * border_alpha) / alpha : vec3(0.0);
+            frag_color = vec4(rgb, alpha);
+        } else {
+            frag_color = vec4(final_color.rgb, final_color.a * coverage);
+        }
     }
 )";
 #endif
@@ -139,6 +153,8 @@ static const char* fragment_shader_es2 = R"(#version 100
     uniform float u_r_bl; // bottom-left
     uniform float u_r_br; // bottom-right
     uniform vec4 u_solid_color;
+    uniform float u_border_width;
+    uniform vec4 u_border_color;
     
     uniform int u_num_stops;
     uniform vec4 u_gradient_colors[16];
@@ -154,14 +170,16 @@ static const char* fragment_shader_es2 = R"(#version 100
         return clamp(0.5 - dist, 0.0, 1.0);
     }
 
-    float roundedCoverage(vec2 local) {
-        float w = u_rect_size.z;
-        float h = u_rect_size.w;
-        float max_r = min(w, h) * 0.5;
-        float r_tl = min(u_r_tl, max_r);
-        float r_tr = min(u_r_tr, max_r);
-        float r_bl = min(u_r_bl, max_r);
-        float r_br = min(u_r_br, max_r);
+    float roundedCoverage(vec2 local, vec2 size, float inset) {
+        float w = size.x;
+        float h = size.y;
+        if (w <= 0.0 || h <= 0.0 || local.x < 0.0 || local.y < 0.0 || local.x >= w || local.y >= h)
+            return 0.0;
+        float max_r = min(u_rect_size.z, u_rect_size.w) * 0.5;
+        float r_tl = max(0.0, min(u_r_tl, max_r) - inset);
+        float r_tr = max(0.0, min(u_r_tr, max_r) - inset);
+        float r_bl = max(0.0, min(u_r_bl, max_r) - inset);
+        float r_br = max(0.0, min(u_r_br, max_r) - inset);
         float c = 1.0;
         if (local.x < r_tl && local.y < r_tl)
             c = cornerCoverage(r_tl, vec2(r_tl - local.x, r_tl - local.y));
@@ -265,7 +283,7 @@ static const char* fragment_shader_es2 = R"(#version 100
     void main() {
         float coverage = 1.0;
         if (u_radius > 0.0) {
-            coverage = roundedCoverage(v_pos - u_rect_size.xy);
+            coverage = roundedCoverage(v_pos - u_rect_size.xy, u_rect_size.zw, 0.0);
             if (coverage <= 0.0)
                 discard;
         }
@@ -285,7 +303,17 @@ static const char* fragment_shader_es2 = R"(#version 100
             final_color = gradientColor(t);
         }
         
-        gl_FragColor = vec4(final_color.rgb, final_color.a * coverage);
+        if (u_border_width > 0.0) {
+            float inner = min(coverage, roundedCoverage(v_pos - u_rect_size.xy - vec2(u_border_width),
+                u_rect_size.zw - vec2(2.0 * u_border_width), u_border_width));
+            float fill_alpha = final_color.a * inner;
+            float border_alpha = u_border_color.a * (coverage - inner);
+            float alpha = fill_alpha + border_alpha;
+            vec3 rgb = alpha > 0.0 ? (final_color.rgb * fill_alpha + u_border_color.rgb * border_alpha) / alpha : vec3(0.0);
+            gl_FragColor = vec4(rgb, alpha);
+        } else {
+            gl_FragColor = vec4(final_color.rgb, final_color.a * coverage);
+        }
     }
 )";
 
@@ -338,6 +366,9 @@ GLuint gAdvancedShader::compileShader(GLenum type, const char* source) {
 }
 
 bool gAdvancedShader::init() {
+	gles::ShaderLocale shaderLocale;
+	if (!shaderLocale.valid())
+		return false;
 #if defined(HAVE_GLES3)
 	const char* vs_src = gles::isGLES3() ? vertex_shader_es3 : vertex_shader_es2;
 	const char* fs_src = gles::isGLES3() ? fragment_shader_es3 : fragment_shader_es2;
@@ -371,6 +402,8 @@ bool gAdvancedShader::init() {
 	m_edges_location = glGetUniformLocation(m_program_id, "u_edges");
 	m_solid_color_location = glGetUniformLocation(m_program_id, "u_solid_color");
 	m_alphablend_location = glGetUniformLocation(m_program_id, "u_alphablend");
+	m_border_width_location = glGetUniformLocation(m_program_id, "u_border_width");
+	m_border_color_location = glGetUniformLocation(m_program_id, "u_border_color");
 	m_gradient_colors_location = glGetUniformLocation(m_program_id, "u_gradient_colors");
 	m_gradient_stops_location = glGetUniformLocation(m_program_id, "u_gradient_stops");
 	m_num_stops_location = glGetUniformLocation(m_program_id, "u_num_stops");
@@ -423,13 +456,15 @@ void gAdvancedShader::setFramebufferResolution(float width, float height) {
 }
 
 void gAdvancedShader::drawAdvancedRect(float x, float y, float width, float height, int radius, uint8_t edges, const std::vector<gRGB>& gradient_colors, uint8_t orientation, bool alphablend,
-									   int gradient_full_size, float alpha, const gRGB& solid_color) {
+									   int gradient_full_size, float alpha, const gRGB& solid_color, int border_width, const gRGB& border_color) {
 	bind();
 	(void)alpha;
 
 	glUniform4f(m_rect_size_location, x, y, width, height);
 	glUniform1f(m_radius_location, (float)radius);
 	glUniform4f(m_solid_color_location, solid_color.r / 255.0f, solid_color.g / 255.0f, solid_color.b / 255.0f, 1.0f - (solid_color.a / 255.0f));
+	glUniform1f(m_border_width_location, std::max(0.0f, std::min((float)border_width, std::min(width, height) * 0.5f)));
+	glUniform4f(m_border_color_location, border_color.r / 255.0f, border_color.g / 255.0f, border_color.b / 255.0f, 1.0f - (border_color.a / 255.0f));
 
 	if (gles::isGLES3()) {
 		// ES3: pass as integer bitmask

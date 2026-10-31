@@ -21,9 +21,14 @@ class gRegion;
 
 struct gTextureUploadStats {
 	unsigned int textures = 0;
+#ifdef ENABLE_GLES_TESTLAB
+	unsigned int ionUploads = 0;
+	unsigned long long ionAvoidedBytes = 0;
+#endif
 	unsigned int dmabuf = 0;
 	unsigned int upload32_direct = 0;
 	unsigned int upload32_converted = 0;
+	unsigned int upload16 = 0;
 	unsigned int upload8_clut = 0;
 	unsigned int upload8_luma = 0;
 	unsigned int content_cache_hits = 0;
@@ -40,7 +45,18 @@ private:
 	std::mutex m_deletion_mutex;
 	EGLDisplay m_egl_display;
 	std::unordered_map<GLuint, EGLImageKHR> m_texture_to_image_map;
+	struct NativeTarget {
+		int fd = -1;
+		void* mapping = nullptr;
+		size_t length = 0;
+	};
+	std::unordered_map<GLuint, NativeTarget> m_nativeTargets;
+	unsigned int m_nativeTargetCreates = 0;
+	unsigned int m_nativeTargetWrites = 0;
 	gTextureUploadStats m_upload_stats;
+	unsigned int m_dreamBcmIonUploads = 0;
+	unsigned int m_dreamBcmIonFailures = 0;
+	unsigned long long m_dreamBcmIonBytes = 0;
 	struct ContentTextureEntry {
 		GLuint texture_id = 0;
 		unsigned long long bytes = 0;
@@ -59,6 +75,9 @@ private:
 	GLuint createTextureFromSurface(gUnmanagedSurface* surface);
 	GLuint getSurfaceTexture(gUnmanagedSurface* surface);
 	GLuint createTextureFromDmabuf(gUnmanagedSurface* surface);
+	GLuint createTextureFromDreamBcmIon(gUnmanagedSurface* surface);
+	GLuint createSharedNativeTarget(gUnmanagedSurface* surface);
+	bool finishSurfaceWrite(gUnmanagedSurface* surface);
 	void recordUpload(int width, int height, int bytes, bool dmabuf, bool upload32_direct, bool upload32_converted, bool upload8_clut, bool upload8_luma);
 	bool ensureFramebuffer(gUnmanagedSurface* surface, bool preserve_cpu_content);
 	bool canContentCacheSurface(const gUnmanagedSurface* surface) const;
@@ -87,6 +106,7 @@ public:
 	void processDeletions();
 	void clearContentTextureCache();
 	void releaseGLResources();
+	void releaseNativeTargets();
 	void resetContextGeneration();
 	void prepareSurface(gUnmanagedSurface* surface);
 

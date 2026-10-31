@@ -75,8 +75,8 @@ public:
 	void resize(eSize size);
 	eSize size() const { return m_screen.m_screen_size; }
 	bool supportsShowHideAnimations() const;
-	void sendShow(ePoint point, eSize size);
-	void sendHide(ePoint point, eSize size);
+	void sendShow(ePoint point, eSize size, int animation = -1, int durationMs = 0);
+	void sendHide(ePoint point, eSize size, int animation = -1, int durationMs = 0);
 	eRect bounds() const; // returns area inside margins
 	eRect margins() const { return m_margins; }
 	void setMargins(const eRect& value) { m_margins = value; }

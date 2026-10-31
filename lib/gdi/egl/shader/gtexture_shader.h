@@ -17,6 +17,7 @@ private:
 	GLint m_alpha_location;
 	GLint m_alpha_test_location;
 	GLint m_luma_texture_location;
+	GLint m_output_bgra_location;
 
 	GLint m_rect_size_location;
 	GLint m_radius_location;
@@ -45,5 +46,5 @@ public:
 	void setFramebufferResolution(float width, float height);
 	void drawTexture(float x, float y, float width, float height, GLuint texture_id, float global_alpha = 1.0f, float radius = 0.0f, uint8_t edges = 0, float u0 = 0.0f, float v0 = 0.0f,
 					 float u1 = 1.0f, float v1 = 1.0f, bool alpha_test = false, bool luma_texture = false, float mask_x = 0.0f, float mask_y = 0.0f, float mask_width = -1.0f,
-					 float mask_height = -1.0f);
+					 float mask_height = -1.0f, bool output_bgra = false);
 };

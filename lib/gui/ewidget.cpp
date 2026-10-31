@@ -414,8 +414,10 @@ int eWidget::event(int event, void *data, void *data2)
 				if (r && drawborder)
 				{
 
-					if(!m_gradient_set && m_alphaBlend) // use new drawRectangle only if no gradient and alphaBlend because otherwise we have a problem with eVideoWidget
+					if (painter.getDC()->isHardwareAccelerated() || (!m_gradient_set && m_alphaBlend))
 					{
+						// GLES composes the border and the translucent/gradient interior
+						// in one draw. Keep the existing software path for video widgets.
 						painter.setBackgroundColor(m_have_background_color ? m_background_color : gRGB(0, 0, 0));
 						painter.setBorder(m_border_color, m_border_width);
 						painter.drawRectangle(eRect(ePoint(0, 0), size()), m_alphaBlend);

@@ -126,6 +126,9 @@ GLuint gShader::compileShader(GLenum type, const char* source) {
 }
 
 GLuint gShader::linkProgram(const char* vertex_source, const char* fragment_source, bool colored) {
+	gles::ShaderLocale shaderLocale;
+	if (!shaderLocale.valid())
+		return 0;
 	GLuint vertex_shader = compileShader(GL_VERTEX_SHADER, vertex_source);
 	GLuint fragment_shader = compileShader(GL_FRAGMENT_SHADER, fragment_source);
 

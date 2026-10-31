@@ -30,6 +30,7 @@ static const char *fragment_shader_es3 = R"(#version 300 es
     uniform float u_global_alpha;
     uniform int u_alpha_test;
     uniform int u_luma_texture;
+    uniform int u_output_bgra;
     
     uniform vec4 u_rect_size;
     uniform float u_radius;
@@ -70,7 +71,7 @@ static const char *fragment_shader_es3 = R"(#version 300 es
         if (u_luma_texture == 1)
             tex_color = vec4(tex_color.r, tex_color.r, tex_color.r, tex_color.a);
         if (u_alpha_test == 1 && tex_color.a < 0.5) discard;
-        frag_color = vec4(tex_color.rgb, tex_color.a * u_global_alpha * coverage);
+        frag_color = vec4(u_output_bgra == 1 ? tex_color.bgr : tex_color.rgb, tex_color.a * u_global_alpha * coverage);
     }
 )";
 #endif
@@ -100,6 +101,7 @@ static const char *fragment_shader_es2 = R"(#version 100
     uniform float u_global_alpha;
     uniform int u_alpha_test;
     uniform int u_luma_texture;
+    uniform int u_output_bgra;
     
     uniform vec4 u_rect_size;
     uniform float u_radius;
@@ -148,7 +150,7 @@ static const char *fragment_shader_es2 = R"(#version 100
         if (u_luma_texture == 1)
             tex_color = vec4(tex_color.r, tex_color.r, tex_color.r, tex_color.a);
         if (u_alpha_test == 1 && tex_color.a < 0.5) discard;
-        gl_FragColor = vec4(tex_color.rgb, tex_color.a * u_global_alpha * coverage);
+        gl_FragColor = vec4(u_output_bgra == 1 ? tex_color.bgr : tex_color.rgb, tex_color.a * u_global_alpha * coverage);
     }
 )";
 
@@ -199,6 +201,9 @@ GLuint gTextureShader::compileShader(GLenum type, const char *source)
 
 bool gTextureShader::init()
 {
+    gles::ShaderLocale shaderLocale;
+    if (!shaderLocale.valid())
+        return false;
 #if defined(HAVE_GLES3)
     const char *vs_src = gles::isGLES3() ? vertex_shader_es3   : vertex_shader_es2;
     const char *fs_src = gles::isGLES3() ? fragment_shader_es3 : fragment_shader_es2;
@@ -230,6 +235,7 @@ bool gTextureShader::init()
     m_alpha_location       = glGetUniformLocation(m_program_id, "u_global_alpha");
     m_alpha_test_location  = glGetUniformLocation(m_program_id, "u_alpha_test");
     m_luma_texture_location = glGetUniformLocation(m_program_id, "u_luma_texture");
+    m_output_bgra_location = glGetUniformLocation(m_program_id, "u_output_bgra");
     m_rect_size_location   = glGetUniformLocation(m_program_id, "u_rect_size");
     m_radius_location      = glGetUniformLocation(m_program_id, "u_radius");
     m_edges_location       = glGetUniformLocation(m_program_id, "u_edges");
@@ -296,7 +302,7 @@ void gTextureShader::setFramebufferResolution(float width, float height)
 }
 
 void gTextureShader::drawTexture(float x, float y, float width, float height, GLuint texture_id, float global_alpha, float radius, uint8_t edges, float u0, float v0, float u1, float v1, bool alpha_test,
-								 bool luma_texture, float mask_x, float mask_y, float mask_width, float mask_height)
+								 bool luma_texture, float mask_x, float mask_y, float mask_width, float mask_height, bool output_bgra)
 {
     bind();
     
@@ -306,6 +312,7 @@ void gTextureShader::drawTexture(float x, float y, float width, float height, GL
     glUniform1f(m_alpha_location, global_alpha);
     glUniform1i(m_alpha_test_location, alpha_test ? 1 : 0);
     glUniform1i(m_luma_texture_location, luma_texture ? 1 : 0);
+    glUniform1i(m_output_bgra_location, output_bgra ? 1 : 0);
     
 	if (mask_width <= 0.0f || mask_height <= 0.0f) {
 		mask_x = x;

@@ -1,9 +1,10 @@
-from enigma import getGraphicsInfo, setAnimation_current, setAnimation_current_listbox, setAnimation_profiles, setAnimation_speed, setAnimation_toast_speed, supportsEGLAnimations
+from enigma import eTimer, getDesktop, getGraphicsInfo, setAnimation_current, setAnimation_current_listbox, setAnimation_profiles, setAnimation_speed, setAnimation_toast_speed, supportsEGLAnimations
 
 from Components.ActionMap import ActionMap
-from Components.Sources.StaticText import StaticText
+from Components.config import ConfigSelection, ConfigSelectionNumber, ConfigSubsection, ConfigYesNo, config
+from Components.Label import Label
 from Components.SystemInfo import BoxInfo
-from Components.config import config, ConfigSelection, ConfigSelectionNumber, ConfigSubsection, ConfigYesNo
+from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup
@@ -55,6 +56,21 @@ CLASSIC_ANIMATION_CHOICES = [
 	(14, _("Stripes")),
 ]
 
+
+class InfoBarAnimations:
+	CHOICES = [(0, _("Disabled")), (17, _("Fade in / fade out")), (22, _("Slide in from bottom / out to bottom")), (23, _("Slide from bottom with fade"))]
+
+	def applyScreen(self, screen):
+		profile = getattr(screen, "animationProfile", None)
+		if E2EGL_ANIMATIONS and profile in ("infobar", "mediaInfobar") and screen.instance:
+			style = int(getattr(config.misc.animation, profile).value)
+			screen.instance.setAnimationStyle(style, int(config.misc.animation.infobarDuration.value))
+			screen.infoBarGlesAnimation = style > 0
+
+
+infoBarAnimations = InfoBarAnimations()
+
+
 if not hasattr(config.misc, "animation"):
 	config.misc.animation = ConfigSubsection()
 config.misc.animation.default = ConfigSelection(choices=ANIMATION_CHOICES, default=ANIMATION_DEFAULT)
@@ -66,6 +82,9 @@ config.misc.animation.profiles = ConfigYesNo(default=True)
 config.misc.animation.dialog = ConfigSelection(choices=ANIMATION_CHOICES, default=18)
 config.misc.animation.popup = ConfigSelection(choices=ANIMATION_CHOICES, default=16)
 config.misc.animation.toast = ConfigSelection(choices=ANIMATION_CHOICES, default=17 if E2EGL_ANIMATIONS else 0)
+config.misc.animation.infobar = ConfigSelection(choices=InfoBarAnimations.CHOICES, default=0)
+config.misc.animation.mediaInfobar = ConfigSelection(choices=InfoBarAnimations.CHOICES, default=0)
+config.misc.animation.infobarDuration = ConfigSelectionNumber(100, 1000, 50, default=250)
 
 ANIMATION_CONFIGS = (
 	config.misc.animation.default,
@@ -77,6 +96,9 @@ ANIMATION_CONFIGS = (
 	config.misc.animation.dialog,
 	config.misc.animation.popup,
 	config.misc.animation.toast,
+	config.misc.animation.infobar,
+	config.misc.animation.mediaInfobar,
+	config.misc.animation.infobarDuration,
 )
 
 animationPaused = False
@@ -156,6 +178,10 @@ class AnimationSetup(Setup):
 
 	def keyPreview(self):
 		current = self.getCurrentItem()
+		if current in (config.misc.animation.infobar, config.misc.animation.mediaInfobar, config.misc.animation.infobarDuration):
+			profile = "mediaInfobar" if current is config.misc.animation.mediaInfobar else "infobar"
+			self.session.open(InfoBarAnimationPreview, profile)
+			return
 		if current in ANIMATION_CONFIGS and current is not config.misc.animation.speed and current is not config.misc.animation.profiles and current is not config.misc.animation.listbox:
 			previewAnimation = _animationSelectionValue(current)
 		else:
@@ -165,6 +191,30 @@ class AnimationSetup(Setup):
 
 	def previewClosed(self, *result):
 		applyAnimationSettings()
+
+
+class InfoBarAnimationPreview(Screen):
+	def __init__(self, session, profile):
+		Screen.__init__(self, session)
+		self.animationProfile = profile
+		desktopSize = getDesktop(0).size()
+		width, height = desktopSize.width(), desktopSize.height()
+		margin, panelHeight = width // 30, height // 5
+		# Dedicated bottom panel: the normal message-box preview has the wrong geometry.
+		self.skin = f'<screen name="InfoBarAnimationPreview" position="{margin},{height - panelHeight - margin}" size="{width - 2 * margin},{panelHeight}" flags="wfNoBorder" backgroundColor="#30102030"><widget name="text" position="{margin},{margin}" size="{width - 4 * margin},{panelHeight - 2 * margin}" font="Regular;{max(20, height // 35)}" foregroundColor="#00ffffff" transparent="1" /></screen>'
+		self["text"] = Label(_("InfoBar animation preview\nThe panel hides automatically after three seconds. Press OK or EXIT to close."))
+		self["actions"] = ActionMap(["OkCancelActions"], {"ok": self.close, "cancel": self.close}, -1)
+		self.previewTimer = eTimer()
+		self.previewTimer.callback.append(self.close)
+		self.onExecBegin.append(self.startPreview)
+		self.onClose.append(self.stopPreview)
+
+	def startPreview(self):
+		self.previewTimer.start(3000, True)
+
+	def stopPreview(self):
+		self.previewTimer.stop()
+		self.previewTimer.callback.remove(self.close)
 
 
 def checkAttrib(screen, paused):
@@ -181,6 +231,7 @@ def screenShow(screen):
 	if animationPaused:
 		setAnimation_current(0)
 
+	infoBarAnimations.applyScreen(screen)
 	origShow(screen)
 
 	if checkAttrib(screen, False):

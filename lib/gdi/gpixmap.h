@@ -142,6 +142,10 @@ struct gUnmanagedSurface {
 	bool gl_content_valid;
 	bool cpu_content_valid;
 	bool transparent = true;
+	// Mutable atlases must retain their own texture rather than enter the content cache.
+	bool gl_content_cacheable = true;
+	// Shared native storage needs a GPU completion barrier before CPU access.
+	bool gl_native_shared = false;
 
 	gUnmanagedSurface();
 	gUnmanagedSurface(int width, int height, int bpp);
@@ -207,6 +211,9 @@ public:
 	void ensureCPUContent();
 
 private:
+#ifdef ENABLE_GLES_TESTLAB
+	friend class gRenderTest;
+#endif
 	gPixmapDisposeCallback on_dispose;
 
 	friend class gDC;

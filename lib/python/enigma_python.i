@@ -65,6 +65,9 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gdi/fb.h>
 #include <lib/gdi/font.h>
 #include <lib/gdi/gpixmap.h>
+#ifdef ENABLE_GLES_TESTLAB
+#include <lib/gdi/grendertest.h>
+#endif
 #include <lib/gdi/gfbdc.h>
 #include <lib/gdi/grc.h>
 #include <lib/gdi/gmaindc.h>
@@ -263,6 +266,9 @@ class iDVBChannelList   { protected: iDVBChannelList() {}   virtual ~iDVBChannel
 %include <lib/gdi/fb.h>
 %include <lib/gdi/font.h>
 %include <lib/gdi/gpixmap.h>
+#ifdef ENABLE_GLES_TESTLAB
+%include <lib/gdi/grendertest.h>
+#endif
 %include <lib/gdi/gfbdc.h>
 %include <lib/gdi/gmaindc.h>
 %include <lib/gdi/epoint.h>
