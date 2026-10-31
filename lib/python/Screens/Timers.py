@@ -1025,7 +1025,9 @@ class RecordTimerOverview(TimerOverviewBase):
 			return
 		if result[0]:
 			entry = result[1]
-			if entry.external:
+			if entry.external_prev != entry.external:  # Timer moved between local and fallback tuner.
+				self.fallbackTimer.moveTimer(entry, lambda newEntry: self.addTimerCallback((True, newEntry)), self.reloadTimerList)
+			elif entry.external:
 				self.fallbackTimer.editTimer(entry, self.reloadTimerList)
 			else:
 				timerSanityCheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, entry)
@@ -1472,6 +1474,7 @@ class RecordTimerEdit(Setup):
 		self.session = session  # We need session before createConfig.
 		if not self.timer.external_prev and config.usage.remote_fallback_external_timer.value and config.usage.remote_fallback.value and config.usage.remote_fallback_external_timer_default.value:
 			self.timer.external_prev = self.timer not in session.nav.RecordTimer.timer_list and self.timer not in session.nav.RecordTimer.processed_timers
+			self.timer.external = self.timer.external_prev
 		self.createConfig()
 		if self.timer.external:
 			FallbackTimerDirs(self, self.fallbackResult)
