@@ -1,8 +1,8 @@
 from time import localtime, strftime
 
+from Components.DateTimes import dateTimes
 from Components.Element import cached
 from Components.Converter.Converter import Converter
-from Components.DateTimes import dateTimes
 
 
 class ClockToText(Converter):
@@ -27,7 +27,7 @@ class ClockToText(Converter):
 		"DisplayDate": lambda t: dateTimes.getDateNoDayShortMonthNoYear(localtime(t)),  #  Date Mon; No day, month name in short word and no year.
 		"DisplayDayDate": lambda t: dateTimes.getDateShortDayShortMonthNoYear(localtime(t)),  #  Day Date Mon; Day and month names in short words and no year.
 		"DisplayTime": lambda t: dateTimes.getTimeShort(localtime(t)),  # Hours Minutes Meridiem; Time in hours, minutes and meridiem (AM/PM).
-		"Full": lambda t: dateTimes.getDateShortDayShortMonth(localtime(t)),  # Day Date Mon Year; Day and month names in short words.
+		"Full": lambda t: dateTimes.getDateTimeShortDayShortMonthNoYearNoSeconds(localtime(t)),  # Day Date Mon Hours Minutes Meridiem; Day and month names in short words and time in hours, minutes and meridiem (AM/PM) for a 12 hour clock.
 		"FullDate": lambda t: dateTimes.getDateShortDay(localtime(t)),  # Day Date Month Year; Day name in short word and month name full word.
 		"InMinutes": lambda t: ngettext("%d Min", "%d Mins", (t // 60)) % (t // 60),
 		"LongDate": lambda t: dateTimes.getDateNoYear(localtime(t)),  # Day Date Month; Day and month names in full words.
@@ -44,9 +44,9 @@ class ClockToText(Converter):
 		"Timestamp": lambda t: str(t),
 		"VFD": lambda t: dateTimes.getVfdDisplay12(localtime(t)),  # Same as "VFD12".
 		"VFD08": lambda t: dateTimes.getVfdDisplay08(localtime(t)),  # Hours Minutes Seconds Meridiem; Time in hours, minutes and meridiem (AM/PM) for a 12 hour clock.
-		"VFD12": lambda t: dateTimes.getVfdDisplay12(localtime(t)),  # Date Month Hours Minutes Meridiem; Date, month in digits with time in hours, minutes and meridiem (AM/PM) for a 12 hour clock trimmed to 12 characters (meridiem is dropped if it does not fit).
+		"VFD12": lambda t: dateTimes.getVfdDisplay12(localtime(t)),  # Date Month Hours Minutes Meridiem; Date, month in digits with time in hours, minutes and meridiem (AM/PM) for a 12 hour clock trimmed to 12 characters (meridiem may be lost).
 		"VFD14": lambda t: dateTimes.getVfdDisplay14(localtime(t)),  # Date Month Hours Minutes Meridiem; Date, month in digits with time in hours, minutes and meridiem (AM/PM) for a 12 hour clock trimmed to 14 characters (meridiem may be lost).
-		"VFD18": lambda t: dateTimes.getVfdDisplay18(localtime(t)),  # Day Date Month Hours Minutes Meridiem; Day, Month in digits with time in hours, minutes and meridiem (AM/PM) for a 12 hour clock trimmed to 18 characters (meridiem may be lost).
+		"VFD18": lambda t: dateTimes.getVfdDisplay18(localtime(t)),  # Day Date Mon Hours Minutes Meridiem; Day in short word, month in digits with time in hours, minutes and meridiem (AM/PM) for a 12 hour clock trimmed to 18 characters (meridiem may be lost).
 		"WithSeconds": lambda t: dateTimes.getTime(localtime(t))  # Hours Minutes Seconds Meridiem; Time in hours, minutes, seconds and meridiem (AM/PM).
 	}
 
@@ -66,7 +66,7 @@ class ClockToText(Converter):
 				tokens = tokens.replace(",", ";")
 		for arg in [x.lstrip() for x in tokens.split(parse)]:
 			if arg.startswith("Format"):
-				self.formats.append(eval(f"lambda t: strftime(\"{arg[7:]}\", localtime(t))"))
+				self.formats.append(lambda t, dateFormat=arg[7:]: strftime(dateFormat, localtime(t)))
 			elif arg.startswith("Separator"):
 				self.separator = arg[10:]
 			elif not arg.startswith(("NoSpace", "Parse", "Proportional")):  # Ignore old OpenViX options and the already processed "Parse".

@@ -8,7 +8,7 @@ from re import compile
 from stat import S_IFBLK, S_IFCHR, S_IFDIR, S_IFIFO, S_IFLNK, S_IFMT, S_IFREG, S_IFSOCK, S_IMODE, S_ISBLK, S_ISCHR, S_ISLNK, filemode
 from string import digits
 from tempfile import gettempdir, mkdtemp
-from time import localtime, strftime
+from time import localtime
 from puremagic import PureError, from_file as fromfile
 from twisted.internet.threads import deferToThread
 
@@ -18,6 +18,7 @@ from Components.ActionMap import ActionMap, HelpableActionMap, HelpableNumberAct
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.config import config
 from Components.Console import Console as console
+from Components.DateTimes import dateTimes
 from Components.FileList import AUDIO_EXTENSIONS, DVD_EXTENSIONS, EXTENSIONS, FILE_IS_DIR, FILE_PATH, FileList, IMAGE_EXTENSIONS, MOVIE_EXTENSIONS, RECORDING_EXTENSIONS
 from Components.Harddisk import harddiskmanager
 from Components.Label import Label
@@ -84,7 +85,8 @@ class StatInfo:
 
 	@staticmethod
 	def formatTime(time):
-		return strftime(f"{config.usage.date.daylong.value} {config.usage.time.long.value}", localtime(time))
+		timestamp = localtime(time)
+		return f"{dateTimes.getDateShortDayShortMonth(timestamp)} {dateTimes.getTime(timestamp)}"
 
 	@staticmethod
 	def isPackageInstalled(prog):

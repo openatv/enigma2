@@ -11,6 +11,7 @@ from skin import parseBoolean, parseFont, parseInteger
 from timer import TimerEntry
 from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigClock, ConfigDateTime, ConfigIP, ConfigSelection, ConfigSubDict, ConfigText, ConfigYesNo, config, configfile
+from Components.DateTimes import dateTimes
 from Components.GUIComponent import GUIComponent
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
@@ -1318,7 +1319,7 @@ class SchedulerEdit(Setup):
 			ipAddress = timerIPAddress[i] if (len(timerIPAddress) > i and len(timerIPAddress[i].split(".")) == 4) else "0.0.0.0"
 			self.timerIPAddress.append(ConfigIP(default=[int(x) for x in ipAddress.split(".")]))
 		self.timerRepeatPeriod = ConfigSelection(default=repeated, choices=REPEAT_OPTIONS)
-		self.timerRepeatStartDate = ConfigDateTime(default=self.timer.repeatedbegindate, formatstring=config.usage.date.daylong.value, increment=86400)
+		self.timerRepeatStartDate = ConfigDateTime(default=self.timer.repeatedbegindate, formatstring=dateTimes.dateShortDayShortMonth, increment=86400)
 		self.timerWeekday = ConfigSelection(default=weekday, choices=DAY_NAMES)
 		self.timerDay = {}
 		for day in DAY_LIST:
@@ -1523,14 +1524,13 @@ class RecordTimerEdit(Setup):
 		])
 		self.timerRepeat = ConfigSelection(default=type, choices=REPEAT_CHOICES)
 		self.timerRepeatPeriod = ConfigSelection(default=repeated, choices=REPEAT_OPTIONS)
-		self.timerRepeatStartDate = ConfigDateTime(default=self.timer.repeatedbegindate, formatstring=config.usage.date.daylong.value, increment=86400)
+		self.timerRepeatStartDate = ConfigDateTime(default=self.timer.repeatedbegindate, formatstring=dateTimes.dateShortDayShortMonth, increment=86400)
 		self.timerWeekday = ConfigSelection(default=weekday, choices=DAY_NAMES)
 		self.timerDay = ConfigSubDict()
 		for day in DAY_LIST:
 			self.timerDay[day] = ConfigYesNo(default=days[day])
 		self.timerRename = ConfigYesNo(default=self.timer.rename_repeat != 0)
-		# self.timerStartDate = ConfigDateTime(default=self.timer.begin, formatstring=config.usage.date.daylong.value, increment=86400)
-		self.timerStartDate = ConfigDateTime(default=self.timer.eventBegin, formatstring=config.usage.date.daylong.value, increment=86400)
+		self.timerStartDate = ConfigDateTime(default=self.timer.eventBegin, formatstring=dateTimes.dateShortDayShortMonth, increment=86400)
 		# self.timerStartTime = ConfigClock(default=self.timer.begin)
 		self.timerStartTime = ConfigClock(default=self.timer.eventBegin)
 		marginChoices = [(x, ngettext("%d Minute", "%d Minutes", x) % x) for x in range(121)]
@@ -1995,7 +1995,8 @@ class TimerLog(Screen):
 
 	def refreshLog(self):
 		self.timerLog = self.timer.log_entries[:]
-		self["log"].setText("\n".join(["%s: %s" % (strftime("%s %s" % (config.usage.date.long.value, config.usage.time.short.value), localtime(x[0])), x[2]) for x in self.timerLog]))
+		dateFormat = f"{dateTimes.dateNoDayShortMonth} {dateTimes.timeShort}"
+		self["log"].setText("\n".join(f"{dateTimes.getDate(localtime(x[0]), dataFormat=dateFormat)}: {x[2]}" for x in self.timerLog))
 		self.refreshButtons()
 
 	def refreshButtons(self):

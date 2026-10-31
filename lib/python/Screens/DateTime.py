@@ -16,23 +16,10 @@ class DateTime(Setup):
 		def updateNetworkTime():
 			if config.misc.SyncTimeUsing.isChanged() or config.misc.NTPserver.isChanged() or config.misc.useNTPminutes.isChanged():
 				ntpSyncPoller.timeCheck()
-			dateTimes.updateDatesAndTimes()
 
 		def removeNotifiers():
-			date.layout.removeNotifier(updatePreviews)
-			date.dayFormat.removeNotifier(updatePreviews)
-			date.dateFormat.removeNotifier(updatePreviews)
-			date.monthFormat.removeNotifier(updatePreviews)
-			date.daySeparator.removeNotifier(updatePreviews)
-			date.firstSeparator.removeNotifier(updatePreviews)
-			date.secondSeparator.removeNotifier(updatePreviews)
-			date.suffix.removeNotifier(updatePreviews)
-			date.timeSeparator.removeNotifier(updatePreviews)
-			time.layout.removeNotifier(updatePreviews)
-			time.hourFormat.removeNotifier(updatePreviews)
-			time.meridiemFormat.removeNotifier(updatePreviews)
-			time.secondsFormat.removeNotifier(updatePreviews)
-			time.separator.removeNotifier(updatePreviews)
+			for configElement in self.configElements:
+				configElement.removeNotifier(updatePreviews)
 			dateTimes.updateDatesAndTimes()
 
 		Setup.__init__(self, session=session, setup="DateTime")
@@ -40,22 +27,9 @@ class DateTime(Setup):
 		self["geolocationActions"] = HelpableActionMap(self, "ColorActions", {
 			"yellow": (self.keyUseGeolocation, _("Use geolocation to set the current time zone location"))
 		}, prio=0, description=_("Date and Time Setup Actions"))
-		date = config.usage.date
-		time = config.usage.time
-		date.layout.addNotifier(updatePreviews, initial_call=False)
-		date.dayFormat.addNotifier(updatePreviews, initial_call=False)
-		date.dateFormat.addNotifier(updatePreviews, initial_call=False)
-		date.monthFormat.addNotifier(updatePreviews, initial_call=False)
-		date.daySeparator.addNotifier(updatePreviews, initial_call=False)
-		date.firstSeparator.addNotifier(updatePreviews, initial_call=False)
-		date.secondSeparator.addNotifier(updatePreviews, initial_call=False)
-		date.suffix.addNotifier(updatePreviews, initial_call=False)
-		date.timeSeparator.addNotifier(updatePreviews, initial_call=False)
-		time.layout.addNotifier(updatePreviews, initial_call=False)
-		time.hourFormat.addNotifier(updatePreviews, initial_call=False)
-		time.meridiemFormat.addNotifier(updatePreviews, initial_call=False)
-		time.secondsFormat.addNotifier(updatePreviews, initial_call=False)
-		time.separator.addNotifier(updatePreviews, initial_call=False)
+		self.configElements = dateTimes.getConfigElements()
+		for configElement in self.configElements:
+			configElement.addNotifier(updatePreviews, initial_call=False)
 		self.addSaveNotifier(updateNetworkTime)
 		updatePreviews(None)
 		self.selectionChanged()
@@ -69,11 +43,7 @@ class DateTime(Setup):
 			self["key_yellow"].setText("")
 			self["geolocationActions"].setEnabled(False)
 		Setup.selectionChanged(self)
-		date = config.usage.date
-		time = config.usage.time
-		if Setup.getCurrentItem(self) in (date.layout, date.dayFormat, date.dateFormat, date.monthFormat, date.daySeparator,
-				date.firstSeparator, date.secondSeparator, date.suffix, date.timeSeparator, time.layout,
-				time.hourFormat, time.meridiemFormat, time.secondsFormat, time.separator):
+		if Setup.getCurrentItem(self) in self.configElements:
 			self.setFootnote(f"{_("Preview")}:  {dateTimes.getDateTime()}")
 
 	def keyUseGeolocation(self):

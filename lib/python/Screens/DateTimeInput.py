@@ -1,13 +1,14 @@
 from time import time
 
 from Components.ActionMap import HelpableActionMap
-from Components.config import ConfigDateTime, config
+from Components.config import ConfigDateTime
+from Components.DateTimes import dateTimes
 from Screens.Setup import Setup
 
 
 class DateTime(Setup):
 	def __init__(self, session, setupSection, default, smallStep=60):
-		self.dateTime = ConfigDateTime(default, f"{config.usage.date.daylong.value}  {config.usage.time.short.value}", increment=smallStep)
+		self.dateTime = ConfigDateTime(default, dateTimes.dateTimeShortDayShortMonthNoSeconds, increment=smallStep)
 		Setup.__init__(self, session, setupSection)
 		self.skinName.insert(0, "SetupDateTime")
 		self["prevNextActions"] = HelpableActionMap(self, ["PreviousNextActions"], {  # This is for users who do not use PREV/NEXT as first/last.
