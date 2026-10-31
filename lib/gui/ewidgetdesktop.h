@@ -75,8 +75,12 @@ public:
 	void resize(eSize size);
 	eSize size() const { return m_screen.m_screen_size; }
 	bool supportsShowHideAnimations() const;
+	bool supportsContentAnimations() const { return m_screen.m_dc && m_screen.m_dc->supportsContentAnimations(); }
 	void sendShow(ePoint point, eSize size, int animation = -1, int durationMs = 0);
 	void sendHide(ePoint point, eSize size, int animation = -1, int durationMs = 0);
+#ifndef SWIG
+	void sendWindowAnimation(bool show, const eRect& rect, int animation, int durationMs, gAnimationToken completion);
+#endif
 	eRect bounds() const; // returns area inside margins
 	eRect margins() const { return m_margins; }
 	void setMargins(const eRect& value) { m_margins = value; }

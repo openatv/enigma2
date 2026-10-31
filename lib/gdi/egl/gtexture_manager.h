@@ -26,6 +26,14 @@ struct gTextureUploadStats {
 	unsigned long long ionAvoidedBytes = 0;
 #endif
 	unsigned int dmabuf = 0;
+	unsigned int importFailures = 0;
+	unsigned int nativeWrites = 0;
+	unsigned int nativeSyncFailures = 0;
+	unsigned long long importedBytes = 0;
+	unsigned long long cpuUploadBytes = 0;
+	unsigned long long nativeWaitUs = 0;
+	unsigned long long nativeSyncUs = 0;
+	unsigned long long nativeBytes = 0;
 	unsigned int upload32_direct = 0;
 	unsigned int upload32_converted = 0;
 	unsigned int upload16 = 0;
@@ -49,6 +57,7 @@ private:
 		int fd = -1;
 		void* mapping = nullptr;
 		size_t length = 0;
+		bool amlogic = false;
 	};
 	std::unordered_map<GLuint, NativeTarget> m_nativeTargets;
 	unsigned int m_nativeTargetCreates = 0;
@@ -78,6 +87,8 @@ private:
 	GLuint createTextureFromDreamBcmIon(gUnmanagedSurface* surface);
 	GLuint createSharedNativeTarget(gUnmanagedSurface* surface);
 	bool finishSurfaceWrite(gUnmanagedSurface* surface);
+	bool prepareNativeDevice(gUnmanagedSurface* surface);
+	bool waitNativeGPU();
 	void recordUpload(int width, int height, int bytes, bool dmabuf, bool upload32_direct, bool upload32_converted, bool upload8_clut, bool upload8_luma);
 	bool ensureFramebuffer(gUnmanagedSurface* surface, bool preserve_cpu_content);
 	bool canContentCacheSurface(const gUnmanagedSurface* surface) const;

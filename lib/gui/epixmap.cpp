@@ -60,33 +60,65 @@ void ePixmap::setPixmapScale(int flags)
 
 void ePixmap::setPixmap(gPixmap *pixmap)
 {
-    m_animTimer->stop();
+	m_animTimer->stop();
+	if (m_pixmap == pixmap) return;
+	if (!pixmap) abortContentChange();
+	const bool animate = pixmap && beginContentChange();
 	m_pixmap = pixmap;
 	event(evtChangedPixmap);
+	if (animate) endContentChange();
 }
 
 void ePixmap::setPixmap(ePtr<gPixmap> &pixmap)
 {
-    m_animTimer->stop();
-	m_pixmap = pixmap;
-	event(evtChangedPixmap);
+	setPixmap(pixmap.operator->());
+}
+
+bool ePixmap::directContentCapture()
+{
+	return m_pixmap && m_pixmap->surface && (m_pixmap->surface->bpp == 8 || m_pixmap->surface->bpp == 16 || m_pixmap->surface->bpp == 32) && !m_border_width &&
+		(m_scale == gPainter::BT_SCALE || (!m_scale && m_pixmap->size() == size()));
+}
+
+unsigned long long ePixmap::contentAnimationBytes()
+{
+	// Native pixmaps are retained and sampled directly; no widget-sized copies.
+	if (directContentCapture()) {
+		const gUnmanagedSurface* surface = m_pixmap->surface;
+		const unsigned long long backing = static_cast<unsigned long long>(surface->stride) * surface->y;
+		// Physical storage alone does not prove that this platform can import it.
+		const unsigned long long upload = surface->nativeImported ? 0 : static_cast<unsigned long long>(surface->x) * surface->y * 4;
+		return 2 * (backing + upload + static_cast<unsigned long long>(surface->clut.colors) * sizeof(gRGB));
+	}
+	return eWidget::contentAnimationBytes();
+}
+
+ePtr<gPixmap> ePixmap::captureAnimationContent()
+{
+	contentCapturedDirect = directContentCapture();
+	if (contentCapturedDirect) return m_pixmap;
+	// The software snapshot DC has no RGB565-to-RGBA blit. Non-direct
+	// layouts (for example borders) must settle normally instead of fading blank.
+	if (m_pixmap && m_pixmap->surface && m_pixmap->surface->bpp == 16) return nullptr;
+	return eWidget::captureAnimationContent();
 }
 
 void ePixmap::setPixmapFromFile(const char *filename, bool autoDetect)
 {
 	//SWIG_VOID(int) loadImage(ePtr<gPixmap> &SWIG_OUTPUT, const char *filename, int accel = 0, int width = 0, int height = 0, int cached = -1, float scale = 0, int keepAspect = 0, int align = 0, bool autoDetect = false);
 
-	loadImage(m_pixmap, filename, m_scale, m_scale ? size().width() : 0, m_scale ? size().height() : 0, -1, 0, 0, 0, autoDetect);
+	ePtr<gPixmap> image;
+	loadImage(image, filename, m_scale, m_scale ? size().width() : 0, m_scale ? size().height() : 0, -1, 0, 0, 0, autoDetect);
 
-	if (!m_pixmap)
+	if (!image)
 	{
 		eDebug("[ePixmap] setPixmapFromFile: load %s failed", filename);
 		return;
 	}
 
 	// TODO: This only works for desktop 0
-	getDesktop(0)->makeCompatiblePixmap(*m_pixmap);
-	event(evtChangedPixmap);
+	getDesktop(0)->makeCompatiblePixmap(*image);
+	setPixmap(image);
 }
 
 void ePixmap::checkSize()
@@ -123,11 +155,12 @@ int ePixmap::event(int event, void *data, void *data2)
 			int flags = 0;
 			if (m_alphatest == 1)
 				flags = gPainter::BT_ALPHATEST;
-			else if (m_alphatest == 2)
+			else if (m_alphatest == 2 || contentCapturing)
 				flags = gPainter::BT_ALPHABLEND;
 
 			flags |= m_scale;
-			painter.setRadius(cornerRadius, getCornerRadiusEdges());
+			// Apply the corner mask once, when the transition is composited.
+			painter.setRadius(contentCapturing ? 0 : cornerRadius, getCornerRadiusEdges());
 			painter.blit(m_pixmap, eRect(ePoint(0, 0), s), eRect(), flags);
 		}
 

@@ -14,6 +14,7 @@
 #include <pthread.h>
 #include <atomic>
 #include <functional>
+#include <memory>
 #include <stack>
 #include <list>
 #include <vector>
@@ -31,6 +32,40 @@
 class eTextPara;
 
 class gDC;
+
+// Render thread writes completion; a native GUI timer delivers the signal on
+// the main thread. No widget pointer is retained by a render command.
+struct gAnimationCompletion {
+	std::atomic<bool> done{false};
+};
+typedef std::shared_ptr<gAnimationCompletion> gAnimationToken;
+
+inline void completeAnimation(gAnimationToken& token) {
+	if (token) token->done = true;
+	token.reset();
+}
+
+class gAnimationCompletionGuard {
+	gAnimationToken token;
+public:
+	explicit gAnimationCompletionGuard(gAnimationToken value) : token(value) {}
+	~gAnimationCompletionGuard() { if (token) token->done = true; }
+	void transfer() { token.reset(); }
+};
+
+// Queued draws keep their images and budget reservation alive after widget close.
+struct gContentTransition {
+	ePtr<gPixmap> before, after;
+	unsigned long long bytes = 0;
+	bool beforePremultiplied = true, afterPremultiplied = true;
+	int blitFlags = gPixmap::blitAlphaBlend;
+	int radius = 0;
+	uint8_t edges = 0;
+	static std::atomic<unsigned long long> liveBytes;
+	static std::atomic<unsigned long long> limitBytes;
+	static std::shared_ptr<gContentTransition> reserve(unsigned long long bytes);
+	~gContentTransition();
+};
 struct gOpcode
 {
 	enum Opcode
@@ -84,6 +119,7 @@ struct gOpcode
 		sendHide,
 		sendListboxAnimation,
 		invoke,
+		blitTransition,
 	} opcode;
 	gDC *dc;
 	union para
@@ -200,6 +236,7 @@ struct gOpcode
 			eSize size;
 			int animation = -1;
 			int durationMs = 0;
+			gAnimationToken completion;
 		} *setShowHideInfo;
 
 		struct plistboxAnimation
@@ -216,6 +253,11 @@ struct gOpcode
 		} *listboxAnimation;
 
 		std::function<void()> *invoke;
+		struct pblitTransition {
+			std::shared_ptr<gContentTransition> content;
+			eRect position;
+			float progress;
+		} *blitTransition;
 	} parm;
 };
 
@@ -358,6 +400,7 @@ public:
 	void blitScale(gPixmap *pixmap, const eRect &pos, const eRect &clip=eRect(), int flags=0, int aflags = BT_SCALE);
 	void blit(gPixmap *pixmap, ePoint pos, const eRect &clip=eRect(), int flags=0);
 	void blit(gPixmap *pixmap, const eRect &pos, const eRect &clip=eRect(), int flags=0);
+	void blitTransition(std::shared_ptr<gContentTransition> content, const eRect& position, float progress);
 
 	void drawRectangle(const eRect &area, bool useNew=false);
 
@@ -383,6 +426,7 @@ public:
 	void flush();
 	void sendShow(ePoint point, eSize size, int animation = -1, int durationMs = 0);
 	void sendHide(ePoint point, eSize size, int animation = -1, int durationMs = 0);
+	void sendWindowAnimation(bool show, ePoint point, eSize size, int animation, int durationMs, gAnimationToken completion);
 	void sendListboxAnimation(const eRect &from, const eRect &to, const gRGB &backgroundColor,
 		const std::vector<gRGB> &gradientColors, uint8_t gradientOrientation, bool gradientAlphaBlend,
 		int radius, uint8_t radiusEdges, gPixmap *selectionPixmap);
@@ -453,6 +497,7 @@ public:
 	virtual bool isHardwareAccelerated() const { return false; }
 	virtual bool supportsShowHideAnimations() const { return false; }
 	virtual bool supportsListboxAnimations() const { return false; }
+	virtual bool supportsContentAnimations() const { return false; }
 	// Render-thread deadlines allow animation frames without blocking queued UI work.
 	virtual unsigned long long animationFrameDeadlineUs() const { return 0; }
 	virtual void renderAnimationFrame() {}

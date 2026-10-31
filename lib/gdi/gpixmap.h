@@ -146,6 +146,10 @@ struct gUnmanagedSurface {
 	bool gl_content_cacheable = true;
 	// Shared native storage needs a GPU completion barrier before CPU access.
 	bool gl_native_shared = false;
+	bool nativeSwapChannels = false;
+	bool nativeImported = false;
+	bool nativeGPUAccessPending = false;
+	bool nativeAccessFailed = false;
 
 	gUnmanagedSurface();
 	gUnmanagedSurface(int width, int height, int bpp);
@@ -209,6 +213,8 @@ public:
 	virtual ~gPixmap();
 	eSize size() const { return eSize(surface->x, surface->y); }
 	void ensureCPUContent();
+	bool checkCPUContent();
+	bool prepareCPUWrite();
 
 private:
 #ifdef ENABLE_GLES_TESTLAB

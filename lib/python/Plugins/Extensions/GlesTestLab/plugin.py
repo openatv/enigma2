@@ -24,7 +24,7 @@ except ImportError:
 
 
 class RenderMeasurements:
-	VERSION = 5
+	VERSION = 6
 
 	def __init__(self, width, height):
 		self.runs = []
@@ -33,7 +33,8 @@ class RenderMeasurements:
 		self.runId = f"{strftime('%Y%m%d-%H%M%S')}-{getpid()}"
 		self.metadata = {"schema": self.VERSION, "pid": getpid(), "desktop": [width, height], "runId": self.runId, "gpuTiming": "not measured", "scanoutTiming": "not measured", "intervalMeaning": "renderer completion intervals, including idle; not GPU duration", "cpuMeaning": "whole Enigma2 process including television and plugin", "visualVerdicts": self.verdicts}
 		self.metadata["platform"] = list(uname())
-		self.metadata["environment"] = {x: getenv(x) for x in ("E2EGL_DREAMBCM_ION_TARGET", "E2EGL_DREAMBCM_ION_UPLOAD", "E2EGL_DREAMBCM_ION_VERIFY", "E2EGL_EVENT_ANIMATION", "E2EGL_FONT_ATLAS_START")}
+		self.metadata["environment"] = {x: getenv(x) for x in ("E2EGL_AML_NATIVE_TARGET", "E2EGL_DREAMBCM_ION_TARGET", "E2EGL_DREAMBCM_ION_UPLOAD", "E2EGL_DREAMBCM_ION_VERIFY", "E2EGL_EVENT_ANIMATION", "E2EGL_FONT_ATLAS_START")}
+		self.metadata["memoryMeaning"] = "nativeBytes samples retained native backing at frame boundaries; contentBytes is a conservative reservation, not total GPU memory; peaks are maxima of these samples"
 		self.metadata["skin"] = config.skin.primary_skin.value
 		self.metadata["resultDirectory"] = self.resultDirectory
 		with open(__file__, "rb") as pluginFile:
@@ -72,14 +73,14 @@ class RenderMeasurements:
 		replace(temporaryPath, resultPath)
 		with open(join(self.resultDirectory, f"{self.runId}.csv"), "w", newline="", encoding="utf-8") as csvFile:
 			csvWriter = writer(csvFile)
-			csvWriter.writerow(("page", "status", "seconds", "cpuSeconds", "frames", "drawP95Us", "presentCallP95Us", "rssBeforeBytes", "rssAfterBytes", "fdsBefore", "fdsAfter", "ionUploads", "uploadBytes"))
+			csvWriter.writerow(("page", "status", "seconds", "cpuSeconds", "frames", "drawP95Us", "presentCallP95Us", "rssBeforeBytes", "rssAfterBytes", "fdsBefore", "fdsAfter", "ionUploads", "uploadBytes", "dmabufImports", "nativeWrites", "nativeSyncFailures", "contentBlits", "nativePeakBytes", "contentPeakBytes"))
 			for run in self.runs:
-				csvWriter.writerow((run["page"], run["status"], run["seconds"], run["cpuSeconds"], len(run["renderer"]["frames"]), run["drawUs"].get("p95"), run["swapUs"].get("p95"), run["before"].get("VmRSS"), run["after"].get("VmRSS"), run["before"].get("fds"), run["after"].get("fds"), run["totals"].get("ionUploads"), run["totals"].get("uploadBytes")))
+				csvWriter.writerow((run["page"], run["status"], run["seconds"], run["cpuSeconds"], len(run["renderer"]["frames"]), run["drawUs"].get("p95"), run["swapUs"].get("p95"), run["before"].get("VmRSS"), run["after"].get("VmRSS"), run["before"].get("fds"), run["after"].get("fds"), run["totals"].get("ionUploads"), run["totals"].get("uploadBytes"), run["totals"].get("dmabufImports"), run["totals"].get("nativeWrites"), run["totals"].get("nativeSyncFailures"), run["totals"].get("contentBlits"), run["peaks"].get("nativeBytes"), run["peaks"].get("contentBytes")))
 		return resultPath
 
 
 class GlesTestLabScreen(Screen):
-	PAGES = ("Pixelformate", "Füllflächen und Alpha", "Runde Ecken und Rahmen", "Farbverläufe", "Überlagerte Ebenen", "Text und Mischformen", "Neue Texturen / ION", "Gemeinsame Schreibflächen / CPU-Vergleich")
+	PAGES = ("Pixelformate", "Füllflächen und Alpha", "Runde Ecken und Rahmen", "Farbverläufe", "Überlagerte Ebenen", "Text und Mischformen", "Neue Texturen / ION", "Gemeinsame Schreibflächen / CPU-Vergleich", "Wiederverwendung / gepolsterte Zeilen", "Native Inhaltsanimationen")
 	SKIN_TEXT = "#00eef4ff"
 	LABEL_COUNT = 64
 	PIXMAP_COUNT = 24
@@ -193,8 +194,10 @@ class GlesTestLabScreen(Screen):
 
 	def showPage(self):
 		for index in range(self.LABEL_COUNT):
+			self[f"label{index}"].instance.setContentAnimation(0)
 			self[f"label{index}"].hide()
 		for index in range(self.PIXMAP_COUNT):
+			self[f"pixmap{index}"].instance.setContentAnimation(0)
 			self[f"pixmap{index}"].hide()
 			self[f"pixmap{index}"].instance.setPixmap(None)
 		self.labelIndex = self.pixmapIndex = 0
@@ -204,6 +207,11 @@ class GlesTestLabScreen(Screen):
 		self.caseWidgets = []
 		self.uploadWidgets = []
 		self.paintWidgets = []
+		self.reusedWidgets = []
+		self.animatedWidgets = []
+		self.lastContentChange = 0
+		self.lastFastChange = 0
+		self.contentVersion = 0
 		self["title"].setText(f"GLES TestLab  ·  {self.page + 1}/{len(self.PAGES)}  ·  {self.PAGES[self.page]}")
 		self["details"].setText(f"{self.width} × {self.height}  |  Schachbrett = Untergrund  |  E2-Farbalpha: 00 deckend, FF transparent  |  Bildurteil: {self.measurements.verdicts.get(str(self.page), 'ungeprüft')}")
 		for case in range(6):
@@ -213,14 +221,15 @@ class GlesTestLabScreen(Screen):
 		if gRenderTest is None:
 			self["status"].setText("Diagnose-API fehlt: Formen sichtbar, native Farbtiefen und Renderer-Messung nicht verfügbar.")
 
-	def paintedFixture(self, pattern, accel):
+	def paintedFixture(self, pattern, accel, width=320, height=160):
 		if gRenderTest is None or not hasattr(gRenderTest, "createPaintedPixmap"):
 			return None
-		pixmap = gRenderTest.createPaintedPixmap(pattern, accel)
+		pixmap = gRenderTest.createPaintedPixmap(pattern, accel, width, height)
 		if pixmap is not None:
 			self.nativePixmaps.append(pixmap)
 			info = loads(gRenderTest.pixmapInfo(pixmap))
 			info["pattern"] = pattern
+			info["paddingMismatches"] = gRenderTest.verifyPadding(pixmap)
 			if pattern == 0:
 				info["cpuColorBarMismatches"] = gRenderTest.verifyColorBars(pixmap)
 			self.formats.append(info)
@@ -274,6 +283,31 @@ class GlesTestLabScreen(Screen):
 				title += f" · {'geteilt' if info.get('sharedNative') else 'Fallback'}" if accel == 1 else ""
 				if pattern == 0:
 					title += f" · Fehler {info.get('cpuColorBarMismatches', '?')}"
+		elif self.page == 8:
+			pattern, accel = case % 3, -1 if case < 3 else 1
+			width = (321, 319, 513)[pattern]
+			fixture = self.paintedFixture(pattern, accel, width, 161)
+			if fixture is not None:
+				widget = self.pixmap(fixture, xPos + 20, yPos + 65, 520, 210)
+				self.reusedWidgets.append((widget, fixture, pattern))
+				info = self.formats[-1]
+				title = f"{'CPU' if accel < 0 else 'HW'} · {width} px · Pitch {info['stride']} · Randfehler {info['paddingMismatches']}"
+		elif self.page == 9:
+			if case < 3:
+				widget = self.label(xPos + 20, yPos + 65, 520, 210, "Alter Inhalt · ÄÖÜ", color=0x00172c60 if case == 0 else None, zPosition=20)
+				widget.setContentAnimation(0 if case == 2 else 400)
+				self.animatedWidgets.append((widget, "text", case))
+				title = ("Text auf Fläche · 400 ms", "Text transparent · 400 ms", "Schnelle Anzeige · ohne Fade")[case]
+			else:
+				first = self.paintedFixture(0, 1)
+				second = self.paintedFixture(1, 1)
+				if first is not None and second is not None:
+					widget = self.pixmap(first, xPos + 20, yPos + 65, 520, 210, radius=25 if case == 4 else 0)
+					widget.setContentAnimation(400)
+					self.animatedWidgets.append((widget, "pixmap", (first, second)))
+					if case == 5:
+						self.label(xPos + 110, yPos + 125, 330, 75, "Ebene bleibt darüber", color=0x00243346, zPosition=35)
+				title = ("", "", "", "Bilder · Alpha-Crossfade", "Bilder · runde Ecken", "Bilder · weitere Ebene darüber")[case]
 		else:
 			title = f"Text, Kanten und Mischung · Fall {case + 1}"
 			self.label(xPos + 20, yPos + 65, 520, 210, color=0x70172c60, alpha=True, radius=30, border=2)
@@ -331,7 +365,7 @@ class GlesTestLabScreen(Screen):
 		self.lastSample = self.phaseStart
 		self.ticks = []
 		self.memorySamples = []
-		self["status"].setText("Aufwärmen 2 s, danach 6 s Messung: vollständiges Neuzeichnen alle angeforderten 20 ms. Timer ist kein FPS-Nachweis.")
+		self["status"].setText("Aufwärmen 2 s, danach 6 s Messung: native Inhaltsanimationen, schnelle Anzeige alle 100 ms." if self.page == 9 else "Aufwärmen 2 s, danach 6 s Messung: vollständiges Neuzeichnen alle angeforderten 20 ms. Timer ist kein FPS-Nachweis.")
 		self.timer.start(20)
 
 	def tick(self):
@@ -380,7 +414,26 @@ class GlesTestLabScreen(Screen):
 				fixture = self.paintedFixture(pattern, accel)
 				if fixture is not None:
 					widget.setPixmap(fixture)
-		self.instance.invalidate()
+		for widget, fixture, pattern in self.reusedWidgets:
+			gRenderTest.paintPixmap(fixture, pattern)
+			widget.invalidate()
+		if self.animatedWidgets and now - self.lastFastChange >= .1:
+			self.lastFastChange = now
+			for widget, kind, value in self.animatedWidgets:
+				if kind == "text" and value == 2:
+					widget.setText(f"Schneller Inhalt · {int(now * 10)}")
+		if self.animatedWidgets and now - self.lastContentChange >= 1.2:
+			self.lastContentChange = now
+			self.contentVersion += 1
+			for widget, kind, value in self.animatedWidgets:
+				if kind == "text" and value == 2:
+					continue
+				if kind == "text":
+					widget.setText(f"{'Neuer' if self.contentVersion % 2 else 'Alter'} Inhalt · {self.contentVersion}")
+				else:
+					widget.setPixmap(value[self.contentVersion % 2])
+		if self.page != 9:
+			self.instance.invalidate()
 
 	def finishRun(self, status):
 		self.timer.stop()
@@ -393,13 +446,27 @@ class GlesTestLabScreen(Screen):
 			series = {}
 			for index, name in enumerate(columns):
 				series[name] = [x[index] for x in frames]
+			for widget, fixture, pattern in self.reusedWidgets:
+				info = loads(gRenderTest.pixmapInfo(fixture))
+				info["paddingMismatches"] = gRenderTest.verifyPadding(fixture)
+				if pattern == 0:
+					info["cpuColorBarMismatches"] = gRenderTest.verifyColorBars(fixture)
+				self.formats.append(info)
 			run = {"page": self.page, "name": self.PAGES[self.page], "status": status, "seconds": after["time"] - self.before["time"], "cpuSeconds": after["cpuSeconds"] - self.before["cpuSeconds"], "before": self.before, "after": after, "memorySamples": self.memorySamples, "sourceSurfaces": self.formats, "renderer": renderer, "workload": "full screen invalidate at requested 20ms; page 6 recreates native sources; page 7 recreates and paints CPU and HW-requested surfaces including CPU verification; 8bit content cache may hit", "unsupported": ["16bit pixel alpha (RGB565 has no alpha channel)", "GPU timer query", "physical GPU memory accounting"], "timerIntervalsMs": self.measurements.distribution([(self.ticks[x] - self.ticks[x - 1]) * 1000 for x in range(1, len(self.ticks))]), "totals": {x[0]: sum(x[1]) for x in series.items() if not x[0].endswith("Us")}}
-			for name in ("drawUs", "swapUs", "intervalUs"):
-				run[name] = self.measurements.distribution(series[name])
+			for name in ("nativeBytes", "contentBytes"):
+				run["totals"].pop(name, None)
+			run["peaks"] = {x: max(series.get(x, [0]) or [0]) for x in ("nativeBytes", "contentBytes")}
+			run["timingTotalsUs"] = {x: sum(series.get(x, [])) for x in ("nativeWaitUs", "nativeSyncUs")}
+			if self.page == 8:
+				run["workload"] = "reuse six persistent surfaces; repaint at requested 20ms; CPU padding/color validation after capture"
+			elif self.page == 9:
+				run["workload"] = "content changes every 1200ms; native 400ms crossfade; excluded fast label changes every 100ms; no Python animation frame loop or full-screen invalidation"
+			for name in ("drawUs", "swapUs", "intervalUs", "nativeWaitUs", "nativeSyncUs"):
+				run[name] = self.measurements.distribution(series.get(name, []))
 			self.measurements.runs.append(run)
 			self.saveResults()
 			rss = NumberScaler().scale(after.get("VmRSS", 0), style="Iec", maxNumLen=3, decimals=1)
-			self["status"].setText(f"{len(frames)} Renderer-Abschlüsse · CPU {run['cpuSeconds']:.2f} s · Draw p95 {run['drawUs'].get('p95', 0)} µs · Present-Aufruf p95 {run['swapUs'].get('p95', 0)} µs\nRSS {rss} · ION-Uploads {run['totals'].get('ionUploads', 0)} · Datei: {self.measurements.runId}")
+			self["status"].setText(f"{len(frames)} Renderer-Abschlüsse · CPU {run['cpuSeconds']:.2f} s · Draw p95 {run['drawUs'].get('p95', 0)} µs · Present-Aufruf p95 {run['swapUs'].get('p95', 0)} µs\nRSS {rss} · dma-buf {run['totals'].get('dmabufImports', 0)} · native Writes {run['totals'].get('nativeWrites', 0)} · Sync-Fehler {run['totals'].get('nativeSyncFailures', 0)}")
 		self.phase = None
 
 	def saveResults(self):

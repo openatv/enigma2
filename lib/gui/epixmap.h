@@ -33,6 +33,16 @@ protected:
 	std::string getClassName() const override { return std::string("ePixmap"); }
 
 private:
+#ifndef SWIG
+	bool directContentCapture();
+	bool contentCapturedDirect = false;
+	ePtr<gPixmap> captureAnimationContent() override;
+	unsigned long long contentAnimationBytes() override;
+	bool contentIsPremultiplied() const override { return !contentCapturedDirect && m_alphatest != 1; }
+	bool contentPaintBackground() const override { return false; }
+	int contentBlitFlags() const override { return m_alphatest == 1 ? gPixmap::blitAlphaTest : m_alphatest == 2 ? gPixmap::blitAlphaBlend : 0; }
+	int contentCornerRadius() override { return getCornerRadius(); }
+#endif
 	std::vector<ePtr<gPixmap>> m_frames;
 	std::vector<int> m_delays;
 	int m_currentFrame = 0;

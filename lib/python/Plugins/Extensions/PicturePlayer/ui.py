@@ -2,7 +2,7 @@ from os.path import isfile
 
 from enigma import ePicLoad, eSize, eTimer, gMainDC, getDesktop
 
-import skin
+from skin import parameters
 from Components.ActionMap import ActionMap
 from Components.config import ConfigInteger, ConfigSelection, ConfigSubsection, ConfigText, ConfigYesNo, config
 from Components.FileList import FileList
@@ -201,7 +201,7 @@ class Pic_Thumb(Screen):
 
 		self.textcolor = config.pic.textcolor.value
 		self.color = config.pic.bgcolor.value
-		self.spaceX, self.picX, self.spaceY, self.picY, textsize, thumtxt = skin.parameters.get("PicturePlayerThumb", (35, 190, 30, 200, 20, 14))
+		self.spaceX, self.picX, self.spaceY, self.picY, textsize, thumtxt = parameters.get("PicturePlayerThumb", (35, 190, 30, 200, 20, 14))
 
 		pic_frame = resolveFilename(SCOPE_GUISKIN, "icons/pic_frame.png")
 
@@ -458,6 +458,9 @@ class Pic_Full_View(Screen):
 			self.onLayoutFinish.append(self.setPicloadConf)
 
 	def setPicloadConf(self):
+		animation = getattr(config.misc, "animation", None)
+		if animation and self["pic"].instance.supportsContentAnimations():
+			self["pic"].instance.setContentAnimation(int(animation.pictureDuration.value) if animation.pictureFade.value else 0)
 		self.picload.setPara([self["pic"].instance.size().width(), self["pic"].instance.size().height(), 1, 1, 0, int(config.pic.resize.value), self.bgcolor])
 
 		self["play_icon"].hide()

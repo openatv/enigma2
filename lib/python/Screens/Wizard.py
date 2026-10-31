@@ -4,7 +4,7 @@ from xml.sax.handler import ContentHandler
 from enigma import ePoint, eTimer
 
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
-from Components.config import ConfigPassword, ConfigText, ActionKeys, config  # noqa F401
+from Components.config import ActionKeys, ConfigPassword, ConfigText, config  # noqa F401
 from Components.ConfigList import ConfigList
 from Components.Label import Label
 from Components.Pixmap import Pixmap
@@ -16,6 +16,71 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen, ScreenSummary
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.Directories import SCOPE_SKINS, resolveFilename
+
+
+class WizardTransitions:
+	def __init__(self, wizard):
+		self.wizard = wizard
+		self.step = None
+		self.pending = False
+		self.updating = False
+		self.callbackList = None
+		wizard.onExecEnd.append(self.cancel)
+		wizard.onClose.append(self.cleanup)
+
+	def beforeUpdate(self):
+		wizard = self.wizard
+		if self.pending:
+			return True
+		animation = getattr(config.misc, "animation", None)
+		previousStep = self.step
+		if self.updating or not animation or not animation.wizardSteps.value or wizard.disableWindowAnimation or not wizard.instance or not wizard.instance.supportsContentAnimations() or not wizard.shown or previousStep is None or previousStep == wizard.currStep or wizard.currStep not in wizard.wizard:
+			self.step = wizard.currStep
+			return False
+		hideStyle = wizard.wizard[wizard.currStep].get("hideAnimation", 9 if wizard.currStep > previousStep else 10)
+		if hideStyle == 0:
+			self.step = wizard.currStep
+			return False
+		self.pending = True
+		self.savedDisableKeys = wizard.disableKeys
+		wizard.disableKeys = True
+		wizard.timeoutTimer.stop()
+		self.forward = wizard.currStep > previousStep
+		step = wizard.wizard[wizard.currStep]
+		self.duration = max(60, min(1500, step.get("animationDuration", 300)))
+		self.showStyle = step.get("showAnimation", 10 if self.forward else 9)
+		self.callbackList = wizard.instance.hideAnimationFinished.get()
+		self.callbackList.append(self.hidden)
+		wizard.instance.setAnimationStyle(hideStyle, self.duration)
+		wizard.hide()
+		return True
+
+	def hidden(self):
+		wizard = self.wizard
+		self.cancel()
+		if not wizard.instance or not wizard.execing or wizard.session.current_dialog is not wizard:
+			return
+		self.updating = True
+		try:
+			wizard.updateValues()
+		finally:
+			self.updating = False
+		if wizard.instance and wizard.execing and wizard.session.current_dialog is wizard:
+			wizard.instance.setAnimationStyle(self.showStyle, self.duration)
+			wizard.show()
+
+	def cancel(self):
+		if self.callbackList is not None:
+			if self.hidden in self.callbackList:
+				self.callbackList.remove(self.hidden)
+			self.callbackList = None
+		if self.pending:
+			self.wizard.disableKeys = self.savedDisableKeys
+		self.pending = False
+
+	def cleanup(self):
+		self.cancel()
+		self.wizard = None
 
 
 class Wizard(Screen):
@@ -48,6 +113,7 @@ class Wizard(Screen):
 	# def __init__(self, session, xmlFile, showSteps=True, showStepSlider=True, showList=True, showConfig=True):
 	def __init__(self, session, showSteps=True, showStepSlider=True, showList=True, showConfig=True):
 		Screen.__init__(self, session, enableHelp=True)
+		self.stepTransition = WizardTransitions(self)
 		Wizard.instance = self
 		self.showSteps = showSteps
 		self.showStepSlider = showStepSlider
@@ -202,6 +268,9 @@ class Wizard(Screen):
 				}
 				if "lastStep" in attributes or "laststep" in attributes:
 					self.wizard[self.step]["lastStep"] = attributes.get("lastStep", attributes.get("laststep"))
+				for attribute in ("showAnimation", "hideAnimation", "animationDuration"):
+					if attribute in attributes:
+						self.wizard[self.step][attribute] = int(attributes[attribute])
 			elif tag == "text":
 				self.wizard[self.step]["text"] = attributes.get("value", "").replace("\\n", "\n")
 			elif tag in ("display", "displaytext"):
@@ -534,6 +603,8 @@ class Wizard(Screen):
 		self.updateText()
 
 	def updateValues(self):
+		if self.stepTransition.beforeUpdate():
+			return
 		# Calling a step which doesn't exist can only happen if the condition in the last
 		# step is not fulfilled. If a non-existing step is called, end the wizard.
 		if self.currStep > len(self.wizard):

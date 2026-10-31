@@ -7,7 +7,7 @@
 
 // Wall-clock renderer counters, not GPU timer-query measurements.
 struct gRenderTestFrame {
-	std::array<unsigned long long, 23> values;
+	std::array<unsigned long long, 34> values;
 };
 #endif
 
@@ -17,8 +17,10 @@ public:
 	static std::string stopCapture();
 	static SWIG_VOID(int) createPixmap(ePtr<gPixmap>& SWIG_OUTPUT, int width, int height, int bpp, bool alpha = true, int accel = 0);
 	static std::string pixmapInfo(ePtr<gPixmap>& pixmap);
-	static SWIG_VOID(int) createPaintedPixmap(ePtr<gPixmap>& SWIG_OUTPUT, int pattern, int accel);
+	static SWIG_VOID(int) createPaintedPixmap(ePtr<gPixmap>& SWIG_OUTPUT, int pattern, int accel, int width = 320, int height = 160);
+	static int paintPixmap(ePtr<gPixmap>& pixmap, int pattern);
 	static int verifyColorBars(ePtr<gPixmap>& pixmap);
+	static int verifyPadding(ePtr<gPixmap>& pixmap);
 #ifndef SWIG
 	static void recordFrame(const gRenderTestFrame& frame);
 #endif

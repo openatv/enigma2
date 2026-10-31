@@ -25,6 +25,7 @@ class Canvas(Renderer):
 		self.pullUpdates()
 
 	def changed(self, what):
+		self.updateAnimationPolicy()
 		self.pullUpdates()
 
 	def pullUpdates(self):
@@ -34,7 +35,11 @@ class Canvas(Renderer):
 				if items[0] != self.sequence:  # if the lists sequence count changed, re-start from begin
 					self.sequence = items[0]
 					self.drawCount = 0
-				self.draw(items[1][self.drawCount:])
+				self.instance.beginContentUpdate()
+				try:
+					self.draw(items[1][self.drawCount:])
+				finally:
+					self.instance.endContentUpdate()
 				self.drawCount = len(items[1])
 
 	def draw(self, items):

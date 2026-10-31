@@ -31,6 +31,7 @@ class Pixmap(Renderer):
 		self.changed((self.CHANGED_DEFAULT,))
 
 	def changed(self, what):
+		self.updateAnimationPolicy()
 		if what[0] != self.CHANGED_CLEAR:
 			if what[0] in (self.CHANGED_SPECIFIC, self.CHANGED_DEFAULT) and self.instance and self.source and hasattr(self.source, "text") and self.pixmaps:
 				text = self.source.text

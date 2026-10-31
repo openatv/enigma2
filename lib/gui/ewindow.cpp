@@ -23,6 +23,8 @@ eWindow::eWindow(eWidgetDesktop *desktop, int z): eWidget(0)
 	m_animation_mode = desktop_supports_animation ? 0x11 : 0;
 	
 	m_desktop = desktop;
+	completionTimer = eTimer::create(eApp);
+	CONNECT(completionTimer->timeout, eWindow::checkAnimationCompletion);
 		/* ask style manager for current style */
 	ePtr<eWindowStyleManager> mgr;
 	eWindowStyleManager::getInstance(mgr);
@@ -48,6 +50,8 @@ eWindow::eWindow(eWidgetDesktop *desktop, int z): eWidget(0)
 
 eWindow::~eWindow()
 {
+	completionTimer->stop();
+	animationCompletion.reset();
 	if (m_desktop->getStyleID() == 0 && eAVControl::getInstance())
 		eAVControl::getInstance()->setOSDWindowVisible(this, false);
 	m_desktop->removeRootWidget(this);
@@ -139,8 +143,7 @@ void eWindow::show()
 		eAVControl::getInstance()->setOSDWindowVisible(this, true);
 	if (m_animationStyle > 0 || (m_animationStyle < 0 && (m_animation_mode & 0x01)))
 	{
-		const eRect rect = animationRect();
-		m_desktop->sendShow(rect.topLeft(), rect.size(), m_animationStyle, m_animationDurationMs);
+		beginAnimation(true);
 	}
 	eWidget::show();
 }
@@ -151,10 +154,34 @@ void eWindow::hide()
 		eAVControl::getInstance()->setOSDWindowVisible(this, false);
 	if (m_animationStyle > 0 || (m_animationStyle < 0 && (m_animation_mode & 0x10)))
 	{
-		const eRect rect = animationRect();
-		m_desktop->sendHide(rect.topLeft(), rect.size(), m_animationStyle, m_animationDurationMs);
+		beginAnimation(false);
 	}
 	eWidget::hide();
+}
+
+bool eWindow::isFading() const
+{
+	return animationCompletion && !animationCompletion->done;
+}
+
+void eWindow::beginAnimation(bool show)
+{
+	animationCompletion = std::make_shared<gAnimationCompletion>();
+	completingShow = show;
+	m_desktop->sendWindowAnimation(show, animationRect(), m_animationStyle, m_animationDurationMs, animationCompletion);
+	completionTimer->start(20, false);
+}
+
+void eWindow::checkAnimationCompletion()
+{
+	if (!animationCompletion || !animationCompletion->done)
+		return;
+	completionTimer->stop();
+	animationCompletion.reset();
+	if (completingShow)
+		showAnimationFinished();
+	else
+		hideAnimationFinished();
 }
 
 void eWindow::setOSDAutoHideActive(bool active)
