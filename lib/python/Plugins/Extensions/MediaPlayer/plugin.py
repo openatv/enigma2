@@ -95,6 +95,7 @@ class MediaPixmap(Pixmap):
 
 
 class MediaPlayerInfoBar(Screen):
+	animationProfile = "mediaInfobar"
 
 	def __init__(self, session):
 		Screen.__init__(self, session)

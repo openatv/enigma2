@@ -32,6 +32,7 @@ public:
 	void setFlag(int flags);
 	void clearFlag(int flags);
 	void setAnimationMode(int mode);
+	void setAnimationStyle(int style, int durationMs = 0);
 protected:
 	enum eWindowEvents
 	{
@@ -45,6 +46,9 @@ private:
 	bool m_osdAutoHideActive = false;
 	eWidgetDesktop *m_desktop;
 	int m_animation_mode;
+	int m_animationStyle = -1;
+	int m_animationDurationMs = 0;
+	eRect animationRect() const;
 	static int m_has_animation_mode;
 };
 

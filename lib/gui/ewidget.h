@@ -14,6 +14,7 @@ class eWidgetDesktop;
 
 class eWidget {
 	friend class eWidgetDesktop;
+	friend class eWindow;
 
 public:
 	eWidget(eWidget* parent);

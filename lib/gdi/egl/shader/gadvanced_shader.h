@@ -20,6 +20,8 @@ private:
 	GLint m_edges_location;
 	GLint m_solid_color_location;
 	GLint m_alphablend_location;
+	GLint m_border_width_location;
+	GLint m_border_color_location;
 
 	// Gradient uniforms
 	GLint m_gradient_colors_location;
@@ -52,5 +54,5 @@ public:
 	void setFramebufferResolution(float width, float height);
 
 	void drawAdvancedRect(float x, float y, float width, float height, int radius, uint8_t edges, const std::vector<gRGB>& gradient_colors, uint8_t orientation, bool alphablend,
-						  int gradient_full_size, float alpha, const gRGB& solid_color);
+						  int gradient_full_size, float alpha, const gRGB& solid_color, int border_width = 0, const gRGB& border_color = gRGB());
 };

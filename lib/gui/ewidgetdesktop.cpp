@@ -671,22 +671,22 @@ bool eWidgetDesktop::supportsShowHideAnimations() const
 	return m_screen.m_dc && m_screen.m_dc->supportsShowHideAnimations();
 }
 
-void eWidgetDesktop::sendShow(ePoint point, eSize size)
+void eWidgetDesktop::sendShow(ePoint point, eSize size, int animation, int durationMs)
 {
 	if(m_style_id!=0)
 		return;
 
 	gPainter painter(m_screen.m_dc);
-	painter.sendShow(point, size);
+	painter.sendShow(point, size, animation, durationMs);
 }
 
-void eWidgetDesktop::sendHide(ePoint point, eSize size)
+void eWidgetDesktop::sendHide(ePoint point, eSize size, int animation, int durationMs)
 {
 	if(m_style_id!=0)
 		return;
 
 	gPainter painter(m_screen.m_dc);
-	painter.sendHide(point, size);
+	painter.sendHide(point, size, animation, durationMs);
 }
 
 eRect eWidgetDesktop::bounds() const

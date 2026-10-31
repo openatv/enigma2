@@ -2369,6 +2369,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	skipToggleShow = False
 
 	def __init__(self):
+		self.animationProfile = "infobar" if isStandardInfoBar(self) else "mediaInfobar"
 		self["ShowHideActions"] = HelpableActionMap(self, ["InfobarShowHideActions"],
 			{
 			"LongOKPressed": (self.toggleShowLong, _("Cycle through the InfoBars")),
@@ -2561,6 +2562,12 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def doTimerHide(self):
 		self.hideTimer.stop()
+		if getattr(self, "infoBarGlesAnimation", False) and self.__state != self.STATE_HIDDEN:
+			# GLES fades this window only; do not also dim the entire OSD plane.
+			self.DimmingTimer.stop()
+			self.skipToggleShow = False
+			self.hide()
+			return
 		self.DimmingTimer.start(300, True)
 		self.dimmed = config.usage.show_infobar_dimming_speed.value
 		self.skipToggleShow = False

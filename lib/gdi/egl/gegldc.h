@@ -77,6 +77,9 @@ private:
 		bool active;
 		bool show;
 		eRect rect;
+		int style = 0;
+		int durationMs = 0;
+		bool explicitStyle = false;
 		PendingWindowAnimation() : active(false), show(true), rect(eRect()) {}
 	};
 
@@ -97,6 +100,28 @@ private:
 	};
 
 	PendingListboxAnimation m_pending_listbox_animation;
+	struct EventAnimation {
+		bool listbox = false;
+		bool compact = false;
+		bool scene = false;
+		bool show = true;
+		GLuint oldFrame = 0;
+		GLuint newFrame = 0;
+		eRect source;
+		PendingListboxAnimation selection;
+		unsigned long long started = 0;
+		int durationMs = 0;
+		int style = 0;
+		int frames = 0;
+	} m_event_animation;
+	std::atomic<unsigned long long> m_animation_deadline{0};
+	bool startEventAnimation(GLuint oldFrame, GLuint newFrame, bool scene, const eRect& source, bool show, int durationMs, const PendingListboxAnimation* selection = nullptr, int style = 0, bool compact = false);
+	void finishEventAnimation(bool present);
+	GLuint m_compactOld = 0;
+	GLuint m_compactNew = 0;
+	bool captureCompactTexture(GLuint& texture, const eRect& source);
+	void deleteCompactTextures();
+	void drawCompactTexture(GLuint texture, const eRect& dest, float alpha, bool blend);
 	GLuint m_last_frame_texture;
 	GLuint m_animation_frame_texture;
 	GLuint m_scene_frame_texture;
@@ -161,8 +186,13 @@ private:
 		unsigned int frame_restores = 0;
 		unsigned int frame_copy_draws = 0;
 		unsigned int texture_uploads = 0;
+#ifdef ENABLE_GLES_TESTLAB
+		unsigned int ionUploads = 0;
+		unsigned long long ionAvoidedBytes = 0;
+#endif
 		unsigned int texture_dmabuf_uploads = 0;
 		unsigned int texture_32_direct_uploads = 0;
+		unsigned int texture16Uploads = 0;
 		unsigned int texture_32_converted_uploads = 0;
 		unsigned int texture_8_clut_uploads = 0;
 		unsigned int texture_8_luma_uploads = 0;
@@ -294,9 +324,9 @@ private:
 	void drawListboxSelection(const eRect& area, const PendingListboxAnimation& animation);
 	void copiedTextureSize(GLuint texture, int& width, int& height) const;
 	void drawCopiedFrameTexture(GLuint texture, const eRect& dest, const eRect& source, float alpha, bool blend);
-	eRect animatedWindowDestRect(const eRect& source, float visible_progress, bool show, float* alpha = 0) const;
+	eRect animatedWindowDestRect(const eRect& source, float visible_progress, bool show, int animation, float* alpha = 0) const;
 	eRect stripedWindowDamageRect(const eRect& source) const;
-	void drawAnimatedWindowTexture(GLuint texture, const eRect& source, float visible_progress, bool show);
+	void drawAnimatedWindowTexture(GLuint texture, const eRect& source, float visible_progress, bool show, int animation);
 	void drawStripedWindowTexture(GLuint texture, const eRect& source, float visible_progress);
 	eRect clampToScreen(const eRect& rect) const;
 	eRect currentSpinnerRect() const;
@@ -343,6 +373,7 @@ private:
 	void incrementSpinner() override;
 
 public:
+	bool runSurfaceOperation(const std::function<bool(gTextureManager&)>& operation);
 	bool initEGL();
 	gEGLDC(INativeWindowProvider* window_provider = nullptr, int width = 1280, int height = 720);
 	virtual ~gEGLDC();
@@ -351,6 +382,8 @@ public:
 	virtual void refresh() override;
 	virtual void exec(const gOpcode* opcode);
 	int islocked() const override;
+	unsigned long long animationFrameDeadlineUs() const override { return m_animation_deadline.load(); }
+	void renderAnimationFrame() override;
 	std::string getGraphicsBackend() const override { return "e2egl"; }
 	std::string getGraphicsWindowProvider() const override;
 	std::string getGraphicsAccelerator() const override;

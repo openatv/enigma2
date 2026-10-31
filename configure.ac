@@ -772,6 +772,17 @@ AM_CONDITIONAL([HAVE_V3DPLATFORM_EGL], [test "x$use_v3dplatform_egl" = "xyes"])
 AM_CONDITIONAL([HAVE_HISILICON_EGL], [test "x$use_hisilicon_egl" = "xyes"])
 AM_CONDITIONAL([HAVE_DREAMBCM_EGL], [test "x$use_dreambcm_egl" = "xyes"])
 
+AC_ARG_ENABLE([gles-testlab],
+  AS_HELP_STRING([--enable-gles-testlab], [build the optional GLES visual/performance test plugin (default: no)]),
+  [enable_gles_testlab="$enableval"], [enable_gles_testlab=no])
+AS_CASE([$enable_gles_testlab], [yes|no], [], [AC_MSG_ERROR([--enable-gles-testlab accepts yes or no])])
+AS_IF([test "x$enable_gles_testlab" = "xyes"], [
+  AS_IF([test "x$use_egl" != "xyes"], [AC_MSG_ERROR([--enable-gles-testlab requires --with-egl])])
+  AC_DEFINE([ENABLE_GLES_TESTLAB], [1], [Build the optional GLES renderer test lab])
+  AX_SWIG_PYTHON_OPT="$AX_SWIG_PYTHON_OPT -DENABLE_GLES_TESTLAB"
+])
+AM_CONDITIONAL([ENABLE_GLES_TESTLAB], [test "x$enable_gles_testlab" = "xyes"])
+
 AC_SUBST([EGL_CFLAGS])
 AC_SUBST([EGL_LIBS])
 AC_SUBST([GLES2_CFLAGS])
@@ -1180,6 +1191,7 @@ lib/python/Plugins/Extensions/MediaPlayer/Makefile
 lib/python/Plugins/Extensions/MediaScanner/Makefile
 lib/python/Plugins/Extensions/MiniTV/Makefile
 lib/python/Plugins/Extensions/PicturePlayer/Makefile
+lib/python/Plugins/Extensions/GlesTestLab/Makefile
 lib/python/Plugins/Extensions/ProgrammlistenUpdater/Makefile
 lib/python/Plugins/Extensions/SocketMMI/Makefile
 lib/python/Plugins/Extensions/SocketMMI/src/Makefile

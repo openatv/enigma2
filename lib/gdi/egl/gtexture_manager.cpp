@@ -1,11 +1,18 @@
 #include <lib/base/eerror.h>
 #include <lib/gdi/egl/gles_version.h>
 #include <lib/gdi/egl/gtexture_manager.h>
+#include <lib/gdi/egl/gegldc.h>
 #include <lib/gdi/region.h>
 #include <algorithm>
 #include <cstdlib>
 #include <cstring>
 #include <mutex>
+#if defined(DREAMBCM_ION_ACCEL) && defined(HAVE_DREAMBCM_EGL) && defined(HAVE_GLES3)
+#include <lib/gdi/accel.h>
+#include <EGL/dreameglplatform.h>
+#include <sys/mman.h>
+#include <unistd.h>
+#endif
 
 static gTextureManager* s_active_manager = nullptr;
 
@@ -23,6 +30,8 @@ gTextureManager::gTextureManager() : m_egl_display(EGL_NO_DISPLAY), m_content_te
 }
 
 gTextureManager::~gTextureManager() {
+	if (m_dreamBcmIonUploads || m_dreamBcmIonFailures)
+		eDebug("[dreamBCM] ION GPU upload total=%u avoided_cpu_bytes=%llu failures=%u", m_dreamBcmIonUploads, m_dreamBcmIonBytes, m_dreamBcmIonFailures);
 	std::lock_guard<std::mutex> guard(activeManagerMutex());
 	if (s_active_manager == this)
 		s_active_manager = nullptr;
@@ -237,13 +246,298 @@ GLuint gTextureManager::createTextureFromDmabuf(gUnmanagedSurface* surface) {
 	return texture_id;
 }
 
+GLuint gTextureManager::createTextureFromDreamBcmIon(gUnmanagedSurface* surface)
+{
+#if defined(DREAMBCM_ION_ACCEL) && defined(HAVE_DREAMBCM_EGL) && defined(HAVE_GLES3)
+	// This is a source upload accelerator, not a shared BGRA render target.
+	// Keeping the cached result RGBA preserves all existing FBO/readback users.
+	const char *setting = getenv("E2EGL_DREAMBCM_ION_UPLOAD");
+	if ((setting && setting[0] == '0') || !gles::isGLES3() || !surface || surface->bpp != 32 ||
+		!surface->data_phys || !surface->cpu_content_valid || surface->x <= 0 || surface->y <= 0 ||
+		surface->stride <= 0 || surface->stride % 4 || surface->x > surface->stride / 4 ||
+		m_egl_display == EGL_NO_DISPLAY || eglGetCurrentContext() == EGL_NO_CONTEXT)
+		return 0;
+	const unsigned long long bytes = (unsigned long long)surface->x * surface->y * 4;
+	// Small icons do not justify the synchronization and temporary EGL/FBO objects.
+	const char *extensions = eglQueryString(m_egl_display, EGL_EXTENSIONS);
+	// VC5 advertises the original umbrella extension, not KHR_image_pixmap separately.
+	if (bytes < 32768 || (!hasExtension(extensions, "EGL_KHR_image_pixmap") && !hasExtension(extensions, "EGL_KHR_image")) ||
+		!hasExtension((const char *)glGetString(GL_EXTENSIONS), "GL_OES_EGL_image"))
+		return 0;
+	GLint maxSize = 0;
+	glGetIntegerv(GL_MAX_TEXTURE_SIZE, &maxSize);
+	if (surface->stride / 4 > maxSize || surface->y > maxSize)
+		return 0;
+	auto createImage = (PFNEGLCREATEIMAGEKHRPROC)eglGetProcAddress("eglCreateImageKHR");
+	auto destroyImage = (PFNEGLDESTROYIMAGEKHRPROC)eglGetProcAddress("eglDestroyImageKHR");
+	auto bindImage = (gEGLImageTargetTexture2DOESProc)eglGetProcAddress("glEGLImageTargetTexture2DOES");
+	gAccel *accel = gAccel::getInstance();
+	if (!createImage || !destroyImage || !bindImage || !accel)
+		return 0;
+	int fd = -1;
+	unsigned long phys = 0;
+	size_t length = 0;
+	if (!accel->exportDreamBcmIonBuffer(surface, fd, phys, length))
+		return 0;
+	if ((unsigned long long)surface->stride * surface->y > length) {
+		close(fd);
+		return 0;
+	}
+	void *mapping = mmap(nullptr, length, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+	if (mapping == MAP_FAILED) {
+		close(fd);
+		return 0;
+	}
+	struct dmegl_pixmap_handle native = {};
+	static_assert(sizeof(native) == 40, "DM9x0 native pixmap requires the ARM32 Dream ABI");
+	native.mem.magic = DMEGL_PIXMAP_MAGIC;
+	native.mem.length = length;
+	native.mem.fd = fd;
+	native.mem.phys = phys;
+	native.mem.addr = mapping;
+	// VC5 ignores pitch: import the storage width and crop UVs to the logical width.
+	native.width = surface->stride / 4;
+	native.height = surface->y;
+	native.pitch = surface->stride;
+	native.format = 0x34324241; // AB24: driver samples raw bytes as RGBA.
+	const EGLint attributes[] = {EGL_IMAGE_PRESERVED_KHR, EGL_TRUE, EGL_NONE};
+	EGLImageKHR image = createImage(m_egl_display, EGL_NO_CONTEXT, EGL_NATIVE_PIXMAP_KHR, (EGLClientBuffer)&native, attributes);
+	GLuint result = 0;
+	GLenum error = GL_NO_ERROR;
+	EGLint imageError = image == EGL_NO_IMAGE_KHR ? eglGetError() : EGL_SUCCESS;
+	if (image != EGL_NO_IMAGE_KHR) {
+		GLint readFbo, drawFbo, viewport[4], program, arrayBuffer, vao, activeTexture, texture;
+		GLboolean colorMask[4];
+		const GLenum capabilities[] = {GL_BLEND, GL_SCISSOR_TEST, GL_DEPTH_TEST, GL_STENCIL_TEST, GL_CULL_FACE, GL_DITHER, GL_RASTERIZER_DISCARD};
+		GLboolean enabled[sizeof(capabilities) / sizeof(capabilities[0])];
+		glGetIntegerv(GL_READ_FRAMEBUFFER_BINDING, &readFbo);
+		glGetIntegerv(GL_DRAW_FRAMEBUFFER_BINDING, &drawFbo);
+		glGetIntegerv(GL_VIEWPORT, viewport);
+		glGetIntegerv(GL_CURRENT_PROGRAM, &program);
+		glGetIntegerv(GL_ARRAY_BUFFER_BINDING, &arrayBuffer);
+		glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &vao);
+		glGetIntegerv(GL_ACTIVE_TEXTURE, &activeTexture);
+		glGetBooleanv(GL_COLOR_WRITEMASK, colorMask);
+		glActiveTexture(GL_TEXTURE0);
+		glGetIntegerv(GL_TEXTURE_BINDING_2D, &texture);
+		for (size_t i = 0; i < sizeof(capabilities) / sizeof(capabilities[0]); ++i) {
+			enabled[i] = glIsEnabled(capabilities[i]);
+			glDisable(capabilities[i]);
+		}
+		glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+		GLuint source = 0, fbo = 0, uploadVao = 0;
+		// The shared shader helper changes vertex attributes; isolate those in a private VAO.
+		glGenVertexArrays(1, &uploadVao);
+		glBindVertexArray(uploadVao);
+		glGenTextures(1, &source);
+		glBindTexture(GL_TEXTURE_2D, source);
+		bindImage(GL_TEXTURE_2D, (void *)image);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_R, GL_BLUE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_B, GL_RED);
+		error = glGetError();
+		if (error == GL_NO_ERROR && ensureOffscreenTextureShader()) {
+			glGenTextures(1, &result);
+			glBindTexture(GL_TEXTURE_2D, result);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, surface->x, surface->y, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+			glGenFramebuffers(1, &fbo);
+			glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+			glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, result, 0);
+			error = glGetError();
+			if (error == GL_NO_ERROR && glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE) {
+				glViewport(0, 0, surface->x, surface->y);
+				m_offscreen_texture_shader.setFramebufferResolution(surface->x, surface->y);
+				m_offscreen_texture_shader.drawTexture(0, 0, surface->x, surface->y, source, 1.0f, 0, 0,
+					0, 0, (float)surface->x / native.width, 1, false, false);
+				// Source ownership returns to CPU/BCM after this call; no borrowed GPU read may remain.
+				glFinish();
+				error = glGetError();
+				const char *verify = getenv("E2EGL_DREAMBCM_ION_VERIFY");
+				if (error == GL_NO_ERROR && verify && verify[0] == '1') {
+					// Diagnostic only: compare the actual shader output with the CPU BGRA contract.
+					GLint packAlignment;
+					glGetIntegerv(GL_PACK_ALIGNMENT, &packAlignment);
+					glPixelStorei(GL_PACK_ALIGNMENT, 4);
+					std::vector<uint8_t> pixels(bytes);
+					glReadPixels(0, 0, surface->x, surface->y, GL_RGBA, GL_UNSIGNED_BYTE, pixels.data());
+					glPixelStorei(GL_PACK_ALIGNMENT, packAlignment);
+					error = glGetError();
+					unsigned long long mismatches = 0;
+					for (int y = 0; y < surface->y; ++y) {
+						const uint8_t *expected = (const uint8_t *)surface->data + y * surface->stride;
+						const uint8_t *actual = pixels.data() + (size_t)y * surface->x * 4;
+						for (int x = 0; x < surface->x; ++x)
+							for (int channel = 0; channel < 4; ++channel)
+								mismatches += actual[x * 4 + channel] != expected[x * 4 + (channel == 0 || channel == 2 ? channel ^ 2 : channel)];
+					}
+					eDebug("[dreamBCM] ION verify %dx%d stride=%d mismatched_bytes=%llu gl=0x%x", surface->x, surface->y, surface->stride, mismatches, error);
+					if (mismatches) error = GL_INVALID_OPERATION;
+				}
+			} else if (error == GL_NO_ERROR) {
+				error = GL_INVALID_FRAMEBUFFER_OPERATION;
+			}
+		}
+		if (error != GL_NO_ERROR && result) {
+			glDeleteTextures(1, &result);
+			result = 0;
+		}
+		glBindFramebuffer(GL_READ_FRAMEBUFFER, readFbo);
+		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, drawFbo);
+		glViewport(viewport[0], viewport[1], viewport[2], viewport[3]);
+		glColorMask(colorMask[0], colorMask[1], colorMask[2], colorMask[3]);
+		for (size_t i = 0; i < sizeof(capabilities) / sizeof(capabilities[0]); ++i)
+			if (enabled[i]) glEnable(capabilities[i]);
+		glBindVertexArray(vao);
+		if (uploadVao) glDeleteVertexArrays(1, &uploadVao);
+		glBindBuffer(GL_ARRAY_BUFFER, arrayBuffer);
+		glUseProgram(program);
+		glBindTexture(GL_TEXTURE_2D, texture);
+		glActiveTexture(activeTexture);
+		if (fbo) glDeleteFramebuffers(1, &fbo);
+		if (source) glDeleteTextures(1, &source);
+		destroyImage(m_egl_display, image);
+	}
+	munmap(mapping, length);
+	close(fd);
+	if (result) {
+		++m_dreamBcmIonUploads;
+		m_dreamBcmIonBytes += bytes;
+#ifdef ENABLE_GLES_TESTLAB
+		++m_upload_stats.ionUploads;
+		m_upload_stats.ionAvoidedBytes += bytes;
+#endif
+		recordUpload(surface->x, surface->y, 0, false, false, false, false, false);
+		if (m_dreamBcmIonUploads <= 8 || m_dreamBcmIonUploads % 32 == 0)
+			eDebug("[dreamBCM] ION GPU upload count=%u avoided_cpu_bytes=%llu last=%dx%d stride=%d failures=%u",
+				m_dreamBcmIonUploads, m_dreamBcmIonBytes, surface->x, surface->y, surface->stride, m_dreamBcmIonFailures);
+	} else if (++m_dreamBcmIonFailures <= 8) {
+		eDebug("[dreamBCM] ION GPU upload fallback egl=0x%x gl=0x%x size=%dx%d", imageError, error, surface->x, surface->y);
+	}
+	return result;
+#else
+	(void)surface;
+	return 0;
+#endif
+}
+
+GLuint gTextureManager::createSharedNativeTarget(gUnmanagedSurface* surface)
+{
+#if defined(DREAMBCM_ION_ACCEL) && defined(HAVE_DREAMBCM_EGL) && defined(HAVE_GLES3)
+	const char* setting = getenv("E2EGL_DREAMBCM_ION_TARGET");
+	if (!setting || *setting != '1' || !gles::isGLES3() || !surface || !surface->data_phys ||
+		!surface->cpu_content_valid || surface->bpp != 32 || surface->x <= 0 || surface->y <= 0 ||
+		surface->stride != surface->x * 4 || m_egl_display == EGL_NO_DISPLAY)
+		return 0;
+	GLint maxSize = 0;
+	glGetIntegerv(GL_MAX_TEXTURE_SIZE, &maxSize);
+	if (surface->x > maxSize || surface->y > maxSize)
+		return 0;
+	const char* extensions = eglQueryString(m_egl_display, EGL_EXTENSIONS);
+	if ((!hasExtension(extensions, "EGL_KHR_image") && !hasExtension(extensions, "EGL_KHR_image_pixmap")) ||
+		!hasExtension((const char*)glGetString(GL_EXTENSIONS), "GL_OES_EGL_image"))
+		return 0;
+	auto createImage = (PFNEGLCREATEIMAGEKHRPROC)eglGetProcAddress("eglCreateImageKHR");
+	auto destroyImage = (PFNEGLDESTROYIMAGEKHRPROC)eglGetProcAddress("eglDestroyImageKHR");
+	auto bindImage = (gEGLImageTargetTexture2DOESProc)eglGetProcAddress("glEGLImageTargetTexture2DOES");
+	gAccel* accel = gAccel::getInstance();
+	if (!createImage || !destroyImage || !bindImage || !accel)
+		return 0;
+	NativeTarget target;
+	unsigned long phys = 0;
+	if (!accel->exportDreamBcmIonBuffer(surface, target.fd, phys, target.length))
+		return 0;
+	if ((unsigned long long)surface->stride * surface->y > target.length) {
+		close(target.fd);
+		return 0;
+	}
+	target.mapping = mmap(nullptr, target.length, PROT_READ | PROT_WRITE, MAP_SHARED, target.fd, 0);
+	if (target.mapping == MAP_FAILED) {
+		close(target.fd);
+		return 0;
+	}
+	struct dmegl_pixmap_handle native = {};
+	static_assert(sizeof(native) == 40, "DM9x0 native pixmap requires the ARM32 Dream ABI");
+	native.mem.magic = DMEGL_PIXMAP_MAGIC;
+	native.mem.length = target.length;
+	native.mem.fd = target.fd;
+	native.mem.phys = phys;
+	native.mem.addr = target.mapping;
+	native.width = surface->x;
+	native.height = surface->y;
+	native.pitch = surface->stride;
+	native.format = 0x34324241;
+	const EGLint attributes[] = {EGL_IMAGE_PRESERVED_KHR, EGL_TRUE, EGL_NONE};
+	EGLImageKHR image = createImage(m_egl_display, EGL_NO_CONTEXT, EGL_NATIVE_PIXMAP_KHR, (EGLClientBuffer)&native, attributes);
+	GLuint texture = 0;
+	if (image != EGL_NO_IMAGE_KHR) {
+		glGenTextures(1, &texture);
+		glBindTexture(GL_TEXTURE_2D, texture);
+		bindImage(GL_TEXTURE_2D, (void*)image);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		// Sampling sees logical RGBA; framebuffer stores raw BGRA bytes.
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_R, GL_BLUE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_SWIZZLE_B, GL_RED);
+		if (glGetError() != GL_NO_ERROR) {
+			glDeleteTextures(1, &texture);
+			destroyImage(m_egl_display, image);
+			texture = 0;
+		}
+	}
+	if (!texture) {
+		munmap(target.mapping, target.length);
+		close(target.fd);
+		return 0;
+	}
+	m_texture_to_image_map[texture] = image;
+	m_nativeTargets[texture] = target;
+	surface->gl_native_shared = true;
+	++m_nativeTargetCreates;
+	if (m_nativeTargetCreates <= 8 || m_nativeTargetCreates % 64 == 0)
+		eDebug("[dreamBCM] shared ION target create=%u live=%zu size=%dx%d bytes=%zu", m_nativeTargetCreates, m_nativeTargets.size(), surface->x, surface->y, target.length);
+	return texture;
+#else
+	(void)surface;
+	return 0;
+#endif
+}
+
+bool gTextureManager::finishSurfaceWrite(gUnmanagedSurface* surface)
+{
+	// Initial ownership policy: CPU always receives completed, uncached ION data.
+	// A later fence/batching optimization must retain this observable contract.
+	glFinish();
+	__sync_synchronize();
+	surface->gl_content_valid = true;
+	surface->cpu_content_valid = true;
+	++m_nativeTargetWrites;
+	if (m_nativeTargetWrites <= 8 || m_nativeTargetWrites % 64 == 0)
+		eDebug("[dreamBCM] shared ION write=%u live=%zu", m_nativeTargetWrites, m_nativeTargets.size());
+	return glGetError() == GL_NO_ERROR;
+}
+
 GLuint gTextureManager::createTextureFromSurface(gUnmanagedSurface* surface) {
 	if (!surface)
 		return 0;
 	if (!surface->cpu_content_valid)
 		return 0;
 
-	GLuint texture_id = createTextureFromDmabuf(surface);
+	GLuint texture_id = createSharedNativeTarget(surface);
+	if (texture_id != 0)
+		return texture_id;
+	texture_id = createTextureFromDreamBcmIon(surface);
+	if (texture_id != 0)
+		return texture_id;
+	texture_id = createTextureFromDmabuf(surface);
 	if (texture_id != 0)
 		return texture_id;
 
@@ -342,6 +636,29 @@ GLuint gTextureManager::createTextureFromSurface(gUnmanagedSurface* surface) {
 			return 0;
 		}
 		recordUpload(width, height, width * height * 4, false, !converted_upload, converted_upload, false, false);
+	} else if (surface->bpp == 16) {
+		// E2 stores big-endian BGR565 bytes on both host byte orders. GLES
+		// accepts host-endian RGB565; keep the staging buffer at two bytes/pixel.
+		std::vector<uint16_t> rgb565(width * height);
+		for (int y = 0; y < height; ++y) {
+			const uint8_t* row = static_cast<const uint8_t*>(surface->data) + y * surface->stride;
+			for (int x = 0; x < width; ++x) {
+				const uint16_t bgr = (uint16_t(row[x * 2]) << 8) | row[x * 2 + 1];
+				rgb565[y * width + x] = ((bgr & 0x1f) << 11) | (bgr & 0x7e0) | (bgr >> 11);
+			}
+		}
+		glPixelStorei(GL_UNPACK_ALIGNMENT, 2);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, rgb565.data());
+		const GLenum error = glGetError();
+		glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
+		if (error != GL_NO_ERROR) {
+			eDebug("[gTextureManager] RGB565 upload failed: 0x%x for %dx%d", error, width, height);
+			glBindTexture(GL_TEXTURE_2D, 0);
+			glDeleteTextures(1, &texture_id);
+			return 0;
+		}
+		++m_upload_stats.upload16;
+		recordUpload(width, height, width * height * 2, false, false, false, false, false);
 	} else if (surface->bpp == 8 && surface->clut.data) {
 		std::vector<uint8_t> rgba_buffer(width * height * 4);
 		uint8_t* src_pixels = (uint8_t*)surface->data;
@@ -452,7 +769,7 @@ GLuint gTextureManager::getSurfaceTexture(gUnmanagedSurface* surface) {
 
 bool gTextureManager::canContentCacheSurface(const gUnmanagedSurface* surface) const
 {
-	if (!surface || !surface->data || !surface->cpu_content_valid || surface->data_phys || surface->gl_framebuffer_id)
+	if (!surface || !surface->gl_content_cacheable || !surface->data || !surface->cpu_content_valid || surface->data_phys || surface->gl_framebuffer_id)
 		return false;
 	if (surface->bpp != 8 || surface->x <= 0 || surface->y <= 0 || surface->stride == 0)
 		return false;
@@ -586,9 +903,25 @@ void gTextureManager::releaseGLResources()
 	m_offscreen_texture_shader_initialized = false;
 }
 
+void gTextureManager::releaseNativeTargets()
+{
+	// Called while the context is current, only when that context is being destroyed.
+	for (const auto& entry : m_nativeTargets)
+		queueForDeletion(entry.first);
+	processDeletions();
+}
+
 void gTextureManager::resetContextGeneration()
 {
 	std::lock_guard<std::mutex> lock(m_deletion_mutex);
+#if defined(DREAMBCM_ION_ACCEL) && defined(HAVE_DREAMBCM_EGL) && defined(HAVE_GLES3)
+	// Also cover a lost context where GL cleanup could no longer run.
+	for (const auto& entry : m_nativeTargets) {
+		munmap(entry.second.mapping, entry.second.length);
+		close(entry.second.fd);
+	}
+#endif
+	m_nativeTargets.clear();
 	m_pending_deletions.clear();
 	m_pending_framebuffer_deletions.clear();
 	m_texture_to_image_map.clear();
@@ -606,6 +939,7 @@ void gTextureManager::prepareSurface(gUnmanagedSurface* surface)
 	surface->gl_texture_id = 0;
 	surface->gl_framebuffer_id = 0;
 	surface->gl_content_valid = false;
+	surface->gl_native_shared = false;
 	surface->gl_context_generation = m_context_generation;
 }
 
@@ -636,6 +970,9 @@ void gTextureManager::processDeletions() {
 		m_pending_framebuffer_deletions.clear();
 	}
 	if (!m_pending_deletions.empty()) {
+		// Keep the borrowed allocation alive until all texture reads have completed.
+		if (!m_nativeTargets.empty())
+			glFinish();
 		glDeleteTextures(m_pending_deletions.size(), m_pending_deletions.data());
 
 		PFNEGLDESTROYIMAGEKHRPROC eglDestroyImageKHR = (PFNEGLDESTROYIMAGEKHRPROC)eglGetProcAddress("eglDestroyImageKHR");
@@ -647,6 +984,14 @@ void gTextureManager::processDeletions() {
 				}
 				m_texture_to_image_map.erase(it);
 			}
+#if defined(DREAMBCM_ION_ACCEL) && defined(HAVE_DREAMBCM_EGL) && defined(HAVE_GLES3)
+			auto native = m_nativeTargets.find(texture_id);
+			if (native != m_nativeTargets.end()) {
+				munmap(native->second.mapping, native->second.length);
+				close(native->second.fd);
+				m_nativeTargets.erase(native);
+			}
+#endif
 		}
 
 		m_pending_deletions.clear();
@@ -659,6 +1004,17 @@ bool gTextureManager::ensureFramebuffer(gUnmanagedSurface* surface, bool preserv
 	prepareSurface(surface);
 	if (eglGetCurrentContext() == EGL_NO_CONTEXT)
 		return false;
+	// The bridge uses shared native targets only. Unsupported layouts stay on CPU.
+	if (!surface->gl_native_shared) {
+		GLuint native = createSharedNativeTarget(surface);
+		if (!native)
+			return false;
+		queueForDeletion(surface->gl_texture_id);
+		queueFramebufferForDeletion(surface->gl_framebuffer_id);
+		surface->gl_texture_id = native;
+		surface->gl_framebuffer_id = 0;
+		surface->gl_content_valid = true;
+	}
 
 	if (surface->gl_texture_id && preserve_cpu_content && !surface->gl_content_valid) {
 		if (!surface->cpu_content_valid)
@@ -742,7 +1098,7 @@ bool gTextureManager::fillSurface(gUnmanagedSurface* surface, const eRect& area,
 	glViewport(0, 0, surface->x, surface->y);
 	glEnable(GL_SCISSOR_TEST);
 	glScissor(clipped.left(), clipped.top(), clipped.width(), clipped.height());
-	glClearColor(((color >> 16) & 0xff) / 255.0f, ((color >> 8) & 0xff) / 255.0f, (color & 0xff) / 255.0f, ((color >> 24) & 0xff) / 255.0f);
+	glClearColor((color & 0xff) / 255.0f, ((color >> 8) & 0xff) / 255.0f, ((color >> 16) & 0xff) / 255.0f, ((color >> 24) & 0xff) / 255.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	if (scissor_enabled)
@@ -757,9 +1113,7 @@ bool gTextureManager::fillSurface(gUnmanagedSurface* surface, const eRect& area,
 	if (glGetError() != GL_NO_ERROR)
 		return false;
 
-	surface->gl_content_valid = true;
-	surface->cpu_content_valid = false;
-	return true;
+	return finishSurfaceWrite(surface);
 }
 
 bool gTextureManager::drawRectangleSurface(gUnmanagedSurface* surface, const gRegion& region, const eRect& area, const gRGB& background_color, const gRGB& border_color, int border_width,
@@ -786,6 +1140,8 @@ bool gTextureManager::drawRectangleSurface(gUnmanagedSurface* surface, const gRe
 		return false;
 	if (!ensureOffscreenAdvancedShader())
 		return false;
+	if (m_nativeTargetWrites < 12)
+		eDebug("[dreamBCM] shared rectangle radius=%d edges=%u blend=%d area=%d,%d %dx%d", radius, (unsigned)edges, alphablend, area.x(), area.y(), area.width(), area.height());
 
 	GLint previous_framebuffer = 0;
 	GLint previous_viewport[4] = {0, 0, 0, 0};
@@ -824,35 +1180,15 @@ bool gTextureManager::drawRectangleSurface(gUnmanagedSurface* surface, const gRe
 		}
 	};
 
-	auto drawClippedRect = [&](const eRect& rect, int rect_radius, uint8_t rect_edges, const std::vector<gRGB>& rect_gradient, uint8_t rect_direction, bool rect_alphablend,
-								int rect_gradient_full_size, const gRGB& color) {
-		if (rect.empty())
-			return;
-		for (unsigned int i = 0; i < draw_region.rects.size(); ++i) {
-			eRect clipped = draw_region.rects[i] & rect;
-			if (clipped.empty())
-				continue;
-			glScissor(clipped.left(), clipped.top(), clipped.width(), clipped.height());
-			m_offscreen_advanced_shader.drawAdvancedRect(rect.x(), rect.y(), rect.width(), rect.height(), rect_radius, rect_edges, rect_gradient, rect_direction, rect_alphablend,
-				rect_gradient_full_size, textureColorAlpha(color), color);
-		}
-	};
-
-	eRect body_area = area;
-	const int clamped_border_width = std::max(0, std::min(border_width, std::min(body_area.width(), body_area.height()) / 2));
-	if (clamped_border_width > 0) {
-		setBlend(blend_border);
-		drawClippedRect(body_area, radius, edges, std::vector<gRGB>(), 0, false, 0, border_color);
-		body_area = eRect(body_area.left() + clamped_border_width, body_area.top() + clamped_border_width,
-			body_area.width() - 2 * clamped_border_width, body_area.height() - 2 * clamped_border_width);
-	}
-
-	if (!body_area.empty()) {
-		setBlend(blend_rect);
-		int inner_radius = radius;
-		if (clamped_border_width > 0)
-			inner_radius = std::max(0, radius - clamped_border_width);
-		drawClippedRect(body_area, inner_radius, edges, gradient_colors, direction, alphablend, gradient_full_size, background_color);
+	setBlend(blend_border || blend_rect);
+	auto swapChannels = [](const gRGB& color) { return gRGB(color.b, color.g, color.r, color.a); };
+	std::vector<gRGB> nativeColors;
+	for (const gRGB& color : gradient_colors)
+		nativeColors.push_back(swapChannels(color));
+	for (const eRect& clipped : draw_region.rects) {
+		glScissor(clipped.left(), clipped.top(), clipped.width(), clipped.height());
+		m_offscreen_advanced_shader.drawAdvancedRect(area.x(), area.y(), area.width(), area.height(), radius, edges,
+			nativeColors, direction, alphablend, gradient_full_size, textureColorAlpha(background_color), swapChannels(background_color), border_width, swapChannels(border_color));
 	}
 
 	GLenum err = glGetError();
@@ -873,9 +1209,7 @@ bool gTextureManager::drawRectangleSurface(gUnmanagedSurface* surface, const gRe
 	if (err != GL_NO_ERROR)
 		return false;
 
-	surface->gl_content_valid = true;
-	surface->cpu_content_valid = false;
-	return true;
+	return finishSurfaceWrite(surface);
 }
 
 bool gTextureManager::blitSurface(gUnmanagedSurface* dst, gUnmanagedSurface* src, const eRect& dest_rect, const eRect& area, int flags, int radius, uint8_t edges)
@@ -900,6 +1234,8 @@ bool gTextureManager::blitSurface(gUnmanagedSurface* dst, gUnmanagedSurface* src
 		return false;
 	if (!ensureOffscreenTextureShader())
 		return false;
+	if (m_nativeTargetWrites < 12)
+		eDebug("[dreamBCM] shared blit radius=%d edges=%u flags=%d area=%d,%d %dx%d", radius, (unsigned)edges, flags, dest_rect.x(), dest_rect.y(), dest_rect.width(), dest_rect.height());
 
 	GLint previous_framebuffer = 0;
 	GLint previous_viewport[4] = {0, 0, 0, 0};
@@ -937,7 +1273,7 @@ bool gTextureManager::blitSurface(gUnmanagedSurface* dst, gUnmanagedSurface* src
 
 	m_offscreen_texture_shader.setFramebufferResolution((float)dst->x, (float)dst->y);
 	m_offscreen_texture_shader.drawTexture(dest_rect.x(), dest_rect.y(), dest_rect.width(), dest_rect.height(), texture_id, 1.0f, (float)radius, edges, 0.0f, 0.0f, 1.0f, 1.0f,
-		alpha_test, false);
+		alpha_test, false, 0, 0, -1, -1, true);
 
 	GLenum err = glGetError();
 	if (blend_enabled)
@@ -957,15 +1293,19 @@ bool gTextureManager::blitSurface(gUnmanagedSurface* dst, gUnmanagedSurface* src
 	if (err != GL_NO_ERROR)
 		return false;
 
-	dst->gl_content_valid = true;
-	dst->cpu_content_valid = false;
-	return true;
+	return finishSurfaceWrite(dst);
 }
 
 bool gTextureManager::syncSurfaceToCPU(gUnmanagedSurface* surface) {
 	if (!surface)
 		return false;
 	prepareSurface(surface);
+	if (surface->gl_native_shared) {
+		glFinish();
+		__sync_synchronize();
+		surface->cpu_content_valid = true;
+		return glGetError() == GL_NO_ERROR;
+	}
 	if (surface->cpu_content_valid)
 		return true;
 	if (!surface->gl_texture_id || !surface->gl_content_valid || surface->bpp != 32 || !surface->data)
@@ -1003,7 +1343,8 @@ bool gTextureManager::syncSurfaceToCPU(gUnmanagedSurface* surface) {
 	return true;
 }
 
-extern "C" void egl_queue_texture_deletion(unsigned int gl_texture_id, unsigned int context_generation);
+// Match the weak C++ hooks in gpixmap.cpp. C linkage leaves those hooks unresolved
+// and silently retains every surface texture until the EGL context is destroyed.
 void egl_queue_texture_deletion(unsigned int gl_texture_id, unsigned int context_generation) {
 	std::lock_guard<std::mutex> guard(activeManagerMutex());
 	if (s_active_manager) {
@@ -1011,7 +1352,6 @@ void egl_queue_texture_deletion(unsigned int gl_texture_id, unsigned int context
 	}
 }
 
-extern "C" void egl_queue_framebuffer_deletion(unsigned int gl_framebuffer_id, unsigned int context_generation);
 void egl_queue_framebuffer_deletion(unsigned int gl_framebuffer_id, unsigned int context_generation) {
 	std::lock_guard<std::mutex> guard(activeManagerMutex());
 	if (s_active_manager) {
@@ -1019,32 +1359,37 @@ void egl_queue_framebuffer_deletion(unsigned int gl_framebuffer_id, unsigned int
 	}
 }
 
-extern "C" bool egl_gpixmap_fill(gUnmanagedSurface* surface, int x, int y, int w, int h, uint32_t color);
-bool egl_gpixmap_fill(gUnmanagedSurface* surface, int x, int y, int w, int h, uint32_t color) {
-	return s_active_manager && s_active_manager->fillSurface(surface, eRect(x, y, w, h), color);
+static bool runSurfaceOperation(const std::function<bool(gTextureManager&)>& operation)
+{
+	ePtr<gMainDC> mainDC;
+	if (gMainDC::getInstance(mainDC) || !mainDC || mainDC->getGraphicsBackend() != "e2egl")
+		return false;
+	return static_cast<gEGLDC*>(mainDC.operator->())->runSurfaceOperation(operation);
 }
 
-extern "C" bool egl_gpixmap_draw_rectangle(gUnmanagedSurface* surface, const gRegion* region, int x, int y, int w, int h, uint32_t background_color, uint32_t border_color, int border_width,
-	const gRGB* gradient_colors, int gradient_count, uint8_t direction, int radius, uint8_t edges, bool alphablend, int gradient_full_size, bool use_new);
+bool egl_gpixmap_fill(gUnmanagedSurface* surface, int x, int y, int w, int h, uint32_t color) {
+	return runSurfaceOperation([&](gTextureManager& manager) { return manager.fillSurface(surface, eRect(x, y, w, h), color); });
+}
+
 bool egl_gpixmap_draw_rectangle(gUnmanagedSurface* surface, const gRegion* region, int x, int y, int w, int h, uint32_t background_color, uint32_t border_color, int border_width,
 	const gRGB* gradient_colors, int gradient_count, uint8_t direction, int radius, uint8_t edges, bool alphablend, int gradient_full_size, bool use_new)
 {
-	if (!s_active_manager || !region)
+	if (!region)
 		return false;
 	std::vector<gRGB> colors;
 	if (gradient_colors && gradient_count > 0)
 		colors.assign(gradient_colors, gradient_colors + gradient_count);
-	return s_active_manager->drawRectangleSurface(surface, *region, eRect(x, y, w, h), gRGB(background_color), gRGB(border_color), border_width, colors, direction, radius, edges, alphablend,
-		gradient_full_size, use_new);
+	return runSurfaceOperation([&](gTextureManager& manager) {
+		return manager.drawRectangleSurface(surface, *region, eRect(x, y, w, h), gRGB(background_color), gRGB(border_color), border_width, colors, direction, radius, edges, alphablend,
+			gradient_full_size, use_new);
+	});
 }
 
-extern "C" bool egl_gpixmap_blit(gUnmanagedSurface* dst, gUnmanagedSurface* src, int dx, int dy, int dw, int dh, int ax, int ay, int aw, int ah, int flags, int radius, uint8_t edges);
 bool egl_gpixmap_blit(gUnmanagedSurface* dst, gUnmanagedSurface* src, int dx, int dy, int dw, int dh, int ax, int ay, int aw, int ah, int flags, int radius, uint8_t edges)
 {
-	return s_active_manager && s_active_manager->blitSurface(dst, src, eRect(dx, dy, dw, dh), eRect(ax, ay, aw, ah), flags, radius, edges);
+	return runSurfaceOperation([&](gTextureManager& manager) { return manager.blitSurface(dst, src, eRect(dx, dy, dw, dh), eRect(ax, ay, aw, ah), flags, radius, edges); });
 }
 
-extern "C" bool egl_sync_surface_to_cpu(gUnmanagedSurface* surface);
 bool egl_sync_surface_to_cpu(gUnmanagedSurface* surface) {
-	return s_active_manager && s_active_manager->syncSurfaceToCPU(surface);
+	return runSurfaceOperation([&](gTextureManager& manager) { return manager.syncSurfaceToCPU(surface); });
 }

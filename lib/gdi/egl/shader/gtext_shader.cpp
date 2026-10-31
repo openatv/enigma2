@@ -118,6 +118,9 @@ GLuint gTextShader::compileShader(GLenum type, const char *source)
 
 bool gTextShader::init()
 {
+    gles::ShaderLocale shaderLocale;
+    if (!shaderLocale.valid())
+        return false;
     const size_t max_glyphs = 1024;
     const size_t floats_per_vertex = 8;  // x, y, u, v, r, g, b, a
     const size_t vertices_per_glyph = 6;

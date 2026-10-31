@@ -50,6 +50,11 @@ gdiinclude_HEADERS = \
 	gdi/spinner.h
 
 
+if ENABLE_GLES_TESTLAB
+gdi_libenigma_gdi_a_SOURCES += gdi/grendertest.cpp
+gdiinclude_HEADERS += gdi/grendertest.h
+endif
+
 if HAVE_EGL
 gdi_libenigma_gdi_a_SOURCES += \
 	gdi/egl/egl_config.cpp \

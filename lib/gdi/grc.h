@@ -198,6 +198,8 @@ struct gOpcode
 		{
 			ePoint point;
 			eSize size;
+			int animation = -1;
+			int durationMs = 0;
 		} *setShowHideInfo;
 
 		struct plistboxAnimation
@@ -241,6 +243,7 @@ class gRC : public iObject, public sigc::trackable
 	void recv_notify(const int &i);
 
 	ePtr<gDC> m_spinner_dc;
+	ePtr<gDC> m_animation_dc;
 	int m_spinner_enabled;
 
 	int m_spinneronoff;
@@ -378,8 +381,8 @@ public:
 	void setCompositing(gCompositingData *comp);
 
 	void flush();
-	void sendShow(ePoint point, eSize size);
-	void sendHide(ePoint point, eSize size);
+	void sendShow(ePoint point, eSize size, int animation = -1, int durationMs = 0);
+	void sendHide(ePoint point, eSize size, int animation = -1, int durationMs = 0);
 	void sendListboxAnimation(const eRect &from, const eRect &to, const gRGB &backgroundColor,
 		const std::vector<gRGB> &gradientColors, uint8_t gradientOrientation, bool gradientAlphaBlend,
 		int radius, uint8_t radiusEdges, gPixmap *selectionPixmap);
@@ -450,6 +453,9 @@ public:
 	virtual bool isHardwareAccelerated() const { return false; }
 	virtual bool supportsShowHideAnimations() const { return false; }
 	virtual bool supportsListboxAnimations() const { return false; }
+	// Render-thread deadlines allow animation frames without blocking queued UI work.
+	virtual unsigned long long animationFrameDeadlineUs() const { return 0; }
+	virtual void renderAnimationFrame() {}
 
 	virtual void renderGlyph(const ePoint &pos, gPixmap *glyph_mask, const gRGB &color);
 
