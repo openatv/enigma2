@@ -653,7 +653,7 @@ except ValueError:
 BoxInfo.setItem("ColorFrontpanelDisplay", bool(BoxInfo.getItem("FrontpanelDisplay") and DISPLAYTYPE not in ("7segment", "textlcd") and (colorFrontpanel or BoxInfo.getItem("grautec") or DISPLAYTYPE in ("colorlcd220", "colorlcd240", "colorlcd390", "colorlcd400", "colorlcd480", "colorlcd720", "colorlcd800"))))
 BoxInfo.setItem("GraphicLCD", MACHINEBUILD in ("vuultimo", "xpeedlx3", "et10000", "mutant2400", "quadbox2400", "sezammarvel", "atemionemesis", "mbultra", "beyonwizt4", "osmio4kplus"))
 BoxInfo.setItem("HasExternalPIP", MODEL != "xt7413" and fileCheck("/proc/stb/vmpeg/1/external"))
-BoxInfo.setItem("HasFullHDSkinSupport", MACHINEBUILD not in ("et4000", "et5000", "sh1", "hd500c", "hd1100", "xp1000", "lc"))
+BoxInfo.setItem("HasFullHDSkinSupport", MODEL not in ("et4000", "et5000", "sh1", "hd500c", "hd1100", "xp1000", "lc"))
 BoxInfo.setItem("HasHiSi", pathExists("/proc/hisi"))
 BoxInfo.setItem("hasPIPVisibleProc", fileCheck("/proc/stb/vmpeg/1/visible"))
 BoxInfo.setItem("HasGPT", MODEL == "dms922x" and pathExists("/dev/mmcblk0p7"))
