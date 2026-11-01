@@ -697,8 +697,6 @@ class InfoBarTimeshift:
 			ts = self.getTimeshift()
 			if not ts.isTimeshiftEnabled() and ts.startTimeshift():
 				print("[Timeshift] Unable to start RAM time shift.")
-				if self.pauseAfterStart or self.notifyAfterStart:
-					self.session.showError(_("Time shift not possible!"))
 				self.pauseAfterStart = self.notifyAfterStart = False
 				return False
 			self.event_changed = False
@@ -859,9 +857,9 @@ class InfoBarTimeshift:
 		if self.ptsStorageError != error or manualStart:
 			self.ptsStorageError = error
 			print(f"[Timeshift] {message} Path: {error[0]}. {detail or ''}")
-			# Keep storage diagnostics in the log; a manual start only needs a short reply.
-			if manualStart or notify:
-				self.session.showError(_("Time shift not possible!") if manualStart else message, timeout=10)
+			# Start failures stay in the log, including pause commands from remote apps.
+			if notify:
+				self.session.showError(message, timeout=10)
 
 	def ptsTimeshiftWriteError(self):
 		# The native recorder has already stopped and returned to live TV.

@@ -441,7 +441,8 @@ public:
 		sDABProtection = sUser + 9,
 		sDABDynamicLabel = sUser + 10,
 		sDABPTY = sUser + 11,
-		sDABPTYTable = sUser + 12
+		sDABPTYTable = sUser + 12,
+		sDABSampleRate = sUser + 13 /* source audio sample rate in Hz, after SBR */
 	};
 	enum {
 		resNA = -1,

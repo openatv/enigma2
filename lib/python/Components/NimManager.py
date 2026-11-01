@@ -221,7 +221,9 @@ class SecConfigure:
 		try:
 			for slot in nim_slots:
 				if slot.frontend_id is not None:
-					types = [tunertype for tunertype in ["DVB-C", "DVB-T", "DVB-T2", "DVB-S", "DVB-S2", "ATSC"] if eDVBResourceManager.getInstance().frontendIsCompatible(slot.frontend_id, tunertype)]
+					# Before the initial slot assignment, native slot IDs are still frontend IDs.
+					frontendIndex = slot.frontend_id if self.NimManager.firstRun else slot.slot
+					types = [x for x in ("DVB-C", "DVB-T", "DVB-T2", "DVB-S", "DVB-S2", "ATSC") if eDVBResourceManager.getInstance().frontendIsCompatible(frontendIndex, x)]
 					if "DVB-T2" in types:  # DVB-T2 implies DVB-T support.
 						types.remove("DVB-T")
 					if "DVB-S2" in types:  # DVB-S2 implies DVB-S support.
@@ -360,7 +362,7 @@ class SecConfigure:
 		for slot in nim_slots:
 			if slot.frontend_id is not None:
 				if slot.isMultiType():
-					eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False)  # To force a clear of 'm_delsys_whitelist'.
+					eDVBResourceManager.getInstance().setFrontendType(slot.slot, "dummy", False)  # To force a clear of 'm_delsys_whitelist'.
 					types = slot.getMultiTypeList()
 					for FeType in types.values():
 						if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
@@ -371,9 +373,9 @@ class SecConfigure:
 							continue
 						elif FeType in ("ATSC") and config.Nims[slot.slot].atsc.configMode.value == "nothing":
 							continue
-						eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, FeType, True)
+						eDVBResourceManager.getInstance().setFrontendType(slot.slot, FeType, True)
 				else:
-					eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, slot.getType())
+					eDVBResourceManager.getInstance().setFrontendType(slot.slot, slot.getType())
 		print("[NimManager] Sec configuration completed.")
 
 	def updateAdvanced(self, sec, slotid):
@@ -987,9 +989,9 @@ class NimManager:
 		self.cablesList = []
 		self.terrestrialsList = []
 		self.atscList = []
+		self.firstRun = True
 		self.enumerateNIMs()
 		self.readTransponders()
-		self.firstRun = True
 		InitNimManager(self)  # Initialize configuration.
 		self.firstRun = False
 
@@ -1215,7 +1217,8 @@ class NimManager:
 		try:
 			for slot in self.nim_slots:
 				if slot.frontend_id is not None:
-					types = [tunertype for tunertype in ["DVB-C", "DVB-T", "DVB-T2", "DVB-S", "DVB-S2", "DVB-S2X", "ATSC"] if eDVBResourceManager.getInstance().frontendIsCompatible(slot.frontend_id, tunertype)]
+					frontendIndex = slot.frontend_id if self.firstRun else slot.slot
+					types = [x for x in ("DVB-C", "DVB-T", "DVB-T2", "DVB-S", "DVB-S2", "DVB-S2X", "ATSC") if eDVBResourceManager.getInstance().frontendIsCompatible(frontendIndex, x)]
 					if "DVB-T2" in types:  # DVB-T2 implies DVB-T support.
 						types.remove("DVB-T")
 					if "DVB-S2" in types:  # DVB-S2 implies DVB-S support.
@@ -2465,7 +2468,8 @@ def InitNimManager(nimmgr, update_slots=None):
 	try:
 		for slot in nimmgr.nim_slots:
 			if slot.frontend_id is not None:
-				types = [tunertype for tunertype in ["DVB-C", "DVB-T", "DVB-T2", "DVB-S", "DVB-S2", "DVB-S2X", "ATSC"] if eDVBResourceManager.getInstance().frontendIsCompatible(slot.frontend_id, tunertype)]
+				frontendIndex = slot.frontend_id if nimmgr.firstRun else slot.slot
+				types = [x for x in ("DVB-C", "DVB-T", "DVB-T2", "DVB-S", "DVB-S2", "DVB-S2X", "ATSC") if eDVBResourceManager.getInstance().frontendIsCompatible(frontendIndex, x)]
 				if "DVB-T2" in types:  # DVB-T2 implies DVB-T support.
 					types.remove("DVB-T")
 				if "DVB-S2" in types:  # DVB-S2 implies DVB-S support.

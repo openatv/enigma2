@@ -1,6 +1,7 @@
 #include <lib/base/cfile.h>
 #include <lib/base/ebase.h>
 #include <lib/base/eerror.h>
+#include <lib/base/eenv.h>
 #include <lib/base/nconfig.h>
 #include <lib/base/esimpleconfig.h>
 #include <lib/base/wrappers.h>
@@ -21,6 +22,8 @@
 #include <sys/stat.h>
 #include <errno.h>
 #include <pthread.h>
+#include <time.h>
+#include <vector>
 
 #include <lib/dvb/fccdecoder.h>
 #ifdef DREAMNEXTGEN
@@ -703,7 +706,74 @@ void eDVBVideo::stop()
 #ifdef DREAMNEXTGEN
 		pthread_mutex_unlock(&s_video_ioctl_lock);
 #endif
+		clearLastFrame();
 	}
+}
+
+void eDVBVideo::clearLastFrame()
+{
+#if defined(HWDM900) || defined(HWDM920) || defined(HWDM820) || defined(HWDM7080)
+	// These drivers retain the displayed frame despite VIDEO_STOP(1).
+	// Replace it before releasing the main decoder, so radio and services
+	// without decodable video cannot expose the previous channel's picture.
+	if (m_dev != 0 || !m_demux || m_demux->adapter != 0)
+		return;
+
+	static const std::vector<unsigned char> blackFrame = []() {
+		std::vector<unsigned char> frame;
+		CFile file(eEnv::resolve("${datadir}/enigma2/black.mvi"), "rb");
+		struct stat status = {};
+		if (!file || fstat(fileno(file), &status) || status.st_size < 6 || status.st_size > 65536)
+		{
+			eWarning("[eDVBVideo] Cannot load black still picture");
+			return frame;
+		}
+		frame.resize(status.st_size);
+		if (fread(frame.data(), 1, frame.size(), file) != frame.size())
+		{
+			eWarning("[eDVBVideo] Cannot read black still picture");
+			frame.clear();
+		}
+		else if ((frame[3] >> 4) == 0xE)
+			frame[4] = frame[5] = 0;
+		return frame;
+	}();
+	if (blackFrame.empty())
+		return;
+
+	const unsigned char pesHeader[] = {0, 0, 1, 0xE0, 0, 0, 0x80, 0x80, 5, 0x21, 0, 1, 0, 1};
+	const unsigned char sequenceEnd[] = {0, 0, 1, 0xB7};
+	const unsigned char stuffing[8192] = {};
+	bool started = false;
+	if (::ioctl(m_fd, VIDEO_SELECT_SOURCE, VIDEO_SOURCE_MEMORY) == 0 &&
+		::ioctl(m_fd, VIDEO_SET_STREAMTYPE, VIDEO_STREAMTYPE_MPEG2) == 0 &&
+		::ioctl(m_fd, VIDEO_PLAY) == 0)
+	{
+		started = true;
+		m_streamtype = VIDEO_STREAMTYPE_MPEG2;
+		bool written = ::ioctl(m_fd, VIDEO_CONTINUE) == 0 && ::ioctl(m_fd, VIDEO_CLEAR_BUFFER) == 0;
+		written = written && ((blackFrame[3] >> 4) == 0xE ||
+			writeAll(m_fd, pesHeader, sizeof(pesHeader)) == sizeof(pesHeader));
+		written = written && writeAll(m_fd, blackFrame.data(), blackFrame.size()) == (ssize_t)blackFrame.size();
+		written = written && writeAll(m_fd, sequenceEnd, sizeof(sequenceEnd)) == sizeof(sequenceEnd);
+		written = written && writeAll(m_fd, stuffing, sizeof(stuffing)) == sizeof(stuffing);
+		if (written)
+		{
+			// Match the existing still-picture decoder interval. Keep ownership
+			// until completion; a timer must never stop the following service.
+			struct timespec remaining = {0, 150000000};
+			while (nanosleep(&remaining, &remaining) && errno == EINTR) {}
+		}
+		else
+			eWarning("[eDVBVideo] Cannot feed black still picture: %m");
+	}
+	else
+		eWarning("[eDVBVideo] Cannot start black still picture: %m");
+	if (started && ::ioctl(m_fd, VIDEO_STOP, 0) < 0)
+		eWarning("[eDVBVideo] Cannot stop black still picture: %m");
+	if (::ioctl(m_fd, VIDEO_SELECT_SOURCE, VIDEO_SOURCE_DEMUX) < 0)
+		eWarning("[eDVBVideo] Cannot restore video demux source: %m");
+#endif
 }
 
 void eDVBVideo::flush()

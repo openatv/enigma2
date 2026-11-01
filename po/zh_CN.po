@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-10-19 19:43+0000\n"
-"PO-Revision-Date: 2026-10-19 11:51+0000\n"
+"PO-Revision-Date: 2026-10-26 09:51+0000\n"
 "Last-Translator: Mark Stone <mstone@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -5876,7 +5876,7 @@ msgid "DAB+ decoder back end not installed"
 msgstr "DAB+ 解码器后端未安装"
 
 msgid "DAB+ front display"
-msgstr ""
+msgstr "DAB+ 前面板显示"
 
 msgid "DAB+ scan failed; existing bouquets were kept."
 msgstr "DAB+ 扫描失败；已有的频道分组会被保留。"
@@ -15766,7 +15766,7 @@ msgid "Radio Channel Selection Actions"
 msgstr "广播频道选择操作"
 
 msgid "Radio text"
-msgstr ""
+msgstr "电台文本"
 
 msgid "Raise and lower the CPU frequency gradually depending on the load."
 msgstr "根据负载逐步提高和降低 CPU 频率。"
@@ -17910,7 +17910,7 @@ msgid "Select a tuner"
 msgstr "选择调谐器"
 
 msgid "Select a writable directory on a mounted storage device or network share. Internal flash and RAM are not permitted. Hard links are not required. Press 'OK' to select a directory."
-msgstr ""
+msgstr "在已挂载存储设备或网络共享上选择可写入目录。不允许使用内置闪存和内存。不需要硬链接。按 OK 键选择目录。"
 
 msgid "Select action"
 msgstr "选择动作"
@@ -17947,7 +17947,7 @@ msgid "Select channel audio"
 msgstr "选择频道音频"
 
 msgid "Select channel set"
-msgstr ""
+msgstr "选择频道集"
 
 msgid "Select copy destination for:"
 msgstr "选择复制目标为："
@@ -18196,7 +18196,7 @@ msgid "Select the action to perform when the timer ends."
 msgstr "选择定时器结束时要执行的操作。"
 
 msgid "Select the action to take when leaving time shift due to a service change. This option is used when the time shift stop warning is enabled."
-msgstr ""
+msgstr "选择因频道切换而退出时移时要执行的操作。此选项在启用时移停止警告时使用。"
 
 msgid "Select the action to take when the EnergySaver timer activates."
 msgstr "选择节能器定时器激活时所需的关机类型。"
@@ -18205,7 +18205,7 @@ msgid "Select the action to take when the SleepTimer activates."
 msgstr "选择睡眠定时器激活时所需的关机类型。"
 
 msgid "Select the age after which unused time shift buffers may be removed during cleanup. Buffers still being recorded, played or saved remain protected. This setting does not limit the length of an active buffer."
-msgstr ""
+msgstr "选择清理时移除未使用时移缓冲的时长阈值。仍在录制、播放或保存中的缓冲受保护。此设置不限制活动缓冲的长度。"
 
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
 msgstr "选择任务出错后、再次尝试运行前需要等待的时间。"
@@ -18384,7 +18384,7 @@ msgid "Select the input connector you want to use."
 msgstr "选择要使用的输入连接器。"
 
 msgid "Select the interval for checking buffer age and free space in addition to checks on event changes. Disabled means there is no periodic check. Cleanup removes unused temporary buffers and does not shorten an active buffer."
-msgstr ""
+msgstr "选择除事件变更检查之外，检查缓冲存在时长和可用空间的时间间隔。禁用表示不进行定期检查。清理会移除未使用的临时缓冲，不会缩短活动缓冲。"
 
 msgid "Select the last item in list or move to the end of text"
 msgstr "选择列表中的最后一项或移至文本末尾"
@@ -18460,7 +18460,7 @@ msgid "Select the next item in the list"
 msgstr "选择列表中的下一项"
 
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
-msgstr ""
+msgstr "选择时移缓冲中保留的事件数量。超出此限制的事件将在清理时被移除。一个缓冲可能包含多个物理文件分片，计为一个事件。仍在使用的缓冲受保护，因此该限制可能被暂时超出。"
 
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr "选择任务运行出错时的重试次数。"
@@ -19750,7 +19750,7 @@ msgid "Show animation while busy"
 msgstr "繁忙时显示动画"
 
 msgid "Show available DAB+ reception and decoding information above the radio text. This option applies to both USB and DVB reception."
-msgstr ""
+msgstr "在电台文本上方显示可用的 DAB+ 接收与解码信息。此选项适用于 USB 和 DVB 接收。"
 
 msgid "Show background in Radio Mode"
 msgstr "广播模式显示背景"
@@ -20019,7 +20019,7 @@ msgid "Show previous system information screen"
 msgstr "显示上一个系统信息屏幕"
 
 msgid "Show radio text, slideshow pictures or only the station logo on the receiver's color display. Slideshow mode falls back to the station logo; logo-only mode never shows slides. If no station logo is available, the DAB+ logo is shown. This setting is independent of the TV slideshow."
-msgstr ""
+msgstr "在接收机彩色显示屏上显示电台文本、幻灯片图片或仅显示台标。幻灯片模式会回退到电台台标；仅台标模式从不显示幻灯片。如无可用电台台标，则显示 DAB+ 标志。此设置独立于电视幻灯片。"
 
 msgid "Show record indicator"
 msgstr "显示录制指示符"
@@ -20115,7 +20115,7 @@ msgid "Show task messages if File Commander is not running and all task are comp
 msgstr "如果文件指挥官未运行，且所有任务均已完成，则显示任务消息。"
 
 msgid "Show technical status line"
-msgstr ""
+msgstr "显示技术状态行"
 
 msgid "Show the CCcam Info Screen"
 msgstr "显示 CCcam 信息屏"
@@ -20187,7 +20187,7 @@ msgid "Show/Hide Actions"
 msgstr "信息栏显示/隐藏操作"
 
 msgid "Show/Hide channel name"
-msgstr ""
+msgstr "显示/隐藏频道名称"
 
 msgid "Show/Hide focus bar"
 msgstr "显示/隐藏 聚焦条"
@@ -20489,7 +20489,7 @@ msgid "Slide top to bottom"
 msgstr "从上到下滑动"
 
 msgid "Slideshow / station logo"
-msgstr ""
+msgstr "幻灯片/台标"
 
 #, python-format
 msgid "Slot %d"
@@ -21064,7 +21064,7 @@ msgid "Station"
 msgstr "电台"
 
 msgid "Station logo only"
-msgstr ""
+msgstr "仅台标"
 
 msgid "Status"
 msgstr "状态"
@@ -21088,7 +21088,7 @@ msgid "Status:"
 msgstr "状态："
 
 msgid "Stay in time shift at buffer end (for plugins)"
-msgstr ""
+msgstr "缓冲结束时保持时移（供插件使用）"
 
 msgid "Step"
 msgstr "步"
@@ -21218,7 +21218,7 @@ msgstr "存储设备不可写！"
 
 #, python-format
 msgid "Storage directory '%s' is unavailable or not writable."
-msgstr ""
+msgstr "存储目录“%s”不可用或不可写。"
 
 msgid "Store position"
 msgstr "存储位置"
@@ -22064,10 +22064,10 @@ msgid "The command to wake from Standby will be sent multiple times."
 msgstr "从待机状态唤醒的命令将被发送多次。"
 
 msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
-msgstr ""
+msgstr "无法安全识别续录片段，两段录像均保留，不会合并。"
 
 msgid "The current time shift buffer is no longer available."
-msgstr ""
+msgstr "当前时移缓冲已不再可用。"
 
 #, python-format
 msgid "The custom mount point for '%s' is empty!"
@@ -22186,7 +22186,7 @@ msgid "The root subdirectory in the manufacturer STARTUP file cannot be safely e
 msgstr "厂商 STARTUP 文件中的根子目录无法安全扩展。"
 
 msgid "The running Enigma2 version cannot safely save an active time shift buffer."
-msgstr ""
+msgstr "当前运行的Enigma2版本无法安全保存活动的时移缓冲。"
 
 msgid "The saved PIN was cleared."
 msgstr "已清除保存的 PIN 码。"
@@ -22221,7 +22221,7 @@ msgstr ""
 "现在这样做还是延长定时器？"
 
 msgid "The storage check did not finish. Please check the device or network and try again."
-msgstr ""
+msgstr "存储检查未完成。请检查设备或网络后重试。"
 
 msgid "The time is multiplied by the current repeat counter."
 msgstr "时间乘以重复计数器并添加到最小发送间隔。"
@@ -22234,16 +22234,16 @@ msgstr ""
 "你想让我做什么 ？"
 
 msgid "The time shift buffer is not available."
-msgstr ""
+msgstr "时移缓冲不可用。"
 
 msgid "The time shift recording was saved, but a temporary recording could not be removed."
-msgstr ""
+msgstr "时移录制已保存，但无法移除临时录制。"
 
 msgid "The time shift storage device is not available. Please check the device and the time shift path."
-msgstr ""
+msgstr "时移存储设备不可用。请检查设备和时移路径。"
 
 msgid "The time shift storage device was removed. Time shift has been stopped."
-msgstr ""
+msgstr "时移存储设备已移除，时移已停止。"
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -22664,7 +22664,7 @@ msgid "Time shift buffer location"
 msgstr "时移缓冲区位置"
 
 msgid "Time shift could not be started. Please check the storage device and available space."
-msgstr ""
+msgstr "时移无法启动。请检查存储设备和可用空间。"
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr "如果没有可接受的目录，时移可能无法正常工作。"
@@ -24685,7 +24685,7 @@ msgid "When enabled, SDT and BAT data will be included in http streams."
 msgstr "启用后，SDT、BAT 数据将包含在 http 流中。"
 
 msgid "When enabled, a new buffer is started for each event. When disabled, a continuous buffer is kept across different events. File systems such as FAT32 still require physical file parts, which are played as one buffer. Cleanup does not limit the size of an active buffer."
-msgstr ""
+msgstr "启用后，每个事件都会启动一个新缓冲。禁用后，不同事件之间保持连续缓冲。FAT32 等文件系统仍需要物理文件分片，但会作为一个缓冲播放。清理不会限制活动缓冲的大小。"
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "启用后，当一部电影结束并开始下一部电影时，将显示一条弹出消息。"
@@ -24706,7 +24706,7 @@ msgid "When enabled, a recording is allowed to interrupt live TV, when there are
 msgstr "启用时，当没有空闲的调谐器，允许录制中断直播电视。"
 
 msgid "When enabled, a warning will be displayed if a command will stop time shift. An option to stop or to continue the time shift will be displayed."
-msgstr ""
+msgstr "启用后，若某项命令要停止时移，则显示警告。停止或继续时移的选项也会显示。"
 
 msgid "When enabled, allow Samba network access without a password."
 msgstr "启用后，允许无需密码通过 Samba 访问网络。"
@@ -24739,7 +24739,7 @@ msgid "When enabled, authentication is required to watch http streams."
 msgstr "启用时，需要进行身份验证才能观看http流。"
 
 msgid "When enabled, automatically save completed time shift buffers as recordings. This applies to newly started buffers. With event splitting disabled, saving starts when the buffer is stopped. Saved recordings are not removed by the time shift cleanup."
-msgstr ""
+msgstr "启用后，自动将完成的时移缓冲保存为录制。此设置适用于新启动的缓冲。禁用事件分割时，缓冲停止时开始保存。已保存的录制不会被时移清理移除。"
 
 msgid "When enabled, bypass HDMI EDID checking."
 msgstr "启用后，绕过 HDMI EDID 检查。"
@@ -24757,7 +24757,7 @@ msgid "When enabled, deleted recordings are moved to the trashcan, instead of be
 msgstr "启用后，已删除的录像会移至回收站，而不是立即删除。"
 
 msgid "When enabled, do not automatically switch to live TV when playback reaches the end of the time shift buffer. Enable this only for plugins that require continued time shift playback, such as alternative audio plugins."
-msgstr ""
+msgstr "启用后，当播放至移缓冲末尾时，不会自动切回直播电视。仅对需要持续时移播放的插件启用此选项，例如备选音频插件。"
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "启用后，播放影片将始终打开外挂字幕。"
@@ -24805,7 +24805,7 @@ msgid "When enabled, specify custom DNS settings for this adapter instead of usi
 msgstr "启用后，为此适配器指定自定义DNS设置，而非使用全局DNS设置。"
 
 msgid "When enabled, stops time shift from being used if a recording is in progress. This is advisable for USB sticks or other slow media."
-msgstr ""
+msgstr "启用后，如果正在录像则停用时移。U 盘或其他慢速介质，建议启用此选项。"
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "启用时，可以使用听力受损者的字幕。"
@@ -24880,7 +24880,7 @@ msgid "When enabled, time shift starts automatically in background after the sel
 msgstr "启用后，时移将在所选时间过后自动在后台启动。"
 
 msgid "When enabled, unused time shift buffers are deleted when changing services. When disabled, the buffers are managed as normal. Keeping temporary buffers does not create permanent recordings. Saved recordings are not affected."
-msgstr ""
+msgstr "启用后，切换频道时会删除未使用的时移缓冲。禁用后，缓冲将按常规方式管理。保留临时缓冲不会生成永久录制。已保存的录制不受影响。"
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
 msgstr "启用后，您可以自定义备用调谐器的 OpenWebIf 设置。"

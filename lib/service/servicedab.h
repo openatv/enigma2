@@ -14,6 +14,7 @@
 #include <lib/base/message.h>
 #include <lib/base/thread.h>
 #include <lib/dvb/idvb.h>
+#include <lib/service/dabaudioframe.h>
 #include <lib/service/dabtsadapter.h>
 #include <lib/service/iservice.h>
 
@@ -80,6 +81,7 @@ struct eDABWorkerStats
 	int slideFormat;
 	int bitrate;
 	int snrCentidB;
+	eDABAudioFormat audioFormat;
 	int ficQuality;
 	int mscQuality;
 	int programmeType = -1;

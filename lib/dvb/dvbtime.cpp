@@ -312,6 +312,7 @@ void eDVBLocalTimeHandler::setUseDVBTime(bool b)
 		if (m_use_dvb_time)
 		{
 			eDebug("[eDVBLocalTimeHandler] Sync local time with transponder time disabled.");
+			m_updateNonTunedTimer->stop();
 			std::map<iDVBChannel *, channel_data>::iterator it = m_knownChannels.begin();
 			for (; it != m_knownChannels.end(); ++it)
 			{
@@ -322,11 +323,13 @@ void eDVBLocalTimeHandler::setUseDVBTime(bool b)
 		else
 		{
 			eDebug("[eDVBLocalTimeHandler] Sync local time with transponder time enabled.");
+			bool tuned = false;
 			std::map<iDVBChannel *, channel_data>::iterator it = m_knownChannels.begin();
 			for (; it != m_knownChannels.end(); ++it)
 			{
 				if (it->second.m_prevChannelState == iDVBChannel::state_ok)
 				{
+					tuned = true;
 					int system = iDVBFrontend::feSatellite;
 					ePtr<iDVBFrontendParameters> parms;
 					it->second.channel->getCurrentFrontendParameters(parms);
@@ -340,6 +343,8 @@ void eDVBLocalTimeHandler::setUseDVBTime(bool b)
 					it->second.timetable->start();
 				}
 			}
+			if (!tuned && m_SyncTimeUsing != 2)
+				m_updateNonTunedTimer->start(TIME_UPDATE_INTERVAL, true);
 		}
 		m_use_dvb_time = b;
 	}
@@ -370,7 +375,7 @@ void eDVBLocalTimeHandler::syncDVBTime()
 
 void eDVBLocalTimeHandler::updateNonTuned()
 {
-	if (m_SyncTimeUsing == 2)
+	if (!m_use_dvb_time || m_SyncTimeUsing == 2)
 		return;
 	updateTime(-1, 0, 0);
 	m_updateNonTunedTimer->start(TIME_UPDATE_INTERVAL, true);
@@ -444,6 +449,8 @@ void eDVBLocalTimeHandler::updateTime(time_t tp_time, eDVBChannel *chan, int upd
 		restart_tdt = true;
 	else if (tp_time == -1)
 	{
+		if (!m_use_dvb_time)
+			return;
 		restart_tdt = true;
 		/* if (eSystemInfo::getInstance()->getHwType() == eSystemInfo::DM7020 ||
 			(eSystemInfo::getInstance()->getHwType() == eSystemInfo::DM7000 &&
@@ -749,7 +756,7 @@ void eDVBLocalTimeHandler::DVBChannelStateChanged(iDVBChannel *chan)
 				if (m_time_debug)
 					eDebug("[eDVBLocalTimerHandler] Remove channel %p.", chan);
 				m_knownChannels.erase(it);
-				if (m_SyncTimeUsing != 2)
+				if (m_use_dvb_time && m_SyncTimeUsing != 2)
 				{
 					if (m_knownChannels.empty())
 						m_updateNonTunedTimer->start(TIME_UPDATE_INTERVAL, true);
