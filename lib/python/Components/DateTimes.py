@@ -98,6 +98,7 @@ class DateTimes:
 			("=%S", _("Yes"))
 		])
 		time.separator = ConfigSelection(default=":", choices=[
+			("_", _("Space ' '")),
 			("-", _("Hyphen '-'")),
 			(".", _("Period '.'")),
 			(":", _("Colon ':'")),
@@ -107,7 +108,7 @@ class DateTimes:
 		self.updateDatesAndTimes(init=True)
 		if self.updateDatesAndTimes not in skinOnReload:
 			skinOnReload.append(self.updateDatesAndTimes)
-		setOnSaveCallback("DateTime", self.updateDatesAndTimes)  # Rebuild the formats when the settings are saved via OpenWebif.
+		setOnSaveCallback("DateTime", dateTimes.updateDatesAndTimes)  # Rebuild the formats when the settings are saved via OpenWebif.
 
 	def updateDatesAndTimes(self, init=False):
 		try:
@@ -131,11 +132,11 @@ class DateTimes:
 			self.dateNoDayShortMonth = date.layout.value.replace("%A+", "").replace("%d", date.dateFormat.value).replace("%m", "%b").replace("=", firstSeparator).replace("#", secondSeparator)
 			self.dateNoDayShortMonthNoYear = date.layout.value.replace("%A+", "").replace("%d", date.dateFormat.value).replace("%m", "%b").replace("#%Y", "").replace("%Y=", "").replace("=", firstSeparator).replace("#", secondSeparator)
 			self.dateNoYear = date.layout.value.replace("%A", date.dayFormat.value).replace("+", daySeparator).replace("%d", date.dateFormat.value).replace("%m", date.monthFormat.value).replace("#%Y", "").replace("%Y=", "").replace("=", firstSeparator).replace("#", secondSeparator)
-			shortDaySeparator = date.daySeparator.value.replace("_", " ")  # The short day formats always show the day.
-			self.dateShortDay = date.layout.value.replace("%A", "%a").replace("+", shortDaySeparator).replace("%d", date.dateFormat.value).replace("%m", date.monthFormat.value).replace("=", firstSeparator).replace("#", secondSeparator)
-			self.dateShortDayNoMonthNoYear = f"%a{shortDaySeparator}{config.usage.date.dateFormat.value}"
-			self.dateShortDayShortMonth = date.layout.value.replace("%A", "%a").replace("+", shortDaySeparator).replace("%d", date.dateFormat.value).replace("%m", "%b").replace("=", firstSeparator).replace("#", secondSeparator)
-			self.dateShortDayShortMonthNoYear = date.layout.value.replace("%A", "%a").replace("+", shortDaySeparator).replace("%d", date.dateFormat.value).replace("%m", "%b").replace("#%Y", "").replace("%Y=", "").replace("=", firstSeparator).replace("#", secondSeparator)
+			daySeparator = date.daySeparator.value.replace("_", " ")
+			self.dateShortDay = date.layout.value.replace("%A", "%a").replace("+", daySeparator).replace("%d", date.dateFormat.value).replace("%m", date.monthFormat.value).replace("=", firstSeparator).replace("#", secondSeparator)
+			self.dateShortDayNoMonthNoYear = f"%a{daySeparator}{config.usage.date.dateFormat.value}"
+			self.dateShortDayShortMonth = date.layout.value.replace("%A", "%a").replace("+", daySeparator).replace("%d", date.dateFormat.value).replace("%m", "%b").replace("=", firstSeparator).replace("#", secondSeparator)
+			self.dateShortDayShortMonthNoYear = date.layout.value.replace("%A", "%a").replace("+", daySeparator).replace("%d", date.dateFormat.value).replace("%m", "%b").replace("#%Y", "").replace("%Y=", "").replace("=", firstSeparator).replace("#", secondSeparator)
 			timeSeparator = date.timeSeparator.value.replace("_", " ")
 		else:
 			defaults = self.DEFAULTS.get(config.misc.locale.value, self.DEFAULTS_US)
@@ -153,11 +154,12 @@ class DateTimes:
 		time = config.usage.time
 		time.enabled.value = timeEnabled
 		if timeEnabled:
+			separator = time.separator.value.replace("_", " ")
 			time.meridiemActive.value = time.meridiemFormat.value if "H" not in time.hourFormat.value and "k" not in time.hourFormat.value else ""
-			self.time = time.layout.value.replace("%H", time.hourFormat.value).replace("=%S", time.secondsFormat.value).replace("%P", time.meridiemActive.value).replace("=", time.separator.value)
-			self.timeNoMeridiem = time.layout.value.replace("%H", time.hourFormat.value).replace("=%S", time.secondsFormat.value).replace("%P", "").replace("=", time.separator.value)
-			self.timeShort = time.layout.value.replace("%H", time.hourFormat.value).replace("=%S", "").replace("%P", time.meridiemActive.value).replace("=", time.separator.value)
-			self.timeShortNoMeridiem = time.layout.value.replace("%H", time.hourFormat.value).replace("=%S", "").replace("%P", "").replace("=", time.separator.value)
+			self.time = time.layout.value.replace("%H", time.hourFormat.value).replace("=%S", time.secondsFormat.value).replace("%P", time.meridiemActive.value).replace("=", separator)
+			self.timeNoMeridiem = time.layout.value.replace("%H", time.hourFormat.value).replace("=%S", time.secondsFormat.value).replace("%P", "").replace("=", separator)
+			self.timeShort = time.layout.value.replace("%H", time.hourFormat.value).replace("=%S", "").replace("%P", time.meridiemActive.value).replace("=", separator)
+			self.timeShortNoMeridiem = time.layout.value.replace("%H", time.hourFormat.value).replace("=%S", "").replace("%P", "").replace("=", separator)
 			self.timeMixed = self.timeShort if time.meridiemActive.value else self.time
 		else:
 			time.meridiemActive.value = ""
