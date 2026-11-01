@@ -713,10 +713,21 @@ def createRecordTimerEntry(timer):
 	entry = RecordTimerEntry(
 		timer.service_ref, timer.begin, timer.end, timer.name, timer.description, timer.eit, timer.disabled,
 		timer.justplay, timer.afterEvent, dirname=timer.dirname, tags=timer.tags, descramble=timer.descramble,
-		record_ecm=timer.record_ecm, always_zap=timer.always_zap, rename_repeat=timer.rename_repeat
+		record_ecm=timer.record_ecm, always_zap=timer.always_zap, rename_repeat=timer.rename_repeat,
+		isAutoTimer=timer.isAutoTimer, ice_timer_id=timer.ice_timer_id, precondition=timer.precondition,
+		cridSeries=getattr(timer, "cridSeries", None), cridEpisode=getattr(timer, "cridEpisode", None), cridRecommendation=getattr(timer, "cridRecommendation", None)
 	)
+	entry.marginBefore = timer.marginBefore
+	entry.marginAfter = timer.marginAfter
+	entry.eventBegin = timer.eventBegin
+	entry.eventEnd = timer.eventEnd
+	entry.repeated = timer.repeated
+	entry.repeatedbegindate = timer.repeatedbegindate
 	entry.hasEndTime = timer.hasEndTime
 	entry.zapBack = getattr(timer, "zapBack", False)
+	entry.vpsplugin_enabled = getattr(timer, "vpsplugin_enabled", None)
+	entry.vpsplugin_overwrite = getattr(timer, "vpsplugin_overwrite", None)
+	entry.vpsplugin_time = getattr(timer, "vpsplugin_time", None)
 	return entry
 
 
