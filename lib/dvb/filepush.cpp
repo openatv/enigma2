@@ -469,13 +469,19 @@ int eFilePushThreadRecorder::writeBuffer()
 	size_t length = m_buffer_fill;
 	unsigned char tail[192];
 	size_t remainder = 0;
-	if (m_serviceFilter.active())
+	// Retain an incomplete TS packet across reads, including buffer rotation
+	// by asynchronous writes. A packet split over two writes reaches the
+	// recording, the stream and the descrambler as a sync loss, so pass on
+	// whole packets only and prepend the stub to the next buffer.
+	if (m_packetSize > 0 && static_cast<size_t>(m_packetSize) <= sizeof(tail))
 	{
-		// Retain an incomplete TS packet across reads, including buffer rotation
-		// by asynchronous writes. Never feed the same bytes to the filter twice.
 		remainder = length % m_packetSize;
 		length -= remainder;
 		memcpy(tail, m_buffer + length, remainder);
+	}
+	if (m_serviceFilter.active())
+	{
+		// Never feed the same bytes to the filter twice.
 		m_serviceFilter.process(m_buffer + m_filteredBytes, length - m_filteredBytes, m_packetSize);
 		m_filteredBytes = length;
 	}
@@ -787,8 +793,9 @@ void eFilePushThreadRecorder::thread()
 	/* Flush remaining data. */
 	if (m_buffer_fill > 0 && !_writeError)
 	{
-		int result = writeBuffer();
-		if (result < 0 || (result == 0 && (!m_serviceFilter.active() || m_buffer_fill >= static_cast<size_t>(m_packetSize))))
+		// A write of 0 is only an error while a whole packet is still waiting:
+		// the stub left over from packet alignment cannot be written at all.
+		if (int result = writeBuffer(); result < 0 || (result == 0 && m_buffer_fill >= static_cast<size_t>(m_packetSize)))
 			_setWriteError(result < 0 ? errno : EIO);
 		m_buffer_fill = 0;
 	}
