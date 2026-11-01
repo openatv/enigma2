@@ -269,10 +269,10 @@
 		<item level="2" text="General Appearance" />
 		<item level="2" text="Start mode" description="Select which service to use when opening the EPG." indent="1">config.epgselection.single.browse_mode</item>
 		<item level="2" text="Service preview mode" description="Select 'Yes' to enable preview of channels while in the EPG list." indent="1">config.epgselection.single.preview_mode</item>
-		<item level="2" text="Skip empty services" description="When enabled, services without EPG data will be hidden." indent="1">config.epgselection.overjump</item>
+		<item level="2" text="Hide empty services" description="When enabled, services without EPG data will be hidden." indent="1">config.epgselection.overjump</item>
 		<item level="2" text="Sort list by" description="You can have the list sorted by time or alphanumerical." indent="1">config.epgselection.sort</item>
 		<item level="2" text="Layout And Fonts" />
-		<item level="2" text="Number of rows" description="Configure the number of rows shown." indent="1">config.epgselection.single.itemsperpage</item>
+		<item level="2" text="Number of rows" description="Select the number of services to be shown in the list." indent="1">config.epgselection.single.itemsperpage</item>
 		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size." indent="1">config.epgselection.single.eventfs</item>
 		<item level="2" text="Button Assignments" />
 		<item level="2" text="OK" description="Select the action that this button will perform." indent="1">config.epgselection.single.btn_ok</item>
@@ -295,20 +295,20 @@
 	<setup key="EPGGraphical" title="GraphicalEPG Settings" level="2" showOpenWebif="yes">
 		<item level="2" text="General Appearance" />
 		<item level="2" text="Start mode" description="Select which service to use when opening the EPG." indent="1">config.epgselection.grid.browse_mode</item>
-		<item level="2" text="View mode" description="This option allows you to set the layout view (Text or Graphics)." indent="1">config.epgselection.grid.type_mode</item>
+		<item level="2" text="View mode" description="Select if the layout will use a text display or if it will use graphical backgrounds." indent="1">config.epgselection.grid.type_mode</item>
 		<item level="2" text="Service preview mode" description="Unless set to 'disabled' you get a preview of channels inside the EPG list." indent="1">config.epgselection.grid.preview_mode</item>
 		<item level="2" text="Show bouquet on launch" description="Select 'Yes' to show the bouquet selection screen every time you open the EPG." indent="1">config.epgselection.grid.showbouquet</item>
 		<item level="2" text="Picture in graphics" description="Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen." indent="1">config.epgselection.grid.pig</item>
-		<!-- <item level="2" text="Highlight current events" description="Highlight events currently airing." indent="1">config.epgselection.grid.highlight_current_events</item> Not implemented yet. -->
+		<!-- <item level="2" text="Highlight current events" description="When enabled, show the current event on each service highlighted." indent="1">config.epgselection.grid.highlight_current_events</item> Not implemented yet. -->
 		<item level="2" text="Service Title mode" description="Configure to show the channel names, picons, or both in the EPG." indent="1">config.epgselection.grid.servicetitle_mode</item>
 		<item level="2" text="Navigation And Time Range" />
 		<item level="2" text="Start mode" description="Here can set the EPG will alway open at the current channel, the first channel or one of both with primetime. If no primetime selected, the current time is used." indent="1">config.epgselection.grid.startmode</item>
-		<item level="2" text="Skip empty services" description="When enabled, services without EPG data will be hidden." indent="1">config.epgselection.overjump</item>
+		<item level="2" text="Hide empty services" description="When enabled, services without EPG data will be hidden." indent="1">config.epgselection.overjump</item>
 		<item level="2" text="Base time" description="Choose time interval to which the graphics will be rounded off." indent="1">config.epgselection.grid.roundto</item>
 		<item level="2" text="Prime time" description="Set the desired primetime (hour and minute)." indent="1">config.epgselection.grid.primetime</item>
-		<!-- <item level="2" text="Number buttons mode" description="Use number buttons for paging or to enter a service number." indent="1">config.epgselection.grid.number_buttons_mode</item> Not implemented yet. -->
+		<!-- <item level="2" text="Number buttons mode" description="Select whether the NUMBER buttons are used for navigation, etc or to enter a service number." indent="1">config.epgselection.grid.number_buttons_mode</item> Not implemented yet. -->
 		<item level="2" text="Layout And Fonts" />
-		<item level="2" text="Number of rows" description="Configure the number of rows shown." indent="1">config.epgselection.grid.itemsperpage</item>
+		<item level="2" text="Number of rows" description="Select the number of services to be shown in the list." indent="1">config.epgselection.grid.itemsperpage</item>
 		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size." indent="1">config.epgselection.grid.eventfs</item>
 		<item level="2" text="Alignment of events" description="Configure the alignment of events." indent="1">config.epgselection.grid.event_alignment</item>
 		<item level="2" text="Service font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size." indent="1">config.epgselection.grid.servfs</item>
@@ -346,13 +346,13 @@
 	</setup>
 	<setup key="EPGInfobar" title="InfoBar EPG Settings" level="2" showOpenWebif="yes">
 		<item level="2" text="General Appearance" />
-		<item level="2" text="View mode" description="This option allows you to set the layout view (Text or Graphics)." indent="1">config.epgselection.infobar.type_mode</item>
+		<item level="2" text="View mode" description="Select if the layout will use a text display or if it will use graphical backgrounds." indent="1">config.epgselection.infobar.type_mode</item>
 		<item level="2" text="Service preview mode" description="Select 'Yes' to enable preview of channels while in the EPG list." indent="1">config.epgselection.infobar.preview_mode</item>
 		<item level="2" text="Start mode" description="Select which service to use when opening the EPG." indent="1">config.epgselection.infobar.browse_mode</item>
-		<item level="2" text="Skip empty services" description="When enabled, services without EPG data will be hidden." indent="1">config.epgselection.overjump</item>
+		<item level="2" text="Hide empty services" description="When enabled, services without EPG data will be hidden." indent="1">config.epgselection.overjump</item>
 		<item level="2" text="Sort list by" description="You can have the list sorted by time or alphanumerical." indent="1">config.epgselection.sort</item>
 		<item level="2" text="Layout And Fonts" />
-		<item level="2" text="Number of rows" description="Configure the number of rows shown." indent="1">config.epgselection.infobar.itemsperpage</item>
+		<item level="2" text="Number of rows" description="Select the number of services to be shown in the list." indent="1">config.epgselection.infobar.itemsperpage</item>
 		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size." indent="1">config.epgselection.infobar.eventfs</item>
 		<item level="2" text="Button Assignments" />
 		<item level="2" text="OK" description="Select the action that this button will perform." indent="1">config.epgselection.infobar.btn_ok</item>
@@ -374,16 +374,16 @@
 	</setup>
 	<setup key="EPGInfobarGraphical" title="Graphical InfoBar EPG Settings" level="2" showOpenWebif="yes">
 		<item level="2" text="General Appearance" />
-		<item level="2" text="View mode" description="This option allows you to set the layout view (Text or Graphics)." indent="1">config.epgselection.infobar.type_mode</item>
+		<item level="2" text="View mode" description="Select if the layout will use a text display or if it will use graphical backgrounds." indent="1">config.epgselection.infobar.type_mode</item>
 		<item level="2" text="Service preview mode" description="Select 'Yes' to enable preview of channels while in the EPG list." indent="1">config.epgselection.infobar.preview_mode</item>
 		<item level="2" text="Start mode" description="Select which service to use when opening the EPG." indent="1">config.epgselection.infobar.browse_mode</item>
 		<item level="2" text="Service Title mode" description="Configure to show channel names, numbers, picons or all three inside EPG." indent="1">config.epgselection.infobar.servicetitle_mode</item>
 		<item level="2" text="Navigation And Time Range" />
-		<item level="2" text="Skip empty services" description="When enabled, services without EPG data will be hidden." indent="1">config.epgselection.overjump</item>
+		<item level="2" text="Hide empty services" description="When enabled, services without EPG data will be hidden." indent="1">config.epgselection.overjump</item>
 		<item level="2" text="Base time" description="Choose time interval to which the graphics will be rounded off." indent="1">config.epgselection.infobar.roundto</item>
 		<item level="2" text="Prime time" description="Set the desired primetime (hour and minute)." indent="1">config.epgselection.infobar.primetime</item>
 		<item level="2" text="Layout And Fonts" />
-		<item level="2" text="Number of rows" description="Configure the number of rows shown." indent="1">config.epgselection.infobar.itemsperpage</item>
+		<item level="2" text="Number of rows" description="Select the number of services to be shown in the list." indent="1">config.epgselection.infobar.itemsperpage</item>
 		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size." indent="1">config.epgselection.infobar.eventfs</item>
 		<item level="2" text="Alignment of events" description="Configure the alignment of events." indent="1">config.epgselection.grid.event_alignment</item>
 		<item level="2" text="Service font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size." indent="1">config.epgselection.infobar.servfs</item>
@@ -420,9 +420,9 @@
 		<item level="2" text="Start mode" description="Select which service to use when opening the EPG." indent="1">config.epgselection.multi.browse_mode</item>
 		<item level="2" text="Service preview mode" description="Select 'Yes' to enable preview of channels while in the EPG list." indent="1">config.epgselection.multi.preview_mode</item>
 		<item level="2" text="Show bouquet on launch" description="Select 'Yes' to show the bouquet selection screen every time you open the EPG." indent="1">config.epgselection.multi.showbouquet</item>
-		<item level="2" text="Skip empty services" description="When enabled, services without EPG data will be hidden." indent="1">config.epgselection.overjump</item>
+		<item level="2" text="Hide empty services" description="When enabled, services without EPG data will be hidden." indent="1">config.epgselection.overjump</item>
 		<item level="2" text="Layout And Fonts" />
-		<item level="2" text="Number of rows" description="Configure the number of rows shown." indent="1">config.epgselection.multi.itemsperpage</item>
+		<item level="2" text="Number of rows" description="Select the number of services to be shown in the list." indent="1">config.epgselection.multi.itemsperpage</item>
 		<!-- <item level="2" text="Service width (characters)" description="Width of the service name column in characters." indent="1">config.epgselection.multi.servicewidth</item> Not implemented yet. -->
 		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size." indent="1">config.epgselection.multi.eventfs</item>
 		<item level="2" text="Button Assignments" />
@@ -447,7 +447,7 @@
 		<item level="2" text="General Appearance" />
 		<item level="2" text="Sort list by" description="You can have the list sorted by time or alphanumerical." indent="1">config.epgselection.sort</item>
 		<item level="2" text="Layout And Fonts" />
-		<item level="2" text="Number of rows" description="Configure the number of rows shown." indent="1">config.epgselection.single.itemsperpage</item>
+		<item level="2" text="Number of rows" description="Select the number of services to be shown in the list." indent="1">config.epgselection.single.itemsperpage</item>
 		<item level="2" text="Event font size" description="Configure the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size." indent="1">config.epgselection.single.eventfs</item>
 	</setup>
 	<setup key="EPGVertical" title="VerticalEPG Settings" level="2" showOpenWebif="yes">
@@ -458,7 +458,7 @@
 		<item level="2" text="Show parting lines" description="Show parting lines between events." indent="1">config.epgselection.vertical.showlines</item>
 		<item level="2" text="Show marked events" description="Show marked events in all rows." indent="1">config.epgselection.vertical.eventmarker</item>
 		<item level="2" text="Layout And Fonts" />
-		<item level="2" text="Number of rows" description="Configure the number of rows shown." indent="1">config.epgselection.vertical.itemsperpage</item>
+		<item level="2" text="Number of rows" description="Select the number of services to be shown in the list." indent="1">config.epgselection.vertical.itemsperpage</item>
 		<item level="2" text="Font size" description="Configure the font size relative to default size, so 1 increases by 1 point size, and -1 decreases by 1 point size." indent="1">config.epgselection.vertical.eventfs</item>
 		<item level="2" text="Prime Time" />
 		<item level="2" text="Prime time" description="Set the desired primetime (hour and minute)." indent="1">config.epgselection.vertical.primetime</item>

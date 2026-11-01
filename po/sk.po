@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-10-26 13:51+0100\n"
-"PO-Revision-Date: 2026-10-30 12:17+0000\n"
+"PO-Revision-Date: 2026-11-01 11:56+0000\n"
 "Last-Translator: Marián Hikaník <marian-sk@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -3113,10 +3113,10 @@ msgid "BLUDISC RECORDABLE"
 msgstr "BLUDISC – ZAPISOVATEĽNÝ"
 
 msgid "BLUE"
-msgstr "Modré tlačidlo"
+msgstr "MODRÉ tlačidlo"
 
 msgid "BLUE (Long press)"
-msgstr "Modré tlačidlo – dlho"
+msgstr "MODRÉ tlačidlo (dlhé stlačenie)"
 
 msgid "BLUE switch: BLUE/BLUE long"
 msgstr "Modré tlačidlo: krátke/dlhé stlačenie"
@@ -4302,7 +4302,7 @@ msgid "Channel number"
 msgstr "Číslo kanála"
 
 msgid "Service preview mode"
-msgstr "Režim náhľadu kanála"
+msgstr "Režim náhľadu stanice/služby"
 
 msgid "Channel selection configuration"
 msgstr "Konfigurácia výberu kanála"
@@ -5094,7 +5094,7 @@ msgstr "Nastavte počet dní, po ktorých sa položky v koši automaticky odstr�
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "Nastavte počet dní na uchovanie starých časovačov pred ich automatickým odstránením zo zoznamu."
 
-msgid "Configure the number of rows shown."
+msgid "Select the number of services to be shown in the list."
 msgstr "Nastavte počet zobrazených riadkov."
 
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
@@ -9644,10 +9644,10 @@ msgid "G"
 msgstr "G"
 
 msgid "GREEN"
-msgstr "Zelené tlačidlo"
+msgstr "ZELENÉ tlačidlo"
 
 msgid "GREEN (Long press)"
-msgstr "Zelené tlačidlo – dlho"
+msgstr "ZELENÉ tlačidlo (dlhé stlačenie)"
 
 msgid "GStreamer debug log category *"
 msgstr "Kategória denníka pre ladenie GStreamer *"
@@ -10834,10 +10834,10 @@ msgid "Info"
 msgstr "Info"
 
 msgid "INFO (Long press)"
-msgstr "Tlačidlo Info (dlho)"
+msgstr "Tlačidlo INFO (dlhé stlačenie)"
 
 msgid "Info button (short)"
-msgstr "Tlačidlo Info (krátko)"
+msgstr "Tlačidlo Info (krátke stlačenie)"
 
 msgid "Info file checksum"
 msgstr "Kontrolný súčet"
@@ -13880,7 +13880,7 @@ msgid "OK"
 msgstr "OK"
 
 msgid "OK (Long press)"
-msgstr "Tlačidlo OK (dlho)"
+msgstr "OK (dlhé stlačenie)"
 
 msgid "OK button (short)"
 msgstr "Tlačidlo OK (krátko)"
@@ -15923,13 +15923,13 @@ msgid "REC symbol"
 msgstr "Symbol REC"
 
 msgid "RED"
-msgstr "Červené tlačidlo"
+msgstr "ČERVENÉ tlačidlo"
 
 msgid "RED button / HbbTV"
 msgstr "ČERVENÉ tlačidlo/HbbTV"
 
 msgid "RED (Long press)"
-msgstr "Červené – dlho"
+msgstr "ČERVENÉ (dlhé stlačenie)"
 
 msgid "RF Output Settings"
 msgstr "RF výstup"
@@ -17793,7 +17793,7 @@ msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageD
 msgstr "Vyberte 'áno', ak sa majú tlačidlá DOĽAVA/DOPRAVA používať na presun o stránku hore/dolu, keď sú tlačidlá DOĽAVA/DOPRAVA inak nedefinované. Táto voľba poskytuje staršie navigovanie pre používateľov, ktorí ho preferujú."
 
 msgid "When enabled, services without EPG data will be hidden."
-msgstr "Ak je nastavené na 'Áno', kanály bez dostupného EPG sa nezobrazia."
+msgstr "Ak je aktivované, kanály bez EPG údajov budú skryté."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
 msgstr "Voľba 'Áno' skryje názov a IP adresu servera."
@@ -19479,7 +19479,7 @@ msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as f
 msgstr "Ak je aktivovaná možnosť 'Áno', zapne sa odosielanie rovnakých príkazov do TV pre vypnutie, ako aj pre normálny pohotovostný režim."
 
 msgid "Select the action that this button will perform."
-msgstr "Nastavte, čo sa má vykonať po stlačení týchto tlačidiel."
+msgstr "Vyberte akciu po stlačení tohto tlačidla."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Pre ladenie hlavnej príčiny zobrazenia prvku spinner, nastavte túto voľbu na Áno."
@@ -20610,7 +20610,7 @@ msgstr "Preskočiť dozadu %s%%"
 msgid "Skip backward (enter time)"
 msgstr "Preskočiť dozadu (zadajte čas)"
 
-msgid "Skip empty services"
+msgid "Hide empty services"
 msgstr "Preskočiť prázdne stanice"
 
 #, python-format
@@ -22790,7 +22790,7 @@ msgstr "Nastavenie hodnoty odsadenia pre rôzne rozlíšenia letterboxu."
 msgid "This option allows you to set the Auto Volume Level output."
 msgstr "Táto voľba umožňuje nastavenie automatickej úrovne hlasitosti výstupu."
 
-msgid "This option allows you to set the layout view (Text or Graphics)."
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
 msgstr "Nastavenie zobrazenia rozloženia(textové/grafické)."
 
 msgid "This option allows you to switch Audio to Bluetooth speakers."
@@ -25443,7 +25443,7 @@ msgid "YELLOW"
 msgstr "ŽLTÉ tlačidlo"
 
 msgid "YELLOW (Long press)"
-msgstr "ŽLTÉ – dlho"
+msgstr "ŽLTÉ (dlhé stlačenie)"
 
 msgid "Year"
 msgstr "Rok"
