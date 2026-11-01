@@ -171,7 +171,7 @@ class InputDeviceSetup(Setup):
 
 
 class RemoteControlType(Setup):
-	if BoxInfo.getItem("brand") in ("broadmedia", "octagon", "odin", "protek", "ultramini") or BoxInfo.getItem("machinebuild") in ("et7000", "et7100", "et7200", "et7500", "et7x00", "et8500", "et1x000", "et13000"):
+	if BoxInfo.getItem("brand") in ("broadmedia", "octagon", "odin", "protek", "ultramini") or BoxInfo.getItem("machinebuild") in ("et7000", "et7100", "et7200", "et7500", "et7x00", "et8500") or BoxInfo.getItem("model") in ("et1x000", "et13000"):
 		rcList = [
 			("0", _("Default")),
 			("3", "MaraM9"),
