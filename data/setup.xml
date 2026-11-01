@@ -165,10 +165,18 @@
 			<item level="0" text="Date Format" />
 			<item level="0" text="Date style" description="Select the style for displaying dates." indent="1">config.usage.date.layout</item>
 			<item level="0" text="Day display style" description="Select the display style for day of the week. The screen display will be based on your choice but can be influenced by the skin." indent="1">config.usage.date.dayFormat</item>
-			<item level="0" text="Date display style" description="Select the display style for dates. The screen display will be based on your choices but can be influenced by the skin." indent="1">config.usage.date.dateFormat</item>
-			<item level="0" text="Month display style" description="Select the display style for months. The screen display will be based on your choices but can be influenced by the skin." indent="1">config.usage.date.monthFormat</item>
 			<item level="0" text="Day separator" description="Select the separator between the day and the date elements." indent="1" conditional="config.usage.date.dayFormat.value">config.usage.date.daySeparator</item>
+			<if conditional="config.usage.date.layout.value == '%A+%m=%d#%Y'">
+				<item level="0" text="Month display style" description="Select the display style for months. The screen display will be based on your choices but can be influenced by the skin." indent="1">config.usage.date.monthFormat</item>
+			<else />
+				<item level="0" text="Date display style" description="Select the display style for dates. The screen display will be based on your choices but can be influenced by the skin." indent="1">config.usage.date.dateFormat</item>
+			</if>
 			<item level="0" text="First separator" description="Select the separator between the first two date elements." indent="1">config.usage.date.firstSeparator</item>
+			<if conditional="config.usage.date.layout.value == '%A+%m=%d#%Y'">
+				<item level="0" text="Date display style" description="Select the display style for dates. The screen display will be based on your choices but can be influenced by the skin." indent="1">config.usage.date.dateFormat</item>
+			<else />
+				<item level="0" text="Month display style" description="Select the display style for months. The screen display will be based on your choices but can be influenced by the skin." indent="1">config.usage.date.monthFormat</item>
+			</if>
 			<item level="0" text="Second separator" description="Select the separator between the second two date elements." indent="1">config.usage.date.secondSeparator</item>
 			<item level="0" text="Suffix character" description="Select the suffix character to be appended to the date string. This is used for some locales." indent="1">config.usage.date.suffix</item>
 			<item level="0" text="Time separator" description="Select the separator between the date and the time elements." indent="1">config.usage.date.timeSeparator</item>
@@ -176,7 +184,7 @@
 		<if requires="config.usage.time.enabled">
 			<item level="0" text="Time Format" />
 			<item level="0" text="Hour display style" description="Select the display style for hours/times." indent="1">config.usage.time.hourFormat</item>
-			<item level="0" text="Meridiem (AM/PM) display" description="Select the AM/PM indication for a 12 hour clock. This is ignored for a 24 hour clock." indent="1" conditional="config.usage.time.hourFormat.value in ('%-I', '%l', '%I')">config.usage.time.meridiemFormat</item>
+			<item level="0" text="Meridiem (AM/PM) display" description="Select the AM/PM indication for a 12 hour clock. This is ignored for a 24 hour clock." indent="1" conditional="config.usage.time.meridiemActive.value">config.usage.time.meridiemFormat</item>
 			<item level="0" text="Display seconds" description="When enabled, seconds will be shown in time displays. The seconds display will be based on your selection but will be influenced by code and space requirements and the skin." indent="1">config.usage.time.secondsFormat</item>
 			<item level="0" text="Time separator" description="Select the separator between the time elements." indent="1">config.usage.time.separator</item>
 		</if>

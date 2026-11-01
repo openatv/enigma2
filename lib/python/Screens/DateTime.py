@@ -51,10 +51,10 @@ class DateTime(Setup):
 		config.usage.time.meridiemFormat.save()  # Save this value in case it is hidden.
 		Setup.keySave(self)
 
-	def keyCancel(self):
+	def cancelConfirmed(self):
 		config.usage.date.daySeparator.cancel()  # Cancel any changes to this value in case it is hidden.
 		config.usage.time.meridiemFormat.cancel()  # Cancel any changes to this value in case it is hidden.
-		Setup.keyCancel(self)
+		Setup.cancelConfirmed(self)
 
 	def keyUseGeolocation(self):
 		def keyUseGeolocationCallback(geolocationData):

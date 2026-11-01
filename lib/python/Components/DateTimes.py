@@ -2,7 +2,7 @@ from locale import AM_STR, PM_STR, nl_langinfo
 from time import localtime, strftime
 
 from skin import onReload as skinOnReload, parameters
-from Components.config import ConfigBoolean, ConfigSelection, ConfigSubsection, ConfigText, NoSave, config
+from Components.config import ConfigBoolean, ConfigSelection, ConfigSubsection, ConfigText, NoSave, config, setOnSaveCallback
 
 
 class DateTimes:
@@ -107,6 +107,7 @@ class DateTimes:
 		self.updateDatesAndTimes(init=True)
 		if self.updateDatesAndTimes not in skinOnReload:
 			skinOnReload.append(self.updateDatesAndTimes)
+		setOnSaveCallback("DateTime", self.updateDatesAndTimes)  # Rebuild the formats when the settings are saved via OpenWebif.
 
 	def updateDatesAndTimes(self, init=False):
 		try:
@@ -130,10 +131,11 @@ class DateTimes:
 			self.dateNoDayShortMonth = date.layout.value.replace("%A+", "").replace("%d", date.dateFormat.value).replace("%m", "%b").replace("=", firstSeparator).replace("#", secondSeparator)
 			self.dateNoDayShortMonthNoYear = date.layout.value.replace("%A+", "").replace("%d", date.dateFormat.value).replace("%m", "%b").replace("#%Y", "").replace("%Y=", "").replace("=", firstSeparator).replace("#", secondSeparator)
 			self.dateNoYear = date.layout.value.replace("%A", date.dayFormat.value).replace("+", daySeparator).replace("%d", date.dateFormat.value).replace("%m", date.monthFormat.value).replace("#%Y", "").replace("%Y=", "").replace("=", firstSeparator).replace("#", secondSeparator)
-			self.dateShortDay = date.layout.value.replace("%A", "%a").replace("+", daySeparator).replace("%d", date.dateFormat.value).replace("%m", date.monthFormat.value).replace("=", firstSeparator).replace("#", secondSeparator)
-			self.dateShortDayNoMonthNoYear = f"%a{daySeparator}{config.usage.date.dateFormat.value}"
-			self.dateShortDayShortMonth = date.layout.value.replace("%A", "%a").replace("+", daySeparator).replace("%d", date.dateFormat.value).replace("%m", "%b").replace("=", firstSeparator).replace("#", secondSeparator)
-			self.dateShortDayShortMonthNoYear = date.layout.value.replace("%A", "%a").replace("+", daySeparator).replace("%d", date.dateFormat.value).replace("%m", "%b").replace("#%Y", "").replace("%Y=", "").replace("=", firstSeparator).replace("#", secondSeparator)
+			shortDaySeparator = date.daySeparator.value.replace("_", " ")  # The short day formats always show the day.
+			self.dateShortDay = date.layout.value.replace("%A", "%a").replace("+", shortDaySeparator).replace("%d", date.dateFormat.value).replace("%m", date.monthFormat.value).replace("=", firstSeparator).replace("#", secondSeparator)
+			self.dateShortDayNoMonthNoYear = f"%a{shortDaySeparator}{config.usage.date.dateFormat.value}"
+			self.dateShortDayShortMonth = date.layout.value.replace("%A", "%a").replace("+", shortDaySeparator).replace("%d", date.dateFormat.value).replace("%m", "%b").replace("=", firstSeparator).replace("#", secondSeparator)
+			self.dateShortDayShortMonthNoYear = date.layout.value.replace("%A", "%a").replace("+", shortDaySeparator).replace("%d", date.dateFormat.value).replace("%m", "%b").replace("#%Y", "").replace("%Y=", "").replace("=", firstSeparator).replace("#", secondSeparator)
 			timeSeparator = date.timeSeparator.value.replace("_", " ")
 		else:
 			defaults = self.DEFAULTS.get(config.misc.locale.value, self.DEFAULTS_US)

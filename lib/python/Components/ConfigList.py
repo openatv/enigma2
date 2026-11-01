@@ -528,11 +528,11 @@ class ConfigListScreen:
 		self.closeConfigList((True,))
 
 	def closeConfigList(self, closeParameters=()):
+		self.closeParameters = closeParameters
 		if self["config"].isChanged():
-			self.closeParameters = closeParameters
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, self.cancelMsg, default=False, type=MessageBox.TYPE_YESNO)
 		else:
-			self.close(*closeParameters)
+			self.cancelConfirmed()
 
 	def cancelConfirm(self, result):
 		if not result:
@@ -542,6 +542,9 @@ class ConfigListScreen:
 				item[1].cancel()
 		if not hasattr(self, "closeParameters"):
 			self.closeParameters = ()
+		self.cancelConfirmed()
+
+	def cancelConfirmed(self):  # This method allows sub classes to hook on the final decision to cancel changes.
 		self.close(*self.closeParameters)
 
 	def createSummary(self):  # This should not be required if ConfigList is invoked via Setup (as it should).
