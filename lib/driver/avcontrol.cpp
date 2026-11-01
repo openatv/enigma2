@@ -36,6 +36,7 @@ const char *proc_videoaspect_r = "/sys/class/video/screen_mode"; // NOSONAR
 const char *proc_videoaspect_w = "/sys/class/video/screen_mode"; // NOSONAR
 const char *proc_osd_alpha = "/sys/class/graphics/fb0/osd_plane_alpha";	 // NOSONAR
 const char *proc_hdmi_attr = "/sys/class/amhdmitx/amhdmitx0/attr";	 // NOSONAR
+const char *proc_hdmi_phy = "/sys/class/amhdmitx/amhdmitx0/phy";	 // NOSONAR
 #else
 const char *proc_policy169 = "/proc/stb/video/policy2";		 // NOSONAR
 const char *proc_policy43 = "/proc/stb/video/policy";		 // NOSONAR
@@ -429,6 +430,14 @@ void eAVControl::setVideoMode(const std::string &newMode, int flags) const
 {
 	std::string driverMode = getDriverVideoMode(newMode);
 #ifdef DREAMNEXTGEN
+	if (!m_encoder_active && m_hdmi_phy_off)
+	{
+		if (flags & FLAGS_DEBUG)
+			eDebug("[%s] %s: ignoring '%s' while HDMI output is disabled", __MODULE__, "setVideoMode", driverMode.c_str());
+		return;
+	}
+#endif
+#ifdef DREAMNEXTGEN
 	writeHDMIColorFormat(driverMode, flags);
 #endif
 #ifdef VIDEO_MODE_50
@@ -784,6 +793,26 @@ void eAVControl::setInput(const std::string &newMode, int flags)
 
 #ifdef DREAMNEXTGEN
 	m_encoder_active = newMode == "encoder";
+	// Switch off only the HDMI transmitter. The video output keeps its vsync,
+	// a decoder running in standby (e.g. EPG refresh) would stall without it.
+	if (newMode == "off")
+	{
+		if (!m_hdmi_phy_off && CFile::write(proc_hdmi_phy, "0", __MODULE__, flags) >= 0)
+		{
+			m_hdmi_phy_off = true;
+			if (flags & FLAGS_DEBUG)
+				eDebug("[%s] %s: HDMI output disabled", __MODULE__, "setInput");
+		}
+	}
+	else if (m_encoder_active && m_hdmi_phy_off)
+	{
+		if (CFile::write(proc_hdmi_phy, "1", __MODULE__, flags) >= 0)
+		{
+			m_hdmi_phy_off = false;
+			if (flags & FLAGS_DEBUG)
+				eDebug("[%s] %s: HDMI output enabled", __MODULE__, "setInput");
+		}
+	}
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: %s", __MODULE__, "setInput", newMode.c_str());
 #else
