@@ -116,7 +116,6 @@ private:
 	std::string m_video_mode_50;
 	std::string m_video_mode_60;
 	std::string m_videomode_choices;
-	std::string m_standby_video_mode;
 	std::string m_hdmi_colordepth = "auto";
 
 	bool m_b_has_proc_osd_alpha;
