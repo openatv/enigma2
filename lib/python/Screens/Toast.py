@@ -8,7 +8,7 @@ from Screens.Screen import Screen
 
 class ToastScreen(Screen):
 	skin = """
-	<screen name="Toast" title="Toast Message" position="center,500" size="65,55" backgroundColors="#00000000,#00FFAF00,#00FF0000" expand="center" foregroundColors="#00FFFFFF,#00000000,#00FFFFFF" flags="wfNoBorder,wfModal" maxWidth="800" resolution="1280,720" widgetBorderColors="#00FFFFFF,#00000000,#00FFFFFF" zPosition="101">
+	<screen name="Toast" title="Toast Message" position="center,e-75" size="65,55" backgroundColors="#00000000,#00FFAF00,#00FF0000" expand="up" foregroundColors="#00FFFFFF,#00000000,#00FFFFFF" flags="wfNoBorder,wfModal" maxWidth="800" resolution="1280,720" widgetBorderColors="#00FFFFFF,#00000000,#00FFFFFF" zPosition="101">
 		<widget name="background" position="0,0" size="e,e" widgetBorderWidth="2" />
 		<widget name="glyph" position="10,10" size="35,35" font="enigma2icons;35" horizontalAlignment="center" verticalAlignment="center" />
 		<widget name="text" position="55,10" size="0,35" font="Regular;25" horizontalAlignment="left" verticalAlignment="center" wrap="on" />

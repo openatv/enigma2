@@ -567,8 +567,9 @@ class Menu(Screen, ProtectedScreen):
 			else:
 				self.nextNumberTimer.start(1500, True)
 		else:
-			if hasattr(self.session, "infobar") and self.session.infobar:
-				self.session.infobar.showUnhandledKey()
+			showUnhandledKey = getattr(getattr(self.session, "infobar", None), "showUnhandledKey", None)  # PowerKey sets session.infobar for the shutdown menu.
+			if showUnhandledKey:
+				showUnhandledKey()
 			self.resetNumberKey()
 
 	def resetNumberKey(self):

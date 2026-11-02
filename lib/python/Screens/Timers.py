@@ -1025,7 +1025,9 @@ class RecordTimerOverview(TimerOverviewBase):
 			return
 		if result[0]:
 			entry = result[1]
-			if entry.external:
+			if entry.external_prev != entry.external:  # Timer moved between local and fallback tuner.
+				self.fallbackTimer.moveTimer(entry, lambda newEntry: self.addTimerCallback((True, newEntry)), self.reloadTimerList)
+			elif entry.external:
 				self.fallbackTimer.editTimer(entry, self.reloadTimerList)
 			else:
 				timerSanityCheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, entry)
@@ -1460,6 +1462,8 @@ class SchedulerEdit(Setup):
 
 
 class RecordTimerEdit(Setup):
+	fallbackDefault = True
+
 	def __init__(self, session, timer):
 		self.timer = timer
 		self.timer.service_ref_prev = self.timer.service_ref
@@ -1470,8 +1474,9 @@ class RecordTimerEdit(Setup):
 		self.fallbackInfo = None
 		self.initEndTime = True
 		self.session = session  # We need session before createConfig.
-		if not self.timer.external_prev and config.usage.remote_fallback_external_timer.value and config.usage.remote_fallback.value and config.usage.remote_fallback_external_timer_default.value:
+		if self.fallbackDefault and not self.timer.external_prev and config.usage.remote_fallback_external_timer.value and config.usage.remote_fallback.value and config.usage.remote_fallback_external_timer_default.value:
 			self.timer.external_prev = self.timer not in session.nav.RecordTimer.timer_list and self.timer not in session.nav.RecordTimer.processed_timers
+			self.timer.external = self.timer.external_prev
 		self.createConfig()
 		if self.timer.external:
 			FallbackTimerDirs(self, self.fallbackResult)
@@ -1596,8 +1601,11 @@ class RecordTimerEdit(Setup):
 			callback(self)
 
 	def changedEntry(self):
-		Setup.changedEntry(self)
 		current = self["config"].getCurrent()[1]
+		if current == self.timerFallback and self.timerFallback.value and not self.timer.external_prev and self.timer.state in (TimerEntry.StatePrepared, TimerEntry.StateRunning):
+			self.timerFallback.value = False  # A prepared or running recording can not be moved.
+			self.session.open(MessageBox, _("A prepared or running timer can not be moved to the fallback tuner."), MessageBox.TYPE_ERROR)
+		Setup.changedEntry(self)
 		if current == self.timerFallback:
 			self.timer.external = self.timerFallback.value
 			self.selectionChanged()  # Force getSpace().
@@ -1850,6 +1858,8 @@ class RecordTimerEdit(Setup):
 
 
 class InstantRecordTimerEdit(RecordTimerEdit):
+	fallbackDefault = False  # Instant timers are always local.
+
 	def __init__(self, session, timer, zap=0, zaprecord=0):
 		RecordTimerEdit.__init__(self, session, timer)
 		self.timer.justplay = zap

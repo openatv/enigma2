@@ -149,6 +149,8 @@ class ServicePosition(Poll, Converter):
 		text = ""
 		if self.getSeek() is not None:
 			if self.type in (self.TYPE_SUMMARY, self.TYPE_ENDTIME):
+				if not self.length or self.length < 0:
+					return ""
 				sVal = self.position / 90000
 				eVal = (self.length / 90000) - sVal
 				if self.type == self.TYPE_SUMMARY:
@@ -163,8 +165,6 @@ class ServicePosition(Poll, Converter):
 					lVal /= 90000
 					pVal /= 90000
 					rVal /= 90000
-				if lVal == 0 and pVal > 0:  # Set position to 0 if length = 0 and pos > 0.
-					pVal = 0
 				if self.negate:
 					lVal = -lVal
 					pVal = -pVal
@@ -198,6 +198,8 @@ class ServicePosition(Poll, Converter):
 									case _:
 										text = f"{signLength}{formatValue(lVal)}"
 							case self.TYPE_POSITION | self.TYPE_REMAINING:
+								if lVal == 0 and (displayMode == "5" or remainingMode != "1"):
+									return ""  # Remaining time and percentages require a known duration.
 								match remainingMode:
 									case "1":  # Elapsed.
 										text = f"{signPosition}{formatValue(pVal)}"
@@ -214,6 +216,13 @@ class ServicePosition(Poll, Converter):
 					except ZeroDivisionError:
 						text = ""
 				else:  # Skin setting.
+					usesRemaining = baseType == self.TYPE_REMAINING
+					if self.detailed and self.showHours:
+						usesRemaining = baseType == self.TYPE_POSITION
+					elif not self.detailed and self.vfd and not isVfd:
+						usesRemaining = True
+					if lVal == 0 and usesRemaining:
+						return ""
 					noSeconds = self.showNoSeconds or (self.showNoSeconds2 and not isVfd)
 					# FIXME: The VFD skin setting checks TYPE_REMAINING instead of TYPE_VFD_REMAINING, so VFDRemaining
 					# is only shown with ShowNoSeconds and without ShowHours.

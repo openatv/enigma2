@@ -13,6 +13,11 @@
 #define FLAGBIT_TIMESHIFT  (1 << 0)
 #define FLAGBIT_RAM_MODE   (1 << 1)
 
+// Data written to the DVR is split into parts of at most this size: the
+// DVR driver copies each write into one contiguous kernel buffer, which
+// fails with ENOMEM for large blocks on fragmented memory.
+static const size_t MAX_DVR_WRITE = 32768;
+
 class iFilePushScatterGather
 {
 public:

@@ -209,8 +209,8 @@ class MultiBootManager(Screen, ProtectedScreen):
 						if slotData.get(boot) is None:
 							slotData[boot] = []
 						active = activeMsg if boot == bootCode and slot == slotCode else ""
-						device = slotInfo.get("device") or _("Unknown")
-						slotType = "eMMC" if "mmcblk" in device else "MTD" if "mtd" in device else "UBI" if "ubi" in device else "USB"
+						device = slotInfo.get("device") or ""
+						slotType = "eMMC" if "mmcblk" in device else "MTD" if "mtd" in device else "UBI" if "ubi" in device else "USB" if device.startswith("/dev/") else ""
 						slotData[boot].append(ChoiceEntryComponent("none" if boot else "", (slotMsg % (slot, slotType, slotInfo.get("imagename") or _("Unknown"), active), (slot, boot, status, slotInfo.get("ubi", False), active != ""))))
 				for bootCode in sorted(slotData.keys()):
 					if bootCode == "":
@@ -786,10 +786,13 @@ class GPTSlotManager(Setup):
 	def emmcSlotCount(self):
 		count = 0
 		try:
-			for entry in listdir("/dev/disk/by-partlabel"):
-				if entry == "dreambox-rootfs" or (entry.startswith("dreambox-rootfs") and entry[len("dreambox-rootfs"):].isdigit()):
-					if realpath(join("/dev/disk/by-partlabel", entry)).startswith("/dev/mmcblk0p"):
-						count += 1
+			for partition in listdir("/sys/block/mmcblk0"):
+				if partition.startswith("mmcblk0p"):
+					for line in fileReadLines(f"/sys/block/mmcblk0/{partition}/uevent", [], source=MODULE_NAME):
+						if line.startswith("PARTNAME="):
+							name = line[len("PARTNAME="):]
+							if name == "dreambox-rootfs" or (name.startswith("dreambox-rootfs") and name[len("dreambox-rootfs"):].isdigit()):
+								count += 1
 		except OSError:
 			pass
 		return count if count > 0 else 4

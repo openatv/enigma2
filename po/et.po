@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 19:43+0000\n"
+"POT-Creation-Date: 2026-11-01 20:39+0100\n"
 "PO-Revision-Date: 2026-08-16 15:55+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1501,6 +1501,9 @@ msgstr ""
 msgid "2"
 msgstr "2"
 
+msgid "2 tuners: 2 SAT sockets, 1 C/T socket"
+msgstr ""
+
 msgid "2nd InfoBar"
 msgstr "Teine inforiba"
 
@@ -1694,6 +1697,9 @@ msgid "A highlight on the remote control image shows which button the help refer
 msgstr ""
 
 msgid "A new storage device has been connected:"
+msgstr ""
+
+msgid "A prepared or running timer can not be moved to the fallback tuner."
 msgstr ""
 
 #, python-format
@@ -2048,14 +2054,8 @@ msgstr ""
 msgid "Add a RecordTimer"
 msgstr "Lisa salvestustaimer"
 
-msgid "Add a RecordTimer for current event"
-msgstr "Lisa käesolevale saatele salvestustaimer"
-
 msgid "Add a TV service to the Volume Offset list"
 msgstr ""
-
-msgid "Add a ZapTimer for current event"
-msgstr "Lisa käesolevale saatele kanalivahetustaimer"
 
 msgid "Add a ZapTimer for next event"
 msgstr "Lisa järgmisele saatele kanalivahetustaimer"
@@ -2087,8 +2087,8 @@ msgstr ""
 msgid "Add a timer for the current event"
 msgstr ""
 
-msgid "Add an AutoTimer for the current event"
-msgstr "Lisa käesolevale saatele autotaimer"
+msgid "Add an existing swap file"
+msgstr ""
 
 msgid "Add current directory to bookmarks"
 msgstr "Lisa kataloog järjehoidjatesse"
@@ -2167,12 +2167,6 @@ msgstr ""
 msgid "Add title"
 msgstr "Lisa pealkiri"
 
-msgid "Add/Remove Timer"
-msgstr "Lisa/eemalda taimer"
-
-msgid "Add/Remove a timer for the current event"
-msgstr "Lisa/eemalda taimer käesolevale saatele"
-
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr ""
 
@@ -2226,6 +2220,9 @@ msgid "Adult"
 msgstr "Täikasvanutele"
 
 msgid "Adult Audience, Strong Violence 15+"
+msgstr ""
+
+msgid "Adult Hits"
 msgstr ""
 
 msgid "Adult movie/Drama"
@@ -2590,6 +2587,9 @@ msgid "Animations"
 msgstr "Animatsioonid"
 
 msgid "Anonymize client IPs"
+msgstr ""
+
+msgid "Another swap operation is still running."
 msgstr ""
 
 msgid "Antarctica"
@@ -2984,9 +2984,6 @@ msgstr "Automaatne haakimine"
 msgid "AutoRefresh"
 msgstr ""
 
-msgid "AutoTimer"
-msgstr ""
-
 msgid "AutoUpdate"
 msgstr "Automaatne uuendamine"
 
@@ -3091,10 +3088,10 @@ msgstr "BER:"
 msgid "BLUDISC RECORDABLE"
 msgstr "KIRJUTATAV BLUDISC"
 
-msgid "BLUE button"
+msgid "BLUE"
 msgstr "Sinine nupp"
 
-msgid "BLUE long"
+msgid "BLUE (Long press)"
 msgstr "Sinine - pikk"
 
 msgid "BLUE switch: BLUE/BLUE long"
@@ -3723,9 +3720,17 @@ msgstr "CH%s"
 msgid "CHANGE BOUQUET"
 msgstr "LEMMIKNIMEKIRJA VAHETUS"
 
-#, fuzzy
-msgid "CHANNEL +/-"
-msgstr "Kanal 1"
+msgid "CHANNEL+"
+msgstr ""
+
+msgid "CHANNEL+ button (setup in menu)"
+msgstr ""
+
+msgid "CHANNEL-"
+msgstr ""
+
+msgid "CHANNEL- button (setup in menu)"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI seadistamine"
@@ -4187,9 +4192,6 @@ msgstr ""
 msgid "Change to TV services mode"
 msgstr ""
 
-msgid "Change to bouquet"
-msgstr "Vaheta lemmiknimekirja"
-
 msgid "Changed"
 msgstr ""
 
@@ -4289,9 +4291,6 @@ msgstr "Kanali nimi"
 
 msgid "Channel number"
 msgstr ""
-
-msgid "Channel preview mode"
-msgstr "Kanali eelvaatlus"
 
 msgid "Channel selection configuration"
 msgstr "Kanalivaliku seaded"
@@ -4540,6 +4539,9 @@ msgstr "Ringpolar parem"
 msgid "City"
 msgstr ""
 
+msgid "Classic Rock"
+msgstr ""
+
 msgid "Classical"
 msgstr ""
 
@@ -4633,12 +4635,6 @@ msgstr ""
 msgid "Close Task View"
 msgstr ""
 
-msgid "Close bouquet list"
-msgstr ""
-
-msgid "Close bouquet list."
-msgstr "Sulge lemmiknimekirjad."
-
 msgid "Close dialog"
 msgstr "Sulge aken"
 
@@ -4687,6 +4683,9 @@ msgstr ""
 msgid "Close the screen without saving any changes"
 msgstr ""
 
+msgid "Close the swap manager"
+msgstr ""
+
 msgid "Close the window"
 msgstr ""
 
@@ -4717,14 +4716,14 @@ msgstr "Valimiku nimi"
 msgid "Collection settings"
 msgstr "Valimiku seaded"
 
+msgid "College"
+msgstr ""
+
 msgid "Colombia"
 msgstr "Kolumbia"
 
 msgid "Color"
 msgstr "Värv"
-
-msgid "Color Button Assignments"
-msgstr ""
 
 msgid "Color format"
 msgstr "Värvi vorming"
@@ -5084,9 +5083,6 @@ msgstr "Määra päevade arv, pärast mida salvestised kustutatakse automaatselt
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "Määra päevade arv, pärast mida vana taimer kustutatakse automaatselt nimekirjast."
 
-msgid "Configure the number of rows shown."
-msgstr "Määra kuvatavate ridade arv."
-
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr "Määra võrguta dekodeerimise viiteaeg (ms). Määratud viiteaega jälgitakse iga CWP paarsuse muutusel."
 
@@ -5214,6 +5210,9 @@ msgstr "Seadista NTP server."
 
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "Seadista võrk ja vajuta otsingu alustamiseks OK"
+
+msgid "Configured in /etc/fstab. Starting or stopping here only changes the current session."
+msgstr ""
 
 msgid "Configures which video output connector will be used."
 msgstr "See valik määrab, millist ühenduspesa videoväljund kasutab."
@@ -5588,6 +5587,9 @@ msgstr "Loo ISO"
 msgid "Create Slots"
 msgstr ""
 
+msgid "Create Zap Timer"
+msgstr ""
+
 msgid "Create a directory"
 msgstr ""
 
@@ -5598,6 +5600,9 @@ msgid "Create a separate bouquet for radio services. When disabled, radio servic
 msgstr ""
 
 msgid "Create a settings backup"
+msgstr ""
+
+msgid "Create a swap file"
 msgstr ""
 
 msgid "Create a symbolic link"
@@ -5649,6 +5654,9 @@ msgstr ""
 msgid "Create swap"
 msgstr ""
 
+msgid "Create swap file"
+msgstr ""
+
 msgid "Create tar file of root file system."
 msgstr ""
 
@@ -5676,6 +5684,15 @@ msgstr ""
 
 msgid "Creating partition"
 msgstr "Partitsiooni loomine"
+
+msgid "Creating swap file. This can take several minutes."
+msgstr ""
+
+#, python-format
+msgid ""
+"Creating the swap file failed.\n"
+"%s"
+msgstr ""
 
 msgid "Credentials"
 msgstr ""
@@ -5712,6 +5729,9 @@ msgstr "Kuuba"
 msgid "Cult"
 msgstr ""
 
+msgid "Culture"
+msgstr ""
+
 msgid "Curacao"
 msgstr "Curaçao"
 
@@ -5722,6 +5742,9 @@ msgid "Current"
 msgstr ""
 
 msgid "Current 1/1"
+msgstr ""
+
+msgid "Current Affairs"
 msgstr ""
 
 msgid "Current CEC address"
@@ -6599,6 +6622,12 @@ msgstr "Kustuta kirje pleilistist"
 msgid "Delete saved play list"
 msgstr "Kustuta talletud pleilist"
 
+#, python-format
+msgid ""
+"Delete swap file '%s'?\n"
+"An active file will be stopped first. Its swap entry in /etc/fstab will also be removed."
+msgstr ""
+
 #, fuzzy
 msgid "Delete the character to the left of text cursor"
 msgstr "Kustuta teksti puhvri kursorist vasakule jääv tähemärk"
@@ -6630,6 +6659,9 @@ msgid "Delete the flash expander in the selected device"
 msgstr ""
 
 msgid "Delete the selected locally stored image"
+msgstr ""
+
+msgid "Delete the selected swap file"
 msgstr ""
 
 #, python-format
@@ -6771,6 +6803,10 @@ msgid "Device name:"
 msgstr "Seadme nimi:"
 
 msgid "Device number"
+msgstr ""
+
+#, python-format
+msgid "Device: %s"
 msgstr ""
 
 msgid "Devices"
@@ -7411,6 +7447,9 @@ msgstr ""
 msgid "Drop unconfigured satellites"
 msgstr ""
 
+msgid "Dual channel"
+msgstr ""
+
 msgid "Duplex"
 msgstr ""
 
@@ -7454,10 +7493,10 @@ msgstr ""
 msgid "EPG"
 msgstr "EPG"
 
-msgid "EPG Actions"
+msgid "EPG (Long press)"
 msgstr ""
 
-msgid "EPG Bouquet Actions"
+msgid "EPG Actions"
 msgstr ""
 
 msgid "EPG Cache Check"
@@ -7469,9 +7508,6 @@ msgstr ""
 msgid "EPG Data In Streams"
 msgstr ""
 
-msgid "EPG Display Actions"
-msgstr ""
-
 msgid "EPG Jump"
 msgstr ""
 
@@ -7479,9 +7515,6 @@ msgid "EPG Language"
 msgstr ""
 
 msgid "EPG Navigation Actions"
-msgstr ""
-
-msgid "EPG Other Actions"
 msgstr ""
 
 msgid "EPG Range And History"
@@ -7504,6 +7537,9 @@ msgid "EPG Sources"
 msgstr ""
 
 msgid "EPG Storage And Refresh"
+msgstr ""
+
+msgid "EPG button long (setup in menu)"
 msgstr ""
 
 msgid "EPG button mode"
@@ -7562,6 +7598,9 @@ msgid "East limit set"
 msgstr "Ida piir on määratud"
 
 msgid "Eastern satellites"
+msgstr ""
+
+msgid "Easy Listening"
 msgstr ""
 
 msgid "Easy listening"
@@ -9285,6 +9324,9 @@ msgstr "Kerimise lõplik viiteaeg"
 msgid "Finance"
 msgstr "Prantsusmaa"
 
+msgid "Finance/Business"
+msgstr ""
+
 msgid "Find Currently Playing Service"
 msgstr "Leia aktiivne kanal"
 
@@ -9422,6 +9464,9 @@ msgstr "Lõplik asukoht"
 msgid "Flush Cache and Rescan"
 msgstr ""
 
+msgid "Folk Music"
+msgstr ""
+
 msgid "Folk and Country"
 msgstr ""
 
@@ -9480,6 +9525,9 @@ msgstr "luba jõuga"
 msgid "Force progressive for streams and files"
 msgstr ""
 
+msgid "Foreign Language"
+msgstr ""
+
 msgid "Foreign countries/Expeditions"
 msgstr "välisriigid/ekspeditsioonid"
 
@@ -9518,6 +9566,10 @@ msgstr ""
 
 msgid "Free memory"
 msgstr "Vaba mälu"
+
+#, python-format
+msgid "Free space: %s"
+msgstr ""
 
 msgid "Free swap"
 msgstr ""
@@ -9595,6 +9647,9 @@ msgstr ""
 msgid "Full factory reset"
 msgstr ""
 
+msgid "Full path of the existing swap file"
+msgstr ""
+
 msgid "Full range (no clipping)"
 msgstr ""
 
@@ -9619,10 +9674,10 @@ msgstr "täiendõpe"
 msgid "G"
 msgstr "GB"
 
-msgid "GREEN button"
+msgid "GREEN"
 msgstr "Roheline nupp"
 
-msgid "GREEN long"
+msgid "GREEN (Long press)"
 msgstr "Roheline - pikk"
 
 msgid "GStreamer debug log category *"
@@ -9741,9 +9796,6 @@ msgstr "Saksa"
 
 msgid "Germany"
 msgstr "Saksamaa"
-
-msgid "Getting event information failed!"
-msgstr "Saateinfo hankimine nurjus!"
 
 msgid "Getting plugin information. Please wait..."
 msgstr "Nimekirja laadimine. Oota veidi."
@@ -10178,6 +10230,9 @@ msgstr "Peida punktiirjoon ekraani ülaservas"
 msgid "Hide any zap error messages."
 msgstr "Peida kanalivahetuse veateated."
 
+msgid "Hide empty services"
+msgstr "Tühje kanaleid ei kuvata"
+
 msgid "Hide error messages from the Common Interface module."
 msgstr ""
 
@@ -10391,11 +10446,11 @@ msgstr "IMDb"
 msgid "IMDb Search"
 msgstr "IMDb otsing"
 
-msgid "IMDb search for current event"
-msgstr "IMDB otsing käesolevale saatele"
-
 msgid "INFO"
 msgstr "INFO"
+
+msgid "INFO (Long press)"
+msgstr "Info nupp (pikk)"
 
 msgid "INFO button mode"
 msgstr "INFO nupu vajutus"
@@ -10839,12 +10894,6 @@ msgstr "Indoneesia"
 msgid "Info"
 msgstr "Info"
 
-msgid "Info button (long)"
-msgstr "Info nupp (pikk)"
-
-msgid "Info button (short)"
-msgstr "Info nupp (lühike)"
-
 msgid "Info file checksum"
 msgstr ""
 
@@ -11096,6 +11145,9 @@ msgstr ""
 msgid "Invalid location!"
 msgstr "Kehtetu asukoht"
 
+msgid "Invalid swap file size."
+msgstr ""
+
 # ScanSetup.py
 msgid "Invalid transponder data"
 msgstr "Vigased transponderi andmed"
@@ -11186,14 +11238,14 @@ msgstr ""
 msgid "Joined"
 msgstr ""
 
+msgid "Joint stereo"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Jordaania"
 
 msgid "Jump"
 msgstr ""
-
-msgid "Jump back 24 hours"
-msgstr "Hüpe 24 tundi tagasi"
 
 msgid "Jump back one day"
 msgstr ""
@@ -11203,9 +11255,6 @@ msgstr ""
 
 msgid "Jump first press in channel selection"
 msgstr "Valik esimesel nupuvajutusel"
-
-msgid "Jump forward 24 hours"
-msgstr "Hüpe 24 tundi edasi"
 
 msgid "Jump forward one day"
 msgstr ""
@@ -11228,14 +11277,8 @@ msgstr "Hüpe nimekirja lõppu"
 msgid "Jump to next marked position"
 msgstr "Hüpe järgmise märgini"
 
-msgid "Jump to next page or all up (setup in menu)"
-msgstr ""
-
 msgid "Jump to previous marked position"
 msgstr "Hüpe eelmise märgini"
-
-msgid "Jump to previous page or all down (setup in menu)"
-msgstr ""
 
 msgid "Jump to prime time"
 msgstr "Hüpe tippajale"
@@ -11630,6 +11673,9 @@ msgstr ""
 msgid "Legacy mode"
 msgstr ""
 
+msgid "Leisure"
+msgstr ""
+
 msgid "Leisure hobbies"
 msgstr "Vaba aeg ja hobid"
 
@@ -11667,6 +11713,9 @@ msgstr "Liechtenstein"
 #, fuzzy
 msgid "Lifestyle"
 msgstr "Kellaaja kuju"
+
+msgid "Light Classical"
+msgstr ""
 
 msgid "Light Grey"
 msgstr "Helehall"
@@ -12323,6 +12372,9 @@ msgstr "Media"
 msgid "Medicine/Physiology/Psychology"
 msgstr "meditsiin/füsioloogia/psühholoogia"
 
+msgid "Medium"
+msgstr ""
+
 msgid "Medium is not a writeable DVD!"
 msgstr "DVD ketas ei ole kirjutatav!"
 
@@ -12533,6 +12585,9 @@ msgstr "Mongoolia"
 msgid "Mongolian"
 msgstr "Mongoolia"
 
+msgid "Mono"
+msgstr ""
+
 msgid "Montenegro"
 msgstr "Montenegro"
 
@@ -12598,6 +12653,10 @@ msgid "Mount or unmount the selected share"
 msgstr ""
 
 msgid "Mount point"
+msgstr ""
+
+#, python-format
+msgid "Mount point: %s"
 msgstr ""
 
 msgid "Mount root file system."
@@ -12781,9 +12840,6 @@ msgstr ""
 
 msgid "Move to first line / screen in the panel"
 msgstr ""
-
-msgid "Move to home of list"
-msgstr "Liigu nimekirja kodukataloogi"
 
 msgid "Move to last item / screen"
 msgstr ""
@@ -13128,6 +13184,9 @@ msgstr "Namiibia"
 msgid "Narration"
 msgstr ""
 
+msgid "National Music"
+msgstr ""
+
 msgid "National music"
 msgstr ""
 
@@ -13157,9 +13216,6 @@ msgid "Navigate to the selected directory"
 msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
-msgstr ""
-
-msgid "Navigation And Button Assignments"
 msgstr ""
 
 msgid "Navigation And Time Range"
@@ -13677,6 +13733,9 @@ msgstr "Satituunerit ei leitud!"
 msgid "No supported DAB+ feeds are available for the satellite positions configured on this box."
 msgstr ""
 
+msgid "No swap files or partitions found. Use Create to add a swap file."
+msgstr ""
+
 msgid "No system softcam configured!"
 msgstr ""
 
@@ -13724,6 +13783,9 @@ msgstr ""
 msgid "No tuners are currently streaming."
 msgstr ""
 
+msgid "No unused swap file name is available."
+msgstr ""
+
 msgid "No update required!"
 msgstr "Uuendamine ei ole vajalik!"
 
@@ -13747,6 +13809,9 @@ msgid "No valid mount for '%s' found!"
 msgstr ""
 
 msgid "No valid region details were found"
+msgstr ""
+
+msgid "No writable ext2, ext3 or ext4 storage is available for a swap file."
 msgstr ""
 
 msgid "No, but restart from begin"
@@ -13830,6 +13895,9 @@ msgstr "Norra"
 msgid "Norwegian Nynorsk"
 msgstr "Norra"
 
+msgid "Nostalgia"
+msgstr ""
+
 #, fuzzy
 msgid "Not Classified"
 msgstr "Sidumata"
@@ -13868,6 +13936,9 @@ msgstr ""
 #, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "Kõvakettal pole piisavalt ruumi. Kustuta ebavajalik ja proovi uuesti. (vajalik %d MB, vaba %d MB)"
+
+msgid "Not enough free space for this swap file."
+msgstr ""
 
 msgid "Not found"
 msgstr ""
@@ -13966,11 +14037,8 @@ msgstr ""
 msgid "OK"
 msgstr "OK"
 
-msgid "OK button (long)"
+msgid "OK (Long press)"
 msgstr "OK (pikk)"
-
-msgid "OK button (short)"
-msgstr "OK nupp (lühike)"
 
 msgid "OK button mode"
 msgstr "OK nupu vajutus"
@@ -14083,6 +14151,9 @@ msgstr ""
 msgid "Ojibwa"
 msgstr ""
 
+msgid "Oldies"
+msgstr ""
+
 msgid "Olympic blue"
 msgstr ""
 
@@ -14146,6 +14217,9 @@ msgid "Only on startup"
 msgstr "Ainult alglaadimisel"
 
 msgid "Only one network share can be used as HDD replacement. Disable 'Use as HDD replacement' on the other share first."
+msgstr ""
+
+msgid "Only swap files can be deleted."
 msgstr ""
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
@@ -14475,6 +14549,9 @@ msgstr "Miski muu"
 msgid "Other Actions"
 msgstr "täiendõpe"
 
+msgid "Other Music"
+msgstr ""
+
 msgid "Other OSD Elements"
 msgstr ""
 
@@ -14588,6 +14665,9 @@ msgstr ""
 
 msgid "PIN code needed"
 msgstr "Vajalik on PIN-kood"
+
+msgid "PLAY"
+msgstr ""
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -14839,6 +14919,9 @@ msgstr ""
 msgid "Persian"
 msgstr "Pärsia"
 
+msgid "Personality"
+msgstr ""
+
 msgid "Personalize your Skin"
 msgstr "Kujunduse kohandamine"
 
@@ -14847,6 +14930,9 @@ msgstr "Peruu"
 
 msgid "Philippines"
 msgstr "Filipiinid"
+
+msgid "Phone In"
+msgstr ""
 
 msgid "PiP"
 msgstr "PiP"
@@ -14879,6 +14965,9 @@ msgstr ""
 msgid "Picon and service name"
 msgstr "Pikon ja kanali nimi"
 
+msgid "Picon and service number"
+msgstr ""
+
 msgid "Picon install location"
 msgstr ""
 
@@ -14895,6 +14984,9 @@ msgstr ""
 
 msgid "Picon width"
 msgstr "Pikoni laius"
+
+msgid "Picon, service number and service name"
+msgstr ""
 
 msgid "Picture In Picture"
 msgstr ""
@@ -15153,10 +15245,6 @@ msgstr "Vali lahutusvõime"
 msgid "Please select an aspect ratio..."
 msgstr "Vali kuvasuhe"
 
-#
-msgid "Please select device to use as swap file location"
-msgstr "Vali saalefaili asukoht"
-
 msgid "Please select medium to be scanned"
 msgstr "Vali andmekandja, millelt otsitakse"
 
@@ -15263,6 +15351,9 @@ msgstr ""
 msgid "Please wait while the plugin is updated."
 msgstr ""
 
+msgid "Please wait while the swap file is stopped and deleted."
+msgstr ""
+
 msgid "Please wait while unused locales/languages are purged..."
 msgstr ""
 
@@ -15285,6 +15376,9 @@ msgid "Please wait, loading picture..."
 msgstr ""
 
 msgid "Please wait, swap is being created. This could take a few minutes to complete."
+msgstr ""
+
+msgid "Please wait. Stopping swap can take a while."
 msgstr ""
 
 msgid "Please wait..."
@@ -15357,6 +15451,9 @@ msgid "Polish"
 msgstr "Poola"
 
 msgid "Politics"
+msgstr ""
+
+msgid "Pop Music"
 msgstr ""
 
 msgid "Popular culture/Traditional arts"
@@ -15673,10 +15770,6 @@ msgstr "Eelmine lehekülg"
 msgid "Previous channel page"
 msgstr "Eelmine lehekülg"
 
-#, fuzzy
-msgid "Previous/Next bouquet"
-msgstr "Eelmine/järgmine lehekülg"
-
 msgid "Previous/Next page"
 msgstr "Eelmine/järgmine lehekülg"
 
@@ -15695,14 +15788,12 @@ msgstr ""
 msgid "Prime time"
 msgstr "Tippaeg"
 
-msgid "Primetime hour"
-msgstr "Tippaja tund"
-
-msgid "Primetime minute"
-msgstr "Tippaja minut"
-
 msgid "Priority"
 msgstr "Prioriteet"
+
+#, python-format
+msgid "Priority: %d"
+msgstr ""
 
 msgid "Privacy level"
 msgstr ""
@@ -15756,7 +15847,7 @@ msgstr "Profiil: kohalik vastuvõtja"
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr ""
 
-msgid "Program type"
+msgid "Programme type (PTY)"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -15885,6 +15976,9 @@ msgid "Providers:"
 msgstr "Levitajad:"
 
 msgid "Proxy detected"
+msgstr ""
+
+msgid "Public"
 msgstr ""
 
 msgid "Public IP"
@@ -16044,14 +16138,20 @@ msgstr "REC sümbol kasutuses"
 msgid "REC symbol"
 msgstr "REC sümbol"
 
-msgid "RED button"
+msgid "RECORD"
+msgstr ""
+
+msgid "RECORD (Long press)"
+msgstr ""
+
+msgid "RED"
 msgstr "Punane nupp"
+
+msgid "RED (Long press)"
+msgstr "Punane - pikk"
 
 msgid "RED button / HbbTV"
 msgstr "Punane nupp"
-
-msgid "RED long"
-msgstr "Punane - pikk"
 
 msgid "RF Output Settings"
 msgstr "RF-väljund"
@@ -16252,12 +16352,6 @@ msgstr ""
 msgid "Record"
 msgstr "Salvestus"
 
-msgid "Record - same as record button"
-msgstr ""
-
-msgid "Record Actions"
-msgstr ""
-
 msgid "Record icon"
 msgstr ""
 
@@ -16442,6 +16536,9 @@ msgstr ""
 msgid "Refresh the update-able package list"
 msgstr ""
 
+msgid "Refresh, add an existing swap file or change autostart"
+msgstr ""
+
 msgid "Regard Deep Standby as Standby"
 msgstr "Käsitle puhkeseisundit ooteseisundina"
 
@@ -16465,6 +16562,12 @@ msgid "Religion"
 msgstr "religioon"
 
 msgid "Religious"
+msgstr ""
+
+msgid "Religious Music"
+msgstr ""
+
+msgid "Religious Talk"
 msgstr ""
 
 msgid "Reload Bookmarks"
@@ -17116,6 +17219,9 @@ msgstr "Tagasikerimise kiirused"
 msgid "Rewrap subtitles"
 msgstr "Subtiitrite ümberpakkimine"
 
+msgid "Rhythm and Blues"
+msgstr ""
+
 msgid "Right"
 msgstr "Parem"
 
@@ -17142,6 +17248,9 @@ msgstr ""
 
 msgid "Right, wrapped"
 msgstr "Paremal, reamurdmisega"
+
+msgid "Rock"
+msgstr ""
 
 msgid "Rock/Pop"
 msgstr "Rock/Pop"
@@ -17637,6 +17746,9 @@ msgstr[1] ""
 msgid "Scanning for shares..."
 msgstr ""
 
+msgid "Scanning swap devices..."
+msgstr ""
+
 msgid "Scanning..."
 msgstr "Otsing"
 
@@ -17737,9 +17849,6 @@ msgstr "Otsi idast"
 
 msgid "Search for network shares"
 msgstr "Otsi võrgujagusi"
-
-msgid "Search for similar events"
-msgstr "Otsi sarnaseid saateid"
 
 msgid "Search in the current view"
 msgstr ""
@@ -17932,9 +18041,6 @@ msgstr ""
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr ""
-
-msgid "Select 'Yes' to hide channels without EPG data."
-msgstr "Kui lubatud, ei kuvata kanaleid, millel puudub saatekava."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
 msgstr ""
@@ -18266,6 +18372,9 @@ msgstr ""
 msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
 msgstr ""
 
+msgid "Select a swap file on local storage."
+msgstr ""
+
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
 msgstr ""
 
@@ -18321,6 +18430,9 @@ msgstr ""
 msgid "Select copy destination for:"
 msgstr "Vali kopeerimise asukoht:"
 
+msgid "Select current service"
+msgstr ""
+
 msgid "Select default EPG type"
 msgstr "Vali saatekava laad"
 
@@ -18341,6 +18453,9 @@ msgstr "Vali varukoopiast välja jäetavad failid"
 
 msgid "Select files/folders to backup"
 msgstr "Vali varundatavad failid/kaustad"
+
+msgid "Select first service in bouquet"
+msgstr ""
 
 msgid "Select how long a correctly entered service PIN is remembered. This does not unlock protected settings or system actions."
 msgstr ""
@@ -18409,6 +18524,9 @@ msgstr ""
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr ""
 
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
+msgstr "See valik määrab saatekava kujunduse (tekst või graafiline)."
+
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr ""
 
@@ -18450,6 +18568,9 @@ msgstr "Vali sisendseade"
 
 msgid "Select input device."
 msgstr "Vali sisendseade."
+
+msgid "Select last browsed service"
+msgstr ""
 
 msgid "Select movie"
 msgstr "Vali film"
@@ -18531,10 +18652,6 @@ msgstr ""
 msgid "Select the Softcam protocol."
 msgstr ""
 
-#
-msgid "Select the Swap File Size:"
-msgstr "Määra saalefaili suurus:"
-
 msgid "Select the Unicable channel to be assigned to this tuner. This is a unique value. Be certain that no other device connected to this same Unicable system is allocated to the same Unicable channel."
 msgstr "Vali sellele tuunerile määratud kanal. See väärtus on ainukordne. Veendu, et teisi seadmeid ei ole ühendatud samasse unicable süsteemi sama unicable kanali kaudu."
 
@@ -18562,6 +18679,9 @@ msgstr ""
 #, python-format
 msgid "Select the action for '%s'"
 msgstr ""
+
+msgid "Select the action that this button will perform."
+msgstr "Määra nupu toiming."
 
 msgid "Select the action to perform when the timer ends."
 msgstr ""
@@ -18607,6 +18727,9 @@ msgid "Select the character set (iocharset) to be used to match/translate remote
 msgstr ""
 
 msgid "Select the color depth to be used with the HDMI attached UHD capable TV/monitor."
+msgstr ""
+
+msgid "Select the color of the built-in busy spinner. Custom PNG spinners keep their own colors."
 msgstr ""
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
@@ -18835,6 +18958,9 @@ msgstr ""
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
+msgid "Select the number of services to be shown in the list."
+msgstr "Määra kuvatavate ridade arv."
+
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr ""
 
@@ -18919,6 +19045,9 @@ msgid "Select the sort order of the Plugin Browser menu entries. User defined al
 msgstr ""
 
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
+msgstr ""
+
+msgid "Select the speed of the fade-in and fade-out of toast messages."
 msgstr ""
 
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
@@ -19091,6 +19220,9 @@ msgstr ""
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
 
+msgid "Select which service to use when opening the EPG."
+msgstr ""
+
 msgid "Select your ATSC provider."
 msgstr "Vali ATSC levitaja."
 
@@ -19205,6 +19337,9 @@ msgstr "Seerianumber"
 msgid "Serial number"
 msgstr ""
 
+msgid "Serious Classical"
+msgstr ""
+
 msgid "Serious music/Classic music"
 msgstr "süvamuusika/klassikaline muusika"
 
@@ -19312,6 +19447,9 @@ msgstr ""
 "Kanalit ei leitud!\n"
 "(SID ei leitud PAT-st)"
 
+msgid "Service number and picon"
+msgstr ""
+
 msgid "Service number and service name"
 msgstr "Kanali number ja kanali nimi"
 
@@ -19333,6 +19471,9 @@ msgstr "Pikonite kuvasuhe"
 
 msgid "Service picons downsize"
 msgstr "Pikonite skaleerimine"
+
+msgid "Service preview mode"
+msgstr "Kanali eelvaatlus"
 
 msgid "Service reference"
 msgstr "Viitenumber"
@@ -19496,6 +19637,9 @@ msgstr "Määra järjestusviis."
 msgid "Set the delay time between repeated loops, this is used by software renderer in some skins."
 msgstr "Määra kordustele viiteaeg. Mõni kujundus kasutab selleks tarkvaralist renderdamist."
 
+msgid "Set the desired primetime (hour and minute)."
+msgstr ""
+
 msgid "Set the hostname or IP address."
 msgstr ""
 
@@ -19609,15 +19753,6 @@ msgstr ""
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
-
-msgid "Set to the desired primetime hour."
-msgstr "Määra tippajaks (tunnid)."
-
-msgid "Set to the desired primetime minutes."
-msgstr "Määra tippajaks (minutid)."
-
-msgid "Set to what you want the button to do."
-msgstr "Määra nupu toiming."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Määra 'jah' silumiseks, et leida hangumise animatsiooni algpõhjus."
@@ -19820,6 +19955,9 @@ msgstr "Seišellid"
 msgid "Share View"
 msgstr "Jao vaade"
 
+msgid "Shared SAT and C/T inputs"
+msgstr ""
+
 msgid "Shares"
 msgstr "Jaod"
 
@@ -20016,9 +20154,6 @@ msgstr "Kuva MiniTV esipaneelil"
 
 msgid "Show Movie Selection in Main Menu"
 msgstr ""
-
-msgid "Show Movies List"
-msgstr "Filmilist"
 
 msgid "Show Multi EPG"
 msgstr "MultiEPG"
@@ -20768,9 +20903,6 @@ msgstr ""
 msgid "Skip backward (enter time)"
 msgstr "Hüppa tagasi (sisesta aeg)"
 
-msgid "Skip empty services"
-msgstr "Tühje kanaleid ei kuvata"
-
 #, python-format
 msgid "Skip for '%s' is disabled"
 msgstr ""
@@ -21014,6 +21146,9 @@ msgstr "seep/melodraama/rahvapärimus"
 msgid "Soccer"
 msgstr ""
 
+msgid "Social Affairs"
+msgstr ""
+
 msgid "Social/Political issues/Economics"
 msgstr "sotsiaalteemad/poliitika/majandus"
 
@@ -21028,6 +21163,15 @@ msgstr ""
 
 msgid "Socket"
 msgstr "Pesa"
+
+msgid "Soft"
+msgstr ""
+
+msgid "Soft Rhythm and Blues"
+msgstr ""
+
+msgid "Soft Rock"
+msgstr ""
 
 msgid "Soft mount"
 msgstr ""
@@ -21144,9 +21288,6 @@ msgstr "%s ei ole paigaldatud!"
 msgid "Sorry, no backups found!"
 msgstr "Varukoopiat ei leitud!"
 
-msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
-msgstr "Saalet toetav andmekandja ei ole ühendatud. Saalefaili loomine võrgus või fat32 süsteemis ei ole võimalik"
-
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "Please select a different one."
@@ -21159,9 +21300,6 @@ msgstr "Järjestus"
 
 msgid "Sort Bookmarks"
 msgstr ""
-
-msgid "Sort EPG List"
-msgstr "Saatekava järjestamine"
 
 # Menue Anpassungen OSD
 msgid "Sort Extension Menu"
@@ -21293,6 +21431,9 @@ msgstr ""
 msgid "Spinner Position"
 msgstr ""
 
+msgid "Spinner color"
+msgstr ""
+
 msgid "Split preview mode"
 msgstr "Poolitatud eelvaade"
 
@@ -21362,6 +21503,9 @@ msgstr ""
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start all available swap files and partitions when Enigma2 starts. Entries marked noauto in /etc/fstab are excluded. System autostart from /etc/fstab is independent of this setting."
+msgstr ""
+
 msgid "Start an instant recording"
 msgstr ""
 
@@ -21396,6 +21540,9 @@ msgid "Start offline decode"
 msgstr "Käivita võrguta dekodeerimine"
 
 msgid "Start or Stop service"
+msgstr ""
+
+msgid "Start or stop the selected swap"
 msgstr ""
 
 msgid "Start recording current event"
@@ -21503,9 +21650,6 @@ msgstr ""
 msgid "Status unavailable!"
 msgstr ""
 
-msgid "Status:"
-msgstr "Olek:"
-
 msgid "Stay in time shift at buffer end (for plugins)"
 msgstr ""
 
@@ -21523,6 +21667,9 @@ msgstr "Astuti itta"
 
 msgid "Stepped west"
 msgstr "Astuti läände"
+
+msgid "Stereo"
+msgstr ""
 
 msgid "Stop"
 msgstr "Peata"
@@ -21626,6 +21773,9 @@ msgstr ""
 
 msgid "Storage Devices"
 msgstr "Andmekandjad"
+
+msgid "Storage device"
+msgstr ""
 
 msgid "Storage device full!"
 msgstr ""
@@ -21827,6 +21977,15 @@ msgstr ""
 msgid "Suriname"
 msgstr "Suriname"
 
+msgid "Surround"
+msgstr ""
+
+msgid "Surround 5.1"
+msgstr ""
+
+msgid "Surround 7.1"
+msgstr ""
+
 msgid "Svalbard and Jan Mayen"
 msgstr "Svalbard ja Jan Mayen"
 
@@ -21840,10 +21999,6 @@ msgid "Swap File Manager"
 msgstr "Saale haldur"
 
 #
-msgid "Swap File not found. You have to create the file before to activate."
-msgstr "Saalefaili ei leitud. Enne aktiveerimist tuleb see luua."
-
-#
 msgid "Swap Manager"
 msgstr "Saale haldur"
 
@@ -21853,16 +22008,20 @@ msgstr "PiP-akende vahetus"
 msgid "Swap PiP and main picture"
 msgstr "PiP-akna ja peapildi vahetamine"
 
-#
-msgid "Swap Place:"
-msgstr "Saale asukoht:"
-
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr "SNR '%' > SNR 'db' vahetamine"
 
-#
-msgid "Swap Size:"
-msgstr "Saale suurus:"
+msgid "Swap autostart"
+msgstr ""
+
+msgid "Swap file"
+msgstr ""
+
+msgid "Swap partition"
+msgstr ""
+
+msgid "Swap partition detection failed. Active and configured swaps are still listed."
+msgstr ""
 
 msgid "Swap services"
 msgstr "Kanalite vahetus"
@@ -22130,6 +22289,9 @@ msgstr "Tadžikistan"
 
 msgid "Tajikistan"
 msgstr "Tadžikistan"
+
+msgid "Talk"
+msgstr ""
 
 #, fuzzy
 msgid "Talk show"
@@ -22516,6 +22678,9 @@ msgstr "Vaikeväärtused on: äratusaeg '- 5 minutit' ja taimeri algusaeg '+ 5 m
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+msgid "The device is still mounted. Stop recordings and time shift before checking the file system."
+msgstr ""
+
 msgid "The directory/file no longer exists."
 msgstr ""
 
@@ -22532,6 +22697,15 @@ msgstr ""
 
 #, python-format
 msgid "The file '%s' has been changed. Do you want to save it?"
+msgstr ""
+
+msgid "The file does not contain a valid swap header."
+msgstr ""
+
+msgid "The file is created inactive. Start it in the swap manager when needed."
+msgstr ""
+
+msgid "The file system was repaired. Restart the receiver before using this device."
 msgstr ""
 
 #, python-format
@@ -22586,6 +22760,9 @@ msgstr ""
 msgid "The positioner tuner is currently unavailable. Stop recordings or other services using this tuner and try again."
 msgstr ""
 
+msgid "The previous mount point is already in use."
+msgstr ""
+
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
 msgstr ""
@@ -22612,6 +22789,9 @@ msgstr ""
 msgid "The running Enigma2 version cannot safely save an active time shift buffer."
 msgstr ""
 
+msgid "The running system's file system cannot be checked."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr "Salvestatud PIN eemaldati."
 
@@ -22624,6 +22804,9 @@ msgid "The selected device is not a supported removable block device."
 msgstr ""
 
 msgid "The selected device is too small. At least 3 GB is required."
+msgstr ""
+
+msgid "The selected storage device is no longer available."
 msgstr ""
 
 #
@@ -22641,6 +22824,15 @@ msgid ""
 msgstr ""
 
 msgid "The storage check did not finish. Please check the device or network and try again."
+msgstr ""
+
+msgid "The swap device has changed. Refresh the list and try again."
+msgstr ""
+
+msgid "The swap file has changed. Refresh the list and try again."
+msgstr ""
+
+msgid "The swap file is still active and cannot be deleted."
 msgstr ""
 
 msgid "The time is multiplied by the current repeat counter."
@@ -22663,6 +22855,9 @@ msgid "The time shift storage device is not available. Please check the device a
 msgstr ""
 
 msgid "The time shift storage device was removed. Time shift has been stopped."
+msgstr ""
+
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
 msgstr ""
 
 #, python-format
@@ -22781,6 +22976,9 @@ msgstr ""
 msgid "This channel requires an HbbTV plugin. Please install a compatible HbbTV plugin."
 msgstr ""
 
+msgid "This device has multiple mount points. Unmount them before checking the file system."
+msgstr ""
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "See väli võimaldab otsida täiendavalt sümbolikiirusi kuni %s."
@@ -22789,6 +22987,9 @@ msgid "This function is not available as processing of large files may take too 
 msgstr ""
 
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
+msgstr ""
+
+msgid "This is not a regular swap file."
 msgstr ""
 
 msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
@@ -22914,9 +23115,6 @@ msgstr ""
 # A/V Settings
 msgid "This option allows you to set the Auto Volume Level output."
 msgstr "Selles valikus saad määrata automaatse helitugevuse."
-
-msgid "This option allows you to set the layout view (Text or Graphics)."
-msgstr "See valik määrab saatekava kujunduse (tekst või graafiline)."
 
 msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "See valik võimaldab lülitada heli BT kõlaritele."
@@ -23191,6 +23389,9 @@ msgstr ""
 msgid "Timer Log Actions"
 msgstr ""
 
+msgid "Timer Menu"
+msgstr ""
+
 msgid "Timer Sanity Error"
 msgstr "Taimeri viga"
 
@@ -23282,6 +23483,9 @@ msgstr ""
 
 #, python-format
 msgid "To where would you like to extract '%s'?"
+msgstr ""
+
+msgid "Toast fade"
 msgstr ""
 
 msgid "Today"
@@ -23396,6 +23600,9 @@ msgstr "Tonga"
 
 msgid "Top"
 msgstr "üles"
+
+msgid "Top 40"
+msgstr ""
 
 msgid "Top and Bottom"
 msgstr "Üleval ja all"
@@ -23728,6 +23935,12 @@ msgstr ""
 msgid "Two lines"
 msgstr "Kaks rida"
 
+msgid "Two tuners share one SAT input and one C/T input. Reception types switch automatically. Use compatible SAT settings and separate Unicable User Bands. Cable and terrestrial reception cannot run together."
+msgstr ""
+
+msgid "Two tuners, two SAT sockets, one shared C/T socket. Two frequencies of the same reception type can run together. Cable and terrestrial cannot run together."
+msgstr ""
+
 msgid "Type"
 msgstr "Tüüp"
 
@@ -23829,6 +24042,12 @@ msgid "Ukrainian"
 msgstr "Ukraina"
 
 #, python-format
+msgid ""
+"Unable to change swap state for '%s'.\n"
+"%s"
+msgstr ""
+
+#, python-format
 msgid "Unable to check HDD replacement: %s"
 msgstr ""
 
@@ -23859,6 +24078,9 @@ msgstr ""
 msgid "Unable to prepare the time shift storage device."
 msgstr ""
 
+msgid "Unable to read the list of mounted file systems."
+msgstr ""
+
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr ""
@@ -23876,9 +24098,6 @@ msgid "Unable to save network configuration!"
 msgstr ""
 
 msgid "Unable to save network mount configuration!"
-msgstr ""
-
-msgid "Unable to start RAM time shift."
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
@@ -24370,6 +24589,9 @@ msgstr "Omadused jäetakse iga kataloogi puhul meelde"
 msgid "Use power measurement"
 msgstr "Kasuta voolutarbe mõõtmist"
 
+msgid "Use skin default"
+msgstr ""
+
 msgid "Use small screen"
 msgstr "Kasuta kitsast vaadet"
 
@@ -24460,6 +24682,10 @@ msgstr "Kasutatav kanaliotsingu tüüp"
 
 msgid "Used:"
 msgstr "Kasutusel:"
+
+#, python-format
+msgid "Used: %s"
+msgstr ""
 
 #
 msgid "User  (keymap.usr)"
@@ -24604,6 +24830,9 @@ msgstr ""
 
 msgid "Vanuatu"
 msgstr "Vanuatu"
+
+msgid "Varied"
+msgstr ""
 
 #, fuzzy
 msgid "Variety"
@@ -24915,13 +25144,6 @@ msgstr "WSS  4:3"
 msgid "Wait for timesync at startup"
 msgstr "Oota aja sünkroonimist alglaadimisel"
 
-#
-msgid "Wait please while creating swap file..."
-msgstr "Saalefaili loomine..."
-
-msgid "Wait please while scanning..."
-msgstr "Oota otsingu lõppemist..."
-
 msgid "Waiting"
 msgstr "Ootel"
 
@@ -25017,6 +25239,9 @@ msgid "Weather"
 msgstr "---Ilm---"
 
 msgid "Weather settings"
+msgstr ""
+
+msgid "Weather/meteorology"
 msgstr ""
 
 msgid "Web Interface"
@@ -25261,6 +25486,9 @@ msgstr ""
 # Subtitle 5.1 ersetzt : Rewrap teletext subtitles description
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Kui lubatud, seatakse subtiitrid vastavusse ekraani laiusega."
+
+msgid "When enabled, services without EPG data will be hidden."
+msgstr "Kui lubatud, ei kuvata kanaleid, millel puudub saatekava."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Kui lubatud, kuvatakse kanalinimekirjas kanali numbrid."
@@ -25563,10 +25791,10 @@ msgstr ""
 msgid "Y-Resolution"
 msgstr ""
 
-msgid "YELLOW button"
+msgid "YELLOW"
 msgstr "Kollane nupp"
 
-msgid "YELLOW long"
+msgid "YELLOW (Long press)"
 msgstr "Kollane - pikk"
 
 msgid "Year"
@@ -25682,10 +25910,6 @@ msgstr "Skript puudub."
 
 msgid "You have selected no logs to delete."
 msgstr "Kustutamiseks ei ole logifaile valitud."
-
-#
-msgid "You have to create a Swap File before to activate the autostart."
-msgstr "Saalefail tuleb luua enne autostardi aktiveerimist."
 
 #, python-format
 msgid "You have to wait %s!"
@@ -26628,6 +26852,117 @@ msgstr "Jah (säilita fiidid)"
 msgid "®"
 msgstr ""
 
+#~ msgid "Add a RecordTimer for current event"
+#~ msgstr "Lisa käesolevale saatele salvestustaimer"
+
+#~ msgid "Add a ZapTimer for current event"
+#~ msgstr "Lisa käesolevale saatele kanalivahetustaimer"
+
+#~ msgid "Add an AutoTimer for the current event"
+#~ msgstr "Lisa käesolevale saatele autotaimer"
+
+#~ msgid "Add/Remove Timer"
+#~ msgstr "Lisa/eemalda taimer"
+
+#~ msgid "Add/Remove a timer for the current event"
+#~ msgstr "Lisa/eemalda taimer käesolevale saatele"
+
+#, fuzzy
+#~ msgid "CHANNEL +/-"
+#~ msgstr "Kanal 1"
+
+#~ msgid "Change to bouquet"
+#~ msgstr "Vaheta lemmiknimekirja"
+
+#~ msgid "Close bouquet list."
+#~ msgstr "Sulge lemmiknimekirjad."
+
+#~ msgid "Getting event information failed!"
+#~ msgstr "Saateinfo hankimine nurjus!"
+
+#~ msgid "IMDb search for current event"
+#~ msgstr "IMDB otsing käesolevale saatele"
+
+#~ msgid "Info button (short)"
+#~ msgstr "Info nupp (lühike)"
+
+#~ msgid "Jump back 24 hours"
+#~ msgstr "Hüpe 24 tundi tagasi"
+
+#~ msgid "Jump forward 24 hours"
+#~ msgstr "Hüpe 24 tundi edasi"
+
+#~ msgid "Move to home of list"
+#~ msgstr "Liigu nimekirja kodukataloogi"
+
+#~ msgid "OK button (short)"
+#~ msgstr "OK nupp (lühike)"
+
+#, fuzzy
+#~ msgid "Previous/Next bouquet"
+#~ msgstr "Eelmine/järgmine lehekülg"
+
+#~ msgid "Primetime hour"
+#~ msgstr "Tippaja tund"
+
+#~ msgid "Primetime minute"
+#~ msgstr "Tippaja minut"
+
+#~ msgid "Search for similar events"
+#~ msgstr "Otsi sarnaseid saateid"
+
+#~ msgid "Show Movies List"
+#~ msgstr "Filmilist"
+
+#~ msgid "Sort EPG List"
+#~ msgstr "Saatekava järjestamine"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Ajanihke kasutamine pole võimalik!"
+
+#
+#~ msgid "Please select device to use as swap file location"
+#~ msgstr "Vali saalefaili asukoht"
+
+#
+#~ msgid "Select the Swap File Size:"
+#~ msgstr "Määra saalefaili suurus:"
+
+#~ msgid "Set to the desired primetime hour."
+#~ msgstr "Määra tippajaks (tunnid)."
+
+#~ msgid "Set to the desired primetime minutes."
+#~ msgstr "Määra tippajaks (minutid)."
+
+#~ msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
+#~ msgstr "Saalet toetav andmekandja ei ole ühendatud. Saalefaili loomine võrgus või fat32 süsteemis ei ole võimalik"
+
+#~ msgid "Status:"
+#~ msgstr "Olek:"
+
+#
+#~ msgid "Swap File not found. You have to create the file before to activate."
+#~ msgstr "Saalefaili ei leitud. Enne aktiveerimist tuleb see luua."
+
+#
+#~ msgid "Swap Place:"
+#~ msgstr "Saale asukoht:"
+
+#
+#~ msgid "Swap Size:"
+#~ msgstr "Saale suurus:"
+
+#
+#~ msgid "Wait please while creating swap file..."
+#~ msgstr "Saalefaili loomine..."
+
+#~ msgid "Wait please while scanning..."
+#~ msgstr "Oota otsingu lõppemist..."
+
+#
+#~ msgid "You have to create a Swap File before to activate the autostart."
+#~ msgstr "Saalefail tuleb luua enne autostardi aktiveerimist."
+
 #~ msgid "Back/Recall"
 #~ msgstr "Back/Recall"
 
@@ -26759,9 +27094,6 @@ msgstr ""
 #~ msgstr ""
 #~ "Ajanihkeks valitud andmekandja ei toeta püsiviitu.\n"
 #~ "Vorminda see EXT2, EXT3 või EXT4 failisüsteemi!"
-
-#~ msgid "Time shift not possible!"
-#~ msgstr "Ajanihke kasutamine pole võimalik!"
 
 #~ msgid "Time shift save failed!"
 #~ msgstr "Ajanihke talletamine nurjus!"

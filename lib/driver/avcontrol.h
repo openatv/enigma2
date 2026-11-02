@@ -116,8 +116,10 @@ private:
 	std::string m_video_mode_50;
 	std::string m_video_mode_60;
 	std::string m_videomode_choices;
-	std::string m_standby_video_mode;
 	std::string m_hdmi_colordepth = "auto";
+#ifdef DREAMNEXTGEN
+	bool m_hdmi_phy_off = false;
+#endif
 
 	bool m_b_has_proc_osd_alpha;
 	bool m_b_has_proc_hdmi_rx_monitor;
