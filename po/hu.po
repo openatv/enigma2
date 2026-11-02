@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 13:51+0100\n"
+"POT-Creation-Date: 2026-11-01 20:39+0100\n"
 "PO-Revision-Date: 2026-08-17 22:31+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1727,6 +1727,9 @@ msgstr "A távirányító képén egy kiemelés mutatja, hogy a súgó melyik go
 msgid "A new storage device has been connected:"
 msgstr ""
 
+msgid "A prepared or running timer can not be moved to the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -2077,14 +2080,8 @@ msgstr ""
 msgid "Add a RecordTimer"
 msgstr "Egy felvételi időzítő hozzáadása"
 
-msgid "Add a RecordTimer for current event"
-msgstr "Egy felvételi időzítő hozzáadása a jelenlegi eseményhez"
-
 msgid "Add a TV service to the Volume Offset list"
 msgstr ""
-
-msgid "Add a ZapTimer for current event"
-msgstr "Elkapcsolás időzítő hozzáadása az aktuális eseményhez"
 
 msgid "Add a ZapTimer for next event"
 msgstr "Elkapcsolás időzítő hozzáadása a következő eseményhez"
@@ -2118,9 +2115,6 @@ msgstr "Időzítés hozzáadása az aktuális eseményről"
 
 msgid "Add an existing swap file"
 msgstr ""
-
-msgid "Add an AutoTimer for the current event"
-msgstr "AutoTimer időzítő hozzáadása az aktuális eseményhez"
 
 msgid "Add current directory to bookmarks"
 msgstr "Aktuális mappa hozzáadása könyvjelzőkhöz"
@@ -2196,12 +2190,6 @@ msgstr ""
 
 msgid "Add title"
 msgstr "Cím hozzáadása"
-
-msgid "Add/Remove Timer"
-msgstr "Időzítő Hozzáadása/Eltávolítása"
-
-msgid "Add/Remove a timer for the current event"
-msgstr "Időzítő Hozzáadása/Eltávolítása a jelenlegi eseménynél"
 
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr ""
@@ -3008,9 +2996,6 @@ msgstr "Csatlakozás kezelő"
 msgid "AutoRefresh"
 msgstr ""
 
-msgid "AutoTimer"
-msgstr ""
-
 msgid "AutoUpdate"
 msgstr "Automatikus frissítés"
 
@@ -3558,9 +3543,6 @@ msgstr ""
 msgid "Browse"
 msgstr ""
 
-msgid "Browse mode"
-msgstr ""
-
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
@@ -3744,8 +3726,17 @@ msgstr "CH%s"
 msgid "CHANGE BOUQUET"
 msgstr "CSATORNACSOMAG VÁLTÁS"
 
-msgid "CHANNEL +/-"
-msgstr "Csatorna +/- gomb"
+msgid "CHANNEL+"
+msgstr ""
+
+msgid "CHANNEL+ button (setup in menu)"
+msgstr ""
+
+msgid "CHANNEL-"
+msgstr ""
+
+msgid "CHANNEL- button (setup in menu)"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI (Common Interface) beállítása"
@@ -4197,9 +4188,6 @@ msgstr ""
 msgid "Change to TV services mode"
 msgstr ""
 
-msgid "Change to bouquet"
-msgstr "Csatornacsomagra váltás"
-
 msgid "Changed"
 msgstr ""
 
@@ -4298,9 +4286,6 @@ msgstr "Csatornanév"
 
 msgid "Channel number"
 msgstr ""
-
-msgid "Service preview mode"
-msgstr "Csatorna előnézeti mód"
 
 msgid "Channel selection configuration"
 msgstr "Csatorna kiválasztás konfigurálása"
@@ -4642,12 +4627,6 @@ msgstr ""
 msgid "Close Task View"
 msgstr ""
 
-msgid "Close bouquet list"
-msgstr ""
-
-msgid "Close bouquet list."
-msgstr "Csatornacsomag lista bezárása."
-
 msgid "Close dialog"
 msgstr "Párbeszédpanel bezárása"
 
@@ -4737,9 +4716,6 @@ msgstr "Kolumbia"
 
 msgid "Color"
 msgstr "Szín"
-
-msgid "Color Button Assignments"
-msgstr ""
 
 msgid "Color format"
 msgstr "Színformátum"
@@ -5090,9 +5066,6 @@ msgstr "Állítsa be azon napok számát, amelyek után az elemek automatikusan 
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "Ennyi nap után lesznek a lejárt időzítések véglegesen törölve az Időzítő listából."
-
-msgid "Select the number of services to be shown in the list."
-msgstr "Állítsa be a megjelenített sorok számát."
 
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr "Az offline dekódolás késleltetése milliszekundumban. A beállított késleltetés a CW paritásának változásakor vehető észre."
@@ -5547,9 +5520,6 @@ msgstr ""
 
 msgid "Country"
 msgstr "Ország"
-
-msgid "Country Music"
-msgstr ""
 
 msgid "Country for EPG event genre information"
 msgstr "Ország az EPG esemény műfaj információknak"
@@ -7426,6 +7396,9 @@ msgstr ""
 msgid "Drop unconfigured satellites"
 msgstr ""
 
+msgid "Dual channel"
+msgstr ""
+
 msgid "Duplex"
 msgstr ""
 
@@ -7469,10 +7442,10 @@ msgstr ""
 msgid "EPG"
 msgstr "Műsorújság (EPG)"
 
-msgid "EPG Actions"
+msgid "EPG (Long press)"
 msgstr ""
 
-msgid "EPG Bouquet Actions"
+msgid "EPG Actions"
 msgstr ""
 
 msgid "EPG Cache Check"
@@ -7484,9 +7457,6 @@ msgstr ""
 msgid "EPG Data In Streams"
 msgstr ""
 
-msgid "EPG Display Actions"
-msgstr ""
-
 msgid "EPG Jump"
 msgstr ""
 
@@ -7494,9 +7464,6 @@ msgid "EPG Language"
 msgstr ""
 
 msgid "EPG Navigation Actions"
-msgstr ""
-
-msgid "EPG Other Actions"
 msgstr ""
 
 msgid "EPG Range And History"
@@ -7518,6 +7485,9 @@ msgid "EPG Sources"
 msgstr ""
 
 msgid "EPG Storage And Refresh"
+msgstr ""
+
+msgid "EPG button long (setup in menu)"
 msgstr ""
 
 msgid "EPG button mode"
@@ -7578,7 +7548,7 @@ msgstr "Keleti limit beállítás"
 msgid "Eastern satellites"
 msgstr ""
 
-msgid "Easy Listening Music"
+msgid "Easy Listening"
 msgstr ""
 
 msgid "Easy listening"
@@ -9747,9 +9717,6 @@ msgstr "Német"
 msgid "Germany"
 msgstr "Németország"
 
-msgid "Getting event information failed!"
-msgstr "Az eseményadatok beszerzése sikertelen!"
-
 msgid "Getting plugin information. Please wait..."
 msgstr "Bővítmény betöltése folyamatban. Kérem, várjon..."
 
@@ -10179,6 +10146,9 @@ msgstr "A VBI vonal elrejtése ennél a csatornánál"
 msgid "Hide any zap error messages."
 msgstr "Minden csatornaváltási hiba elrejtése."
 
+msgid "Hide empty services"
+msgstr "Üres csatornák átugrása"
+
 msgid "Hide error messages from the Common Interface module."
 msgstr ""
 
@@ -10384,11 +10354,11 @@ msgstr "IMDb részletek"
 msgid "IMDb Search"
 msgstr "IMDb Keresés"
 
-msgid "IMDb search for current event"
-msgstr "Aktuális esemény keresése IMDb-n"
-
 msgid "INFO"
 msgstr "INFO"
+
+msgid "INFO (Long press)"
+msgstr "Info gomb (hosszan)"
 
 msgid "INFO button mode"
 msgstr "INFO gomb mód"
@@ -10828,12 +10798,6 @@ msgstr "Indonéz"
 msgid "Info"
 msgstr "Információ"
 
-msgid "INFO (Long press)"
-msgstr "Info gomb (hosszan)"
-
-msgid "Info button (short)"
-msgstr "Info gomb (röviden)"
-
 msgid "Info file checksum"
 msgstr ""
 
@@ -11158,9 +11122,6 @@ msgstr ""
 msgid "Jazz"
 msgstr ""
 
-msgid "Jazz Music"
-msgstr ""
-
 msgid "Jersey"
 msgstr "Jersey"
 
@@ -11176,14 +11137,14 @@ msgstr ""
 msgid "Joined"
 msgstr ""
 
+msgid "Joint stereo"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Jordánia"
 
 msgid "Jump"
 msgstr ""
-
-msgid "Jump back 24 hours"
-msgstr "Ugorj vissza 24 órát"
 
 msgid "Jump back one day"
 msgstr ""
@@ -11193,9 +11154,6 @@ msgstr ""
 
 msgid "Jump first press in channel selection"
 msgstr "Ugráshoz először nyomja meg a csatorna kiválasztását"
-
-msgid "Jump forward 24 hours"
-msgstr "Ugorj előre 24 órát"
 
 msgid "Jump forward one day"
 msgstr ""
@@ -11218,14 +11176,8 @@ msgstr "Ugrás a lista végére"
 msgid "Jump to next marked position"
 msgstr "Ugrás a következő megjelölt ponthoz"
 
-msgid "Jump to next page or all up (setup in menu)"
-msgstr ""
-
 msgid "Jump to previous marked position"
 msgstr "Ugrás az előző megjelölt ponthoz"
-
-msgid "Jump to previous page or all down (setup in menu)"
-msgstr ""
 
 msgid "Jump to prime time"
 msgstr "Ugrás a főidőhöz"
@@ -12505,6 +12457,9 @@ msgstr "Mongólia"
 msgid "Mongolian"
 msgstr "Mongólia"
 
+msgid "Mono"
+msgstr ""
+
 msgid "Montenegro"
 msgstr "Montenegró"
 
@@ -12755,9 +12710,6 @@ msgstr ""
 
 msgid "Move to first line / screen in the panel"
 msgstr ""
-
-msgid "Move to home of list"
-msgstr "A lista elejére"
 
 msgid "Move to last item / screen"
 msgstr ""
@@ -13095,6 +13047,9 @@ msgstr "Namíbia"
 msgid "Narration"
 msgstr ""
 
+msgid "National Music"
+msgstr ""
+
 msgid "National music"
 msgstr ""
 
@@ -13123,9 +13078,6 @@ msgid "Navigate to the selected directory"
 msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
-msgstr ""
-
-msgid "Navigation And Button Assignments"
 msgstr ""
 
 msgid "Navigation And Time Range"
@@ -13925,9 +13877,6 @@ msgstr "OK"
 msgid "OK (Long press)"
 msgstr "OK gomb (hosszan)"
 
-msgid "OK button (short)"
-msgstr "OK gomb (röviden)"
-
 msgid "OK button mode"
 msgstr "OK gomb mód"
 
@@ -14039,9 +13988,6 @@ msgid "Ojibwa"
 msgstr ""
 
 msgid "Oldies"
-msgstr ""
-
-msgid "Oldies Music"
 msgstr ""
 
 msgid "Olympic blue"
@@ -14534,6 +14480,9 @@ msgstr ""
 
 msgid "PIN code needed"
 msgstr "PIN-kód szükséges"
+
+msgid "PLAY"
+msgstr ""
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -15619,9 +15568,6 @@ msgstr "Előző oldal"
 msgid "Previous channel page"
 msgstr "előző csatornaoldal"
 
-msgid "Previous/Next bouquet"
-msgstr "előző/következő lista"
-
 msgid "Previous/Next page"
 msgstr "előző/következő oldal"
 
@@ -15640,14 +15586,12 @@ msgstr ""
 msgid "Prime time"
 msgstr "Főműsoridő"
 
-msgid "Primetime hour"
-msgstr "Fő műsoridő (óra)"
-
-msgid "Primetime minute"
-msgstr "Fő műsoridő (perc)"
-
 msgid "Priority"
 msgstr "Prioritás"
+
+#, python-format
+msgid "Priority: %d"
+msgstr ""
 
 msgid "Privacy level"
 msgstr ""
@@ -15701,7 +15645,7 @@ msgstr "Profil: Helyi box"
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr ""
 
-msgid "Program type"
+msgid "Programme type (PTY)"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -15985,14 +15929,20 @@ msgstr "FELV szimbólum használatban"
 msgid "REC symbol"
 msgstr "FELV szimbólum"
 
+msgid "RECORD"
+msgstr ""
+
+msgid "RECORD (Long press)"
+msgstr ""
+
 msgid "RED"
 msgstr "Piros gomb"
 
-msgid "RED button / HbbTV"
-msgstr "Piros gomb..."
-
 msgid "RED (Long press)"
 msgstr "Piros hosszan"
+
+msgid "RED button / HbbTV"
+msgstr "Piros gomb..."
 
 msgid "RF Output Settings"
 msgstr "RF kimenet"
@@ -16189,12 +16139,6 @@ msgstr ""
 
 msgid "Record"
 msgstr "Felvétel"
-
-msgid "Record - same as record button"
-msgstr "Felvétel - ugyanaz, mint a felvételi gomb"
-
-msgid "Record Actions"
-msgstr ""
 
 msgid "Record icon"
 msgstr ""
@@ -17074,9 +17018,6 @@ msgstr "jobb oldalon sortöréssel"
 msgid "Rock"
 msgstr ""
 
-msgid "Rock Music"
-msgstr ""
-
 msgid "Rock/Pop"
 msgstr "Rock/Pop"
 
@@ -17665,9 +17606,6 @@ msgstr "Léptetés kelet felé"
 msgid "Search for network shares"
 msgstr "Hálózati megosztások keresése"
 
-msgid "Search for similar events"
-msgstr "Hasonló események keresése"
-
 msgid "Search in the current view"
 msgstr ""
 
@@ -17857,9 +17795,6 @@ msgstr ""
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr ""
-
-msgid "When enabled, services without EPG data will be hidden."
-msgstr "Ha az 'igen'-t választja, akkor a műsor nélküli csatornák nem jelennek meg."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
 msgstr ""
@@ -18337,6 +18272,9 @@ msgstr ""
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr ""
 
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
+msgstr "Itt állíthatja be a megjelenési módot (Szöveges vagy Grafikus)."
+
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr ""
 
@@ -18489,6 +18427,9 @@ msgstr ""
 #, python-format
 msgid "Select the action for '%s'"
 msgstr ""
+
+msgid "Select the action that this button will perform."
+msgstr "Adja meg, hogy a gomb megnyomásával mit szeretne csinálni."
 
 msgid "Select the action to perform when the timer ends."
 msgstr ""
@@ -18765,6 +18706,9 @@ msgstr ""
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
+msgid "Select the number of services to be shown in the list."
+msgstr "Állítsa be a megjelenített sorok számát."
+
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr ""
 
@@ -19022,6 +18966,9 @@ msgstr ""
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
 
+msgid "Select which service to use when opening the EPG."
+msgstr ""
+
 msgid "Select your ATSC provider."
 msgstr "Válassza ki az ATSC szolgáltatót."
 
@@ -19268,6 +19215,9 @@ msgstr "Csatorna képek méretaránya"
 
 msgid "Service picons downsize"
 msgstr "Csatorna képek lekicsinyítése"
+
+msgid "Service preview mode"
+msgstr "Csatorna előnézeti mód"
 
 msgid "Service reference"
 msgstr "Referencia szám"
@@ -19544,9 +19494,6 @@ msgstr ""
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
-
-msgid "Select the action that this button will perform."
-msgstr "Adja meg, hogy a gomb megnyomásával mit szeretne csinálni."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Állítsa 'yes'-re a foglaltság (spinner) fő okainak hibakeresésére."
@@ -19933,9 +19880,6 @@ msgstr "MiniTV megjelenítése az előlap kijelzőjén"
 
 msgid "Show Movie Selection in Main Menu"
 msgstr ""
-
-msgid "Show Movies List"
-msgstr "Felvételek listája"
 
 msgid "Show Multi EPG"
 msgstr "Multi EPG mutatása"
@@ -20677,9 +20621,6 @@ msgstr ""
 msgid "Skip backward (enter time)"
 msgstr "visszafelé kihagyása (adja meg az időt)"
 
-msgid "Hide empty services"
-msgstr "Üres csatornák átugrása"
-
 #, python-format
 msgid "Skip for '%s' is disabled"
 msgstr ""
@@ -21071,9 +21012,6 @@ msgstr "Rendezés"
 msgid "Sort Bookmarks"
 msgstr ""
 
-msgid "Sort EPG List"
-msgstr "EPG lista rendezése"
-
 msgid "Sort Extension Menu"
 msgstr "A bővítmények listájának rendezése betűrendben"
 
@@ -21436,6 +21374,9 @@ msgstr "Keletre léptetve"
 msgid "Stepped west"
 msgstr "Nyugatra léptetve"
 
+msgid "Stereo"
+msgstr ""
+
 msgid "Stop"
 msgstr "Állj"
 
@@ -21737,6 +21678,15 @@ msgstr ""
 
 msgid "Suriname"
 msgstr "Suriname"
+
+msgid "Surround"
+msgstr ""
+
+msgid "Surround 5.1"
+msgstr ""
+
+msgid "Surround 7.1"
+msgstr ""
 
 msgid "Svalbard and Jan Mayen"
 msgstr "Jan Mayen-sziget"
@@ -22605,6 +22555,9 @@ msgstr ""
 msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr ""
 
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr ""
@@ -22849,9 +22802,6 @@ msgstr ""
 msgid "This option allows you to set the Auto Volume Level output."
 msgstr "Ezzel az opcióval beállíthatja az Auto Volume Level (Automatikus hangerőszint) beállítást."
 
-msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
-msgstr "Itt állíthatja be a megjelenési módot (Szöveges vagy Grafikus)."
-
 msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "Ez az opció lehetővé teszi a Hang BT hangszórókra való váltását."
 
@@ -23036,9 +22986,6 @@ msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr ""
-
-msgid "Time shift not possible!"
-msgstr "Timeshift nem lehetséges!"
 
 msgid "Time shift save action on zap"
 msgstr "Timeshift mentése csatornaváltáskor"
@@ -25174,6 +25121,9 @@ msgstr ""
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Ha engedélyezi, a feliratok újra lesznek tördelve, hogy illeszkedjenek a képernyő széléhez."
 
+msgid "When enabled, services without EPG data will be hidden."
+msgstr "Ha az 'igen'-t választja, akkor a műsor nélküli csatornák nem jelennek meg."
+
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Ha engedélyezi, a csatornaszámok meg fognak jelenni a csatornalistában."
 
@@ -25311,9 +25261,6 @@ msgstr "Ha letiltja a csatornakeresést a háttérben, akkor a keresés során m
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Hová kerüljenek az átmeneti Timeshift felvételek?"
-
-msgid "Select which service to use when opening the EPG."
-msgstr ""
 
 msgid "Which time shift buffer event do you want to save?"
 msgstr "Melyik műsort szeretné tartósan menteni?"
@@ -26521,6 +26468,75 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Add a RecordTimer for current event"
+#~ msgstr "Egy felvételi időzítő hozzáadása a jelenlegi eseményhez"
+
+#~ msgid "Add a ZapTimer for current event"
+#~ msgstr "Elkapcsolás időzítő hozzáadása az aktuális eseményhez"
+
+#~ msgid "Add an AutoTimer for the current event"
+#~ msgstr "AutoTimer időzítő hozzáadása az aktuális eseményhez"
+
+#~ msgid "Add/Remove Timer"
+#~ msgstr "Időzítő Hozzáadása/Eltávolítása"
+
+#~ msgid "Add/Remove a timer for the current event"
+#~ msgstr "Időzítő Hozzáadása/Eltávolítása a jelenlegi eseménynél"
+
+#~ msgid "CHANNEL +/-"
+#~ msgstr "Csatorna +/- gomb"
+
+#~ msgid "Change to bouquet"
+#~ msgstr "Csatornacsomagra váltás"
+
+#~ msgid "Close bouquet list."
+#~ msgstr "Csatornacsomag lista bezárása."
+
+#~ msgid "Getting event information failed!"
+#~ msgstr "Az eseményadatok beszerzése sikertelen!"
+
+#~ msgid "IMDb search for current event"
+#~ msgstr "Aktuális esemény keresése IMDb-n"
+
+#~ msgid "Info button (short)"
+#~ msgstr "Info gomb (röviden)"
+
+#~ msgid "Jump back 24 hours"
+#~ msgstr "Ugorj vissza 24 órát"
+
+#~ msgid "Jump forward 24 hours"
+#~ msgstr "Ugorj előre 24 órát"
+
+#~ msgid "Move to home of list"
+#~ msgstr "A lista elejére"
+
+#~ msgid "OK button (short)"
+#~ msgstr "OK gomb (röviden)"
+
+#~ msgid "Previous/Next bouquet"
+#~ msgstr "előző/következő lista"
+
+#~ msgid "Primetime hour"
+#~ msgstr "Fő műsoridő (óra)"
+
+#~ msgid "Primetime minute"
+#~ msgstr "Fő műsoridő (perc)"
+
+#~ msgid "Record - same as record button"
+#~ msgstr "Felvétel - ugyanaz, mint a felvételi gomb"
+
+#~ msgid "Search for similar events"
+#~ msgstr "Hasonló események keresése"
+
+#~ msgid "Show Movies List"
+#~ msgstr "Felvételek listája"
+
+#~ msgid "Sort EPG List"
+#~ msgstr "EPG lista rendezése"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Timeshift nem lehetséges!"
 
 #~ msgid "Please select device to use as swap file location"
 #~ msgstr "Válasszon eszközt amin a swapfile-t használja"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 13:51+0100\n"
+"POT-Creation-Date: 2026-11-01 20:39+0100\n"
 "PO-Revision-Date: 2026-08-16 16:20+0000\n"
 "Last-Translator: Denis Çerri <deniscerri3@gmail.com>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -1693,6 +1693,9 @@ msgstr "Një pikë kulmore në figurën e telekomandës tregon se cilit buton i 
 msgid "A new storage device has been connected:"
 msgstr ""
 
+msgid "A prepared or running timer can not be moved to the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -2044,14 +2047,8 @@ msgstr ""
 msgid "Add a RecordTimer"
 msgstr "Shto një kronometre rekord"
 
-msgid "Add a RecordTimer for current event"
-msgstr "Shto një kronometruar rekord për ngjarjen aktuale"
-
 msgid "Add a TV service to the Volume Offset list"
 msgstr ""
-
-msgid "Add a ZapTimer for current event"
-msgstr "Shto një kronometr zap për ngjarjen aktuale"
 
 msgid "Add a ZapTimer for next event"
 msgstr "Shto një kronometr zap për ngjarjen tjetër"
@@ -2085,9 +2082,6 @@ msgstr "Shto një kohëmues për ngjarjen aktuale"
 
 msgid "Add an existing swap file"
 msgstr ""
-
-msgid "Add an AutoTimer for the current event"
-msgstr "Shto një AutoTimer për ngjarjen aktuale"
 
 msgid "Add current directory to bookmarks"
 msgstr "Shto kartelën aktuale tek libërshënuesit"
@@ -2163,12 +2157,6 @@ msgstr ""
 
 msgid "Add title"
 msgstr "Shto titulli"
-
-msgid "Add/Remove Timer"
-msgstr "Shto/Hiq kohëmatësin"
-
-msgid "Add/Remove a timer for the current event"
-msgstr "Shto Hiq një kohëm_ë për ngjarjen aktuale"
 
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr ""
@@ -2970,9 +2958,6 @@ msgstr "AutoMountManager"
 msgid "AutoRefresh"
 msgstr ""
 
-msgid "AutoTimer"
-msgstr ""
-
 msgid "AutoUpdate"
 msgstr "Përditësimi automatik"
 
@@ -3515,9 +3500,6 @@ msgstr ""
 msgid "Browse"
 msgstr ""
 
-msgid "Browse mode"
-msgstr ""
-
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
@@ -3704,8 +3686,17 @@ msgstr "CH%s"
 msgid "CHANGE BOUQUET"
 msgstr "NDRYSHO BUQETË"
 
-msgid "CHANNEL +/-"
-msgstr "KANALI +/-"
+msgid "CHANNEL+"
+msgstr ""
+
+msgid "CHANNEL+ button (setup in menu)"
+msgstr ""
+
+msgid "CHANNEL-"
+msgstr ""
+
+msgid "CHANNEL- button (setup in menu)"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "Instalimi i CI (Common Interface)"
@@ -4163,9 +4154,6 @@ msgstr ""
 msgid "Change to TV services mode"
 msgstr ""
 
-msgid "Change to bouquet"
-msgstr "Ndrysho në buqetë"
-
 msgid "Changed"
 msgstr ""
 
@@ -4264,9 +4252,6 @@ msgstr "Emri i kanalit"
 
 msgid "Channel number"
 msgstr ""
-
-msgid "Service preview mode"
-msgstr "Modaliteti i shikimit paraprak të kanalit"
 
 msgid "Channel selection configuration"
 msgstr "Konfigurimi i zgjedhjes së kanalit"
@@ -4606,12 +4591,6 @@ msgstr ""
 msgid "Close Task View"
 msgstr ""
 
-msgid "Close bouquet list"
-msgstr "Mbyll listën e buqetave"
-
-msgid "Close bouquet list."
-msgstr "Mbyll listën e buqetave."
-
 msgid "Close dialog"
 msgstr "Mbyll dialogun"
 
@@ -4701,9 +4680,6 @@ msgstr "Kolumbia"
 
 msgid "Color"
 msgstr "Ngjyra"
-
-msgid "Color Button Assignments"
-msgstr ""
 
 msgid "Color format"
 msgstr "Formati i ngjyrave"
@@ -5052,9 +5028,6 @@ msgstr "Konfiguro numrin e ditëve pas të cilave artikujt hiqen automatikisht n
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "Konfiguro numrin e ditëve që mbahen kohëmatësit përpara se të hiqen automatikisht nga lista e kohëmatësve."
-
-msgid "Select the number of services to be shown in the list."
-msgstr "Konfiguro numrin e rreshtave të treguar."
 
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr "Konfiguro vonesën e deshifrimit jashtë linje në milisekonda. Vonesa e konfiguruar vërehet në çdo ndryshim të barazisë së fjalës së kontrollit."
@@ -5506,9 +5479,6 @@ msgstr ""
 
 msgid "Country"
 msgstr "Vendi"
-
-msgid "Country Music"
-msgstr ""
 
 msgid "Country for EPG event genre information"
 msgstr "Vendi për informacionin e zhanrit të ngjarjeve EPG"
@@ -7376,6 +7346,9 @@ msgstr "Versioni i drejtuesve"
 msgid "Drop unconfigured satellites"
 msgstr ""
 
+msgid "Dual channel"
+msgstr ""
+
 msgid "Duplex"
 msgstr "Dupleks"
 
@@ -7419,11 +7392,11 @@ msgstr ""
 msgid "EPG"
 msgstr "EPG"
 
+msgid "EPG (Long press)"
+msgstr ""
+
 msgid "EPG Actions"
 msgstr "Veprimet EPG"
-
-msgid "EPG Bouquet Actions"
-msgstr "Veprimet e Buqetës EPG"
 
 msgid "EPG Cache Check"
 msgstr "Kontrolli i cache-it të EPG"
@@ -7434,9 +7407,6 @@ msgstr "Zgjedhja e kanalit/shërbimit EPG"
 msgid "EPG Data In Streams"
 msgstr ""
 
-msgid "EPG Display Actions"
-msgstr "Veprimet e shfaqjes së EPG"
-
 msgid "EPG Jump"
 msgstr ""
 
@@ -7445,9 +7415,6 @@ msgstr ""
 
 msgid "EPG Navigation Actions"
 msgstr "Veprimet e navigimit EPG"
-
-msgid "EPG Other Actions"
-msgstr "EPG Veprime të tjera"
 
 msgid "EPG Range And History"
 msgstr ""
@@ -7468,6 +7435,9 @@ msgid "EPG Sources"
 msgstr ""
 
 msgid "EPG Storage And Refresh"
+msgstr ""
+
+msgid "EPG button long (setup in menu)"
 msgstr ""
 
 msgid "EPG button mode"
@@ -7528,7 +7498,7 @@ msgstr "Kufiri lindor është vendosur"
 msgid "Eastern satellites"
 msgstr ""
 
-msgid "Easy Listening Music"
+msgid "Easy Listening"
 msgstr ""
 
 msgid "Easy listening"
@@ -9689,9 +9659,6 @@ msgstr "gjermanisht"
 msgid "Germany"
 msgstr "Gjermania"
 
-msgid "Getting event information failed!"
-msgstr "Marrja e informacionit të ngjarjes dështoi!"
-
 msgid "Getting plugin information. Please wait..."
 msgstr "Marrja e informacionit të shtojcave. Te lutem prit..."
 
@@ -10118,6 +10085,9 @@ msgstr "Fshih linjën VBI për këtë shërbim"
 msgid "Hide any zap error messages."
 msgstr "Fshih çdo mesazh gabimi zap."
 
+msgid "Hide empty services"
+msgstr "Kapërceni shërbimet boshe"
+
 msgid "Hide error messages from the Common Interface module."
 msgstr ""
 
@@ -10322,11 +10292,11 @@ msgstr "Detajet e IMDb"
 msgid "IMDb Search"
 msgstr "Kërkimi në IMDb"
 
-msgid "IMDb search for current event"
-msgstr "Kërkoni në IMDb për ngjarjen aktuale"
-
 msgid "INFO"
 msgstr "INFO"
+
+msgid "INFO (Long press)"
+msgstr ""
 
 msgid "INFO button mode"
 msgstr "Modaliteti i butonit INFO"
@@ -10761,12 +10731,6 @@ msgstr ""
 msgid "Info"
 msgstr "Info"
 
-msgid "INFO (Long press)"
-msgstr ""
-
-msgid "Info button (short)"
-msgstr ""
-
 msgid "Info file checksum"
 msgstr ""
 
@@ -11088,9 +11052,6 @@ msgstr ""
 msgid "Jazz"
 msgstr ""
 
-msgid "Jazz Music"
-msgstr ""
-
 msgid "Jersey"
 msgstr ""
 
@@ -11106,13 +11067,13 @@ msgstr ""
 msgid "Joined"
 msgstr ""
 
+msgid "Joint stereo"
+msgstr ""
+
 msgid "Jordan"
 msgstr ""
 
 msgid "Jump"
-msgstr ""
-
-msgid "Jump back 24 hours"
 msgstr ""
 
 msgid "Jump back one day"
@@ -11122,9 +11083,6 @@ msgid "Jump back one hour"
 msgstr ""
 
 msgid "Jump first press in channel selection"
-msgstr ""
-
-msgid "Jump forward 24 hours"
 msgstr ""
 
 msgid "Jump forward one day"
@@ -11148,13 +11106,7 @@ msgstr ""
 msgid "Jump to next marked position"
 msgstr ""
 
-msgid "Jump to next page or all up (setup in menu)"
-msgstr ""
-
 msgid "Jump to previous marked position"
-msgstr ""
-
-msgid "Jump to previous page or all down (setup in menu)"
 msgstr ""
 
 msgid "Jump to prime time"
@@ -12405,6 +12357,9 @@ msgstr ""
 msgid "Mongolian"
 msgstr ""
 
+msgid "Mono"
+msgstr ""
+
 msgid "Montenegro"
 msgstr ""
 
@@ -12642,9 +12597,6 @@ msgid "Move to first line"
 msgstr ""
 
 msgid "Move to first line / screen in the panel"
-msgstr ""
-
-msgid "Move to home of list"
 msgstr ""
 
 msgid "Move to last item / screen"
@@ -12977,6 +12929,9 @@ msgstr ""
 msgid "Narration"
 msgstr ""
 
+msgid "National Music"
+msgstr ""
+
 msgid "National music"
 msgstr ""
 
@@ -13005,9 +12960,6 @@ msgid "Navigate to the selected directory"
 msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
-msgstr ""
-
-msgid "Navigation And Button Assignments"
 msgstr ""
 
 msgid "Navigation And Time Range"
@@ -13787,9 +13739,6 @@ msgstr "OK"
 msgid "OK (Long press)"
 msgstr ""
 
-msgid "OK button (short)"
-msgstr ""
-
 msgid "OK button mode"
 msgstr ""
 
@@ -13901,9 +13850,6 @@ msgid "Ojibwa"
 msgstr ""
 
 msgid "Oldies"
-msgstr ""
-
-msgid "Oldies Music"
 msgstr ""
 
 msgid "Olympic blue"
@@ -14376,6 +14322,9 @@ msgid "PIN"
 msgstr ""
 
 msgid "PIN code needed"
+msgstr ""
+
+msgid "PLAY"
 msgstr ""
 
 msgid "PLP ID"
@@ -15453,9 +15402,6 @@ msgstr ""
 msgid "Previous channel page"
 msgstr ""
 
-msgid "Previous/Next bouquet"
-msgstr ""
-
 msgid "Previous/Next page"
 msgstr ""
 
@@ -15474,14 +15420,12 @@ msgstr ""
 msgid "Prime time"
 msgstr ""
 
-msgid "Primetime hour"
-msgstr ""
-
-msgid "Primetime minute"
-msgstr ""
-
 msgid "Priority"
 msgstr "Prioriteti"
+
+#, python-format
+msgid "Priority: %d"
+msgstr ""
 
 msgid "Privacy level"
 msgstr ""
@@ -15535,7 +15479,7 @@ msgstr ""
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr ""
 
-msgid "Program type"
+msgid "Programme type (PTY)"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -15817,14 +15761,20 @@ msgstr "Simboli REC në përdorim"
 msgid "REC symbol"
 msgstr "Simboli REC"
 
+msgid "RECORD"
+msgstr ""
+
+msgid "RECORD (Long press)"
+msgstr ""
+
 msgid "RED"
 msgstr "Butoni RED"
 
-msgid "RED button / HbbTV"
-msgstr "Butoni i kuq..."
-
 msgid "RED (Long press)"
 msgstr "RED i gjatë"
+
+msgid "RED button / HbbTV"
+msgstr "Butoni i kuq..."
 
 msgid "RF Output Settings"
 msgstr "Rregullimet e output RF"
@@ -16021,12 +15971,6 @@ msgstr ""
 
 msgid "Record"
 msgstr "Regjistro"
-
-msgid "Record - same as record button"
-msgstr "Regjistro - njësoj si butoni i regjistrimit"
-
-msgid "Record Actions"
-msgstr "Regjistroni veprimet"
 
 msgid "Record icon"
 msgstr ""
@@ -16906,9 +16850,6 @@ msgstr ""
 msgid "Rock"
 msgstr ""
 
-msgid "Rock Music"
-msgstr ""
-
 msgid "Rock/Pop"
 msgstr ""
 
@@ -17490,9 +17431,6 @@ msgstr ""
 msgid "Search for network shares"
 msgstr ""
 
-msgid "Search for similar events"
-msgstr ""
-
 msgid "Search in the current view"
 msgstr ""
 
@@ -17681,9 +17619,6 @@ msgstr ""
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr ""
-
-msgid "When enabled, services without EPG data will be hidden."
-msgstr "Nëse vendoset në 'po', kanalet pa EPG nuk do të shfaqen."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
 msgstr ""
@@ -18161,6 +18096,9 @@ msgstr ""
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr ""
 
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
+msgstr ""
+
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr ""
 
@@ -18312,6 +18250,9 @@ msgstr ""
 
 #, python-format
 msgid "Select the action for '%s'"
+msgstr ""
+
+msgid "Select the action that this button will perform."
 msgstr ""
 
 msgid "Select the action to perform when the timer ends."
@@ -18587,6 +18528,9 @@ msgstr ""
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
+msgid "Select the number of services to be shown in the list."
+msgstr "Konfiguro numrin e rreshtave të treguar."
+
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr ""
 
@@ -18842,6 +18786,9 @@ msgstr ""
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
 
+msgid "Select which service to use when opening the EPG."
+msgstr ""
+
 msgid "Select your ATSC provider."
 msgstr ""
 
@@ -19069,6 +19016,9 @@ msgstr ""
 
 msgid "Service picons downsize"
 msgstr ""
+
+msgid "Service preview mode"
+msgstr "Modaliteti i shikimit paraprak të kanalit"
 
 msgid "Service reference"
 msgstr ""
@@ -19343,9 +19293,6 @@ msgstr ""
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Nëse vendoset në \"Po\", të njëjtat komanda do të dërgohen në televizor për ngjarjet e gatishmërisë së thellë siç dërgohen gjatë ngjarjeve të rregullta të gatishmërisë."
-
-msgid "Select the action that this button will perform."
-msgstr ""
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr ""
@@ -19731,9 +19678,6 @@ msgid "Show MiniTV in the Front Display"
 msgstr ""
 
 msgid "Show Movie Selection in Main Menu"
-msgstr ""
-
-msgid "Show Movies List"
 msgstr ""
 
 msgid "Show Multi EPG"
@@ -20472,9 +20416,6 @@ msgstr ""
 msgid "Skip backward (enter time)"
 msgstr ""
 
-msgid "Hide empty services"
-msgstr "Kapërceni shërbimet boshe"
-
 #, python-format
 msgid "Skip for '%s' is disabled"
 msgstr ""
@@ -20861,9 +20802,6 @@ msgstr ""
 msgid "Sort Bookmarks"
 msgstr ""
 
-msgid "Sort EPG List"
-msgstr ""
-
 msgid "Sort Extension Menu"
 msgstr ""
 
@@ -21223,6 +21161,9 @@ msgstr ""
 msgid "Stepped west"
 msgstr ""
 
+msgid "Stereo"
+msgstr ""
+
 msgid "Stop"
 msgstr ""
 
@@ -21521,6 +21462,15 @@ msgid "Support"
 msgstr ""
 
 msgid "Suriname"
+msgstr ""
+
+msgid "Surround"
+msgstr ""
+
+msgid "Surround 5.1"
+msgstr ""
+
+msgid "Surround 7.1"
 msgstr ""
 
 msgid "Svalbard and Jan Mayen"
@@ -22381,6 +22331,9 @@ msgstr ""
 msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr ""
 
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr ""
@@ -22625,9 +22578,6 @@ msgstr ""
 msgid "This option allows you to set the Auto Volume Level output."
 msgstr ""
 
-msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
-msgstr ""
-
 msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "Ky opsion ju lejon të kaloni Audio në Bluetooth speakers."
 
@@ -22809,9 +22759,6 @@ msgid "Time shift could not be started. Please check the storage device and avai
 msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
-msgstr ""
-
-msgid "Time shift not possible!"
 msgstr ""
 
 msgid "Time shift save action on zap"
@@ -24924,6 +24871,9 @@ msgstr ""
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Kur aktivizohet, riformatoni titrat që të përputhen me gjerësinë e ekranit."
 
+msgid "When enabled, services without EPG data will be hidden."
+msgstr "Nëse vendoset në 'po', kanalet pa EPG nuk do të shfaqen."
+
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Kur aktivizohet, shfaqni numrat e kanaleve në ekranin e zgjedhjes së kanalit."
 
@@ -25061,9 +25011,6 @@ msgstr "Kur sintonizohet me një shërbim, sistemi normalisht do të skanojë tr
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Ku t'i kursesh regjistrimet e përkohshme të kohës?"
-
-msgid "Select which service to use when opening the EPG."
-msgstr ""
 
 msgid "Which time shift buffer event do you want to save?"
 msgstr "Cilën ngjarje dëshironi të ruani përgjithmonë?"
@@ -26261,6 +26208,54 @@ msgstr "Po (mbani ushqim)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Add a RecordTimer for current event"
+#~ msgstr "Shto një kronometruar rekord për ngjarjen aktuale"
+
+#~ msgid "Add a ZapTimer for current event"
+#~ msgstr "Shto një kronometr zap për ngjarjen aktuale"
+
+#~ msgid "Add an AutoTimer for the current event"
+#~ msgstr "Shto një AutoTimer për ngjarjen aktuale"
+
+#~ msgid "Add/Remove Timer"
+#~ msgstr "Shto/Hiq kohëmatësin"
+
+#~ msgid "Add/Remove a timer for the current event"
+#~ msgstr "Shto Hiq një kohëm_ë për ngjarjen aktuale"
+
+#~ msgid "CHANNEL +/-"
+#~ msgstr "KANALI +/-"
+
+#~ msgid "Change to bouquet"
+#~ msgstr "Ndrysho në buqetë"
+
+#~ msgid "Close bouquet list"
+#~ msgstr "Mbyll listën e buqetave"
+
+#~ msgid "Close bouquet list."
+#~ msgstr "Mbyll listën e buqetave."
+
+#~ msgid "EPG Bouquet Actions"
+#~ msgstr "Veprimet e Buqetës EPG"
+
+#~ msgid "EPG Display Actions"
+#~ msgstr "Veprimet e shfaqjes së EPG"
+
+#~ msgid "EPG Other Actions"
+#~ msgstr "EPG Veprime të tjera"
+
+#~ msgid "Getting event information failed!"
+#~ msgstr "Marrja e informacionit të ngjarjes dështoi!"
+
+#~ msgid "IMDb search for current event"
+#~ msgstr "Kërkoni në IMDb për ngjarjen aktuale"
+
+#~ msgid "Record - same as record button"
+#~ msgstr "Regjistro - njësoj si butoni i regjistrimit"
+
+#~ msgid "Record Actions"
+#~ msgstr "Regjistroni veprimet"
 
 #~ msgid "Wait please while creating swap file..."
 #~ msgstr "Ju lutemi prisni gjatë krijimit të skedarit të shkëmbimit..."

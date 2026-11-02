@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 13:51+0100\n"
+"POT-Creation-Date: 2026-11-01 20:39+0100\n"
 "PO-Revision-Date: 2026-08-16 15:55+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1699,6 +1699,9 @@ msgstr ""
 msgid "A new storage device has been connected:"
 msgstr ""
 
+msgid "A prepared or running timer can not be moved to the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -2051,14 +2054,8 @@ msgstr ""
 msgid "Add a RecordTimer"
 msgstr "Lisa salvestustaimer"
 
-msgid "Add a RecordTimer for current event"
-msgstr "Lisa käesolevale saatele salvestustaimer"
-
 msgid "Add a TV service to the Volume Offset list"
 msgstr ""
-
-msgid "Add a ZapTimer for current event"
-msgstr "Lisa käesolevale saatele kanalivahetustaimer"
 
 msgid "Add a ZapTimer for next event"
 msgstr "Lisa järgmisele saatele kanalivahetustaimer"
@@ -2092,9 +2089,6 @@ msgstr ""
 
 msgid "Add an existing swap file"
 msgstr ""
-
-msgid "Add an AutoTimer for the current event"
-msgstr "Lisa käesolevale saatele autotaimer"
 
 msgid "Add current directory to bookmarks"
 msgstr "Lisa kataloog järjehoidjatesse"
@@ -2172,12 +2166,6 @@ msgstr ""
 
 msgid "Add title"
 msgstr "Lisa pealkiri"
-
-msgid "Add/Remove Timer"
-msgstr "Lisa/eemalda taimer"
-
-msgid "Add/Remove a timer for the current event"
-msgstr "Lisa/eemalda taimer käesolevale saatele"
 
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr ""
@@ -2996,9 +2984,6 @@ msgstr "Automaatne haakimine"
 msgid "AutoRefresh"
 msgstr ""
 
-msgid "AutoTimer"
-msgstr ""
-
 msgid "AutoUpdate"
 msgstr "Automaatne uuendamine"
 
@@ -3551,9 +3536,6 @@ msgstr ""
 msgid "Browse"
 msgstr ""
 
-msgid "Browse mode"
-msgstr ""
-
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
@@ -3738,9 +3720,17 @@ msgstr "CH%s"
 msgid "CHANGE BOUQUET"
 msgstr "LEMMIKNIMEKIRJA VAHETUS"
 
-#, fuzzy
-msgid "CHANNEL +/-"
-msgstr "Kanal 1"
+msgid "CHANNEL+"
+msgstr ""
+
+msgid "CHANNEL+ button (setup in menu)"
+msgstr ""
+
+msgid "CHANNEL-"
+msgstr ""
+
+msgid "CHANNEL- button (setup in menu)"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI seadistamine"
@@ -4202,9 +4192,6 @@ msgstr ""
 msgid "Change to TV services mode"
 msgstr ""
 
-msgid "Change to bouquet"
-msgstr "Vaheta lemmiknimekirja"
-
 msgid "Changed"
 msgstr ""
 
@@ -4304,9 +4291,6 @@ msgstr "Kanali nimi"
 
 msgid "Channel number"
 msgstr ""
-
-msgid "Service preview mode"
-msgstr "Kanali eelvaatlus"
 
 msgid "Channel selection configuration"
 msgstr "Kanalivaliku seaded"
@@ -4651,12 +4635,6 @@ msgstr ""
 msgid "Close Task View"
 msgstr ""
 
-msgid "Close bouquet list"
-msgstr ""
-
-msgid "Close bouquet list."
-msgstr "Sulge lemmiknimekirjad."
-
 msgid "Close dialog"
 msgstr "Sulge aken"
 
@@ -4746,9 +4724,6 @@ msgstr "Kolumbia"
 
 msgid "Color"
 msgstr "Värv"
-
-msgid "Color Button Assignments"
-msgstr ""
 
 msgid "Color format"
 msgstr "Värvi vorming"
@@ -5107,9 +5082,6 @@ msgstr "Määra päevade arv, pärast mida salvestised kustutatakse automaatselt
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "Määra päevade arv, pärast mida vana taimer kustutatakse automaatselt nimekirjast."
-
-msgid "Select the number of services to be shown in the list."
-msgstr "Määra kuvatavate ridade arv."
 
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr "Määra võrguta dekodeerimise viiteaeg (ms). Määratud viiteaega jälgitakse iga CWP paarsuse muutusel."
@@ -5571,9 +5543,6 @@ msgstr ""
 
 msgid "Country"
 msgstr "Riik"
-
-msgid "Country Music"
-msgstr ""
 
 #, fuzzy
 msgid "Country for EPG event genre information"
@@ -7478,6 +7447,9 @@ msgstr ""
 msgid "Drop unconfigured satellites"
 msgstr ""
 
+msgid "Dual channel"
+msgstr ""
+
 msgid "Duplex"
 msgstr ""
 
@@ -7521,10 +7493,10 @@ msgstr ""
 msgid "EPG"
 msgstr "EPG"
 
-msgid "EPG Actions"
+msgid "EPG (Long press)"
 msgstr ""
 
-msgid "EPG Bouquet Actions"
+msgid "EPG Actions"
 msgstr ""
 
 msgid "EPG Cache Check"
@@ -7536,9 +7508,6 @@ msgstr ""
 msgid "EPG Data In Streams"
 msgstr ""
 
-msgid "EPG Display Actions"
-msgstr ""
-
 msgid "EPG Jump"
 msgstr ""
 
@@ -7546,9 +7515,6 @@ msgid "EPG Language"
 msgstr ""
 
 msgid "EPG Navigation Actions"
-msgstr ""
-
-msgid "EPG Other Actions"
 msgstr ""
 
 msgid "EPG Range And History"
@@ -7571,6 +7537,9 @@ msgid "EPG Sources"
 msgstr ""
 
 msgid "EPG Storage And Refresh"
+msgstr ""
+
+msgid "EPG button long (setup in menu)"
 msgstr ""
 
 msgid "EPG button mode"
@@ -7631,7 +7600,7 @@ msgstr "Ida piir on määratud"
 msgid "Eastern satellites"
 msgstr ""
 
-msgid "Easy Listening Music"
+msgid "Easy Listening"
 msgstr ""
 
 msgid "Easy listening"
@@ -9828,9 +9797,6 @@ msgstr "Saksa"
 msgid "Germany"
 msgstr "Saksamaa"
 
-msgid "Getting event information failed!"
-msgstr "Saateinfo hankimine nurjus!"
-
 msgid "Getting plugin information. Please wait..."
 msgstr "Nimekirja laadimine. Oota veidi."
 
@@ -10264,6 +10230,9 @@ msgstr "Peida punktiirjoon ekraani ülaservas"
 msgid "Hide any zap error messages."
 msgstr "Peida kanalivahetuse veateated."
 
+msgid "Hide empty services"
+msgstr "Tühje kanaleid ei kuvata"
+
 msgid "Hide error messages from the Common Interface module."
 msgstr ""
 
@@ -10477,11 +10446,11 @@ msgstr "IMDb"
 msgid "IMDb Search"
 msgstr "IMDb otsing"
 
-msgid "IMDb search for current event"
-msgstr "IMDB otsing käesolevale saatele"
-
 msgid "INFO"
 msgstr "INFO"
+
+msgid "INFO (Long press)"
+msgstr "Info nupp (pikk)"
 
 msgid "INFO button mode"
 msgstr "INFO nupu vajutus"
@@ -10925,12 +10894,6 @@ msgstr "Indoneesia"
 msgid "Info"
 msgstr "Info"
 
-msgid "INFO (Long press)"
-msgstr "Info nupp (pikk)"
-
-msgid "Info button (short)"
-msgstr "Info nupp (lühike)"
-
 msgid "Info file checksum"
 msgstr ""
 
@@ -11260,9 +11223,6 @@ msgstr ""
 msgid "Jazz"
 msgstr ""
 
-msgid "Jazz Music"
-msgstr ""
-
 msgid "Jersey"
 msgstr "Jersey"
 
@@ -11278,14 +11238,14 @@ msgstr ""
 msgid "Joined"
 msgstr ""
 
+msgid "Joint stereo"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Jordaania"
 
 msgid "Jump"
 msgstr ""
-
-msgid "Jump back 24 hours"
-msgstr "Hüpe 24 tundi tagasi"
 
 msgid "Jump back one day"
 msgstr ""
@@ -11295,9 +11255,6 @@ msgstr ""
 
 msgid "Jump first press in channel selection"
 msgstr "Valik esimesel nupuvajutusel"
-
-msgid "Jump forward 24 hours"
-msgstr "Hüpe 24 tundi edasi"
 
 msgid "Jump forward one day"
 msgstr ""
@@ -11320,14 +11277,8 @@ msgstr "Hüpe nimekirja lõppu"
 msgid "Jump to next marked position"
 msgstr "Hüpe järgmise märgini"
 
-msgid "Jump to next page or all up (setup in menu)"
-msgstr ""
-
 msgid "Jump to previous marked position"
 msgstr "Hüpe eelmise märgini"
-
-msgid "Jump to previous page or all down (setup in menu)"
-msgstr ""
 
 msgid "Jump to prime time"
 msgstr "Hüpe tippajale"
@@ -12634,6 +12585,9 @@ msgstr "Mongoolia"
 msgid "Mongolian"
 msgstr "Mongoolia"
 
+msgid "Mono"
+msgstr ""
+
 msgid "Montenegro"
 msgstr "Montenegro"
 
@@ -12886,9 +12840,6 @@ msgstr ""
 
 msgid "Move to first line / screen in the panel"
 msgstr ""
-
-msgid "Move to home of list"
-msgstr "Liigu nimekirja kodukataloogi"
 
 msgid "Move to last item / screen"
 msgstr ""
@@ -13233,6 +13184,9 @@ msgstr "Namiibia"
 msgid "Narration"
 msgstr ""
 
+msgid "National Music"
+msgstr ""
+
 msgid "National music"
 msgstr ""
 
@@ -13262,9 +13216,6 @@ msgid "Navigate to the selected directory"
 msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
-msgstr ""
-
-msgid "Navigation And Button Assignments"
 msgstr ""
 
 msgid "Navigation And Time Range"
@@ -14089,9 +14040,6 @@ msgstr "OK"
 msgid "OK (Long press)"
 msgstr "OK (pikk)"
 
-msgid "OK button (short)"
-msgstr "OK nupp (lühike)"
-
 msgid "OK button mode"
 msgstr "OK nupu vajutus"
 
@@ -14204,9 +14152,6 @@ msgid "Ojibwa"
 msgstr ""
 
 msgid "Oldies"
-msgstr ""
-
-msgid "Oldies Music"
 msgstr ""
 
 msgid "Olympic blue"
@@ -14720,6 +14665,9 @@ msgstr ""
 
 msgid "PIN code needed"
 msgstr "Vajalik on PIN-kood"
+
+msgid "PLAY"
+msgstr ""
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -15822,10 +15770,6 @@ msgstr "Eelmine lehekülg"
 msgid "Previous channel page"
 msgstr "Eelmine lehekülg"
 
-#, fuzzy
-msgid "Previous/Next bouquet"
-msgstr "Eelmine/järgmine lehekülg"
-
 msgid "Previous/Next page"
 msgstr "Eelmine/järgmine lehekülg"
 
@@ -15844,14 +15788,12 @@ msgstr ""
 msgid "Prime time"
 msgstr "Tippaeg"
 
-msgid "Primetime hour"
-msgstr "Tippaja tund"
-
-msgid "Primetime minute"
-msgstr "Tippaja minut"
-
 msgid "Priority"
 msgstr "Prioriteet"
+
+#, python-format
+msgid "Priority: %d"
+msgstr ""
 
 msgid "Privacy level"
 msgstr ""
@@ -15905,7 +15847,7 @@ msgstr "Profiil: kohalik vastuvõtja"
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr ""
 
-msgid "Program type"
+msgid "Programme type (PTY)"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -16196,14 +16138,20 @@ msgstr "REC sümbol kasutuses"
 msgid "REC symbol"
 msgstr "REC sümbol"
 
-msgid "RED"
-msgstr "Punane nupp"
+msgid "RECORD"
+msgstr ""
 
-msgid "RED button / HbbTV"
+msgid "RECORD (Long press)"
+msgstr ""
+
+msgid "RED"
 msgstr "Punane nupp"
 
 msgid "RED (Long press)"
 msgstr "Punane - pikk"
+
+msgid "RED button / HbbTV"
+msgstr "Punane nupp"
 
 msgid "RF Output Settings"
 msgstr "RF-väljund"
@@ -16403,12 +16351,6 @@ msgstr ""
 
 msgid "Record"
 msgstr "Salvestus"
-
-msgid "Record - same as record button"
-msgstr ""
-
-msgid "Record Actions"
-msgstr ""
 
 msgid "Record icon"
 msgstr ""
@@ -17310,9 +17252,6 @@ msgstr "Paremal, reamurdmisega"
 msgid "Rock"
 msgstr ""
 
-msgid "Rock Music"
-msgstr ""
-
 msgid "Rock/Pop"
 msgstr "Rock/Pop"
 
@@ -17911,9 +17850,6 @@ msgstr "Otsi idast"
 msgid "Search for network shares"
 msgstr "Otsi võrgujagusi"
 
-msgid "Search for similar events"
-msgstr "Otsi sarnaseid saateid"
-
 msgid "Search in the current view"
 msgstr ""
 
@@ -18105,9 +18041,6 @@ msgstr ""
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr ""
-
-msgid "When enabled, services without EPG data will be hidden."
-msgstr "Kui lubatud, ei kuvata kanaleid, millel puudub saatekava."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
 msgstr ""
@@ -18591,6 +18524,9 @@ msgstr ""
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr ""
 
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
+msgstr "See valik määrab saatekava kujunduse (tekst või graafiline)."
+
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr ""
 
@@ -18743,6 +18679,9 @@ msgstr ""
 #, python-format
 msgid "Select the action for '%s'"
 msgstr ""
+
+msgid "Select the action that this button will perform."
+msgstr "Määra nupu toiming."
 
 msgid "Select the action to perform when the timer ends."
 msgstr ""
@@ -19019,6 +18958,9 @@ msgstr ""
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
+msgid "Select the number of services to be shown in the list."
+msgstr "Määra kuvatavate ridade arv."
+
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr ""
 
@@ -19278,6 +19220,9 @@ msgstr ""
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
 
+msgid "Select which service to use when opening the EPG."
+msgstr ""
+
 msgid "Select your ATSC provider."
 msgstr "Vali ATSC levitaja."
 
@@ -19526,6 +19471,9 @@ msgstr "Pikonite kuvasuhe"
 
 msgid "Service picons downsize"
 msgstr "Pikonite skaleerimine"
+
+msgid "Service preview mode"
+msgstr "Kanali eelvaatlus"
 
 msgid "Service reference"
 msgstr "Viitenumber"
@@ -19805,9 +19753,6 @@ msgstr ""
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
-
-msgid "Select the action that this button will perform."
-msgstr "Määra nupu toiming."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Määra 'jah' silumiseks, et leida hangumise animatsiooni algpõhjus."
@@ -20209,9 +20154,6 @@ msgstr "Kuva MiniTV esipaneelil"
 
 msgid "Show Movie Selection in Main Menu"
 msgstr ""
-
-msgid "Show Movies List"
-msgstr "Filmilist"
 
 msgid "Show Multi EPG"
 msgstr "MultiEPG"
@@ -20961,9 +20903,6 @@ msgstr ""
 msgid "Skip backward (enter time)"
 msgstr "Hüppa tagasi (sisesta aeg)"
 
-msgid "Hide empty services"
-msgstr "Tühje kanaleid ei kuvata"
-
 #, python-format
 msgid "Skip for '%s' is disabled"
 msgstr ""
@@ -21362,9 +21301,6 @@ msgstr "Järjestus"
 msgid "Sort Bookmarks"
 msgstr ""
 
-msgid "Sort EPG List"
-msgstr "Saatekava järjestamine"
-
 # Menue Anpassungen OSD
 msgid "Sort Extension Menu"
 msgstr "Laiendused tähestikulises järjekorras"
@@ -21732,6 +21668,9 @@ msgstr "Astuti itta"
 msgid "Stepped west"
 msgstr "Astuti läände"
 
+msgid "Stereo"
+msgstr ""
+
 msgid "Stop"
 msgstr "Peata"
 
@@ -22037,6 +21976,15 @@ msgstr ""
 
 msgid "Suriname"
 msgstr "Suriname"
+
+msgid "Surround"
+msgstr ""
+
+msgid "Surround 5.1"
+msgstr ""
+
+msgid "Surround 7.1"
+msgstr ""
 
 msgid "Svalbard and Jan Mayen"
 msgstr "Svalbard ja Jan Mayen"
@@ -22909,6 +22857,9 @@ msgstr ""
 msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr ""
 
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr ""
@@ -23165,9 +23116,6 @@ msgstr ""
 msgid "This option allows you to set the Auto Volume Level output."
 msgstr "Selles valikus saad määrata automaatse helitugevuse."
 
-msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
-msgstr "See valik määrab saatekava kujunduse (tekst või graafiline)."
-
 msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "See valik võimaldab lülitada heli BT kõlaritele."
 
@@ -23359,9 +23307,6 @@ msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr ""
-
-msgid "Time shift not possible!"
-msgstr "Ajanihke kasutamine pole võimalik!"
 
 msgid "Time shift save action on zap"
 msgstr "Ajanihke talletamine kanalivahetusel"
@@ -25542,6 +25487,9 @@ msgstr ""
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Kui lubatud, seatakse subtiitrid vastavusse ekraani laiusega."
 
+msgid "When enabled, services without EPG data will be hidden."
+msgstr "Kui lubatud, ei kuvata kanaleid, millel puudub saatekava."
+
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Kui lubatud, kuvatakse kanalinimekirjas kanali numbrid."
 
@@ -25680,9 +25628,6 @@ msgstr "Olles häälestatud kanalile, uurib süsteem tavaliselt transponderi muu
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Kuhu talletada ajutised ajanihke failid?"
-
-msgid "Select which service to use when opening the EPG."
-msgstr ""
 
 msgid "Which time shift buffer event do you want to save?"
 msgstr "Millise saate soovid lõplikult talletada?"
@@ -26906,6 +26851,74 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Add a RecordTimer for current event"
+#~ msgstr "Lisa käesolevale saatele salvestustaimer"
+
+#~ msgid "Add a ZapTimer for current event"
+#~ msgstr "Lisa käesolevale saatele kanalivahetustaimer"
+
+#~ msgid "Add an AutoTimer for the current event"
+#~ msgstr "Lisa käesolevale saatele autotaimer"
+
+#~ msgid "Add/Remove Timer"
+#~ msgstr "Lisa/eemalda taimer"
+
+#~ msgid "Add/Remove a timer for the current event"
+#~ msgstr "Lisa/eemalda taimer käesolevale saatele"
+
+#, fuzzy
+#~ msgid "CHANNEL +/-"
+#~ msgstr "Kanal 1"
+
+#~ msgid "Change to bouquet"
+#~ msgstr "Vaheta lemmiknimekirja"
+
+#~ msgid "Close bouquet list."
+#~ msgstr "Sulge lemmiknimekirjad."
+
+#~ msgid "Getting event information failed!"
+#~ msgstr "Saateinfo hankimine nurjus!"
+
+#~ msgid "IMDb search for current event"
+#~ msgstr "IMDB otsing käesolevale saatele"
+
+#~ msgid "Info button (short)"
+#~ msgstr "Info nupp (lühike)"
+
+#~ msgid "Jump back 24 hours"
+#~ msgstr "Hüpe 24 tundi tagasi"
+
+#~ msgid "Jump forward 24 hours"
+#~ msgstr "Hüpe 24 tundi edasi"
+
+#~ msgid "Move to home of list"
+#~ msgstr "Liigu nimekirja kodukataloogi"
+
+#~ msgid "OK button (short)"
+#~ msgstr "OK nupp (lühike)"
+
+#, fuzzy
+#~ msgid "Previous/Next bouquet"
+#~ msgstr "Eelmine/järgmine lehekülg"
+
+#~ msgid "Primetime hour"
+#~ msgstr "Tippaja tund"
+
+#~ msgid "Primetime minute"
+#~ msgstr "Tippaja minut"
+
+#~ msgid "Search for similar events"
+#~ msgstr "Otsi sarnaseid saateid"
+
+#~ msgid "Show Movies List"
+#~ msgstr "Filmilist"
+
+#~ msgid "Sort EPG List"
+#~ msgstr "Saatekava järjestamine"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Ajanihke kasutamine pole võimalik!"
 
 #
 #~ msgid "Please select device to use as swap file location"

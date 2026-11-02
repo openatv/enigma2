@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 13:51+0100\n"
+"POT-Creation-Date: 2026-11-01 20:39+0100\n"
 "PO-Revision-Date: 2026-08-17 04:54+0000\n"
 "Last-Translator: Abdulelah Aqeil <dr.romantic@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -1864,6 +1864,9 @@ msgstr ""
 msgid "A new storage device has been connected:"
 msgstr ""
 
+msgid "A prepared or running timer can not be moved to the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -2234,14 +2237,8 @@ msgstr ""
 msgid "Add a RecordTimer"
 msgstr "أضف مؤقت للتسجيل"
 
-msgid "Add a RecordTimer for current event"
-msgstr "اضف موقت تسجيل للحدث الحالي"
-
 msgid "Add a TV service to the Volume Offset list"
 msgstr ""
-
-msgid "Add a ZapTimer for current event"
-msgstr "اضف موقت انتقال للحدث الحالي"
 
 msgid "Add a ZapTimer for next event"
 msgstr "أضف مؤقت انتقال للحدث القادم"
@@ -2281,9 +2278,6 @@ msgstr "أضف مؤقت للحدث الحالي"
 
 msgid "Add an existing swap file"
 msgstr ""
-
-msgid "Add an AutoTimer for the current event"
-msgstr "أضف مؤقت آلي للحدث الحالي"
 
 #, fuzzy
 msgid "Add current directory to bookmarks"
@@ -2362,12 +2356,6 @@ msgstr ""
 
 msgid "Add title"
 msgstr "إضافة عنوان"
-
-msgid "Add/Remove Timer"
-msgstr "اضف/احذف مؤقت"
-
-msgid "Add/Remove a timer for the current event"
-msgstr "اضف /الغ توقيت للحدث الحالي"
 
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr ""
@@ -3207,10 +3195,6 @@ msgid "AutoRefresh"
 msgstr "تحديث تلقائي"
 
 #, fuzzy
-msgid "AutoTimer"
-msgstr "إضافة مؤقت تلقائي"
-
-#, fuzzy
 msgid "AutoUpdate"
 msgstr "التحديث"
 
@@ -3796,9 +3780,6 @@ msgstr ""
 msgid "Browse"
 msgstr ""
 
-msgid "Browse mode"
-msgstr ""
-
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
@@ -3998,9 +3979,17 @@ msgstr "CH%s"
 msgid "CHANGE BOUQUET"
 msgstr "تغيير الباقة"
 
-#
-msgid "CHANNEL +/-"
-msgstr "قناه +/-"
+msgid "CHANNEL+"
+msgstr ""
+
+msgid "CHANNEL+ button (setup in menu)"
+msgstr ""
+
+msgid "CHANNEL-"
+msgstr ""
+
+msgid "CHANNEL- button (setup in menu)"
+msgstr ""
 
 #, fuzzy
 msgid "CI (Common Interface) Setup"
@@ -4491,10 +4480,6 @@ msgstr ""
 msgid "Change to TV services mode"
 msgstr ""
 
-#
-msgid "Change to bouquet"
-msgstr "تغيير إلى الباقة"
-
 msgid "Changed"
 msgstr ""
 
@@ -4598,9 +4583,6 @@ msgstr "اسم القناة"
 
 msgid "Channel number"
 msgstr "رقم القناة"
-
-msgid "Service preview mode"
-msgstr "وضع معاينة القنوات"
 
 msgid "Channel selection configuration"
 msgstr "تهيئة اختيار القنوات"
@@ -4952,12 +4934,6 @@ msgstr ""
 msgid "Close Task View"
 msgstr ""
 
-msgid "Close bouquet list"
-msgstr ""
-
-msgid "Close bouquet list."
-msgstr "غلق قائمة الباقات."
-
 msgid "Close dialog"
 msgstr ""
 
@@ -5047,9 +5023,6 @@ msgstr "كولومبيا"
 
 msgid "Color"
 msgstr "اللون"
-
-msgid "Color Button Assignments"
-msgstr ""
 
 msgid "Color format"
 msgstr "تهئية الألوان"
@@ -5405,9 +5378,6 @@ msgstr "اضبط عدد الأيام التي يتم بعدها إزالة ال�
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "إعدادات عدد الأيام يتم فيها حفظ المؤقتات القديمة قبل أن تتم إزالتها تلقائيا من قائمة المؤقتات."
-
-msgid "Select the number of services to be shown in the list."
-msgstr "اضبط عدد الصفوف المعروضة."
 
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr ""
@@ -5865,9 +5835,6 @@ msgstr ""
 
 msgid "Country"
 msgstr "الدولة"
-
-msgid "Country Music"
-msgstr ""
 
 msgid "Country for EPG event genre information"
 msgstr ""
@@ -7769,6 +7736,9 @@ msgstr "إصدار الدرايفر"
 msgid "Drop unconfigured satellites"
 msgstr ""
 
+msgid "Dual channel"
+msgstr ""
+
 msgid "Duplex"
 msgstr "دوبلكس"
 
@@ -7813,11 +7783,11 @@ msgstr "معلومات الـ ECM لـ %s"
 msgid "EPG"
 msgstr "دليل البرامج الإلكترونية"
 
+msgid "EPG (Long press)"
+msgstr ""
+
 msgid "EPG Actions"
 msgstr "إجراءات دليل البرامج الإلكتروني"
-
-msgid "EPG Bouquet Actions"
-msgstr "إجراءات دليل قائمة القنوات"
 
 msgid "EPG Cache Check"
 msgstr "فحص ذاكرة التخزين المؤقته لـ EPG"
@@ -7829,10 +7799,6 @@ msgid "EPG Data In Streams"
 msgstr ""
 
 #, fuzzy
-msgid "EPG Display Actions"
-msgstr "خيارات عرض الدليل"
-
-#, fuzzy
 msgid "EPG Jump"
 msgstr "التنقل السريع"
 
@@ -7841,9 +7807,6 @@ msgstr ""
 
 msgid "EPG Navigation Actions"
 msgstr "إجراءات التنقل في EPG"
-
-msgid "EPG Other Actions"
-msgstr "الاجراءات الأخرى للدليل"
 
 msgid "EPG Range And History"
 msgstr ""
@@ -7864,6 +7827,9 @@ msgid "EPG Sources"
 msgstr ""
 
 msgid "EPG Storage And Refresh"
+msgstr ""
+
+msgid "EPG button long (setup in menu)"
 msgstr ""
 
 #, fuzzy
@@ -7927,7 +7893,7 @@ msgstr "ضبط الحد الأقصى شرقاً"
 msgid "Eastern satellites"
 msgstr ""
 
-msgid "Easy Listening Music"
+msgid "Easy Listening"
 msgstr ""
 
 msgid "Easy listening"
@@ -10169,9 +10135,6 @@ msgstr "الألمانية"
 msgid "Germany"
 msgstr "المانيا"
 
-msgid "Getting event information failed!"
-msgstr ""
-
 #
 msgid "Getting plugin information. Please wait..."
 msgstr "جاري الحصول على معلومات عن البلج إنز. رجاء الانتظار..."
@@ -10609,6 +10572,9 @@ msgstr "إخفاء سطر VBI لهذه الخدمة"
 msgid "Hide any zap error messages."
 msgstr "إخفاء رسائل الأخطاء."
 
+msgid "Hide empty services"
+msgstr "تخطي القنوات الفارغة"
+
 msgid "Hide error messages from the Common Interface module."
 msgstr "إخفاء رسائل الأخطاء من الكامة الداخلية."
 
@@ -10815,11 +10781,11 @@ msgstr "تفاصيل موقع IMDb"
 msgid "IMDb Search"
 msgstr "البحث في IMDb"
 
-msgid "IMDb search for current event"
-msgstr "البحث في قاعدة بيانات موقع IMDb عن الحدث الحالي"
-
 msgid "INFO"
 msgstr ""
+
+msgid "INFO (Long press)"
+msgstr "زر المعلومات (طويل)"
 
 msgid "INFO button mode"
 msgstr "وضع زر المعلومات"
@@ -11271,12 +11237,6 @@ msgstr "أندونيسيا"
 msgid "Info"
 msgstr "معلومات"
 
-msgid "INFO (Long press)"
-msgstr "زر المعلومات (طويل)"
-
-msgid "Info button (short)"
-msgstr "زر المعلومات (قصير)"
-
 msgid "Info file checksum"
 msgstr "فحص سلامة ملف المعلومات"
 
@@ -11619,9 +11579,6 @@ msgstr ""
 msgid "Jazz"
 msgstr ""
 
-msgid "Jazz Music"
-msgstr ""
-
 msgid "Jersey"
 msgstr "جيرسي"
 
@@ -11637,13 +11594,13 @@ msgstr ""
 msgid "Joined"
 msgstr ""
 
+msgid "Joint stereo"
+msgstr ""
+
 msgid "Jordan"
 msgstr "الأردن"
 
 msgid "Jump"
-msgstr ""
-
-msgid "Jump back 24 hours"
 msgstr ""
 
 msgid "Jump back one day"
@@ -11654,9 +11611,6 @@ msgstr ""
 
 msgid "Jump first press in channel selection"
 msgstr "الانتقال عند أول ضغط في اختيار القناة"
-
-msgid "Jump forward 24 hours"
-msgstr ""
 
 msgid "Jump forward one day"
 msgstr ""
@@ -11679,14 +11633,8 @@ msgstr "الانتقال إلى نهاية القائمة"
 msgid "Jump to next marked position"
 msgstr "الإنتقال إلى الوضع القادم المحدد"
 
-msgid "Jump to next page or all up (setup in menu)"
-msgstr ""
-
 msgid "Jump to previous marked position"
 msgstr "الرجوع إلى الوضع السابق المحدد"
-
-msgid "Jump to previous page or all down (setup in menu)"
-msgstr ""
 
 msgid "Jump to prime time"
 msgstr "الانتقال إلى وقت الذروة"
@@ -13001,6 +12949,9 @@ msgstr "منغوليا"
 msgid "Mongolian"
 msgstr ""
 
+msgid "Mono"
+msgstr ""
+
 msgid "Montenegro"
 msgstr "الجبل الأسود"
 
@@ -13251,9 +13202,6 @@ msgstr ""
 
 msgid "Move to first line / screen in the panel"
 msgstr ""
-
-msgid "Move to home of list"
-msgstr "الانتقال إلى القائمة الرئيسية"
 
 msgid "Move to last item / screen"
 msgstr ""
@@ -13597,6 +13545,9 @@ msgstr "ناميبيا"
 msgid "Narration"
 msgstr ""
 
+msgid "National Music"
+msgstr ""
+
 msgid "National music"
 msgstr ""
 
@@ -13627,9 +13578,6 @@ msgid "Navigate to the selected directory"
 msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
-msgstr ""
-
-msgid "Navigation And Button Assignments"
 msgstr ""
 
 msgid "Navigation And Time Range"
@@ -14460,9 +14408,6 @@ msgstr "موافق"
 msgid "OK (Long press)"
 msgstr "زر موافق (طويل)"
 
-msgid "OK button (short)"
-msgstr "زر موافق (قصير)"
-
 msgid "OK button mode"
 msgstr "وضع زر موافق"
 
@@ -14578,9 +14523,6 @@ msgid "Ojibwa"
 msgstr ""
 
 msgid "Oldies"
-msgstr ""
-
-msgid "Oldies Music"
 msgstr ""
 
 msgid "Olympic blue"
@@ -15088,6 +15030,9 @@ msgstr ""
 
 msgid "PIN code needed"
 msgstr "لا حاجه الى نسخة إحتياطية"
+
+msgid "PLAY"
+msgstr ""
 
 msgid "PLP ID"
 msgstr "معرف نقل بيانات الصوت والصورة"
@@ -16232,9 +16177,6 @@ msgstr "معاينه"
 msgid "Previous channel page"
 msgstr ""
 
-msgid "Previous/Next bouquet"
-msgstr ""
-
 msgid "Previous/Next page"
 msgstr "الصفحة السابقة/الصفحة التالية"
 
@@ -16253,14 +16195,12 @@ msgstr ""
 msgid "Prime time"
 msgstr "ساعة وقت الذروة"
 
-msgid "Primetime hour"
-msgstr "ساعة وقت الذروة"
-
-msgid "Primetime minute"
-msgstr "دقيقة وقت الذروة"
-
 msgid "Priority"
 msgstr "الأولوية"
+
+#, python-format
+msgid "Priority: %d"
+msgstr ""
 
 msgid "Privacy level"
 msgstr ""
@@ -16314,7 +16254,7 @@ msgstr ""
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr ""
 
-msgid "Program type"
+msgid "Programme type (PTY)"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -16608,14 +16548,20 @@ msgstr "رمز التسجيل أثناء الاستخدام"
 msgid "REC symbol"
 msgstr "رمز التسجيل (REC)"
 
+msgid "RECORD"
+msgstr ""
+
+msgid "RECORD (Long press)"
+msgstr ""
+
 msgid "RED"
 msgstr "زر الأحمر"
 
-msgid "RED button / HbbTV"
-msgstr "الزر الأحمر / خدمة HbbTV"
-
 msgid "RED (Long press)"
 msgstr ""
+
+msgid "RED button / HbbTV"
+msgstr "الزر الأحمر / خدمة HbbTV"
 
 msgid "RF Output Settings"
 msgstr "مخرج RF"
@@ -16817,12 +16763,6 @@ msgstr ""
 #
 msgid "Record"
 msgstr "تسجيل"
-
-msgid "Record - same as record button"
-msgstr ""
-
-msgid "Record Actions"
-msgstr ""
 
 msgid "Record icon"
 msgstr ""
@@ -17736,9 +17676,6 @@ msgstr "يمين, مغطى"
 msgid "Rock"
 msgstr ""
 
-msgid "Rock Music"
-msgstr ""
-
 msgid "Rock/Pop"
 msgstr "موسيقى الروك/البوب"
 
@@ -18357,9 +18294,6 @@ msgstr "البحث شرقا"
 msgid "Search for network shares"
 msgstr "البحث عن مشاركات الشبكة"
 
-msgid "Search for similar events"
-msgstr "البحث عن احداث مشابهه"
-
 msgid "Search in the current view"
 msgstr ""
 
@@ -18550,9 +18484,6 @@ msgid "Select 'Yes' to enable the monitoring UI web interface for the DNSCrypt s
 msgstr ""
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
-msgstr ""
-
-msgid "When enabled, services without EPG data will be hidden."
 msgstr ""
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
@@ -19033,6 +18964,9 @@ msgstr ""
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr ""
 
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
+msgstr "يتيح لك هذا الخيار بتعيين عرض التصميم (نصوص أو الرسم البياني)"
+
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr ""
 
@@ -19186,6 +19120,9 @@ msgstr ""
 #, python-format
 msgid "Select the action for '%s'"
 msgstr ""
+
+msgid "Select the action that this button will perform."
+msgstr "تعيين إلى ما تريد الزر للقيام به."
 
 msgid "Select the action to perform when the timer ends."
 msgstr ""
@@ -19461,6 +19398,9 @@ msgstr ""
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
+msgid "Select the number of services to be shown in the list."
+msgstr "اضبط عدد الصفوف المعروضة."
+
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr ""
 
@@ -19724,6 +19664,9 @@ msgstr ""
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
 
+msgid "Select which service to use when opening the EPG."
+msgstr ""
+
 msgid "Select your ATSC provider."
 msgstr "حدد مزود خدمات لجنة أنظمة التلفزيون المتقدمة."
 
@@ -19982,6 +19925,9 @@ msgstr "نسبة العرض للارتفاع لايقونات الخدمة (pico
 
 msgid "Service picons downsize"
 msgstr "تصغير حجم بيكونات الخدمات"
+
+msgid "Service preview mode"
+msgstr "وضع معاينة القنوات"
 
 msgid "Service reference"
 msgstr "مرجع القناة"
@@ -20265,9 +20211,6 @@ msgstr ""
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
-
-msgid "Select the action that this button will perform."
-msgstr "تعيين إلى ما تريد الزر للقيام به."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr ""
@@ -20665,9 +20608,6 @@ msgstr "عرض الشاشة الصغيرة في الشاشة الأمامية"
 
 msgid "Show Movie Selection in Main Menu"
 msgstr "إظهار اختيار الفيلم في القائمة الرئيسية"
-
-msgid "Show Movies List"
-msgstr ""
 
 msgid "Show Multi EPG"
 msgstr "أعرض دليل البرامج المتعدد"
@@ -21453,9 +21393,6 @@ msgstr ""
 msgid "Skip backward (enter time)"
 msgstr "تخطى للخلف (أدخل الوقت)"
 
-msgid "Hide empty services"
-msgstr "تخطي القنوات الفارغة"
-
 #, python-format
 msgid "Skip for '%s' is disabled"
 msgstr ""
@@ -21868,9 +21805,6 @@ msgstr "فرز"
 msgid "Sort Bookmarks"
 msgstr ""
 
-msgid "Sort EPG List"
-msgstr ""
-
 msgid "Sort Extension Menu"
 msgstr "فرز قائمة الإضافات"
 
@@ -22248,6 +22182,9 @@ msgstr "خطوه ناحية الشرق"
 msgid "Stepped west"
 msgstr "خطوه ناحية الغرب"
 
+msgid "Stereo"
+msgstr ""
+
 #
 msgid "Stop"
 msgstr "إيقاف"
@@ -22572,6 +22509,15 @@ msgstr ""
 #
 msgid "Suriname"
 msgstr "الاسم الاخير"
+
+msgid "Surround"
+msgstr ""
+
+msgid "Surround 5.1"
+msgstr ""
+
+msgid "Surround 7.1"
+msgstr ""
 
 msgid "Svalbard and Jan Mayen"
 msgstr "سفالبارد وجان مايان"
@@ -23430,6 +23376,9 @@ msgstr ""
 msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr ""
 
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr ""
@@ -23678,9 +23627,6 @@ msgstr ""
 msgid "This option allows you to set the Auto Volume Level output."
 msgstr ""
 
-msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
-msgstr "يتيح لك هذا الخيار بتعيين عرض التصميم (نصوص أو الرسم البياني)"
-
 msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr ""
 
@@ -23871,11 +23817,6 @@ msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr ""
-
-#
-#, fuzzy
-msgid "Time shift not possible!"
-msgstr "التحكم في البث المباشر مستحيل!"
 
 msgid "Time shift save action on zap"
 msgstr "إجراء حفظ تحويل الوقت عند التبديل (Zap)"
@@ -26097,6 +26038,9 @@ msgstr ""
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "عند التمكين، سيعمل تهئية لعرض خط الترجمة لكي يطابق عرض الشاشة."
 
+msgid "When enabled, services without EPG data will be hidden."
+msgstr ""
+
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "عند التمكين، سيعرض أرقام القنوات في شاشة اختيار القناة."
 
@@ -26236,9 +26180,6 @@ msgstr ""
 #
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "أين تحفظ تسجيلات التايم شفت المؤقتة؟"
-
-msgid "Select which service to use when opening the EPG."
-msgstr ""
 
 msgid "Which time shift buffer event do you want to save?"
 msgstr ""
@@ -27502,6 +27443,72 @@ msgstr "نعم (احتفظ بالفيدز)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Add a RecordTimer for current event"
+#~ msgstr "اضف موقت تسجيل للحدث الحالي"
+
+#~ msgid "Add a ZapTimer for current event"
+#~ msgstr "اضف موقت انتقال للحدث الحالي"
+
+#~ msgid "Add an AutoTimer for the current event"
+#~ msgstr "أضف مؤقت آلي للحدث الحالي"
+
+#~ msgid "Add/Remove Timer"
+#~ msgstr "اضف/احذف مؤقت"
+
+#~ msgid "Add/Remove a timer for the current event"
+#~ msgstr "اضف /الغ توقيت للحدث الحالي"
+
+#, fuzzy
+#~ msgid "AutoTimer"
+#~ msgstr "إضافة مؤقت تلقائي"
+
+#
+#~ msgid "CHANNEL +/-"
+#~ msgstr "قناه +/-"
+
+#
+#~ msgid "Change to bouquet"
+#~ msgstr "تغيير إلى الباقة"
+
+#~ msgid "Close bouquet list."
+#~ msgstr "غلق قائمة الباقات."
+
+#~ msgid "EPG Bouquet Actions"
+#~ msgstr "إجراءات دليل قائمة القنوات"
+
+#, fuzzy
+#~ msgid "EPG Display Actions"
+#~ msgstr "خيارات عرض الدليل"
+
+#~ msgid "EPG Other Actions"
+#~ msgstr "الاجراءات الأخرى للدليل"
+
+#~ msgid "IMDb search for current event"
+#~ msgstr "البحث في قاعدة بيانات موقع IMDb عن الحدث الحالي"
+
+#~ msgid "Info button (short)"
+#~ msgstr "زر المعلومات (قصير)"
+
+#~ msgid "Move to home of list"
+#~ msgstr "الانتقال إلى القائمة الرئيسية"
+
+#~ msgid "OK button (short)"
+#~ msgstr "زر موافق (قصير)"
+
+#~ msgid "Primetime hour"
+#~ msgstr "ساعة وقت الذروة"
+
+#~ msgid "Primetime minute"
+#~ msgstr "دقيقة وقت الذروة"
+
+#~ msgid "Search for similar events"
+#~ msgstr "البحث عن احداث مشابهه"
+
+#
+#, fuzzy
+#~ msgid "Time shift not possible!"
+#~ msgstr "التحكم في البث المباشر مستحيل!"
 
 #~ msgid "Select the Swap File Size:"
 #~ msgstr "حدد حجم ملف المبادلة:"

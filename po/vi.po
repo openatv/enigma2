@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 13:51+0100\n"
+"POT-Creation-Date: 2026-11-01 20:39+0100\n"
 "PO-Revision-Date: 2026-08-16 18:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1693,6 +1693,9 @@ msgstr ""
 msgid "A new storage device has been connected:"
 msgstr ""
 
+msgid "A prepared or running timer can not be moved to the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -2043,14 +2046,8 @@ msgstr ""
 msgid "Add a RecordTimer"
 msgstr "Thêm bộ đếm thời gian"
 
-msgid "Add a RecordTimer for current event"
-msgstr "Thêm một bộ đếm thời gian cho sự kiện hiện tại"
-
 msgid "Add a TV service to the Volume Offset list"
 msgstr ""
-
-msgid "Add a ZapTimer for current event"
-msgstr "Thêm / xóa bộ đếm thời gian thay đổi cho sự kiện hiện tại"
 
 msgid "Add a ZapTimer for next event"
 msgstr "Thêm / xóa bộ đếm thời gian thay đổi cho sự kiện hiện tại"
@@ -2084,9 +2081,6 @@ msgstr ""
 
 msgid "Add an existing swap file"
 msgstr ""
-
-msgid "Add an AutoTimer for the current event"
-msgstr "Thêm bộ hẹn giờ tự động cho sự kiện hiện tại"
 
 msgid "Add current directory to bookmarks"
 msgstr "Thêm thư mục hiện tại vào bookmark"
@@ -2162,12 +2156,6 @@ msgstr ""
 
 msgid "Add title"
 msgstr "Thêm tiêu đề"
-
-msgid "Add/Remove Timer"
-msgstr "Thêm / xóa bộ đếm thời gian"
-
-msgid "Add/Remove a timer for the current event"
-msgstr "Thêm / xóa bộ đếm thời gian thay đổi cho sự kiện hiện tại"
 
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr ""
@@ -2980,9 +2968,6 @@ msgstr "Trình quản lý tự động"
 msgid "AutoRefresh"
 msgstr ""
 
-msgid "AutoTimer"
-msgstr ""
-
 msgid "AutoUpdate"
 msgstr "Cập nhật tự động"
 
@@ -3530,9 +3515,6 @@ msgstr ""
 msgid "Browse"
 msgstr ""
 
-msgid "Browse mode"
-msgstr ""
-
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
@@ -3716,9 +3698,17 @@ msgstr "CH%s"
 msgid "CHANGE BOUQUET"
 msgstr "THAY ĐỔI GÓI KÊNH"
 
-#, fuzzy
-msgid "CHANNEL +/-"
-msgstr "Kênh 1"
+msgid "CHANNEL+"
+msgstr ""
+
+msgid "CHANNEL+ button (setup in menu)"
+msgstr ""
+
+msgid "CHANNEL-"
+msgstr ""
+
+msgid "CHANNEL- button (setup in menu)"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "Cài đặt CI (Giao diện chung)"
@@ -4177,9 +4167,6 @@ msgstr ""
 msgid "Change to TV services mode"
 msgstr ""
 
-msgid "Change to bouquet"
-msgstr "Đổi thành gói kênh"
-
 msgid "Changed"
 msgstr ""
 
@@ -4278,9 +4265,6 @@ msgstr "Tên kênh"
 
 msgid "Channel number"
 msgstr ""
-
-msgid "Service preview mode"
-msgstr "Chế độ xem trước kênh"
 
 msgid "Channel selection configuration"
 msgstr "Cấu hình lựa chọn kênh"
@@ -4623,12 +4607,6 @@ msgstr ""
 msgid "Close Task View"
 msgstr ""
 
-msgid "Close bouquet list"
-msgstr ""
-
-msgid "Close bouquet list."
-msgstr "Đóng danh sách gói kênh."
-
 msgid "Close dialog"
 msgstr "Đóng hộp thoại"
 
@@ -4718,9 +4696,6 @@ msgstr "Colombia"
 
 msgid "Color"
 msgstr "Màu"
-
-msgid "Color Button Assignments"
-msgstr ""
 
 msgid "Color format"
 msgstr "Định dạng màu"
@@ -5073,9 +5048,6 @@ msgstr "Định cấu hình số ngày sau đó các mục được tự động
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "Định cấu hình số ngày giờ cũ được giữ trước khi chúng tự động bị xóa khỏi danh sách hẹn giờ."
-
-msgid "Select the number of services to be shown in the list."
-msgstr "Cấu hình số lượng hàng được hiển thị."
 
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr "Định cấu hình độ trễ giải mã ngoại tuyến tính bằng mili giây. Độ trễ được cấu hình được quan sát tại mỗi thay đổi chẵn lẻ từ điều khiển."
@@ -5532,9 +5504,6 @@ msgstr ""
 
 msgid "Country"
 msgstr "Quốc gia"
-
-msgid "Country Music"
-msgstr ""
 
 #, fuzzy
 msgid "Country for EPG event genre information"
@@ -7422,6 +7391,9 @@ msgstr ""
 msgid "Drop unconfigured satellites"
 msgstr ""
 
+msgid "Dual channel"
+msgstr ""
+
 msgid "Duplex"
 msgstr ""
 
@@ -7465,10 +7437,10 @@ msgstr ""
 msgid "EPG"
 msgstr "EPG"
 
-msgid "EPG Actions"
+msgid "EPG (Long press)"
 msgstr ""
 
-msgid "EPG Bouquet Actions"
+msgid "EPG Actions"
 msgstr ""
 
 msgid "EPG Cache Check"
@@ -7480,9 +7452,6 @@ msgstr ""
 msgid "EPG Data In Streams"
 msgstr ""
 
-msgid "EPG Display Actions"
-msgstr ""
-
 msgid "EPG Jump"
 msgstr ""
 
@@ -7490,9 +7459,6 @@ msgid "EPG Language"
 msgstr ""
 
 msgid "EPG Navigation Actions"
-msgstr ""
-
-msgid "EPG Other Actions"
 msgstr ""
 
 msgid "EPG Range And History"
@@ -7514,6 +7480,9 @@ msgid "EPG Sources"
 msgstr ""
 
 msgid "EPG Storage And Refresh"
+msgstr ""
+
+msgid "EPG button long (setup in menu)"
 msgstr ""
 
 msgid "EPG button mode"
@@ -7574,7 +7543,7 @@ msgstr "Giới hạn đông"
 msgid "Eastern satellites"
 msgstr ""
 
-msgid "Easy Listening Music"
+msgid "Easy Listening"
 msgstr ""
 
 msgid "Easy listening"
@@ -9754,9 +9723,6 @@ msgstr "Tiếng Đức"
 msgid "Germany"
 msgstr "Nước Đức"
 
-msgid "Getting event information failed!"
-msgstr "Nhận thông tin sự kiện không thành công!"
-
 msgid "Getting plugin information. Please wait..."
 msgstr "Lấy thông tin plugin. Xin vui lòng chờ ..."
 
@@ -10186,6 +10152,9 @@ msgstr "Ẩn dòng VBI cho dịch vụ này"
 msgid "Hide any zap error messages."
 msgstr "Ẩn bất kỳ thông báo lỗi zap."
 
+msgid "Hide empty services"
+msgstr "Bỏ qua các dịch vụ trống"
+
 msgid "Hide error messages from the Common Interface module."
 msgstr ""
 
@@ -10397,11 +10366,11 @@ msgstr "Chi tiết IMDb"
 msgid "IMDb Search"
 msgstr "Tìm kiếm IMDb"
 
-msgid "IMDb search for current event"
-msgstr "Tìm kiếm IMDB cho sự kiện hiện tại"
-
 msgid "INFO"
 msgstr "THÔNG TIN"
+
+msgid "INFO (Long press)"
+msgstr "Nút thông tin (dài)"
 
 msgid "INFO button mode"
 msgstr "Chế độ nút INFO"
@@ -10839,12 +10808,6 @@ msgstr "Tiếng Indonesia"
 msgid "Info"
 msgstr "Thông tin"
 
-msgid "INFO (Long press)"
-msgstr "Nút thông tin (dài)"
-
-msgid "Info button (short)"
-msgstr "Nút thông tin (ngắn)"
-
 msgid "Info file checksum"
 msgstr ""
 
@@ -11170,9 +11133,6 @@ msgstr ""
 msgid "Jazz"
 msgstr ""
 
-msgid "Jazz Music"
-msgstr ""
-
 msgid "Jersey"
 msgstr "Áo"
 
@@ -11188,14 +11148,14 @@ msgstr ""
 msgid "Joined"
 msgstr ""
 
+msgid "Joint stereo"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Jordan"
 
 msgid "Jump"
 msgstr ""
-
-msgid "Jump back 24 hours"
-msgstr "Quay trở lại 24 giờ"
 
 msgid "Jump back one day"
 msgstr ""
@@ -11205,9 +11165,6 @@ msgstr ""
 
 msgid "Jump first press in channel selection"
 msgstr "Nhảy báo chí đầu tiên trong lựa chọn kênh"
-
-msgid "Jump forward 24 hours"
-msgstr "Nhảy về phía trước 24 giờ"
 
 msgid "Jump forward one day"
 msgstr ""
@@ -11230,14 +11187,8 @@ msgstr "Chuyển đến cuối danh sách"
 msgid "Jump to next marked position"
 msgstr "Chuyển đến vị trí được đánh dấu tiếp theo"
 
-msgid "Jump to next page or all up (setup in menu)"
-msgstr ""
-
 msgid "Jump to previous marked position"
 msgstr "Chuyển đến vị trí được đánh dấu trước đó"
-
-msgid "Jump to previous page or all down (setup in menu)"
-msgstr ""
 
 msgid "Jump to prime time"
 msgstr "Chuyển đến thời gian chính"
@@ -12522,6 +12473,9 @@ msgstr "Mông Cổ"
 msgid "Mongolian"
 msgstr "Mông Cổ"
 
+msgid "Mono"
+msgstr ""
+
 msgid "Montenegro"
 msgstr "Montenegro"
 
@@ -12773,9 +12727,6 @@ msgstr ""
 
 msgid "Move to first line / screen in the panel"
 msgstr ""
-
-msgid "Move to home of list"
-msgstr "Chuyển đến nhà của danh sách"
 
 msgid "Move to last item / screen"
 msgstr ""
@@ -13116,6 +13067,9 @@ msgstr "Namibia"
 msgid "Narration"
 msgstr ""
 
+msgid "National Music"
+msgstr ""
+
 msgid "National music"
 msgstr ""
 
@@ -13145,9 +13099,6 @@ msgid "Navigate to the selected directory"
 msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
-msgstr ""
-
-msgid "Navigation And Button Assignments"
 msgstr ""
 
 msgid "Navigation And Time Range"
@@ -13958,9 +13909,6 @@ msgstr "Đồng ý"
 msgid "OK (Long press)"
 msgstr "Nút OK (dài)"
 
-msgid "OK button (short)"
-msgstr "Nút OK (ngắn)"
-
 msgid "OK button mode"
 msgstr "Chế độ nút OK"
 
@@ -14072,9 +14020,6 @@ msgid "Ojibwa"
 msgstr ""
 
 msgid "Oldies"
-msgstr ""
-
-msgid "Oldies Music"
 msgstr ""
 
 msgid "Olympic blue"
@@ -14568,6 +14513,9 @@ msgstr ""
 
 msgid "PIN code needed"
 msgstr "Mã PIN cần thiết"
+
+msgid "PLAY"
+msgstr ""
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -15654,10 +15602,6 @@ msgstr "Trước"
 msgid "Previous channel page"
 msgstr "trang kênh trước"
 
-#, fuzzy
-msgid "Previous/Next bouquet"
-msgstr "trang trước / trang tiếp theo"
-
 msgid "Previous/Next page"
 msgstr "trang trước / trang tiếp theo"
 
@@ -15676,14 +15620,12 @@ msgstr ""
 msgid "Prime time"
 msgstr "Thời nguyên thủy"
 
-msgid "Primetime hour"
-msgstr "Giờ chính"
-
-msgid "Primetime minute"
-msgstr "Phút đầu"
-
 msgid "Priority"
 msgstr "Sự ưu tiên"
+
+#, python-format
+msgid "Priority: %d"
+msgstr ""
 
 msgid "Privacy level"
 msgstr ""
@@ -15737,7 +15679,7 @@ msgstr "Hồ sơ: Hộp người dùng"
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr ""
 
-msgid "Program type"
+msgid "Programme type (PTY)"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -16026,14 +15968,20 @@ msgstr "Biểu tượng REC đang sử dụng"
 msgid "REC symbol"
 msgstr "Biểu tượng REC"
 
+msgid "RECORD"
+msgstr ""
+
+msgid "RECORD (Long press)"
+msgstr ""
+
 msgid "RED"
 msgstr "Nút màu đỏ"
 
-msgid "RED button / HbbTV"
-msgstr "Nút màu đỏ ..."
-
 msgid "RED (Long press)"
 msgstr "Đỏ dài"
+
+msgid "RED button / HbbTV"
+msgstr "Nút màu đỏ ..."
 
 msgid "RF Output Settings"
 msgstr "Đầu ra RF"
@@ -16230,12 +16178,6 @@ msgstr ""
 
 msgid "Record"
 msgstr "Ghi lại"
-
-msgid "Record - same as record button"
-msgstr "Ghi - giống như nút ghi"
-
-msgid "Record Actions"
-msgstr ""
 
 msgid "Record icon"
 msgstr ""
@@ -17127,9 +17069,6 @@ msgstr "phải, bọc"
 msgid "Rock"
 msgstr ""
 
-msgid "Rock Music"
-msgstr ""
-
 msgid "Rock/Pop"
 msgstr "nhạc rock / pop"
 
@@ -17717,9 +17656,6 @@ msgstr "Tìm kiếm phía đông"
 msgid "Search for network shares"
 msgstr "Tìm kiếm chia sẻ mạng"
 
-msgid "Search for similar events"
-msgstr "Tìm kiếm các sự kiện tương tự"
-
 msgid "Search in the current view"
 msgstr ""
 
@@ -17909,9 +17845,6 @@ msgstr ""
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr ""
-
-msgid "When enabled, services without EPG data will be hidden."
-msgstr "Nếu được đặt thành các kênh 'có' mà không có EPG sẽ không được hiển thị."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
 msgstr ""
@@ -18389,6 +18322,9 @@ msgstr ""
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr ""
 
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
+msgstr "Tùy chọn này cho phép bạn đặt chế độ xem bố cục (Văn bản hoặc Đồ họa)."
+
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr ""
 
@@ -18541,6 +18477,9 @@ msgstr ""
 #, python-format
 msgid "Select the action for '%s'"
 msgstr ""
+
+msgid "Select the action that this button will perform."
+msgstr "Đặt thành những gì bạn muốn nút để làm."
 
 msgid "Select the action to perform when the timer ends."
 msgstr ""
@@ -18817,6 +18756,9 @@ msgstr ""
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
+msgid "Select the number of services to be shown in the list."
+msgstr "Cấu hình số lượng hàng được hiển thị."
+
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr ""
 
@@ -19075,6 +19017,9 @@ msgstr ""
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
 
+msgid "Select which service to use when opening the EPG."
+msgstr ""
+
 msgid "Select your ATSC provider."
 msgstr "Chọn nhà cung cấp ATSC của bạn."
 
@@ -19323,6 +19268,9 @@ msgstr "Tỷ lệ khung hình dịch vụ picons"
 
 msgid "Service picons downsize"
 msgstr "Dịch vụ giảm kích thước"
+
+msgid "Service preview mode"
+msgstr "Chế độ xem trước kênh"
 
 msgid "Service reference"
 msgstr "Tham khảo dịch vụ"
@@ -19599,9 +19547,6 @@ msgstr ""
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
-
-msgid "Select the action that this button will perform."
-msgstr "Đặt thành những gì bạn muốn nút để làm."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Đặt thành có để gỡ lỗi nguyên nhân gốc của spinner."
@@ -19991,9 +19936,6 @@ msgstr "Hiển thị MiniTV trong màn hình phía trước"
 
 msgid "Show Movie Selection in Main Menu"
 msgstr ""
-
-msgid "Show Movies List"
-msgstr "Hiển thị danh sách phim"
 
 msgid "Show Multi EPG"
 msgstr "Hiển thị nhiều EPG"
@@ -20737,9 +20679,6 @@ msgstr ""
 msgid "Skip backward (enter time)"
 msgstr "bỏ qua lùi lại (nhập thời gian)"
 
-msgid "Hide empty services"
-msgstr "Bỏ qua các dịch vụ trống"
-
 #, python-format
 msgid "Skip for '%s' is disabled"
 msgstr ""
@@ -21128,9 +21067,6 @@ msgstr "Sắp xếp"
 msgid "Sort Bookmarks"
 msgstr ""
 
-msgid "Sort EPG List"
-msgstr "Sắp xếp danh sách EPG"
-
 msgid "Sort Extension Menu"
 msgstr "Sắp xếp danh sách tiện ích mở rộng theo thứ tự abc"
 
@@ -21496,6 +21432,9 @@ msgstr "Bước về phía đông"
 msgid "Stepped west"
 msgstr "Bước về phía tây"
 
+msgid "Stereo"
+msgstr ""
+
 msgid "Stop"
 msgstr "Dừng lại"
 
@@ -21801,6 +21740,15 @@ msgstr ""
 
 msgid "Suriname"
 msgstr "Xuameame"
+
+msgid "Surround"
+msgstr ""
+
+msgid "Surround 5.1"
+msgstr ""
+
+msgid "Surround 7.1"
+msgstr ""
 
 msgid "Svalbard and Jan Mayen"
 msgstr "Svalbard và Jan Mayen"
@@ -22662,6 +22610,9 @@ msgstr ""
 msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr ""
 
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr ""
@@ -22909,9 +22860,6 @@ msgstr ""
 msgid "This option allows you to set the Auto Volume Level output."
 msgstr "Tùy chọn này cấu hình bạn có thể đặt Mức âm lượng tự động."
 
-msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
-msgstr "Tùy chọn này cho phép bạn đặt chế độ xem bố cục (Văn bản hoặc Đồ họa)."
-
 msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "Tùy chọn này cho phép bạn chuyển Âm thanh sang Loa BT."
 
@@ -23098,9 +23046,6 @@ msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr ""
-
-msgid "Time shift not possible!"
-msgstr "Timeshift không thể!"
 
 msgid "Time shift save action on zap"
 msgstr "Timeshift-lưu hành động trên zap"
@@ -25248,6 +25193,9 @@ msgstr ""
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Khi được bật, định dạng lại phụ đề cho phù hợp với chiều rộng của màn hình."
 
+msgid "When enabled, services without EPG data will be hidden."
+msgstr "Nếu được đặt thành các kênh 'có' mà không có EPG sẽ không được hiển thị."
+
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Khi được bật, hiển thị số kênh trong màn hình chọn kênh."
 
@@ -25385,9 +25333,6 @@ msgstr "Khi được điều chỉnh đến một dịch vụ, hệ thống thư
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Lưu bản ghi timeshift tạm thời ở đâu?"
-
-msgid "Select which service to use when opening the EPG."
-msgstr ""
 
 msgid "Which time shift buffer event do you want to save?"
 msgstr "Sự kiện nào bạn muốn lưu vĩnh viễn?"
@@ -26600,6 +26545,77 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Add a RecordTimer for current event"
+#~ msgstr "Thêm một bộ đếm thời gian cho sự kiện hiện tại"
+
+#~ msgid "Add a ZapTimer for current event"
+#~ msgstr "Thêm / xóa bộ đếm thời gian thay đổi cho sự kiện hiện tại"
+
+#~ msgid "Add an AutoTimer for the current event"
+#~ msgstr "Thêm bộ hẹn giờ tự động cho sự kiện hiện tại"
+
+#~ msgid "Add/Remove Timer"
+#~ msgstr "Thêm / xóa bộ đếm thời gian"
+
+#~ msgid "Add/Remove a timer for the current event"
+#~ msgstr "Thêm / xóa bộ đếm thời gian thay đổi cho sự kiện hiện tại"
+
+#, fuzzy
+#~ msgid "CHANNEL +/-"
+#~ msgstr "Kênh 1"
+
+#~ msgid "Change to bouquet"
+#~ msgstr "Đổi thành gói kênh"
+
+#~ msgid "Close bouquet list."
+#~ msgstr "Đóng danh sách gói kênh."
+
+#~ msgid "Getting event information failed!"
+#~ msgstr "Nhận thông tin sự kiện không thành công!"
+
+#~ msgid "IMDb search for current event"
+#~ msgstr "Tìm kiếm IMDB cho sự kiện hiện tại"
+
+#~ msgid "Info button (short)"
+#~ msgstr "Nút thông tin (ngắn)"
+
+#~ msgid "Jump back 24 hours"
+#~ msgstr "Quay trở lại 24 giờ"
+
+#~ msgid "Jump forward 24 hours"
+#~ msgstr "Nhảy về phía trước 24 giờ"
+
+#~ msgid "Move to home of list"
+#~ msgstr "Chuyển đến nhà của danh sách"
+
+#~ msgid "OK button (short)"
+#~ msgstr "Nút OK (ngắn)"
+
+#, fuzzy
+#~ msgid "Previous/Next bouquet"
+#~ msgstr "trang trước / trang tiếp theo"
+
+#~ msgid "Primetime hour"
+#~ msgstr "Giờ chính"
+
+#~ msgid "Primetime minute"
+#~ msgstr "Phút đầu"
+
+#~ msgid "Record - same as record button"
+#~ msgstr "Ghi - giống như nút ghi"
+
+#~ msgid "Search for similar events"
+#~ msgstr "Tìm kiếm các sự kiện tương tự"
+
+#~ msgid "Show Movies List"
+#~ msgstr "Hiển thị danh sách phim"
+
+#~ msgid "Sort EPG List"
+#~ msgstr "Sắp xếp danh sách EPG"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Timeshift không thể!"
 
 #~ msgid "Please select device to use as swap file location"
 #~ msgstr "Vui lòng chọn thiết bị để sử dụng làm vị trí hoán đổi"

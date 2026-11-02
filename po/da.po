@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 13:51+0100\n"
+"POT-Creation-Date: 2026-11-01 20:39+0100\n"
 "PO-Revision-Date: 2026-08-16 16:13+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -1687,6 +1687,9 @@ msgstr ""
 msgid "A new storage device has been connected:"
 msgstr ""
 
+msgid "A prepared or running timer can not be moved to the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -2035,14 +2038,8 @@ msgstr ""
 msgid "Add a RecordTimer"
 msgstr "Tilføj en optagetimer"
 
-msgid "Add a RecordTimer for current event"
-msgstr "Tilføj en optagetimer for nuværende begivenhed"
-
 msgid "Add a TV service to the Volume Offset list"
 msgstr ""
-
-msgid "Add a ZapTimer for current event"
-msgstr "Tilføj en Zap-Timer for nuværende begivenhed"
 
 msgid "Add a ZapTimer for next event"
 msgstr "Tilføj en Zap-Timer for næste begivenhed"
@@ -2076,9 +2073,6 @@ msgstr ""
 
 msgid "Add an existing swap file"
 msgstr ""
-
-msgid "Add an AutoTimer for the current event"
-msgstr "Tilføj en AutoTimer for nuværende begivenhed"
 
 msgid "Add current directory to bookmarks"
 msgstr "Tilføj nuværende mappe til bogmærker"
@@ -2154,12 +2148,6 @@ msgstr ""
 
 msgid "Add title"
 msgstr "Tilføj titel"
-
-msgid "Add/Remove Timer"
-msgstr "Tilføj/fjern Timer"
-
-msgid "Add/Remove a timer for the current event"
-msgstr "Tilføj/Fjern Timer for nuværende begivenhed"
 
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr ""
@@ -2963,9 +2951,6 @@ msgstr "AutoMountManager"
 msgid "AutoRefresh"
 msgstr ""
 
-msgid "AutoTimer"
-msgstr ""
-
 msgid "AutoUpdate"
 msgstr "AutoOpdatering"
 
@@ -3510,9 +3495,6 @@ msgstr ""
 msgid "Browse"
 msgstr ""
 
-msgid "Browse mode"
-msgstr ""
-
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
@@ -3699,8 +3681,17 @@ msgstr "CH%s"
 msgid "CHANGE BOUQUET"
 msgstr "SKIFT BUKET"
 
-msgid "CHANNEL +/-"
-msgstr "Kanal +/-"
+msgid "CHANNEL+"
+msgstr ""
+
+msgid "CHANNEL+ button (setup in menu)"
+msgstr ""
+
+msgid "CHANNEL-"
+msgstr ""
+
+msgid "CHANNEL- button (setup in menu)"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI (Common Interface) opsætning"
@@ -4158,9 +4149,6 @@ msgstr ""
 msgid "Change to TV services mode"
 msgstr ""
 
-msgid "Change to bouquet"
-msgstr "Skift til Buket"
-
 msgid "Changed"
 msgstr ""
 
@@ -4259,9 +4247,6 @@ msgstr "Kanalnavn"
 
 msgid "Channel number"
 msgstr ""
-
-msgid "Service preview mode"
-msgstr "Kanal forhåndsvisningstilstand"
 
 msgid "Channel selection configuration"
 msgstr "Kanalvalg konfiguration"
@@ -4602,12 +4587,6 @@ msgstr ""
 msgid "Close Task View"
 msgstr ""
 
-msgid "Close bouquet list"
-msgstr ""
-
-msgid "Close bouquet list."
-msgstr "Luk buketliste."
-
 msgid "Close dialog"
 msgstr "Lukker vindue"
 
@@ -4697,9 +4676,6 @@ msgstr "Colombia"
 
 msgid "Color"
 msgstr "Farve"
-
-msgid "Color Button Assignments"
-msgstr ""
 
 msgid "Color format"
 msgstr "Farveformat"
@@ -5051,9 +5027,6 @@ msgstr "Konfigurer antallet af dage efter hvilke elementer automatisk bliver fje
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "Konfigurer antallet af dage gamle Timere beholdes før de automatisk bliver fjernet fra Timerlisten."
-
-msgid "Select the number of services to be shown in the list."
-msgstr "Konfigurer det antal rækker der skal vises."
 
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr "Konfigurer offline afkodningsforsinkelse i millisekunder. Den konfigurerede forsinkelse observeres ved hver kontrolkodes paritetsændring."
@@ -5506,9 +5479,6 @@ msgstr ""
 
 msgid "Country"
 msgstr "Land"
-
-msgid "Country Music"
-msgstr ""
 
 msgid "Country for EPG event genre information"
 msgstr "Land for EPG begivenhed genreinformation"
@@ -7372,6 +7342,9 @@ msgstr ""
 msgid "Drop unconfigured satellites"
 msgstr ""
 
+msgid "Dual channel"
+msgstr ""
+
 msgid "Duplex"
 msgstr ""
 
@@ -7415,10 +7388,10 @@ msgstr ""
 msgid "EPG"
 msgstr "EPG"
 
-msgid "EPG Actions"
+msgid "EPG (Long press)"
 msgstr ""
 
-msgid "EPG Bouquet Actions"
+msgid "EPG Actions"
 msgstr ""
 
 msgid "EPG Cache Check"
@@ -7430,9 +7403,6 @@ msgstr ""
 msgid "EPG Data In Streams"
 msgstr ""
 
-msgid "EPG Display Actions"
-msgstr ""
-
 msgid "EPG Jump"
 msgstr ""
 
@@ -7440,9 +7410,6 @@ msgid "EPG Language"
 msgstr ""
 
 msgid "EPG Navigation Actions"
-msgstr ""
-
-msgid "EPG Other Actions"
 msgstr ""
 
 msgid "EPG Range And History"
@@ -7464,6 +7431,9 @@ msgid "EPG Sources"
 msgstr ""
 
 msgid "EPG Storage And Refresh"
+msgstr ""
+
+msgid "EPG button long (setup in menu)"
 msgstr ""
 
 msgid "EPG button mode"
@@ -7524,7 +7494,7 @@ msgstr "Øst grænseværdi"
 msgid "Eastern satellites"
 msgstr ""
 
-msgid "Easy Listening Music"
+msgid "Easy Listening"
 msgstr ""
 
 msgid "Easy listening"
@@ -9695,9 +9665,6 @@ msgstr "Tysk"
 msgid "Germany"
 msgstr "Tyskland"
 
-msgid "Getting event information failed!"
-msgstr "Kunne ikke hente Begivenhedsinfo!"
-
 msgid "Getting plugin information. Please wait..."
 msgstr "Henter plugin information. Vent venligst..."
 
@@ -10124,6 +10091,9 @@ msgstr "Skjul VBI-linje for denne kanal"
 msgid "Hide any zap error messages."
 msgstr "Skjul alle Zap fejlbeskeder."
 
+msgid "Hide empty services"
+msgstr "Hop over tomme kanaler"
+
 msgid "Hide error messages from the Common Interface module."
 msgstr ""
 
@@ -10330,11 +10300,11 @@ msgstr "IMDb detaljer"
 msgid "IMDb Search"
 msgstr "IMDb søgning"
 
-msgid "IMDb search for current event"
-msgstr "IMDb søg efter nuværende begivenhed"
-
 msgid "INFO"
 msgstr "INFO"
+
+msgid "INFO (Long press)"
+msgstr "INFO kanp (lang)"
 
 msgid "INFO button mode"
 msgstr "INFO knap tilstand"
@@ -10775,12 +10745,6 @@ msgstr "Indonesisk"
 msgid "Info"
 msgstr "Info"
 
-msgid "INFO (Long press)"
-msgstr "INFO kanp (lang)"
-
-msgid "Info button (short)"
-msgstr "INFO kanp (kort)"
-
 msgid "Info file checksum"
 msgstr ""
 
@@ -11108,9 +11072,6 @@ msgstr ""
 msgid "Jazz"
 msgstr ""
 
-msgid "Jazz Music"
-msgstr ""
-
 msgid "Jersey"
 msgstr "Jersey"
 
@@ -11126,14 +11087,14 @@ msgstr ""
 msgid "Joined"
 msgstr ""
 
+msgid "Joint stereo"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Jordan"
 
 msgid "Jump"
 msgstr ""
-
-msgid "Jump back 24 hours"
-msgstr "Hop 24 timer tilbage"
 
 msgid "Jump back one day"
 msgstr ""
@@ -11143,9 +11104,6 @@ msgstr ""
 
 msgid "Jump first press in channel selection"
 msgstr "Hop på første tryk i kanalvalg"
-
-msgid "Jump forward 24 hours"
-msgstr "Hop 24 timer frem"
 
 msgid "Jump forward one day"
 msgstr ""
@@ -11168,14 +11126,8 @@ msgstr "Hop til slutning af liste"
 msgid "Jump to next marked position"
 msgstr "Hop til næste positionmærke"
 
-msgid "Jump to next page or all up (setup in menu)"
-msgstr ""
-
 msgid "Jump to previous marked position"
 msgstr "Hop til forrige positionmærke"
-
-msgid "Jump to previous page or all down (setup in menu)"
-msgstr ""
 
 msgid "Jump to prime time"
 msgstr "Hop til Primetime"
@@ -12457,6 +12409,9 @@ msgstr "Mongoliet"
 msgid "Mongolian"
 msgstr "Mongoliet"
 
+msgid "Mono"
+msgstr ""
+
 msgid "Montenegro"
 msgstr "Montenegro"
 
@@ -12699,9 +12654,6 @@ msgstr ""
 
 msgid "Move to first line / screen in the panel"
 msgstr ""
-
-msgid "Move to home of list"
-msgstr "Flyt til hjem på liste"
 
 msgid "Move to last item / screen"
 msgstr ""
@@ -13039,6 +12991,9 @@ msgstr "Namibia"
 msgid "Narration"
 msgstr ""
 
+msgid "National Music"
+msgstr ""
+
 msgid "National music"
 msgstr ""
 
@@ -13068,9 +13023,6 @@ msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Naviger op/ned med OP/NED knapper og side op/ned med VENSTRE/HØJRE. OK for at udføre handlingen beskrevet i den aktuelt fremhævede hjælp."
-
-msgid "Navigation And Button Assignments"
-msgstr ""
 
 msgid "Navigation And Time Range"
 msgstr ""
@@ -13869,9 +13821,6 @@ msgstr "OK"
 msgid "OK (Long press)"
 msgstr "OK knap (lang)"
 
-msgid "OK button (short)"
-msgstr "OK knap (kort)"
-
 msgid "OK button mode"
 msgstr "OK knap tilstand"
 
@@ -13983,9 +13932,6 @@ msgid "Ojibwa"
 msgstr ""
 
 msgid "Oldies"
-msgstr ""
-
-msgid "Oldies Music"
 msgstr ""
 
 msgid "Olympic blue"
@@ -14478,6 +14424,9 @@ msgstr ""
 
 msgid "PIN code needed"
 msgstr "PIN kode nødvendig"
+
+msgid "PLAY"
+msgstr ""
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -15565,9 +15514,6 @@ msgstr "Forrige side"
 msgid "Previous channel page"
 msgstr "forrige kanalside"
 
-msgid "Previous/Next bouquet"
-msgstr "Forrige/næste Buket"
-
 msgid "Previous/Next page"
 msgstr "Forrige/næste side"
 
@@ -15586,14 +15532,12 @@ msgstr ""
 msgid "Prime time"
 msgstr "Pimetime"
 
-msgid "Primetime hour"
-msgstr "Primetime timetal"
-
-msgid "Primetime minute"
-msgstr "Primetime minuttal"
-
 msgid "Priority"
 msgstr "Prioritet"
+
+#, python-format
+msgid "Priority: %d"
+msgstr ""
 
 msgid "Privacy level"
 msgstr ""
@@ -15647,7 +15591,7 @@ msgstr "Profil: Lokal boks"
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr ""
 
-msgid "Program type"
+msgid "Programme type (PTY)"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -15930,14 +15874,20 @@ msgstr "REC Symbol i drift"
 msgid "REC symbol"
 msgstr "REC symbol"
 
+msgid "RECORD"
+msgstr ""
+
+msgid "RECORD (Long press)"
+msgstr ""
+
 msgid "RED"
 msgstr "Rød knap"
 
-msgid "RED button / HbbTV"
-msgstr "Rød knap..."
-
 msgid "RED (Long press)"
 msgstr "Rød lang"
+
+msgid "RED button / HbbTV"
+msgstr "Rød knap..."
 
 msgid "RF Output Settings"
 msgstr "RF Udgang"
@@ -16134,12 +16084,6 @@ msgstr ""
 
 msgid "Record"
 msgstr "Optag"
-
-msgid "Record - same as record button"
-msgstr "Optag - svare til optageknap"
-
-msgid "Record Actions"
-msgstr ""
 
 msgid "Record icon"
 msgstr ""
@@ -17020,9 +16964,6 @@ msgstr "Højre, ombrudt"
 msgid "Rock"
 msgstr ""
 
-msgid "Rock Music"
-msgstr ""
-
 msgid "Rock/Pop"
 msgstr "Rock/Pop"
 
@@ -17612,9 +17553,6 @@ msgstr "Søg Øst"
 msgid "Search for network shares"
 msgstr "Søg efter netværksdelinger"
 
-msgid "Search for similar events"
-msgstr "Søg efter lignende begivenheder"
-
 msgid "Search in the current view"
 msgstr ""
 
@@ -17804,9 +17742,6 @@ msgstr ""
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr ""
-
-msgid "When enabled, services without EPG data will be hidden."
-msgstr "Hvis sat til 'Ja' vil kanaler uden EPG ikke blive vist."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
 msgstr ""
@@ -18284,6 +18219,9 @@ msgstr ""
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Denne mulighed tillader dig at vælge om standardværdien for et opsætningspunkt vises, og hvis den gør, hvor den ses i forhold til beskrivelsen."
 
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
+msgstr "Denne mulighed tillader dig at sætte visningslayout (Tekst eller Grafik)."
+
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr ""
 
@@ -18436,6 +18374,9 @@ msgstr ""
 #, python-format
 msgid "Select the action for '%s'"
 msgstr ""
+
+msgid "Select the action that this button will perform."
+msgstr "Sættes til hvad du ønsker knappen skal gøre."
 
 msgid "Select the action to perform when the timer ends."
 msgstr ""
@@ -18711,6 +18652,9 @@ msgstr ""
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
+msgid "Select the number of services to be shown in the list."
+msgstr "Konfigurer det antal rækker der skal vises."
+
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr ""
 
@@ -18968,6 +18912,9 @@ msgstr ""
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
 
+msgid "Select which service to use when opening the EPG."
+msgstr ""
+
 msgid "Select your ATSC provider."
 msgstr "Vælg din ATSC Udbyder."
 
@@ -19215,6 +19162,9 @@ msgstr "Kanal Pikoner størrelsesforhold"
 
 msgid "Service picons downsize"
 msgstr "Kanal Pikoner nedskalering"
+
+msgid "Service preview mode"
+msgstr "Kanal forhåndsvisningstilstand"
 
 msgid "Service reference"
 msgstr "Kanalreference"
@@ -19492,9 +19442,6 @@ msgstr ""
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
-
-msgid "Select the action that this button will perform."
-msgstr "Sættes til hvad du ønsker knappen skal gøre."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Sæt til Ja for fejlsøgning af rodårsagen af en snurretop."
@@ -19881,9 +19828,6 @@ msgstr "Vis MiniTV i frontpanel skærm"
 
 msgid "Show Movie Selection in Main Menu"
 msgstr ""
-
-msgid "Show Movies List"
-msgstr "Vis Filmliste"
 
 msgid "Show Multi EPG"
 msgstr "Vis Multi EPG"
@@ -20628,9 +20572,6 @@ msgstr ""
 msgid "Skip backward (enter time)"
 msgstr "Hop baglæns (angiv tid)"
 
-msgid "Hide empty services"
-msgstr "Hop over tomme kanaler"
-
 #, python-format
 msgid "Skip for '%s' is disabled"
 msgstr ""
@@ -21022,9 +20963,6 @@ msgstr "Sorter"
 msgid "Sort Bookmarks"
 msgstr ""
 
-msgid "Sort EPG List"
-msgstr "Sorter EPG liste"
-
 msgid "Sort Extension Menu"
 msgstr "Sorter Udvidelsesliste alfabetisk"
 
@@ -21387,6 +21325,9 @@ msgstr "Drejede mod øst"
 msgid "Stepped west"
 msgstr "Drejede mod vest"
 
+msgid "Stereo"
+msgstr ""
+
 msgid "Stop"
 msgstr "Stop"
 
@@ -21688,6 +21629,15 @@ msgstr ""
 
 msgid "Suriname"
 msgstr "Surinam"
+
+msgid "Surround"
+msgstr ""
+
+msgid "Surround 5.1"
+msgstr ""
+
+msgid "Surround 7.1"
+msgstr ""
 
 msgid "Svalbard and Jan Mayen"
 msgstr "Svalbard og Jan Mayen"
@@ -22552,6 +22502,9 @@ msgstr ""
 msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr ""
 
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr ""
@@ -22796,9 +22749,6 @@ msgstr ""
 msgid "This option allows you to set the Auto Volume Level output."
 msgstr "Denne mulighed konfigurere auto-lydstyrke niveau."
 
-msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
-msgstr "Denne mulighed tillader dig at sætte visningslayout (Tekst eller Grafik)."
-
 msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "Denne mulighed tillader dig at skifte lyd til BT højtalere."
 
@@ -22984,9 +22934,6 @@ msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr ""
-
-msgid "Time shift not possible!"
-msgstr "Timeshift ikke mulig!"
 
 msgid "Time shift save action on zap"
 msgstr "Timeshift gem-handling ved Zap"
@@ -25117,6 +25064,9 @@ msgstr ""
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Når dette aktiveres, omformateres undertekster så de passer til bredden på skærmen."
 
+msgid "When enabled, services without EPG data will be hidden."
+msgstr "Hvis sat til 'Ja' vil kanaler uden EPG ikke blive vist."
+
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Når dette aktiveres, vises kanalnummre på kanalvalgsskærmen."
 
@@ -25254,9 +25204,6 @@ msgstr "Når en kanal er valgt, vil systemet normalt søge efter ændringer på 
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Hvor skal midleridige Timeshift optagelser gemmes ?"
-
-msgid "Select which service to use when opening the EPG."
-msgstr ""
 
 msgid "Which time shift buffer event do you want to save?"
 msgstr "Hvilken begivenhed ønsker du at gemme permanent ?"
@@ -26463,6 +26410,75 @@ msgstr "ja (behold feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Add a RecordTimer for current event"
+#~ msgstr "Tilføj en optagetimer for nuværende begivenhed"
+
+#~ msgid "Add a ZapTimer for current event"
+#~ msgstr "Tilføj en Zap-Timer for nuværende begivenhed"
+
+#~ msgid "Add an AutoTimer for the current event"
+#~ msgstr "Tilføj en AutoTimer for nuværende begivenhed"
+
+#~ msgid "Add/Remove Timer"
+#~ msgstr "Tilføj/fjern Timer"
+
+#~ msgid "Add/Remove a timer for the current event"
+#~ msgstr "Tilføj/Fjern Timer for nuværende begivenhed"
+
+#~ msgid "CHANNEL +/-"
+#~ msgstr "Kanal +/-"
+
+#~ msgid "Change to bouquet"
+#~ msgstr "Skift til Buket"
+
+#~ msgid "Close bouquet list."
+#~ msgstr "Luk buketliste."
+
+#~ msgid "Getting event information failed!"
+#~ msgstr "Kunne ikke hente Begivenhedsinfo!"
+
+#~ msgid "IMDb search for current event"
+#~ msgstr "IMDb søg efter nuværende begivenhed"
+
+#~ msgid "Info button (short)"
+#~ msgstr "INFO kanp (kort)"
+
+#~ msgid "Jump back 24 hours"
+#~ msgstr "Hop 24 timer tilbage"
+
+#~ msgid "Jump forward 24 hours"
+#~ msgstr "Hop 24 timer frem"
+
+#~ msgid "Move to home of list"
+#~ msgstr "Flyt til hjem på liste"
+
+#~ msgid "OK button (short)"
+#~ msgstr "OK knap (kort)"
+
+#~ msgid "Previous/Next bouquet"
+#~ msgstr "Forrige/næste Buket"
+
+#~ msgid "Primetime hour"
+#~ msgstr "Primetime timetal"
+
+#~ msgid "Primetime minute"
+#~ msgstr "Primetime minuttal"
+
+#~ msgid "Record - same as record button"
+#~ msgstr "Optag - svare til optageknap"
+
+#~ msgid "Search for similar events"
+#~ msgstr "Søg efter lignende begivenheder"
+
+#~ msgid "Show Movies List"
+#~ msgstr "Vis Filmliste"
+
+#~ msgid "Sort EPG List"
+#~ msgstr "Sorter EPG liste"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Timeshift ikke mulig!"
 
 #~ msgid "Please select device to use as swap file location"
 #~ msgstr "Vælg venligst enhed der bruges som swapfil placering"

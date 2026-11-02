@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 13:51+0100\n"
+"POT-Creation-Date: 2026-11-01 20:39+0100\n"
 "PO-Revision-Date: 2026-08-17 04:56+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -1687,6 +1687,9 @@ msgstr "Открояване на изображението на дистанц
 msgid "A new storage device has been connected:"
 msgstr ""
 
+msgid "A prepared or running timer can not be moved to the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -2035,14 +2038,8 @@ msgstr ""
 msgid "Add a RecordTimer"
 msgstr "Добави записващ таймер"
 
-msgid "Add a RecordTimer for current event"
-msgstr "Добавяне на записващ таймер за текущото събитие"
-
 msgid "Add a TV service to the Volume Offset list"
 msgstr ""
-
-msgid "Add a ZapTimer for current event"
-msgstr "Добавяне на zap таймер за текущото събитие"
 
 msgid "Add a ZapTimer for next event"
 msgstr "Добавяне на zap таймер за следващо събитие"
@@ -2076,9 +2073,6 @@ msgstr "Добавяне на таймер за текущото събитие"
 
 msgid "Add an existing swap file"
 msgstr ""
-
-msgid "Add an AutoTimer for the current event"
-msgstr "Добавете автоматичен таймер за текущото събитие"
 
 msgid "Add current directory to bookmarks"
 msgstr "Добавяне на текущата папка към отметки"
@@ -2154,12 +2148,6 @@ msgstr ""
 
 msgid "Add title"
 msgstr "Добавяне на име"
-
-msgid "Add/Remove Timer"
-msgstr "Добавяне /премахване на таймер"
-
-msgid "Add/Remove a timer for the current event"
-msgstr "Добавяне /премахване на таймер за текущото събитие"
 
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr ""
@@ -2961,9 +2949,6 @@ msgstr "Мениджър за автоматично монтиране"
 msgid "AutoRefresh"
 msgstr ""
 
-msgid "AutoTimer"
-msgstr ""
-
 msgid "AutoUpdate"
 msgstr "Автоматична актуализация"
 
@@ -3506,9 +3491,6 @@ msgstr ""
 msgid "Browse"
 msgstr ""
 
-msgid "Browse mode"
-msgstr ""
-
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
@@ -3691,7 +3673,16 @@ msgstr ""
 msgid "CHANGE BOUQUET"
 msgstr "ПРОМЕНИ БУКЕТ"
 
-msgid "CHANNEL +/-"
+msgid "CHANNEL+"
+msgstr ""
+
+msgid "CHANNEL+ button (setup in menu)"
+msgstr ""
+
+msgid "CHANNEL-"
+msgstr ""
+
+msgid "CHANNEL- button (setup in menu)"
 msgstr ""
 
 msgid "CI (Common Interface) Setup"
@@ -4150,9 +4141,6 @@ msgstr ""
 msgid "Change to TV services mode"
 msgstr ""
 
-msgid "Change to bouquet"
-msgstr "Промени до букет"
-
 msgid "Changed"
 msgstr ""
 
@@ -4251,9 +4239,6 @@ msgstr "Име на канала"
 
 msgid "Channel number"
 msgstr ""
-
-msgid "Service preview mode"
-msgstr "Режим на визуализация на канала"
 
 msgid "Channel selection configuration"
 msgstr "Конфигурация за избор на канал"
@@ -4593,12 +4578,6 @@ msgstr ""
 msgid "Close Task View"
 msgstr ""
 
-msgid "Close bouquet list"
-msgstr "Затвори списъка с букети"
-
-msgid "Close bouquet list."
-msgstr "Затвори списъка с букети."
-
 msgid "Close dialog"
 msgstr "Затвори диалога"
 
@@ -4688,9 +4667,6 @@ msgstr ""
 
 msgid "Color"
 msgstr "Цвят"
-
-msgid "Color Button Assignments"
-msgstr ""
 
 msgid "Color format"
 msgstr "Цветови формат"
@@ -5041,9 +5017,6 @@ msgstr "Конфигуриране на броя дни, след което е�
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "Конфигуриране на броя дни на всички таймери да се съхраняват, преди те да са автоматично премахнати от списъка с таймери."
-
-msgid "Select the number of services to be shown in the list."
-msgstr "Конфигуриране на броя на показаните редове."
 
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr "Конфигуриране на забавянето на декодирането в офлайн режим в милисекунди. Конфигурираното забавяне се наблюдава при всяка промяна на паритета на контролната дума."
@@ -5495,9 +5468,6 @@ msgstr ""
 
 msgid "Country"
 msgstr "Страна"
-
-msgid "Country Music"
-msgstr ""
 
 msgid "Country for EPG event genre information"
 msgstr "Държава за информация за жанра на събитието EPG"
@@ -7365,6 +7335,9 @@ msgstr "Версия на драйвери"
 msgid "Drop unconfigured satellites"
 msgstr ""
 
+msgid "Dual channel"
+msgstr ""
+
 msgid "Duplex"
 msgstr ""
 
@@ -7408,11 +7381,11 @@ msgstr ""
 msgid "EPG"
 msgstr ""
 
+msgid "EPG (Long press)"
+msgstr ""
+
 msgid "EPG Actions"
 msgstr "Действия на EPG"
-
-msgid "EPG Bouquet Actions"
-msgstr "EPG Букетни действия"
 
 msgid "EPG Cache Check"
 msgstr "EPG Кеш проверка"
@@ -7423,9 +7396,6 @@ msgstr "Избор на EPG канал/сервиз"
 msgid "EPG Data In Streams"
 msgstr ""
 
-msgid "EPG Display Actions"
-msgstr "Действия на дисплея на EPG"
-
 msgid "EPG Jump"
 msgstr ""
 
@@ -7434,9 +7404,6 @@ msgstr ""
 
 msgid "EPG Navigation Actions"
 msgstr "Действия за EPG навигация"
-
-msgid "EPG Other Actions"
-msgstr "EPG Други действия"
 
 msgid "EPG Range And History"
 msgstr ""
@@ -7457,6 +7424,9 @@ msgid "EPG Sources"
 msgstr ""
 
 msgid "EPG Storage And Refresh"
+msgstr ""
+
+msgid "EPG button long (setup in menu)"
 msgstr ""
 
 msgid "EPG button mode"
@@ -7517,7 +7487,7 @@ msgstr "Източно зададен лимит"
 msgid "Eastern satellites"
 msgstr ""
 
-msgid "Easy Listening Music"
+msgid "Easy Listening"
 msgstr ""
 
 msgid "Easy listening"
@@ -9678,9 +9648,6 @@ msgstr ""
 msgid "Germany"
 msgstr ""
 
-msgid "Getting event information failed!"
-msgstr "Получаването на информация за събитията не бе успешно!"
-
 msgid "Getting plugin information. Please wait..."
 msgstr "Получаване на информация за плъгина. Моля, изчакайте ..."
 
@@ -10107,6 +10074,9 @@ msgstr "Скрийте VBI линията за този сервиз"
 msgid "Hide any zap error messages."
 msgstr "Скриване на всички съобщения за грешка при zap."
 
+msgid "Hide empty services"
+msgstr "Прескачане на празните сервизи"
+
 msgid "Hide error messages from the Common Interface module."
 msgstr ""
 
@@ -10311,11 +10281,11 @@ msgstr "IMDb Детайли"
 msgid "IMDb Search"
 msgstr "IMDb Търсене"
 
-msgid "IMDb search for current event"
-msgstr "IMDB търсене за текущото събитие"
-
 msgid "INFO"
 msgstr "ИНФО"
+
+msgid "INFO (Long press)"
+msgstr "Информация бутон (дълго)"
 
 msgid "INFO button mode"
 msgstr "Режим на инфо бутон"
@@ -10747,12 +10717,6 @@ msgstr ""
 msgid "Info"
 msgstr "Информация"
 
-msgid "INFO (Long press)"
-msgstr "Информация бутон (дълго)"
-
-msgid "Info button (short)"
-msgstr "Информация бутон (късо)"
-
 msgid "Info file checksum"
 msgstr "Контролна сума на информационния файл"
 
@@ -11074,9 +11038,6 @@ msgstr ""
 msgid "Jazz"
 msgstr ""
 
-msgid "Jazz Music"
-msgstr ""
-
 msgid "Jersey"
 msgstr ""
 
@@ -11092,14 +11053,14 @@ msgstr ""
 msgid "Joined"
 msgstr ""
 
+msgid "Joint stereo"
+msgstr ""
+
 msgid "Jordan"
 msgstr ""
 
 msgid "Jump"
 msgstr ""
-
-msgid "Jump back 24 hours"
-msgstr "Скок назад 24 ЧАСА"
 
 msgid "Jump back one day"
 msgstr ""
@@ -11109,9 +11070,6 @@ msgstr ""
 
 msgid "Jump first press in channel selection"
 msgstr "Скок при първо натискане в избора на канал"
-
-msgid "Jump forward 24 hours"
-msgstr "Скок напред 24 ЧАСА"
 
 msgid "Jump forward one day"
 msgstr ""
@@ -11134,14 +11092,8 @@ msgstr "Скок до края на списъка"
 msgid "Jump to next marked position"
 msgstr "Скок до следващата маркирана позиция"
 
-msgid "Jump to next page or all up (setup in menu)"
-msgstr "Скок до към следващата страница или всичко нагоре (настройка в менюто)"
-
 msgid "Jump to previous marked position"
 msgstr "Скок до предишната маркирана позиция"
-
-msgid "Jump to previous page or all down (setup in menu)"
-msgstr "Преминаване към предишна страница или всички надолу (настройка в менюто)"
 
 msgid "Jump to prime time"
 msgstr "Скок до най-гледаното време"
@@ -12393,6 +12345,9 @@ msgstr ""
 msgid "Mongolian"
 msgstr ""
 
+msgid "Mono"
+msgstr ""
+
 msgid "Montenegro"
 msgstr ""
 
@@ -12631,9 +12586,6 @@ msgstr "Премести към първия ред"
 
 msgid "Move to first line / screen in the panel"
 msgstr ""
-
-msgid "Move to home of list"
-msgstr "Премести към домашния списък"
 
 msgid "Move to last item / screen"
 msgstr ""
@@ -12965,6 +12917,9 @@ msgstr ""
 msgid "Narration"
 msgstr ""
 
+msgid "National Music"
+msgstr ""
+
 msgid "National music"
 msgstr ""
 
@@ -12994,9 +12949,6 @@ msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Навигирайте нагоре/надолу с бутони НАГОРЕ/НАДОЛУ и страница нагоре/надолу с НАЛЯВО/НАДЯСНО. OK, за да извършите действието, описано в текущо маркираната помощ."
-
-msgid "Navigation And Button Assignments"
-msgstr ""
 
 msgid "Navigation And Time Range"
 msgstr ""
@@ -13788,9 +13740,6 @@ msgstr ""
 msgid "OK (Long press)"
 msgstr "ОК бутон (дълго)"
 
-msgid "OK button (short)"
-msgstr "ОК бутон (късо)"
-
 msgid "OK button mode"
 msgstr "Режим на бутона OK"
 
@@ -13902,9 +13851,6 @@ msgid "Ojibwa"
 msgstr ""
 
 msgid "Oldies"
-msgstr ""
-
-msgid "Oldies Music"
 msgstr ""
 
 msgid "Olympic blue"
@@ -14378,6 +14324,9 @@ msgstr ""
 
 msgid "PIN code needed"
 msgstr "PIN код е необходим"
+
+msgid "PLAY"
+msgstr ""
 
 msgid "PLP ID"
 msgstr ""
@@ -15459,9 +15408,6 @@ msgstr "Предишна страница"
 msgid "Previous channel page"
 msgstr "страница на предишния канал"
 
-msgid "Previous/Next bouquet"
-msgstr "предишен/следващ букет"
-
 msgid "Previous/Next page"
 msgstr "предишна/следваща страница"
 
@@ -15480,14 +15426,12 @@ msgstr ""
 msgid "Prime time"
 msgstr "Най-гледаното време"
 
-msgid "Primetime hour"
-msgstr "Праймтайм час"
-
-msgid "Primetime minute"
-msgstr "Праймтайм минута"
-
 msgid "Priority"
 msgstr "Приоритет"
+
+#, python-format
+msgid "Priority: %d"
+msgstr ""
 
 msgid "Privacy level"
 msgstr ""
@@ -15541,7 +15485,7 @@ msgstr "Профил: Местен приемник"
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr ""
 
-msgid "Program type"
+msgid "Programme type (PTY)"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -15823,14 +15767,20 @@ msgstr "REC символ в употреба"
 msgid "REC symbol"
 msgstr ""
 
+msgid "RECORD"
+msgstr ""
+
+msgid "RECORD (Long press)"
+msgstr ""
+
 msgid "RED"
 msgstr "Червен бутон"
 
-msgid "RED button / HbbTV"
-msgstr "Червен бутон..."
-
 msgid "RED (Long press)"
 msgstr "Червено дълго"
+
+msgid "RED button / HbbTV"
+msgstr "Червен бутон..."
 
 msgid "RF Output Settings"
 msgstr "Настройки на RF изхода"
@@ -16027,12 +15977,6 @@ msgstr ""
 
 msgid "Record"
 msgstr "Запис"
-
-msgid "Record - same as record button"
-msgstr "Запис - същото като бутона за запис"
-
-msgid "Record Actions"
-msgstr "Записване на действия"
 
 msgid "Record icon"
 msgstr ""
@@ -16914,9 +16858,6 @@ msgstr "надясно, увит"
 msgid "Rock"
 msgstr ""
 
-msgid "Rock Music"
-msgstr ""
-
 msgid "Rock/Pop"
 msgstr "рок/поп"
 
@@ -17498,9 +17439,6 @@ msgstr "Търсене на изток"
 msgid "Search for network shares"
 msgstr "Търсене за мрежови дялове"
 
-msgid "Search for similar events"
-msgstr "Търсене за подобни събития"
-
 msgid "Search in the current view"
 msgstr ""
 
@@ -17690,9 +17628,6 @@ msgstr ""
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr ""
-
-msgid "When enabled, services without EPG data will be hidden."
-msgstr "Ако е зададено 'да', каналите без EPG няма да бъдат показвани."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
 msgstr ""
@@ -18170,6 +18105,9 @@ msgstr ""
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Тази опция ви позволява да изберете дали стойността по подразбиране за даден елемент от настройката да се показва и, ако е така, къде да се показва във връзка с описанието."
 
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
+msgstr "Тази опция ви позволява да зададете оформление изглед (текст или графика)."
+
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr ""
 
@@ -18322,6 +18260,9 @@ msgstr ""
 #, python-format
 msgid "Select the action for '%s'"
 msgstr ""
+
+msgid "Select the action that this button will perform."
+msgstr "Задайте това, което искате бутонът да направи."
 
 msgid "Select the action to perform when the timer ends."
 msgstr ""
@@ -18596,6 +18537,9 @@ msgstr ""
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
+msgid "Select the number of services to be shown in the list."
+msgstr "Конфигуриране на броя на показаните редове."
+
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr ""
 
@@ -18851,6 +18795,9 @@ msgstr ""
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
 
+msgid "Select which service to use when opening the EPG."
+msgstr ""
+
 msgid "Select your ATSC provider."
 msgstr "Изберете вашия ATSC доставчик."
 
@@ -19097,6 +19044,9 @@ msgstr "Съотношение нана сервизните пикони"
 
 msgid "Service picons downsize"
 msgstr "Размер надолу на сервизните пикони"
+
+msgid "Service preview mode"
+msgstr "Режим на визуализация на канала"
 
 msgid "Service reference"
 msgstr "Референция на сервиза"
@@ -19373,9 +19323,6 @@ msgstr ""
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Ако е зададено на „Да“, същите команди ще бъдат изпращани към телевизора за събития в режим на дълбока готовност, както се изпращат по време на редовни събития в режим на готовност."
-
-msgid "Select the action that this button will perform."
-msgstr "Задайте това, което искате бутонът да направи."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Задайте \"да\" за отстраняване на грешки в основната причина за спинера."
@@ -19762,9 +19709,6 @@ msgstr "Показване на MiniTV на предния дисплей"
 
 msgid "Show Movie Selection in Main Menu"
 msgstr ""
-
-msgid "Show Movies List"
-msgstr "Показване на филмовя списък"
 
 msgid "Show Multi EPG"
 msgstr "Показване на Мулти EPG"
@@ -20502,9 +20446,6 @@ msgstr ""
 msgid "Skip backward (enter time)"
 msgstr "прескочи назад (въведете време)"
 
-msgid "Hide empty services"
-msgstr "Прескачане на празните сервизи"
-
 #, python-format
 msgid "Skip for '%s' is disabled"
 msgstr ""
@@ -20895,9 +20836,6 @@ msgstr "Сортиране"
 msgid "Sort Bookmarks"
 msgstr ""
 
-msgid "Sort EPG List"
-msgstr "Сортиране на списъка с EPG"
-
 msgid "Sort Extension Menu"
 msgstr "Сортиране на списък с разширения по азбучен ред"
 
@@ -21257,6 +21195,9 @@ msgstr "Стъпаловидно на изток"
 msgid "Stepped west"
 msgstr "Стъпаловидно на запад"
 
+msgid "Stereo"
+msgstr ""
+
 msgid "Stop"
 msgstr "Стоп"
 
@@ -21555,6 +21496,15 @@ msgid "Support"
 msgstr ""
 
 msgid "Suriname"
+msgstr ""
+
+msgid "Surround"
+msgstr ""
+
+msgid "Surround 5.1"
+msgstr ""
+
+msgid "Surround 7.1"
 msgstr ""
 
 msgid "Svalbard and Jan Mayen"
@@ -22409,6 +22359,9 @@ msgstr ""
 msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr ""
 
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr ""
@@ -22653,9 +22606,6 @@ msgstr ""
 msgid "This option allows you to set the Auto Volume Level output."
 msgstr "Тази опция конфигурира задаване на Auto Volume Level."
 
-msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
-msgstr "Тази опция ви позволява да зададете оформление изглед (текст или графика)."
-
 msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "Тази опция ви позволява да превключите аудио към BT високоговорители."
 
@@ -22840,9 +22790,6 @@ msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr ""
-
-msgid "Time shift not possible!"
-msgstr "Timeshift не е възможен!"
 
 msgid "Time shift save action on zap"
 msgstr "Timeshift-запазващо действие на превключване"
@@ -24959,6 +24906,9 @@ msgstr ""
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Когато е разрешено, се преформатират субтитрите, за да съответстват на ширината на екрана."
 
+msgid "When enabled, services without EPG data will be hidden."
+msgstr "Ако е зададено 'да', каналите без EPG няма да бъдат показвани."
+
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Когато е разрешено, се показват номерата на каналите в екрана за избор на канали."
 
@@ -25096,9 +25046,6 @@ msgstr "Когато сте настроили сервиза, системат�
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Къде да запазя временните TimeShift записи?"
-
-msgid "Select which service to use when opening the EPG."
-msgstr ""
 
 msgid "Which time shift buffer event do you want to save?"
 msgstr "Кое събитие искате да запазите перманентно?"
@@ -26300,6 +26247,93 @@ msgstr "да (запази фийдове)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Add a RecordTimer for current event"
+#~ msgstr "Добавяне на записващ таймер за текущото събитие"
+
+#~ msgid "Add a ZapTimer for current event"
+#~ msgstr "Добавяне на zap таймер за текущото събитие"
+
+#~ msgid "Add an AutoTimer for the current event"
+#~ msgstr "Добавете автоматичен таймер за текущото събитие"
+
+#~ msgid "Add/Remove Timer"
+#~ msgstr "Добавяне /премахване на таймер"
+
+#~ msgid "Add/Remove a timer for the current event"
+#~ msgstr "Добавяне /премахване на таймер за текущото събитие"
+
+#~ msgid "Change to bouquet"
+#~ msgstr "Промени до букет"
+
+#~ msgid "Close bouquet list"
+#~ msgstr "Затвори списъка с букети"
+
+#~ msgid "Close bouquet list."
+#~ msgstr "Затвори списъка с букети."
+
+#~ msgid "EPG Bouquet Actions"
+#~ msgstr "EPG Букетни действия"
+
+#~ msgid "EPG Display Actions"
+#~ msgstr "Действия на дисплея на EPG"
+
+#~ msgid "EPG Other Actions"
+#~ msgstr "EPG Други действия"
+
+#~ msgid "Getting event information failed!"
+#~ msgstr "Получаването на информация за събитията не бе успешно!"
+
+#~ msgid "IMDb search for current event"
+#~ msgstr "IMDB търсене за текущото събитие"
+
+#~ msgid "Info button (short)"
+#~ msgstr "Информация бутон (късо)"
+
+#~ msgid "Jump back 24 hours"
+#~ msgstr "Скок назад 24 ЧАСА"
+
+#~ msgid "Jump forward 24 hours"
+#~ msgstr "Скок напред 24 ЧАСА"
+
+#~ msgid "Jump to next page or all up (setup in menu)"
+#~ msgstr "Скок до към следващата страница или всичко нагоре (настройка в менюто)"
+
+#~ msgid "Jump to previous page or all down (setup in menu)"
+#~ msgstr "Преминаване към предишна страница или всички надолу (настройка в менюто)"
+
+#~ msgid "Move to home of list"
+#~ msgstr "Премести към домашния списък"
+
+#~ msgid "OK button (short)"
+#~ msgstr "ОК бутон (късо)"
+
+#~ msgid "Previous/Next bouquet"
+#~ msgstr "предишен/следващ букет"
+
+#~ msgid "Primetime hour"
+#~ msgstr "Праймтайм час"
+
+#~ msgid "Primetime minute"
+#~ msgstr "Праймтайм минута"
+
+#~ msgid "Record - same as record button"
+#~ msgstr "Запис - същото като бутона за запис"
+
+#~ msgid "Record Actions"
+#~ msgstr "Записване на действия"
+
+#~ msgid "Search for similar events"
+#~ msgstr "Търсене за подобни събития"
+
+#~ msgid "Show Movies List"
+#~ msgstr "Показване на филмовя списък"
+
+#~ msgid "Sort EPG List"
+#~ msgstr "Сортиране на списъка с EPG"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Timeshift не е възможен!"
 
 #~ msgid "Please select device to use as swap file location"
 #~ msgstr "Моля, изберете устройство, което да се използва като място за swapfile"

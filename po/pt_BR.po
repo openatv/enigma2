@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 13:51+0100\n"
+"POT-Creation-Date: 2026-11-01 20:39+0100\n"
 "PO-Revision-Date: 2026-08-16 18:09+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt_BR/>\n"
@@ -1815,6 +1815,9 @@ msgstr ""
 msgid "A new storage device has been connected:"
 msgstr ""
 
+msgid "A prepared or running timer can not be moved to the fallback tuner."
+msgstr ""
+
 #, fuzzy, python-format
 msgid ""
 "A recording has been started:\n"
@@ -2171,16 +2174,8 @@ msgstr ""
 msgid "Add a RecordTimer"
 msgstr "Adic./Remov. gravação do evento atual"
 
-#, fuzzy
-msgid "Add a RecordTimer for current event"
-msgstr "Adic./Remov. gravação do evento atual"
-
 msgid "Add a TV service to the Volume Offset list"
 msgstr ""
-
-#, fuzzy
-msgid "Add a ZapTimer for current event"
-msgstr "Adic./Remov. gravação do evento atual"
 
 #, fuzzy
 msgid "Add a ZapTimer for next event"
@@ -2215,10 +2210,6 @@ msgstr ""
 
 msgid "Add an existing swap file"
 msgstr ""
-
-#, fuzzy
-msgid "Add an AutoTimer for the current event"
-msgstr "Adic./Remov. gravação do evento atual"
 
 msgid "Add current directory to bookmarks"
 msgstr ""
@@ -2295,14 +2286,6 @@ msgstr ""
 
 msgid "Add title"
 msgstr "Adicionar título"
-
-#, fuzzy
-msgid "Add/Remove Timer"
-msgstr "Remover temporizador"
-
-#, fuzzy
-msgid "Add/Remove a timer for the current event"
-msgstr "Adic./Remov. gravação do evento atual"
 
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr ""
@@ -3143,9 +3126,6 @@ msgstr ""
 msgid "AutoRefresh"
 msgstr ""
 
-msgid "AutoTimer"
-msgstr ""
-
 #, fuzzy
 msgid "AutoUpdate"
 msgstr "Atualizar"
@@ -3711,9 +3691,6 @@ msgstr ""
 msgid "Browse"
 msgstr ""
 
-msgid "Browse mode"
-msgstr ""
-
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr ""
 
@@ -3898,9 +3875,17 @@ msgstr ""
 msgid "CHANGE BOUQUET"
 msgstr ""
 
-#, fuzzy
-msgid "CHANNEL +/-"
-msgstr "Canal"
+msgid "CHANNEL+"
+msgstr ""
+
+msgid "CHANNEL+ button (setup in menu)"
+msgstr ""
+
+msgid "CHANNEL-"
+msgstr ""
+
+msgid "CHANNEL- button (setup in menu)"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr ""
@@ -4359,10 +4344,6 @@ msgstr ""
 msgid "Change to TV services mode"
 msgstr ""
 
-#, fuzzy
-msgid "Change to bouquet"
-msgstr "Adicionar aos bouquets"
-
 msgid "Changed"
 msgstr ""
 
@@ -4474,10 +4455,6 @@ msgstr ""
 
 msgid "Channel number"
 msgstr ""
-
-#, fuzzy
-msgid "Service preview mode"
-msgstr "Dividir modo de pré-visualização"
 
 msgid "Channel selection configuration"
 msgstr ""
@@ -4829,13 +4806,6 @@ msgstr ""
 msgid "Close Task View"
 msgstr ""
 
-msgid "Close bouquet list"
-msgstr ""
-
-#, fuzzy
-msgid "Close bouquet list."
-msgstr "terminar edição de bouquets"
-
 msgid "Close dialog"
 msgstr ""
 
@@ -4927,9 +4897,6 @@ msgstr "Formato da cor"
 #, fuzzy
 msgid "Color"
 msgstr "Formato da cor"
-
-msgid "Color Button Assignments"
-msgstr ""
 
 msgid "Color format"
 msgstr "Formato da cor"
@@ -5296,10 +5263,6 @@ msgstr "Configurar o número de dias após o qual os itens são automaticamente 
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "Configurar o número de dias que temporizadores antigos são mantidos antes de serem automaticamente removidos da lista."
-
-#, fuzzy
-msgid "Select the number of services to be shown in the list."
-msgstr "Configurar a longitude de sua localização."
 
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr "Configurar o atraso da decodificação offline em milissegundos. O atraso configurado é observado em cada mudança de paridade."
@@ -5768,9 +5731,6 @@ msgstr ""
 #, fuzzy
 msgid "Country"
 msgstr "Montagem"
-
-msgid "Country Music"
-msgstr ""
 
 #, fuzzy
 msgid "Country for EPG event genre information"
@@ -7674,6 +7634,9 @@ msgstr ""
 msgid "Drop unconfigured satellites"
 msgstr ""
 
+msgid "Dual channel"
+msgstr ""
+
 msgid "Duplex"
 msgstr ""
 
@@ -7718,10 +7681,10 @@ msgstr ""
 msgid "EPG"
 msgstr "EPG"
 
-msgid "EPG Actions"
+msgid "EPG (Long press)"
 msgstr ""
 
-msgid "EPG Bouquet Actions"
+msgid "EPG Actions"
 msgstr ""
 
 msgid "EPG Cache Check"
@@ -7733,9 +7696,6 @@ msgstr ""
 msgid "EPG Data In Streams"
 msgstr ""
 
-msgid "EPG Display Actions"
-msgstr ""
-
 msgid "EPG Jump"
 msgstr ""
 
@@ -7743,9 +7703,6 @@ msgid "EPG Language"
 msgstr ""
 
 msgid "EPG Navigation Actions"
-msgstr ""
-
-msgid "EPG Other Actions"
 msgstr ""
 
 msgid "EPG Range And History"
@@ -7768,6 +7725,9 @@ msgid "EPG Sources"
 msgstr ""
 
 msgid "EPG Storage And Refresh"
+msgstr ""
+
+msgid "EPG button long (setup in menu)"
 msgstr ""
 
 msgid "EPG button mode"
@@ -7822,7 +7782,7 @@ msgstr "Definir o limite leste"
 msgid "Eastern satellites"
 msgstr ""
 
-msgid "Easy Listening Music"
+msgid "Easy Listening"
 msgstr ""
 
 msgid "Easy listening"
@@ -10039,9 +9999,6 @@ msgstr "Alemão"
 msgid "Germany"
 msgstr "Alemão"
 
-msgid "Getting event information failed!"
-msgstr ""
-
 msgid "Getting plugin information. Please wait..."
 msgstr "Obtendo informações. Aguarde..."
 
@@ -10490,6 +10447,9 @@ msgstr ""
 msgid "Hide any zap error messages."
 msgstr "Ocultar erros no zapping"
 
+msgid "Hide empty services"
+msgstr "Saltar canais vazios"
+
 msgid "Hide error messages from the Common Interface module."
 msgstr ""
 
@@ -10702,11 +10662,10 @@ msgstr ""
 msgid "IMDb Search"
 msgstr "Procurando..."
 
-#, fuzzy
-msgid "IMDb search for current event"
-msgstr "Adic./Remov. gravação do evento atual"
-
 msgid "INFO"
+msgstr ""
+
+msgid "INFO (Long press)"
 msgstr ""
 
 msgid "INFO button mode"
@@ -11145,12 +11104,6 @@ msgstr ""
 msgid "Info"
 msgstr "Informações"
 
-msgid "INFO (Long press)"
-msgstr ""
-
-msgid "Info button (short)"
-msgstr ""
-
 msgid "Info file checksum"
 msgstr ""
 
@@ -11489,9 +11442,6 @@ msgstr ""
 msgid "Jazz"
 msgstr ""
 
-msgid "Jazz Music"
-msgstr ""
-
 msgid "Jersey"
 msgstr ""
 
@@ -11507,13 +11457,13 @@ msgstr ""
 msgid "Joined"
 msgstr ""
 
+msgid "Joint stereo"
+msgstr ""
+
 msgid "Jordan"
 msgstr ""
 
 msgid "Jump"
-msgstr ""
-
-msgid "Jump back 24 hours"
 msgstr ""
 
 msgid "Jump back one day"
@@ -11523,9 +11473,6 @@ msgid "Jump back one hour"
 msgstr ""
 
 msgid "Jump first press in channel selection"
-msgstr ""
-
-msgid "Jump forward 24 hours"
 msgstr ""
 
 msgid "Jump forward one day"
@@ -11550,14 +11497,8 @@ msgstr "Ir para o fim da lista"
 msgid "Jump to next marked position"
 msgstr "Ir para a próxima marca"
 
-msgid "Jump to next page or all up (setup in menu)"
-msgstr ""
-
 msgid "Jump to previous marked position"
 msgstr "Ir para marca anterior"
-
-msgid "Jump to previous page or all down (setup in menu)"
-msgstr ""
 
 #, fuzzy
 msgid "Jump to prime time"
@@ -12851,6 +12792,9 @@ msgstr ""
 msgid "Mongolian"
 msgstr ""
 
+msgid "Mono"
+msgstr ""
+
 msgid "Montenegro"
 msgstr ""
 
@@ -13098,10 +13042,6 @@ msgstr ""
 
 msgid "Move to first line / screen in the panel"
 msgstr ""
-
-#, fuzzy
-msgid "Move to home of list"
-msgstr "Saltar parea o fim da lista"
 
 msgid "Move to last item / screen"
 msgstr ""
@@ -13451,6 +13391,9 @@ msgstr ""
 msgid "Narration"
 msgstr ""
 
+msgid "National Music"
+msgstr ""
+
 msgid "National music"
 msgstr ""
 
@@ -13481,9 +13424,6 @@ msgid "Navigate to the selected directory"
 msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
-msgstr ""
-
-msgid "Navigation And Button Assignments"
 msgstr ""
 
 msgid "Navigation And Time Range"
@@ -14303,9 +14243,6 @@ msgstr "OK"
 msgid "OK (Long press)"
 msgstr ""
 
-msgid "OK button (short)"
-msgstr ""
-
 msgid "OK button mode"
 msgstr ""
 
@@ -14420,9 +14357,6 @@ msgid "Ojibwa"
 msgstr ""
 
 msgid "Oldies"
-msgstr ""
-
-msgid "Oldies Music"
 msgstr ""
 
 msgid "Olympic blue"
@@ -14922,6 +14856,9 @@ msgstr ""
 
 msgid "PIN code needed"
 msgstr "A senha é necessária"
+
+msgid "PLAY"
+msgstr ""
 
 msgid "PLP ID"
 msgstr ""
@@ -16036,10 +15973,6 @@ msgstr "canal anterior"
 msgid "Previous channel page"
 msgstr "canal anterior"
 
-#, fuzzy
-msgid "Previous/Next bouquet"
-msgstr "Ir para o evento seguinte"
-
 msgid "Previous/Next page"
 msgstr ""
 
@@ -16059,15 +15992,12 @@ msgstr ""
 msgid "Prime time"
 msgstr "Introduzir a hora/data"
 
-msgid "Primetime hour"
-msgstr ""
-
-#, fuzzy
-msgid "Primetime minute"
-msgstr "Introduzir a hora/data"
-
 msgid "Priority"
 msgstr "Prioridade"
+
+#, python-format
+msgid "Priority: %d"
+msgstr ""
 
 msgid "Privacy level"
 msgstr ""
@@ -16122,7 +16052,7 @@ msgstr ""
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr ""
 
-msgid "Program type"
+msgid "Programme type (PTY)"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -16417,15 +16347,21 @@ msgstr ""
 msgid "REC symbol"
 msgstr ""
 
+msgid "RECORD"
+msgstr ""
+
+msgid "RECORD (Long press)"
+msgstr ""
+
 #, fuzzy
 msgid "RED"
 msgstr "Botão vermelho..."
 
-msgid "RED button / HbbTV"
-msgstr "Botão vermelho"
-
 msgid "RED (Long press)"
 msgstr ""
+
+msgid "RED button / HbbTV"
+msgstr "Botão vermelho"
 
 msgid "RF Output Settings"
 msgstr "Saida RF"
@@ -16626,12 +16562,6 @@ msgstr ""
 
 msgid "Record"
 msgstr "Gravações"
-
-msgid "Record - same as record button"
-msgstr ""
-
-msgid "Record Actions"
-msgstr ""
 
 msgid "Record icon"
 msgstr ""
@@ -17543,9 +17473,6 @@ msgstr "à direita"
 msgid "Rock"
 msgstr ""
 
-msgid "Rock Music"
-msgstr ""
-
 msgid "Rock/Pop"
 msgstr "Rock/Pop"
 
@@ -18144,9 +18071,6 @@ msgstr "Buscar leste"
 msgid "Search for network shares"
 msgstr ""
 
-msgid "Search for similar events"
-msgstr ""
-
 msgid "Search in the current view"
 msgstr ""
 
@@ -18342,9 +18266,6 @@ msgid "Select 'Yes' to enable the monitoring UI web interface for the DNSCrypt s
 msgstr ""
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
-msgstr ""
-
-msgid "When enabled, services without EPG data will be hidden."
 msgstr ""
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
@@ -18826,6 +18747,9 @@ msgstr ""
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr ""
 
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
+msgstr ""
+
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr ""
 
@@ -18977,6 +18901,9 @@ msgstr ""
 
 #, python-format
 msgid "Select the action for '%s'"
+msgstr ""
+
+msgid "Select the action that this button will perform."
 msgstr ""
 
 msgid "Select the action to perform when the timer ends."
@@ -19253,6 +19180,10 @@ msgstr ""
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
+#, fuzzy
+msgid "Select the number of services to be shown in the list."
+msgstr "Configurar a longitude de sua localização."
+
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr ""
 
@@ -19516,6 +19447,9 @@ msgstr ""
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
 
+msgid "Select which service to use when opening the EPG."
+msgstr ""
+
 #, fuzzy
 msgid "Select your ATSC provider."
 msgstr "Selecione o operador para adicionar..."
@@ -19765,6 +19699,10 @@ msgstr "Informação"
 
 msgid "Service picons downsize"
 msgstr ""
+
+#, fuzzy
+msgid "Service preview mode"
+msgstr "Dividir modo de pré-visualização"
 
 msgid "Service reference"
 msgstr "Referência"
@@ -20047,9 +19985,6 @@ msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr ""
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr ""
-
-msgid "Select the action that this button will perform."
 msgstr ""
 
 msgid "Set to yes for debugging the root cause of a spinner."
@@ -20449,10 +20384,6 @@ msgstr ""
 
 msgid "Show Movie Selection in Main Menu"
 msgstr ""
-
-#, fuzzy
-msgid "Show Movies List"
-msgstr "Editar o temporizador"
 
 msgid "Show Multi EPG"
 msgstr ""
@@ -21232,9 +21163,6 @@ msgstr ""
 msgid "Skip backward (enter time)"
 msgstr "Retroceder (inserir tempo)"
 
-msgid "Hide empty services"
-msgstr "Saltar canais vazios"
-
 #, python-format
 msgid "Skip for '%s' is disabled"
 msgstr ""
@@ -21631,9 +21559,6 @@ msgstr "Ordenar"
 msgid "Sort Bookmarks"
 msgstr ""
 
-msgid "Sort EPG List"
-msgstr ""
-
 msgid "Sort Extension Menu"
 msgstr ""
 
@@ -22003,6 +21928,9 @@ msgstr "Passo para leste"
 msgid "Stepped west"
 msgstr "Passo para oeste"
 
+msgid "Stereo"
+msgstr ""
+
 msgid "Stop"
 msgstr "Parar"
 
@@ -22314,6 +22242,15 @@ msgstr ""
 #, fuzzy
 msgid "Suriname"
 msgstr "Renomear"
+
+msgid "Surround"
+msgstr ""
+
+msgid "Surround 5.1"
+msgstr ""
+
+msgid "Surround 7.1"
+msgstr ""
 
 msgid "Svalbard and Jan Mayen"
 msgstr ""
@@ -23178,6 +23115,9 @@ msgstr ""
 msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr ""
 
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr ""
@@ -23422,9 +23362,6 @@ msgstr ""
 msgid "This option allows you to set the Auto Volume Level output."
 msgstr ""
 
-msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
-msgstr ""
-
 msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr ""
 
@@ -23620,9 +23557,6 @@ msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr ""
-
-msgid "Time shift not possible!"
-msgstr "Timeshift não permitido!"
 
 #, fuzzy
 msgid "Time shift save action on zap"
@@ -25805,6 +25739,9 @@ msgstr ""
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr ""
 
+msgid "When enabled, services without EPG data will be hidden."
+msgstr ""
+
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Quando ativado, exibe a numeração dos canais na lista de canais."
 
@@ -25942,9 +25879,6 @@ msgstr ""
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Onde salvar as gravações temporárias do timeshift?"
-
-msgid "Select which service to use when opening the EPG."
-msgstr ""
 
 #, fuzzy
 msgid "Which time shift buffer event do you want to save?"
@@ -27173,6 +27107,61 @@ msgstr "Sim (manter os feeds)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Add a RecordTimer for current event"
+#~ msgstr "Adic./Remov. gravação do evento atual"
+
+#, fuzzy
+#~ msgid "Add a ZapTimer for current event"
+#~ msgstr "Adic./Remov. gravação do evento atual"
+
+#, fuzzy
+#~ msgid "Add an AutoTimer for the current event"
+#~ msgstr "Adic./Remov. gravação do evento atual"
+
+#, fuzzy
+#~ msgid "Add/Remove Timer"
+#~ msgstr "Remover temporizador"
+
+#, fuzzy
+#~ msgid "Add/Remove a timer for the current event"
+#~ msgstr "Adic./Remov. gravação do evento atual"
+
+#, fuzzy
+#~ msgid "CHANNEL +/-"
+#~ msgstr "Canal"
+
+#, fuzzy
+#~ msgid "Change to bouquet"
+#~ msgstr "Adicionar aos bouquets"
+
+#, fuzzy
+#~ msgid "Close bouquet list."
+#~ msgstr "terminar edição de bouquets"
+
+#, fuzzy
+#~ msgid "IMDb search for current event"
+#~ msgstr "Adic./Remov. gravação do evento atual"
+
+#, fuzzy
+#~ msgid "Move to home of list"
+#~ msgstr "Saltar parea o fim da lista"
+
+#, fuzzy
+#~ msgid "Previous/Next bouquet"
+#~ msgstr "Ir para o evento seguinte"
+
+#, fuzzy
+#~ msgid "Primetime minute"
+#~ msgstr "Introduzir a hora/data"
+
+#, fuzzy
+#~ msgid "Show Movies List"
+#~ msgstr "Editar o temporizador"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Timeshift não permitido!"
 
 #, fuzzy
 #~ msgid "Aspect"

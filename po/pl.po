@@ -17,9 +17,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 13:51+0100\n"
-"PO-Revision-Date: 2026-10-30 20:02+0000\n"
-"Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
+"POT-Creation-Date: 2026-11-01 20:39+0100\n"
+"PO-Revision-Date: 2026-11-02 08:23+0000\n"
+"Last-Translator: Mat <mathew87@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -1734,6 +1734,9 @@ msgstr "Podświetlenie na obrazie pilota wskazuje, którego przycisku dotyczy po
 msgid "A new storage device has been connected:"
 msgstr "Podłączono nowe urządzenie pamięci masowej:"
 
+msgid "A prepared or running timer can not be moved to the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -2089,14 +2092,8 @@ msgstr "Dodaj kanał RADIO do listy przesunięcia głośności"
 msgid "Add a RecordTimer"
 msgstr "Dodaj timer nagrywania"
 
-msgid "Add a RecordTimer for current event"
-msgstr "Dodaj timer nagrywania dla bieżącego wydarzenia"
-
 msgid "Add a TV service to the Volume Offset list"
 msgstr "Dodaj kanał TV do listy przesunięcia głośności"
-
-msgid "Add a ZapTimer for current event"
-msgstr "Dodaj zap timer dla bieżącego wydarzenia"
 
 msgid "Add a ZapTimer for next event"
 msgstr "Dodaj zap timer dla następnego zdarzenia"
@@ -2130,9 +2127,6 @@ msgstr "Dodaj timer dla aktualnego wydarzenia"
 
 msgid "Add an existing swap file"
 msgstr "Dodaj istniejący plik swap"
-
-msgid "Add an AutoTimer for the current event"
-msgstr "Dodaj auto timer dla bieżącego wydarzenia"
 
 msgid "Add current directory to bookmarks"
 msgstr "Dodaj bieżący folder do zakładek"
@@ -2208,12 +2202,6 @@ msgstr "Dodaj wybrany kanał do listy ulubionych lub alternatywnych"
 
 msgid "Add title"
 msgstr "Dodaj tytuł"
-
-msgid "Add/Remove Timer"
-msgstr "Dodaj/Usuń timer"
-
-msgid "Add/Remove a timer for the current event"
-msgstr "Dodaj/Usuń timer dla bieżącego wydarzenia"
 
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr "Dodaj/Usuń zaznaczoną wtyczkę do/z listy instalacji"
@@ -3015,9 +3003,6 @@ msgstr "Menedżer auto montowania"
 msgid "AutoRefresh"
 msgstr "Automatyczne odświeżanie"
 
-msgid "AutoTimer"
-msgstr "Auto timer"
-
 msgid "AutoUpdate"
 msgstr "Automatyczna aktualizacja"
 
@@ -3125,7 +3110,7 @@ msgid "BLUE"
 msgstr "Przycisk Niebieski"
 
 msgid "BLUE (Long press)"
-msgstr "Niebieski (długo)"
+msgstr "NIEBIESKI (długie naciśnięcie)"
 
 msgid "BLUE switch: BLUE/BLUE long"
 msgstr "Akcja dla przycisku NIEBIESKI (Krótko/Długo)"
@@ -3560,9 +3545,6 @@ msgstr "Domyślne Broadcom"
 msgid "Browse"
 msgstr "Przeglądaj"
 
-msgid "Browse mode"
-msgstr "Tryb przeglądania"
-
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Przeglądaj, instaluj lub usuwaj wtyczki pojedynczo."
 
@@ -3749,8 +3731,17 @@ msgstr "CH%s"
 msgid "CHANGE BOUQUET"
 msgstr "ZMIEŃ LISTĘ"
 
-msgid "CHANNEL +/-"
-msgstr "Kanał +/-"
+msgid "CHANNEL+"
+msgstr "KANAŁ+"
+
+msgid "CHANNEL+ button (setup in menu)"
+msgstr "Przycisk KANAŁ+ (ustawienia w menu)"
+
+msgid "CHANNEL-"
+msgstr "KANAŁ-"
+
+msgid "CHANNEL- button (setup in menu)"
+msgstr "Przycisk KANAŁ- (ustawienia w menu)"
 
 msgid "CI (Common Interface) Setup"
 msgstr "Ustawienia CI (Common Interface)"
@@ -4208,9 +4199,6 @@ msgstr "Przejdź do trybu kanałów radiowych"
 msgid "Change to TV services mode"
 msgstr "Przejdź do trybu usług telewizyjnych"
 
-msgid "Change to bouquet"
-msgstr "Zamień na listę kanałów"
-
 msgid "Changed"
 msgstr "Zmieniono"
 
@@ -4309,9 +4297,6 @@ msgstr "Nazwa kanału"
 
 msgid "Channel number"
 msgstr "Numer kanału"
-
-msgid "Service preview mode"
-msgstr "Tryb podglądu kanału"
 
 msgid "Channel selection configuration"
 msgstr "Konfiguracja listy kanałów"
@@ -4653,12 +4638,6 @@ msgstr "Zamknij listę zadań"
 msgid "Close Task View"
 msgstr "Zamknij widok zadań"
 
-msgid "Close bouquet list"
-msgstr "Zamknij listę kanałów"
-
-msgid "Close bouquet list."
-msgstr "Zamknij listę kanałów."
-
 msgid "Close dialog"
 msgstr "Zamknij okno dialogowe"
 
@@ -4748,9 +4727,6 @@ msgstr "Kolumbia"
 
 msgid "Color"
 msgstr "Kolor"
-
-msgid "Color Button Assignments"
-msgstr "Przypisanie Kolorowych Przycisków"
 
 msgid "Color format"
 msgstr "Format kolorów"
@@ -5103,9 +5079,6 @@ msgstr "Skonfiguruj liczbę dni, po upływie których elementy zostaną automaty
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "Skonfiguruj liczbę dni przez ile są trzymane wykonane timery, zanim zostaną automatycznie usunięte z listy."
-
-msgid "Select the number of services to be shown in the list."
-msgstr "Skonfiguruj liczbę pokazywanych wierszy."
 
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr "Skonfiguruj opóźnienie dekodowania offline w milisekundach. Skonfigurowane opóźnienie jest obserwowane przy każdej zmianie parzystości słowa kontrolnego."
@@ -5568,9 +5541,6 @@ msgstr ""
 
 msgid "Country"
 msgstr "Kraj"
-
-msgid "Country Music"
-msgstr "Muzyka country"
 
 msgid "Country for EPG event genre information"
 msgstr "Kraj dla informacji o gatunku wydarzenia EPG"
@@ -7453,6 +7423,9 @@ msgstr "Wersja sterownika"
 msgid "Drop unconfigured satellites"
 msgstr "Pomiń nieskonfigurowane satelity"
 
+msgid "Dual channel"
+msgstr "Dwukanałowy"
+
 msgid "Duplex"
 msgstr "Duplex"
 
@@ -7496,11 +7469,11 @@ msgstr "Informacje ECM dla '%s'"
 msgid "EPG"
 msgstr "EPG"
 
+msgid "EPG (Long press)"
+msgstr "EPG (długie naciśnięcie)"
+
 msgid "EPG Actions"
 msgstr "Akcje EPG"
-
-msgid "EPG Bouquet Actions"
-msgstr "Akcje Listy kanałów EPG"
 
 msgid "EPG Cache Check"
 msgstr "Sprawdź buforowanie EPG"
@@ -7511,9 +7484,6 @@ msgstr "Wybór Kanału/Serwisu EPG"
 msgid "EPG Data In Streams"
 msgstr "Dane EPG w Strumieniach"
 
-msgid "EPG Display Actions"
-msgstr "Akcje wyświetlania EPG"
-
 msgid "EPG Jump"
 msgstr "Skok EPG"
 
@@ -7522,9 +7492,6 @@ msgstr "Język EPG"
 
 msgid "EPG Navigation Actions"
 msgstr "Akcje nawigacji EPG"
-
-msgid "EPG Other Actions"
-msgstr "Inne akcje EPG"
 
 msgid "EPG Range And History"
 msgstr "Zakres i Historia EPG"
@@ -7546,6 +7513,9 @@ msgstr "Źródła EPG"
 
 msgid "EPG Storage And Refresh"
 msgstr "Przechowywanie i Odświeżanie EPG"
+
+msgid "EPG button long (setup in menu)"
+msgstr "Przycisk EPG (długie naciśnięcie, ustawienia w menu)"
 
 msgid "EPG button mode"
 msgstr "Tryb przycisku EPG"
@@ -7605,8 +7575,8 @@ msgstr "Ustaw limit wschodni"
 msgid "Eastern satellites"
 msgstr "Satelity wschodnie"
 
-msgid "Easy Listening Music"
-msgstr "Muzyka lekka"
+msgid "Easy Listening"
+msgstr "Easy Listening"
 
 msgid "Easy listening"
 msgstr "Łatwe do słuchania"
@@ -9657,7 +9627,7 @@ msgid "GREEN"
 msgstr "Przycisk Zielony"
 
 msgid "GREEN (Long press)"
-msgstr "Zielony (długo)"
+msgstr "ZIELONY (długie naciśnięcie)"
 
 msgid "GStreamer debug log category *"
 msgstr "Kategoria dziennika debugowania GStreamer *"
@@ -9770,9 +9740,6 @@ msgstr "Niemiecki"
 
 msgid "Germany"
 msgstr "Niemcy"
-
-msgid "Getting event information failed!"
-msgstr "Nie udało się pobrać informacji o wydarzeniu!"
 
 msgid "Getting plugin information. Please wait..."
 msgstr "Pobieranie informacji o wtyczkach. Proszę czekać..."
@@ -10200,6 +10167,9 @@ msgstr "Ukryj linię VBI dla tego kanału"
 msgid "Hide any zap error messages."
 msgstr "Ukryj wszystkie komunikaty o błędach przełączania kanałów."
 
+msgid "Hide empty services"
+msgstr "Ukryj puste kanały"
+
 msgid "Hide error messages from the Common Interface module."
 msgstr "Ukryj komunikaty o błędach w module."
 
@@ -10404,11 +10374,11 @@ msgstr "Szczegóły IMDb"
 msgid "IMDb Search"
 msgstr "Szukaj w IMDb"
 
-msgid "IMDb search for current event"
-msgstr "Szukaj bieżącego wydarzenia w IMDb"
-
 msgid "INFO"
 msgstr "INFO"
+
+msgid "INFO (Long press)"
+msgstr "INFO (długie naciśnięcie)"
 
 msgid "INFO button mode"
 msgstr "Tryb przycisku INFO"
@@ -10843,12 +10813,6 @@ msgstr "Indonezyjski"
 msgid "Info"
 msgstr "Info"
 
-msgid "INFO (Long press)"
-msgstr "Przycisk Info (długo)"
-
-msgid "Info button (short)"
-msgstr "Przycisk Info (krótko)"
-
 msgid "Info file checksum"
 msgstr "Suma kontrolna"
 
@@ -11170,9 +11134,6 @@ msgstr "Jawajski"
 msgid "Jazz"
 msgstr "Jazz"
 
-msgid "Jazz Music"
-msgstr "Muzyka jazzowa"
-
 msgid "Jersey"
 msgstr "Jersey"
 
@@ -11188,14 +11149,14 @@ msgstr "Dołącz do skonfigurowanej sieci ZeroTier lub opuść ją"
 msgid "Joined"
 msgstr "Dołączono"
 
+msgid "Joint stereo"
+msgstr "Joint stereo"
+
 msgid "Jordan"
 msgstr "Jordania"
 
 msgid "Jump"
 msgstr "Skok"
-
-msgid "Jump back 24 hours"
-msgstr "Cofnij się o 24 godziny"
 
 msgid "Jump back one day"
 msgstr "Skocz w tył o jeden dzień"
@@ -11205,9 +11166,6 @@ msgstr "Skocz w tył o godzinę"
 
 msgid "Jump first press in channel selection"
 msgstr "Ustawienie 'Skocz do...' na liście kanałów"
-
-msgid "Jump forward 24 hours"
-msgstr "Skocz do przodu 24 godzin"
 
 msgid "Jump forward one day"
 msgstr "Skocz w przód o jeden dzień"
@@ -11230,14 +11188,8 @@ msgstr "Skocz do końca listy"
 msgid "Jump to next marked position"
 msgstr "Skocz do następnej zaznaczonej pozycji"
 
-msgid "Jump to next page or all up (setup in menu)"
-msgstr "Skocz do następnej strony lub przeskocz wszystko (ustawienia w menu)"
-
 msgid "Jump to previous marked position"
 msgstr "Skocz do poprzedniej zaznaczonej pozycji"
-
-msgid "Jump to previous page or all down (setup in menu)"
-msgstr "Skocz do poprzedniej strony lub przeskocz wszystko (ustawienia w menu)"
 
 msgid "Jump to prime time"
 msgstr "Przeskocz do najlepszego czasu antenowego"
@@ -11942,10 +11894,10 @@ msgid "Long filenames"
 msgstr "Długie nazwy plików"
 
 msgid "Long press emulation with button"
-msgstr "Emuluj długie wciśnięcie dla przycisku"
+msgstr "Emuluj długie naciśnięcie dla przycisku"
 
 msgid "Long press volume steps"
-msgstr "Długie wciśnięcie-skok głośności"
+msgstr "Krok zmiany głośności przy długim naciśnięciu"
 
 #, python-format
 msgid "Long press: %s"
@@ -12491,6 +12443,9 @@ msgstr "Mongolia"
 msgid "Mongolian"
 msgstr "Mongolski"
 
+msgid "Mono"
+msgstr "Mono"
+
 msgid "Montenegro"
 msgstr "Czarnogóra"
 
@@ -12729,9 +12684,6 @@ msgstr "Przenieś do pierwszej linii"
 
 msgid "Move to first line / screen in the panel"
 msgstr "Przejdź do pierwszego wiersza / ekranu w panelu"
-
-msgid "Move to home of list"
-msgstr "Przenieś do domowej listy"
 
 msgid "Move to last item / screen"
 msgstr "Przejdź do ostatniego elementu / ekranu"
@@ -13063,6 +13015,9 @@ msgstr "Namibia"
 msgid "Narration"
 msgstr "Narracja"
 
+msgid "National Music"
+msgstr "Muzyka narodowa"
+
 msgid "National music"
 msgstr "Muzyka narodowa"
 
@@ -13092,9 +13047,6 @@ msgstr "Przejdź do wybranego katalogu"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Nawiguj w górę / w dół za pomocą przycisków W GÓRĘ / W DÓŁ i strony w górę / w dół za pomocą LEWEJ / PRAWEJ. OK, aby wykonać akcję opisaną w aktualnie wyróżnionej pomocy."
-
-msgid "Navigation And Button Assignments"
-msgstr "Nawigacja i Przypisanie Przycisków"
 
 msgid "Navigation And Time Range"
 msgstr "Nawigacja i Zakres Czasu"
@@ -13891,10 +13843,7 @@ msgid "OK"
 msgstr "OK"
 
 msgid "OK (Long press)"
-msgstr "Przycisk OK (długo)"
-
-msgid "OK button (short)"
-msgstr "Przycisk OK (krótko)"
+msgstr "OK (długie naciśnięcie)"
 
 msgid "OK button mode"
 msgstr "Tryb przycisku OK"
@@ -14008,9 +13957,6 @@ msgstr "Ojibwa"
 
 msgid "Oldies"
 msgstr "Przeboje dawnych lat"
-
-msgid "Oldies Music"
-msgstr "Muzyka dawnych lat"
 
 msgid "Olympic blue"
 msgstr "Niebieski olimpijski"
@@ -14483,6 +14429,9 @@ msgstr "PIN"
 
 msgid "PIN code needed"
 msgstr "Wymagany kod PIN"
+
+msgid "PLAY"
+msgstr ""
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -15569,9 +15518,6 @@ msgstr "Poprzednia strona"
 msgid "Previous channel page"
 msgstr "Poprzednia strona kanału"
 
-msgid "Previous/Next bouquet"
-msgstr "Poprzednia/Następna lista kanałów"
-
 msgid "Previous/Next page"
 msgstr "Poprzednia/Następna strona"
 
@@ -15590,14 +15536,12 @@ msgstr "Najlepszy czas antenowy"
 msgid "Prime time"
 msgstr "Najlepszy czas antenowy"
 
-msgid "Primetime hour"
-msgstr "Godzina najlepszego czasu antenowego"
-
-msgid "Primetime minute"
-msgstr "Minuta najlepszego czasu antenowego"
-
 msgid "Priority"
 msgstr "Priorytet"
+
+#, python-format
+msgid "Priority: %d"
+msgstr "Priorytet: %d"
 
 msgid "Privacy level"
 msgstr "Poziom prywatności"
@@ -15651,8 +15595,8 @@ msgstr "Profil: Odbiornik lokalny"
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "Program '%s' musi być zainstalowany, aby wykonać tę czynność. Czy chcesz zainstalować pakiet '%s', aby zainstalować program?"
 
-msgid "Program type"
-msgstr "Typ programu"
+msgid "Programme type (PTY)"
+msgstr "Typ programu (PTY)"
 
 msgid "Programmlisten History"
 msgstr "Historia kanałów"
@@ -15933,14 +15877,20 @@ msgstr "Symbol REC w użyciu"
 msgid "REC symbol"
 msgstr "Symbol REC"
 
+msgid "RECORD"
+msgstr ""
+
+msgid "RECORD (Long press)"
+msgstr ""
+
 msgid "RED"
 msgstr "Przycisk Czerwony"
 
+msgid "RED (Long press)"
+msgstr "CZERWONY (długie naciśnięcie)"
+
 msgid "RED button / HbbTV"
 msgstr "Przycisk Czerwony / HbbTV"
-
-msgid "RED (Long press)"
-msgstr "Czerwony (długo)"
 
 msgid "RF Output Settings"
 msgstr "Wyjście RF"
@@ -16137,12 +16087,6 @@ msgstr "Źródła odbioru do przeskanowania"
 
 msgid "Record"
 msgstr "Nagraj"
-
-msgid "Record - same as record button"
-msgstr "Nagrywaj – to samo co przycisk nagrywania"
-
-msgid "Record Actions"
-msgstr "Akcje nagrywania"
 
 msgid "Record icon"
 msgstr "Ikona nagrywania"
@@ -17024,9 +16968,6 @@ msgstr "Prawo, zawinięte"
 msgid "Rock"
 msgstr "Rock"
 
-msgid "Rock Music"
-msgstr "Muzyka rockowa"
-
 msgid "Rock/Pop"
 msgstr "Rock/Pop"
 
@@ -17611,9 +17552,6 @@ msgstr "Szukaj na wschód"
 msgid "Search for network shares"
 msgstr "Szukaj udziałów sieciowych"
 
-msgid "Search for similar events"
-msgstr "Szukaj podobnych wydarzeń"
-
 msgid "Search in the current view"
 msgstr "Szukaj w bieżącym widoku"
 
@@ -17802,9 +17740,6 @@ msgstr "Wybierz 'Tak', aby włączyć interfejs internetowy interfejsu użytkown
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Wybierz 'Tak', aby umożliwić użycie przycisków LEWO/PRAWO do poruszania się W górę/W dół, gdy przyciski LEWO/PRAWO są w innym przypadku niezdefiniowane. Zapewnia to (starą) nawigację dla użytkowników, którzy ją preferują."
-
-msgid "When enabled, services without EPG data will be hidden."
-msgstr "Wybierz 'Tak', aby ukryć kanały bez danych EPG."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
 msgstr "Wybierz 'Tak', aby ukryć nazwę serwera i adres IP serwera."
@@ -18282,6 +18217,9 @@ msgstr "Wybierz, czy dostępne jest blokowanie plików. Wybierz 'Nie', aby doda�
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Ta opcja pozwoli ci wybrać jeśli domyślna wartość ustawień elementu jest widoczna i jeśli jest wyświetlana w relacji do tego opisu."
 
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
+msgstr "Wybierz, czy układ ma korzystać z wyświetlania tekstowego, czy z tła graficznego."
+
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr "Wybierz, czy historia ścieżki menu ekranu jest wyświetlana, a jeśli tak, to w jaki sposób ma być wyświetlana."
 
@@ -18434,6 +18372,9 @@ msgstr "Wybierz warunki działania timera przełączania. Timer przełączania z
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "Wybierz akcję dla '%s'"
+
+msgid "Select the action that this button will perform."
+msgstr "Ustaw wymagane działanie danego przycisku."
 
 msgid "Select the action to perform when the timer ends."
 msgstr "Wybierz działanie, które ma być wykonane po zakończeniu timera."
@@ -18708,6 +18649,9 @@ msgstr "Wybierz następną pozycję na liście"
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr "Wybierz liczbę audycji przechowywanych w buforze timeshift. Audycje przekraczające ten limit będą usuwane podczas czyszczenia. Bufor może składać się z kilku plików, które są liczone jako jeden. Bufory nadal używane są chronione przed usunięciem, dlatego limit może zostać tymczasowo przekroczony."
 
+msgid "Select the number of services to be shown in the list."
+msgstr "Wybierz liczbę kanałów wyświetlanych na liście."
+
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr "Wybierz liczbę ponownych prób wykonania zadania, jeśli podczas jego wykonywania wystąpi błąd."
 
@@ -18963,6 +18907,9 @@ msgstr "Wybierz, czy pole 'Serwer' poniżej ma być wstępnie wypełnione wykryt
 msgid "Select which IP protocols can be used with this adapter."
 msgstr "Wybierz protokoły IP, które mają być używane przez ten adapter sieciowy."
 
+msgid "Select which service to use when opening the EPG."
+msgstr "Który kanał wybrać po otwarciu EPG."
+
 msgid "Select your ATSC provider."
 msgstr "Wybierz dostawcę ATSC."
 
@@ -19209,6 +19156,9 @@ msgstr "Proporcje pikon"
 
 msgid "Service picons downsize"
 msgstr "Zmniejszanie pikon"
+
+msgid "Service preview mode"
+msgstr "Tryb podglądu kanału"
 
 msgid "Service reference"
 msgstr "Referencje"
@@ -19488,9 +19438,6 @@ msgstr "Ustaw na 'Włączone', aby odszyfrować zakodowane nagrania w kolejce w 
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Ustaw na 'Tak', aby umożliwić wysyłanie tych samych poleceń telewizora dla trybu wyłączenia, co dla zwykłego trybu czuwania."
-
-msgid "Select the action that this button will perform."
-msgstr "Ustaw wymagane działanie danego przycisku."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Ustaw na Tak, aby znaleźć przyczynę zawieszania się (kręcącego się kółka)."
@@ -19880,9 +19827,6 @@ msgstr "Pokaż MiniTV na przednim wyświetlaczu"
 
 msgid "Show Movie Selection in Main Menu"
 msgstr "Pokaż listę nagrań w menu głównym"
-
-msgid "Show Movies List"
-msgstr "Pokaż listę nagrań"
 
 msgid "Show Multi EPG"
 msgstr "Pokaż EPG wielu kanałów"
@@ -20621,9 +20565,6 @@ msgstr "Przejdź wstecz %s%%"
 msgid "Skip backward (enter time)"
 msgstr "Przeskocz do tyłu (wprowadź czas)"
 
-msgid "Hide empty services"
-msgstr "Pomiń puste kanały"
-
 #, python-format
 msgid "Skip for '%s' is disabled"
 msgstr "Przewijanie dla '%s' jest wyłączone"
@@ -21018,9 +20959,6 @@ msgstr "Sortuj"
 msgid "Sort Bookmarks"
 msgstr "Sortowanie zakładek"
 
-msgid "Sort EPG List"
-msgstr "Sortuj listę EPG"
-
 msgid "Sort Extension Menu"
 msgstr "Sortuj Menu rozszerzeń"
 
@@ -21380,6 +21318,9 @@ msgstr "Przesunięcie na wschód"
 msgid "Stepped west"
 msgstr "Przesunięcie na zachód"
 
+msgid "Stereo"
+msgstr "Stereo"
+
 msgid "Stop"
 msgstr "Zatrzymaj"
 
@@ -21679,6 +21620,15 @@ msgstr "Wsparcie"
 
 msgid "Suriname"
 msgstr "Surinam"
+
+msgid "Surround"
+msgstr "Surround"
+
+msgid "Surround 5.1"
+msgstr "Surround 5.1"
+
+msgid "Surround 7.1"
+msgstr "Surround 7.1"
 
 msgid "Svalbard and Jan Mayen"
 msgstr "Svalbard i Jan Mayen"
@@ -22559,6 +22509,9 @@ msgstr "Nośnik danych timeshift jest niedostępny. Sprawdź nośnik i ścieżk�
 msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr "Nośnik danych timeshift został odłączony. Timeshift został zatrzymany."
 
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr "Plik timera '%s' jest uszkodzony i nie mógł zostać załadowany."
@@ -22802,9 +22755,6 @@ msgstr "Ta opcja umożliwia ustawienie wartości przesunięcia dla różnych roz
 msgid "This option allows you to set the Auto Volume Level output."
 msgstr "Opcja ta umożliwia ustawienie automatycznego poziomu głośności."
 
-msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
-msgstr "Ta opcja pozwala ustawić widok układu (tekst lub grafika)."
-
 msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "Ta opcja umożliwia przełączenie dźwięku na głośniki Bluetooth."
 
@@ -22989,9 +22939,6 @@ msgstr "Nie udało się uruchomić timeshift. Sprawdź nośnik danych i ilość 
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr "Timeshift może nie działać poprawnie bez akceptowalnego katalogu."
-
-msgid "Time shift not possible!"
-msgstr "Timeshift nie jest możliwy!"
 
 msgid "Time shift save action on zap"
 msgstr "Działanie przy zapisie timeshift po przełączeniu"
@@ -25149,6 +25096,9 @@ msgstr "Po włączeniu naciśnięcie '0' przełączy na wybrany kanał awaryjny 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Po włączeniu sformatuj napisy w celu dopasowania do szerokości ekranu."
 
+msgid "When enabled, services without EPG data will be hidden."
+msgstr "Wybierz 'Tak', aby ukryć kanały bez danych EPG."
+
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Po włączeniu wyświetla numery kanałów na ekranie wyboru kanałów."
 
@@ -25286,9 +25236,6 @@ msgstr "Gdy nastawiony na kanał będzie normalnie skanować zmiany na transpond
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Gdzie chcesz zapisać tymczasowe nagrania z timeshitu?"
-
-msgid "Select which service to use when opening the EPG."
-msgstr "Który kanał wybrać po otwarciu EPG."
 
 msgid "Which time shift buffer event do you want to save?"
 msgstr "Które wydarzenie timeshiftu chcesz zapisać na stałe?"
@@ -25455,7 +25402,7 @@ msgid "YELLOW"
 msgstr "Przycisk Żółty"
 
 msgid "YELLOW (Long press)"
-msgstr "Żółty (długo)"
+msgstr "ŻÓŁTY (długie naciśnięcie)"
 
 msgid "Year"
 msgstr "Rok"
@@ -26491,6 +26438,126 @@ msgstr "tak (zachować feed'y)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Add a RecordTimer for current event"
+#~ msgstr "Dodaj timer nagrywania dla bieżącego wydarzenia"
+
+#~ msgid "Add a ZapTimer for current event"
+#~ msgstr "Dodaj zap timer dla bieżącego wydarzenia"
+
+#~ msgid "Add an AutoTimer for the current event"
+#~ msgstr "Dodaj auto timer dla bieżącego wydarzenia"
+
+#~ msgid "Add/Remove Timer"
+#~ msgstr "Dodaj/Usuń timer"
+
+#~ msgid "Add/Remove a timer for the current event"
+#~ msgstr "Dodaj/Usuń timer dla bieżącego wydarzenia"
+
+#~ msgid "AutoTimer"
+#~ msgstr "Auto timer"
+
+#~ msgid "Browse mode"
+#~ msgstr "Tryb przeglądania"
+
+#~ msgid "CHANNEL +/-"
+#~ msgstr "Kanał +/-"
+
+#~ msgid "Change to bouquet"
+#~ msgstr "Zamień na listę kanałów"
+
+#~ msgid "Close bouquet list"
+#~ msgstr "Zamknij listę kanałów"
+
+#~ msgid "Close bouquet list."
+#~ msgstr "Zamknij listę kanałów."
+
+#~ msgid "Color Button Assignments"
+#~ msgstr "Przypisanie Kolorowych Przycisków"
+
+#~ msgid "Country Music"
+#~ msgstr "Muzyka country"
+
+#~ msgid "EPG Bouquet Actions"
+#~ msgstr "Akcje Listy kanałów EPG"
+
+#~ msgid "EPG Display Actions"
+#~ msgstr "Akcje wyświetlania EPG"
+
+#~ msgid "EPG Other Actions"
+#~ msgstr "Inne akcje EPG"
+
+#~ msgid "Easy Listening Music"
+#~ msgstr "Muzyka lekka"
+
+#~ msgid "Getting event information failed!"
+#~ msgstr "Nie udało się pobrać informacji o wydarzeniu!"
+
+#~ msgid "IMDb search for current event"
+#~ msgstr "Szukaj bieżącego wydarzenia w IMDb"
+
+#~ msgid "Info button (short)"
+#~ msgstr "Przycisk Info (krótko)"
+
+#~ msgid "Jazz Music"
+#~ msgstr "Muzyka jazzowa"
+
+#~ msgid "Jump back 24 hours"
+#~ msgstr "Cofnij się o 24 godziny"
+
+#~ msgid "Jump forward 24 hours"
+#~ msgstr "Skocz do przodu 24 godzin"
+
+#~ msgid "Jump to next page or all up (setup in menu)"
+#~ msgstr "Skocz do następnej strony lub przeskocz wszystko (ustawienia w menu)"
+
+#~ msgid "Jump to previous page or all down (setup in menu)"
+#~ msgstr "Skocz do poprzedniej strony lub przeskocz wszystko (ustawienia w menu)"
+
+#~ msgid "Move to home of list"
+#~ msgstr "Przenieś do domowej listy"
+
+#~ msgid "Navigation And Button Assignments"
+#~ msgstr "Nawigacja i Przypisanie Przycisków"
+
+#~ msgid "OK button (short)"
+#~ msgstr "Przycisk OK (krótko)"
+
+#~ msgid "Oldies Music"
+#~ msgstr "Muzyka dawnych lat"
+
+#~ msgid "Previous/Next bouquet"
+#~ msgstr "Poprzednia/Następna lista kanałów"
+
+#~ msgid "Primetime hour"
+#~ msgstr "Godzina najlepszego czasu antenowego"
+
+#~ msgid "Primetime minute"
+#~ msgstr "Minuta najlepszego czasu antenowego"
+
+#~ msgid "Program type"
+#~ msgstr "Typ programu"
+
+#~ msgid "Record - same as record button"
+#~ msgstr "Nagrywaj – to samo co przycisk nagrywania"
+
+#~ msgid "Record Actions"
+#~ msgstr "Akcje nagrywania"
+
+#~ msgid "Rock Music"
+#~ msgstr "Muzyka rockowa"
+
+#~ msgid "Search for similar events"
+#~ msgstr "Szukaj podobnych wydarzeń"
+
+#~ msgid "Show Movies List"
+#~ msgstr "Pokaż listę nagrań"
+
+#~ msgid "Sort EPG List"
+#~ msgstr "Sortuj listę EPG"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Timeshift nie jest możliwy!"
 
 #~ msgid "Please select device to use as swap file location"
 #~ msgstr "Proszę wybrać urządzenie, które będzie używane jako lokalizacja pliku swap"

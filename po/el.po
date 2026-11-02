@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 13:51+0100\n"
+"POT-Creation-Date: 2026-11-01 20:39+0100\n"
 "PO-Revision-Date: 2026-11-01 19:26+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -1688,6 +1688,9 @@ msgstr "Η επισήμανση στην εικόνα του τηλεχειρι�
 msgid "A new storage device has been connected:"
 msgstr "Έχει συνδεθεί μία νέα συσκευή αποθήκευσης:"
 
+msgid "A prepared or running timer can not be moved to the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -2043,14 +2046,8 @@ msgstr "Προσθήκη υπηρεσίας ΡΑΔΙΟΦΩΝΟΥ στη λίστ
 msgid "Add a RecordTimer"
 msgstr "Προσθήκη χρονοδιακόπτη εγγραφής"
 
-msgid "Add a RecordTimer for current event"
-msgstr "Προσθήκη χρονοδιακόπτη εγγραφής για το τρέχον πρόγραμμα"
-
 msgid "Add a TV service to the Volume Offset list"
 msgstr "Προσθήκη υπηρεσίας TV στη λίστα ολίσθησης έντασης ήχου"
-
-msgid "Add a ZapTimer for current event"
-msgstr "Προσθήκη χρονοδιακόπτη μετάβασης για το τρέχον πρόγραμμα"
 
 msgid "Add a ZapTimer for next event"
 msgstr "Προσθήκη χρονοδιακόπτη μετάβασης για το επόμενο πρόγραμμα"
@@ -2084,9 +2081,6 @@ msgstr "Προσθήκη χρονοδιακόπτη για το τρέχον π�
 
 msgid "Add an existing swap file"
 msgstr "Προσθήκη ενός υπάρχοντος αρχείου swap"
-
-msgid "Add an AutoTimer for the current event"
-msgstr "Προσθήκη αυτόματου χρονοδιακόπτη για το τρέχον πρόγραμμα"
 
 msgid "Add current directory to bookmarks"
 msgstr "Προσθήκη τρέχοντος φακέλου στους σελιδοδείκτες"
@@ -2162,12 +2156,6 @@ msgstr "Προσθήκη επιλεγμένης υπηρεσίας σε μπου
 
 msgid "Add title"
 msgstr "Προσθήκη τίτλου"
-
-msgid "Add/Remove Timer"
-msgstr "Προσθήκη/αφαίρεση χρονοδιακόπτη"
-
-msgid "Add/Remove a timer for the current event"
-msgstr "Προσθήκη/αφαίρεση χρονοδιακόπτη για το τρέχον πρόγραμμα"
 
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr "Προσθήκη/αφαίρεση του επιλεγμένου πρόσθετου στη/από τη λίστα εγκατάστασης"
@@ -2969,9 +2957,6 @@ msgstr "Διαχείριση αυτόματων προσαρτήσεων"
 msgid "AutoRefresh"
 msgstr "Αυτόματη ανανέωση"
 
-msgid "AutoTimer"
-msgstr "Αυτόματος χρονοδιακόπτης"
-
 msgid "AutoUpdate"
 msgstr "Αυτόματη ενημέρωση"
 
@@ -3514,9 +3499,6 @@ msgstr "Broadcom προεπιλογή"
 msgid "Browse"
 msgstr "Περιήγηση"
 
-msgid "Browse mode"
-msgstr "Λειτουργία πλοήγησης"
-
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Περιήγηση, εγκατάσταση ή αφαίρεση προσθέτων ένα προς ένα."
 
@@ -3703,8 +3685,17 @@ msgstr "Κ. %s"
 msgid "CHANGE BOUQUET"
 msgstr "ΑΛΛΑΓΗ ΜΠΟΥΚΕΤΟΥ"
 
-msgid "CHANNEL +/-"
-msgstr "ΚΑΝΑΛΙ +/-"
+msgid "CHANNEL+"
+msgstr ""
+
+msgid "CHANNEL+ button (setup in menu)"
+msgstr ""
+
+msgid "CHANNEL-"
+msgstr ""
+
+msgid "CHANNEL- button (setup in menu)"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "Ρυθμίσεις CI (κοινής διεπαφής)"
@@ -4162,9 +4153,6 @@ msgstr "Αλλαγή σε λειτουργία υπηρεσιών ραδιοφώ
 msgid "Change to TV services mode"
 msgstr "Αλλαγή σε λειτουργία υπηρεσιών TV"
 
-msgid "Change to bouquet"
-msgstr "Αλλαγή σε μπουκέτο"
-
 msgid "Changed"
 msgstr "Έγινε αλλαγή"
 
@@ -4263,9 +4251,6 @@ msgstr "Όνομα καναλιού"
 
 msgid "Channel number"
 msgstr "Αριθμός καναλιού"
-
-msgid "Service preview mode"
-msgstr "Λειτουργία προεπισκόπησης καναλιού"
 
 msgid "Channel selection configuration"
 msgstr "Ρύθμιση επιλογής καναλιών"
@@ -4605,12 +4590,6 @@ msgstr "Κλείσιμο λίστας εργασιών"
 msgid "Close Task View"
 msgstr "Κλείσιμο της προβολής εργασιών"
 
-msgid "Close bouquet list"
-msgstr "Κλείσιμο της λίστας μπουκέτων"
-
-msgid "Close bouquet list."
-msgstr "Κλείσιμο λίστας μπουκέτων."
-
 msgid "Close dialog"
 msgstr "Κλείσιμο διαλόγου"
 
@@ -4700,9 +4679,6 @@ msgstr "Κολομβία"
 
 msgid "Color"
 msgstr "Χρώμα"
-
-msgid "Color Button Assignments"
-msgstr "Αναθέσεις χρωματικών πλήκτρων"
 
 msgid "Color format"
 msgstr "Φορμά χρώματος"
@@ -5054,9 +5030,6 @@ msgstr "Ρύθμιση του αριθμού ημερών μετά τις οπο
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "Ρύθμιση του αριθμού ημερών μετά τις οποίες οι παλιοί χρονοδιακόπτες θα διατηρούνται πριν διαγραφούν από τη λίστα."
-
-msgid "Select the number of services to be shown in the list."
-msgstr "Ρυθμίστε τον αριθμό των στηλών που εμφανίζονται."
 
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr "Ρύθμιση της εκτός σύνδεσης αποκωδικοποίησης σε χιλιοστά του δευτερολέπτου. Η ρυθμισμένη καθυστέρηση παρατηρείται σε κάθε αλλαγή κλειδιού."
@@ -5519,9 +5492,6 @@ msgstr ""
 
 msgid "Country"
 msgstr "Χώρα"
-
-msgid "Country Music"
-msgstr "Κάντρι μουσική"
 
 msgid "Country for EPG event genre information"
 msgstr "Χώρα για πληροφορίες είδους προγραμμάτων EPG"
@@ -7403,6 +7373,9 @@ msgstr "Έκδοση οδηγών"
 msgid "Drop unconfigured satellites"
 msgstr "Αγνόηση μη ρυθμισμένων δορυφόρων"
 
+msgid "Dual channel"
+msgstr ""
+
 msgid "Duplex"
 msgstr "Διπλότυπο"
 
@@ -7446,11 +7419,11 @@ msgstr "Πληροφορίες ECM για το '%s'"
 msgid "EPG"
 msgstr "EPG"
 
+msgid "EPG (Long press)"
+msgstr ""
+
 msgid "EPG Actions"
 msgstr "Ενέργειες EPG"
-
-msgid "EPG Bouquet Actions"
-msgstr "Ενέργειες μπουκέτου EPG"
 
 msgid "EPG Cache Check"
 msgstr "Έλεγχος προσωρινής αποθήκευσης EPG"
@@ -7461,9 +7434,6 @@ msgstr "Κανάλι EPG/Επιλογή υπηρεσίας"
 msgid "EPG Data In Streams"
 msgstr "Δεδομένα EPG στις ροές"
 
-msgid "EPG Display Actions"
-msgstr "Ενέργειες εμφάνισης EPG"
-
 msgid "EPG Jump"
 msgstr "Υπερπήδηση EPG"
 
@@ -7472,9 +7442,6 @@ msgstr "Γλώσσα EPG"
 
 msgid "EPG Navigation Actions"
 msgstr "Ενέργειες πλοήγησης EPG"
-
-msgid "EPG Other Actions"
-msgstr "Άλλες ενέργειες EPG"
 
 msgid "EPG Range And History"
 msgstr "Εύρος και ιστορικό EPG"
@@ -7496,6 +7463,9 @@ msgstr "Πηγές EPG"
 
 msgid "EPG Storage And Refresh"
 msgstr "Αποθήκευση και ανανέωση EPG"
+
+msgid "EPG button long (setup in menu)"
+msgstr ""
 
 msgid "EPG button mode"
 msgstr "Λειτουργία πλήκτρου EPG"
@@ -7555,8 +7525,8 @@ msgstr "Το ανατολικό όριο ορίστηκε"
 msgid "Eastern satellites"
 msgstr "Ανατολικοί δορυφόροι"
 
-msgid "Easy Listening Music"
-msgstr "Εύκολη ακρόαση"
+msgid "Easy Listening"
+msgstr ""
 
 msgid "Easy listening"
 msgstr "Εύκολη ακρόαση"
@@ -9718,9 +9688,6 @@ msgstr "Γερμανικά"
 msgid "Germany"
 msgstr "Γερμανία"
 
-msgid "Getting event information failed!"
-msgstr "Αποτυχία λήψης πληροφοριών προγράμματος!"
-
 msgid "Getting plugin information. Please wait..."
 msgstr "Λήψη πληροφοριών προσθέτου. Παρακαλώ περιμένετε..."
 
@@ -10147,6 +10114,9 @@ msgstr "Απόκρυψη της γραμμής VBI για αυτή την υπη
 msgid "Hide any zap error messages."
 msgstr "Εμφάνιση όλων των μηνυμάτων σφάλματος ζάπινγκ."
 
+msgid "Hide empty services"
+msgstr "Παράλειψη άδειων υπηρεσιών"
+
 msgid "Hide error messages from the Common Interface module."
 msgstr "Απόκρυψη μηνυμάτων σφάλματος από τη μονάδα κοινής διεπαφής."
 
@@ -10351,11 +10321,11 @@ msgstr "Λεπτομέρειες IMDb"
 msgid "IMDb Search"
 msgstr "Αναζήτηση IMDb"
 
-msgid "IMDb search for current event"
-msgstr "Αναζήτηση IMDB για την τρέχουσα εκπομπή"
-
 msgid "INFO"
 msgstr "ΠΛΗΡΟΦΟΡΙΕΣ"
+
+msgid "INFO (Long press)"
+msgstr "Πλήκτρο Info (παρατεταμένο)"
 
 msgid "INFO button mode"
 msgstr "Λειτουργία πλήκτρου INFO"
@@ -10790,12 +10760,6 @@ msgstr "Ινδονησιακά"
 msgid "Info"
 msgstr "Πληροφορίες"
 
-msgid "INFO (Long press)"
-msgstr "Πλήκτρο Info (παρατεταμένο)"
-
-msgid "Info button (short)"
-msgstr "Πλήκτρο Info (σύντομο)"
-
 msgid "Info file checksum"
 msgstr "Ακεραιότητα πληροφοριών αρχείου"
 
@@ -11117,9 +11081,6 @@ msgstr "Ιαβανικά"
 msgid "Jazz"
 msgstr "Τζαζ"
 
-msgid "Jazz Music"
-msgstr "Τζαζ μουσική"
-
 msgid "Jersey"
 msgstr "Τζέρσεϊ"
 
@@ -11135,14 +11096,14 @@ msgstr "Συμμετοχή η έξοδος από το ρυθμισμένο δί
 msgid "Joined"
 msgstr "Έγινε σύνδεση"
 
+msgid "Joint stereo"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Ιορδανία"
 
 msgid "Jump"
 msgstr "Υπερπήδηση"
-
-msgid "Jump back 24 hours"
-msgstr "Μετάβαση 24 ώρες πίσω"
 
 msgid "Jump back one day"
 msgstr "Υπερπήδηση πίσω μία ημέρα"
@@ -11152,9 +11113,6 @@ msgstr "Υπερπήδηση πίσω μία ώρα"
 
 msgid "Jump first press in channel selection"
 msgstr "Τρόπος επιλογής καναλιών στη λίστα με την πρώτη πίεση"
-
-msgid "Jump forward 24 hours"
-msgstr "Μετάβαση 24 ώρες μπροστά"
 
 msgid "Jump forward one day"
 msgstr "Υπερπήδηση εμπρός μία ημέρα"
@@ -11177,14 +11135,8 @@ msgstr "Μετάβαση στο τέλος της λίστας"
 msgid "Jump to next marked position"
 msgstr "Μετάβαση στην επόμενη μαρκαρισμένη θέση"
 
-msgid "Jump to next page or all up (setup in menu)"
-msgstr "Μετάβαση στην επόμενη σελίδα ή όλο επάνω (ρυθμίσεις στο μενού)"
-
 msgid "Jump to previous marked position"
 msgstr "Μετάβαση στην προηγούμενη μαρκαρισμένη θέση"
-
-msgid "Jump to previous page or all down (setup in menu)"
-msgstr "Μετάβαση στην προηγούμενη σελίδα ή όλο κάτω (ρυθμίσεις στο μενού)"
 
 msgid "Jump to prime time"
 msgstr "Μετάβαση σε ζώνη αιχμής"
@@ -12436,6 +12388,9 @@ msgstr "Μογγολία"
 msgid "Mongolian"
 msgstr "Μογγολικά"
 
+msgid "Mono"
+msgstr ""
+
 msgid "Montenegro"
 msgstr "Μαυροβούνιο"
 
@@ -12674,9 +12629,6 @@ msgstr "Μετακίνηση στην πρώτη γραμμή"
 
 msgid "Move to first line / screen in the panel"
 msgstr "Μετακίνηση στην πρώτη γραμμή / οθόνη στον πίνακα"
-
-msgid "Move to home of list"
-msgstr "Μετακίνηση στην αρχή της λίστας"
 
 msgid "Move to last item / screen"
 msgstr "Μετακίνηση στο τελευταίο αντικείμενο/οθόνη"
@@ -13008,6 +12960,9 @@ msgstr "Ναμίμπια"
 msgid "Narration"
 msgstr "Αφήγηση"
 
+msgid "National Music"
+msgstr ""
+
 msgid "National music"
 msgstr "Εθνική μουσική"
 
@@ -13037,9 +12992,6 @@ msgstr "Πλοήγηση στον επιλεγμένο φάκελο"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Πλοήγηση επάνω/κάτω με τα πλήκτρα ΕΠΑΝΩ/ΚΑΤΩ και σελίδα επάνω/κάτω με τα ΑΡΙΣΤΕΡΑ/ΔΕΞΙΑ. ΟΚ για να εκτελεστεί η ενέργεια που περιγράφεται στην τρέχουσα επιλεγμένη βοήθεια."
-
-msgid "Navigation And Button Assignments"
-msgstr "Πλοήγηση και αναθέσεις πλήκτρων"
 
 msgid "Navigation And Time Range"
 msgstr "Πλοήγηση και εύρος χρόνου"
@@ -13838,9 +13790,6 @@ msgstr "OK"
 msgid "OK (Long press)"
 msgstr "Πλήκτρο ΟΚ (παρατεταμένο)"
 
-msgid "OK button (short)"
-msgstr "Πλήκτρο ΟΚ (σύντομο)"
-
 msgid "OK button mode"
 msgstr "Λειτουργία πλήκτρου ΟΚ"
 
@@ -13953,9 +13902,6 @@ msgstr "Οτζίμπουα"
 
 msgid "Oldies"
 msgstr "Παλαιές επιτυχίες"
-
-msgid "Oldies Music"
-msgstr "Μουσική περασμένων δεκαετιών"
 
 msgid "Olympic blue"
 msgstr "ολυμπιακό μπλε"
@@ -14428,6 +14374,9 @@ msgstr "PIN"
 
 msgid "PIN code needed"
 msgstr "Απαιτείται κωδικός PIN"
+
+msgid "PLAY"
+msgstr ""
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -15512,9 +15461,6 @@ msgstr "Προηγούμενη σελίδα"
 msgid "Previous channel page"
 msgstr "Προηγούμενη σελίδα καναλιών"
 
-msgid "Previous/Next bouquet"
-msgstr "Προηγούμενο/επόμενο μπουκέτο"
-
 msgid "Previous/Next page"
 msgstr "Προηγούμενη/επόμενη σελίδα"
 
@@ -15533,14 +15479,12 @@ msgstr "Ζώνη αιχμής"
 msgid "Prime time"
 msgstr "Ζώνη αιχμής"
 
-msgid "Primetime hour"
-msgstr "Ώρα ζώνης αιχμής"
-
-msgid "Primetime minute"
-msgstr "Λεπτό ζώνης αιχμής"
-
 msgid "Priority"
 msgstr "Προτεραιότητα"
+
+#, python-format
+msgid "Priority: %d"
+msgstr ""
 
 msgid "Privacy level"
 msgstr "Επίπεδο ιδιωτικότητας"
@@ -15594,8 +15538,8 @@ msgstr "Προφίλ: τοπικός δέκτης"
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "Το πρόγραμμα '%s' πρέπει να είναι εγκατεστημένο για να εκτελεστεί αυτή η ενέργεια. Να γίνει εγκατάσταση του πακέτου '%s' για την εγκατάσταση του προγράμματος;"
 
-msgid "Program type"
-msgstr "Τύπος προγράμματος"
+msgid "Programme type (PTY)"
+msgstr ""
 
 msgid "Programmlisten History"
 msgstr "Ιστορικό λίστας προγραμμάτων"
@@ -15876,14 +15820,20 @@ msgstr "Σύμβολο REC σε χρήση"
 msgid "REC symbol"
 msgstr "Σύμβολο REC"
 
+msgid "RECORD"
+msgstr ""
+
+msgid "RECORD (Long press)"
+msgstr ""
+
 msgid "RED"
 msgstr "Κόκκινο πλήκτρο"
 
-msgid "RED button / HbbTV"
-msgstr "Κόκκινο πλήκτρο/HbbTV"
-
 msgid "RED (Long press)"
 msgstr "Κόκκινο παρατεταμένο"
+
+msgid "RED button / HbbTV"
+msgstr "Κόκκινο πλήκτρο/HbbTV"
 
 msgid "RF Output Settings"
 msgstr "Ρυθμίσεις εξόδου RF"
@@ -16080,12 +16030,6 @@ msgstr "Πηγές λήψης προς ανίχνευση"
 
 msgid "Record"
 msgstr "Εγγραφή"
-
-msgid "Record - same as record button"
-msgstr "Εγγραφή - όπως στο πλήκτρο εγγραφής"
-
-msgid "Record Actions"
-msgstr "Ενέργειες εγγραφής"
 
 msgid "Record icon"
 msgstr "Εικονίδιο εγγραφής"
@@ -16967,9 +16911,6 @@ msgstr "Δεξιά, σε αναδίπλωση"
 msgid "Rock"
 msgstr "Ροκ"
 
-msgid "Rock Music"
-msgstr "Ροκ μουσική"
-
 msgid "Rock/Pop"
 msgstr "ροκ/ποπ"
 
@@ -17551,9 +17492,6 @@ msgstr "Αναζήτηση ανατολικά"
 msgid "Search for network shares"
 msgstr "Ανίχνευση κοινόχρηστων στοιχείων δικτύου"
 
-msgid "Search for similar events"
-msgstr "Ανίχνευση παρόμοιων προγραμμάτων"
-
 msgid "Search in the current view"
 msgstr "Αναζήτηση στην τρέχουσα προβολή"
 
@@ -17742,9 +17680,6 @@ msgstr "Επιλέξτε 'ναι' για ενεργοποίηση της παρ�
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Επιλέξτε 'ναι' για να ενεργοποιηθεί η χρήση των πλήκτρων ΑΡΙΣΤΕΡΑ/ΔΕΞΙΑ για μετακίνηση σελίδας επάνω/κάτω όταν σε αυτά έχει οριστεί διαφορετική ενέργεια. Αυτό παρέχει πλοήγηση παλαιού τύπου για όσους την προτιμούν."
-
-msgid "When enabled, services without EPG data will be hidden."
-msgstr "Επιλέξτε 'ναι' για απόκρυψη των καναλιών χωρίς δεδομένα EPG."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
 msgstr "Επιλέξτε 'ναι' για να γίνει απόκρυψη του ονόματος και της διεύθυνσης IP του διακομιστή."
@@ -18222,6 +18157,9 @@ msgstr "Επιλέξτε αν το κλείδωμα αρχείων είναι δ
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Επιλέξτε αν θα εμφανίζεται η προεπιλεγμένη τιμή για ένα στοιχείο ρύθμισης και αν ναι, πού θα εμφανίζεται σε σχέση με την περιγραφή."
 
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
+msgstr "Αυτή η επιλογή ορίζει τον τρόπο εμφάνισης (κείμενο ή γραφικά)."
+
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr "Επιλέξτε αν θα εμφανίζεται το ιστορικό διαδρομής του μενού οθόνης και αν ναι, πώς θα εμφανίζεται."
 
@@ -18374,6 +18312,9 @@ msgstr "Επιλογή των προαπαιτούμενων συνθηκών χ
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "Επιλογή ενέργειας για το '%s'"
+
+msgid "Select the action that this button will perform."
+msgstr "Ορισμός ενέργειας του πλήκτρου."
 
 msgid "Select the action to perform when the timer ends."
 msgstr "Επιλογή ενέργειας όταν ένας χρονοδιακόπτης τελειώνει."
@@ -18648,6 +18589,9 @@ msgstr "Επιλογή του επόμενου στοιχείου στη λίσ�
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr "Επιλέξτε τον αριθμό των συμβάντων που θα διατηρηθούν στα αρχεία προσωρινής αποθήκευσης των χρονομετατοπίσεων. Τα συμβάντα που υπερβαίνουν αυτό το όριο θα αφαιρεθούν κατά τον καθαρισμό. Ένα προσωρινό αρχείο προφόρτωσης μπορεί να περιέχει διάφορα φυσικά κομμάτια αρχείου, τα οποία υπολογίζονται ως ένα. Τα προφορτωμένα αρχεία που βρίσκονται ακόμη σε χρήση εξακολουθούν να προστατεύονται, οπότε το όριο μπορεί να ξεπεραστεί προσωρινά."
 
+msgid "Select the number of services to be shown in the list."
+msgstr "Ρυθμίστε τον αριθμό των στηλών που εμφανίζονται."
+
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr "Επιλογή του αριθμού επαναπροσπαθειών εκτέλεσης μίας εργασίας αν προκύψει κάποιο σφάλμα κατά την εκτέλεσή της."
 
@@ -18903,6 +18847,9 @@ msgstr "Επιλέξτε εάν θα πρέπει να γίνεται προσυ
 msgid "Select which IP protocols can be used with this adapter."
 msgstr "Επιλέξτε ποια πρωτόκολλα IP μπορούν να χρησιμοποιηθούν με αυτόν τον προσαρμογέα."
 
+msgid "Select which service to use when opening the EPG."
+msgstr "Επιλογή της υπηρεσίας που θα χρησιμοποιείται κατά το άνοιγμα του EPG."
+
 msgid "Select your ATSC provider."
 msgstr "Επιλογή παρόχου ATSC."
 
@@ -19149,6 +19096,9 @@ msgstr "Λόγος πλευρών λογότυπων υπηρεσίας"
 
 msgid "Service picons downsize"
 msgstr "Σμίκρυνση λογότυπων υπηρεσίας"
+
+msgid "Service preview mode"
+msgstr "Λειτουργία προεπισκόπησης καναλιού"
 
 msgid "Service reference"
 msgstr "Αναφορά υπηρεσίας"
@@ -19428,9 +19378,6 @@ msgstr "Επιλέξτε 'Ενεργό' για να γίνει η αποκρυπ
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Αν επιλεγεί το 'ναι', οι ίδιες εντολές που στέλνονται στην TV για την κοινή αναμονή, θα αποστέλλονται και για τη βαθιά αναμονή."
-
-msgid "Select the action that this button will perform."
-msgstr "Ορισμός ενέργειας του πλήκτρου."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Θέστε την επιλογή σε ναι για αποσφαλμάτωση της αιτίας πρόκλησης ενός spinner."
@@ -19820,9 +19767,6 @@ msgstr "Εμφάνιση MiniTV στην οθόνη πρόσοψης"
 
 msgid "Show Movie Selection in Main Menu"
 msgstr "Εμφάνιση επιλογής ταινιών στο κύριο μενού"
-
-msgid "Show Movies List"
-msgstr "Εμφάνιση λίστας ταινιών"
 
 msgid "Show Multi EPG"
 msgstr "Εμφάνιση πολλαπλού EPG"
@@ -20560,9 +20504,6 @@ msgstr "Μεταπήδηση προς τα πίσω %s%%"
 msgid "Skip backward (enter time)"
 msgstr "υπερπήδηση προς τα εμπρός (εισαγωγή χρόνου)"
 
-msgid "Hide empty services"
-msgstr "Παράλειψη άδειων υπηρεσιών"
-
 #, python-format
 msgid "Skip for '%s' is disabled"
 msgstr "Η μεταπήδηση για το '%s' έχει απενεργοποιηθεί"
@@ -20953,9 +20894,6 @@ msgstr "Ταξινόμηση"
 msgid "Sort Bookmarks"
 msgstr "Ταξινόμηση σελιδοδεικτών"
 
-msgid "Sort EPG List"
-msgstr "Ταξινόμηση της λίστας EPG"
-
 msgid "Sort Extension Menu"
 msgstr "Σειρά ταξινόμησης στοιχείων επεκτάσεων"
 
@@ -21315,6 +21253,9 @@ msgstr "Βηματισμός ανατολικά"
 msgid "Stepped west"
 msgstr "Βηματισμός δυτικά"
 
+msgid "Stereo"
+msgstr ""
+
 msgid "Stop"
 msgstr "Σταμάτημα"
 
@@ -21614,6 +21555,15 @@ msgstr "Υποστήριξη"
 
 msgid "Suriname"
 msgstr "Σουρινάμ"
+
+msgid "Surround"
+msgstr ""
+
+msgid "Surround 5.1"
+msgstr ""
+
+msgid "Surround 7.1"
+msgstr ""
 
 msgid "Svalbard and Jan Mayen"
 msgstr "Σβάλμπαρντ και Γιαν Μαγιέν"
@@ -22494,6 +22444,9 @@ msgstr "Η συσκευή αποθήκευσης της χρονομετατόπ
 msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr "Η συσκευή της χρονομετατόπισης αφαιρέθηκε. Η χρονομετατόπιση διακόπηκε."
 
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr "Το αρχείο χρονομετατόπισης '%s' είναι κατεστραμμένο και είναι αδύνατη η φόρτωσή του."
@@ -22736,9 +22689,6 @@ msgstr "Αυτή η επιλογή επιτρέπει τη ρύθμιση τιμ
 msgid "This option allows you to set the Auto Volume Level output."
 msgstr "Αυτή η επιλογή ρυθμίζει το επίπεδο της αυτόματης έντασης ήχου."
 
-msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
-msgstr "Αυτή η επιλογή ορίζει τον τρόπο εμφάνισης (κείμενο ή γραφικά)."
-
 msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "Αυτή η επιλογή επιτρέπει την αλλαγή ήχου σε ηχεία bluetooth."
 
@@ -22923,9 +22873,6 @@ msgstr "Δεν ήταν δυνατή η έναρξη της χρονομετατ
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr "Η χρονομετατόπιση μπορεί να μην λειτουργήσει σωστά χωρίς έναν έγκυρο φάκελο."
-
-msgid "Time shift not possible!"
-msgstr "Αδυναμία χρονομετατόπισης!"
 
 msgid "Time shift save action on zap"
 msgstr "Ενέργεια αποθήκευσης χρονομετατόπισης κατά το ζάπινγκ"
@@ -25083,6 +25030,9 @@ msgstr "Όταν είναι ενεργό, πιέζοντας το '0' θα γί�
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Όταν είναι ενεργό, οι υπότιτλοι θα αναδιπλώνονται έτσι ώστε να ταιριάζουν στο πλάτος της οθόνης."
 
+msgid "When enabled, services without EPG data will be hidden."
+msgstr "Επιλέξτε 'ναι' για απόκρυψη των καναλιών χωρίς δεδομένα EPG."
+
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Όταν είναι ενεργό, οι αριθμοί των καναλιών θα εμφανίζονται στη λίστα επιλογής καναλιών."
 
@@ -25220,9 +25170,6 @@ msgstr "Όταν το σύστημα συντονίζεται σε μία υπη
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Πού θέλετε να γίνεται η προσωρινή αποθήκευση των χρονομετατοπισμένων εγγραφών;"
-
-msgid "Select which service to use when opening the EPG."
-msgstr "Επιλογή της υπηρεσίας που θα χρησιμοποιείται κατά το άνοιγμα του EPG."
 
 msgid "Which time shift buffer event do you want to save?"
 msgstr "Ποιο πρόγραμμα επιθυμείτε να αποθηκευτεί μόνιμα;"
@@ -26424,6 +26371,126 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Add a RecordTimer for current event"
+#~ msgstr "Προσθήκη χρονοδιακόπτη εγγραφής για το τρέχον πρόγραμμα"
+
+#~ msgid "Add a ZapTimer for current event"
+#~ msgstr "Προσθήκη χρονοδιακόπτη μετάβασης για το τρέχον πρόγραμμα"
+
+#~ msgid "Add an AutoTimer for the current event"
+#~ msgstr "Προσθήκη αυτόματου χρονοδιακόπτη για το τρέχον πρόγραμμα"
+
+#~ msgid "Add/Remove Timer"
+#~ msgstr "Προσθήκη/αφαίρεση χρονοδιακόπτη"
+
+#~ msgid "Add/Remove a timer for the current event"
+#~ msgstr "Προσθήκη/αφαίρεση χρονοδιακόπτη για το τρέχον πρόγραμμα"
+
+#~ msgid "AutoTimer"
+#~ msgstr "Αυτόματος χρονοδιακόπτης"
+
+#~ msgid "Browse mode"
+#~ msgstr "Λειτουργία πλοήγησης"
+
+#~ msgid "CHANNEL +/-"
+#~ msgstr "ΚΑΝΑΛΙ +/-"
+
+#~ msgid "Change to bouquet"
+#~ msgstr "Αλλαγή σε μπουκέτο"
+
+#~ msgid "Close bouquet list"
+#~ msgstr "Κλείσιμο της λίστας μπουκέτων"
+
+#~ msgid "Close bouquet list."
+#~ msgstr "Κλείσιμο λίστας μπουκέτων."
+
+#~ msgid "Color Button Assignments"
+#~ msgstr "Αναθέσεις χρωματικών πλήκτρων"
+
+#~ msgid "Country Music"
+#~ msgstr "Κάντρι μουσική"
+
+#~ msgid "EPG Bouquet Actions"
+#~ msgstr "Ενέργειες μπουκέτου EPG"
+
+#~ msgid "EPG Display Actions"
+#~ msgstr "Ενέργειες εμφάνισης EPG"
+
+#~ msgid "EPG Other Actions"
+#~ msgstr "Άλλες ενέργειες EPG"
+
+#~ msgid "Easy Listening Music"
+#~ msgstr "Εύκολη ακρόαση"
+
+#~ msgid "Getting event information failed!"
+#~ msgstr "Αποτυχία λήψης πληροφοριών προγράμματος!"
+
+#~ msgid "IMDb search for current event"
+#~ msgstr "Αναζήτηση IMDB για την τρέχουσα εκπομπή"
+
+#~ msgid "Info button (short)"
+#~ msgstr "Πλήκτρο Info (σύντομο)"
+
+#~ msgid "Jazz Music"
+#~ msgstr "Τζαζ μουσική"
+
+#~ msgid "Jump back 24 hours"
+#~ msgstr "Μετάβαση 24 ώρες πίσω"
+
+#~ msgid "Jump forward 24 hours"
+#~ msgstr "Μετάβαση 24 ώρες μπροστά"
+
+#~ msgid "Jump to next page or all up (setup in menu)"
+#~ msgstr "Μετάβαση στην επόμενη σελίδα ή όλο επάνω (ρυθμίσεις στο μενού)"
+
+#~ msgid "Jump to previous page or all down (setup in menu)"
+#~ msgstr "Μετάβαση στην προηγούμενη σελίδα ή όλο κάτω (ρυθμίσεις στο μενού)"
+
+#~ msgid "Move to home of list"
+#~ msgstr "Μετακίνηση στην αρχή της λίστας"
+
+#~ msgid "Navigation And Button Assignments"
+#~ msgstr "Πλοήγηση και αναθέσεις πλήκτρων"
+
+#~ msgid "OK button (short)"
+#~ msgstr "Πλήκτρο ΟΚ (σύντομο)"
+
+#~ msgid "Oldies Music"
+#~ msgstr "Μουσική περασμένων δεκαετιών"
+
+#~ msgid "Previous/Next bouquet"
+#~ msgstr "Προηγούμενο/επόμενο μπουκέτο"
+
+#~ msgid "Primetime hour"
+#~ msgstr "Ώρα ζώνης αιχμής"
+
+#~ msgid "Primetime minute"
+#~ msgstr "Λεπτό ζώνης αιχμής"
+
+#~ msgid "Program type"
+#~ msgstr "Τύπος προγράμματος"
+
+#~ msgid "Record - same as record button"
+#~ msgstr "Εγγραφή - όπως στο πλήκτρο εγγραφής"
+
+#~ msgid "Record Actions"
+#~ msgstr "Ενέργειες εγγραφής"
+
+#~ msgid "Rock Music"
+#~ msgstr "Ροκ μουσική"
+
+#~ msgid "Search for similar events"
+#~ msgstr "Ανίχνευση παρόμοιων προγραμμάτων"
+
+#~ msgid "Show Movies List"
+#~ msgstr "Εμφάνιση λίστας ταινιών"
+
+#~ msgid "Sort EPG List"
+#~ msgstr "Ταξινόμηση της λίστας EPG"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Αδυναμία χρονομετατόπισης!"
 
 #~ msgid "Please select device to use as swap file location"
 #~ msgstr "Επιλέξτε μία συσκευή για χρήση τοποθεσίας swap"

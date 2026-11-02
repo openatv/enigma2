@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 13:51+0100\n"
+"POT-Creation-Date: 2026-11-01 20:39+0100\n"
 "PO-Revision-Date: 2026-10-30 20:02+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
@@ -1723,6 +1723,9 @@ msgstr "Zvýraznění na obrázku dálkového ovladače ukazuje, kterého tlač�
 msgid "A new storage device has been connected:"
 msgstr "Bylo připojeno nové úložné zařízení:"
 
+msgid "A prepared or running timer can not be moved to the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -2078,14 +2081,8 @@ msgstr "Přidání služby RADIO do seznamu Kompenzace hlasitosti"
 msgid "Add a RecordTimer"
 msgstr "Přidat záznam časovače"
 
-msgid "Add a RecordTimer for current event"
-msgstr "Přidat záznam časovače aktuálnímu pořadu"
-
 msgid "Add a TV service to the Volume Offset list"
 msgstr "Přidání televizní služby do seznamu Kompenzace hlasitosti"
-
-msgid "Add a ZapTimer for current event"
-msgstr "Přidat přepnutí časovače aktuálnímu pořadu"
 
 msgid "Add a ZapTimer for next event"
 msgstr "Přidat přepnutí časovače k dalšímu pořadu"
@@ -2119,9 +2116,6 @@ msgstr "Přidat časovač pro aktuální událost"
 
 msgid "Add an existing swap file"
 msgstr "Přidat existující odkládací soubor"
-
-msgid "Add an AutoTimer for the current event"
-msgstr "Přidat automatický časovač k aktuálnímu pořadu"
 
 msgid "Add current directory to bookmarks"
 msgstr "Přidat aktuální složku do záložek"
@@ -2197,12 +2191,6 @@ msgstr "Přidat vybranou službu do přehledu nebo k alternativě"
 
 msgid "Add title"
 msgstr "Přidat titul"
-
-msgid "Add/Remove Timer"
-msgstr "Přidat/odebrat časovač"
-
-msgid "Add/Remove a timer for the current event"
-msgstr "Přidat/Odstranit časovač pro aktuální pořad"
 
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr "Přidat/odebrat zvýrazněný plugin do/z instalačního seznamu"
@@ -3004,9 +2992,6 @@ msgstr "Správce připojení"
 msgid "AutoRefresh"
 msgstr "Automatické obnovení"
 
-msgid "AutoTimer"
-msgstr "Automatický časovač"
-
 msgid "AutoUpdate"
 msgstr "Automatická aktualizace"
 
@@ -3549,9 +3534,6 @@ msgstr "Výchozí Broadcom"
 msgid "Browse"
 msgstr "Procházet"
 
-msgid "Browse mode"
-msgstr "Režim prohlížení"
-
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Procházejte, instalujte nebo odeberte pluginy jeden po druhém."
 
@@ -3738,8 +3720,17 @@ msgstr "CH%s"
 msgid "CHANGE BOUQUET"
 msgstr "ZMĚNA PŘEHLEDU"
 
-msgid "CHANNEL +/-"
-msgstr "KANÁL +/-"
+msgid "CHANNEL+"
+msgstr ""
+
+msgid "CHANNEL+ button (setup in menu)"
+msgstr ""
+
+msgid "CHANNEL-"
+msgstr ""
+
+msgid "CHANNEL- button (setup in menu)"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "Nastavení rozhraní CI"
@@ -4197,9 +4188,6 @@ msgstr "Přepnout do režimu Rádiových služeb"
 msgid "Change to TV services mode"
 msgstr "Přepnout do režimu televizních služeb"
 
-msgid "Change to bouquet"
-msgstr "Změnit na přehled"
-
 msgid "Changed"
 msgstr "Změněno"
 
@@ -4298,9 +4286,6 @@ msgstr "Název kanálu"
 
 msgid "Channel number"
 msgstr "Číslo kanálu"
-
-msgid "Service preview mode"
-msgstr "Režim náhledu kanálu"
 
 msgid "Channel selection configuration"
 msgstr "Nastavení výběru kanálů"
@@ -4641,12 +4626,6 @@ msgstr "Zavřít Seznam úkolů"
 msgid "Close Task View"
 msgstr "Zavřít zobrazení úkolů"
 
-msgid "Close bouquet list"
-msgstr "Zavřít seznam přehledů"
-
-msgid "Close bouquet list."
-msgstr "Zavřít přehled."
-
 msgid "Close dialog"
 msgstr "Zavřít dialog"
 
@@ -4736,9 +4715,6 @@ msgstr "Kolumbie"
 
 msgid "Color"
 msgstr "Barva"
-
-msgid "Color Button Assignments"
-msgstr "Přiřazení barevných tlačítek"
 
 msgid "Color format"
 msgstr "Formát barev"
@@ -5091,9 +5067,6 @@ msgstr "Nastavuje počet dnů, po kterých jsou položky umístěné v koši aut
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "Nastavuje počet dnů, po které jsou staré časovače uchovávány v seznamu časovačů před jejich automatickým smazáním."
-
-msgid "Select the number of services to be shown in the list."
-msgstr "Nastavuje počet zobrazených řádků."
 
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr "Nastavuje offline zpoždění dekódování v milisekundách. Nastavené zpoždění je dodrženo při každé změně control word parity."
@@ -5556,9 +5529,6 @@ msgstr ""
 
 msgid "Country"
 msgstr "Země"
-
-msgid "Country Music"
-msgstr "Country hudba"
 
 msgid "Country for EPG event genre information"
 msgstr "Země pro informace o žánru události EPG"
@@ -7441,6 +7411,9 @@ msgstr "Verze ovladačů"
 msgid "Drop unconfigured satellites"
 msgstr "Zrušit nenakonfigurované satelity"
 
+msgid "Dual channel"
+msgstr ""
+
 msgid "Duplex"
 msgstr "Duplex"
 
@@ -7484,11 +7457,11 @@ msgstr "Informace ECM pro '%s'"
 msgid "EPG"
 msgstr "EPG"
 
+msgid "EPG (Long press)"
+msgstr ""
+
 msgid "EPG Actions"
 msgstr "Akce EPG"
-
-msgid "EPG Bouquet Actions"
-msgstr "EPG akce přehledu"
 
 msgid "EPG Cache Check"
 msgstr "Kontrola EPG cache"
@@ -7499,9 +7472,6 @@ msgstr "Výběr kanálu/služby EPG"
 msgid "EPG Data In Streams"
 msgstr "EPG data v streamech"
 
-msgid "EPG Display Actions"
-msgstr "Zobrazení EPG akcí"
-
 msgid "EPG Jump"
 msgstr "EPG skok"
 
@@ -7510,9 +7480,6 @@ msgstr "Jazyk EPG"
 
 msgid "EPG Navigation Actions"
 msgstr "Navigační akce EPG"
-
-msgid "EPG Other Actions"
-msgstr "Další akce EPG"
 
 msgid "EPG Range And History"
 msgstr "Rozsah a historie EPG"
@@ -7534,6 +7501,9 @@ msgstr "Zdroje EPG"
 
 msgid "EPG Storage And Refresh"
 msgstr "Ukládání a obnovování EPG"
+
+msgid "EPG button long (setup in menu)"
+msgstr ""
 
 msgid "EPG button mode"
 msgstr "Režim tlačítka EPG"
@@ -7593,8 +7563,8 @@ msgstr "Východní limit nastaven"
 msgid "Eastern satellites"
 msgstr "Východní satelity"
 
-msgid "Easy Listening Music"
-msgstr "Hudba pro snadný poslech"
+msgid "Easy Listening"
+msgstr ""
 
 msgid "Easy listening"
 msgstr "Poslechová hudba"
@@ -9759,9 +9729,6 @@ msgstr "Německy"
 msgid "Germany"
 msgstr "Německo"
 
-msgid "Getting event information failed!"
-msgstr "Načtení info o pořadu selhalo!"
-
 msgid "Getting plugin information. Please wait..."
 msgstr "Získávám informace o pluginech. Prosím, čekejte..."
 
@@ -10188,6 +10155,9 @@ msgstr "Skrýt linku VBI pro tuto službu"
 msgid "Hide any zap error messages."
 msgstr "Skrýt všechny chybové zprávy."
 
+msgid "Hide empty services"
+msgstr "Přeskakovat prázdné programy"
+
 msgid "Hide error messages from the Common Interface module."
 msgstr "Skrýt chybové zprávy z modulu Common Interface."
 
@@ -10392,11 +10362,11 @@ msgstr "IMDb podrobnosti"
 msgid "IMDb Search"
 msgstr "Prohledat IMDb"
 
-msgid "IMDb search for current event"
-msgstr "Hledat akt. pořad v IMDB"
-
 msgid "INFO"
 msgstr "INFO"
+
+msgid "INFO (Long press)"
+msgstr "Tlačítko Informace (dlouhý stisk)"
 
 msgid "INFO button mode"
 msgstr "Režim tlačítka INFO"
@@ -10831,12 +10801,6 @@ msgstr "Indonéština"
 msgid "Info"
 msgstr "Informace"
 
-msgid "INFO (Long press)"
-msgstr "Tlačítko Informace (dlouhý stisk)"
-
-msgid "Info button (short)"
-msgstr "Tlačítko Informace (krátké)"
-
 msgid "Info file checksum"
 msgstr "Kontr. součet inf. souboru"
 
@@ -11158,9 +11122,6 @@ msgstr "Jávština"
 msgid "Jazz"
 msgstr "Jazz"
 
-msgid "Jazz Music"
-msgstr "Jazzová hudba"
-
 msgid "Jersey"
 msgstr "Jersey"
 
@@ -11176,14 +11137,14 @@ msgstr "Připojit nebo opustit ZeroTier síť"
 msgid "Joined"
 msgstr "Připojeno"
 
+msgid "Joint stereo"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Jordán"
 
 msgid "Jump"
 msgstr "Skok"
-
-msgid "Jump back 24 hours"
-msgstr "Skočit o 24 hod zpět"
 
 msgid "Jump back one day"
 msgstr "Skok zpět o jeden den"
@@ -11193,9 +11154,6 @@ msgstr "Skok zpět o jednu hodinu"
 
 msgid "Jump first press in channel selection"
 msgstr "Prvním stiskem skok ve výběru kanálu"
-
-msgid "Jump forward 24 hours"
-msgstr "Skočit o 24 hod dopředu"
 
 msgid "Jump forward one day"
 msgstr "Skok dopředu o jeden den"
@@ -11218,14 +11176,8 @@ msgstr "Přejít na konec seznamu"
 msgid "Jump to next marked position"
 msgstr "Na další označenou pozici"
 
-msgid "Jump to next page or all up (setup in menu)"
-msgstr "Přejít na další stránku nebo úplně nahoru (nastavení v nabídce)"
-
 msgid "Jump to previous marked position"
 msgstr "Na předchozí označenou pozici"
-
-msgid "Jump to previous page or all down (setup in menu)"
-msgstr "Přejít na předchozí stránku nebo úplně dolů (nastavení v nabídce)"
 
 msgid "Jump to prime time"
 msgstr "Skočit na Prime Time"
@@ -12478,6 +12430,9 @@ msgstr "Mongolsko"
 msgid "Mongolian"
 msgstr "Mongolský"
 
+msgid "Mono"
+msgstr ""
+
 msgid "Montenegro"
 msgstr "Černá Hora"
 
@@ -12716,9 +12671,6 @@ msgstr "Přechod na první řádek"
 
 msgid "Move to first line / screen in the panel"
 msgstr "Přejít v panelu na první řádek / obrazovku"
-
-msgid "Move to home of list"
-msgstr "Přesun na začátek seznamu"
 
 msgid "Move to last item / screen"
 msgstr "Přejít na poslední položku / obrazovku"
@@ -13050,6 +13002,9 @@ msgstr "Namibie"
 msgid "Narration"
 msgstr "Vyprávění"
 
+msgid "National Music"
+msgstr ""
+
 msgid "National music"
 msgstr "Národní hudba"
 
@@ -13079,9 +13034,6 @@ msgstr "Přejít do vybraného adresáře"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Procházejte nahoru/dolů pomocí tlačítek NAHORU/DOLŮ a listujte nahoru/dolů pomocí VLEVO/VPRAVO. OK pro provedení akce popsané v aktuálně zvýrazněné nápovědě."
-
-msgid "Navigation And Button Assignments"
-msgstr "Navigace a přiřazení tlačítek"
 
 msgid "Navigation And Time Range"
 msgstr "Navigace a časový rozsah"
@@ -13880,9 +13832,6 @@ msgstr "OK"
 msgid "OK (Long press)"
 msgstr "Tlačitko OK (dlouhý stisk)"
 
-msgid "OK button (short)"
-msgstr "OK tlačítko (krátké)"
-
 msgid "OK button mode"
 msgstr "Režim tlačítka OK"
 
@@ -13995,9 +13944,6 @@ msgstr "Ojibwa"
 
 msgid "Oldies"
 msgstr "Staré hity"
-
-msgid "Oldies Music"
-msgstr "Stará hudba"
 
 msgid "Olympic blue"
 msgstr "olympijská modrá"
@@ -14470,6 +14416,9 @@ msgstr "PIN"
 
 msgid "PIN code needed"
 msgstr "Je vyžadován PIN"
+
+msgid "PLAY"
+msgstr ""
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -15556,9 +15505,6 @@ msgstr "Předchozí stránka"
 msgid "Previous channel page"
 msgstr "předchozí stránka výběru kanálu"
 
-msgid "Previous/Next bouquet"
-msgstr "předchozí/následující přehled"
-
 msgid "Previous/Next page"
 msgstr "předchozí/následující stránka"
 
@@ -15577,14 +15523,12 @@ msgstr "Hlavní čas"
 msgid "Prime time"
 msgstr "Hlavní vysílací čas"
 
-msgid "Primetime hour"
-msgstr "Hlavní vysílací čas (hodina)"
-
-msgid "Primetime minute"
-msgstr "Hlavní vysílací čas (minuta)"
-
 msgid "Priority"
 msgstr "Priorita"
+
+#, python-format
+msgid "Priority: %d"
+msgstr ""
 
 msgid "Privacy level"
 msgstr "Úroveň soukromí"
@@ -15638,8 +15582,8 @@ msgstr "Profil: Místní box"
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "K provedení této akce je třeba nainstalovat program '%s'. Chcete nainstalovat balíček '%s' pro instalaci programu?"
 
-msgid "Program type"
-msgstr "Typ programu"
+msgid "Programme type (PTY)"
+msgstr ""
 
 msgid "Programmlisten History"
 msgstr "Historie seznamu programů"
@@ -15920,14 +15864,20 @@ msgstr "REC Symbol je používán"
 msgid "REC symbol"
 msgstr "Symbol REC"
 
+msgid "RECORD"
+msgstr ""
+
+msgid "RECORD (Long press)"
+msgstr ""
+
 msgid "RED"
 msgstr "ČERVENÉ tlačítko"
 
-msgid "RED button / HbbTV"
-msgstr "ČERVENÉ tlačítko / HbbTV"
-
 msgid "RED (Long press)"
 msgstr "Červené - dlouhý stisk"
+
+msgid "RED button / HbbTV"
+msgstr "ČERVENÉ tlačítko / HbbTV"
 
 msgid "RF Output Settings"
 msgstr "RF výstup"
@@ -16124,12 +16074,6 @@ msgstr "Zdroje příjmu k prohledání"
 
 msgid "Record"
 msgstr "Nahrávání"
-
-msgid "Record - same as record button"
-msgstr "Záznam – stejné jako tlačítko záznamu"
-
-msgid "Record Actions"
-msgstr "Akce nahrávání"
 
 msgid "Record icon"
 msgstr "Ikona záznamu"
@@ -17011,9 +16955,6 @@ msgstr "vpravo, zalomený"
 msgid "Rock"
 msgstr "Rock"
 
-msgid "Rock Music"
-msgstr "Rocková hudba"
-
 msgid "Rock/Pop"
 msgstr "Rock/Pop"
 
@@ -17598,9 +17539,6 @@ msgstr "Hledej východ"
 msgid "Search for network shares"
 msgstr "Hledat sdílené síťě"
 
-msgid "Search for similar events"
-msgstr "Hledat podobné pořady"
-
 msgid "Search in the current view"
 msgstr "Hledat v aktuálním zobrazení"
 
@@ -17789,9 +17727,6 @@ msgstr "Zvol 'Ano' pro zapnutí monitorovacího uživatelského rozhraní pro DN
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Vyberte 'Ano', chcete-li povolit použití tlačítek VLEVO/VPRAVO k pohybu PageUp/PageDown, když tlačítka VLEVO/VPRAVO nejsou jinak definována. To poskytuje starší navigaci pro uživatele, kteří ji preferují."
-
-msgid "When enabled, services without EPG data will be hidden."
-msgstr "Pokud nastavíte na 'ano' nezobrazí se kanály bez EPG."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
 msgstr "Chcete-li skrýt název serveru a adresu IP serveru, vyberte možnost „Ano“."
@@ -18269,6 +18204,9 @@ msgstr "Vyberte, zda je k dispozici zamykání souborů. Vyberte „Ne“, chcet
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Vyberte, zda se zobrazí výchozí hodnota položky nastavení, a pokud ano, kde se zobrazí ve vztahu k popisu."
 
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
+msgstr "Tato volba vám umožňní nastavit zobrazení (text nebo grafika)."
+
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr "Vyberte, zda se má zobrazovat historie cest nabídky na obrazovce, a pokud ano, jak se má zobrazovat."
 
@@ -18421,6 +18359,9 @@ msgstr "Vyberte předpoklady pro časovače přepnutí. Časovač přepnutí se 
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "Vyberte akci pro '%s'"
+
+msgid "Select the action that this button will perform."
+msgstr "Nastavte to, co chcete aby tlačítka dělala."
 
 msgid "Select the action to perform when the timer ends."
 msgstr "Vyberte akci, která se má provést po skončení časovače."
@@ -18695,6 +18636,9 @@ msgstr "Vyberte další položku v seznamu"
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr "Vyberte počet událostí, které se mají uchovávat ve vyrovnávací paměti časového posunu. Události přesahující tento limit budou během čištění odstraněny. Vyrovnávací paměť může obsahovat několik fyzických částí souboru, které se počítají jako jedna. Vyrovnávací paměti, které jsou stále používány, zůstávají chráněny, takže limit může být dočasně překročen."
 
+msgid "Select the number of services to be shown in the list."
+msgstr "Nastavuje počet zobrazených řádků."
+
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr "Vyberte, kolikrát se má úloha opakovat, pokud při jejím spuštění dojde k chybě."
 
@@ -18950,6 +18894,9 @@ msgstr "Vyberte, zda chcete do pole „Server“ níže předvyplnit nalezený n
 msgid "Select which IP protocols can be used with this adapter."
 msgstr "Vyberte, které IP protokoly lze s tímto adaptérem použít."
 
+msgid "Select which service to use when opening the EPG."
+msgstr ""
+
 msgid "Select your ATSC provider."
 msgstr "Vyberte svého poskytovatele ATSC."
 
@@ -19196,6 +19143,9 @@ msgstr "Poměr stran pikon programů"
 
 msgid "Service picons downsize"
 msgstr "Zmenšit picony programu"
+
+msgid "Service preview mode"
+msgstr "Režim náhledu kanálu"
 
 msgid "Service reference"
 msgstr "Reference kanálu"
@@ -19475,9 +19425,6 @@ msgstr "Nastavením na „Povoleno“ dekódujete kódované nahrávky zařazen�
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Je-li nastaveno na „Ano“, budou do televizoru odesílány stejné příkazy pro události hlubokého spánku, jaké jsou odesílány během běžných událostí pohotovostního režimu."
-
-msgid "Select the action that this button will perform."
-msgstr "Nastavte to, co chcete aby tlačítka dělala."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Nastavte na ano pro ladění hlavní příčiny spinneru."
@@ -19867,9 +19814,6 @@ msgstr "Zobrazit MiniTV na předním displeji"
 
 msgid "Show Movie Selection in Main Menu"
 msgstr "Zobrazit výběr filmu v hlavní nabídce"
-
-msgid "Show Movies List"
-msgstr "Zobrazit seznam filmů"
 
 msgid "Show Multi EPG"
 msgstr "Zobrazit EPG z více kanálů"
@@ -20608,9 +20552,6 @@ msgstr "Přeskočit zpět %s%%"
 msgid "Skip backward (enter time)"
 msgstr "přeskočit zpět (zadat čas)"
 
-msgid "Hide empty services"
-msgstr "Přeskakovat prázdné programy"
-
 #, python-format
 msgid "Skip for '%s' is disabled"
 msgstr "Přeskočení pro '%s' je zakázáno"
@@ -21004,9 +20945,6 @@ msgstr "Třídění"
 msgid "Sort Bookmarks"
 msgstr "Řazení záložek"
 
-msgid "Sort EPG List"
-msgstr "Třídit seznam EPG"
-
 msgid "Sort Extension Menu"
 msgstr "Třídit rozšířenou nabídku podle abecedy"
 
@@ -21366,6 +21304,9 @@ msgstr "Krok východně"
 msgid "Stepped west"
 msgstr "Krok západně"
 
+msgid "Stereo"
+msgstr ""
+
 msgid "Stop"
 msgstr "Zastavit"
 
@@ -21665,6 +21606,15 @@ msgstr "Podpora"
 
 msgid "Suriname"
 msgstr "Surinam"
+
+msgid "Surround"
+msgstr ""
+
+msgid "Surround 5.1"
+msgstr ""
+
+msgid "Surround 7.1"
+msgstr ""
 
 msgid "Svalbard and Jan Mayen"
 msgstr "Svalbard a Jan Mayen"
@@ -22545,6 +22495,9 @@ msgstr "Paměťové zařízení pro časový posun není k dispozici. Zkontroluj
 msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr "Paměťové zařízení časového posunu bylo odebráno. Časový posun byl zastaven."
 
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr "Soubor časovače '%s' je poškozený a nelze jej načíst."
@@ -22788,9 +22741,6 @@ msgstr "Tato možnost umožňuje nastavit hodnoty odsazení pro různá rozliše
 msgid "This option allows you to set the Auto Volume Level output."
 msgstr "Tato možnost konfiguruje nastavení automatické úrovně hlasitosti."
 
-msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
-msgstr "Tato volba vám umožňní nastavit zobrazení (text nebo grafika)."
-
 msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "Toto nastavení umožňuje přepnout zvuk na reproduktory Bluetooth."
 
@@ -22975,9 +22925,6 @@ msgstr "Časový posun se nepodařilo spustit. Zkontrolujte prosím úložné za
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr "Časový posun nemusí fungovat správně bez platné složky."
-
-msgid "Time shift not possible!"
-msgstr "Časový posun není možný!"
 
 msgid "Time shift save action on zap"
 msgstr "Akce timeshiftu při přepnutí na jiný kanál"
@@ -25133,6 +25080,9 @@ msgstr "Je-li tato možnost povolena, stisknutím tlačítka „0“ se přesune
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Pokud je toto povoleno tak budou titulky formátovány tak aby odpovídaly šířce obrazovky."
 
+msgid "When enabled, services without EPG data will be hidden."
+msgstr "Pokud nastavíte na 'ano' nezobrazí se kanály bez EPG."
+
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Při povolení zobrazuje čísla kanálů ve výběru programů."
 
@@ -25270,9 +25220,6 @@ msgstr "Při ladění programů bude systém normálně hledat transpondéry a a
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Kam chcete uložit dočasné nahrávky s časovým posunem?"
-
-msgid "Select which service to use when opening the EPG."
-msgstr ""
 
 msgid "Which time shift buffer event do you want to save?"
 msgstr "Který pořad chcete uložit trvale?"
@@ -26475,6 +26422,126 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Add a RecordTimer for current event"
+#~ msgstr "Přidat záznam časovače aktuálnímu pořadu"
+
+#~ msgid "Add a ZapTimer for current event"
+#~ msgstr "Přidat přepnutí časovače aktuálnímu pořadu"
+
+#~ msgid "Add an AutoTimer for the current event"
+#~ msgstr "Přidat automatický časovač k aktuálnímu pořadu"
+
+#~ msgid "Add/Remove Timer"
+#~ msgstr "Přidat/odebrat časovač"
+
+#~ msgid "Add/Remove a timer for the current event"
+#~ msgstr "Přidat/Odstranit časovač pro aktuální pořad"
+
+#~ msgid "AutoTimer"
+#~ msgstr "Automatický časovač"
+
+#~ msgid "Browse mode"
+#~ msgstr "Režim prohlížení"
+
+#~ msgid "CHANNEL +/-"
+#~ msgstr "KANÁL +/-"
+
+#~ msgid "Change to bouquet"
+#~ msgstr "Změnit na přehled"
+
+#~ msgid "Close bouquet list"
+#~ msgstr "Zavřít seznam přehledů"
+
+#~ msgid "Close bouquet list."
+#~ msgstr "Zavřít přehled."
+
+#~ msgid "Color Button Assignments"
+#~ msgstr "Přiřazení barevných tlačítek"
+
+#~ msgid "Country Music"
+#~ msgstr "Country hudba"
+
+#~ msgid "EPG Bouquet Actions"
+#~ msgstr "EPG akce přehledu"
+
+#~ msgid "EPG Display Actions"
+#~ msgstr "Zobrazení EPG akcí"
+
+#~ msgid "EPG Other Actions"
+#~ msgstr "Další akce EPG"
+
+#~ msgid "Easy Listening Music"
+#~ msgstr "Hudba pro snadný poslech"
+
+#~ msgid "Getting event information failed!"
+#~ msgstr "Načtení info o pořadu selhalo!"
+
+#~ msgid "IMDb search for current event"
+#~ msgstr "Hledat akt. pořad v IMDB"
+
+#~ msgid "Info button (short)"
+#~ msgstr "Tlačítko Informace (krátké)"
+
+#~ msgid "Jazz Music"
+#~ msgstr "Jazzová hudba"
+
+#~ msgid "Jump back 24 hours"
+#~ msgstr "Skočit o 24 hod zpět"
+
+#~ msgid "Jump forward 24 hours"
+#~ msgstr "Skočit o 24 hod dopředu"
+
+#~ msgid "Jump to next page or all up (setup in menu)"
+#~ msgstr "Přejít na další stránku nebo úplně nahoru (nastavení v nabídce)"
+
+#~ msgid "Jump to previous page or all down (setup in menu)"
+#~ msgstr "Přejít na předchozí stránku nebo úplně dolů (nastavení v nabídce)"
+
+#~ msgid "Move to home of list"
+#~ msgstr "Přesun na začátek seznamu"
+
+#~ msgid "Navigation And Button Assignments"
+#~ msgstr "Navigace a přiřazení tlačítek"
+
+#~ msgid "OK button (short)"
+#~ msgstr "OK tlačítko (krátké)"
+
+#~ msgid "Oldies Music"
+#~ msgstr "Stará hudba"
+
+#~ msgid "Previous/Next bouquet"
+#~ msgstr "předchozí/následující přehled"
+
+#~ msgid "Primetime hour"
+#~ msgstr "Hlavní vysílací čas (hodina)"
+
+#~ msgid "Primetime minute"
+#~ msgstr "Hlavní vysílací čas (minuta)"
+
+#~ msgid "Program type"
+#~ msgstr "Typ programu"
+
+#~ msgid "Record - same as record button"
+#~ msgstr "Záznam – stejné jako tlačítko záznamu"
+
+#~ msgid "Record Actions"
+#~ msgstr "Akce nahrávání"
+
+#~ msgid "Rock Music"
+#~ msgstr "Rocková hudba"
+
+#~ msgid "Search for similar events"
+#~ msgstr "Hledat podobné pořady"
+
+#~ msgid "Show Movies List"
+#~ msgstr "Zobrazit seznam filmů"
+
+#~ msgid "Sort EPG List"
+#~ msgstr "Třídit seznam EPG"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Časový posun není možný!"
 
 #~ msgid "Please select device to use as swap file location"
 #~ msgstr "Vyberte prosím zařízení, které se má použít jako umístění odkládacího souboru"

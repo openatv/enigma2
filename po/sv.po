@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 13:51+0100\n"
+"POT-Creation-Date: 2026-11-01 20:39+0100\n"
 "PO-Revision-Date: 2026-10-31 21:19+0000\n"
 "Last-Translator: Snoete <snoete@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -1723,6 +1723,9 @@ msgstr "En markering på fjärrkontrollens bild visar vilken knapp som hjälpen 
 msgid "A new storage device has been connected:"
 msgstr "En ny lagringsenhet har anslutits:"
 
+msgid "A prepared or running timer can not be moved to the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -2104,14 +2107,8 @@ msgstr "Lägg till en RADIO-tjänst i listan över volymoffset"
 msgid "Add a RecordTimer"
 msgstr "Lägg till en RecordTimer"
 
-msgid "Add a RecordTimer for current event"
-msgstr "Lägg till en RecordTimer för aktuell händelse"
-
 msgid "Add a TV service to the Volume Offset list"
 msgstr "Lägg till en TV-tjänst i listan för volymförskjutning"
-
-msgid "Add a ZapTimer for current event"
-msgstr "Lägg till en ZapTimer för aktuell händelse"
 
 msgid "Add a ZapTimer for next event"
 msgstr "Lägg till en ZapTimer för nästa evenemang"
@@ -2147,9 +2144,6 @@ msgstr "Lägg till en timer för den aktuella händelsen"
 
 msgid "Add an existing swap file"
 msgstr ""
-
-msgid "Add an AutoTimer for the current event"
-msgstr "Lägg till en AutoTimer för den aktuella händelsen"
 
 msgid "Add current directory to bookmarks"
 msgstr "Lägg till aktuell katalog i bokmärken"
@@ -2232,13 +2226,6 @@ msgstr "Lägg till den valda tjänsten i en bukett eller ett alternativ"
 #
 msgid "Add title"
 msgstr "Lägg till rubrik"
-
-#
-msgid "Add/Remove Timer"
-msgstr "Lägg till/ta bort timer"
-
-msgid "Add/Remove a timer for the current event"
-msgstr "Lägg till/ta bort en timer för den aktuella händelsen"
 
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr "Lägg till/ta bort markerat plugin till/från installationslistan"
@@ -3082,9 +3069,6 @@ msgstr "AutoMountManager"
 msgid "AutoRefresh"
 msgstr "AutoRefresh"
 
-msgid "AutoTimer"
-msgstr "AutoTimer"
-
 #
 msgid "AutoUpdate"
 msgstr "AutoUppdatering"
@@ -3654,9 +3638,6 @@ msgstr "Broadcom-standard"
 msgid "Browse"
 msgstr "Bläddra"
 
-msgid "Browse mode"
-msgstr ""
-
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Bläddra, installera eller ta bort plugins på en och samma basis."
 
@@ -3844,9 +3825,17 @@ msgstr "CH%s"
 msgid "CHANGE BOUQUET"
 msgstr "CHANGE BOUQUET"
 
-#
-msgid "CHANNEL +/-"
-msgstr "KANAL +/-"
+msgid "CHANNEL+"
+msgstr ""
+
+msgid "CHANNEL+ button (setup in menu)"
+msgstr ""
+
+msgid "CHANNEL-"
+msgstr ""
+
+msgid "CHANNEL- button (setup in menu)"
+msgstr ""
 
 #
 msgid "CI (Common Interface) Setup"
@@ -4321,10 +4310,6 @@ msgstr "Ändra till radiotjänstläge"
 msgid "Change to TV services mode"
 msgstr "Ändra till läge för TV-tjänster"
 
-#
-msgid "Change to bouquet"
-msgstr "Byte till bukett"
-
 msgid "Changed"
 msgstr "Ändrad"
 
@@ -4427,9 +4412,6 @@ msgstr "Kanal namn"
 
 msgid "Channel number"
 msgstr "Kanalnummer"
-
-msgid "Service preview mode"
-msgstr "Förhandsgranskning av kanal"
 
 msgid "Channel selection configuration"
 msgstr "Konfiguration av kanalval"
@@ -4788,12 +4770,6 @@ msgstr "Stäng uppgiftslista"
 msgid "Close Task View"
 msgstr "Stäng uppgiftsvyn"
 
-msgid "Close bouquet list"
-msgstr "Stäng bukettlistan"
-
-msgid "Close bouquet list."
-msgstr "Stäng bukettlistan."
-
 msgid "Close dialog"
 msgstr "Stäng dialogrutan"
 
@@ -4887,9 +4863,6 @@ msgstr "Colombia"
 #
 msgid "Color"
 msgstr "Färg"
-
-msgid "Color Button Assignments"
-msgstr "Tilldelningar av färgknappar"
 
 msgid "Color format"
 msgstr "Färgformat"
@@ -5251,9 +5224,6 @@ msgstr "Konfigurera antalet dagar efter vilka objekt automatiskt ska tas bort fr
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "Ställ in hur många dagar gamla timers ska sparas innan de automatiskt tas bort från timerlistan."
-
-msgid "Select the number of services to be shown in the list."
-msgstr "Konfigurera antalet rader som ska visas."
 
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr "Konfigurera offline-avkodningsfördröjningen i millisekunder. Den konfigurerade fördröjningen observeras vid varje paritetsändring i styrordet."
@@ -5729,9 +5699,6 @@ msgstr ""
 
 msgid "Country"
 msgstr "Land"
-
-msgid "Country Music"
-msgstr ""
 
 msgid "Country for EPG event genre information"
 msgstr "Land för EPG-händelsens genreinformation"
@@ -7703,6 +7670,9 @@ msgstr "Version av drivrutiner"
 msgid "Drop unconfigured satellites"
 msgstr ""
 
+msgid "Dual channel"
+msgstr ""
+
 msgid "Duplex"
 msgstr "Duplex"
 
@@ -7749,11 +7719,11 @@ msgstr "ECM-information för \"%s"
 msgid "EPG"
 msgstr "EPG"
 
+msgid "EPG (Long press)"
+msgstr ""
+
 msgid "EPG Actions"
 msgstr "EPG-åtgärder"
-
-msgid "EPG Bouquet Actions"
-msgstr "Åtgärder för EPG-bukett"
 
 msgid "EPG Cache Check"
 msgstr "Kontroll av EPG-cache"
@@ -7764,9 +7734,6 @@ msgstr "Val av EPG-kanal/tjänst"
 msgid "EPG Data In Streams"
 msgstr "EPG-data i strömmar"
 
-msgid "EPG Display Actions"
-msgstr "Åtgärder för EPG-visning"
-
 msgid "EPG Jump"
 msgstr "EPG hopp"
 
@@ -7775,9 +7742,6 @@ msgstr "EPG-språk"
 
 msgid "EPG Navigation Actions"
 msgstr "Åtgärder för EPG-navigering"
-
-msgid "EPG Other Actions"
-msgstr "EPG Övriga åtgärder"
 
 msgid "EPG Range And History"
 msgstr "EPG-omfång och historik"
@@ -7799,6 +7763,9 @@ msgstr "EPG-källor"
 
 msgid "EPG Storage And Refresh"
 msgstr "EPG-lagring och uppdatering"
+
+msgid "EPG button long (setup in menu)"
+msgstr ""
 
 msgid "EPG button mode"
 msgstr "EPG-knappens läge"
@@ -7860,7 +7827,7 @@ msgstr "Östra gränsen inställd"
 msgid "Eastern satellites"
 msgstr "Östliga satelliter"
 
-msgid "Easy Listening Music"
+msgid "Easy Listening"
 msgstr ""
 
 msgid "Easy listening"
@@ -10118,9 +10085,6 @@ msgstr "Tyska"
 msgid "Germany"
 msgstr "Tyskland"
 
-msgid "Getting event information failed!"
-msgstr "Att hämta händelseinformation misslyckades!"
-
 #
 msgid "Getting plugin information. Please wait..."
 msgstr "Hämtar information om plugin. Vänligen vänta..."
@@ -10563,6 +10527,10 @@ msgstr "Dölj VBI-linje för denna tjänst"
 msgid "Hide any zap error messages."
 msgstr "Dölj eventuella felmeddelanden från zap."
 
+#
+msgid "Hide empty services"
+msgstr "Tjänster för tömning av containrar"
+
 msgid "Hide error messages from the Common Interface module."
 msgstr "Dölj felmeddelanden från Common Interface-modulen."
 
@@ -10778,11 +10746,11 @@ msgstr "IMDb-detaljer"
 msgid "IMDb Search"
 msgstr "IMDb-sökning"
 
-msgid "IMDb search for current event"
-msgstr "IMDb-sökning efter aktuell händelse"
-
 msgid "INFO"
 msgstr "INFO"
+
+msgid "INFO (Long press)"
+msgstr "Info-knapp (lång)"
 
 msgid "INFO button mode"
 msgstr "INFO-knappens läge"
@@ -11231,12 +11199,6 @@ msgstr "Indonesiska"
 msgid "Info"
 msgstr "Info"
 
-msgid "INFO (Long press)"
-msgstr "Info-knapp (lång)"
-
-msgid "Info button (short)"
-msgstr "Info-knapp (kort)"
-
 msgid "Info file checksum"
 msgstr "Kontrollsumma för infofilen"
 
@@ -11587,9 +11549,6 @@ msgstr "Javanesiska"
 msgid "Jazz"
 msgstr "Jazz"
 
-msgid "Jazz Music"
-msgstr ""
-
 msgid "Jersey"
 msgstr "Jersey"
 
@@ -11605,14 +11564,14 @@ msgstr "Anslut till eller lämna det konfigurerade ZeroTier-nätverket"
 msgid "Joined"
 msgstr "Ansluten"
 
+msgid "Joint stereo"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Jordanien"
 
 msgid "Jump"
 msgstr "Hoppa"
-
-msgid "Jump back 24 hours"
-msgstr "Hoppa tillbaka 24 timmar"
 
 msgid "Jump back one day"
 msgstr "Hoppa tillbaka en dag"
@@ -11622,9 +11581,6 @@ msgstr "Hoppa tillbaka en timme"
 
 msgid "Jump first press in channel selection"
 msgstr "Hoppa första tryckningen i kanalvalet"
-
-msgid "Jump forward 24 hours"
-msgstr "Hoppa framåt 24 timmar"
 
 msgid "Jump forward one day"
 msgstr "Hoppa framåt en dag"
@@ -11648,14 +11604,8 @@ msgstr "Hoppa till slutet av listan"
 msgid "Jump to next marked position"
 msgstr "Hoppa till nästa markerade position"
 
-msgid "Jump to next page or all up (setup in menu)"
-msgstr "Hoppa till nästa sida eller hela sidan (inställning i menyn)"
-
 msgid "Jump to previous marked position"
 msgstr "Hoppa till föregående markerade position"
-
-msgid "Jump to previous page or all down (setup in menu)"
-msgstr "Hoppa till föregående sida eller alla sidor nedåt (inställning i menyn)"
 
 msgid "Jump to prime time"
 msgstr "Hoppa till bästa sändningstid"
@@ -12978,6 +12928,9 @@ msgstr "Mongoliet"
 msgid "Mongolian"
 msgstr "Mongoliska"
 
+msgid "Mono"
+msgstr ""
+
 msgid "Montenegro"
 msgstr "Montenegro"
 
@@ -13226,9 +13179,6 @@ msgstr "Flytta till första raden"
 
 msgid "Move to first line / screen in the panel"
 msgstr "Flytta till första raden/skärmen i panelen"
-
-msgid "Move to home of list"
-msgstr "Flytta till början av listan"
 
 msgid "Move to last item / screen"
 msgstr "Flytta till sista objektet/skärmen"
@@ -13584,6 +13534,9 @@ msgstr "Namibia"
 msgid "Narration"
 msgstr "Berättelse"
 
+msgid "National Music"
+msgstr ""
+
 msgid "National music"
 msgstr "Nationell musik"
 
@@ -13613,9 +13566,6 @@ msgstr "Navigera till den valda katalogen"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Navigera uppåt/nedåt med UP/DOWN-knapparna och bläddra uppåt/nedåt med LEFT/RIGHT. OK för att utföra den åtgärd som beskrivs i den aktuella markerade hjälpen."
-
-msgid "Navigation And Button Assignments"
-msgstr "Navigering och knapptilldelningar"
 
 msgid "Navigation And Time Range"
 msgstr "Navigering och tidsomfång"
@@ -14463,9 +14413,6 @@ msgstr "OK"
 msgid "OK (Long press)"
 msgstr "OK-knapp (lång)"
 
-msgid "OK button (short)"
-msgstr "OK-knapp (kort)"
-
 msgid "OK button mode"
 msgstr "OK-knappens läge"
 
@@ -14578,9 +14525,6 @@ msgid "Ojibwa"
 msgstr "Ojibwa"
 
 msgid "Oldies"
-msgstr ""
-
-msgid "Oldies Music"
 msgstr ""
 
 msgid "Olympic blue"
@@ -15070,6 +15014,9 @@ msgstr "PIN-kod"
 
 msgid "PIN code needed"
 msgstr "PIN-kod behövs"
+
+msgid "PLAY"
+msgstr ""
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -16235,9 +16182,6 @@ msgstr "Förgående sida"
 msgid "Previous channel page"
 msgstr "Föregående kanal sida"
 
-msgid "Previous/Next bouquet"
-msgstr "Föregående/Nästa bukett"
-
 msgid "Previous/Next page"
 msgstr "Föregående/Nästa sida"
 
@@ -16256,15 +16200,13 @@ msgstr "Bästa sändningstid"
 msgid "Prime time"
 msgstr "Bästa tiden"
 
-msgid "Primetime hour"
-msgstr "Primetime-timme"
-
-msgid "Primetime minute"
-msgstr "Primetime minut"
-
 #
 msgid "Priority"
 msgstr "Prioritet"
+
+#, python-format
+msgid "Priority: %d"
+msgstr ""
 
 msgid "Privacy level"
 msgstr "Integritetsnivå"
@@ -16318,7 +16260,7 @@ msgstr "Profil: Lokal box"
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "Programmet '%s' måste installeras för att utföra denna åtgärd. Vill du installera paketet '%s' för att installera programmet?"
 
-msgid "Program type"
+msgid "Programme type (PTY)"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -16612,14 +16554,20 @@ msgstr "REC Symbol i bruk"
 msgid "REC symbol"
 msgstr "REC-symbol"
 
+msgid "RECORD"
+msgstr ""
+
+msgid "RECORD (Long press)"
+msgstr ""
+
 msgid "RED"
 msgstr "RÖD knapp"
 
-msgid "RED button / HbbTV"
-msgstr "Röd knapp / HbbTV"
-
 msgid "RED (Long press)"
 msgstr "RED lång"
+
+msgid "RED button / HbbTV"
+msgstr "Röd knapp / HbbTV"
 
 #
 msgid "RF Output Settings"
@@ -16828,12 +16776,6 @@ msgstr ""
 #
 msgid "Record"
 msgstr "Spela in"
-
-msgid "Record - same as record button"
-msgstr "Spela in - samma som inspelningsknappen"
-
-msgid "Record Actions"
-msgstr "Registrera åtgärder"
 
 msgid "Record icon"
 msgstr "Ikon för inspelning"
@@ -17779,9 +17721,6 @@ msgstr "Höger, inplastad"
 msgid "Rock"
 msgstr ""
 
-msgid "Rock Music"
-msgstr ""
-
 msgid "Rock/Pop"
 msgstr "Rock/Pop"
 
@@ -18391,9 +18330,6 @@ msgstr "Sök österut"
 msgid "Search for network shares"
 msgstr "Sök efter nätverksresurser"
 
-msgid "Search for similar events"
-msgstr "Sök efter liknande evenemang"
-
 msgid "Search in the current view"
 msgstr ""
 
@@ -18590,9 +18526,6 @@ msgstr "Välj ”Ja” för att aktivera övervakningsgränssnittets webbgränss
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Välj \"Yes\" för att aktivera användning av knapparna LEFT/RIGHT för att flytta PageUp/PageDown när knapparna LEFT/RIGHT annars är odefinierade. Detta ger äldre navigering för användare som föredrar det."
-
-msgid "When enabled, services without EPG data will be hidden."
-msgstr "Välj \"Yes\" för att dölja kanaler utan EPG-data."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
 msgstr "Välj \"Yes\" om du vill dölja servernamnet och serverns IP-adress."
@@ -19079,6 +19012,9 @@ msgstr "Välj om fillåsning är tillgänglig. Välj ”Nej” för att lägga t
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Välj om standardvärdet för en inställningspost ska visas och, om så är fallet, var det ska visas i förhållande till beskrivningen."
 
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
+msgstr "Med det här alternativet kan du ställa in layoutvyn (Text eller Grafik)."
+
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr "Välj om historiken för sökvägen till skärmmenyn ska visas och i så fall hur den ska visas."
 
@@ -19236,6 +19172,9 @@ msgstr "Välj förutsättningsvillkor för kanalswitchtimern. Kanalswitchtimern 
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "Välj åtgärd för '%s'"
+
+msgid "Select the action that this button will perform."
+msgstr "Ställ in vad du vill att knappen ska göra."
 
 msgid "Select the action to perform when the timer ends."
 msgstr "Välj den åtgärd som ska utföras när timern går ut."
@@ -19512,6 +19451,9 @@ msgstr "Välj nästa objekt i listan"
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
+msgid "Select the number of services to be shown in the list."
+msgstr "Konfigurera antalet rader som ska visas."
+
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr "Välj hur många gånger en uppgift ska köras igen om ett fel uppstår under körningen."
 
@@ -19768,6 +19710,9 @@ msgstr ""
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr "Välj vilka IP-protokoll som kan användas med adaptern."
+
+msgid "Select which service to use when opening the EPG."
+msgstr ""
 
 #
 msgid "Select your ATSC provider."
@@ -20031,6 +19976,9 @@ msgstr "Service picons bildförhållande"
 
 msgid "Service picons downsize"
 msgstr "Service picons downsize"
+
+msgid "Service preview mode"
+msgstr "Förhandsgranskning av kanal"
 
 msgid "Service reference"
 msgstr "Referens för tjänst"
@@ -20316,9 +20264,6 @@ msgstr "Ställ in på 'Aktiverad' för att avkoda köade krypterade inspelningar
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Om inställningen är \"Yes\" kommer samma kommandon att skickas till TV:n vid djup standby som vid vanlig standby."
-
-msgid "Select the action that this button will perform."
-msgstr "Ställ in vad du vill att knappen ska göra."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Ställ in på yes för felsökning av grundorsaken till en spinnare."
@@ -20722,9 +20667,6 @@ msgstr "Visa MiniTV i den främre displayen"
 
 msgid "Show Movie Selection in Main Menu"
 msgstr "Visa filmval i huvudmenyn"
-
-msgid "Show Movies List"
-msgstr "Visa filmer Lista"
 
 msgid "Show Multi EPG"
 msgstr "Visa Multi EPG"
@@ -21506,10 +21448,6 @@ msgstr "Gå bakåt %s%%"
 msgid "Skip backward (enter time)"
 msgstr "Hoppa bakåt (ange tid)"
 
-#
-msgid "Hide empty services"
-msgstr "Tjänster för tömning av containrar"
-
 #, python-format
 msgid "Skip for '%s' is disabled"
 msgstr "Hoppa över för '%s' är avaktiverat"
@@ -21913,9 +21851,6 @@ msgstr "Sortera"
 msgid "Sort Bookmarks"
 msgstr "Sortera bokmärken"
 
-msgid "Sort EPG List"
-msgstr "Sortera EPG-lista"
-
 msgid "Sort Extension Menu"
 msgstr "Meny för sorteringstillägg"
 
@@ -22296,6 +22231,9 @@ msgstr "Steg österut"
 msgid "Stepped west"
 msgstr "Steg västerut"
 
+msgid "Stereo"
+msgstr ""
+
 #
 msgid "Stop"
 msgstr "Stoppa"
@@ -22618,6 +22556,15 @@ msgstr ""
 
 msgid "Suriname"
 msgstr "Surinam"
+
+msgid "Surround"
+msgstr ""
+
+msgid "Surround 5.1"
+msgstr ""
+
+msgid "Surround 7.1"
+msgstr ""
 
 msgid "Svalbard and Jan Mayen"
 msgstr "Svalbard och Jan Mayen"
@@ -23518,6 +23465,9 @@ msgstr ""
 msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr ""
 
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr "Timerfilen '%s' är korrupt och kunde inte läsas in."
@@ -23766,9 +23716,6 @@ msgstr "Med det här alternativet kan du ställa in offsetvärden för olika Let
 msgid "This option allows you to set the Auto Volume Level output."
 msgstr "Med det här alternativet kan du ställa in Auto Volume Level."
 
-msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
-msgstr "Med det här alternativet kan du ställa in layoutvyn (Text eller Grafik)."
-
 msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "Det här alternativet tillåter dig att växla Ljud till Bluetooth-högtalare."
 
@@ -23960,10 +23907,6 @@ msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr "Time shift kanske inte fungerar korrekt utan en godtagbar katalog."
-
-#
-msgid "Time shift not possible!"
-msgstr "Tidsförskjutning inte möjlig!"
 
 msgid "Time shift save action on zap"
 msgstr "Time shift spara action på zap"
@@ -26219,6 +26162,9 @@ msgstr ""
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "När den är aktiverad omformateras undertexter så att de passar skärmens bredd."
 
+msgid "When enabled, services without EPG data will be hidden."
+msgstr "Välj \"Yes\" för att dölja kanaler utan EPG-data."
+
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "När den är aktiverad visas kanalnummer på skärmen för kanalval."
 
@@ -26357,9 +26303,6 @@ msgstr "När systemet är inställt på en service skannar det normalt transpond
 #
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Var vill du spara inspelningar av tillfälliga tidsomställningar?"
-
-msgid "Select which service to use when opening the EPG."
-msgstr ""
 
 msgid "Which time shift buffer event do you want to save?"
 msgstr "Vilken bufferthändelse för tidsförskjutning vill du spara?"
@@ -27669,6 +27612,109 @@ msgstr "ja (behåller flöden)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Add a RecordTimer for current event"
+#~ msgstr "Lägg till en RecordTimer för aktuell händelse"
+
+#~ msgid "Add a ZapTimer for current event"
+#~ msgstr "Lägg till en ZapTimer för aktuell händelse"
+
+#~ msgid "Add an AutoTimer for the current event"
+#~ msgstr "Lägg till en AutoTimer för den aktuella händelsen"
+
+#
+#~ msgid "Add/Remove Timer"
+#~ msgstr "Lägg till/ta bort timer"
+
+#~ msgid "Add/Remove a timer for the current event"
+#~ msgstr "Lägg till/ta bort en timer för den aktuella händelsen"
+
+#~ msgid "AutoTimer"
+#~ msgstr "AutoTimer"
+
+#
+#~ msgid "CHANNEL +/-"
+#~ msgstr "KANAL +/-"
+
+#
+#~ msgid "Change to bouquet"
+#~ msgstr "Byte till bukett"
+
+#~ msgid "Close bouquet list"
+#~ msgstr "Stäng bukettlistan"
+
+#~ msgid "Close bouquet list."
+#~ msgstr "Stäng bukettlistan."
+
+#~ msgid "Color Button Assignments"
+#~ msgstr "Tilldelningar av färgknappar"
+
+#~ msgid "EPG Bouquet Actions"
+#~ msgstr "Åtgärder för EPG-bukett"
+
+#~ msgid "EPG Display Actions"
+#~ msgstr "Åtgärder för EPG-visning"
+
+#~ msgid "EPG Other Actions"
+#~ msgstr "EPG Övriga åtgärder"
+
+#~ msgid "Getting event information failed!"
+#~ msgstr "Att hämta händelseinformation misslyckades!"
+
+#~ msgid "IMDb search for current event"
+#~ msgstr "IMDb-sökning efter aktuell händelse"
+
+#~ msgid "Info button (short)"
+#~ msgstr "Info-knapp (kort)"
+
+#~ msgid "Jump back 24 hours"
+#~ msgstr "Hoppa tillbaka 24 timmar"
+
+#~ msgid "Jump forward 24 hours"
+#~ msgstr "Hoppa framåt 24 timmar"
+
+#~ msgid "Jump to next page or all up (setup in menu)"
+#~ msgstr "Hoppa till nästa sida eller hela sidan (inställning i menyn)"
+
+#~ msgid "Jump to previous page or all down (setup in menu)"
+#~ msgstr "Hoppa till föregående sida eller alla sidor nedåt (inställning i menyn)"
+
+#~ msgid "Move to home of list"
+#~ msgstr "Flytta till början av listan"
+
+#~ msgid "Navigation And Button Assignments"
+#~ msgstr "Navigering och knapptilldelningar"
+
+#~ msgid "OK button (short)"
+#~ msgstr "OK-knapp (kort)"
+
+#~ msgid "Previous/Next bouquet"
+#~ msgstr "Föregående/Nästa bukett"
+
+#~ msgid "Primetime hour"
+#~ msgstr "Primetime-timme"
+
+#~ msgid "Primetime minute"
+#~ msgstr "Primetime minut"
+
+#~ msgid "Record - same as record button"
+#~ msgstr "Spela in - samma som inspelningsknappen"
+
+#~ msgid "Record Actions"
+#~ msgstr "Registrera åtgärder"
+
+#~ msgid "Search for similar events"
+#~ msgstr "Sök efter liknande evenemang"
+
+#~ msgid "Show Movies List"
+#~ msgstr "Visa filmer Lista"
+
+#~ msgid "Sort EPG List"
+#~ msgstr "Sortera EPG-lista"
+
+#
+#~ msgid "Time shift not possible!"
+#~ msgstr "Tidsförskjutning inte möjlig!"
 
 #~ msgid "Please select device to use as swap file location"
 #~ msgstr "Välj enhet som ska användas som plats för växlingsfil"

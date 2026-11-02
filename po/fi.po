@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 13:51+0100\n"
+"POT-Creation-Date: 2026-11-01 20:39+0100\n"
 "PO-Revision-Date: 2026-09-15 16:51+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -1688,6 +1688,9 @@ msgstr "Kaukosäätimen kuvan korostus osoittaa, mihin painikkeisiin ohje liitty
 msgid "A new storage device has been connected:"
 msgstr "Uusi tallennuslaite on yhdistetty:"
 
+msgid "A prepared or running timer can not be moved to the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -2045,14 +2048,8 @@ msgstr "Lisää RADIO kanavan äänenvoimakkuuden siirtymälistaan"
 msgid "Add a RecordTimer"
 msgstr "Lisää ajastus"
 
-msgid "Add a RecordTimer for current event"
-msgstr "Lisää tallennusajastus tähän ohjelmaan"
-
 msgid "Add a TV service to the Volume Offset list"
 msgstr "Lisää TV-kanava äänenvoimakkuuden siirtymälistaan"
-
-msgid "Add a ZapTimer for current event"
-msgstr "Lisää kanavanvaihtoajastus tähän ohjelmaan"
 
 msgid "Add a ZapTimer for next event"
 msgstr "Lisää kanavanvaihtoajastus seuraavaan ohjelmaan"
@@ -2086,9 +2083,6 @@ msgstr "Lisää ajastin nykyiselle ohjelmalle"
 
 msgid "Add an existing swap file"
 msgstr ""
-
-msgid "Add an AutoTimer for the current event"
-msgstr "Lisää automaattiajastus tähän ohjelmaan"
 
 msgid "Add current directory to bookmarks"
 msgstr "Lisää nykyisen kansion kirjanmerkkeihin"
@@ -2164,12 +2158,6 @@ msgstr "Lisää valittu kanava suosikkilistalle"
 
 msgid "Add title"
 msgstr "Lisää"
-
-msgid "Add/Remove Timer"
-msgstr "Lisää/poista ajastus"
-
-msgid "Add/Remove a timer for the current event"
-msgstr "Lisää/poista ajastus tähän ohjelmaan"
 
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr "Lisää / Poista korostettu lisäosa päivitys listalle"
@@ -2975,9 +2963,6 @@ msgstr "Laitehallinta"
 msgid "AutoRefresh"
 msgstr "Automaattinen Päivitys"
 
-msgid "AutoTimer"
-msgstr "Automaattiajastukset"
-
 msgid "AutoUpdate"
 msgstr "Automaattinen päivitys"
 
@@ -3520,9 +3505,6 @@ msgstr "Broadcom oletus"
 msgid "Browse"
 msgstr "Selaa"
 
-msgid "Browse mode"
-msgstr ""
-
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Selaa, asenna tai poista laajennuksia yksitellen."
 
@@ -3709,8 +3691,17 @@ msgstr "CH%s"
 msgid "CHANGE BOUQUET"
 msgstr "VAIHDA SUOSIKKILISTAA"
 
-msgid "CHANNEL +/-"
-msgstr "Kanava vaihtonäppäimen +/-"
+msgid "CHANNEL+"
+msgstr ""
+
+msgid "CHANNEL+ button (setup in menu)"
+msgstr ""
+
+msgid "CHANNEL-"
+msgstr ""
+
+msgid "CHANNEL- button (setup in menu)"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI-liitäntä/CAM"
@@ -4169,9 +4160,6 @@ msgstr "Vaihda Radio kanava tilaan"
 msgid "Change to TV services mode"
 msgstr "Vaihda Tv kanava tilaan"
 
-msgid "Change to bouquet"
-msgstr "Vaihda suosikkilistalle"
-
 msgid "Changed"
 msgstr "Muutettu"
 
@@ -4270,9 +4258,6 @@ msgstr "Kanavan nimi"
 
 msgid "Channel number"
 msgstr "Kanava numero"
-
-msgid "Service preview mode"
-msgstr "Kanavien esikatselutila"
 
 msgid "Channel selection configuration"
 msgstr "Määritä Kanavalistan asetukset"
@@ -4612,12 +4597,6 @@ msgstr "Sulje tehtävälista"
 msgid "Close Task View"
 msgstr "Sulje tehtävänäkymä"
 
-msgid "Close bouquet list"
-msgstr "Sulje kanavalista"
-
-msgid "Close bouquet list."
-msgstr "Sulje suosikkilista."
-
 msgid "Close dialog"
 msgstr "Sulje valinta"
 
@@ -4707,9 +4686,6 @@ msgstr "Colombia"
 
 msgid "Color"
 msgstr "Väri"
-
-msgid "Color Button Assignments"
-msgstr "Väripainikkeiden määritykset"
 
 msgid "Color format"
 msgstr "Väriformaatti"
@@ -5061,9 +5037,6 @@ msgstr "Määrittää, kuinka monen päivän jälkeen tiedostot poistetaan autom
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "Määrittää, kuinka monen päivän jälkeen vanhat ajastukset poistetaan ajastusluettelosta automaattisesti."
-
-msgid "Select the number of services to be shown in the list."
-msgstr "Määrittää näytettävän rivimäärän."
 
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr "Määritä offline dekoodausviive millisekunteina."
@@ -5526,9 +5499,6 @@ msgstr ""
 
 msgid "Country"
 msgstr "Maa"
-
-msgid "Country Music"
-msgstr ""
 
 msgid "Country for EPG event genre information"
 msgstr "Ohjelmaoppaan ohjelmatyylitietojen maa asetus"
@@ -7406,6 +7376,9 @@ msgstr "Ajurien versio"
 msgid "Drop unconfigured satellites"
 msgstr ""
 
+msgid "Dual channel"
+msgstr ""
+
 msgid "Duplex"
 msgstr "Duplex"
 
@@ -7449,11 +7422,11 @@ msgstr "ECM tiedot '%s'"
 msgid "EPG"
 msgstr "Ohjelmaopas"
 
+msgid "EPG (Long press)"
+msgstr ""
+
 msgid "EPG Actions"
 msgstr "EPG Toiminnot"
-
-msgid "EPG Bouquet Actions"
-msgstr "EPG Kanava toiminnot"
 
 msgid "EPG Cache Check"
 msgstr "Ohjelmaoppaan välimuistin tarkistus"
@@ -7464,9 +7437,6 @@ msgstr "EPG Kanavan/Palvelun valinta"
 msgid "EPG Data In Streams"
 msgstr "EPG tiedot lähetyksissä"
 
-msgid "EPG Display Actions"
-msgstr "EPG Näyttö toiminnot"
-
 msgid "EPG Jump"
 msgstr "EPG Hyppy"
 
@@ -7475,9 +7445,6 @@ msgstr "EPG Kieli"
 
 msgid "EPG Navigation Actions"
 msgstr "EPG Navigointi Toiminnot"
-
-msgid "EPG Other Actions"
-msgstr "EPG Muut Toiminnot"
 
 msgid "EPG Range And History"
 msgstr "EPG alue ja historia"
@@ -7499,6 +7466,9 @@ msgstr "EPG Lähteet"
 
 msgid "EPG Storage And Refresh"
 msgstr "EPG tallennus ja päivitys"
+
+msgid "EPG button long (setup in menu)"
+msgstr ""
 
 msgid "EPG button mode"
 msgstr "EPG näppäimen toiminto"
@@ -7558,7 +7528,7 @@ msgstr "Itäinen raja-arvo asetettu"
 msgid "Eastern satellites"
 msgstr "Itäiset satelliitit"
 
-msgid "Easy Listening Music"
+msgid "Easy Listening"
 msgstr ""
 
 msgid "Easy listening"
@@ -9721,9 +9691,6 @@ msgstr "Saksa"
 msgid "Germany"
 msgstr "Saksa"
 
-msgid "Getting event information failed!"
-msgstr "Ohjelmatietojen haku epäonnistui!"
-
 msgid "Getting plugin information. Please wait..."
 msgstr "Haetaan tietoja lisäosista. Odota..."
 
@@ -10150,6 +10117,9 @@ msgstr "Piilota yläreunan pistejuova tältä kanavalta"
 msgid "Hide any zap error messages."
 msgstr "Piilota kanavanvaihdon virheilmoitukset."
 
+msgid "Hide empty services"
+msgstr "Ohita tyhjät kanavat"
+
 msgid "Hide error messages from the Common Interface module."
 msgstr "Piilota virheilmoitukset CI moduulista."
 
@@ -10354,11 +10324,11 @@ msgstr "IMDb Lisätiedot"
 msgid "IMDb Search"
 msgstr "IMDb Haku"
 
-msgid "IMDb search for current event"
-msgstr "Nykyisen ohjelman IMDb haku"
-
 msgid "INFO"
 msgstr "TIEDOT"
+
+msgid "INFO (Long press)"
+msgstr "Info näppäin (pitkä)"
 
 msgid "INFO button mode"
 msgstr "INFO näppäimen toiminto"
@@ -10798,12 +10768,6 @@ msgstr "Indonesian"
 msgid "Info"
 msgstr "Tietoja"
 
-msgid "INFO (Long press)"
-msgstr "Info näppäin (pitkä)"
-
-msgid "Info button (short)"
-msgstr "Info näppäin (lyhyt)"
-
 msgid "Info file checksum"
 msgstr "Tiedot tarkistussumma"
 
@@ -11125,9 +11089,6 @@ msgstr "Jaavan kieli"
 msgid "Jazz"
 msgstr "jazz"
 
-msgid "Jazz Music"
-msgstr ""
-
 msgid "Jersey"
 msgstr "Jersey"
 
@@ -11143,14 +11104,14 @@ msgstr "Liity tai poistu ZeroTier verkosta"
 msgid "Joined"
 msgstr "Liitetty"
 
+msgid "Joint stereo"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Jordan"
 
 msgid "Jump"
 msgstr "Hyppy"
-
-msgid "Jump back 24 hours"
-msgstr "Hyppää takaisin 24 tuntia"
 
 msgid "Jump back one day"
 msgstr "Hyppää takaisin yksi päivä"
@@ -11160,9 +11121,6 @@ msgstr "Hyppää takaisin tunti"
 
 msgid "Jump first press in channel selection"
 msgstr "Numeropainalluksen hyppy kanavanvalinnassa"
-
-msgid "Jump forward 24 hours"
-msgstr "Hyppää eteen 24 tuntia"
 
 msgid "Jump forward one day"
 msgstr "Hyppää eteenpäin yksi päivä"
@@ -11185,14 +11143,8 @@ msgstr "Mene listan loppuun"
 msgid "Jump to next marked position"
 msgstr "Hyppää seuraavaan merkittyyn kohtaan"
 
-msgid "Jump to next page or all up (setup in menu)"
-msgstr "Siirtyminen seuraavalle sivulle tai kaikki ylöspäin (asetus valikossa)"
-
 msgid "Jump to previous marked position"
 msgstr "Hyppää edelliseen merkittyyn kohtaan"
-
-msgid "Jump to previous page or all down (setup in menu)"
-msgstr "Siirtyminen edelliselle sivulle tai kaikki alaspäin (asetus valikossa)"
 
 msgid "Jump to prime time"
 msgstr "Hyppää parhaaseen katseluaikaan"
@@ -12444,6 +12396,9 @@ msgstr "Mongolia"
 msgid "Mongolian"
 msgstr "Mongolia"
 
+msgid "Mono"
+msgstr ""
+
 msgid "Montenegro"
 msgstr "Montenegro"
 
@@ -12684,9 +12639,6 @@ msgstr "Siirry ensimmäiselle riville"
 
 msgid "Move to first line / screen in the panel"
 msgstr "Siirry paneelin ensimmäiselle riville / näytölle"
-
-msgid "Move to home of list"
-msgstr "Siirry luettelon alkuun"
 
 msgid "Move to last item / screen"
 msgstr "Siirry viimeiselle riville/näytölle"
@@ -13018,6 +12970,9 @@ msgstr "Namibia"
 msgid "Narration"
 msgstr "Kuvaus"
 
+msgid "National Music"
+msgstr ""
+
 msgid "National music"
 msgstr "Kansanvälinen musiikki"
 
@@ -13047,9 +13002,6 @@ msgstr "Siirry valittuun hakemistoon"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Käytä YLÖS / ALAS -painikkeita siirtyäksesi ylös / alas ja VASEN / OIKEA sivulle sivulta. OK suorittaa toiminnon, joka on kuvattu parhaillaan korostetussa ohjeessa."
-
-msgid "Navigation And Button Assignments"
-msgstr "Navigointi ja painikkeiden määritykset"
 
 msgid "Navigation And Time Range"
 msgstr "Navigointi ja aikaväli"
@@ -13854,9 +13806,6 @@ msgstr "OK"
 msgid "OK (Long press)"
 msgstr "OK näppäin (pitkä)"
 
-msgid "OK button (short)"
-msgstr "OK näppäin (lyhyt)"
-
 msgid "OK button mode"
 msgstr "OK näppäimen toiminto"
 
@@ -13968,9 +13917,6 @@ msgid "Ojibwa"
 msgstr "Ojibwa"
 
 msgid "Oldies"
-msgstr ""
-
-msgid "Oldies Music"
 msgstr ""
 
 msgid "Olympic blue"
@@ -14444,6 +14390,9 @@ msgstr "PIN"
 
 msgid "PIN code needed"
 msgstr "PIN koodi vaaditaan"
+
+msgid "PLAY"
+msgstr ""
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -15528,9 +15477,6 @@ msgstr "Edellinen sivu"
 msgid "Previous channel page"
 msgstr "Siirry edelliselle kanavalle"
 
-msgid "Previous/Next bouquet"
-msgstr "edellinen/seuraava Suosikkilista"
-
 msgid "Previous/Next page"
 msgstr "edellinen/seuraava Sivu"
 
@@ -15549,14 +15495,12 @@ msgstr "Paras katseluaika"
 msgid "Prime time"
 msgstr "Paras katseluaika"
 
-msgid "Primetime hour"
-msgstr "Paras katseluaika tunti"
-
-msgid "Primetime minute"
-msgstr "Paras katseluaika minuutit"
-
 msgid "Priority"
 msgstr "Prioriteetti"
+
+#, python-format
+msgid "Priority: %d"
+msgstr ""
 
 msgid "Privacy level"
 msgstr "Yksityisyyden taso"
@@ -15610,8 +15554,8 @@ msgstr "Profiili: Paikallinen laite"
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "Ohjelma '%s' on asennettava tämän toiminnon suorittamiseksi. Haluatko asentaa '%s' tämän paketin ohjelman asentamiseksi?"
 
-msgid "Program type"
-msgstr "Ohjelman tyyppi"
+msgid "Programme type (PTY)"
+msgstr ""
 
 msgid "Programmlisten History"
 msgstr "Ohjelmalista Historia"
@@ -15892,14 +15836,20 @@ msgstr "REC symboli käytössä"
 msgid "REC symbol"
 msgstr "REC symboli"
 
-msgid "RED"
-msgstr "Punainen näppäin"
+msgid "RECORD"
+msgstr ""
 
-msgid "RED button / HbbTV"
+msgid "RECORD (Long press)"
+msgstr ""
+
+msgid "RED"
 msgstr "Punainen näppäin"
 
 msgid "RED (Long press)"
 msgstr "Punainen (pitkä)"
+
+msgid "RED button / HbbTV"
+msgstr "Punainen näppäin"
 
 msgid "RF Output Settings"
 msgstr "RF ulostulo"
@@ -16096,12 +16046,6 @@ msgstr ""
 
 msgid "Record"
 msgstr "Tallenna"
-
-msgid "Record - same as record button"
-msgstr "Tallenna - sama kuin tallennus-näppäin"
-
-msgid "Record Actions"
-msgstr "Tallennus Toiminnot"
 
 msgid "Record icon"
 msgstr "Tallenus kuvake"
@@ -16983,9 +16927,6 @@ msgstr "oikealla, rivitä teksti"
 msgid "Rock"
 msgstr ""
 
-msgid "Rock Music"
-msgstr ""
-
 msgid "Rock/Pop"
 msgstr "Rock/Pop"
 
@@ -17567,9 +17508,6 @@ msgstr "Etsintä itään"
 msgid "Search for network shares"
 msgstr "Etsi verkkojakoja"
 
-msgid "Search for similar events"
-msgstr "Hae samanlaisia ohjelmia"
-
 msgid "Search in the current view"
 msgstr ""
 
@@ -17766,9 +17704,6 @@ msgstr "Valitse ‘Kyllä’, jos haluat ottaa käyttöön DNSCrypt-alijärjeste
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Valitse 'Kyllä', jos haluat sallia VASEN/OIKEA painikkeiden käytön Sivu Ylös /Sivua Alas siirtymiseen, kun VASEN/OIKEA painikkeet ovat muuten määrittelemättömiä. Tämä tarjoaa perinteisen navigoinnin käyttäjille, jotka haluavat sitä."
-
-msgid "When enabled, services without EPG data will be hidden."
-msgstr "'Kyllä' valinnalla kanavia ilman EPG:tä ei näytetä."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
 msgstr "Valitse ”Kyllä” palvelimen nimen ja IP osoitteen piilottamiseksi."
@@ -18250,6 +18185,9 @@ msgstr "Valitse, onko tiedosto lukitus käytettävissä. Valitse 'Ei', jos halua
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Tämän vaihtoehdon avulla voit valita, näytetäänkö asetuskohteen oletusarvo, ja jos näytetään, missä se näytetään suhteessa kuvaukseen."
 
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
+msgstr "Määrittää näkymän asettelun (teksti tai graafinen)."
+
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr "Valitse, näytetäänkö näyttö valikon polku historia ja jos näytetään, miten se näytetään."
 
@@ -18402,6 +18340,9 @@ msgstr "Valitse kanavanvaihtoa jastimen edellytykset. Kanavanvaihtoajastin aktiv
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "Valitse toiminto '%s'"
+
+msgid "Select the action that this button will perform."
+msgstr "Valitse mitä haluat näppäimen tekevän."
 
 msgid "Select the action to perform when the timer ends."
 msgstr "Valitse toiminto, joka suoritetaan ajastuksen päättyessä."
@@ -18676,6 +18617,9 @@ msgstr "Valitse listan seuraavan kohteen"
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
+msgid "Select the number of services to be shown in the list."
+msgstr "Määrittää näytettävän rivimäärän."
+
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr "Valitse, kuinka monta kertaa tehtävää yritetään uudelleen, jos sen suorittamisen aikana ilmenee virhe."
 
@@ -18931,6 +18875,9 @@ msgstr ""
 msgid "Select which IP protocols can be used with this adapter."
 msgstr "Valitse, mitä IP protokollia tämän verkkosovittimen kanssa voidaan käyttää."
 
+msgid "Select which service to use when opening the EPG."
+msgstr ""
+
 msgid "Select your ATSC provider."
 msgstr "Valitse ATSC-palveluntarjoajasi."
 
@@ -19179,6 +19126,9 @@ msgstr "Kanavalogojen kuvasuhde"
 
 msgid "Service picons downsize"
 msgstr "Kanavalogojen pienennys"
+
+msgid "Service preview mode"
+msgstr "Kanavien esikatselutila"
 
 msgid "Service reference"
 msgstr "Referenssi"
@@ -19458,9 +19408,6 @@ msgstr "Aseta 'Käytössä' purkaaksesi jonossa olevat salatut tallenteet valmiu
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Jos arvo on Kyllä, televisioon lähetetään samat komennot virransäästö tilassa kuin säännöllisten valmiustilatapahtumien aikana."
-
-msgid "Select the action that this button will perform."
-msgstr "Valitse mitä haluat näppäimen tekevän."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Aseta Kyllä asetukseksi debugging root perus syyn virheen selvittämiseksi."
@@ -19850,9 +19797,6 @@ msgstr "Näytä tv etupaneelin näytössä"
 
 msgid "Show Movie Selection in Main Menu"
 msgstr "Näytä Tallennukset Päävalikossa"
-
-msgid "Show Movies List"
-msgstr "Näytä tallennelista"
 
 msgid "Show Multi EPG"
 msgstr "Näytä monikanava-EPG"
@@ -20590,9 +20534,6 @@ msgstr "Siirry taaksepäin %s%%"
 msgid "Skip backward (enter time)"
 msgstr "siirry taaksepäin (syötä aika)"
 
-msgid "Hide empty services"
-msgstr "Ohita tyhjät kanavat"
-
 #, python-format
 msgid "Skip for '%s' is disabled"
 msgstr "Hyppy kohteeseen '%s' on poistettu käytöstä"
@@ -20983,9 +20924,6 @@ msgstr "Järjestys"
 msgid "Sort Bookmarks"
 msgstr "Lajittele kirjanmerkit"
 
-msgid "Sort EPG List"
-msgstr "Järjestä EPG lista"
-
 msgid "Sort Extension Menu"
 msgstr "Näytä laajennukset aakkosjärjestyksessä"
 
@@ -21345,6 +21283,9 @@ msgstr "Askel itään"
 msgid "Stepped west"
 msgstr "Askel länteen"
 
+msgid "Stereo"
+msgstr ""
+
 msgid "Stop"
 msgstr "Pysäytä"
 
@@ -21644,6 +21585,15 @@ msgstr ""
 
 msgid "Suriname"
 msgstr "Suriname"
+
+msgid "Surround"
+msgstr ""
+
+msgid "Surround 5.1"
+msgstr ""
+
+msgid "Surround 7.1"
+msgstr ""
 
 msgid "Svalbard and Jan Mayen"
 msgstr "Huippuvuoret ja Jan Mayen"
@@ -22521,6 +22471,9 @@ msgstr ""
 msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr ""
 
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr "Ajastinluettelo '%s' on vioittunut eikä sitä voida ladata."
@@ -22767,9 +22720,6 @@ msgstr "Tämän vaihtoehdon avulla voit asettaa offset arvoja eri Letterbox reso
 msgid "This option allows you to set the Auto Volume Level output."
 msgstr "Tämä asetus määrittää automaattisen äänenvoimakkuuden tason."
 
-msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
-msgstr "Määrittää näkymän asettelun (teksti tai graafinen)."
-
 msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "Tämän vaihtoehdon avulla voit vaihtaa äänen Bluetooth kaiuttimelle."
 
@@ -22954,9 +22904,6 @@ msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr "Ajansiirto ei ehkä toimi oikein ilman hyväksyttävää hakemistoa."
-
-msgid "Time shift not possible!"
-msgstr "Ajansiirtotallennusta ei voida käyttää!"
 
 msgid "Time shift save action on zap"
 msgstr "Ajansiirron tallennus kanavanvaihdossa"
@@ -25113,6 +25060,9 @@ msgstr ""
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Kun päällä, tekstityksen leveys sovitetaan ruudun leveyteen."
 
+msgid "When enabled, services without EPG data will be hidden."
+msgstr "'Kyllä' valinnalla kanavia ilman EPG:tä ei näytetä."
+
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Kun päällä, näytä kanavanvalinnassa kanavanumerot."
 
@@ -25250,9 +25200,6 @@ msgstr "Kun vaihdat kanavalle, normaalisti laite hakee lähettimen tietojen muut
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Minne ajansiirron väliaikainen tiedosto tallennetaan?"
-
-msgid "Select which service to use when opening the EPG."
-msgstr ""
 
 msgid "Which time shift buffer event do you want to save?"
 msgstr "Minkä ohjelman haluat tallentaa pysyvästi?"
@@ -26458,6 +26405,108 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Add a RecordTimer for current event"
+#~ msgstr "Lisää tallennusajastus tähän ohjelmaan"
+
+#~ msgid "Add a ZapTimer for current event"
+#~ msgstr "Lisää kanavanvaihtoajastus tähän ohjelmaan"
+
+#~ msgid "Add an AutoTimer for the current event"
+#~ msgstr "Lisää automaattiajastus tähän ohjelmaan"
+
+#~ msgid "Add/Remove Timer"
+#~ msgstr "Lisää/poista ajastus"
+
+#~ msgid "Add/Remove a timer for the current event"
+#~ msgstr "Lisää/poista ajastus tähän ohjelmaan"
+
+#~ msgid "AutoTimer"
+#~ msgstr "Automaattiajastukset"
+
+#~ msgid "CHANNEL +/-"
+#~ msgstr "Kanava vaihtonäppäimen +/-"
+
+#~ msgid "Change to bouquet"
+#~ msgstr "Vaihda suosikkilistalle"
+
+#~ msgid "Close bouquet list"
+#~ msgstr "Sulje kanavalista"
+
+#~ msgid "Close bouquet list."
+#~ msgstr "Sulje suosikkilista."
+
+#~ msgid "Color Button Assignments"
+#~ msgstr "Väripainikkeiden määritykset"
+
+#~ msgid "EPG Bouquet Actions"
+#~ msgstr "EPG Kanava toiminnot"
+
+#~ msgid "EPG Display Actions"
+#~ msgstr "EPG Näyttö toiminnot"
+
+#~ msgid "EPG Other Actions"
+#~ msgstr "EPG Muut Toiminnot"
+
+#~ msgid "Getting event information failed!"
+#~ msgstr "Ohjelmatietojen haku epäonnistui!"
+
+#~ msgid "IMDb search for current event"
+#~ msgstr "Nykyisen ohjelman IMDb haku"
+
+#~ msgid "Info button (short)"
+#~ msgstr "Info näppäin (lyhyt)"
+
+#~ msgid "Jump back 24 hours"
+#~ msgstr "Hyppää takaisin 24 tuntia"
+
+#~ msgid "Jump forward 24 hours"
+#~ msgstr "Hyppää eteen 24 tuntia"
+
+#~ msgid "Jump to next page or all up (setup in menu)"
+#~ msgstr "Siirtyminen seuraavalle sivulle tai kaikki ylöspäin (asetus valikossa)"
+
+#~ msgid "Jump to previous page or all down (setup in menu)"
+#~ msgstr "Siirtyminen edelliselle sivulle tai kaikki alaspäin (asetus valikossa)"
+
+#~ msgid "Move to home of list"
+#~ msgstr "Siirry luettelon alkuun"
+
+#~ msgid "Navigation And Button Assignments"
+#~ msgstr "Navigointi ja painikkeiden määritykset"
+
+#~ msgid "OK button (short)"
+#~ msgstr "OK näppäin (lyhyt)"
+
+#~ msgid "Previous/Next bouquet"
+#~ msgstr "edellinen/seuraava Suosikkilista"
+
+#~ msgid "Primetime hour"
+#~ msgstr "Paras katseluaika tunti"
+
+#~ msgid "Primetime minute"
+#~ msgstr "Paras katseluaika minuutit"
+
+#~ msgid "Program type"
+#~ msgstr "Ohjelman tyyppi"
+
+#~ msgid "Record - same as record button"
+#~ msgstr "Tallenna - sama kuin tallennus-näppäin"
+
+#~ msgid "Record Actions"
+#~ msgstr "Tallennus Toiminnot"
+
+#~ msgid "Search for similar events"
+#~ msgstr "Hae samanlaisia ohjelmia"
+
+#~ msgid "Show Movies List"
+#~ msgstr "Näytä tallennelista"
+
+#~ msgid "Sort EPG List"
+#~ msgstr "Järjestä EPG lista"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Ajansiirtotallennusta ei voida käyttää!"
 
 #~ msgid "Please select device to use as swap file location"
 #~ msgstr "Valitse laite, jonne swap tiedosto tallennetaan"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 13:51+0100\n"
+"POT-Creation-Date: 2026-11-01 20:39+0100\n"
 "PO-Revision-Date: 2026-08-17 05:21+0000\n"
 "Last-Translator: தமிழ்நேரம் <tamilneram247@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ta/>\n"
@@ -1683,6 +1683,9 @@ msgstr "ரிமோட் கண்ட்ரோல் படத்தின் 
 msgid "A new storage device has been connected:"
 msgstr "புதிய சேமிப்பக சாதனம் இணைக்கப்பட்டுள்ளது:"
 
+msgid "A prepared or running timer can not be moved to the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -2034,14 +2037,8 @@ msgstr "தொகுதி ஆஃப்செட் பட்டியலில�
 msgid "Add a RecordTimer"
 msgstr "ஒரு ரெக்கார்ட் டைமரைச் சேர்க்கவும்"
 
-msgid "Add a RecordTimer for current event"
-msgstr "தற்போதைய நிகழ்வுக்கு ஒரு ரெக்கார்டிமரைச் சேர்க்கவும்"
-
 msgid "Add a TV service to the Volume Offset list"
 msgstr "தொகுதி ஆஃப்செட் பட்டியலில் டிவி சேவையைச் சேர்க்கவும்"
-
-msgid "Add a ZapTimer for current event"
-msgstr "தற்போதைய நிகழ்வுக்கு ஒரு சாப்டிமரைச் சேர்க்கவும்"
 
 msgid "Add a ZapTimer for next event"
 msgstr "அடுத்த நிகழ்வுக்கு ஒரு சாப்டிமரைச் சேர்க்கவும்"
@@ -2075,9 +2072,6 @@ msgstr "தற்போதைய நிகழ்வுக்கு ஒரு ட
 
 msgid "Add an existing swap file"
 msgstr ""
-
-msgid "Add an AutoTimer for the current event"
-msgstr "தற்போதைய நிகழ்வுக்கு ஆட்டோடிமரைச் சேர்க்கவும்"
 
 msgid "Add current directory to bookmarks"
 msgstr "தற்போதைய கோப்பகத்தை புக்மார்க்குகளில் சேர்க்கவும்"
@@ -2153,12 +2147,6 @@ msgstr "தேர்ந்தெடுக்கப்பட்ட சேவை�
 
 msgid "Add title"
 msgstr "தலைப்பைச் சேர்க்கவும்"
-
-msgid "Add/Remove Timer"
-msgstr "டைமரைச் சேர்க்கவும்/அகற்றவும்"
-
-msgid "Add/Remove a timer for the current event"
-msgstr "தற்போதைய நிகழ்வுக்கு ஒரு டைமரைச் சேர்க்கவும்/அகற்றவும்"
 
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr "நிறுவப்பட்ட பட்டியலில் இருந்து/சிறப்பம்சமாக சொருகி சேர்க்க/அகற்று"
@@ -2960,9 +2948,6 @@ msgstr "ஆட்டோமவுண்ட் மேனேசர்"
 msgid "AutoRefresh"
 msgstr "ஆட்டோ புதுப்பிப்பு"
 
-msgid "AutoTimer"
-msgstr "ஆட்டோடிமர்"
-
 msgid "AutoUpdate"
 msgstr "தன்னியக்க தேதிகள்"
 
@@ -3505,9 +3490,6 @@ msgstr ""
 msgid "Browse"
 msgstr ""
 
-msgid "Browse mode"
-msgstr ""
-
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "செருகுநிரல்களை உலாவவும், நிறுவவும் அல்லது அகற்றவும்."
 
@@ -3694,8 +3676,17 @@ msgstr "Ch%s"
 msgid "CHANGE BOUQUET"
 msgstr "பூச்செண்டை மாற்றவும்"
 
-msgid "CHANNEL +/-"
-msgstr "சேனல் +/-"
+msgid "CHANNEL+"
+msgstr ""
+
+msgid "CHANNEL+ button (setup in menu)"
+msgstr ""
+
+msgid "CHANNEL-"
+msgstr ""
+
+msgid "CHANNEL- button (setup in menu)"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "தொஒ (பொதுவான இடைமுகம்) அமைப்பு"
@@ -4153,9 +4144,6 @@ msgstr "ரேடியோ சேவைகள் பயன்முறையி�
 msgid "Change to TV services mode"
 msgstr "டிவி சேவைகள் பயன்முறையில் மாற்றவும்"
 
-msgid "Change to bouquet"
-msgstr "பூச்செட்டுக்கு மாற்றவும்"
-
 msgid "Changed"
 msgstr "மாற்றப்பட்டது"
 
@@ -4254,9 +4242,6 @@ msgstr "சேனல் பெயர்"
 
 msgid "Channel number"
 msgstr "சேனல் எண்"
-
-msgid "Service preview mode"
-msgstr "சேனல் முன்னோட்டம் பயன்முறை"
 
 msgid "Channel selection configuration"
 msgstr "சேனல் தேர்வு உள்ளமைவு"
@@ -4596,12 +4581,6 @@ msgstr "பணி பட்டியலை மூடு"
 msgid "Close Task View"
 msgstr "பணி காட்சியை மூடு"
 
-msgid "Close bouquet list"
-msgstr "பூச்செண்டு பட்டியல் மூடு"
-
-msgid "Close bouquet list."
-msgstr "பூச்செண்டு பட்டியல் மூடு."
-
 msgid "Close dialog"
 msgstr "உரையாடலை மூடு"
 
@@ -4691,9 +4670,6 @@ msgstr "கொலம்பியா"
 
 msgid "Color"
 msgstr "நிறம்"
-
-msgid "Color Button Assignments"
-msgstr ""
 
 msgid "Color format"
 msgstr "வண்ண வடிவம்"
@@ -5042,9 +5018,6 @@ msgstr "குப்பைத்தொட்டியில் இருந்�
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "நேரங்குறிகருவி பட்டியலிலிருந்து தானாக அகற்றப்படுவதற்கு முன்பு பழைய டைமர்கள் வைக்கப்படும் நாட்களின் எண்ணிக்கையை உள்ளமைக்கவும்."
-
-msgid "Select the number of services to be shown in the list."
-msgstr "காட்டப்பட்ட வரிசைகளின் எண்ணிக்கையை உள்ளமைக்கவும்."
 
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr "மில்லி விநாடிகளில் இணைப்பில்லாத டிகோடிங் தாமதத்தை உள்ளமைக்கவும். கட்டமைக்கப்பட்ட நேரந்தவறுகை ஒவ்வொரு கட்டுப்பாட்டு சொல் சமநிலை மாற்றத்திலும் காணப்படுகிறது."
@@ -5496,9 +5469,6 @@ msgstr ""
 
 msgid "Country"
 msgstr "நாடு"
-
-msgid "Country Music"
-msgstr ""
 
 msgid "Country for EPG event genre information"
 msgstr "ஈபிசி நிகழ்வு வகை தகவல்களுக்கான நாடு"
@@ -7370,6 +7340,9 @@ msgstr "இயக்கிகள் பதிப்பு"
 msgid "Drop unconfigured satellites"
 msgstr ""
 
+msgid "Dual channel"
+msgstr ""
+
 msgid "Duplex"
 msgstr "டூப்ளக்ச்"
 
@@ -7413,11 +7386,11 @@ msgstr "'%s' க்கான ECM செய்தி"
 msgid "EPG"
 msgstr "எப்சி"
 
+msgid "EPG (Long press)"
+msgstr ""
+
 msgid "EPG Actions"
 msgstr "ஈபிசி செயல்கள்"
-
-msgid "EPG Bouquet Actions"
-msgstr "ஈபிசி பூச்செண்டு செயல்கள்"
 
 msgid "EPG Cache Check"
 msgstr "ஈபிசி கேச் சோதனை"
@@ -7428,9 +7401,6 @@ msgstr "ஈபிசி சேனல்/சேவை தேர்வு"
 msgid "EPG Data In Streams"
 msgstr ""
 
-msgid "EPG Display Actions"
-msgstr "ஈபிசி காட்சி செயல்கள்"
-
 msgid "EPG Jump"
 msgstr "ஈபிசி சம்ப்"
 
@@ -7439,9 +7409,6 @@ msgstr ""
 
 msgid "EPG Navigation Actions"
 msgstr "ஈபிசி வழிசெலுத்தல் நடவடிக்கைகள்"
-
-msgid "EPG Other Actions"
-msgstr "EPG பிற செயல்கள்"
 
 msgid "EPG Range And History"
 msgstr ""
@@ -7462,6 +7429,9 @@ msgid "EPG Sources"
 msgstr ""
 
 msgid "EPG Storage And Refresh"
+msgstr ""
+
+msgid "EPG button long (setup in menu)"
 msgstr ""
 
 msgid "EPG button mode"
@@ -7522,7 +7492,7 @@ msgstr "கிழக்கு வரம்பு தொகுப்பு"
 msgid "Eastern satellites"
 msgstr ""
 
-msgid "Easy Listening Music"
+msgid "Easy Listening"
 msgstr ""
 
 msgid "Easy listening"
@@ -9685,9 +9655,6 @@ msgstr "செர்மன்"
 msgid "Germany"
 msgstr "செர்மனி"
 
-msgid "Getting event information failed!"
-msgstr "நிகழ்வு தகவலைப் பெறுவது தோல்வியடைந்தது!"
-
 msgid "Getting plugin information. Please wait..."
 msgstr "சொருகி தகவல்களைப் பெறுதல். தயவுசெய்து காத்திருங்கள் ..."
 
@@ -10114,6 +10081,9 @@ msgstr "இந்த சேவைக்கு விபிஐ வரியை �
 msgid "Hide any zap error messages."
 msgstr "எந்த ZAP பிழை செய்திகளையும் மறைக்கவும்."
 
+msgid "Hide empty services"
+msgstr "வெற்று சேவைகளைத் தவிர்க்கவும்"
+
 msgid "Hide error messages from the Common Interface module."
 msgstr "பொதுவான இடைமுக தொகுதியிலிருந்து பிழை செய்திகளை மறைக்கவும்."
 
@@ -10318,11 +10288,11 @@ msgstr "IMDB விவரங்கள்"
 msgid "IMDb Search"
 msgstr "IMDB தேடல்"
 
-msgid "IMDb search for current event"
-msgstr "தற்போதைய நிகழ்வைத் தேடுங்கள்"
-
 msgid "INFO"
 msgstr "தகவல்"
+
+msgid "INFO (Long press)"
+msgstr "செய்தி பொத்தான் (நீண்ட)"
 
 msgid "INFO button mode"
 msgstr "செய்தி பொத்தான் பயன்முறை"
@@ -10757,12 +10727,6 @@ msgstr "இந்தோனேசிய"
 msgid "Info"
 msgstr "தகவல்"
 
-msgid "INFO (Long press)"
-msgstr "செய்தி பொத்தான் (நீண்ட)"
-
-msgid "Info button (short)"
-msgstr "செய்தி பொத்தான் (குறுகிய)"
-
 msgid "Info file checksum"
 msgstr "செய்தி கோப்பு செக்சம்"
 
@@ -11084,9 +11048,6 @@ msgstr "சாவானீச்"
 msgid "Jazz"
 msgstr "சாச்"
 
-msgid "Jazz Music"
-msgstr ""
-
 msgid "Jersey"
 msgstr "செர்சி"
 
@@ -11102,14 +11063,14 @@ msgstr "கட்டமைக்கப்பட்ட ZeroTier நெட்வ�
 msgid "Joined"
 msgstr "சேர்ந்தார்"
 
+msgid "Joint stereo"
+msgstr ""
+
 msgid "Jordan"
 msgstr "சோர்டான்"
 
 msgid "Jump"
 msgstr "தாவு"
-
-msgid "Jump back 24 hours"
-msgstr "24 மணி நேரம் திரும்பிச் செல்லவும்"
 
 msgid "Jump back one day"
 msgstr "ஒரு நாள் பின்னால் செல்லவும்"
@@ -11119,9 +11080,6 @@ msgstr "ஒரு மணி நேரம் பின்னால் செல�
 
 msgid "Jump first press in channel selection"
 msgstr "சேனல் தேர்வில் முதல் அழுத்தவும்"
-
-msgid "Jump forward 24 hours"
-msgstr "24 மணி நேரம் முன்னோக்கி செல்லவும்"
 
 msgid "Jump forward one day"
 msgstr "ஒரு நாள் முன்னோக்கி செல்லவும்"
@@ -11144,14 +11102,8 @@ msgstr "பட்டியலின் முடிவுக்கு செல�
 msgid "Jump to next marked position"
 msgstr "அடுத்த குறிக்கப்பட்ட நிலைக்கு செல்லவும்"
 
-msgid "Jump to next page or all up (setup in menu)"
-msgstr "அடுத்த பக்கத்திற்கு செல்லவும் அல்லது எல்லாவற்றிற்கும் (மெனுவில் அமைக்கவும்)"
-
 msgid "Jump to previous marked position"
 msgstr "முந்தைய குறிக்கப்பட்ட நிலைக்கு செல்லவும்"
-
-msgid "Jump to previous page or all down (setup in menu)"
-msgstr "முந்தைய பக்கம் அல்லது அனைத்து கீழே (மெனுவில் அமைக்கவும்)"
 
 msgid "Jump to prime time"
 msgstr "முதன்மையான நேரத்திற்கு செல்லவும்"
@@ -12403,6 +12355,9 @@ msgstr "மங்கோலியா"
 msgid "Mongolian"
 msgstr "மங்கோலியன்"
 
+msgid "Mono"
+msgstr ""
+
 msgid "Montenegro"
 msgstr "மோன்டே நெக்ரோ"
 
@@ -12641,9 +12596,6 @@ msgstr "முதல் வரிக்கு நகர்த்தவும்"
 
 msgid "Move to first line / screen in the panel"
 msgstr "பேனலில் முதல் வரி / திரைக்கு நகர்த்தவும்"
-
-msgid "Move to home of list"
-msgstr "பட்டியலின் வீட்டிற்கு செல்லுங்கள்"
 
 msgid "Move to last item / screen"
 msgstr ""
@@ -12975,6 +12927,9 @@ msgstr "நமீபியா"
 msgid "Narration"
 msgstr "கதை"
 
+msgid "National Music"
+msgstr ""
+
 msgid "National music"
 msgstr "தேசிய இசை"
 
@@ -13004,9 +12959,6 @@ msgstr "தேர்ந்தெடுக்கப்பட்ட கோப்�
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "மேல்/கீழ் பொத்தான்களுடன் மேலே/கீழ்நோக்கி செல்லவும், இடது/வலதுபுறத்தில் மேலே/கீழ்/கீழ். தற்போது முன்னிலைப்படுத்தப்பட்ட உதவியில் விவரிக்கப்பட்டுள்ள செயலைச் செய்வது சரி."
-
-msgid "Navigation And Button Assignments"
-msgstr ""
 
 msgid "Navigation And Time Range"
 msgstr ""
@@ -13798,9 +13750,6 @@ msgstr "சரி"
 msgid "OK (Long press)"
 msgstr "சரி பொத்தான் (நீண்ட)"
 
-msgid "OK button (short)"
-msgstr "சரி பொத்தான் (குறுகிய)"
-
 msgid "OK button mode"
 msgstr "சரி பொத்தான் பயன்முறை"
 
@@ -13912,9 +13861,6 @@ msgid "Ojibwa"
 msgstr "ஒசிப்வா"
 
 msgid "Oldies"
-msgstr ""
-
-msgid "Oldies Music"
 msgstr ""
 
 msgid "Olympic blue"
@@ -14388,6 +14334,9 @@ msgstr ""
 
 msgid "PIN code needed"
 msgstr "முள் குறியீடு தேவை"
+
+msgid "PLAY"
+msgstr ""
 
 msgid "PLP ID"
 msgstr "பி.எல்.பி ஐடி"
@@ -15472,9 +15421,6 @@ msgstr "முந்தைய பக்கம்"
 msgid "Previous channel page"
 msgstr "முந்தைய சேனல் பக்கம்"
 
-msgid "Previous/Next bouquet"
-msgstr "முந்தைய/அடுத்த பூச்செண்டு"
-
 msgid "Previous/Next page"
 msgstr "முந்தைய/அடுத்த பக்கம்"
 
@@ -15493,14 +15439,12 @@ msgstr ""
 msgid "Prime time"
 msgstr "முதன்மையான நேரம்"
 
-msgid "Primetime hour"
-msgstr "பிரைம் டைம் மணி"
-
-msgid "Primetime minute"
-msgstr "பிரைம் டைம் மணித்துளி"
-
 msgid "Priority"
 msgstr "முன்னுரிமை"
+
+#, python-format
+msgid "Priority: %d"
+msgstr ""
 
 msgid "Privacy level"
 msgstr "தனியுரிமை நிலை"
@@ -15554,7 +15498,7 @@ msgstr "சுயவிவரம்: உள்ளக பெட்டி"
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "இந்த செயலைச் செய்ய நிரல் '%s' நிறுவப்பட வேண்டும். நிரலை நிறுவ '%s' தொகுப்பை நிறுவ விரும்புகிறீர்களா?"
 
-msgid "Program type"
+msgid "Programme type (PTY)"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -15836,14 +15780,20 @@ msgstr "பயன்பாட்டில் ரெக் அடையாளம�
 msgid "REC symbol"
 msgstr "ரெக் அடையாளம்"
 
+msgid "RECORD"
+msgstr ""
+
+msgid "RECORD (Long press)"
+msgstr ""
+
 msgid "RED"
 msgstr "சிவப்பு பொத்தான்"
 
-msgid "RED button / HbbTV"
-msgstr "சிவப்பு பொத்தான் ..."
-
 msgid "RED (Long press)"
 msgstr "சிவப்பு நீண்ட"
+
+msgid "RED button / HbbTV"
+msgstr "சிவப்பு பொத்தான் ..."
 
 msgid "RF Output Settings"
 msgstr "வானலை வெளியீட்டு அமைப்புகள்"
@@ -16040,12 +15990,6 @@ msgstr ""
 
 msgid "Record"
 msgstr "பதிவு"
-
-msgid "Record - same as record button"
-msgstr "பதிவு - பதிவு பொத்தானைப் போலவே"
-
-msgid "Record Actions"
-msgstr "பதிவு நடவடிக்கைகள்"
 
 msgid "Record icon"
 msgstr "பதிவு படவுரு"
@@ -16927,9 +16871,6 @@ msgstr "சரி, போர்த்தப்பட்டது"
 msgid "Rock"
 msgstr ""
 
-msgid "Rock Music"
-msgstr ""
-
 msgid "Rock/Pop"
 msgstr "ராக்/பாப்"
 
@@ -17511,9 +17452,6 @@ msgstr "கிழக்கு நோக்கி தேடுங்கள்"
 msgid "Search for network shares"
 msgstr "பிணைய பங்குகளைத் தேடுங்கள்"
 
-msgid "Search for similar events"
-msgstr "ஒத்த நிகழ்வுகளைத் தேடுங்கள்"
-
 msgid "Search in the current view"
 msgstr ""
 
@@ -17702,9 +17640,6 @@ msgstr "DNSCrypt துணை அமைப்பிற்கான கண்க�
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "இடது/வலது பொத்தான்கள் வரையறுக்கப்படாதபோது, பேசப்/பேசெடவுன் நகர்த்த இடது/வலது பொத்தான்களைப் பயன்படுத்த 'ஆம்' என்பதைத் தேர்ந்தெடுக்கவும். இது விரும்பும் பயனர்களுக்கு இது மரபு வழிசெலுத்தலை வழங்குகிறது."
-
-msgid "When enabled, services without EPG data will be hidden."
-msgstr "ஈபிசி தரவு இல்லாமல் சேனல்களை மறைக்க 'ஆம்' என்பதைத் தேர்ந்தெடுக்கவும்."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
 msgstr "சேவையகத்தின் சேவையக பெயர் மற்றும் ஐபி முகவரியை மறைக்க 'ஆம்' என்பதைத் தேர்ந்தெடுக்கவும்."
@@ -18182,6 +18117,9 @@ msgstr ""
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "அமைவு உள்ளீட்டிற்கான இயல்புநிலை மதிப்பு காட்டப்பட்டுள்ளதா என்பதைத் தேர்ந்தெடுக்கவும், அப்படியானால், அது விளக்கம் தொடர்பாக காண்பிக்கப்படும்."
 
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
+msgstr "இந்த விருப்பம் தளவமைப்பு காட்சியை (உரை அல்லது கிராபிக்ச்) அமைக்க அனுமதிக்கிறது."
+
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr "திரை பட்டியல் பாதை வரலாறு காண்பிக்கப்பட்டால், அப்படியானால், அது எவ்வாறு காண்பிக்கப்பட வேண்டும் என்பதைத் தேர்ந்தெடுக்கவும்."
 
@@ -18334,6 +18272,9 @@ msgstr ""
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "'%s' க்கான செயலைத் தேர்ந்தெடுக்கவும்"
+
+msgid "Select the action that this button will perform."
+msgstr "பொத்தானை நீங்கள் என்ன செய்ய விரும்புகிறீர்கள் என்பதை அமைக்கவும்."
 
 msgid "Select the action to perform when the timer ends."
 msgstr "நேரங்குறிகருவி முடிவடையும் போது செய்ய செயலைத் தேர்ந்தெடுக்கவும்."
@@ -18608,6 +18549,9 @@ msgstr "பட்டியலில் அடுத்த உருப்பட�
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
+msgid "Select the number of services to be shown in the list."
+msgstr "காட்டப்பட்ட வரிசைகளின் எண்ணிக்கையை உள்ளமைக்கவும்."
+
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr "பணியை இயக்கும்போது பிழை ஏற்பட்டால், ஒரு பணியை மீண்டும் முயற்சிக்க எத்தனை முறை என்பதைத் தேர்ந்தெடுக்கவும்."
 
@@ -18863,6 +18807,9 @@ msgstr ""
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
 
+msgid "Select which service to use when opening the EPG."
+msgstr ""
+
 msgid "Select your ATSC provider."
 msgstr "உங்கள் ATSC வழங்குநரைத் தேர்ந்தெடுக்கவும்."
 
@@ -19109,6 +19056,9 @@ msgstr "பணி பிகன்ச் விகித விகிதம்"
 
 msgid "Service picons downsize"
 msgstr "பணி பிகன்கள் குறைகின்றன"
+
+msgid "Service preview mode"
+msgstr "சேனல் முன்னோட்டம் பயன்முறை"
 
 msgid "Service reference"
 msgstr "பணி குறிப்பு"
@@ -19388,9 +19338,6 @@ msgstr "காத்திருப்புடன் வரிசைப்ப�
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "'ஆம்' என அமைக்கப்பட்டால், அதே கட்டளைகள் வழக்கமான காத்திருப்பு நிகழ்வுகளின் போது அனுப்பப்படும் ஆழமான காத்திருப்பு நிகழ்வுகளுக்காக டிவிக்கு அனுப்பப்படும்."
-
-msgid "Select the action that this button will perform."
-msgstr "பொத்தானை நீங்கள் என்ன செய்ய விரும்புகிறீர்கள் என்பதை அமைக்கவும்."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "ஒரு ச்பின்னரின் மூல காரணத்தை பிழைத்திருத்துவதற்கு ஆம் என அமைக்கவும்."
@@ -19777,9 +19724,6 @@ msgstr "முன் காட்சியில் MinITV ஐக் காட�
 
 msgid "Show Movie Selection in Main Menu"
 msgstr "மூவி தேர்வை முதன்மையான பட்டியலில் காட்டு"
-
-msgid "Show Movies List"
-msgstr "திரைப்படங்களின் பட்டியலைக் காட்டு"
 
 msgid "Show Multi EPG"
 msgstr "மல்டி ஈபிசி காட்டு"
@@ -20517,9 +20461,6 @@ msgstr "பின்னோக்கி %s%% தவிர்"
 msgid "Skip backward (enter time)"
 msgstr "பின்தங்கிய நிலையில் தவிர்க்கவும் (நேரத்தை உள்ளிடவும்)"
 
-msgid "Hide empty services"
-msgstr "வெற்று சேவைகளைத் தவிர்க்கவும்"
-
 #, python-format
 msgid "Skip for '%s' is disabled"
 msgstr "'%s' க்கான ச்கிப் முடக்கப்பட்டுள்ளது"
@@ -20910,9 +20851,6 @@ msgstr "வரிசைப்படுத்து"
 msgid "Sort Bookmarks"
 msgstr "புக்மார்க்குகளை வரிசைப்படுத்துங்கள்"
 
-msgid "Sort EPG List"
-msgstr "EPG பட்டியலை வரிசைப்படுத்துங்கள்"
-
 msgid "Sort Extension Menu"
 msgstr "நீட்டிப்பு மெனுவை வரிசைப்படுத்துங்கள்"
 
@@ -21272,6 +21210,9 @@ msgstr "கிழக்கு நோக்கி"
 msgid "Stepped west"
 msgstr "மேற்கு நோக்கி"
 
+msgid "Stereo"
+msgstr ""
+
 msgid "Stop"
 msgstr "நிறுத்து"
 
@@ -21571,6 +21512,15 @@ msgstr ""
 
 msgid "Suriname"
 msgstr "சூரினாம்"
+
+msgid "Surround"
+msgstr ""
+
+msgid "Surround 5.1"
+msgstr ""
+
+msgid "Surround 7.1"
+msgstr ""
 
 msgid "Svalbard and Jan Mayen"
 msgstr "சவால்பார்ட் மற்றும் சன் மேயன்"
@@ -22446,6 +22396,9 @@ msgstr ""
 msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr ""
 
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr "நேரங்குறிகருவி கோப்பு '%s' ஊழல் மற்றும் ஏற்ற முடியவில்லை."
@@ -22688,9 +22641,6 @@ msgstr "வெவ்வேறு லெட்டர்பாக்ச் தீ�
 msgid "This option allows you to set the Auto Volume Level output."
 msgstr "இந்த விருப்பம் நீங்கள் ஆட்டோ தொகுதி அளவை அமைக்கலாம்."
 
-msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
-msgstr "இந்த விருப்பம் தளவமைப்பு காட்சியை (உரை அல்லது கிராபிக்ச்) அமைக்க அனுமதிக்கிறது."
-
 msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "இந்த விருப்பம் BT ச்பீக்கர்களுக்கு ஆடியோவை மாற்ற உங்களை அனுமதிக்கிறது."
 
@@ -22875,9 +22825,6 @@ msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr "ஏற்றுக்கொள்ளக்கூடிய அடைவு இல்லாமல் நேர மாற்றம் சரியாக வேலை செய்யாது."
-
-msgid "Time shift not possible!"
-msgstr "நேர மாற்றம் சாத்தியமில்லை!"
 
 msgid "Time shift save action on zap"
 msgstr "நேர சிப்ட் ZAP இல் செயலைச் சேமிக்கவும்"
@@ -25033,6 +24980,9 @@ msgstr ""
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "இயக்கப்பட்டால், திரையின் அகலத்துடன் பொருந்தக்கூடிய வகையில் வசன வரிகள்."
 
+msgid "When enabled, services without EPG data will be hidden."
+msgstr "ஈபிசி தரவு இல்லாமல் சேனல்களை மறைக்க 'ஆம்' என்பதைத் தேர்ந்தெடுக்கவும்."
+
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "இயக்கப்பட்டால், சேனல் தேர்வுத் திரையில் சேனல் எண்களைக் காட்டு."
 
@@ -25170,9 +25120,6 @@ msgstr "ஒரு சேவையுடன் இணைக்கப்படு�
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "தற்காலிக நேர சிப்ட் பதிவுகளை எங்கு சேமிக்க விரும்புகிறீர்கள்?"
-
-msgid "Select which service to use when opening the EPG."
-msgstr ""
 
 msgid "Which time shift buffer event do you want to save?"
 msgstr "எந்த நிகழ்வை நிரந்தரமாக சேமிக்க விரும்புகிறீர்கள்?"
@@ -26374,6 +26321,99 @@ msgstr "ஆம் (ஊட்டங்களை வைத்திருங்க
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Add a RecordTimer for current event"
+#~ msgstr "தற்போதைய நிகழ்வுக்கு ஒரு ரெக்கார்டிமரைச் சேர்க்கவும்"
+
+#~ msgid "Add a ZapTimer for current event"
+#~ msgstr "தற்போதைய நிகழ்வுக்கு ஒரு சாப்டிமரைச் சேர்க்கவும்"
+
+#~ msgid "Add an AutoTimer for the current event"
+#~ msgstr "தற்போதைய நிகழ்வுக்கு ஆட்டோடிமரைச் சேர்க்கவும்"
+
+#~ msgid "Add/Remove Timer"
+#~ msgstr "டைமரைச் சேர்க்கவும்/அகற்றவும்"
+
+#~ msgid "Add/Remove a timer for the current event"
+#~ msgstr "தற்போதைய நிகழ்வுக்கு ஒரு டைமரைச் சேர்க்கவும்/அகற்றவும்"
+
+#~ msgid "AutoTimer"
+#~ msgstr "ஆட்டோடிமர்"
+
+#~ msgid "CHANNEL +/-"
+#~ msgstr "சேனல் +/-"
+
+#~ msgid "Change to bouquet"
+#~ msgstr "பூச்செட்டுக்கு மாற்றவும்"
+
+#~ msgid "Close bouquet list"
+#~ msgstr "பூச்செண்டு பட்டியல் மூடு"
+
+#~ msgid "Close bouquet list."
+#~ msgstr "பூச்செண்டு பட்டியல் மூடு."
+
+#~ msgid "EPG Bouquet Actions"
+#~ msgstr "ஈபிசி பூச்செண்டு செயல்கள்"
+
+#~ msgid "EPG Display Actions"
+#~ msgstr "ஈபிசி காட்சி செயல்கள்"
+
+#~ msgid "EPG Other Actions"
+#~ msgstr "EPG பிற செயல்கள்"
+
+#~ msgid "Getting event information failed!"
+#~ msgstr "நிகழ்வு தகவலைப் பெறுவது தோல்வியடைந்தது!"
+
+#~ msgid "IMDb search for current event"
+#~ msgstr "தற்போதைய நிகழ்வைத் தேடுங்கள்"
+
+#~ msgid "Info button (short)"
+#~ msgstr "செய்தி பொத்தான் (குறுகிய)"
+
+#~ msgid "Jump back 24 hours"
+#~ msgstr "24 மணி நேரம் திரும்பிச் செல்லவும்"
+
+#~ msgid "Jump forward 24 hours"
+#~ msgstr "24 மணி நேரம் முன்னோக்கி செல்லவும்"
+
+#~ msgid "Jump to next page or all up (setup in menu)"
+#~ msgstr "அடுத்த பக்கத்திற்கு செல்லவும் அல்லது எல்லாவற்றிற்கும் (மெனுவில் அமைக்கவும்)"
+
+#~ msgid "Jump to previous page or all down (setup in menu)"
+#~ msgstr "முந்தைய பக்கம் அல்லது அனைத்து கீழே (மெனுவில் அமைக்கவும்)"
+
+#~ msgid "Move to home of list"
+#~ msgstr "பட்டியலின் வீட்டிற்கு செல்லுங்கள்"
+
+#~ msgid "OK button (short)"
+#~ msgstr "சரி பொத்தான் (குறுகிய)"
+
+#~ msgid "Previous/Next bouquet"
+#~ msgstr "முந்தைய/அடுத்த பூச்செண்டு"
+
+#~ msgid "Primetime hour"
+#~ msgstr "பிரைம் டைம் மணி"
+
+#~ msgid "Primetime minute"
+#~ msgstr "பிரைம் டைம் மணித்துளி"
+
+#~ msgid "Record - same as record button"
+#~ msgstr "பதிவு - பதிவு பொத்தானைப் போலவே"
+
+#~ msgid "Record Actions"
+#~ msgstr "பதிவு நடவடிக்கைகள்"
+
+#~ msgid "Search for similar events"
+#~ msgstr "ஒத்த நிகழ்வுகளைத் தேடுங்கள்"
+
+#~ msgid "Show Movies List"
+#~ msgstr "திரைப்படங்களின் பட்டியலைக் காட்டு"
+
+#~ msgid "Sort EPG List"
+#~ msgstr "EPG பட்டியலை வரிசைப்படுத்துங்கள்"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "நேர மாற்றம் சாத்தியமில்லை!"
 
 #~ msgid "Please select device to use as swap file location"
 #~ msgstr "இடமாற்று கோப்பு இருப்பிடமாக பயன்படுத்த சாதனத்தைத் தேர்ந்தெடுக்கவும்"

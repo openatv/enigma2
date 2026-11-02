@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 13:51+0100\n"
+"POT-Creation-Date: 2026-11-01 20:39+0100\n"
 "PO-Revision-Date: 2026-08-21 14:51+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -1777,6 +1777,9 @@ msgstr "Un ressalt a la imatge del comandament a distancia mostra a quin botó e
 msgid "A new storage device has been connected:"
 msgstr ""
 
+msgid "A prepared or running timer can not be moved to the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -2153,14 +2156,8 @@ msgstr ""
 msgid "Add a RecordTimer"
 msgstr "Afegir un temporitzador de gravació"
 
-msgid "Add a RecordTimer for current event"
-msgstr "Afegir un temporitzador de gravació del programa actual"
-
 msgid "Add a TV service to the Volume Offset list"
 msgstr ""
-
-msgid "Add a ZapTimer for current event"
-msgstr "Afegir un temporitzador de canvi de canal del programa actual"
 
 msgid "Add a ZapTimer for next event"
 msgstr "Afegir un temporitzador de canvi de canal per al següent programa"
@@ -2196,9 +2193,6 @@ msgstr "Afegir un temporitzador per al programa actual"
 
 msgid "Add an existing swap file"
 msgstr ""
-
-msgid "Add an AutoTimer for the current event"
-msgstr "Afegir un autotemporitzador del programa actual"
 
 msgid "Add current directory to bookmarks"
 msgstr "Afegir directori actual a favorits"
@@ -2280,13 +2274,6 @@ msgstr ""
 #
 msgid "Add title"
 msgstr "Afegeix títol"
-
-#
-msgid "Add/Remove Timer"
-msgstr "Afegir/Esborrar temporitzador"
-
-msgid "Add/Remove a timer for the current event"
-msgstr "Afegir/Eliminar a temporitzador del programa actual"
 
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr ""
@@ -3130,9 +3117,6 @@ msgstr "Administrador de muntatges automàtic"
 msgid "AutoRefresh"
 msgstr ""
 
-msgid "AutoTimer"
-msgstr "Temportizador automàtic"
-
 msgid "AutoUpdate"
 msgstr "Actualització automàtica"
 
@@ -3699,9 +3683,6 @@ msgstr ""
 msgid "Browse"
 msgstr ""
 
-msgid "Browse mode"
-msgstr ""
-
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Explorar, instal·lar o eliminar extensions/plugins."
 
@@ -3891,9 +3872,17 @@ msgstr "CH%s"
 msgid "CHANGE BOUQUET"
 msgstr "CANVIAR LLISTA"
 
-#
-msgid "CHANNEL +/-"
-msgstr "CANAL +/-"
+msgid "CHANNEL+"
+msgstr ""
+
+msgid "CHANNEL+ button (setup in menu)"
+msgstr ""
+
+msgid "CHANNEL-"
+msgstr ""
+
+msgid "CHANNEL- button (setup in menu)"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "Configuració de CI (Interfície comuna)"
@@ -4373,10 +4362,6 @@ msgstr ""
 msgid "Change to TV services mode"
 msgstr ""
 
-#
-msgid "Change to bouquet"
-msgstr "Canviar a llista"
-
 msgid "Changed"
 msgstr "Canviat"
 
@@ -4480,9 +4465,6 @@ msgstr "Nom del canal"
 
 msgid "Channel number"
 msgstr "Número del canal"
-
-msgid "Service preview mode"
-msgstr "Mode vista previa del canal"
 
 msgid "Channel selection configuration"
 msgstr "Configuració selección de canals"
@@ -4837,13 +4819,6 @@ msgstr "Tancar llista de tasques"
 msgid "Close Task View"
 msgstr "Tancar vista de tasques"
 
-msgid "Close bouquet list"
-msgstr "Tanca llista"
-
-#
-msgid "Close bouquet list."
-msgstr "Tancar llista."
-
 msgid "Close dialog"
 msgstr "Tancar diàleg"
 
@@ -4937,9 +4912,6 @@ msgstr "Colombia"
 #
 msgid "Color"
 msgstr "Color"
-
-msgid "Color Button Assignments"
-msgstr ""
 
 msgid "Color format"
 msgstr "Format color"
@@ -5299,9 +5271,6 @@ msgstr ""
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "Configureu el nombre de temps que es mantenen els temporitzadors abans que s’eliminin automàticament de la llista de temporitzadors."
-
-msgid "Select the number of services to be shown in the list."
-msgstr "Configura el número de columnes a mostrar."
 
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr "Configura el retard de decodificació fora de línia en mil·lisegons. El retard configurat s’observa a cada canvi de paritat de paraula de control."
@@ -5764,9 +5733,6 @@ msgstr ""
 
 msgid "Country"
 msgstr "País"
-
-msgid "Country Music"
-msgstr ""
 
 msgid "Country for EPG event genre information"
 msgstr "País per a la informació de gènere del programa de l'EPG"
@@ -7727,6 +7693,9 @@ msgstr "Versió de drivers"
 msgid "Drop unconfigured satellites"
 msgstr ""
 
+msgid "Dual channel"
+msgstr ""
+
 msgid "Duplex"
 msgstr "Duplex"
 
@@ -7773,11 +7742,11 @@ msgstr ""
 msgid "EPG"
 msgstr "EPG"
 
+msgid "EPG (Long press)"
+msgstr ""
+
 msgid "EPG Actions"
 msgstr "Accions EPG"
-
-msgid "EPG Bouquet Actions"
-msgstr "Accions llista EPG"
 
 msgid "EPG Cache Check"
 msgstr "Comprovar memòria cau EPG"
@@ -7788,9 +7757,6 @@ msgstr "Selecció EPG del canal"
 msgid "EPG Data In Streams"
 msgstr ""
 
-msgid "EPG Display Actions"
-msgstr "Accions visualització EPG"
-
 msgid "EPG Jump"
 msgstr ""
 
@@ -7799,9 +7765,6 @@ msgstr ""
 
 msgid "EPG Navigation Actions"
 msgstr "Accions navegació EPG"
-
-msgid "EPG Other Actions"
-msgstr "Altres accions d'EPG"
 
 msgid "EPG Range And History"
 msgstr ""
@@ -7822,6 +7785,9 @@ msgid "EPG Sources"
 msgstr ""
 
 msgid "EPG Storage And Refresh"
+msgstr ""
+
+msgid "EPG button long (setup in menu)"
 msgstr ""
 
 msgid "EPG button mode"
@@ -7883,7 +7849,7 @@ msgstr "Conjunt límit est"
 msgid "Eastern satellites"
 msgstr ""
 
-msgid "Easy Listening Music"
+msgid "Easy Listening"
 msgstr ""
 
 msgid "Easy listening"
@@ -10141,9 +10107,6 @@ msgstr "Alemany"
 msgid "Germany"
 msgstr "Alemanya"
 
-msgid "Getting event information failed!"
-msgstr ""
-
 #
 msgid "Getting plugin information. Please wait..."
 msgstr "Llegint la informació del plugin. Espera..."
@@ -10587,6 +10550,10 @@ msgstr ""
 msgid "Hide any zap error messages."
 msgstr "Ocultar qualsevol missatge d'error."
 
+#
+msgid "Hide empty services"
+msgstr "Omet els serveis buits"
+
 msgid "Hide error messages from the Common Interface module."
 msgstr "un gui per assignar serveis / proveïdors a mòduls d’interfície comuns"
 
@@ -10803,11 +10770,11 @@ msgstr "Detalls IMDb"
 msgid "IMDb Search"
 msgstr "Recerca IMDb"
 
-msgid "IMDb search for current event"
-msgstr "Recerca IMDb del programa actual"
-
 msgid "INFO"
 msgstr "INFO"
+
+msgid "INFO (Long press)"
+msgstr "Botó INFO (llarg)"
 
 msgid "INFO button mode"
 msgstr "Mode tecla INFO"
@@ -11260,12 +11227,6 @@ msgstr "Indonesian"
 msgid "Info"
 msgstr "Info"
 
-msgid "INFO (Long press)"
-msgstr "Botó INFO (llarg)"
-
-msgid "Info button (short)"
-msgstr "Botó INFO (curt)"
-
 msgid "Info file checksum"
 msgstr "Arxiu d'informació checksum"
 
@@ -11615,9 +11576,6 @@ msgstr "Javanese"
 msgid "Jazz"
 msgstr ""
 
-msgid "Jazz Music"
-msgstr ""
-
 msgid "Jersey"
 msgstr "Jersey"
 
@@ -11633,14 +11591,14 @@ msgstr ""
 msgid "Joined"
 msgstr ""
 
+msgid "Joint stereo"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Jordània"
 
 msgid "Jump"
 msgstr ""
-
-msgid "Jump back 24 hours"
-msgstr "Tornar enrera 24 hores"
 
 msgid "Jump back one day"
 msgstr ""
@@ -11650,9 +11608,6 @@ msgstr ""
 
 msgid "Jump first press in channel selection"
 msgstr "Anar a l'inici de la llista de canals"
-
-msgid "Jump forward 24 hours"
-msgstr "Saltar endavant 24 hores"
 
 msgid "Jump forward one day"
 msgstr ""
@@ -11676,14 +11631,8 @@ msgstr "Salta al final de la llista"
 msgid "Jump to next marked position"
 msgstr "Salta a la següent posició marcada"
 
-msgid "Jump to next page or all up (setup in menu)"
-msgstr "Saltar a la següent pàgina o tot amunt (configurar a menú)"
-
 msgid "Jump to previous marked position"
 msgstr "Salta a l'anterior posició marcada"
-
-msgid "Jump to previous page or all down (setup in menu)"
-msgstr "Saltar a la pàgina anterior o tot avall (configurar a menú)"
 
 msgid "Jump to prime time"
 msgstr "Saltar a prime time"
@@ -13011,6 +12960,9 @@ msgstr "Mongolia"
 msgid "Mongolian"
 msgstr "Mongolian"
 
+msgid "Mono"
+msgstr ""
+
 msgid "Montenegro"
 msgstr "Montenegro"
 
@@ -13259,9 +13211,6 @@ msgstr "Moure a la primera línia"
 
 msgid "Move to first line / screen in the panel"
 msgstr "Moure a la primera línia/pantalla al panell"
-
-msgid "Move to home of list"
-msgstr "Moure a l'inici de la llista"
 
 msgid "Move to last item / screen"
 msgstr ""
@@ -13619,6 +13568,9 @@ msgstr "Namibia"
 msgid "Narration"
 msgstr ""
 
+msgid "National Music"
+msgstr ""
+
 msgid "National music"
 msgstr ""
 
@@ -13648,9 +13600,6 @@ msgstr "Navegar al directori seleccionat"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Navegar amunt/avall amb els botons AMUNT/AVALL i pàgina amunt/avall amb ESQUERRA/DRETA. OK per a executar l'acció descrita en l'ajuda de l'element seleccionat."
-
-msgid "Navigation And Button Assignments"
-msgstr ""
 
 msgid "Navigation And Time Range"
 msgstr ""
@@ -14496,9 +14445,6 @@ msgstr "Bé"
 msgid "OK (Long press)"
 msgstr "Boto OK (llarg)"
 
-msgid "OK button (short)"
-msgstr "Botó OK (curt)"
-
 msgid "OK button mode"
 msgstr "Mode de botó OK"
 
@@ -14612,9 +14558,6 @@ msgid "Ojibwa"
 msgstr "Ojibwa"
 
 msgid "Oldies"
-msgstr ""
-
-msgid "Oldies Music"
 msgstr ""
 
 msgid "Olympic blue"
@@ -15127,6 +15070,9 @@ msgstr ""
 
 msgid "PIN code needed"
 msgstr "Cal tenir un codi PIN"
+
+msgid "PLAY"
+msgstr ""
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -16289,9 +16235,6 @@ msgstr ""
 msgid "Previous channel page"
 msgstr ""
 
-msgid "Previous/Next bouquet"
-msgstr "Llista anterior/següent"
-
 msgid "Previous/Next page"
 msgstr "Pàgina anterior/següent"
 
@@ -16310,15 +16253,13 @@ msgstr ""
 msgid "Prime time"
 msgstr "Prime Time"
 
-msgid "Primetime hour"
-msgstr "Hora de màxima audiència"
-
-msgid "Primetime minute"
-msgstr "Minut de màxima audiència"
-
 #
 msgid "Priority"
 msgstr "Prioritat"
+
+#, python-format
+msgid "Priority: %d"
+msgstr ""
 
 msgid "Privacy level"
 msgstr ""
@@ -16372,7 +16313,7 @@ msgstr ""
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "Es necessita instal·lar el programa '%s' per executar aquesta acció. Vols instal·lar el paquet '%s' per instal·lar el programa?"
 
-msgid "Program type"
+msgid "Programme type (PTY)"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -16667,14 +16608,20 @@ msgstr "Símbol REC en ús"
 msgid "REC symbol"
 msgstr ""
 
+msgid "RECORD"
+msgstr ""
+
+msgid "RECORD (Long press)"
+msgstr ""
+
 msgid "RED"
 msgstr "Botó VERMELL"
 
-msgid "RED button / HbbTV"
-msgstr "Xarxa boto:"
-
 msgid "RED (Long press)"
 msgstr "VERMELL llarg"
+
+msgid "RED button / HbbTV"
+msgstr "Xarxa boto:"
 
 #
 msgid "RF Output Settings"
@@ -16881,12 +16828,6 @@ msgstr ""
 #
 msgid "Record"
 msgstr "Gravar"
-
-msgid "Record - same as record button"
-msgstr "Gravar - igual que el botó de gravar"
-
-msgid "Record Actions"
-msgstr "Gravacions"
 
 msgid "Record icon"
 msgstr ""
@@ -17834,9 +17775,6 @@ msgstr "Dret, embolicat"
 msgid "Rock"
 msgstr ""
 
-msgid "Rock Music"
-msgstr ""
-
 msgid "Rock/Pop"
 msgstr "Rock/Pop"
 
@@ -18445,9 +18383,6 @@ msgstr "Buscar a l'est"
 msgid "Search for network shares"
 msgstr "Busca recursos de xarxa"
 
-msgid "Search for similar events"
-msgstr "Buscar programes similars"
-
 msgid "Search in the current view"
 msgstr ""
 
@@ -18644,9 +18579,6 @@ msgstr ""
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Selecciona 'Sí' per habilitar l'ús del botons ESQUERRA/DRETA per moure PÀGINA AMUNT/AVALL quan els botons ESQUERRA/DRETA no estiguin definits. Això proporciona una navegació heretada per als usuaris que la prefereixen."
-
-msgid "When enabled, services without EPG data will be hidden."
-msgstr "Selecciona 'Sí' per ocultar canals sense dades EPG."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
 msgstr ""
@@ -19133,6 +19065,9 @@ msgstr ""
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Seleccionar si es mostra el valor predeterminat d'una entrada de configuració i, si és així, on es mostra en relació a la descripció."
 
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
+msgstr ""
+
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr "Seleccionar si es mostra l'historial de la ruta del menú de la pantalla i, si és així, com s'ha de mostrar."
 
@@ -19289,6 +19224,9 @@ msgstr ""
 #, python-format
 msgid "Select the action for '%s'"
 msgstr ""
+
+msgid "Select the action that this button will perform."
+msgstr "Configura què vols que faci el botó."
 
 msgid "Select the action to perform when the timer ends."
 msgstr "Selecciona acció a executar en finalitzar el temporitzador."
@@ -19565,6 +19503,9 @@ msgstr "Selecciona el pròxim element de la llista"
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
+msgid "Select the number of services to be shown in the list."
+msgstr "Configura el número de columnes a mostrar."
+
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr ""
 
@@ -19820,6 +19761,9 @@ msgid "Select whether to prefill the 'Server' field below with this host's disco
 msgstr ""
 
 msgid "Select which IP protocols can be used with this adapter."
+msgstr ""
+
+msgid "Select which service to use when opening the EPG."
 msgstr ""
 
 msgid "Select your ATSC provider."
@@ -20084,6 +20028,9 @@ msgstr "Relació d'aspecte dels picons de canals"
 
 msgid "Service picons downsize"
 msgstr "Reducció tamany picons de canal"
+
+msgid "Service preview mode"
+msgstr "Mode vista previa del canal"
 
 msgid "Service reference"
 msgstr "Referència del servei"
@@ -20370,9 +20317,6 @@ msgstr ""
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
-
-msgid "Select the action that this button will perform."
-msgstr "Configura què vols que faci el botó."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Configurar en Si per a depuració de la causa arrel dels spinners."
@@ -20774,9 +20718,6 @@ msgstr "Mostrar MiniTV al LCD frontal"
 
 msgid "Show Movie Selection in Main Menu"
 msgstr ""
-
-msgid "Show Movies List"
-msgstr "Mostrar llista de pel·lícules"
 
 msgid "Show Multi EPG"
 msgstr "Mostrar MultiEPG"
@@ -21550,10 +21491,6 @@ msgstr ""
 msgid "Skip backward (enter time)"
 msgstr "saltar enrere (introduint el temps)"
 
-#
-msgid "Hide empty services"
-msgstr "Omet els serveis buits"
-
 #, python-format
 msgid "Skip for '%s' is disabled"
 msgstr ""
@@ -21951,9 +21888,6 @@ msgstr "Ordena"
 msgid "Sort Bookmarks"
 msgstr "Ordenar favorits"
 
-msgid "Sort EPG List"
-msgstr "Ordenar la llista d'EPG"
-
 msgid "Sort Extension Menu"
 msgstr ""
 
@@ -22332,6 +22266,9 @@ msgstr "Pujada a l’est"
 msgid "Stepped west"
 msgstr "Pujada a l’oest"
 
+msgid "Stereo"
+msgstr ""
+
 #
 msgid "Stop"
 msgstr "Parar"
@@ -22656,6 +22593,15 @@ msgstr ""
 
 msgid "Suriname"
 msgstr "Surinam"
+
+msgid "Surround"
+msgstr ""
+
+msgid "Surround 5.1"
+msgstr ""
+
+msgid "Surround 7.1"
+msgstr ""
 
 msgid "Svalbard and Jan Mayen"
 msgstr "Svalbard i Jan Mayen"
@@ -23548,6 +23494,9 @@ msgstr ""
 msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr ""
 
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr "L'arxiu del temporitzador '%s' està corrupte i no s'ha pogut carregar."
@@ -23791,9 +23740,6 @@ msgstr "Aquesta opció permet augmentar els tons de blau de la imatge."
 msgid "This option allows you to set the Auto Volume Level output."
 msgstr ""
 
-msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
-msgstr ""
-
 msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr ""
 
@@ -23985,10 +23931,6 @@ msgstr ""
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr ""
-
-#
-msgid "Time shift not possible!"
-msgstr "No és possible la pausa!"
 
 msgid "Time shift save action on zap"
 msgstr ""
@@ -26218,6 +26160,9 @@ msgstr ""
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Quan estigui habilitat, formatar els subtítols per adaptar-se a l’amplada de la pantalla."
 
+msgid "When enabled, services without EPG data will be hidden."
+msgstr "Selecciona 'Sí' per ocultar canals sense dades EPG."
+
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Quan estigui habilitat, mostreu els números de canal a la pantalla de selecció del canal."
 
@@ -26356,9 +26301,6 @@ msgstr ""
 #
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "On desar els enregistraments temporals de temps?"
-
-msgid "Select which service to use when opening the EPG."
-msgstr ""
 
 msgid "Which time shift buffer event do you want to save?"
 msgstr ""
@@ -27663,6 +27605,101 @@ msgstr "si (mantenir feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Add a RecordTimer for current event"
+#~ msgstr "Afegir un temporitzador de gravació del programa actual"
+
+#~ msgid "Add a ZapTimer for current event"
+#~ msgstr "Afegir un temporitzador de canvi de canal del programa actual"
+
+#~ msgid "Add an AutoTimer for the current event"
+#~ msgstr "Afegir un autotemporitzador del programa actual"
+
+#
+#~ msgid "Add/Remove Timer"
+#~ msgstr "Afegir/Esborrar temporitzador"
+
+#~ msgid "Add/Remove a timer for the current event"
+#~ msgstr "Afegir/Eliminar a temporitzador del programa actual"
+
+#~ msgid "AutoTimer"
+#~ msgstr "Temportizador automàtic"
+
+#
+#~ msgid "CHANNEL +/-"
+#~ msgstr "CANAL +/-"
+
+#
+#~ msgid "Change to bouquet"
+#~ msgstr "Canviar a llista"
+
+#~ msgid "Close bouquet list"
+#~ msgstr "Tanca llista"
+
+#
+#~ msgid "Close bouquet list."
+#~ msgstr "Tancar llista."
+
+#~ msgid "EPG Bouquet Actions"
+#~ msgstr "Accions llista EPG"
+
+#~ msgid "EPG Display Actions"
+#~ msgstr "Accions visualització EPG"
+
+#~ msgid "EPG Other Actions"
+#~ msgstr "Altres accions d'EPG"
+
+#~ msgid "IMDb search for current event"
+#~ msgstr "Recerca IMDb del programa actual"
+
+#~ msgid "Info button (short)"
+#~ msgstr "Botó INFO (curt)"
+
+#~ msgid "Jump back 24 hours"
+#~ msgstr "Tornar enrera 24 hores"
+
+#~ msgid "Jump forward 24 hours"
+#~ msgstr "Saltar endavant 24 hores"
+
+#~ msgid "Jump to next page or all up (setup in menu)"
+#~ msgstr "Saltar a la següent pàgina o tot amunt (configurar a menú)"
+
+#~ msgid "Jump to previous page or all down (setup in menu)"
+#~ msgstr "Saltar a la pàgina anterior o tot avall (configurar a menú)"
+
+#~ msgid "Move to home of list"
+#~ msgstr "Moure a l'inici de la llista"
+
+#~ msgid "OK button (short)"
+#~ msgstr "Botó OK (curt)"
+
+#~ msgid "Previous/Next bouquet"
+#~ msgstr "Llista anterior/següent"
+
+#~ msgid "Primetime hour"
+#~ msgstr "Hora de màxima audiència"
+
+#~ msgid "Primetime minute"
+#~ msgstr "Minut de màxima audiència"
+
+#~ msgid "Record - same as record button"
+#~ msgstr "Gravar - igual que el botó de gravar"
+
+#~ msgid "Record Actions"
+#~ msgstr "Gravacions"
+
+#~ msgid "Search for similar events"
+#~ msgstr "Buscar programes similars"
+
+#~ msgid "Show Movies List"
+#~ msgstr "Mostrar llista de pel·lícules"
+
+#~ msgid "Sort EPG List"
+#~ msgstr "Ordenar la llista d'EPG"
+
+#
+#~ msgid "Time shift not possible!"
+#~ msgstr "No és possible la pausa!"
 
 #~ msgid "Please select device to use as swap file location"
 #~ msgstr "Sel·lecciona el dispositiu a usar com arxiu de memòria Swap"

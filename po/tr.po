@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 13:51+0100\n"
-"PO-Revision-Date: 2026-10-31 11:30+0000\n"
+"POT-Creation-Date: 2026-11-01 20:39+0100\n"
+"PO-Revision-Date: 2026-11-02 14:52+0000\n"
 "Last-Translator: mcilo <mcilo@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
 "Language: tr\n"
@@ -1702,6 +1702,9 @@ msgstr "Uzaktan kumanda görüntüsündeki vurgu, yardımın hangi düğmeye at�
 msgid "A new storage device has been connected:"
 msgstr "Yeni bir depolama cihazı bağlandı:"
 
+msgid "A prepared or running timer can not be moved to the fallback tuner."
+msgstr "Hazır durumdaki veya çalışmakta olan bir zamanlayıcı, yedek uzak alıcıya (fallback tuner) taşınamaz."
+
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -2078,14 +2081,8 @@ msgstr "Ses Seviyesi Dengeleme listesine RADYO kanalı ekleyin"
 msgid "Add a RecordTimer"
 msgstr "Kayıt Zamanlayıcı Ekle"
 
-msgid "Add a RecordTimer for current event"
-msgstr "Geçerli etkinliğe kayıt zamanlayıcı ekle"
-
 msgid "Add a TV service to the Volume Offset list"
 msgstr "Ses Seviyesi Dengeleme listesine TV kanalı ekleyin"
-
-msgid "Add a ZapTimer for current event"
-msgstr "Geçerli etkinliğe Kanal Değişim Zamanlayıcısı ekle"
 
 msgid "Add a ZapTimer for next event"
 msgstr "Sonraki etkinliğe Kanal Değişim Zamanlayıcısı ekle"
@@ -2121,9 +2118,6 @@ msgstr "Geçerli etkinlik için bir zamanlayıcı ekleyin"
 
 msgid "Add an existing swap file"
 msgstr "Mevcut bir takas dosyası ekle"
-
-msgid "Add an AutoTimer for the current event"
-msgstr "Geçerli etkinliğe oto-zamanlayıcı ekle"
 
 msgid "Add current directory to bookmarks"
 msgstr "Geçerli dizini yer imlerine ekle"
@@ -2206,13 +2200,6 @@ msgstr "Seçilen kanalı bukete veya alternatife ekle"
 #
 msgid "Add title"
 msgstr "Başlık ekle"
-
-#
-msgid "Add/Remove Timer"
-msgstr "Zamanlayıcı Ekle/Kaldır"
-
-msgid "Add/Remove a timer for the current event"
-msgstr "Geçerli etkinliğe zamanlayıcı Ekle/Kaldır"
 
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr "Vurgulanan eklentiyi yükleme listesi (-ne/-nden) Ekle/Kaldır"
@@ -3051,9 +3038,6 @@ msgstr "Otomatik Bağlantı Yöneticisi"
 msgid "AutoRefresh"
 msgstr "Otomatik Yenileme"
 
-msgid "AutoTimer"
-msgstr "AutoTimer"
-
 #
 msgid "AutoUpdate"
 msgstr "Otomatik Güncelleme"
@@ -3620,9 +3604,6 @@ msgstr "Broadcom varsayılan"
 msgid "Browse"
 msgstr "Gözat"
 
-msgid "Browse mode"
-msgstr "Göz atma modu"
-
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Eklentilere tek tek göz atın, yükleyin veya kaldırın."
 
@@ -3811,9 +3792,17 @@ msgstr "CH%s"
 msgid "CHANGE BOUQUET"
 msgstr "BUKET DEĞİŞTİR"
 
-#
-msgid "CHANNEL +/-"
-msgstr "KANAL +/-"
+msgid "CHANNEL+"
+msgstr "KANAL+"
+
+msgid "CHANNEL+ button (setup in menu)"
+msgstr "KANAL+ tuşu (menüden ayarlanabilir)"
+
+msgid "CHANNEL-"
+msgstr "KANAL-"
+
+msgid "CHANNEL- button (setup in menu)"
+msgstr "KANAL- tuşu (menüden ayarlanabilir)"
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI (Ortak Arayüz) Kurulumu"
@@ -4284,10 +4273,6 @@ msgstr "Radyo kanalları moduna geçin"
 msgid "Change to TV services mode"
 msgstr "TV kanalları moduna geç"
 
-#
-msgid "Change to bouquet"
-msgstr "Buket değiştir"
-
 msgid "Changed"
 msgstr "Değiştirildi"
 
@@ -4390,9 +4375,6 @@ msgstr "Kanal ismi"
 
 msgid "Channel number"
 msgstr "Kanal numarası"
-
-msgid "Service preview mode"
-msgstr "Kanal ön izleme modu"
 
 msgid "Channel selection configuration"
 msgstr "Kanal seçimi ayarları yapılandırması"
@@ -4746,12 +4728,6 @@ msgstr "Görev Listesini Kapat"
 msgid "Close Task View"
 msgstr "Görev Görünümünü Kapat"
 
-msgid "Close bouquet list"
-msgstr "Buket listesini kapat"
-
-msgid "Close bouquet list."
-msgstr "Buket listesini kapat."
-
 msgid "Close dialog"
 msgstr "Diyalogu kapat"
 
@@ -4845,9 +4821,6 @@ msgstr "Kolombiya"
 #
 msgid "Color"
 msgstr "Renk"
-
-msgid "Color Button Assignments"
-msgstr "Renk Tuşu Atamaları"
 
 msgid "Color format"
 msgstr "Renk biçimi"
@@ -5207,9 +5180,6 @@ msgstr "Çöp kutusundan öğelerin otomatik olarak kaldırılacağı gün sayı
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "Eski zamanlayıcıların otomatik olarak zamanlayıcı listesinden kaldırılmadan önce kaç gün boyunca saklanacağını yapılandırın."
-
-msgid "Select the number of services to be shown in the list."
-msgstr "Gösterilecek satır sayısını yapılandırın."
 
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr "Çevrimdışı kod çözme gecikmesini milisaniye cinsinden yapılandırın. Yapılandırılan gecikme, her kontrol sözcüğü eşlik değişikliğinde gözlemlenir."
@@ -5685,9 +5655,6 @@ msgstr ""
 
 msgid "Country"
 msgstr "Ülke"
-
-msgid "Country Music"
-msgstr "Country Müzik"
 
 msgid "Country for EPG event genre information"
 msgstr "EPG etkinlik türü bilgilerinin alındığı ülke"
@@ -7644,6 +7611,9 @@ msgstr "Sürücü sürümü"
 msgid "Drop unconfigured satellites"
 msgstr "Yapılandırılmamış uyduları kaldır"
 
+msgid "Dual channel"
+msgstr "Çift kanal"
+
 msgid "Duplex"
 msgstr "Dubleks"
 
@@ -7690,11 +7660,11 @@ msgstr "'%s' için ECM bilgileri"
 msgid "EPG"
 msgstr "Elektronik Program Rehberi"
 
+msgid "EPG (Long press)"
+msgstr "EPG (Uzun basma)"
+
 msgid "EPG Actions"
 msgstr "EPG İşlemleri"
-
-msgid "EPG Bouquet Actions"
-msgstr "EPG Buket İşlemleri"
 
 msgid "EPG Cache Check"
 msgstr "EPG Önbellek Kontrolü"
@@ -7705,9 +7675,6 @@ msgstr "EPG Kanal/Servis Seçimi"
 msgid "EPG Data In Streams"
 msgstr "Akışlardaki EPG Verileri"
 
-msgid "EPG Display Actions"
-msgstr "EPG Ekran İşlemleri"
-
 msgid "EPG Jump"
 msgstr "EPG Atlaması"
 
@@ -7716,9 +7683,6 @@ msgstr "EPG Dili"
 
 msgid "EPG Navigation Actions"
 msgstr "EPG Gezinme İşlemleri"
-
-msgid "EPG Other Actions"
-msgstr "EPG Diğer İşlemler"
 
 msgid "EPG Range And History"
 msgstr "EPG Aralığı ve Geçmişi"
@@ -7740,6 +7704,9 @@ msgstr "EPG Kaynakları"
 
 msgid "EPG Storage And Refresh"
 msgstr "EPG Depolama ve Yenileme"
+
+msgid "EPG button long (setup in menu)"
+msgstr "EPG tuşuna uzun basma (menüden ayarlanabilir)"
 
 msgid "EPG button mode"
 msgstr "EPG tuşu modu"
@@ -7800,7 +7767,7 @@ msgstr "Doğu sınırı ayarlandı"
 msgid "Eastern satellites"
 msgstr "Doğu uyduları"
 
-msgid "Easy Listening Music"
+msgid "Easy Listening"
 msgstr "Hafif Müzik"
 
 msgid "Easy listening"
@@ -10046,9 +10013,6 @@ msgstr "Almanca"
 msgid "Germany"
 msgstr "Almanya"
 
-msgid "Getting event information failed!"
-msgstr "Etkinlik Bilgisi alınamadı!"
-
 #
 msgid "Getting plugin information. Please wait..."
 msgstr "Eklenti bilgisi alınıyor. Lütfen bekleyin..."
@@ -10489,6 +10453,9 @@ msgstr "Bu kanal için VBI satırını gizle"
 msgid "Hide any zap error messages."
 msgstr "Kanal değiştirme hata mesajlarını gizle."
 
+msgid "Hide empty services"
+msgstr "Boş kanalları atla"
+
 msgid "Hide error messages from the Common Interface module."
 msgstr "Ortak Arayüz modülünden gelen hata mesajlarını gizleyin."
 
@@ -10705,11 +10672,11 @@ msgstr "IMDb Ayrıntıları"
 msgid "IMDb Search"
 msgstr "IMDb Ara"
 
-msgid "IMDb search for current event"
-msgstr "Geçerli etkinliği IMDb'de ara"
-
 msgid "INFO"
 msgstr "INFO"
+
+msgid "INFO (Long press)"
+msgstr "Info tuşu (uzun)"
 
 msgid "INFO button mode"
 msgstr "INFO tuşu modu"
@@ -11155,12 +11122,6 @@ msgstr "Endonezya"
 msgid "Info"
 msgstr "Bilgi"
 
-msgid "INFO (Long press)"
-msgstr "Info tuşu (uzun)"
-
-msgid "Info button (short)"
-msgstr "Info tuşu (kısa)"
-
 msgid "Info file checksum"
 msgstr "Bilgi dosyası sağlama toplamı"
 
@@ -11505,9 +11466,6 @@ msgstr "Cava"
 msgid "Jazz"
 msgstr "Caz"
 
-msgid "Jazz Music"
-msgstr "Caz Müziği"
-
 msgid "Jersey"
 msgstr "Jersey"
 
@@ -11523,14 +11481,14 @@ msgstr "Yapılandırılmış ZeroTier ağına katıl veya ayrıl"
 msgid "Joined"
 msgstr "Katıldı"
 
+msgid "Joint stereo"
+msgstr "Birleşik stereo"
+
 msgid "Jordan"
 msgstr "Ürdün"
 
 msgid "Jump"
 msgstr "Atla"
-
-msgid "Jump back 24 hours"
-msgstr "24 saat geriye atla"
 
 msgid "Jump back one day"
 msgstr "Bir gün geriye atla"
@@ -11540,9 +11498,6 @@ msgstr "Bir saat geriye atla"
 
 msgid "Jump first press in channel selection"
 msgstr "Kanal seçiminde ilk basışta atla"
-
-msgid "Jump forward 24 hours"
-msgstr "24 saat ileriye atla"
 
 msgid "Jump forward one day"
 msgstr "Bir gün ileri atla"
@@ -11565,14 +11520,8 @@ msgstr "Listenin sonuna atla"
 msgid "Jump to next marked position"
 msgstr "Sonraki işaretli konuma atla"
 
-msgid "Jump to next page or all up (setup in menu)"
-msgstr "Sonraki sayfaya veya tümüne git (menüde ayarlanmıştır)"
-
 msgid "Jump to previous marked position"
 msgstr "İşaretlenmiş önceki konuma atla"
-
-msgid "Jump to previous page or all down (setup in menu)"
-msgstr "Önceki sayfaya veya aşağıya doğru git (menüde ayarlanmıştır)"
 
 msgid "Jump to prime time"
 msgstr "Seçkin zamana atla"
@@ -12884,6 +12833,9 @@ msgstr "Moğolistan"
 msgid "Mongolian"
 msgstr "Moğolca"
 
+msgid "Mono"
+msgstr "Mono"
+
 msgid "Montenegro"
 msgstr "Karadağ"
 
@@ -13131,9 +13083,6 @@ msgstr "İlk satıra git"
 
 msgid "Move to first line / screen in the panel"
 msgstr "Paneldeki ilk satıra/ekrana git"
-
-msgid "Move to home of list"
-msgstr "Listenin başına taşı"
 
 msgid "Move to last item / screen"
 msgstr "Son öğeye/ekrana geç"
@@ -13488,6 +13437,9 @@ msgstr "Namibya"
 msgid "Narration"
 msgstr "Anlatım"
 
+msgid "National Music"
+msgstr "Ulusal Müzik"
+
 msgid "National music"
 msgstr "Ulusal müzik"
 
@@ -13517,9 +13469,6 @@ msgstr "Seçilen dizine git"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Yukarı/aşağı gezinmek için YUKARI/AŞAĞI tuşlarını, sayfa yukarı/aşağı gezinmek için SOL/SAĞ tuşlarını kullanın. Şu anda vurgulanan yardımda açıklanan işlemi gerçekleştirmek için OK tuşuna tıklayın."
-
-msgid "Navigation And Button Assignments"
-msgstr "Gezinme ve Tuş Atamaları"
 
 msgid "Navigation And Time Range"
 msgstr "Gezinme ve Zaman Aralığı"
@@ -14363,9 +14312,6 @@ msgstr "OK"
 msgid "OK (Long press)"
 msgstr "OK tuşu (uzun)"
 
-msgid "OK button (short)"
-msgstr "OK tuşu (kısa)"
-
 msgid "OK button mode"
 msgstr "OK tuşu modu"
 
@@ -14479,9 +14425,6 @@ msgstr "Ojibwa Dili"
 
 msgid "Oldies"
 msgstr "Eskiler"
-
-msgid "Oldies Music"
-msgstr "Eski Şarkılar"
 
 msgid "Olympic blue"
 msgstr "Olimpiyat mavisi"
@@ -14966,6 +14909,9 @@ msgstr "PIN"
 
 msgid "PIN code needed"
 msgstr "PIN kodu gerekli"
+
+msgid "PLAY"
+msgstr "OYNAT"
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -16117,9 +16063,6 @@ msgstr "Önceki Sayfa"
 msgid "Previous channel page"
 msgstr "Önceki kanal sayfası"
 
-msgid "Previous/Next bouquet"
-msgstr "Önceki/Sonraki buket"
-
 msgid "Previous/Next page"
 msgstr "Önceki/Sonraki sayfa"
 
@@ -16138,15 +16081,13 @@ msgstr "Prime Time"
 msgid "Prime time"
 msgstr "Prime time"
 
-msgid "Primetime hour"
-msgstr "Prime time saat"
-
-msgid "Primetime minute"
-msgstr "Prime time dakika"
-
 #
 msgid "Priority"
 msgstr "Öncelik"
+
+#, python-format
+msgid "Priority: %d"
+msgstr "Öncelik: %d"
 
 msgid "Privacy level"
 msgstr "Gizlilik seviyesi"
@@ -16200,8 +16141,8 @@ msgstr "Profil: Yerel alıcı"
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "Bu işlemi gerçekleştirmek için '%s' programının yüklenmesi gerekiyor. Programı yüklemek için '%s' paketini yüklemek istiyor musunuz?"
 
-msgid "Program type"
-msgstr "Program türü"
+msgid "Programme type (PTY)"
+msgstr "Program türü (PTY)"
 
 msgid "Programmlisten History"
 msgstr "Programmlisten Tarihçesi"
@@ -16491,14 +16432,20 @@ msgstr "Çalışırken REC Sembolü kullanımı"
 msgid "REC symbol"
 msgstr "REC Sembolü"
 
+msgid "RECORD"
+msgstr "KAYIT"
+
+msgid "RECORD (Long press)"
+msgstr "KAYIT (Uzun basma)"
+
 msgid "RED"
 msgstr "KIRMIZI tuş"
 
-msgid "RED button / HbbTV"
-msgstr "KIRMIZI tuş / HbbTV"
-
 msgid "RED (Long press)"
 msgstr "KIRMIZI tuş uzun"
+
+msgid "RED button / HbbTV"
+msgstr "KIRMIZI tuş / HbbTV"
 
 #
 msgid "RF Output Settings"
@@ -16706,12 +16653,6 @@ msgstr "Taranacak alım kaynakları"
 #
 msgid "Record"
 msgstr "Kayıt"
-
-msgid "Record - same as record button"
-msgstr "Kayıt - kayıt tuşuyla aynı"
-
-msgid "Record Actions"
-msgstr "İşlemleri Kaydet"
 
 msgid "Record icon"
 msgstr "Kayıt simgesi"
@@ -17647,9 +17588,6 @@ msgstr "Doğru, sarılmış"
 msgid "Rock"
 msgstr "Rock"
 
-msgid "Rock Music"
-msgstr "Rock Müzik"
-
 msgid "Rock/Pop"
 msgstr "Rock/Pop"
 
@@ -18255,9 +18193,6 @@ msgstr "Doğuyu ara"
 msgid "Search for network shares"
 msgstr "Ağ paylaşımlarını ara"
 
-msgid "Search for similar events"
-msgstr "Benzer etkinlikleri ara"
-
 msgid "Search in the current view"
 msgstr "Geçerli görünümde ara"
 
@@ -18452,9 +18387,6 @@ msgstr "DNSCrypt alt sistemi için kullanıcı arayüzü web arayüzünü izleme
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Başka türlü tanımlanmadığında Sayfa Yukarı/Sayfa Aşağı hareket etmek için SOL/SAĞ tuşlarının kullanılmasını etkinleştirmek için 'Evet'i seçin. Bu eski navigasyon yöntemini tercih eden kullanıcılar için bir olanak sağlar."
-
-msgid "When enabled, services without EPG data will be hidden."
-msgstr "EPG verisi olmayan kanalları gizlemek için 'Evet'i seçin."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
 msgstr "Sunucu adını ve sunucunun IP adresini gizlemek için 'Evet' seçin."
@@ -18938,6 +18870,9 @@ msgstr "Dosya kilitleme özelliğinin kullanılabilir olup olmadığını seçin
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Bir kurulum girdisi için varsayılan değerin gösterilip gösterilmeyeceğini ve gösteriliyorsa, açıklamaya göre nerede görüntüleneceğini seçin."
 
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
+msgstr "Bu seçenek düzen görünümünü (Metin veya Grafik) ayarlamanıza olanak tanır."
+
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr "Ekran menüsü yol geçmişinin görüntülenip görüntülenmeyeceğini ve görüntülenecekse nasıl görüntüleneceğini seçin."
 
@@ -19094,6 +19029,9 @@ msgstr "Kanal Değiştirme zamanlayıcısının ön koşullarını seçin. Kanal
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "'%s' için işlemi seçin"
+
+msgid "Select the action that this button will perform."
+msgstr "Tuşun ne yapmasını istediğinizi ayarlayın."
 
 msgid "Select the action to perform when the timer ends."
 msgstr "Zamanlayıcı sona erdiğinde gerçekleştirilecek işlemi seçin."
@@ -19369,6 +19307,9 @@ msgstr "Listedeki bir sonraki öğeyi seçin"
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr "Zaman kaydırma arabelleğinde tutulacak etkinlik sayısını seçin. Bu sınırı aşan etkinlikler temizlik sırasında kaldırılacaktır. Bir arabellek, bir tane olarak sayılan birkaç fiziksel dosya parçası içerebilir. Halen kullanımda olan ara bellekler korunmaya devam eder, dolayısıyla sınır geçici olarak aşılabilir."
 
+msgid "Select the number of services to be shown in the list."
+msgstr "Gösterilecek satır sayısını yapılandırın."
+
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr "Görev çalıştırılırken bir hata oluşması durumunda görevin kaç kez yeniden deneneceğini seçin."
 
@@ -19624,6 +19565,9 @@ msgstr "Aşağıdaki 'Sunucu' alanının, IP adresi yerine bu ana bilgisayarın 
 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr "Bu ağ bağdaştırıcısı ile hangi IP protokollerinin kullanılabileceğini seçin."
+
+msgid "Select which service to use when opening the EPG."
+msgstr "EPG açılırken hangi kanalın seçileceği."
 
 #
 msgid "Select your ATSC provider."
@@ -19883,6 +19827,9 @@ msgstr "Kanal pikonları en boy oranı"
 
 msgid "Service picons downsize"
 msgstr "Kanal pikonları boyut küçültme"
+
+msgid "Service preview mode"
+msgstr "Kanal ön izleme modu"
 
 msgid "Service reference"
 msgstr "Kanal referansı"
@@ -20166,9 +20113,6 @@ msgstr "Bekleme modunda sıraya alınmış şifrelenmiş kayıtların şifresini
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Derin Bekleme modunda da normal Bekleme modundakiyle aynı TV komutlarının gönderilmesini sağlamak için 'Evet' olarak ayarlayın."
-
-msgid "Select the action that this button will perform."
-msgstr "Tuşun ne yapmasını istediğinizi ayarlayın."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Spinner simgesinin temel nedenini hata ayıklamak için \"evet\" olarak ayarlayın."
@@ -20569,9 +20513,6 @@ msgstr "Ön Ekranda MiniTV'yi Göster"
 
 msgid "Show Movie Selection in Main Menu"
 msgstr "Ana Menüde Film Seçimini Göster"
-
-msgid "Show Movies List"
-msgstr "Film Listesini Göster"
 
 msgid "Show Multi EPG"
 msgstr "Çoklu EPG'yi Göster"
@@ -21340,9 +21281,6 @@ msgstr "Geriye doğru atla %s%%"
 msgid "Skip backward (enter time)"
 msgstr "Geriye doğru atla (zamanı girin)"
 
-msgid "Hide empty services"
-msgstr "Boş kanalları atla"
-
 #, python-format
 msgid "Skip for '%s' is disabled"
 msgstr "'%s' için atlama devre dışı bırakıldı"
@@ -21742,9 +21680,6 @@ msgstr "Sırala"
 msgid "Sort Bookmarks"
 msgstr "Yer İmlerini Sırala"
 
-msgid "Sort EPG List"
-msgstr "EPG listesini sırala"
-
 msgid "Sort Extension Menu"
 msgstr "Uzantı menüsü sıralama düzeni"
 
@@ -22120,6 +22055,9 @@ msgstr "Doğuya doğru adım"
 msgid "Stepped west"
 msgstr "Batıya doğru adım"
 
+msgid "Stereo"
+msgstr "Stereo"
+
 #
 msgid "Stop"
 msgstr "Durdur"
@@ -22441,6 +22379,15 @@ msgstr "Destek"
 
 msgid "Suriname"
 msgstr "Surinam"
+
+msgid "Surround"
+msgstr "Surround"
+
+msgid "Surround 5.1"
+msgstr "Surround 5.1"
+
+msgid "Surround 7.1"
+msgstr "Surround 7.1"
 
 msgid "Svalbard and Jan Mayen"
 msgstr "Svalbard ve Jan Mayen"
@@ -23343,6 +23290,9 @@ msgstr "Zaman kaydırmalı depolama aygıtı mevcut değil. Lütfen cihazı ve z
 msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr "Zaman kaydırma depolama aygıtı çıkarıldı. Zaman kaydırma durduruldu."
 
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
+msgstr "Zamanlayıcı, yerel bir zamanlayıcıyla çakışıyor ve yedek uzak alıcıdan (fallback tuner) taşınmadı."
+
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr "'%s' zamanlayıcı dosyası bozuk ve yüklenemedi."
@@ -23588,9 +23538,6 @@ msgstr "Bu seçenek farklı Sinemaskop çözünürlükleri için dengeleme değe
 msgid "This option allows you to set the Auto Volume Level output."
 msgstr "Bu seçenek otomatik ses seviyesi çıkışını ayarlamanıza olanak tanır."
 
-msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
-msgstr "Bu seçenek düzen görünümünü (Metin veya Grafik) ayarlamanıza olanak tanır."
-
 msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "Bu seçenek sesi Bluetooth hoparlörlere ayarlamanıza izin verir."
 
@@ -23781,9 +23728,6 @@ msgstr "Zaman kaydırma başlatılamadı. Lütfen depolama aygıtını ve kullan
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr "Zaman kaydırma, kabul edilebilir bir dizin olmadan düzgün çalışmayabilir."
-
-msgid "Time shift not possible!"
-msgstr "Zaman kaydırma kullanılamaz!"
 
 msgid "Time shift save action on zap"
 msgstr "Kanal değiştirmede zaman kaydırma kaydetme işlemi"
@@ -26031,6 +25975,9 @@ msgstr "Etkinleştirildiğinde, '0'a basmak sizi seçilen panik kanalına yönle
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Bu özellik etkinleştirildiğinde, altyazılar ekran genişliğine uyacak şekilde yeniden biçimlendirilir."
 
+msgid "When enabled, services without EPG data will be hidden."
+msgstr "EPG verisi olmayan kanalları gizlemek için 'Evet'i seçin."
+
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Bu özellik etkinleştirildiğinde, kanal seçim ekranında kanal numaralarını gösterilir."
 
@@ -26169,9 +26116,6 @@ msgstr "Bir kanala ayarlandığında, sistem normalde aktarıcıyı değişiklik
 #
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Geçici zaman kaydırma kayıtlarını nereye kaydetmek istersiniz?"
-
-msgid "Select which service to use when opening the EPG."
-msgstr "EPG açılırken hangi kanalın seçileceği."
 
 msgid "Which time shift buffer event do you want to save?"
 msgstr "Hangi zaman kaydırma arabellek olayını kaydetmek istiyorsunuz?"
@@ -27471,6 +27415,129 @@ msgstr "evet (kaynakları tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Add a RecordTimer for current event"
+#~ msgstr "Geçerli etkinliğe kayıt zamanlayıcı ekle"
+
+#~ msgid "Add a ZapTimer for current event"
+#~ msgstr "Geçerli etkinliğe Kanal Değişim Zamanlayıcısı ekle"
+
+#~ msgid "Add an AutoTimer for the current event"
+#~ msgstr "Geçerli etkinliğe oto-zamanlayıcı ekle"
+
+#
+#~ msgid "Add/Remove Timer"
+#~ msgstr "Zamanlayıcı Ekle/Kaldır"
+
+#~ msgid "Add/Remove a timer for the current event"
+#~ msgstr "Geçerli etkinliğe zamanlayıcı Ekle/Kaldır"
+
+#~ msgid "AutoTimer"
+#~ msgstr "AutoTimer"
+
+#~ msgid "Browse mode"
+#~ msgstr "Göz atma modu"
+
+#
+#~ msgid "CHANNEL +/-"
+#~ msgstr "KANAL +/-"
+
+#
+#~ msgid "Change to bouquet"
+#~ msgstr "Buket değiştir"
+
+#~ msgid "Close bouquet list"
+#~ msgstr "Buket listesini kapat"
+
+#~ msgid "Close bouquet list."
+#~ msgstr "Buket listesini kapat."
+
+#~ msgid "Color Button Assignments"
+#~ msgstr "Renk Tuşu Atamaları"
+
+#~ msgid "Country Music"
+#~ msgstr "Country Müzik"
+
+#~ msgid "EPG Bouquet Actions"
+#~ msgstr "EPG Buket İşlemleri"
+
+#~ msgid "EPG Display Actions"
+#~ msgstr "EPG Ekran İşlemleri"
+
+#~ msgid "EPG Other Actions"
+#~ msgstr "EPG Diğer İşlemler"
+
+#~ msgid "Easy Listening Music"
+#~ msgstr "Hafif Müzik"
+
+#~ msgid "Getting event information failed!"
+#~ msgstr "Etkinlik Bilgisi alınamadı!"
+
+#~ msgid "IMDb search for current event"
+#~ msgstr "Geçerli etkinliği IMDb'de ara"
+
+#~ msgid "Info button (short)"
+#~ msgstr "Info tuşu (kısa)"
+
+#~ msgid "Jazz Music"
+#~ msgstr "Caz Müziği"
+
+#~ msgid "Jump back 24 hours"
+#~ msgstr "24 saat geriye atla"
+
+#~ msgid "Jump forward 24 hours"
+#~ msgstr "24 saat ileriye atla"
+
+#~ msgid "Jump to next page or all up (setup in menu)"
+#~ msgstr "Sonraki sayfaya veya tümüne git (menüde ayarlanmıştır)"
+
+#~ msgid "Jump to previous page or all down (setup in menu)"
+#~ msgstr "Önceki sayfaya veya aşağıya doğru git (menüde ayarlanmıştır)"
+
+#~ msgid "Move to home of list"
+#~ msgstr "Listenin başına taşı"
+
+#~ msgid "Navigation And Button Assignments"
+#~ msgstr "Gezinme ve Tuş Atamaları"
+
+#~ msgid "OK button (short)"
+#~ msgstr "OK tuşu (kısa)"
+
+#~ msgid "Oldies Music"
+#~ msgstr "Eski Şarkılar"
+
+#~ msgid "Previous/Next bouquet"
+#~ msgstr "Önceki/Sonraki buket"
+
+#~ msgid "Primetime hour"
+#~ msgstr "Prime time saat"
+
+#~ msgid "Primetime minute"
+#~ msgstr "Prime time dakika"
+
+#~ msgid "Program type"
+#~ msgstr "Program türü"
+
+#~ msgid "Record - same as record button"
+#~ msgstr "Kayıt - kayıt tuşuyla aynı"
+
+#~ msgid "Record Actions"
+#~ msgstr "İşlemleri Kaydet"
+
+#~ msgid "Rock Music"
+#~ msgstr "Rock Müzik"
+
+#~ msgid "Search for similar events"
+#~ msgstr "Benzer etkinlikleri ara"
+
+#~ msgid "Show Movies List"
+#~ msgstr "Film Listesini Göster"
+
+#~ msgid "Sort EPG List"
+#~ msgstr "EPG listesini sırala"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Zaman kaydırma kullanılamaz!"
 
 #~ msgid "Please select device to use as swap file location"
 #~ msgstr "Lütfen swap dosya konumu olarak kullanılacak cihazı seçin"

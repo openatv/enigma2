@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 13:51+0100\n"
+"POT-Creation-Date: 2026-11-01 20:39+0100\n"
 "PO-Revision-Date: 2026-11-01 19:26+0000\n"
 "Last-Translator: Snoete <snoete@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -1697,6 +1697,9 @@ msgstr "Door een arcering op de afstandsbediening wordt aangegeven over welke kn
 msgid "A new storage device has been connected:"
 msgstr "Er is een nieuw opslagapparaat gevonden:"
 
+msgid "A prepared or running timer can not be moved to the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -2052,14 +2055,8 @@ msgstr "Een Radio-zender aan de Volume Offset lijst toevoegen"
 msgid "Add a RecordTimer"
 msgstr "Opname Timer toevoegen"
 
-msgid "Add a RecordTimer for current event"
-msgstr "Opname Timer toevoegen voor het huidige programma"
-
 msgid "Add a TV service to the Volume Offset list"
 msgstr "Een TV-zender aan de Volume Offset lijst toevoegen"
-
-msgid "Add a ZapTimer for current event"
-msgstr "ZapTimer toevoegen voor het huidige programma"
 
 msgid "Add a ZapTimer for next event"
 msgstr "ZapTimer toevoegen voor het volgende programma"
@@ -2093,9 +2090,6 @@ msgstr "Timer toevoegen voor het huidige programma"
 
 msgid "Add an existing swap file"
 msgstr "Een bestaand swap bestand toevoegen"
-
-msgid "Add an AutoTimer for the current event"
-msgstr "Een AutoTimer toevoegen voor het huidige programma"
 
 msgid "Add current directory to bookmarks"
 msgstr "Huidige map aan bookmarks toevoegen"
@@ -2171,12 +2165,6 @@ msgstr "De geselecteerde zender aan de favorietenlijst toevoegen"
 
 msgid "Add title"
 msgstr "Voeg titel toe"
-
-msgid "Add/Remove Timer"
-msgstr "Timer toevoegen/verwijderen"
-
-msgid "Add/Remove a timer for the current event"
-msgstr "Timer voor het huidige programma toevoegen/verwijderen"
 
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr "De geselecteerde plugin toevoegen/verwijderen van de update-lijst"
@@ -2977,9 +2965,6 @@ msgstr "Auto mount beheer"
 msgid "AutoRefresh"
 msgstr "AutoRefresh"
 
-msgid "AutoTimer"
-msgstr "AutoTimer"
-
 msgid "AutoUpdate"
 msgstr "Auto update"
 
@@ -3524,9 +3509,6 @@ msgstr "Broadcom default"
 msgid "Browse"
 msgstr "Bladeren"
 
-msgid "Browse mode"
-msgstr "Zoek modus"
-
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Blader, installeer of verwijder plugins één voor één."
 
@@ -3713,8 +3695,17 @@ msgstr "CH%s"
 msgid "CHANGE BOUQUET"
 msgstr "VERANDER FAVORIETENLIJST"
 
-msgid "CHANNEL +/-"
-msgstr "Zender +/-"
+msgid "CHANNEL+"
+msgstr ""
+
+msgid "CHANNEL+ button (setup in menu)"
+msgstr ""
+
+msgid "CHANNEL-"
+msgstr ""
+
+msgid "CHANNEL- button (setup in menu)"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI (Common Interface) Instellen"
@@ -4172,9 +4163,6 @@ msgstr "Naar Radio omschakelen"
 msgid "Change to TV services mode"
 msgstr "Naar TV omschakelen"
 
-msgid "Change to bouquet"
-msgstr "Ga naar favorietenlijst"
-
 msgid "Changed"
 msgstr "Gewijzigd"
 
@@ -4273,9 +4261,6 @@ msgstr "Zender naam"
 
 msgid "Channel number"
 msgstr "Zendernummer"
-
-msgid "Service preview mode"
-msgstr "Zender preview in EPG"
 
 msgid "Channel selection configuration"
 msgstr "Zenderlijst instellingen"
@@ -4620,12 +4605,6 @@ msgstr "Takenlijst sluiten"
 msgid "Close Task View"
 msgstr "Taakweergave sluiten"
 
-msgid "Close bouquet list"
-msgstr "Sluit de favorietenlijst"
-
-msgid "Close bouquet list."
-msgstr "Sluit de favorietenlijst."
-
 msgid "Close dialog"
 msgstr "Sluit dialoog"
 
@@ -4715,9 +4694,6 @@ msgstr "Colombia"
 
 msgid "Color"
 msgstr "Kleur"
-
-msgid "Color Button Assignments"
-msgstr "Gekleurde knoppen configuratie"
 
 msgid "Color format"
 msgstr "Kleurformaat"
@@ -5135,9 +5111,6 @@ msgstr ""
 "Met deze optie stelt u in hoeveel dagen de gebruikte Timers bewaard blijven, voordat deze automatisch uit de Timerlijst verwijderd worden.\n"
 "\n"
 "U kunt hier zelf een waarde ingeven. De standaardwaarde is 7 dagen."
-
-msgid "Select the number of services to be shown in the list."
-msgstr "Het aantal zenderregels instellen."
 
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr "De vertraging van de offline decoding instellen in milliseconden. De vertraging wordt bepaald bij elke Control Word Parity Change . De standaardwaarde is 1000 ms."
@@ -5628,9 +5601,6 @@ msgstr ""
 
 msgid "Country"
 msgstr "Land"
-
-msgid "Country Music"
-msgstr "Country Music"
 
 msgid "Country for EPG event genre information"
 msgstr "Land voor EPG programma-genre informatie"
@@ -7522,6 +7492,9 @@ msgstr "Drivers versie"
 msgid "Drop unconfigured satellites"
 msgstr "Niet geconfigureerde satellieten verwijderen"
 
+msgid "Dual channel"
+msgstr ""
+
 msgid "Duplex"
 msgstr "Duplex"
 
@@ -7565,11 +7538,11 @@ msgstr "ECM-informatie voor '%s'"
 msgid "EPG"
 msgstr "EPG"
 
+msgid "EPG (Long press)"
+msgstr ""
+
 msgid "EPG Actions"
 msgstr "EPG acties"
-
-msgid "EPG Bouquet Actions"
-msgstr "EPG favorietenlijst Acties"
 
 msgid "EPG Cache Check"
 msgstr "EPG cache controle"
@@ -7580,9 +7553,6 @@ msgstr "EPG Zenderselectie"
 msgid "EPG Data In Streams"
 msgstr "EPG gegevens in Streams"
 
-msgid "EPG Display Actions"
-msgstr "EPG overzicht acties"
-
 msgid "EPG Jump"
 msgstr "EPG sprong"
 
@@ -7591,9 +7561,6 @@ msgstr "EPG taal"
 
 msgid "EPG Navigation Actions"
 msgstr "EPG navigatie acties"
-
-msgid "EPG Other Actions"
-msgstr "EPG overige instellingen"
 
 msgid "EPG Range And History"
 msgstr "EPG bereik en historie"
@@ -7615,6 +7582,9 @@ msgstr "EPG bronnen"
 
 msgid "EPG Storage And Refresh"
 msgstr "EPG opslag en actualiseren"
+
+msgid "EPG button long (setup in menu)"
+msgstr ""
 
 msgid "EPG button mode"
 msgstr "EPG-knop"
@@ -7674,8 +7644,8 @@ msgstr "Oostelijke limiet instellen"
 msgid "Eastern satellites"
 msgstr "Oostelijke satellieten"
 
-msgid "Easy Listening Music"
-msgstr "Easy listening"
+msgid "Easy Listening"
+msgstr ""
 
 msgid "Easy listening"
 msgstr "Easy listening"
@@ -9852,9 +9822,6 @@ msgstr "Duits"
 msgid "Germany"
 msgstr "Duitsland"
 
-msgid "Getting event information failed!"
-msgstr "Geen programma info gevonden!"
-
 msgid "Getting plugin information. Please wait..."
 msgstr "Plugin gegevens worden geladen. Even wachten..."
 
@@ -10284,6 +10251,9 @@ msgstr "Verberg VBI regel voor deze zender"
 msgid "Hide any zap error messages."
 msgstr "Verberg alle zapfouten."
 
+msgid "Hide empty services"
+msgstr "Zenders zonder EPG overslaan"
+
 msgid "Hide error messages from the Common Interface module."
 msgstr "Foutmeldingen van de Common Interface-module verbergen."
 
@@ -10488,11 +10458,11 @@ msgstr "IMDb details"
 msgid "IMDb Search"
 msgstr "IMDb informatie"
 
-msgid "IMDb search for current event"
-msgstr "IMDb raadplegen voor het huidige programma"
-
 msgid "INFO"
 msgstr "INFO"
+
+msgid "INFO (Long press)"
+msgstr "INFO-knop (lang)"
 
 msgid "INFO button mode"
 msgstr "INFO-knop"
@@ -10931,12 +10901,6 @@ msgstr "Indonesisch"
 msgid "Info"
 msgstr "Informatie"
 
-msgid "INFO (Long press)"
-msgstr "INFO-knop (lang)"
-
-msgid "Info button (short)"
-msgstr "INFO-knop (kort)"
-
 msgid "Info file checksum"
 msgstr "Info-bestand checksum"
 
@@ -11258,9 +11222,6 @@ msgstr "Javanees"
 msgid "Jazz"
 msgstr "Jazz"
 
-msgid "Jazz Music"
-msgstr "Jazz"
-
 msgid "Jersey"
 msgstr "Jersey"
 
@@ -11276,14 +11237,14 @@ msgstr "ZeroTier-Netwerk verbinden of verlaten"
 msgid "Joined"
 msgstr "Verbonden"
 
+msgid "Joint stereo"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Jordanië"
 
 msgid "Jump"
 msgstr "Springen"
-
-msgid "Jump back 24 hours"
-msgstr "Spring 24 uur terug"
 
 msgid "Jump back one day"
 msgstr "Een dag terug springen"
@@ -11293,9 +11254,6 @@ msgstr "Een uur terug springen"
 
 msgid "Jump first press in channel selection"
 msgstr "Spring naar eerste zender"
-
-msgid "Jump forward 24 hours"
-msgstr "Spring 24 uur vooruit"
 
 msgid "Jump forward one day"
 msgstr "Een dag vooruit springen"
@@ -11318,14 +11276,8 @@ msgstr "Spring naar einde van de lijst"
 msgid "Jump to next marked position"
 msgstr "Spring naar de volgende markering"
 
-msgid "Jump to next page or all up (setup in menu)"
-msgstr "Spring naar volgende pagina of helemaal naar boven (instellen in het menu)"
-
 msgid "Jump to previous marked position"
 msgstr "Spring naar de vorige markering"
-
-msgid "Jump to previous page or all down (setup in menu)"
-msgstr "Spring naar de vorige pagina of helemaal naar beneden (instellen in het menu)"
 
 msgid "Jump to prime time"
 msgstr "Spring naar prime time"
@@ -12577,6 +12529,9 @@ msgstr "Mongolië"
 msgid "Mongolian"
 msgstr "Mongolië"
 
+msgid "Mono"
+msgstr ""
+
 msgid "Montenegro"
 msgstr "Montenegro"
 
@@ -12815,9 +12770,6 @@ msgstr "Ga naar de eerste regel"
 
 msgid "Move to first line / screen in the panel"
 msgstr "Naar de eerste regel / beeldscherm gaan"
-
-msgid "Move to home of list"
-msgstr "Ga naar begin van de lijst"
 
 msgid "Move to last item / screen"
 msgstr "Ga naar het laatste item / scherm"
@@ -13149,6 +13101,9 @@ msgstr "Namibië"
 msgid "Narration"
 msgstr "Verhaal"
 
+msgid "National Music"
+msgstr ""
+
 msgid "National music"
 msgstr "Nationale muziek"
 
@@ -13178,9 +13133,6 @@ msgstr "Navigeer naar de geselecteerde map"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Navigeer met de OMHOOG/OMLAAG knoppen en Pagina Omhoog/Omlaag met LINKS/RECHTS. Druk OK om een actie uit te voeren die op dit moment in het help-menu is gearceerd."
-
-msgid "Navigation And Button Assignments"
-msgstr "Navigatie en Knoppen configuratie"
 
 msgid "Navigation And Time Range"
 msgstr "Navigatie en Tijdbereik"
@@ -13982,9 +13934,6 @@ msgstr "Bevestigen"
 msgid "OK (Long press)"
 msgstr "OK-knop (lang)"
 
-msgid "OK button (short)"
-msgstr "OK-knop (kort)"
-
 msgid "OK button mode"
 msgstr "OK-knop functie"
 
@@ -14096,9 +14045,6 @@ msgid "Ojibwa"
 msgstr "Ojibwe"
 
 msgid "Oldies"
-msgstr "Oldies"
-
-msgid "Oldies Music"
 msgstr "Oldies"
 
 msgid "Olympic blue"
@@ -14572,6 +14518,9 @@ msgstr "PIN"
 
 msgid "PIN code needed"
 msgstr "Pincode benodigd"
+
+msgid "PLAY"
+msgstr ""
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -15657,9 +15606,6 @@ msgstr "Vorige pagina"
 msgid "Previous channel page"
 msgstr "Vorige zender pagina"
 
-msgid "Previous/Next bouquet"
-msgstr "Vorige/volgende favorietenlijst"
-
 msgid "Previous/Next page"
 msgstr "Vorige/volgende pagina"
 
@@ -15678,14 +15624,12 @@ msgstr "Prime Time"
 msgid "Prime time"
 msgstr "Prime time"
 
-msgid "Primetime hour"
-msgstr "Prime time: uur"
-
-msgid "Primetime minute"
-msgstr "Prime time: minuten"
-
 msgid "Priority"
 msgstr "Prioriteit"
+
+#, python-format
+msgid "Priority: %d"
+msgstr ""
 
 msgid "Privacy level"
 msgstr "Privacyniveau"
@@ -15739,8 +15683,8 @@ msgstr "Profiel: lokale box"
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "Programma '%s' moet geïnstalleerd worden om deze actie uit te voeren. Wilt u het pakket '%s' installeren om dit programma te installeren?"
 
-msgid "Program type"
-msgstr "Programmatype"
+msgid "Programme type (PTY)"
+msgstr ""
 
 msgid "Programmlisten History"
 msgstr "Zenderlijst History"
@@ -16021,14 +15965,20 @@ msgstr "REC-symbool in het display"
 msgid "REC symbol"
 msgstr "REC-symbool"
 
+msgid "RECORD"
+msgstr ""
+
+msgid "RECORD (Long press)"
+msgstr ""
+
 msgid "RED"
 msgstr "RODE-knop"
 
-msgid "RED button / HbbTV"
-msgstr "RODE knop / HbbTV"
-
 msgid "RED (Long press)"
 msgstr "ROOD-lang"
+
+msgid "RED button / HbbTV"
+msgstr "RODE knop / HbbTV"
 
 msgid "RF Output Settings"
 msgstr "RF modulator"
@@ -16225,12 +16175,6 @@ msgstr "Ontvangstmogelijkheden om te scannen"
 
 msgid "Record"
 msgstr "Opname"
-
-msgid "Record - same as record button"
-msgstr "Record - hetzelfde als de record-knop"
-
-msgid "Record Actions"
-msgstr "Opname instellingen"
 
 msgid "Record icon"
 msgstr "Opname symbool"
@@ -17112,9 +17056,6 @@ msgstr "rechts, gedraaid"
 msgid "Rock"
 msgstr "Rock"
 
-msgid "Rock Music"
-msgstr "Rockmuziek"
-
 msgid "Rock/Pop"
 msgstr "rock / pop"
 
@@ -17698,9 +17639,6 @@ msgstr "Zoek oost"
 msgid "Search for network shares"
 msgstr "Zoeken naar Netwerk shares"
 
-msgid "Search for similar events"
-msgstr "Zoek soortgelijke programma's"
-
 msgid "Search in the current view"
 msgstr "Zoeken in de huidige weergave"
 
@@ -17891,9 +17829,6 @@ msgstr "'Ja' Selecteren om de bewakings-UI webinterface voor het DNSCrypt subsys
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Selecteer 'Ja' om het gebruik van de LINKS/RECHTS-toetsen voor PageUp/PageDown in te schakelen wanneer de LINKS/RECHTS-toetsen niet op een andere manier gebruikt worden. Dit biedt een bekende navigatie voor gebruikers die dit gewend zijn."
-
-msgid "When enabled, services without EPG data will be hidden."
-msgstr "Bij 'ja' worden zenders zonder EPG niet getoond."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
 msgstr "Kies 'Ja' om de servernaam en het IP-adres van de server te verbergen."
@@ -18375,6 +18310,9 @@ msgstr "Geef aan of File Locking beschikbaar is. Kies 'Nee' om 'nolock' aan de i
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Met deze optie kunt u selecteren of de standaardwaarde voor een instellingsitem wordt weergegeven en, wanneer ja, waar deze wordt weergegeven t.o.v. de beschrijving."
 
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
+msgstr "Hier kunt u een weergave kiezen voor de EPG."
+
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr "Selecteer of boven het menu 'het pad naar het menu' moet worden getoond, en wanneer ja, hoe."
 
@@ -18527,6 +18465,9 @@ msgstr "Selecteer de voorwaarden voor de ZapTimer. Deze wordt vervolgens alleen 
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "Actie voor '%s' selecteren"
+
+msgid "Select the action that this button will perform."
+msgstr "Selecteer welke functie deze knop in de EPG heeft."
 
 msgid "Select the action to perform when the timer ends."
 msgstr "Opgeven wat er moet gebeuren wanneer de Timer is uitgevoerd."
@@ -18807,6 +18748,9 @@ msgstr "Selecteer het volgende item in de lijst"
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr "Selecteer het aantal programma's dat in de timeshift-buffer moet worden opgeslagen. Overtollige programma's worden tijdens het opruimen verwijderd. Een buffer kan uit meerdere bestand-segmenten bestaan, die gezamenlijk als één buffer worden geteld. Buffers die op dat moment in gebruik zijn, blijven ongewijzigd; de limiet kan daarom tijdelijk worden overschreden."
 
+msgid "Select the number of services to be shown in the list."
+msgstr "Het aantal zenderregels instellen."
+
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr "Het aantal herhaalde pogingen voor een taak selecteren wanneer er tijdens het uitvoeren van die taak een fout optreedt."
 
@@ -19062,6 +19006,9 @@ msgstr "Geef aan of het veld 'Server' hieronder vooraf moet worden ingevuld met 
 msgid "Select which IP protocols can be used with this adapter."
 msgstr "Selecteer welke IP-protocollen met deze adapter kunnen worden gebruikt."
 
+msgid "Select which service to use when opening the EPG."
+msgstr "Welke zender selecteren bij het openen van de EPG."
+
 msgid "Select your ATSC provider."
 msgstr "Selecteer uw ATSC provider."
 
@@ -19308,6 +19255,9 @@ msgstr "Picons beeldverhouding"
 
 msgid "Service picons downsize"
 msgstr "Picons verkleinen"
+
+msgid "Service preview mode"
+msgstr "Zender preview in EPG"
 
 msgid "Service reference"
 msgstr "Zenderreferentie"
@@ -19593,9 +19543,6 @@ msgstr "Activeren om gecodeerde opnames te decoderen in Stand-by."
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Wanneer u kiest voor 'Ja' worden dezelfde commando's naar de TV gestuurd voor deep standby als voor de normale standby functies."
-
-msgid "Select the action that this button will perform."
-msgstr "Selecteer welke functie deze knop in de EPG heeft."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Zet op Ja, voor debuggen en achterliggende oorzaak van spinner te vinden."
@@ -19994,9 +19941,6 @@ msgstr "Toon MiniTV op het display"
 
 msgid "Show Movie Selection in Main Menu"
 msgstr "De opnamelijst tonen in het hoofdmenu"
-
-msgid "Show Movies List"
-msgstr "Toon Opname lijst"
 
 msgid "Show Multi EPG"
 msgstr "Toon Multi-EPG"
@@ -20740,9 +20684,6 @@ msgstr "%s%% terug springen"
 msgid "Skip backward (enter time)"
 msgstr "Spring terug (tijd invoeren)"
 
-msgid "Hide empty services"
-msgstr "Zenders zonder EPG overslaan"
-
 #, python-format
 msgid "Skip for '%s' is disabled"
 msgstr "Sprong voor '%s' is uitgeschakeld"
@@ -21133,9 +21074,6 @@ msgstr "Sorteren"
 msgid "Sort Bookmarks"
 msgstr "Bladwijzers sorteren"
 
-msgid "Sort EPG List"
-msgstr "Sorteer EPG-lijst"
-
 msgid "Sort Extension Menu"
 msgstr "Sorteer het Extensies-menu alfabetisch"
 
@@ -21495,6 +21433,9 @@ msgstr "Naar oost gestapt"
 msgid "Stepped west"
 msgstr "Naar west gestapt"
 
+msgid "Stereo"
+msgstr ""
+
 msgid "Stop"
 msgstr "Stop"
 
@@ -21794,6 +21735,15 @@ msgstr "Support"
 
 msgid "Suriname"
 msgstr "Suriname"
+
+msgid "Surround"
+msgstr ""
+
+msgid "Surround 5.1"
+msgstr ""
+
+msgid "Surround 7.1"
+msgstr ""
 
 msgid "Svalbard and Jan Mayen"
 msgstr "Svalbard en Jan Mayen"
@@ -22676,6 +22626,9 @@ msgstr "Het opslagapparaat voor Timeshift is niet beschikbaar. Controleer het ap
 msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr "Het opslagapparaat voor Timeshift is verwijderd. Timeshift is gestopt."
 
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr "Het Timer bestand '%s' is beschadigd en kan niet worden geladen."
@@ -22933,9 +22886,6 @@ msgstr "Offset-waarden voor diverse Letterbox-resoluties instellen."
 msgid "This option allows you to set the Auto Volume Level output."
 msgstr "Met deze optie kunt u het automatische volumeniveau configureren."
 
-msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
-msgstr "Hier kunt u een weergave kiezen voor de EPG."
-
 msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "Audio afspelen op een Bluetooth luidspreker."
 
@@ -23143,9 +23093,6 @@ msgstr "Timeshift kon niet worden gestart. Controleer het opslagapparaat en de b
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr "Timeshift functioneert eventueel niet goed zonder een geschikte opnamelocatie."
-
-msgid "Time shift not possible!"
-msgstr "Timeshift is niet mogelijk!"
 
 msgid "Time shift save action on zap"
 msgstr "Timeshift opslaan actie bij zappen"
@@ -25310,6 +25257,9 @@ msgstr "Wanneer dit is ingeschakeld, brengt een druk op 0 je direct naar de inge
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Breedte van de ondertitels automatisch aanpassen aan de breedte van het beeldscherm."
 
+msgid "When enabled, services without EPG data will be hidden."
+msgstr "Bij 'ja' worden zenders zonder EPG niet getoond."
+
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Bij 'Ja' wordt een zendernummer bij elke zender in de lijst weergegeven."
 
@@ -25457,9 +25407,6 @@ msgstr ""
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Waar wilt u de tijdelijke Timeshift opnames opslaan?"
-
-msgid "Select which service to use when opening the EPG."
-msgstr "Welke zender selecteren bij het openen van de EPG."
 
 msgid "Which time shift buffer event do you want to save?"
 msgstr "Welk programma wilt u permanent verwijderen?"
@@ -26662,6 +26609,126 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Add a RecordTimer for current event"
+#~ msgstr "Opname Timer toevoegen voor het huidige programma"
+
+#~ msgid "Add a ZapTimer for current event"
+#~ msgstr "ZapTimer toevoegen voor het huidige programma"
+
+#~ msgid "Add an AutoTimer for the current event"
+#~ msgstr "Een AutoTimer toevoegen voor het huidige programma"
+
+#~ msgid "Add/Remove Timer"
+#~ msgstr "Timer toevoegen/verwijderen"
+
+#~ msgid "Add/Remove a timer for the current event"
+#~ msgstr "Timer voor het huidige programma toevoegen/verwijderen"
+
+#~ msgid "AutoTimer"
+#~ msgstr "AutoTimer"
+
+#~ msgid "Browse mode"
+#~ msgstr "Zoek modus"
+
+#~ msgid "CHANNEL +/-"
+#~ msgstr "Zender +/-"
+
+#~ msgid "Change to bouquet"
+#~ msgstr "Ga naar favorietenlijst"
+
+#~ msgid "Close bouquet list"
+#~ msgstr "Sluit de favorietenlijst"
+
+#~ msgid "Close bouquet list."
+#~ msgstr "Sluit de favorietenlijst."
+
+#~ msgid "Color Button Assignments"
+#~ msgstr "Gekleurde knoppen configuratie"
+
+#~ msgid "Country Music"
+#~ msgstr "Country Music"
+
+#~ msgid "EPG Bouquet Actions"
+#~ msgstr "EPG favorietenlijst Acties"
+
+#~ msgid "EPG Display Actions"
+#~ msgstr "EPG overzicht acties"
+
+#~ msgid "EPG Other Actions"
+#~ msgstr "EPG overige instellingen"
+
+#~ msgid "Easy Listening Music"
+#~ msgstr "Easy listening"
+
+#~ msgid "Getting event information failed!"
+#~ msgstr "Geen programma info gevonden!"
+
+#~ msgid "IMDb search for current event"
+#~ msgstr "IMDb raadplegen voor het huidige programma"
+
+#~ msgid "Info button (short)"
+#~ msgstr "INFO-knop (kort)"
+
+#~ msgid "Jazz Music"
+#~ msgstr "Jazz"
+
+#~ msgid "Jump back 24 hours"
+#~ msgstr "Spring 24 uur terug"
+
+#~ msgid "Jump forward 24 hours"
+#~ msgstr "Spring 24 uur vooruit"
+
+#~ msgid "Jump to next page or all up (setup in menu)"
+#~ msgstr "Spring naar volgende pagina of helemaal naar boven (instellen in het menu)"
+
+#~ msgid "Jump to previous page or all down (setup in menu)"
+#~ msgstr "Spring naar de vorige pagina of helemaal naar beneden (instellen in het menu)"
+
+#~ msgid "Move to home of list"
+#~ msgstr "Ga naar begin van de lijst"
+
+#~ msgid "Navigation And Button Assignments"
+#~ msgstr "Navigatie en Knoppen configuratie"
+
+#~ msgid "OK button (short)"
+#~ msgstr "OK-knop (kort)"
+
+#~ msgid "Oldies Music"
+#~ msgstr "Oldies"
+
+#~ msgid "Previous/Next bouquet"
+#~ msgstr "Vorige/volgende favorietenlijst"
+
+#~ msgid "Primetime hour"
+#~ msgstr "Prime time: uur"
+
+#~ msgid "Primetime minute"
+#~ msgstr "Prime time: minuten"
+
+#~ msgid "Program type"
+#~ msgstr "Programmatype"
+
+#~ msgid "Record - same as record button"
+#~ msgstr "Record - hetzelfde als de record-knop"
+
+#~ msgid "Record Actions"
+#~ msgstr "Opname instellingen"
+
+#~ msgid "Rock Music"
+#~ msgstr "Rockmuziek"
+
+#~ msgid "Search for similar events"
+#~ msgstr "Zoek soortgelijke programma's"
+
+#~ msgid "Show Movies List"
+#~ msgstr "Toon Opname lijst"
+
+#~ msgid "Sort EPG List"
+#~ msgstr "Sorteer EPG-lijst"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Timeshift is niet mogelijk!"
 
 #~ msgid "Please select device to use as swap file location"
 #~ msgstr "Selecteer een apparaat om te gebruiken als swap file locatie"

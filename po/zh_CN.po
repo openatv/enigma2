@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-26 13:51+0100\n"
-"PO-Revision-Date: 2026-10-30 12:17+0000\n"
+"POT-Creation-Date: 2026-11-01 20:39+0100\n"
+"PO-Revision-Date: 2026-11-02 04:16+0000\n"
 "Last-Translator: Mark Stone <mstone@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -1688,6 +1688,9 @@ msgstr "遥控器图像上的高亮部分显示帮助所指的按钮。如果多
 msgid "A new storage device has been connected:"
 msgstr "已连接新的存储设备："
 
+msgid "A prepared or running timer can not be moved to the fallback tuner."
+msgstr "已准备或正在运行的定时器无法移至回退调谐器。"
+
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -2043,14 +2046,8 @@ msgstr "将广播频道添加到音量偏移列表"
 msgid "Add a RecordTimer"
 msgstr "添加录制定时器"
 
-msgid "Add a RecordTimer for current event"
-msgstr "为当前事件添加录制定时器"
-
 msgid "Add a TV service to the Volume Offset list"
 msgstr "将电视频道添加到音量偏移列表"
-
-msgid "Add a ZapTimer for current event"
-msgstr "为当前事件添加换台定时器"
 
 msgid "Add a ZapTimer for next event"
 msgstr "为下一事件添加换台定时器"
@@ -2084,9 +2081,6 @@ msgstr "为当前事件添加定时器"
 
 msgid "Add an existing swap file"
 msgstr "添加现有交换文件"
-
-msgid "Add an AutoTimer for the current event"
-msgstr "为当前事件添加自动定时器"
 
 msgid "Add current directory to bookmarks"
 msgstr "将当前目录添加到书签"
@@ -2162,12 +2156,6 @@ msgstr "将所选频道添加到频道分组或备选中"
 
 msgid "Add title"
 msgstr "添加标题"
-
-msgid "Add/Remove Timer"
-msgstr "添加/删除定时器"
-
-msgid "Add/Remove a timer for the current event"
-msgstr "添加/移除当前事件的定时器"
 
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr "在安装列表中添加/删除突出显示的插件"
@@ -2969,9 +2957,6 @@ msgstr "自动挂载管理器"
 msgid "AutoRefresh"
 msgstr "自动刷新"
 
-msgid "AutoTimer"
-msgstr "自动定时器"
-
 msgid "AutoUpdate"
 msgstr "自动更新"
 
@@ -3514,9 +3499,6 @@ msgstr "博通默认"
 msgid "Browse"
 msgstr "浏览"
 
-msgid "Browse mode"
-msgstr "浏览模式"
-
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "逐一浏览、安装或删除插件。"
 
@@ -3703,8 +3685,17 @@ msgstr "频道 %s"
 msgid "CHANGE BOUQUET"
 msgstr "更改频道分组"
 
-msgid "CHANNEL +/-"
-msgstr "频道 +/-"
+msgid "CHANNEL+"
+msgstr "频道 +"
+
+msgid "CHANNEL+ button (setup in menu)"
+msgstr "频道 + 按钮（在菜单中设置）"
+
+msgid "CHANNEL-"
+msgstr "频道 -"
+
+msgid "CHANNEL- button (setup in menu)"
+msgstr "频道 - 按钮（在菜单中设置）"
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI （通用接口）设置"
@@ -4162,9 +4153,6 @@ msgstr "更改为广播频道模式"
 msgid "Change to TV services mode"
 msgstr "更改为电视频道模式"
 
-msgid "Change to bouquet"
-msgstr "更改到频道分组"
-
 msgid "Changed"
 msgstr "已更改"
 
@@ -4263,9 +4251,6 @@ msgstr "频道名称"
 
 msgid "Channel number"
 msgstr "频道号"
-
-msgid "Service preview mode"
-msgstr "频道预览模式"
 
 msgid "Channel selection configuration"
 msgstr "频道选择配置"
@@ -4605,12 +4590,6 @@ msgstr "关闭任务列表"
 msgid "Close Task View"
 msgstr "关闭任务视图"
 
-msgid "Close bouquet list"
-msgstr "关闭频道分组列表"
-
-msgid "Close bouquet list."
-msgstr "关闭频道分组列表。"
-
 msgid "Close dialog"
 msgstr "关闭对话框"
 
@@ -4700,9 +4679,6 @@ msgstr "哥伦比亚"
 
 msgid "Color"
 msgstr "色彩"
-
-msgid "Color Button Assignments"
-msgstr "彩色按键分配"
 
 msgid "Color format"
 msgstr "色彩格式"
@@ -5054,9 +5030,6 @@ msgstr "配置项目在多少天后自动从垃圾箱中删除。"
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "配置旧定时器在自动从定时器列表中删除之前保留的天数。"
-
-msgid "Select the number of services to be shown in the list."
-msgstr "配置显示的行数。"
 
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr "配置离线解码延迟时间（毫秒）。 在每个控制字奇偶校验变化时观察配置的延迟。"
@@ -5519,9 +5492,6 @@ msgstr ""
 
 msgid "Country"
 msgstr "国家(地区)"
-
-msgid "Country Music"
-msgstr "乡村音乐"
 
 msgid "Country for EPG event genre information"
 msgstr "EPG 事件类型信息的国家/地区"
@@ -7401,6 +7371,9 @@ msgstr "驱动程序版本"
 msgid "Drop unconfigured satellites"
 msgstr "删除未配置卫星"
 
+msgid "Dual channel"
+msgstr ""
+
 msgid "Duplex"
 msgstr "双工模式"
 
@@ -7444,11 +7417,11 @@ msgstr "“%s”的 ECM 信息"
 msgid "EPG"
 msgstr "EPG"
 
+msgid "EPG (Long press)"
+msgstr ""
+
 msgid "EPG Actions"
 msgstr "EPG 操作"
-
-msgid "EPG Bouquet Actions"
-msgstr "EPG 频道分组操作"
 
 msgid "EPG Cache Check"
 msgstr "EPG 缓存检查"
@@ -7459,9 +7432,6 @@ msgstr "EPG 频道/服务选择"
 msgid "EPG Data In Streams"
 msgstr "流中的EPG数据"
 
-msgid "EPG Display Actions"
-msgstr "EPG 显示操作"
-
 msgid "EPG Jump"
 msgstr "电子节目表跳转"
 
@@ -7470,9 +7440,6 @@ msgstr "EPG语言"
 
 msgid "EPG Navigation Actions"
 msgstr "EPG 导航操作"
-
-msgid "EPG Other Actions"
-msgstr "EPG 其他动作"
 
 msgid "EPG Range And History"
 msgstr "EPG范围与历史记录"
@@ -7494,6 +7461,9 @@ msgstr "EPG数据源"
 
 msgid "EPG Storage And Refresh"
 msgstr "EPG存储与刷新"
+
+msgid "EPG button long (setup in menu)"
+msgstr ""
 
 msgid "EPG button mode"
 msgstr "EPG 键模式"
@@ -7553,7 +7523,7 @@ msgstr "东限制"
 msgid "Eastern satellites"
 msgstr "东经卫星"
 
-msgid "Easy Listening Music"
+msgid "Easy Listening"
 msgstr ""
 
 msgid "Easy listening"
@@ -9716,9 +9686,6 @@ msgstr "德语"
 msgid "Germany"
 msgstr "德国"
 
-msgid "Getting event information failed!"
-msgstr "获取事件信息失败！"
-
 msgid "Getting plugin information. Please wait..."
 msgstr "正在获取插件信息。请稍等..."
 
@@ -10145,6 +10112,9 @@ msgstr "隐藏此频道的 VBI 行"
 msgid "Hide any zap error messages."
 msgstr "隐藏任何切换错误信息。"
 
+msgid "Hide empty services"
+msgstr "跳过空频道"
+
 msgid "Hide error messages from the Common Interface module."
 msgstr "隐藏来自通用接口模块的错误消息。"
 
@@ -10353,11 +10323,11 @@ msgstr "IMDb 详情"
 msgid "IMDb Search"
 msgstr "搜索 IMDb"
 
-msgid "IMDb search for current event"
-msgstr "IMDb 搜索当前事件"
-
 msgid "INFO"
 msgstr "INFO"
+
+msgid "INFO (Long press)"
+msgstr "INFO 键 （长按）"
 
 msgid "INFO button mode"
 msgstr "INFO 键模式"
@@ -10792,12 +10762,6 @@ msgstr "印尼语"
 msgid "Info"
 msgstr "信息"
 
-msgid "INFO (Long press)"
-msgstr "INFO 键 （长按）"
-
-msgid "Info button (short)"
-msgstr "INFO 键 （短按）"
-
 msgid "Info file checksum"
 msgstr "信息文件校验和"
 
@@ -11119,9 +11083,6 @@ msgstr "爪哇语"
 msgid "Jazz"
 msgstr "爵士"
 
-msgid "Jazz Music"
-msgstr ""
-
 msgid "Jersey"
 msgstr "泽西岛"
 
@@ -11137,14 +11098,14 @@ msgstr "加入或离开已配置的 ZeroTier 网络"
 msgid "Joined"
 msgstr "已加入"
 
+msgid "Joint stereo"
+msgstr ""
+
 msgid "Jordan"
 msgstr "约旦"
 
 msgid "Jump"
 msgstr "跳转"
-
-msgid "Jump back 24 hours"
-msgstr "向后跳转24小时"
 
 msgid "Jump back one day"
 msgstr "往回跳 1 天"
@@ -11154,9 +11115,6 @@ msgstr "往回跳 1 小时"
 
 msgid "Jump first press in channel selection"
 msgstr "在频道选择中第一次按下跳转"
-
-msgid "Jump forward 24 hours"
-msgstr "向前跳转24小时"
 
 msgid "Jump forward one day"
 msgstr "向前跳 1 天"
@@ -11179,14 +11137,8 @@ msgstr "跳转到列表末尾"
 msgid "Jump to next marked position"
 msgstr "跳转到下一个标记位置"
 
-msgid "Jump to next page or all up (setup in menu)"
-msgstr "跳转到下一页面或全部向上（在菜单中设置）"
-
 msgid "Jump to previous marked position"
 msgstr "跳转到上一个标记位置"
-
-msgid "Jump to previous page or all down (setup in menu)"
-msgstr "跳转到上一页或全部向下（在菜单中设置）"
 
 msgid "Jump to prime time"
 msgstr "跳转到黄金时段"
@@ -12438,6 +12390,9 @@ msgstr "蒙古"
 msgid "Mongolian"
 msgstr "蒙古语"
 
+msgid "Mono"
+msgstr ""
+
 msgid "Montenegro"
 msgstr "黑山共和国"
 
@@ -12676,9 +12631,6 @@ msgstr "移到首行"
 
 msgid "Move to first line / screen in the panel"
 msgstr "移动到面板中的首行/屏幕"
-
-msgid "Move to home of list"
-msgstr "移动主页列表"
 
 msgid "Move to last item / screen"
 msgstr "移到末项 / 末屏"
@@ -13010,6 +12962,9 @@ msgstr "纳米比亚"
 msgid "Narration"
 msgstr "旁白"
 
+msgid "National Music"
+msgstr ""
+
 msgid "National music"
 msgstr "民族音乐"
 
@@ -13039,9 +12994,6 @@ msgstr "导航到所选目录"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "使用向上/向下按钮向上/向下导航，使用左/右向上/向下翻页。单击确定以执行当前突出显示的帮助中描述的操作。"
-
-msgid "Navigation And Button Assignments"
-msgstr "导航与按键分配"
 
 msgid "Navigation And Time Range"
 msgstr "导航与时间范围"
@@ -13840,9 +13792,6 @@ msgstr "确定"
 msgid "OK (Long press)"
 msgstr "OK 键 （长按）"
 
-msgid "OK button (short)"
-msgstr "OK 键 （短按）"
-
 msgid "OK button mode"
 msgstr "OK 键模式"
 
@@ -13954,9 +13903,6 @@ msgid "Ojibwa"
 msgstr "奥吉布瓦"
 
 msgid "Oldies"
-msgstr ""
-
-msgid "Oldies Music"
 msgstr ""
 
 msgid "Olympic blue"
@@ -14430,6 +14376,9 @@ msgstr "PIN"
 
 msgid "PIN code needed"
 msgstr "需要 PIN 码"
+
+msgid "PLAY"
+msgstr ""
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -15514,9 +15463,6 @@ msgstr "上一页"
 msgid "Previous channel page"
 msgstr "上一频道页"
 
-msgid "Previous/Next bouquet"
-msgstr "前一/后一个频道分组"
-
 msgid "Previous/Next page"
 msgstr "上一/下一页"
 
@@ -15535,14 +15481,12 @@ msgstr "黄金时段"
 msgid "Prime time"
 msgstr "黄金时段"
 
-msgid "Primetime hour"
-msgstr "黄金时段 小时"
-
-msgid "Primetime minute"
-msgstr "黄金时段 分钟"
-
 msgid "Priority"
 msgstr "优先级"
+
+#, python-format
+msgid "Priority: %d"
+msgstr ""
 
 msgid "Privacy level"
 msgstr "隐私级别"
@@ -15596,8 +15540,8 @@ msgstr "配置文件：本地机顶盒"
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "需要安装程序“%s”才能执行此操作。是否要安装“%s”软件包以安装该程序？"
 
-msgid "Program type"
-msgstr "节目类型"
+msgid "Programme type (PTY)"
+msgstr ""
 
 msgid "Programmlisten History"
 msgstr "Programmlisten 历史"
@@ -15878,14 +15822,20 @@ msgstr "使用 REC 符号"
 msgid "REC symbol"
 msgstr "REC 字符"
 
+msgid "RECORD"
+msgstr ""
+
+msgid "RECORD (Long press)"
+msgstr ""
+
 msgid "RED"
 msgstr "红键"
 
-msgid "RED button / HbbTV"
-msgstr "红键 / HbbTV"
-
 msgid "RED (Long press)"
 msgstr "长按红键"
+
+msgid "RED button / HbbTV"
+msgstr "红键 / HbbTV"
 
 msgid "RF Output Settings"
 msgstr "射频输出设置"
@@ -16082,12 +16032,6 @@ msgstr "待扫描接收信号源"
 
 msgid "Record"
 msgstr "录像"
-
-msgid "Record - same as record button"
-msgstr "录像 - 与录像按键相同"
-
-msgid "Record Actions"
-msgstr "录制操作"
 
 msgid "Record icon"
 msgstr "录制图标"
@@ -16969,9 +16913,6 @@ msgstr "右，覆盖"
 msgid "Rock"
 msgstr ""
 
-msgid "Rock Music"
-msgstr ""
-
 msgid "Rock/Pop"
 msgstr "摇滚/流行"
 
@@ -17553,9 +17494,6 @@ msgstr "搜索东面"
 msgid "Search for network shares"
 msgstr "搜索网络共享"
 
-msgid "Search for similar events"
-msgstr "搜索相似的事件"
-
 msgid "Search in the current view"
 msgstr "在当前视图中搜索"
 
@@ -17744,9 +17682,6 @@ msgstr "选择“是”以启用 DNSCrypt 子系统的监控界面网页界面�
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "选择“是”以启用左/右按钮作为上页/下页功能（当左/右按钮未定义其他功能时）。此功能为偏好传统导航方式的用户提供支持。"
-
-msgid "When enabled, services without EPG data will be hidden."
-msgstr "选择“是”隐藏没有 EPG 数据的频道。"
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
 msgstr "选择“是”隐藏服务器名称和服务器的 IP 地址。"
@@ -18224,6 +18159,9 @@ msgstr "选择文件锁定是否可用。选择“否”可将“nolock”添加
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "选择是否显示设置条目的默认值，如果显示，则选择与描述相关的显示位置。"
 
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
+msgstr "此选项允许您设置布局视图（文本或图形）。"
+
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr "选择是否显示屏幕菜单路径历史记录，如果显示，则选择如何显示。"
 
@@ -18376,6 +18314,9 @@ msgstr "选择换台定时器的前置触发条件。换台定时器仅在所选
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "选择“%s”的操作"
+
+msgid "Select the action that this button will perform."
+msgstr "设置按键功能。"
 
 msgid "Select the action to perform when the timer ends."
 msgstr "选择定时器结束时要执行的操作。"
@@ -18650,6 +18591,9 @@ msgstr "选择列表中的下一项"
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr "选择时移缓冲中保留的事件数量。超出此限制的事件将在清理时被移除。一个缓冲可能包含多个物理文件分片，计为一个事件。仍在使用的缓冲受保护，因此该限制可能被暂时超出。"
 
+msgid "Select the number of services to be shown in the list."
+msgstr "配置显示的行数。"
+
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr "选择任务运行出错时的重试次数。"
 
@@ -18905,6 +18849,9 @@ msgstr "选择是否用此主机发现的DNS/mDNS名称预填下方的“服务�
 msgid "Select which IP protocols can be used with this adapter."
 msgstr "选择此适配器可用的 IP 协议。"
 
+msgid "Select which service to use when opening the EPG."
+msgstr "打开 EPG 时选择哪个频道。"
+
 msgid "Select your ATSC provider."
 msgstr "选择 ATSC 供应商。"
 
@@ -19151,6 +19098,9 @@ msgstr "频道图标宽高比"
 
 msgid "Service picons downsize"
 msgstr "缩小频道图标"
+
+msgid "Service preview mode"
+msgstr "频道预览模式"
 
 msgid "Service reference"
 msgstr "频道标识符"
@@ -19430,9 +19380,6 @@ msgstr "设为'启用'，可在待机模式下对已排队的加扰内容执行�
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "如果设置为“是”，那么对于深度待机事件，将向电视发送相同的命令，就像在常规待机事件期间发送的一样。"
-
-msgid "Select the action that this button will perform."
-msgstr "设置按键功能。"
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "设置为“是”， 以调试出现旋转器的根本原因。"
@@ -19822,9 +19769,6 @@ msgstr "在前端显示屏中显示小窗电视"
 
 msgid "Show Movie Selection in Main Menu"
 msgstr "在主菜单中显示电影选择"
-
-msgid "Show Movies List"
-msgstr "显示影片列表"
 
 msgid "Show Multi EPG"
 msgstr "显示多路 EPG"
@@ -20562,9 +20506,6 @@ msgstr "快退 %s%%"
 msgid "Skip backward (enter time)"
 msgstr "快退（输入时间）"
 
-msgid "Hide empty services"
-msgstr "跳过空频道"
-
 #, python-format
 msgid "Skip for '%s' is disabled"
 msgstr "%s 跳过已禁用"
@@ -20955,9 +20896,6 @@ msgstr "排序"
 msgid "Sort Bookmarks"
 msgstr "对书签进行排序"
 
-msgid "Sort EPG List"
-msgstr "排序 EPG 列表"
-
 msgid "Sort Extension Menu"
 msgstr "排序扩展菜单"
 
@@ -21317,6 +21255,9 @@ msgstr "已向东步进"
 msgid "Stepped west"
 msgstr "已向西步进"
 
+msgid "Stereo"
+msgstr ""
+
 msgid "Stop"
 msgstr "停止"
 
@@ -21616,6 +21557,15 @@ msgstr "支持"
 
 msgid "Suriname"
 msgstr "苏里南"
+
+msgid "Surround"
+msgstr ""
+
+msgid "Surround 5.1"
+msgstr ""
+
+msgid "Surround 7.1"
+msgstr ""
 
 msgid "Svalbard and Jan Mayen"
 msgstr "斯瓦尔巴群岛和Jan Mayen"
@@ -22496,6 +22446,9 @@ msgstr "时移存储设备不可用。请检查设备和时移路径。"
 msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr "时移存储设备已移除，时移已停止。"
 
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr "定时器文件“%s”已损坏，无法加载。"
@@ -22738,9 +22691,6 @@ msgstr "此选项允许您为不同的信箱模式分辨率设置偏移值。"
 msgid "This option allows you to set the Auto Volume Level output."
 msgstr "此选项配置 让您设置自动音量级别。"
 
-msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
-msgstr "此选项允许您设置布局视图（文本或图形）。"
-
 msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "此选项允许您显示菜单路径。"
 
@@ -22925,9 +22875,6 @@ msgstr "时移无法启动。请检查存储设备和可用空间。"
 
 msgid "Time shift may not work correctly without an acceptable directory."
 msgstr "如果没有可接受的目录，时移可能无法正常工作。"
-
-msgid "Time shift not possible!"
-msgstr "不能时移！"
 
 msgid "Time shift save action on zap"
 msgstr "换台时的时移保存操作"
@@ -24845,7 +24792,7 @@ msgid "Weather settings"
 msgstr "天气设置"
 
 msgid "Weather/meteorology"
-msgstr ""
+msgstr "天气/气象"
 
 msgid "Web Interface"
 msgstr "Web界面"
@@ -25083,6 +25030,9 @@ msgstr "启用后，按 0 键切换至选定应急频道，并删除您的换台
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "启用后，重新格式化字幕以匹配屏幕宽度。"
 
+msgid "When enabled, services without EPG data will be hidden."
+msgstr "选择“是”隐藏没有 EPG 数据的频道。"
+
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "启用时，在频道选择屏幕中显示频道号。"
 
@@ -25220,9 +25170,6 @@ msgstr "当调谐到频道时，系统通常会扫描转发器的任何改动并
 
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "您希望将临时时移录制保存到哪里？"
-
-msgid "Select which service to use when opening the EPG."
-msgstr "打开 EPG 时选择哪个频道。"
 
 msgid "Which time shift buffer event do you want to save?"
 msgstr "您要永久保存哪个事件？"
@@ -26424,6 +26371,114 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Add a RecordTimer for current event"
+#~ msgstr "为当前事件添加录制定时器"
+
+#~ msgid "Add a ZapTimer for current event"
+#~ msgstr "为当前事件添加换台定时器"
+
+#~ msgid "Add an AutoTimer for the current event"
+#~ msgstr "为当前事件添加自动定时器"
+
+#~ msgid "Add/Remove Timer"
+#~ msgstr "添加/删除定时器"
+
+#~ msgid "Add/Remove a timer for the current event"
+#~ msgstr "添加/移除当前事件的定时器"
+
+#~ msgid "AutoTimer"
+#~ msgstr "自动定时器"
+
+#~ msgid "Browse mode"
+#~ msgstr "浏览模式"
+
+#~ msgid "CHANNEL +/-"
+#~ msgstr "频道 +/-"
+
+#~ msgid "Change to bouquet"
+#~ msgstr "更改到频道分组"
+
+#~ msgid "Close bouquet list"
+#~ msgstr "关闭频道分组列表"
+
+#~ msgid "Close bouquet list."
+#~ msgstr "关闭频道分组列表。"
+
+#~ msgid "Color Button Assignments"
+#~ msgstr "彩色按键分配"
+
+#~ msgid "Country Music"
+#~ msgstr "乡村音乐"
+
+#~ msgid "EPG Bouquet Actions"
+#~ msgstr "EPG 频道分组操作"
+
+#~ msgid "EPG Display Actions"
+#~ msgstr "EPG 显示操作"
+
+#~ msgid "EPG Other Actions"
+#~ msgstr "EPG 其他动作"
+
+#~ msgid "Getting event information failed!"
+#~ msgstr "获取事件信息失败！"
+
+#~ msgid "IMDb search for current event"
+#~ msgstr "IMDb 搜索当前事件"
+
+#~ msgid "Info button (short)"
+#~ msgstr "INFO 键 （短按）"
+
+#~ msgid "Jump back 24 hours"
+#~ msgstr "向后跳转24小时"
+
+#~ msgid "Jump forward 24 hours"
+#~ msgstr "向前跳转24小时"
+
+#~ msgid "Jump to next page or all up (setup in menu)"
+#~ msgstr "跳转到下一页面或全部向上（在菜单中设置）"
+
+#~ msgid "Jump to previous page or all down (setup in menu)"
+#~ msgstr "跳转到上一页或全部向下（在菜单中设置）"
+
+#~ msgid "Move to home of list"
+#~ msgstr "移动主页列表"
+
+#~ msgid "Navigation And Button Assignments"
+#~ msgstr "导航与按键分配"
+
+#~ msgid "OK button (short)"
+#~ msgstr "OK 键 （短按）"
+
+#~ msgid "Previous/Next bouquet"
+#~ msgstr "前一/后一个频道分组"
+
+#~ msgid "Primetime hour"
+#~ msgstr "黄金时段 小时"
+
+#~ msgid "Primetime minute"
+#~ msgstr "黄金时段 分钟"
+
+#~ msgid "Program type"
+#~ msgstr "节目类型"
+
+#~ msgid "Record - same as record button"
+#~ msgstr "录像 - 与录像按键相同"
+
+#~ msgid "Record Actions"
+#~ msgstr "录制操作"
+
+#~ msgid "Search for similar events"
+#~ msgstr "搜索相似的事件"
+
+#~ msgid "Show Movies List"
+#~ msgstr "显示影片列表"
+
+#~ msgid "Sort EPG List"
+#~ msgstr "排序 EPG 列表"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "不能时移！"
 
 #~ msgid "Please select device to use as swap file location"
 #~ msgstr "请选择要用作交换文件位置的设备"
