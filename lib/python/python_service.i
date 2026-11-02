@@ -309,7 +309,7 @@ RESULT enableSubtitles(eWidget *parent, PyObject *tuple)
 	{
 		ePyObject entry;
 		int tuplesize = PyTuple_Size(tuple);
-		if (tuplesize < 1)
+		if (tuplesize < 4)
 			goto error_out;
 
 		entry = PyTuple_GET_ITEM(tuple, 0);
@@ -335,11 +335,18 @@ RESULT enableSubtitles(eWidget *parent, PyObject *tuple)
 		{
 			track.magazine_number = PyLong_AsLong(entry);
 		}
-		if (tuplesize==5){
+		if (tuplesize >= 5){
 			entry = PyTuple_GET_ITEM(tuple, 4);
 			if (PyUnicode_Check(entry))
 			{
 				track.language_code = PyUnicode_AsUTF8(entry);
+			}
+		}
+		if (tuplesize >= 6){
+			entry = PyTuple_GET_ITEM(tuple, 5);
+			if (PyUnicode_Check(entry))
+			{
+				track.title = PyUnicode_AsUTF8(entry);
 			}
 		}
 	}

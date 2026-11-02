@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 19:43+0000\n"
+"POT-Creation-Date: 2026-11-01 20:39+0100\n"
 "PO-Revision-Date: 2026-08-17 04:54+0000\n"
 "Last-Translator: Abdulelah Aqeil <dr.romantic@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -1671,6 +1671,9 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
+msgid "2 tuners: 2 SAT sockets, 1 C/T socket"
+msgstr ""
+
 msgid "2nd InfoBar"
 msgstr "شريط المعلومات (InfoBar) الثاني"
 
@@ -1859,6 +1862,9 @@ msgid "A highlight on the remote control image shows which button the help refer
 msgstr ""
 
 msgid "A new storage device has been connected:"
+msgstr ""
+
+msgid "A prepared or running timer can not be moved to the fallback tuner."
 msgstr ""
 
 #, python-format
@@ -2231,14 +2237,8 @@ msgstr ""
 msgid "Add a RecordTimer"
 msgstr "أضف مؤقت للتسجيل"
 
-msgid "Add a RecordTimer for current event"
-msgstr "اضف موقت تسجيل للحدث الحالي"
-
 msgid "Add a TV service to the Volume Offset list"
 msgstr ""
-
-msgid "Add a ZapTimer for current event"
-msgstr "اضف موقت انتقال للحدث الحالي"
 
 msgid "Add a ZapTimer for next event"
 msgstr "أضف مؤقت انتقال للحدث القادم"
@@ -2276,8 +2276,8 @@ msgstr "إضافة القناة إلى الباقة"
 msgid "Add a timer for the current event"
 msgstr "أضف مؤقت للحدث الحالي"
 
-msgid "Add an AutoTimer for the current event"
-msgstr "أضف مؤقت آلي للحدث الحالي"
+msgid "Add an existing swap file"
+msgstr ""
 
 #, fuzzy
 msgid "Add current directory to bookmarks"
@@ -2357,12 +2357,6 @@ msgstr ""
 msgid "Add title"
 msgstr "إضافة عنوان"
 
-msgid "Add/Remove Timer"
-msgstr "اضف/احذف مؤقت"
-
-msgid "Add/Remove a timer for the current event"
-msgstr "اضف /الغ توقيت للحدث الحالي"
-
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr ""
 
@@ -2417,6 +2411,9 @@ msgstr "للكبار"
 
 msgid "Adult Audience, Strong Violence 15+"
 msgstr "للمشاهدين البالغين، عنف مفرط 15+"
+
+msgid "Adult Hits"
+msgstr ""
 
 msgid "Adult movie/Drama"
 msgstr "فيلم للكبار/دراما"
@@ -2794,6 +2791,9 @@ msgid "Animations"
 msgstr "انيميشنز"
 
 msgid "Anonymize client IPs"
+msgstr ""
+
+msgid "Another swap operation is still running."
 msgstr ""
 
 msgid "Antarctica"
@@ -3195,10 +3195,6 @@ msgid "AutoRefresh"
 msgstr "تحديث تلقائي"
 
 #, fuzzy
-msgid "AutoTimer"
-msgstr "إضافة مؤقت تلقائي"
-
-#, fuzzy
 msgid "AutoUpdate"
 msgstr "التحديث"
 
@@ -3309,11 +3305,11 @@ msgstr "معدل خطاء الإشارة:"
 msgid "BLUDISC RECORDABLE"
 msgstr ""
 
-msgid "BLUE button"
+msgid "BLUE"
 msgstr "زر الأزرق"
 
 #, fuzzy
-msgid "BLUE long"
+msgid "BLUE (Long press)"
 msgstr "زر الأزرق"
 
 msgid "BLUE switch: BLUE/BLUE long"
@@ -3983,9 +3979,17 @@ msgstr "CH%s"
 msgid "CHANGE BOUQUET"
 msgstr "تغيير الباقة"
 
-#
-msgid "CHANNEL +/-"
-msgstr "قناه +/-"
+msgid "CHANNEL+"
+msgstr ""
+
+msgid "CHANNEL+ button (setup in menu)"
+msgstr ""
+
+msgid "CHANNEL-"
+msgstr ""
+
+msgid "CHANNEL- button (setup in menu)"
+msgstr ""
 
 #, fuzzy
 msgid "CI (Common Interface) Setup"
@@ -4476,10 +4480,6 @@ msgstr ""
 msgid "Change to TV services mode"
 msgstr ""
 
-#
-msgid "Change to bouquet"
-msgstr "تغيير إلى الباقة"
-
 msgid "Changed"
 msgstr ""
 
@@ -4583,9 +4583,6 @@ msgstr "اسم القناة"
 
 msgid "Channel number"
 msgstr "رقم القناة"
-
-msgid "Channel preview mode"
-msgstr "وضع معاينة القنوات"
 
 msgid "Channel selection configuration"
 msgstr "تهيئة اختيار القنوات"
@@ -4835,6 +4832,9 @@ msgstr "يمين دائري"
 msgid "City"
 msgstr "المدينة"
 
+msgid "Classic Rock"
+msgstr ""
+
 msgid "Classical"
 msgstr "كلاسيكي"
 
@@ -4934,12 +4934,6 @@ msgstr ""
 msgid "Close Task View"
 msgstr ""
 
-msgid "Close bouquet list"
-msgstr ""
-
-msgid "Close bouquet list."
-msgstr "غلق قائمة الباقات."
-
 msgid "Close dialog"
 msgstr ""
 
@@ -4988,6 +4982,9 @@ msgstr ""
 msgid "Close the screen without saving any changes"
 msgstr ""
 
+msgid "Close the swap manager"
+msgstr ""
+
 msgid "Close the window"
 msgstr ""
 
@@ -5018,14 +5015,14 @@ msgstr "اسم المجموعة"
 msgid "Collection settings"
 msgstr "إعدادات المجموعة"
 
+msgid "College"
+msgstr ""
+
 msgid "Colombia"
 msgstr "كولومبيا"
 
 msgid "Color"
 msgstr "اللون"
-
-msgid "Color Button Assignments"
-msgstr ""
 
 msgid "Color format"
 msgstr "تهئية الألوان"
@@ -5382,9 +5379,6 @@ msgstr "اضبط عدد الأيام التي يتم بعدها إزالة ال�
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "إعدادات عدد الأيام يتم فيها حفظ المؤقتات القديمة قبل أن تتم إزالتها تلقائيا من قائمة المؤقتات."
 
-msgid "Configure the number of rows shown."
-msgstr "اضبط عدد الصفوف المعروضة."
-
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr ""
 
@@ -5511,6 +5505,9 @@ msgstr "اعدادت خادم NTP."
 
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "حدد اعدادات شبكتك٬ واضغط زر OK لبدء المسح"
+
+msgid "Configured in /etc/fstab. Starting or stopping here only changes the current session."
+msgstr ""
 
 msgid "Configures which video output connector will be used."
 msgstr "إعدادات مخرج الفديو الذي سيتم إستخدامه."
@@ -5880,6 +5877,9 @@ msgstr ""
 msgid "Create Slots"
 msgstr ""
 
+msgid "Create Zap Timer"
+msgstr ""
+
 msgid "Create a directory"
 msgstr ""
 
@@ -5890,6 +5890,9 @@ msgid "Create a separate bouquet for radio services. When disabled, radio servic
 msgstr ""
 
 msgid "Create a settings backup"
+msgstr ""
+
+msgid "Create a swap file"
 msgstr ""
 
 msgid "Create a symbolic link"
@@ -5941,6 +5944,9 @@ msgstr ""
 msgid "Create swap"
 msgstr ""
 
+msgid "Create swap file"
+msgstr ""
+
 msgid "Create tar file of root file system."
 msgstr ""
 
@@ -5968,6 +5974,15 @@ msgstr ""
 
 msgid "Creating partition"
 msgstr "إنشاء التقسيم"
+
+msgid "Creating swap file. This can take several minutes."
+msgstr ""
+
+#, python-format
+msgid ""
+"Creating the swap file failed.\n"
+"%s"
+msgstr ""
 
 msgid "Credentials"
 msgstr ""
@@ -6005,6 +6020,9 @@ msgstr "كوبا"
 msgid "Cult"
 msgstr ""
 
+msgid "Culture"
+msgstr ""
+
 msgid "Curacao"
 msgstr "كوراكاو"
 
@@ -6015,6 +6033,9 @@ msgid "Current"
 msgstr ""
 
 msgid "Current 1/1"
+msgstr ""
+
+msgid "Current Affairs"
 msgstr ""
 
 msgid "Current CEC address"
@@ -6890,6 +6911,12 @@ msgstr "حذف قائمة التشغيل المدخلة"
 msgid "Delete saved play list"
 msgstr "حذف قائمة التشغيل المحفوظة"
 
+#, python-format
+msgid ""
+"Delete swap file '%s'?\n"
+"An active file will be stopped first. Its swap entry in /etc/fstab will also be removed."
+msgstr ""
+
 msgid "Delete the character to the left of text cursor"
 msgstr "احذف الحرف الموجود على يسار مؤشر النص"
 
@@ -6919,6 +6946,9 @@ msgid "Delete the flash expander in the selected device"
 msgstr ""
 
 msgid "Delete the selected locally stored image"
+msgstr ""
+
+msgid "Delete the selected swap file"
 msgstr ""
 
 #, python-format
@@ -7063,6 +7093,10 @@ msgstr "أسم الجهاز:"
 
 msgid "Device number"
 msgstr "رقم الجهاز"
+
+#, python-format
+msgid "Device: %s"
+msgstr ""
 
 msgid "Devices"
 msgstr "الأجهزة"
@@ -7702,6 +7736,9 @@ msgstr "إصدار الدرايفر"
 msgid "Drop unconfigured satellites"
 msgstr ""
 
+msgid "Dual channel"
+msgstr ""
+
 msgid "Duplex"
 msgstr "دوبلكس"
 
@@ -7746,11 +7783,11 @@ msgstr "معلومات الـ ECM لـ %s"
 msgid "EPG"
 msgstr "دليل البرامج الإلكترونية"
 
+msgid "EPG (Long press)"
+msgstr ""
+
 msgid "EPG Actions"
 msgstr "إجراءات دليل البرامج الإلكتروني"
-
-msgid "EPG Bouquet Actions"
-msgstr "إجراءات دليل قائمة القنوات"
 
 msgid "EPG Cache Check"
 msgstr "فحص ذاكرة التخزين المؤقته لـ EPG"
@@ -7762,10 +7799,6 @@ msgid "EPG Data In Streams"
 msgstr ""
 
 #, fuzzy
-msgid "EPG Display Actions"
-msgstr "خيارات عرض الدليل"
-
-#, fuzzy
 msgid "EPG Jump"
 msgstr "التنقل السريع"
 
@@ -7774,9 +7807,6 @@ msgstr ""
 
 msgid "EPG Navigation Actions"
 msgstr "إجراءات التنقل في EPG"
-
-msgid "EPG Other Actions"
-msgstr "الاجراءات الأخرى للدليل"
 
 msgid "EPG Range And History"
 msgstr ""
@@ -7797,6 +7827,9 @@ msgid "EPG Sources"
 msgstr ""
 
 msgid "EPG Storage And Refresh"
+msgstr ""
+
+msgid "EPG button long (setup in menu)"
 msgstr ""
 
 #, fuzzy
@@ -7858,6 +7891,9 @@ msgid "East limit set"
 msgstr "ضبط الحد الأقصى شرقاً"
 
 msgid "Eastern satellites"
+msgstr ""
+
+msgid "Easy Listening"
 msgstr ""
 
 msgid "Easy listening"
@@ -9614,6 +9650,9 @@ msgstr "تأخير الدوران النهائي"
 msgid "Finance"
 msgstr "المالية"
 
+msgid "Finance/Business"
+msgstr ""
+
 msgid "Find Currently Playing Service"
 msgstr "البحث عن الخدمة التي تعمل حاليا"
 
@@ -9750,6 +9789,9 @@ msgstr "إستعادة الوضع الى%s"
 msgid "Flush Cache and Rescan"
 msgstr ""
 
+msgid "Folk Music"
+msgstr ""
+
 msgid "Folk and Country"
 msgstr ""
 
@@ -9813,6 +9855,9 @@ msgstr "تم النفعيل"
 msgid "Force progressive for streams and files"
 msgstr ""
 
+msgid "Foreign Language"
+msgstr ""
+
 msgid "Foreign countries/Expeditions"
 msgstr "الدول الأجنبية/البعثات"
 
@@ -9853,6 +9898,10 @@ msgstr "الفلاش المتاح"
 
 msgid "Free memory"
 msgstr "الذاكرة المتاحة"
+
+#, python-format
+msgid "Free space: %s"
+msgstr ""
 
 msgid "Free swap"
 msgstr "مساحة المبادلة المتاحة"
@@ -9937,6 +9986,9 @@ msgstr ""
 msgid "Full factory reset"
 msgstr "إعادة ضبط المصنع بالكامل"
 
+msgid "Full path of the existing swap file"
+msgstr ""
+
 msgid "Full range (no clipping)"
 msgstr ""
 
@@ -9958,10 +10010,10 @@ msgstr "مزيد من التعليم"
 msgid "G"
 msgstr ""
 
-msgid "GREEN button"
+msgid "GREEN"
 msgstr "زر الأخضر"
 
-msgid "GREEN long"
+msgid "GREEN (Long press)"
 msgstr ""
 
 msgid "GStreamer debug log category *"
@@ -10082,9 +10134,6 @@ msgstr "الألمانية"
 #
 msgid "Germany"
 msgstr "المانيا"
-
-msgid "Getting event information failed!"
-msgstr ""
 
 #
 msgid "Getting plugin information. Please wait..."
@@ -10523,6 +10572,9 @@ msgstr "إخفاء سطر VBI لهذه الخدمة"
 msgid "Hide any zap error messages."
 msgstr "إخفاء رسائل الأخطاء."
 
+msgid "Hide empty services"
+msgstr "تخطي القنوات الفارغة"
+
 msgid "Hide error messages from the Common Interface module."
 msgstr "إخفاء رسائل الأخطاء من الكامة الداخلية."
 
@@ -10729,11 +10781,11 @@ msgstr "تفاصيل موقع IMDb"
 msgid "IMDb Search"
 msgstr "البحث في IMDb"
 
-msgid "IMDb search for current event"
-msgstr "البحث في قاعدة بيانات موقع IMDb عن الحدث الحالي"
-
 msgid "INFO"
 msgstr ""
+
+msgid "INFO (Long press)"
+msgstr "زر المعلومات (طويل)"
 
 msgid "INFO button mode"
 msgstr "وضع زر المعلومات"
@@ -11185,12 +11237,6 @@ msgstr "أندونيسيا"
 msgid "Info"
 msgstr "معلومات"
 
-msgid "Info button (long)"
-msgstr "زر المعلومات (طويل)"
-
-msgid "Info button (short)"
-msgstr "زر المعلومات (قصير)"
-
 msgid "Info file checksum"
 msgstr "فحص سلامة ملف المعلومات"
 
@@ -11455,6 +11501,9 @@ msgstr ""
 msgid "Invalid location!"
 msgstr "موقع غير صالح!"
 
+msgid "Invalid swap file size."
+msgstr ""
+
 msgid "Invalid transponder data"
 msgstr "بيانات مرسله غير صالحه"
 
@@ -11545,13 +11594,13 @@ msgstr ""
 msgid "Joined"
 msgstr ""
 
+msgid "Joint stereo"
+msgstr ""
+
 msgid "Jordan"
 msgstr "الأردن"
 
 msgid "Jump"
-msgstr ""
-
-msgid "Jump back 24 hours"
 msgstr ""
 
 msgid "Jump back one day"
@@ -11562,9 +11611,6 @@ msgstr ""
 
 msgid "Jump first press in channel selection"
 msgstr "الانتقال عند أول ضغط في اختيار القناة"
-
-msgid "Jump forward 24 hours"
-msgstr ""
 
 msgid "Jump forward one day"
 msgstr ""
@@ -11587,14 +11633,8 @@ msgstr "الانتقال إلى نهاية القائمة"
 msgid "Jump to next marked position"
 msgstr "الإنتقال إلى الوضع القادم المحدد"
 
-msgid "Jump to next page or all up (setup in menu)"
-msgstr ""
-
 msgid "Jump to previous marked position"
 msgstr "الرجوع إلى الوضع السابق المحدد"
-
-msgid "Jump to previous page or all down (setup in menu)"
-msgstr ""
 
 msgid "Jump to prime time"
 msgstr "الانتقال إلى وقت الذروة"
@@ -11997,6 +12037,9 @@ msgstr ""
 msgid "Legacy mode"
 msgstr "الوضع القديم"
 
+msgid "Leisure"
+msgstr ""
+
 msgid "Leisure hobbies"
 msgstr "هوايات الترفيه"
 
@@ -12035,6 +12078,9 @@ msgstr "ليشتنشتاين"
 #
 msgid "Lifestyle"
 msgstr "نمط الحياة. لايفستايل"
+
+msgid "Light Classical"
+msgstr ""
 
 msgid "Light Grey"
 msgstr "رمادي فاتح"
@@ -12692,6 +12738,9 @@ msgstr "طبي"
 msgid "Medicine/Physiology/Psychology"
 msgstr "الطب/علم الوظائف/علم النفس"
 
+msgid "Medium"
+msgstr ""
+
 #
 msgid "Medium is not a writeable DVD!"
 msgstr "متوسط ليس قرص قابل للكتابة!"
@@ -12900,6 +12949,9 @@ msgstr "منغوليا"
 msgid "Mongolian"
 msgstr ""
 
+msgid "Mono"
+msgstr ""
+
 msgid "Montenegro"
 msgstr "الجبل الأسود"
 
@@ -12968,6 +13020,10 @@ msgstr ""
 
 msgid "Mount point"
 msgstr "نقطة التثبيت"
+
+#, python-format
+msgid "Mount point: %s"
+msgstr ""
 
 msgid "Mount root file system."
 msgstr ""
@@ -13146,9 +13202,6 @@ msgstr ""
 
 msgid "Move to first line / screen in the panel"
 msgstr ""
-
-msgid "Move to home of list"
-msgstr "الانتقال إلى القائمة الرئيسية"
 
 msgid "Move to last item / screen"
 msgstr ""
@@ -13492,6 +13545,9 @@ msgstr "ناميبيا"
 msgid "Narration"
 msgstr ""
 
+msgid "National Music"
+msgstr ""
+
 msgid "National music"
 msgstr ""
 
@@ -13522,9 +13578,6 @@ msgid "Navigate to the selected directory"
 msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
-msgstr ""
-
-msgid "Navigation And Button Assignments"
 msgstr ""
 
 msgid "Navigation And Time Range"
@@ -14045,6 +14098,9 @@ msgstr ""
 msgid "No supported DAB+ feeds are available for the satellite positions configured on this box."
 msgstr ""
 
+msgid "No swap files or partitions found. Use Create to add a swap file."
+msgstr ""
+
 msgid "No system softcam configured!"
 msgstr ""
 
@@ -14088,6 +14144,9 @@ msgstr ""
 msgid "No tuners are currently streaming."
 msgstr "ليس هناك بث حالياً من اي من الموالفات."
 
+msgid "No unused swap file name is available."
+msgstr ""
+
 msgid "No update required!"
 msgstr ""
 
@@ -14111,6 +14170,9 @@ msgid "No valid mount for '%s' found!"
 msgstr ""
 
 msgid "No valid region details were found"
+msgstr ""
+
+msgid "No writable ext2, ext3 or ext4 storage is available for a swap file."
 msgstr ""
 
 msgid "No, but restart from begin"
@@ -14201,6 +14263,9 @@ msgstr "نرويجى"
 msgid "Norwegian Nynorsk"
 msgstr "نرويجى"
 
+msgid "Nostalgia"
+msgstr ""
+
 msgid "Not Classified"
 msgstr "غير مصنف"
 
@@ -14238,6 +14303,9 @@ msgstr ""
 #, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "مساحة غير كافيه في القرص الصلب. الرجاء تحرير بعض المساحة على القرص وحاول مرة أخرى. (%d مطلوب بالميقابايت, %d ميقابايت متوفرة)"
+
+msgid "Not enough free space for this swap file."
+msgstr ""
 
 msgid "Not found"
 msgstr ""
@@ -14337,11 +14405,8 @@ msgstr "طراز الشركة المُصنِّعة (OEM)"
 msgid "OK"
 msgstr "موافق"
 
-msgid "OK button (long)"
+msgid "OK (Long press)"
 msgstr "زر موافق (طويل)"
-
-msgid "OK button (short)"
-msgstr "زر موافق (قصير)"
 
 msgid "OK button mode"
 msgstr "وضع زر موافق"
@@ -14457,6 +14522,9 @@ msgstr ""
 msgid "Ojibwa"
 msgstr ""
 
+msgid "Oldies"
+msgstr ""
+
 msgid "Olympic blue"
 msgstr ""
 
@@ -14521,6 +14589,9 @@ msgid "Only on startup"
 msgstr "فقط عند بدء التشغيل"
 
 msgid "Only one network share can be used as HDD replacement. Disable 'Use as HDD replacement' on the other share first."
+msgstr ""
+
+msgid "Only swap files can be deleted."
 msgstr ""
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
@@ -14852,6 +14923,9 @@ msgstr "أخرى"
 msgid "Other Actions"
 msgstr "مكان"
 
+msgid "Other Music"
+msgstr ""
+
 msgid "Other OSD Elements"
 msgstr ""
 
@@ -14956,6 +15030,9 @@ msgstr ""
 
 msgid "PIN code needed"
 msgstr "لا حاجه الى نسخة إحتياطية"
+
+msgid "PLAY"
+msgstr ""
 
 msgid "PLP ID"
 msgstr "معرف نقل بيانات الصوت والصورة"
@@ -15210,6 +15287,9 @@ msgstr ""
 msgid "Persian"
 msgstr "الفارسية"
 
+msgid "Personality"
+msgstr ""
+
 msgid "Personalize your Skin"
 msgstr ""
 
@@ -15218,6 +15298,9 @@ msgstr "بيرو"
 
 msgid "Philippines"
 msgstr "الفليبين"
+
+msgid "Phone In"
+msgstr ""
 
 msgid "PiP"
 msgstr "خاصية قناة داخل قناة"
@@ -15249,6 +15332,9 @@ msgstr ""
 msgid "Picon and service name"
 msgstr ""
 
+msgid "Picon and service number"
+msgstr ""
+
 msgid "Picon install location"
 msgstr ""
 
@@ -15265,6 +15351,9 @@ msgstr ""
 
 msgid "Picon width"
 msgstr "عرض الأيقونة"
+
+msgid "Picon, service number and service name"
+msgstr ""
 
 msgid "Picture In Picture"
 msgstr ""
@@ -15528,9 +15617,6 @@ msgstr ""
 msgid "Please select an aspect ratio..."
 msgstr "اختر من فضلك احدى نسب العرض للارتفاع التالية..."
 
-msgid "Please select device to use as swap file location"
-msgstr ""
-
 msgid "Please select medium to be scanned"
 msgstr "الرجاء تحديد المتوسطة للبحث عنها"
 
@@ -15644,6 +15730,9 @@ msgstr ""
 msgid "Please wait while the plugin is updated."
 msgstr ""
 
+msgid "Please wait while the swap file is stopped and deleted."
+msgstr ""
+
 msgid "Please wait while unused locales/languages are purged..."
 msgstr ""
 
@@ -15667,6 +15756,9 @@ msgstr ""
 
 msgid "Please wait, swap is being created. This could take a few minutes to complete."
 msgstr "ارجو الانتظار، يتم انتشاء ملف السواب (Swap). قد يستغرق هذا بضع دقائق ليكتمل."
+
+msgid "Please wait. Stopping swap can take a while."
+msgstr ""
 
 msgid "Please wait..."
 msgstr "أرجو الإنتظار..."
@@ -15741,6 +15833,9 @@ msgid "Polish"
 msgstr "البولندية"
 
 msgid "Politics"
+msgstr ""
+
+msgid "Pop Music"
 msgstr ""
 
 msgid "Popular culture/Traditional arts"
@@ -16082,9 +16177,6 @@ msgstr "معاينه"
 msgid "Previous channel page"
 msgstr ""
 
-msgid "Previous/Next bouquet"
-msgstr ""
-
 msgid "Previous/Next page"
 msgstr "الصفحة السابقة/الصفحة التالية"
 
@@ -16103,14 +16195,12 @@ msgstr ""
 msgid "Prime time"
 msgstr "ساعة وقت الذروة"
 
-msgid "Primetime hour"
-msgstr "ساعة وقت الذروة"
-
-msgid "Primetime minute"
-msgstr "دقيقة وقت الذروة"
-
 msgid "Priority"
 msgstr "الأولوية"
+
+#, python-format
+msgid "Priority: %d"
+msgstr ""
 
 msgid "Privacy level"
 msgstr ""
@@ -16164,7 +16254,7 @@ msgstr ""
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr ""
 
-msgid "Program type"
+msgid "Programme type (PTY)"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -16293,6 +16383,9 @@ msgstr "مزودي القنوات:"
 
 msgid "Proxy detected"
 msgstr "تم الكشف عن وكيل (بروكسي)"
+
+msgid "Public"
+msgstr ""
 
 msgid "Public IP"
 msgstr "عنوان الـ IP العام"
@@ -16455,14 +16548,20 @@ msgstr "رمز التسجيل أثناء الاستخدام"
 msgid "REC symbol"
 msgstr "رمز التسجيل (REC)"
 
-msgid "RED button"
+msgid "RECORD"
+msgstr ""
+
+msgid "RECORD (Long press)"
+msgstr ""
+
+msgid "RED"
 msgstr "زر الأحمر"
+
+msgid "RED (Long press)"
+msgstr ""
 
 msgid "RED button / HbbTV"
 msgstr "الزر الأحمر / خدمة HbbTV"
-
-msgid "RED long"
-msgstr ""
 
 msgid "RF Output Settings"
 msgstr "مخرج RF"
@@ -16665,12 +16764,6 @@ msgstr ""
 msgid "Record"
 msgstr "تسجيل"
 
-msgid "Record - same as record button"
-msgstr ""
-
-msgid "Record Actions"
-msgstr ""
-
 msgid "Record icon"
 msgstr ""
 
@@ -16862,6 +16955,9 @@ msgstr ""
 msgid "Refresh the update-able package list"
 msgstr ""
 
+msgid "Refresh, add an existing swap file or change autostart"
+msgstr ""
+
 msgid "Regard Deep Standby as Standby"
 msgstr "يعتبر الاستعداد العميق مثل وضع الاستعداد"
 
@@ -16885,6 +16981,12 @@ msgid "Religion"
 msgstr ""
 
 msgid "Religious"
+msgstr ""
+
+msgid "Religious Music"
+msgstr ""
+
+msgid "Religious Talk"
 msgstr ""
 
 msgid "Reload Bookmarks"
@@ -17541,6 +17643,9 @@ msgstr "سرعة العوده للخلف"
 msgid "Rewrap subtitles"
 msgstr "إرجاع الترجمة"
 
+msgid "Rhythm and Blues"
+msgstr ""
+
 msgid "Right"
 msgstr "يمين"
 
@@ -17567,6 +17672,9 @@ msgstr ""
 
 msgid "Right, wrapped"
 msgstr "يمين, مغطى"
+
+msgid "Rock"
+msgstr ""
 
 msgid "Rock/Pop"
 msgstr "موسيقى الروك/البوب"
@@ -18077,6 +18185,9 @@ msgstr[5] "اكتمل البحث، تم العثور على %d خدمة."
 msgid "Scanning for shares..."
 msgstr ""
 
+msgid "Scanning swap devices..."
+msgstr ""
+
 msgid "Scanning..."
 msgstr "جاري البحث..."
 
@@ -18182,9 +18293,6 @@ msgstr "البحث شرقا"
 
 msgid "Search for network shares"
 msgstr "البحث عن مشاركات الشبكة"
-
-msgid "Search for similar events"
-msgstr "البحث عن احداث مشابهه"
 
 msgid "Search in the current view"
 msgstr ""
@@ -18376,9 +18484,6 @@ msgid "Select 'Yes' to enable the monitoring UI web interface for the DNSCrypt s
 msgstr ""
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
-msgstr ""
-
-msgid "Select 'Yes' to hide channels without EPG data."
 msgstr ""
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
@@ -18706,6 +18811,9 @@ msgstr ""
 msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
 msgstr ""
 
+msgid "Select a swap file on local storage."
+msgstr ""
+
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
 msgstr ""
 
@@ -18763,6 +18871,9 @@ msgstr ""
 msgid "Select copy destination for:"
 msgstr "حدد وجهة النسخ لـ:"
 
+msgid "Select current service"
+msgstr ""
+
 msgid "Select default EPG type"
 msgstr ""
 
@@ -18783,6 +18894,9 @@ msgstr "حدد الملفات التي سيتم استثناؤها من النس
 
 msgid "Select files/folders to backup"
 msgstr "أختار ملفات/مجلدات ليتم نسخها إحتياطياً"
+
+msgid "Select first service in bouquet"
+msgstr ""
 
 msgid "Select how long a correctly entered service PIN is remembered. This does not unlock protected settings or system actions."
 msgstr ""
@@ -18850,6 +18964,9 @@ msgstr ""
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr ""
 
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
+msgstr "يتيح لك هذا الخيار بتعيين عرض التصميم (نصوص أو الرسم البياني)"
+
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr ""
 
@@ -18891,6 +19008,9 @@ msgstr "إختيار الجهاز المدخل"
 
 msgid "Select input device."
 msgstr "إختيار الجهاز المدخل."
+
+msgid "Select last browsed service"
+msgstr ""
 
 #
 msgid "Select movie"
@@ -18973,9 +19093,6 @@ msgstr ""
 msgid "Select the Softcam protocol."
 msgstr ""
 
-msgid "Select the Swap File Size:"
-msgstr "حدد حجم ملف المبادلة:"
-
 msgid "Select the Unicable channel to be assigned to this tuner. This is a unique value. Be certain that no other device connected to this same Unicable system is allocated to the same Unicable channel."
 msgstr ""
 
@@ -19003,6 +19120,9 @@ msgstr ""
 #, python-format
 msgid "Select the action for '%s'"
 msgstr ""
+
+msgid "Select the action that this button will perform."
+msgstr "تعيين إلى ما تريد الزر للقيام به."
 
 msgid "Select the action to perform when the timer ends."
 msgstr ""
@@ -19047,6 +19167,9 @@ msgid "Select the character set (iocharset) to be used to match/translate remote
 msgstr ""
 
 msgid "Select the color depth to be used with the HDMI attached UHD capable TV/monitor."
+msgstr ""
+
+msgid "Select the color of the built-in busy spinner. Custom PNG spinners keep their own colors."
 msgstr ""
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
@@ -19275,6 +19398,9 @@ msgstr ""
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
+msgid "Select the number of services to be shown in the list."
+msgstr "اضبط عدد الصفوف المعروضة."
+
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr ""
 
@@ -19358,6 +19484,9 @@ msgid "Select the sort order of the Plugin Browser menu entries. User defined al
 msgstr ""
 
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
+msgstr ""
+
+msgid "Select the speed of the fade-in and fade-out of toast messages."
 msgstr ""
 
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
@@ -19535,6 +19664,9 @@ msgstr ""
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
 
+msgid "Select which service to use when opening the EPG."
+msgstr ""
+
 msgid "Select your ATSC provider."
 msgstr "حدد مزود خدمات لجنة أنظمة التلفزيون المتقدمة."
 
@@ -19654,6 +19786,9 @@ msgstr "الرقم التسلسلي"
 msgid "Serial number"
 msgstr ""
 
+msgid "Serious Classical"
+msgstr ""
+
 msgid "Serious music/Classic music"
 msgstr "موسيقى هادئه/موسيقى كلاسيكية"
 
@@ -19766,6 +19901,9 @@ msgstr ""
 "الخدمة غير متوفرة!\n"
 "(لم يتم العثور على معرف الحماية)"
 
+msgid "Service number and picon"
+msgstr ""
+
 msgid "Service number and service name"
 msgstr "رقم الخدمة واسم الخدمة"
 
@@ -19787,6 +19925,9 @@ msgstr "نسبة العرض للارتفاع لايقونات الخدمة (pico
 
 msgid "Service picons downsize"
 msgstr "تصغير حجم بيكونات الخدمات"
+
+msgid "Service preview mode"
+msgstr "وضع معاينة القنوات"
 
 msgid "Service reference"
 msgstr "مرجع القناة"
@@ -19955,6 +20096,9 @@ msgstr "تعيين الشكل الإفتراضي في الفرز."
 msgid "Set the delay time between repeated loops, this is used by software renderer in some skins."
 msgstr ""
 
+msgid "Set the desired primetime (hour and minute)."
+msgstr ""
+
 msgid "Set the hostname or IP address."
 msgstr ""
 
@@ -20067,15 +20211,6 @@ msgstr ""
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
-
-msgid "Set to the desired primetime hour."
-msgstr ""
-
-msgid "Set to the desired primetime minutes."
-msgstr ""
-
-msgid "Set to what you want the button to do."
-msgstr "تعيين إلى ما تريد الزر للقيام به."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr ""
@@ -20275,6 +20410,9 @@ msgstr "سيشيل"
 msgid "Share View"
 msgstr "عرض المشاركة"
 
+msgid "Shared SAT and C/T inputs"
+msgstr ""
+
 msgid "Shares"
 msgstr "مشاركات"
 
@@ -20470,9 +20608,6 @@ msgstr "عرض الشاشة الصغيرة في الشاشة الأمامية"
 
 msgid "Show Movie Selection in Main Menu"
 msgstr "إظهار اختيار الفيلم في القائمة الرئيسية"
-
-msgid "Show Movies List"
-msgstr ""
 
 msgid "Show Multi EPG"
 msgstr "أعرض دليل البرامج المتعدد"
@@ -21258,9 +21393,6 @@ msgstr ""
 msgid "Skip backward (enter time)"
 msgstr "تخطى للخلف (أدخل الوقت)"
 
-msgid "Skip empty services"
-msgstr "تخطي القنوات الفارغة"
-
 #, python-format
 msgid "Skip for '%s' is disabled"
 msgstr ""
@@ -21516,6 +21648,9 @@ msgstr ""
 msgid "Soccer"
 msgstr ""
 
+msgid "Social Affairs"
+msgstr ""
+
 msgid "Social/Political issues/Economics"
 msgstr "القضايا الاجتماعية/السياسية/الاقتصاد (عام)"
 
@@ -21531,6 +21666,15 @@ msgstr ""
 #, fuzzy
 msgid "Socket"
 msgstr "مغلق"
+
+msgid "Soft"
+msgstr ""
+
+msgid "Soft Rhythm and Blues"
+msgstr ""
+
+msgid "Soft Rock"
+msgstr ""
 
 msgid "Soft mount"
 msgstr ""
@@ -21648,9 +21792,6 @@ msgstr "عذرا، %s لم يتم تثبيت!"
 msgid "Sorry, no backups found!"
 msgstr "آسف.. لم يتم العثور على أى نسخة إحتياطية !"
 
-msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
-msgstr ""
-
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "Please select a different one."
@@ -21662,9 +21803,6 @@ msgid "Sort"
 msgstr "فرز"
 
 msgid "Sort Bookmarks"
-msgstr ""
-
-msgid "Sort EPG List"
 msgstr ""
 
 msgid "Sort Extension Menu"
@@ -21800,6 +21938,9 @@ msgstr ""
 msgid "Spinner Position"
 msgstr "موقع الحلقة الدوّارة"
 
+msgid "Spinner color"
+msgstr ""
+
 #
 msgid "Split preview mode"
 msgstr "تقسيم وضع المعاينة"
@@ -21869,6 +22010,9 @@ msgstr ""
 msgid "Start Wizard"
 msgstr "ابدأ التطبيق المساعد"
 
+msgid "Start all available swap files and partitions when Enigma2 starts. Entries marked noauto in /etc/fstab are excluded. System autostart from /etc/fstab is independent of this setting."
+msgstr ""
+
 msgid "Start an instant recording"
 msgstr ""
 
@@ -21906,6 +22050,9 @@ msgid "Start offline decode"
 msgstr "تشغيل فتح التشفير بدون إتصال"
 
 msgid "Start or Stop service"
+msgstr ""
+
+msgid "Start or stop the selected swap"
 msgstr ""
 
 msgid "Start recording current event"
@@ -22013,9 +22160,6 @@ msgstr ""
 msgid "Status unavailable!"
 msgstr ""
 
-msgid "Status:"
-msgstr "الحالة:"
-
 msgid "Stay in time shift at buffer end (for plugins)"
 msgstr ""
 
@@ -22037,6 +22181,9 @@ msgstr "خطوه ناحية الشرق"
 #
 msgid "Stepped west"
 msgstr "خطوه ناحية الغرب"
+
+msgid "Stereo"
+msgstr ""
 
 #
 msgid "Stop"
@@ -22149,6 +22296,9 @@ msgstr ""
 #, fuzzy
 msgid "Storage Devices"
 msgstr "قائمة أجهزة التخزين"
+
+msgid "Storage device"
+msgstr ""
 
 msgid "Storage device full!"
 msgstr ""
@@ -22360,6 +22510,15 @@ msgstr ""
 msgid "Suriname"
 msgstr "الاسم الاخير"
 
+msgid "Surround"
+msgstr ""
+
+msgid "Surround 5.1"
+msgstr ""
+
+msgid "Surround 7.1"
+msgstr ""
+
 msgid "Svalbard and Jan Mayen"
 msgstr "سفالبارد وجان مايان"
 
@@ -22372,9 +22531,6 @@ msgstr "ذاكرة التبديل (Swap)"
 msgid "Swap File Manager"
 msgstr ""
 
-msgid "Swap File not found. You have to create the file before to activate."
-msgstr ""
-
 msgid "Swap Manager"
 msgstr "مدير مساحة التبديل"
 
@@ -22384,13 +22540,19 @@ msgstr "مشاركة مساحة خاصية قناة داخل قناة"
 msgid "Swap PiP and main picture"
 msgstr "تبادل قناة داخل قناة من القناة الرئيسية"
 
-msgid "Swap Place:"
-msgstr ""
-
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr "تبادل جودة الإشارة '%' مع جودة الإشارة بالديسيبل"
 
-msgid "Swap Size:"
+msgid "Swap autostart"
+msgstr ""
+
+msgid "Swap file"
+msgstr ""
+
+msgid "Swap partition"
+msgstr ""
+
+msgid "Swap partition detection failed. Active and configured swaps are still listed."
 msgstr ""
 
 msgid "Swap services"
@@ -22659,6 +22821,9 @@ msgstr ""
 
 msgid "Tajikistan"
 msgstr "طاجيكستان"
+
+msgid "Talk"
+msgstr ""
 
 msgid "Talk show"
 msgstr ""
@@ -23030,6 +23195,9 @@ msgstr ""
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+msgid "The device is still mounted. Stop recordings and time shift before checking the file system."
+msgstr ""
+
 msgid "The directory/file no longer exists."
 msgstr ""
 
@@ -23049,6 +23217,15 @@ msgstr ""
 
 #, python-format
 msgid "The file '%s' has been changed. Do you want to save it?"
+msgstr ""
+
+msgid "The file does not contain a valid swap header."
+msgstr ""
+
+msgid "The file is created inactive. Start it in the swap manager when needed."
+msgstr ""
+
+msgid "The file system was repaired. Restart the receiver before using this device."
 msgstr ""
 
 #, python-format
@@ -23104,6 +23281,9 @@ msgstr ""
 msgid "The positioner tuner is currently unavailable. Stop recordings or other services using this tuner and try again."
 msgstr ""
 
+msgid "The previous mount point is already in use."
+msgstr ""
+
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
 msgstr "ستستغرق العملية حوالي %d دقيقة لاستكمالها."
@@ -23131,6 +23311,9 @@ msgstr ""
 msgid "The running Enigma2 version cannot safely save an active time shift buffer."
 msgstr ""
 
+msgid "The running system's file system cannot be checked."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr "تم مسح كلمة السر المحفوظة."
 
@@ -23143,6 +23326,9 @@ msgid "The selected device is not a supported removable block device."
 msgstr ""
 
 msgid "The selected device is too small. At least 3 GB is required."
+msgstr ""
+
+msgid "The selected storage device is no longer available."
 msgstr ""
 
 msgid "The service list is reloaded."
@@ -23159,6 +23345,15 @@ msgid ""
 msgstr ""
 
 msgid "The storage check did not finish. Please check the device or network and try again."
+msgstr ""
+
+msgid "The swap device has changed. Refresh the list and try again."
+msgstr ""
+
+msgid "The swap file has changed. Refresh the list and try again."
+msgstr ""
+
+msgid "The swap file is still active and cannot be deleted."
 msgstr ""
 
 msgid "The time is multiplied by the current repeat counter."
@@ -23179,6 +23374,9 @@ msgid "The time shift storage device is not available. Please check the device a
 msgstr ""
 
 msgid "The time shift storage device was removed. Time shift has been stopped."
+msgstr ""
+
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
 msgstr ""
 
 #, python-format
@@ -23293,6 +23491,9 @@ msgstr ""
 msgid "This channel requires an HbbTV plugin. Please install a compatible HbbTV plugin."
 msgstr ""
 
+msgid "This device has multiple mount points. Unmount them before checking the file system."
+msgstr ""
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "يتيح لك هذا الحقل بالبحث عن معدل ترميز إضافي يصل إلى %s."
@@ -23301,6 +23502,9 @@ msgid "This function is not available as processing of large files may take too 
 msgstr ""
 
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
+msgstr ""
+
+msgid "This is not a regular swap file."
 msgstr ""
 
 msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
@@ -23422,9 +23626,6 @@ msgstr ""
 
 msgid "This option allows you to set the Auto Volume Level output."
 msgstr ""
-
-msgid "This option allows you to set the layout view (Text or Graphics)."
-msgstr "يتيح لك هذا الخيار بتعيين عرض التصميم (نصوص أو الرسم البياني)"
 
 msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr ""
@@ -23704,6 +23905,9 @@ msgstr ""
 msgid "Timer Log Actions"
 msgstr ""
 
+msgid "Timer Menu"
+msgstr ""
+
 #
 msgid "Timer Sanity Error"
 msgstr "خطأ إستقامة المؤقت"
@@ -23805,6 +24009,9 @@ msgstr ""
 
 #, python-format
 msgid "To where would you like to extract '%s'?"
+msgstr ""
+
+msgid "Toast fade"
 msgstr ""
 
 #
@@ -23923,6 +24130,9 @@ msgstr "تونغا"
 
 msgid "Top"
 msgstr "أعلى"
+
+msgid "Top 40"
+msgstr ""
 
 msgid "Top and Bottom"
 msgstr "فوق وأسفل"
@@ -24269,6 +24479,12 @@ msgstr ""
 msgid "Two lines"
 msgstr "سطرين"
 
+msgid "Two tuners share one SAT input and one C/T input. Reception types switch automatically. Use compatible SAT settings and separate Unicable User Bands. Cable and terrestrial reception cannot run together."
+msgstr ""
+
+msgid "Two tuners, two SAT sockets, one shared C/T socket. Two frequencies of the same reception type can run together. Cable and terrestrial cannot run together."
+msgstr ""
+
 #
 msgid "Type"
 msgstr "النوع"
@@ -24372,6 +24588,12 @@ msgid "Ukrainian"
 msgstr "الأوكرانية"
 
 #, python-format
+msgid ""
+"Unable to change swap state for '%s'.\n"
+"%s"
+msgstr ""
+
+#, python-format
 msgid "Unable to check HDD replacement: %s"
 msgstr ""
 
@@ -24402,6 +24624,9 @@ msgstr ""
 msgid "Unable to prepare the time shift storage device."
 msgstr ""
 
+msgid "Unable to read the list of mounted file systems."
+msgstr ""
+
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr ""
@@ -24419,9 +24644,6 @@ msgid "Unable to save network configuration!"
 msgstr ""
 
 msgid "Unable to save network mount configuration!"
-msgstr ""
-
-msgid "Unable to start RAM time shift."
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
@@ -24916,6 +25138,9 @@ msgstr "استخدام الإعدادات الفردية لكل دليل"
 msgid "Use power measurement"
 msgstr "استخدم اجراءات توفير الطاقة"
 
+msgid "Use skin default"
+msgstr ""
+
 msgid "Use small screen"
 msgstr ""
 
@@ -25006,6 +25231,10 @@ msgstr "نوع البحث عن القنوات المستخدمة"
 
 msgid "Used:"
 msgstr "المستخدم:"
+
+#, python-format
+msgid "Used: %s"
+msgstr ""
 
 msgid "User  (keymap.usr)"
 msgstr ""
@@ -25154,6 +25383,9 @@ msgstr "صورة صالحة"
 #
 msgid "Vanuatu"
 msgstr "فانواتو"
+
+msgid "Varied"
+msgstr ""
 
 msgid "Variety"
 msgstr ""
@@ -25464,12 +25696,6 @@ msgstr "الشاشة العريضة تعمل 4:3"
 msgid "Wait for timesync at startup"
 msgstr ""
 
-msgid "Wait please while creating swap file..."
-msgstr ""
-
-msgid "Wait please while scanning..."
-msgstr ""
-
 #
 msgid "Waiting"
 msgstr "جاري الانتظار"
@@ -25566,6 +25792,9 @@ msgid "Weather"
 msgstr ""
 
 msgid "Weather settings"
+msgstr ""
+
+msgid "Weather/meteorology"
 msgstr ""
 
 msgid "Web Interface"
@@ -25808,6 +26037,9 @@ msgstr ""
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "عند التمكين، سيعمل تهئية لعرض خط الترجمة لكي يطابق عرض الشاشة."
+
+msgid "When enabled, services without EPG data will be hidden."
+msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "عند التمكين، سيعرض أرقام القنوات في شاشة اختيار القناة."
@@ -26113,10 +26345,10 @@ msgstr ""
 msgid "Y-Resolution"
 msgstr ""
 
-msgid "YELLOW button"
+msgid "YELLOW"
 msgstr "زر الأصفر"
 
-msgid "YELLOW long"
+msgid "YELLOW (Long press)"
 msgstr ""
 
 msgid "Year"
@@ -26230,9 +26462,6 @@ msgid "You have no script to run."
 msgstr ""
 
 msgid "You have selected no logs to delete."
-msgstr ""
-
-msgid "You have to create a Swap File before to activate the autostart."
 msgstr ""
 
 #, python-format
@@ -27215,6 +27444,78 @@ msgstr "نعم (احتفظ بالفيدز)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Add a RecordTimer for current event"
+#~ msgstr "اضف موقت تسجيل للحدث الحالي"
+
+#~ msgid "Add a ZapTimer for current event"
+#~ msgstr "اضف موقت انتقال للحدث الحالي"
+
+#~ msgid "Add an AutoTimer for the current event"
+#~ msgstr "أضف مؤقت آلي للحدث الحالي"
+
+#~ msgid "Add/Remove Timer"
+#~ msgstr "اضف/احذف مؤقت"
+
+#~ msgid "Add/Remove a timer for the current event"
+#~ msgstr "اضف /الغ توقيت للحدث الحالي"
+
+#, fuzzy
+#~ msgid "AutoTimer"
+#~ msgstr "إضافة مؤقت تلقائي"
+
+#
+#~ msgid "CHANNEL +/-"
+#~ msgstr "قناه +/-"
+
+#
+#~ msgid "Change to bouquet"
+#~ msgstr "تغيير إلى الباقة"
+
+#~ msgid "Close bouquet list."
+#~ msgstr "غلق قائمة الباقات."
+
+#~ msgid "EPG Bouquet Actions"
+#~ msgstr "إجراءات دليل قائمة القنوات"
+
+#, fuzzy
+#~ msgid "EPG Display Actions"
+#~ msgstr "خيارات عرض الدليل"
+
+#~ msgid "EPG Other Actions"
+#~ msgstr "الاجراءات الأخرى للدليل"
+
+#~ msgid "IMDb search for current event"
+#~ msgstr "البحث في قاعدة بيانات موقع IMDb عن الحدث الحالي"
+
+#~ msgid "Info button (short)"
+#~ msgstr "زر المعلومات (قصير)"
+
+#~ msgid "Move to home of list"
+#~ msgstr "الانتقال إلى القائمة الرئيسية"
+
+#~ msgid "OK button (short)"
+#~ msgstr "زر موافق (قصير)"
+
+#~ msgid "Primetime hour"
+#~ msgstr "ساعة وقت الذروة"
+
+#~ msgid "Primetime minute"
+#~ msgstr "دقيقة وقت الذروة"
+
+#~ msgid "Search for similar events"
+#~ msgstr "البحث عن احداث مشابهه"
+
+#
+#, fuzzy
+#~ msgid "Time shift not possible!"
+#~ msgstr "التحكم في البث المباشر مستحيل!"
+
+#~ msgid "Select the Swap File Size:"
+#~ msgstr "حدد حجم ملف المبادلة:"
+
+#~ msgid "Status:"
+#~ msgstr "الحالة:"
+
 #, fuzzy
 #~ msgid "Aspect"
 #~ msgstr "نسبة الطول والعرض"
@@ -27265,11 +27566,6 @@ msgstr "®"
 
 #~ msgid "Skip jumping to live while timeshifting with plugins"
 #~ msgstr "تجنّب الانتقال للبث المباشر أثناء تحويل الوقت باستخدام الإضافات"
-
-#
-#, fuzzy
-#~ msgid "Time shift not possible!"
-#~ msgstr "التحكم في البث المباشر مستحيل!"
 
 #~ msgid "Use time shift SeekBar while time shifting"
 #~ msgstr "استخدام شريط البحث أثناء تحويل الوقت"

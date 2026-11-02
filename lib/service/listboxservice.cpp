@@ -634,8 +634,11 @@ inline bool compareServices(const eServiceReference &src, const eServiceReferenc
 
 bool eListboxServiceContent::checkServiceIsRecorded(eServiceReference ref,pNavigation::RecordType type)
 {
+	eNavigation *navigation = eNavigation::getInstance();
+	if (!navigation)
+		return false;
 	std::map<ePtr<iRecordableService>, eServiceReference, std::less<iRecordableService*> > recordedServices;
-	recordedServices = eNavigation::getInstance()->getRecordingsServices(type);
+	recordedServices = navigation->getRecordingsServices(type);
 	for (std::map<ePtr<iRecordableService>, eServiceReference >::iterator it = recordedServices.begin(); it != recordedServices.end(); ++it)
 	{
 		if (ref.flags & eServiceReference::isGroup)
@@ -643,9 +646,15 @@ bool eListboxServiceContent::checkServiceIsRecorded(eServiceReference ref,pNavig
 			ePtr<iDVBChannelList> db;
 			ePtr<eDVBResourceManager> res;
 			eDVBResourceManager::getInstance(res);
+			if (!res)
+				return false;
 			res->getChannelList(db);
+			if (!db)
+				return false;
 			eBouquet *bouquet=0;
 			db->getBouquet(ref, bouquet);
+			if (!bouquet)
+				return false;
 			for (std::list<eServiceReference>::iterator i(bouquet->m_services.begin()); i != bouquet->m_services.end(); ++i)
 				if (*i == it->second || compareServices(*i, it->second))
 					return true;

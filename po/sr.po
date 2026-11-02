@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 19:43+0000\n"
-"PO-Revision-Date: 2026-10-20 05:16+0000\n"
+"POT-Creation-Date: 2026-11-01 20:39+0100\n"
+"PO-Revision-Date: 2026-11-02 07:32+0000\n"
 "Last-Translator: Milan Koljanin <milan58@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sr/>\n"
 "Language: sr\n"
@@ -1541,6 +1541,9 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
+msgid "2 tuners: 2 SAT sockets, 1 C/T socket"
+msgstr "2 tuner-a: 2 SAT utičnice, 1 C/T utičnica"
+
 msgid "2nd InfoBar"
 msgstr "Druga Info Traka"
 
@@ -1718,6 +1721,9 @@ msgstr "Istaknuto mesto na slici DU prikazuje na koje dugme se odnosi pomoć. Ak
 
 msgid "A new storage device has been connected:"
 msgstr "Povezan je novi uređaj za skladištenje:"
+
+msgid "A prepared or running timer can not be moved to the fallback tuner."
+msgstr "Pripremljeni ili pokrenuti tajmer ne može da se prebaci na rezervni tuner."
 
 #, python-format
 msgid ""
@@ -2074,14 +2080,8 @@ msgstr "Dodaj RADIO kanal na listu Pomaka Glasnoće"
 msgid "Add a RecordTimer"
 msgstr "Dodaj u TajmerSnimanja"
 
-msgid "Add a RecordTimer for current event"
-msgstr "Dodavanje Tajmera Snimanja za trenutni događaj"
-
 msgid "Add a TV service to the Volume Offset list"
 msgstr "Dodaj TV kanal na listu Pomaka Glasnoće"
-
-msgid "Add a ZapTimer for current event"
-msgstr "Dodavanje u ZapTajmer za trenutni događaj"
 
 msgid "Add a ZapTimer for next event"
 msgstr "Dodavanje u ZapTajmer za sledeći događaj"
@@ -2113,8 +2113,8 @@ msgstr "Dodavanje kanala na listu Pomaka Glasnoće"
 msgid "Add a timer for the current event"
 msgstr "Dodavanje tajmera za trenutni događaj"
 
-msgid "Add an AutoTimer for the current event"
-msgstr "Dodavanje u AutoTajmera za trenutni događaj"
+msgid "Add an existing swap file"
+msgstr "Dodaj postojeću zamenu datoteka"
 
 msgid "Add current directory to bookmarks"
 msgstr "Dodavanje trenutnog direktorijuma u obeleživač"
@@ -2191,12 +2191,6 @@ msgstr "Dodajte odabranu uslugu u buket ili alternativu"
 msgid "Add title"
 msgstr "Dodaj naslov"
 
-msgid "Add/Remove Timer"
-msgstr "Dodaj/Ukloni Tajmer"
-
-msgid "Add/Remove a timer for the current event"
-msgstr "Dodavanje/Uklanjanje tajmera za trenutni događaj"
-
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr "Dodaj/ukloni naglašeni dodatak na/sa liste instalacija"
 
@@ -2251,6 +2245,9 @@ msgstr "Odrasli"
 
 msgid "Adult Audience, Strong Violence 15+"
 msgstr "Odrasla publika, Jako nasilje 15+"
+
+msgid "Adult Hits"
+msgstr "Hitovi za odrasle"
 
 msgid "Adult movie/Drama"
 msgstr "Film za odrasle/Drama"
@@ -2610,6 +2607,9 @@ msgstr "Animacije"
 
 msgid "Anonymize client IPs"
 msgstr "Anonimizuj IP adrese klijenata"
+
+msgid "Another swap operation is still running."
+msgstr "Još jedna operacija zamene je u toku."
 
 msgid "Antarctica"
 msgstr "Antarctica"
@@ -2991,9 +2991,6 @@ msgstr "AutoMontažaUpravljač"
 msgid "AutoRefresh"
 msgstr "Auto Osvežavanje"
 
-msgid "AutoTimer"
-msgstr "AutoTajmer"
-
 msgid "AutoUpdate"
 msgstr "Auto Ažuriranje"
 
@@ -3097,10 +3094,10 @@ msgstr "BER:"
 msgid "BLUDISC RECORDABLE"
 msgstr "BLUDISC zapisivi"
 
-msgid "BLUE button"
+msgid "BLUE"
 msgstr "PLAVO dugme"
 
-msgid "BLUE long"
+msgid "BLUE (Long press)"
 msgstr "PLAVO dugo"
 
 msgid "BLUE switch: BLUE/BLUE long"
@@ -3722,8 +3719,17 @@ msgstr "CH%s"
 msgid "CHANGE BOUQUET"
 msgstr "PROMENI BUKET"
 
-msgid "CHANNEL +/-"
-msgstr "KANAL +/-"
+msgid "CHANNEL+"
+msgstr "KANAL+"
+
+msgid "CHANNEL+ button (setup in menu)"
+msgstr "Dugme KANAL+ (podešavanje u meniju)"
+
+msgid "CHANNEL-"
+msgstr "KANAL-"
+
+msgid "CHANNEL- button (setup in menu)"
+msgstr "KANAL- dugme (podešavanje u meniju)"
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI (Zajednički Interfejs) Podešavanje"
@@ -4181,9 +4187,6 @@ msgstr "Prebaci na režim Radio usluga"
 msgid "Change to TV services mode"
 msgstr "Prebaci na režim TV usluga"
 
-msgid "Change to bouquet"
-msgstr "Premesti u buket"
-
 msgid "Changed"
 msgstr "Promenjeno"
 
@@ -4282,9 +4285,6 @@ msgstr "Ime kanala"
 
 msgid "Channel number"
 msgstr "Broj kanala"
-
-msgid "Channel preview mode"
-msgstr "Režim pregleda kanala"
 
 msgid "Channel selection configuration"
 msgstr "Konfiguracija izbora kanala"
@@ -4529,6 +4529,9 @@ msgstr "Kružna desna"
 msgid "City"
 msgstr "Grad"
 
+msgid "Classic Rock"
+msgstr "Klasični Rok"
+
 msgid "Classical"
 msgstr "Klasika"
 
@@ -4622,12 +4625,6 @@ msgstr "Zatvori Listu Zadataka"
 msgid "Close Task View"
 msgstr "Zatvori Prikaz Zadataka"
 
-msgid "Close bouquet list"
-msgstr "Zatvori listu buketa"
-
-msgid "Close bouquet list."
-msgstr "Zatvori listu buketa."
-
 msgid "Close dialog"
 msgstr "Zatvori prozor"
 
@@ -4676,6 +4673,9 @@ msgstr "Zatvori ekran i prekini trenutno skeniranje"
 msgid "Close the screen without saving any changes"
 msgstr "Zatvori ekran bez čuvanja promena"
 
+msgid "Close the swap manager"
+msgstr "Zatvori menadžer zamene"
+
 msgid "Close the window"
 msgstr "Zatvori prozor"
 
@@ -4706,14 +4706,14 @@ msgstr "Ime Kolekcije"
 msgid "Collection settings"
 msgstr "Postavke Kolekcije"
 
+msgid "College"
+msgstr "Fakultet"
+
 msgid "Colombia"
 msgstr "Colombia"
 
 msgid "Color"
 msgstr "Boja"
-
-msgid "Color Button Assignments"
-msgstr "Dodeljivanje Boja Dugmadi"
 
 msgid "Color format"
 msgstr "Format Boje"
@@ -5067,9 +5067,6 @@ msgstr "Konfigurišite broj dana nakon kojih se stavke automatski uklanjaju iz k
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "Podesite broj dana kada se stari tajmeri čuvaju pre nego što se uklone automatski sa liste tajmera."
 
-msgid "Configure the number of rows shown."
-msgstr "Podesite brojčanost redova."
-
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr "Podesite odlaganje offline dekodiranja u ms. Podešeno odlaganje se primećuje kod svake promene pariteta reči kontrole."
 
@@ -5195,6 +5192,9 @@ msgstr "Podesite NTP server."
 
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "Podesite mrežne postavke i pritisni OK da bi pokrenuli skeniranje"
+
+msgid "Configured in /etc/fstab. Starting or stopping here only changes the current session."
+msgstr "Konfigurisano u /etc/fstab. Pokretanje ili zaustavljanje ovde menja samo trenutnu sesiju."
 
 msgid "Configures which video output connector will be used."
 msgstr "Podesite koja će se linija spajanja video izlaza koristiti."
@@ -5569,6 +5569,9 @@ msgstr "Kreiraj ISO"
 msgid "Create Slots"
 msgstr "Kreiraj Slot"
 
+msgid "Create Zap Timer"
+msgstr "Kreiraj Zap Tajmer"
+
 msgid "Create a directory"
 msgstr "Kreiraj direktorijum"
 
@@ -5580,6 +5583,9 @@ msgstr "Napravi poseban buket za radio servise. Kada je isključeno, radio servi
 
 msgid "Create a settings backup"
 msgstr "Napravite rezervnu kopiju podešavanja"
+
+msgid "Create a swap file"
+msgstr "Napravi zamenu datoteka"
 
 msgid "Create a symbolic link"
 msgstr "Kreiranje simboličke veze"
@@ -5630,6 +5636,9 @@ msgstr "Kreirajte slotove za odabrani uređaj"
 msgid "Create swap"
 msgstr "Kreiraj zamenu"
 
+msgid "Create swap file"
+msgstr "Napravi zamenu datoteka"
+
 msgid "Create tar file of root file system."
 msgstr "Kreirajte tar datoteku sistemskog korena."
 
@@ -5660,6 +5669,17 @@ msgstr ""
 
 msgid "Creating partition"
 msgstr "Kreiranje particije"
+
+msgid "Creating swap file. This can take several minutes."
+msgstr "Pravim zamenu datoteka. Ovo može da potraje nekoliko minuta."
+
+#, python-format
+msgid ""
+"Creating the swap file failed.\n"
+"%s"
+msgstr ""
+"Pravljenje zamene datoteka nije uspelo.\n"
+"%s"
 
 msgid "Credentials"
 msgstr "Akreditivi"
@@ -5695,6 +5715,9 @@ msgstr "Cuba"
 msgid "Cult"
 msgstr "Cult"
 
+msgid "Culture"
+msgstr "Kultura"
+
 msgid "Curacao"
 msgstr "Curacao"
 
@@ -5706,6 +5729,9 @@ msgstr "Trenutni"
 
 msgid "Current 1/1"
 msgstr "Trenutni 1/1"
+
+msgid "Current Affairs"
+msgstr "Trenutni Događaji"
 
 msgid "Current CEC address"
 msgstr "Trenutna СЕС adresa"
@@ -6567,6 +6593,14 @@ msgstr "Izbriši zapis iz plej liste"
 msgid "Delete saved play list"
 msgstr "Izbriši sačuvanu plej listu"
 
+#, python-format
+msgid ""
+"Delete swap file '%s'?\n"
+"An active file will be stopped first. Its swap entry in /etc/fstab will also be removed."
+msgstr ""
+"Obrisati datoteku zamene '%s'?\n"
+"Aktivna datoteka će prvo biti zaustavljena. Zamena unos u /etc/fstab će također biti uklonjena."
+
 msgid "Delete the character to the left of text cursor"
 msgstr "Izbriši znak levo od kursora teksta"
 
@@ -6597,6 +6631,9 @@ msgstr "Brisati flash proširenje u izabranom uređaju"
 
 msgid "Delete the selected locally stored image"
 msgstr "Izbriši izabrani lokalni sačuvani imidž"
+
+msgid "Delete the selected swap file"
+msgstr "Obriši izabranu datoteku zamene"
 
 #, python-format
 msgid "Delete these %d directories/files?"
@@ -6736,6 +6773,10 @@ msgstr "Ime uređaja:"
 
 msgid "Device number"
 msgstr "Broj uređaja"
+
+#, python-format
+msgid "Device: %s"
+msgstr "Uređaj: %s"
 
 msgid "Devices"
 msgstr "Uređaji"
@@ -7369,6 +7410,9 @@ msgstr "Verzija drajvera"
 msgid "Drop unconfigured satellites"
 msgstr "Otkači nekonfigurisane satelite"
 
+msgid "Dual channel"
+msgstr "Dvokanalni"
+
 msgid "Duplex"
 msgstr "Dupli"
 
@@ -7412,11 +7456,11 @@ msgstr "ECM info za '%s'"
 msgid "EPG"
 msgstr "EPG"
 
+msgid "EPG (Long press)"
+msgstr "EPG (Dugo pritisnite)"
+
 msgid "EPG Actions"
 msgstr "EPG Radnja"
-
-msgid "EPG Bouquet Actions"
-msgstr "EPG Buket Radnja"
 
 msgid "EPG Cache Check"
 msgstr "EPG Provera Keša"
@@ -7427,9 +7471,6 @@ msgstr "EPG Kanal/Izbor Kanala"
 msgid "EPG Data In Streams"
 msgstr "EPG Podaci u Strimu"
 
-msgid "EPG Display Actions"
-msgstr "EPG Radnja Displeja"
-
 msgid "EPG Jump"
 msgstr "EPG Skok"
 
@@ -7438,9 +7479,6 @@ msgstr "EPG Jezik"
 
 msgid "EPG Navigation Actions"
 msgstr "EPG Radnja Navigacije"
-
-msgid "EPG Other Actions"
-msgstr "EPG Ostale Radnje"
 
 msgid "EPG Range And History"
 msgstr "EPG Opseg i Istorija"
@@ -7462,6 +7500,9 @@ msgstr "EPG Izvor"
 
 msgid "EPG Storage And Refresh"
 msgstr "EPG Skladište i Osvežavanje"
+
+msgid "EPG button long (setup in menu)"
+msgstr "Dugme EPG držati duže (podešavanje u meniju)"
 
 msgid "EPG button mode"
 msgstr "EPG dugme režim"
@@ -7520,6 +7561,9 @@ msgstr "Uključi istočni limit"
 
 msgid "Eastern satellites"
 msgstr "Istočni sateliti"
+
+msgid "Easy Listening"
+msgstr "Lako Slušanje"
 
 msgid "Easy listening"
 msgstr "Laka muzika"
@@ -9225,6 +9269,9 @@ msgstr "Poslednje odlaganje pomeranja"
 msgid "Finance"
 msgstr "Biznis"
 
+msgid "Finance/Business"
+msgstr "Financije/Posao"
+
 msgid "Find Currently Playing Service"
 msgstr "Pronađi servis koji se Trenutno Reprodukuje"
 
@@ -9358,6 +9405,9 @@ msgstr "Po lokaciji na daljinu"
 msgid "Flush Cache and Rescan"
 msgstr "Očisti Keš i ponovo Skeniraj"
 
+msgid "Folk Music"
+msgstr "Folk Muzika"
+
 msgid "Folk and Country"
 msgstr "Folk i Kantri"
 
@@ -9415,6 +9465,9 @@ msgstr "Forsiranje omogućeno"
 msgid "Force progressive for streams and files"
 msgstr "Primeni progresivno za strimove i fajldatotekeove"
 
+msgid "Foreign Language"
+msgstr "Strani Jezik"
+
 msgid "Foreign countries/Expeditions"
 msgstr "Strane zemlje/Ekspedicije"
 
@@ -9453,6 +9506,10 @@ msgstr "Slobodan fleš"
 
 msgid "Free memory"
 msgstr "Slobodna memorija"
+
+#, python-format
+msgid "Free space: %s"
+msgstr "Slobodan prostor: %s"
 
 msgid "Free swap"
 msgstr "Slobodna zamena"
@@ -9529,6 +9586,9 @@ msgstr "Puno Razvlačenje"
 msgid "Full factory reset"
 msgstr "Fabrički reset"
 
+msgid "Full path of the existing swap file"
+msgstr "Puna putanja postojeće datoteke zamene"
+
 msgid "Full range (no clipping)"
 msgstr "Puni opseg (bez sečenja)"
 
@@ -9550,10 +9610,10 @@ msgstr "Dalje obrazovanje"
 msgid "G"
 msgstr "G"
 
-msgid "GREEN button"
+msgid "GREEN"
 msgstr "ZELENI taster"
 
-msgid "GREEN long"
+msgid "GREEN (Long press)"
 msgstr "ZELENI dugi"
 
 msgid "GStreamer debug log category *"
@@ -9667,9 +9727,6 @@ msgstr "German"
 
 msgid "Germany"
 msgstr "Germany"
-
-msgid "Getting event information failed!"
-msgstr "Dobijanje informacija o događaju nije uspelo!"
 
 msgid "Getting plugin information. Please wait..."
 msgstr "Dobijanje info o pluginu. Molim sačekajte..."
@@ -10097,6 +10154,9 @@ msgstr "Sakrij VBI red za ovaj kanal"
 msgid "Hide any zap error messages."
 msgstr "Sakrij sve poruke o grešci zap."
 
+msgid "Hide empty services"
+msgstr "Preskoči prazne kanale"
+
 msgid "Hide error messages from the Common Interface module."
 msgstr "Sakrij poruke o greškama iz modula Zajednički Interfejs."
 
@@ -10301,11 +10361,11 @@ msgstr "IMDb Detalji"
 msgid "IMDb Search"
 msgstr "IMDb Pretraga"
 
-msgid "IMDb search for current event"
-msgstr "IMDB traženje trenutnog događaja"
-
 msgid "INFO"
 msgstr "INFO"
+
+msgid "INFO (Long press)"
+msgstr "Info taster (dugo)"
 
 msgid "INFO button mode"
 msgstr "INFO režim tastera"
@@ -10740,12 +10800,6 @@ msgstr "Indonesian"
 msgid "Info"
 msgstr "Info"
 
-msgid "Info button (long)"
-msgstr "Info taster (dugo)"
-
-msgid "Info button (short)"
-msgstr "Info taster (kratko)"
-
 msgid "Info file checksum"
 msgstr "Info fajl checksum"
 
@@ -10992,6 +11046,9 @@ msgstr "Nevažeća stranica pomoći"
 msgid "Invalid location!"
 msgstr "Nevažeća lokacija!"
 
+msgid "Invalid swap file size."
+msgstr "Nevažeća veličina zamene datoteke."
+
 msgid "Invalid transponder data"
 msgstr "Nevažeći podaci transpondera"
 
@@ -11079,14 +11136,14 @@ msgstr "Pridruži se ili napusti konfigurisanu ZeroTier mrežu"
 msgid "Joined"
 msgstr "Pridružio se"
 
+msgid "Joint stereo"
+msgstr "Zajednički stereo"
+
 msgid "Jordan"
 msgstr "Jordan"
 
 msgid "Jump"
 msgstr "Skoči"
-
-msgid "Jump back 24 hours"
-msgstr "Skoči 24 sata unazad"
 
 msgid "Jump back one day"
 msgstr "Skoči nazad jedan dan"
@@ -11096,9 +11153,6 @@ msgstr "Skoči nazad jedan sat"
 
 msgid "Jump first press in channel selection"
 msgstr "Pređi na prvo pritiskanje na listi kanala"
-
-msgid "Jump forward 24 hours"
-msgstr "Skoči napred 24 sata"
 
 msgid "Jump forward one day"
 msgstr "Skači napred jedan dan"
@@ -11121,14 +11175,8 @@ msgstr "Prelazak na kraj liste"
 msgid "Jump to next marked position"
 msgstr "Prelazak na sledeću označenu poziciju"
 
-msgid "Jump to next page or all up (setup in menu)"
-msgstr "Prelazak na sledeću stranicu ili na više (podešavanje u meniju)"
-
 msgid "Jump to previous marked position"
 msgstr "Prelazak na predhodnu označenu poziciju"
-
-msgid "Jump to previous page or all down (setup in menu)"
-msgstr "Prelazak na predhodnu stranicu ili na dole (podešavanje u meniju)"
 
 msgid "Jump to prime time"
 msgstr "Prelazak na udarno vreme"
@@ -11512,6 +11560,9 @@ msgstr "Stari (SMB1)"
 msgid "Legacy mode"
 msgstr "Zastareli režim"
 
+msgid "Leisure"
+msgstr "Slobodno vreme"
+
 msgid "Leisure hobbies"
 msgstr "Leisure hobbies"
 
@@ -11548,6 +11599,9 @@ msgstr "Liechtenstein"
 
 msgid "Lifestyle"
 msgstr "Stil života"
+
+msgid "Light Classical"
+msgstr "Lagana Klasika"
 
 msgid "Light Grey"
 msgstr "Svetlo Siva"
@@ -12173,6 +12227,9 @@ msgstr "Medicina"
 msgid "Medicine/Physiology/Psychology"
 msgstr "Medicina/Fiziologija/Psihologija"
 
+msgid "Medium"
+msgstr "Medijum"
+
 msgid "Medium is not a writeable DVD!"
 msgstr "Medij nije upisivi DVD!"
 
@@ -12372,6 +12429,9 @@ msgstr "Mongolia"
 msgid "Mongolian"
 msgstr "Mongolian"
 
+msgid "Mono"
+msgstr "Mono"
+
 msgid "Montenegro"
 msgstr "Montenegro"
 
@@ -12437,6 +12497,10 @@ msgstr "Montiraj ili odmontiraj izabrano deljenje"
 
 msgid "Mount point"
 msgstr "Montažna Tačka"
+
+#, python-format
+msgid "Mount point: %s"
+msgstr "Tačka montiranja: %s"
 
 msgid "Mount root file system."
 msgstr "Montaža koren sistem datoteka."
@@ -12606,9 +12670,6 @@ msgstr "Premeštanje na prvi red"
 
 msgid "Move to first line / screen in the panel"
 msgstr "Premeštanje na prvi red / ekran na panelu"
-
-msgid "Move to home of list"
-msgstr "Premesti na domaću listu"
 
 msgid "Move to last item / screen"
 msgstr "Idi na poslednju stavku / ekran"
@@ -12940,6 +13001,9 @@ msgstr "Namibia"
 msgid "Narration"
 msgstr "Govor"
 
+msgid "National Music"
+msgstr "Nacionalna Muzika"
+
 msgid "National music"
 msgstr "Narodna muzika"
 
@@ -12969,9 +13033,6 @@ msgstr "Idi do izabranog direktorija"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
 msgstr "Krećite se gore/dole pomoću tastera GORE/DOLE i stranice na gore/dole sa LEVO/DESNO. OK da izvršite radnju opisano u trenutno istaknutoj pomoći."
-
-msgid "Navigation And Button Assignments"
-msgstr "Navigacija i Dodela Dugmadi"
 
 msgid "Navigation And Time Range"
 msgstr "Navigacija i Vremenski Opseg"
@@ -13472,6 +13533,9 @@ msgstr "Nije pronađen satelitski tjuner!"
 msgid "No supported DAB+ feeds are available for the satellite positions configured on this box."
 msgstr "Nema podržanih DAB+ frekvencija za satelitske pozicije podešene na ovom uređaju."
 
+msgid "No swap files or partitions found. Use Create to add a swap file."
+msgstr "Nisu pronađene datoteke zamene ili particije. Koristi Kreiraj da dodaš zamenu datoteka."
+
 msgid "No system softcam configured!"
 msgstr "Nema konfigurisanog softcam sistema!"
 
@@ -13517,6 +13581,9 @@ msgstr ""
 msgid "No tuners are currently streaming."
 msgstr "Trenutno nema tjunera za striming."
 
+msgid "No unused swap file name is available."
+msgstr "Nema dostupnog imena za neiskorišćenu zamenu datoteka."
+
 msgid "No update required!"
 msgstr "Ispravka nije potrebna!"
 
@@ -13541,6 +13608,9 @@ msgstr "Nije pronađena važeća montaža za '%s'!"
 
 msgid "No valid region details were found"
 msgstr "Nisu pronađeni važeći detalji regiona"
+
+msgid "No writable ext2, ext3 or ext4 storage is available for a swap file."
+msgstr "Nema dostupnog zapisivog ext2, ext3 ili ext4 skladišta za zamenu datoteka."
 
 msgid "No, but restart from begin"
 msgstr "Ne, ali ponovo pokreni ispočetka"
@@ -13620,6 +13690,9 @@ msgstr "Norwegian Bokml"
 msgid "Norwegian Nynorsk"
 msgstr "Norwegian Nynorsk"
 
+msgid "Nostalgia"
+msgstr "Nostalgija"
+
 msgid "Not Classified"
 msgstr "Nije Klasifikovano"
 
@@ -13656,6 +13729,9 @@ msgstr "Nije definisano"
 #, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "Nema dovoljno prostora na disku. Oslobodite prostor i pokušajte ponovo. (%d MB potrebno,%d MB omogućeno)"
+
+msgid "Not enough free space for this swap file."
+msgstr "Nema dovoljno slobodnog prostora za ovu zamenu datoteka."
 
 msgid "Not found"
 msgstr "Nije pronađeno"
@@ -13752,11 +13828,8 @@ msgstr "OEM model"
 msgid "OK"
 msgstr "ОК"
 
-msgid "OK button (long)"
+msgid "OK (Long press)"
 msgstr "Taster OK (dugo)"
-
-msgid "OK button (short)"
-msgstr "Taster OK (kratko)"
 
 msgid "OK button mode"
 msgstr "Režim tastera OK"
@@ -13868,6 +13941,9 @@ msgstr "Pomeri i zatvori CA uređaj"
 msgid "Ojibwa"
 msgstr "Ojibwa"
 
+msgid "Oldies"
+msgstr "Staro"
+
 msgid "Olympic blue"
 msgstr "Olimpijsko plavo"
 
@@ -13930,6 +14006,9 @@ msgstr "Samo pri pokretanju"
 
 msgid "Only one network share can be used as HDD replacement. Disable 'Use as HDD replacement' on the other share first."
 msgstr "Samo jedno deljenje mreže može da se koristi kao zamena za HDD. Prvo isključi 'Koristi kao zamenu za HDD' na drugom deljenju."
+
+msgid "Only swap files can be deleted."
+msgstr "Samo datoteke zamene mogu da se obrišu."
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
 msgstr "Koristite samo DNS servere koji implementiraju DNS-over-HTTPS protokol. Ovo uzrokuje da se DNS pretrage obavljaju preko šifrovanog HTTPS protokola."
@@ -14234,6 +14313,9 @@ msgstr "Ostalo"
 msgid "Other Actions"
 msgstr "Ostale Radnje"
 
+msgid "Other Music"
+msgstr "Ostala Muzika"
+
 msgid "Other OSD Elements"
 msgstr "Ostali OSD Elementi"
 
@@ -14333,6 +14415,9 @@ msgstr "PIN"
 
 msgid "PIN code needed"
 msgstr "Potreban PIN kod"
+
+msgid "PLAY"
+msgstr "REPRODUKUJ"
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -14579,6 +14664,9 @@ msgstr "Dozvole"
 msgid "Persian"
 msgstr "Persian"
 
+msgid "Personality"
+msgstr "Ličnost"
+
 msgid "Personalize your Skin"
 msgstr "Personalizovanje Skina"
 
@@ -14587,6 +14675,9 @@ msgstr "Peru"
 
 msgid "Philippines"
 msgstr "Philippines"
+
+msgid "Phone In"
+msgstr "Poziv"
 
 msgid "PiP"
 msgstr "PiP"
@@ -14618,6 +14709,9 @@ msgstr "Pikon Podešavanja"
 msgid "Picon and service name"
 msgstr "Pikon i ime servisa"
 
+msgid "Picon and service number"
+msgstr "Pikon i broj servisa"
+
 msgid "Picon install location"
 msgstr "Lokacija instalacije pikona"
 
@@ -14634,6 +14728,9 @@ msgstr "Pikon režim pretrage"
 
 msgid "Picon width"
 msgstr "Pikon širina"
+
+msgid "Picon, service number and service name"
+msgstr "Pikon, broj servisa i ime servisa"
 
 msgid "Picture In Picture"
 msgstr "Slika u Slici"
@@ -14886,9 +14983,6 @@ msgstr "Izaberite rezoluciju..."
 msgid "Please select an aspect ratio..."
 msgstr "Izaberite odnos širina/visina..."
 
-msgid "Please select device to use as swap file location"
-msgstr "Izaberite uređaj koji ćete koristiti kao lokaciju fajla za zamenu"
-
 msgid "Please select medium to be scanned"
 msgstr "Izaberite medij za skeniranje"
 
@@ -14997,6 +15091,9 @@ msgstr "Molimo vas da sačekate dok se dodatak menja."
 msgid "Please wait while the plugin is updated."
 msgstr "Molimo vas da sačekate dok se dodatak ažurira."
 
+msgid "Please wait while the swap file is stopped and deleted."
+msgstr "Sačekaj dok se zamena datoteka zaustavi i obriše."
+
 msgid "Please wait while unused locales/languages are purged..."
 msgstr "Molim te sačekaj dok se neiskorišćeni jezici/lokalizacije brišu..."
 
@@ -15020,6 +15117,9 @@ msgstr "Sačekajte učitavanje imidža..."
 
 msgid "Please wait, swap is being created. This could take a few minutes to complete."
 msgstr "Molimo vas da sačekate, zamena se kreira. Ovo može potrajati nekoliko minuta."
+
+msgid "Please wait. Stopping swap can take a while."
+msgstr "Molim te sačekaj. Zaustavljanje zamene može potrajati."
 
 msgid "Please wait..."
 msgstr "Molim sačekajte..."
@@ -15092,6 +15192,9 @@ msgstr "Poljski"
 
 msgid "Politics"
 msgstr "Politika"
+
+msgid "Pop Music"
+msgstr "Pop Muzika"
 
 msgid "Popular culture/Traditional arts"
 msgstr "Popularna kultura/Tradicionalne umetnosti"
@@ -15401,9 +15504,6 @@ msgstr "Predhodna stranica"
 msgid "Previous channel page"
 msgstr "Predhodna stranica kanala"
 
-msgid "Previous/Next bouquet"
-msgstr "Predhodni/Sledeći buket"
-
 msgid "Previous/Next page"
 msgstr "Predhodna/Sledeća stranica"
 
@@ -15422,14 +15522,12 @@ msgstr "Udarno Vreme"
 msgid "Prime time"
 msgstr "Udarno vreme"
 
-msgid "Primetime hour"
-msgstr "Udarno vreme sat"
-
-msgid "Primetime minute"
-msgstr "Udarno vreme minute"
-
 msgid "Priority"
 msgstr "Prioritet"
+
+#, python-format
+msgid "Priority: %d"
+msgstr "Prioritet: %d"
 
 msgid "Privacy level"
 msgstr "Nivo privatnosti"
@@ -15483,8 +15581,8 @@ msgstr "Profil: Lokalni prijemnik"
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr "Potrebno je instalirati program '%s' da bi se izvršila ova radnja. Želite li da instalirate '%s' peket da bi instalirali program?"
 
-msgid "Program type"
-msgstr "Tip programa"
+msgid "Programme type (PTY)"
+msgstr "Tip programa (PTY)"
 
 msgid "Programmlisten History"
 msgstr "Istorija liste kanala"
@@ -15608,6 +15706,9 @@ msgstr "Provajderi:"
 
 msgid "Proxy detected"
 msgstr "Proxy je otkriven"
+
+msgid "Public"
+msgstr "Javno"
 
 msgid "Public IP"
 msgstr "Javni IP"
@@ -15762,14 +15863,20 @@ msgstr "Koristi Simbol REC"
 msgid "REC symbol"
 msgstr "REC simbol"
 
-msgid "RED button"
+msgid "RECORD"
+msgstr "SNIMANJE"
+
+msgid "RECORD (Long press)"
+msgstr "SNIMAJ (Dugo pritisni)"
+
+msgid "RED"
 msgstr "CRVENO dugme"
+
+msgid "RED (Long press)"
+msgstr "CRVENO dugo"
 
 msgid "RED button / HbbTV"
 msgstr "CRVENO dugme / HbbTV"
-
-msgid "RED long"
-msgstr "CRVENO dugo"
 
 msgid "RF Output Settings"
 msgstr "RF Izlaz Postavke"
@@ -15967,12 +16074,6 @@ msgstr "Izvori prijema za skeniranje"
 msgid "Record"
 msgstr "Snimanje"
 
-msgid "Record - same as record button"
-msgstr "Snimanje - isto kao taster za snimanje"
-
-msgid "Record Actions"
-msgstr "Snimanje Radnja"
-
 msgid "Record icon"
 msgstr "Ikona snimanja"
 
@@ -16149,6 +16250,9 @@ msgstr "Osvežavanje ekrana"
 msgid "Refresh the update-able package list"
 msgstr "Osvežavanje liste paketa koji mogu da se ažuriraju"
 
+msgid "Refresh, add an existing swap file or change autostart"
+msgstr "Osveži, dodaj postojeću zamenu datoteka ili promeni automatsko pokretanje"
+
 msgid "Regard Deep Standby as Standby"
 msgstr "Duboku Pripravnost smatraj kao Pripravnost"
 
@@ -16172,6 +16276,12 @@ msgstr "Religija"
 
 msgid "Religious"
 msgstr "Religija"
+
+msgid "Religious Music"
+msgstr "Religiozna Muzika"
+
+msgid "Religious Talk"
+msgstr "Religiozni Razgovor"
 
 msgid "Reload Bookmarks"
 msgstr "Ponovno učitavanje Obeleživača"
@@ -16811,6 +16921,9 @@ msgstr "Brzina premotavanja unazad"
 msgid "Rewrap subtitles"
 msgstr "Ponovo učitati subtitlove"
 
+msgid "Rhythm and Blues"
+msgstr "Ritam i Bluz"
+
 msgid "Right"
 msgstr "Desno"
 
@@ -16837,6 +16950,9 @@ msgstr "Desni, prednji USB"
 
 msgid "Right, wrapped"
 msgstr "Desno, obrnuto"
+
+msgid "Rock"
+msgstr "Rok"
 
 msgid "Rock/Pop"
 msgstr "Rok/Pop"
@@ -17317,6 +17433,9 @@ msgstr[2] "Skeniranje završeno, pronađeno je %d usluga."
 msgid "Scanning for shares..."
 msgstr "Pretraživanje za delenje..."
 
+msgid "Scanning swap devices..."
+msgstr "Skeniranje zamene uređaja..."
+
 msgid "Scanning..."
 msgstr "Pretraživanje..."
 
@@ -17418,9 +17537,6 @@ msgstr "Pretraži istok"
 
 msgid "Search for network shares"
 msgstr "Traženje mrežnih resursa"
-
-msgid "Search for similar events"
-msgstr "Traženje sličnih događaja"
 
 msgid "Search in the current view"
 msgstr "Pretraži u trenutnom prikazu"
@@ -17610,9 +17726,6 @@ msgstr "Odaberite 'Da' da omogućite web interfejs za nadgledanje DNSCrypt podsi
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Izaberi 'Da' da bi omogućili korišćenje tastera LEVO/DESNO za premeštanje stranice na gore/dole kada taster LEVO/DESNO bude drugačije nedefinisan. Ovo obezbeđuje zastarelu navigaciju za korisnike koji je preferiraju."
-
-msgid "Select 'Yes' to hide channels without EPG data."
-msgstr "Izaberi 'Da' da bi sakrili kanale bez EPG podataka."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
 msgstr "Izaberite 'Da' da sakrijete ime servera i IP adresu servera."
@@ -17939,6 +18052,9 @@ msgstr "Izaberi određenu NFS verziju da bi forsirao određenu NFS verziju proto
 msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
 msgstr "Izaberi konkretnu verziju SMB protokola koju želiš da koristiš umesto da dozvoliš automatsku pregovaranje. Koristi 'Staru (SMB1)' samo za starije servere koji ne podržavaju novije i sigurnije SMB2/SMB3 protokole."
 
+msgid "Select a swap file on local storage."
+msgstr "Izaberi zamenu datoteka na lokalnoj memoriji."
+
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
 msgstr "Izaberi vremenski period da se prikaže potvrda pre nego što Zap tajmer promeni trenutnu uslugu. Ovo omogućava korisniku da otkaže Zap. Izaberi 'Onemogućeno' da bi Zap mogao da nastavi bez potvrde."
 
@@ -17994,6 +18110,9 @@ msgstr "Izaberi podešavanje kanala"
 msgid "Select copy destination for:"
 msgstr "Izaberi odredište za kopiranje:"
 
+msgid "Select current service"
+msgstr "Izaberi trenutni servis"
+
 msgid "Select default EPG type"
 msgstr "Izaberi default EPG tip"
 
@@ -18014,6 +18133,9 @@ msgstr "Izaberi fajlove koje želite isključiti iz rezervne kopije"
 
 msgid "Select files/folders to backup"
 msgstr "Izaberi fajl/fasciklu za pravljenje rezervne kopije"
+
+msgid "Select first service in bouquet"
+msgstr "Izaberi prvi servis u buketu"
 
 msgid "Select how long a correctly entered service PIN is remembered. This does not unlock protected settings or system actions."
 msgstr "Izaberi koliko dugo se ispravno uneti servisni PIN pamti. Ovo ne otključava zaštićena podešavanja ili sistemske akcije."
@@ -18081,6 +18203,9 @@ msgstr "Izaberi ako je zaključavanje datoteka dostupno. Izaberi 'Ne' da dodaš 
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Potvrdite izbor u ovom polju a zatim podesite default vrednost za stavku i ako jeste gde je prikazana u odnosu na opis."
 
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
+msgstr "Ova opcija vam omogućava da postavite izgled prikaza (Tekst ili Grafika)."
+
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr "Potvrdite izbor u tome da li je prikazana istorija putanje menija ekrana i ako jeste kako će biti prikazana."
 
@@ -18122,6 +18247,9 @@ msgstr "Izaberi ulazni uređaj"
 
 msgid "Select input device."
 msgstr "Izaberi ulazni uređaj."
+
+msgid "Select last browsed service"
+msgstr "Izaberi poslednji pregledani servis"
 
 msgid "Select movie"
 msgstr "Izaberi film"
@@ -18203,9 +18331,6 @@ msgstr "Izaberite Softcam za '%s'"
 msgid "Select the Softcam protocol."
 msgstr "Izaberi softcam protokol."
 
-msgid "Select the Swap File Size:"
-msgstr "Izaberi Veličinu Fajla Zamene:"
-
 msgid "Select the Unicable channel to be assigned to this tuner. This is a unique value. Be certain that no other device connected to this same Unicable system is allocated to the same Unicable channel."
 msgstr "Izaberi kanal Unicable koji se može dodeliti ovom tjuneru. Ovo je jedinstvena vrednost. Budite sigurni da niti jedan drugi uređaj povezan sa ovim istim sistemom koji se nemože koristiti nije dodeljen istom Unicable kanalu."
 
@@ -18233,6 +18358,9 @@ msgstr "Odaberi prethodne uslove za Zap tajmer. Zap tajmer će se aktivirati sam
 #, python-format
 msgid "Select the action for '%s'"
 msgstr "Izaberite akciju za '%s'"
+
+msgid "Select the action that this button will perform."
+msgstr "Postavite na ono što želite da dugme uradi."
 
 msgid "Select the action to perform when the timer ends."
 msgstr "Izaberi radnju koju želite izvršiti kada se tajmer završi."
@@ -18278,6 +18406,9 @@ msgstr "Izaberi skup karaktera (iocharset) koji će se koristiti za poklapanje/p
 
 msgid "Select the color depth to be used with the HDMI attached UHD capable TV/monitor."
 msgstr "Izaberi dubinu boje koja će se koristiti sa UHD TV-om/monitorom priključenim preko HDMI-ja."
+
+msgid "Select the color of the built-in busy spinner. Custom PNG spinners keep their own colors."
+msgstr "Izaberi boju ugrađenog animiranog okretajućeg indikatora. Prilagođeni PNG indikatori zadržavaju svoje boje."
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
 msgstr "Izaberi boju LED svetla na prednjoj ploči kada je prijemnik u radu. Ova opcija takođe omogućava da se LED isključi."
@@ -18504,6 +18635,9 @@ msgstr "Izaberi sledeće stavke na listi"
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr "Izaberi broj događaja koji će biti sačuvani u baferu vremenskog pomaka. Događaji preko ovog limita biće uklonjeni tokom čišćenja. Bafer može sadržati više fizičkih delova fajla, koji se računaju kao jedan. Baferi koji se još koriste ostaju zaštićeni, tako da limit može biti privremeno prekoračen."
 
+msgid "Select the number of services to be shown in the list."
+msgstr "Podesite brojčanost redova."
+
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr "Odaberite broj puta koliko će se zadatak ponoviti ako dođe do greške prilikom njegovog izvršavanja."
 
@@ -18587,6 +18721,9 @@ msgstr "Odaberite redosled sortira menija unosa u Plugin Browser-u. Korisnički 
 
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Izaberi redosled sortiranja stavki menija. Korisnički definisano omogućava da stavke menija budu skrivene."
+
+msgid "Select the speed of the fade-in and fade-out of toast messages."
+msgstr "Izaberi brzinu pojavljivanja i nestajanja poruka."
 
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr "Izaberite vreme početka nakon kojeg ovaj tajmer može biti aktiviran. Pre tog vremena tajmer neće biti aktiviran čak i ako su ostali uslovi ispunjeni."
@@ -18756,6 +18893,9 @@ msgstr "Izaberi da li želiš da polje 'Server' dole automatski popuniš sa otkr
 msgid "Select which IP protocols can be used with this adapter."
 msgstr "Izaberi koje IP protokole možeš koristiti sa ovim adapterom."
 
+msgid "Select which service to use when opening the EPG."
+msgstr "Koji servis izabrati prilikom otvaranja EPG-a."
+
 msgid "Select your ATSC provider."
 msgstr "Izaberi provajdera ATSC."
 
@@ -18871,6 +19011,9 @@ msgstr "Serijski broj"
 msgid "Serial number"
 msgstr "Serijski broj"
 
+msgid "Serious Classical"
+msgstr "Ozbiljna Klasika"
+
 msgid "Serious music/Classic music"
 msgstr "Ozbiljna muzika/Klasična muzika"
 
@@ -18976,6 +19119,9 @@ msgstr ""
 "Kanal nije pronađen!\n"
 "(SID nije pronađen u PAT)"
 
+msgid "Service number and picon"
+msgstr "Broj servisa i pikon"
+
 msgid "Service number and service name"
 msgstr "Broj servisa i naziv servisa"
 
@@ -18996,6 +19142,9 @@ msgstr "Odnos širina/visina pikona kanala"
 
 msgid "Service picons downsize"
 msgstr "Smanjenje veličine pikona kanala"
+
+msgid "Service preview mode"
+msgstr "Režim pregleda kanala"
 
 msgid "Service reference"
 msgstr "Referenca kanala"
@@ -19157,6 +19306,9 @@ msgstr "Podešavanje default metode sortiranja."
 msgid "Set the delay time between repeated loops, this is used by software renderer in some skins."
 msgstr "Podešavanje vremena odlaganja između ponovljenih petlji, a softverski prikazivač ga koristi u nekim skinovima."
 
+msgid "Set the desired primetime (hour and minute)."
+msgstr "Postavi željeno vreme emitovanja (sat i minut)."
+
 msgid "Set the hostname or IP address."
 msgstr "Postavite ime računara ili IP adresu."
 
@@ -19272,15 +19424,6 @@ msgstr "Postavite na 'Omogućeno' da dešifrujete redom zakazane snimke u stanju
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Podesite na 'Da' da biste omogućili slanje istih TV komandi za Duboko čekanje kao i za uobičajeno čekanje."
-
-msgid "Set to the desired primetime hour."
-msgstr "Podesite na željeno udarno vreme."
-
-msgid "Set to the desired primetime minutes."
-msgstr "Podesite na željene minute udarno vremena."
-
-msgid "Set to what you want the button to do."
-msgstr "Postavite na ono što želite da dugme uradi."
 
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Postavite na da za otklanjanje grešaka osnovnog uzorka potenciometra."
@@ -19478,6 +19621,9 @@ msgstr "Seychelles"
 msgid "Share View"
 msgstr "Prikaz Delenja"
 
+msgid "Shared SAT and C/T inputs"
+msgstr "Deljeni SAT i C/T ulazi"
+
 msgid "Shares"
 msgstr "Deli"
 
@@ -19667,9 +19813,6 @@ msgstr "Pokaži MiniTV na prednjem ekranu"
 
 msgid "Show Movie Selection in Main Menu"
 msgstr "Pokaži Izbor Filma u Meniju Proširenja"
-
-msgid "Show Movies List"
-msgstr "Pokaži Listu Filmova"
 
 msgid "Show Multi EPG"
 msgstr "Pokaži Više EPG"
@@ -20408,9 +20551,6 @@ msgstr "Preskoči unazad %s%%"
 msgid "Skip backward (enter time)"
 msgstr "Preskoči unazad (unesi vreme)"
 
-msgid "Skip empty services"
-msgstr "Preskoči prazne kanale"
-
 #, python-format
 msgid "Skip for '%s' is disabled"
 msgstr "Preskakanje za '%s' je onemogućeno"
@@ -20651,6 +20791,9 @@ msgstr "Telenovela/Melodrama/Folklorni"
 msgid "Soccer"
 msgstr "Soccer"
 
+msgid "Social Affairs"
+msgstr "Društveni Poslovi"
+
 msgid "Social/Political issues/Economics"
 msgstr "Društvena/Politička pitanja/Ekonomija"
 
@@ -20665,6 +20808,15 @@ msgstr "Society & Culture"
 
 msgid "Socket"
 msgstr "Priključak"
+
+msgid "Soft"
+msgstr "Mekano"
+
+msgid "Soft Rhythm and Blues"
+msgstr "Mekani Ritam i Bluz"
+
+msgid "Soft Rock"
+msgstr "Mekani Rok"
 
 msgid "Soft mount"
 msgstr "Meko montiranje"
@@ -20779,9 +20931,6 @@ msgstr "Izvinite, %s nije instaliran!"
 msgid "Sorry, no backups found!"
 msgstr "Izvinite, nema rezervnih kopija!"
 
-msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
-msgstr "Žao mi je, nema fizičkih uređaja koji podržavaju SWAP povezane. Ne mogu da kreiram swap datoteku na mreži ili FAT32 fajl sistemima"
-
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "Please select a different one."
@@ -20794,9 +20943,6 @@ msgstr "Sortiraj"
 
 msgid "Sort Bookmarks"
 msgstr "Sortiraj Obeleživače"
-
-msgid "Sort EPG List"
-msgstr "Sortiraj EPG Listu"
 
 msgid "Sort Extension Menu"
 msgstr "Meni Proširenje Sortiranja"
@@ -20923,6 +21069,9 @@ msgstr "Brzina"
 msgid "Spinner Position"
 msgstr "Spiner Pozicija"
 
+msgid "Spinner color"
+msgstr "Boja spinera"
+
 msgid "Split preview mode"
 msgstr "Razdeli režim pregleda"
 
@@ -20990,6 +21139,9 @@ msgstr "Vreme Početka (Najnovije Prvo)"
 msgid "Start Wizard"
 msgstr "Pokreni Čarobnjaka"
 
+msgid "Start all available swap files and partitions when Enigma2 starts. Entries marked noauto in /etc/fstab are excluded. System autostart from /etc/fstab is independent of this setting."
+msgstr "Pokreni sve dostupne zamene datoteka i particije kada Enigma2 startuje. Unosi označeni sa noauto u /etc/fstab su izuzeti. Automatski start sistema iz /etc/fstab je nezavisan od ove opcije."
+
 msgid "Start an instant recording"
 msgstr "Pokreni trenutno snimanje"
 
@@ -21025,6 +21177,9 @@ msgstr "Započni dešifrovanje van mreže"
 
 msgid "Start or Stop service"
 msgstr "Pokreni ili Zaustavi servis"
+
+msgid "Start or stop the selected swap"
+msgstr "Pokreni ili zaustavi izabranu zamenu"
 
 msgid "Start recording current event"
 msgstr "Započni snimanje trenutnog događaja"
@@ -21130,9 +21285,6 @@ msgstr "Status ekrana u stanju pripravnosti"
 msgid "Status unavailable!"
 msgstr "Status nije dostupan!"
 
-msgid "Status:"
-msgstr "Status:"
-
 msgid "Stay in time shift at buffer end (for plugins)"
 msgstr "Ostani u vremenskom pomaku na kraju bafera (za dodatke)"
 
@@ -21150,6 +21302,9 @@ msgstr "Pokrenuo na istok"
 
 msgid "Stepped west"
 msgstr "Pokrenuo na zapad"
+
+msgid "Stereo"
+msgstr "Stereo"
 
 msgid "Stop"
 msgstr "Stop"
@@ -21252,6 +21407,9 @@ msgstr "Čuvanje i Brisanje"
 
 msgid "Storage Devices"
 msgstr "Uređaj za Skladištenje"
+
+msgid "Storage device"
+msgstr "Uređaj za skladištenje"
 
 msgid "Storage device full!"
 msgstr "Skladišni uređaj je pun!"
@@ -21448,6 +21606,15 @@ msgstr "Podrška"
 msgid "Suriname"
 msgstr "Suriname"
 
+msgid "Surround"
+msgstr "Više kanalni zvučnici"
+
+msgid "Surround 5.1"
+msgstr "Zvučnici 5.1"
+
+msgid "Surround 7.1"
+msgstr "Zvučnici 7.1"
+
 msgid "Svalbard and Jan Mayen"
 msgstr "Svalbard and Jan Mayen"
 
@@ -21460,9 +21627,6 @@ msgstr "Zamena"
 msgid "Swap File Manager"
 msgstr "Zamena Fajl Menadžera"
 
-msgid "Swap File not found. You have to create the file before to activate."
-msgstr "Fajl zamene nije pronađen. Morate kreirati fajl pr nego što se aktivira."
-
 msgid "Swap Manager"
 msgstr "Menadžer Zamene"
 
@@ -21472,14 +21636,20 @@ msgstr "Zameni PiP"
 msgid "Swap PiP and main picture"
 msgstr "Zameni PiP i glavnu sliku"
 
-msgid "Swap Place:"
-msgstr "Zameni Mesta:"
-
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr "Zameni SNR u '%' sa SNR u 'db'"
 
-msgid "Swap Size:"
-msgstr "Veličina Zamene:"
+msgid "Swap autostart"
+msgstr "Promeni automatsko pokretanje"
+
+msgid "Swap file"
+msgstr "Zameni datoteku"
+
+msgid "Swap partition"
+msgstr "Particija zamene"
+
+msgid "Swap partition detection failed. Active and configured swaps are still listed."
+msgstr "Detekcija zamene particije nije uspela. Aktivne i konfigurisane zamene su i dalje navedene."
 
 msgid "Swap services"
 msgstr "Zamena mesta"
@@ -21735,6 +21905,9 @@ msgstr "Tajik"
 
 msgid "Tajikistan"
 msgstr "Tajikistan"
+
+msgid "Talk"
+msgstr "Priča"
 
 msgid "Talk show"
 msgstr "Talk šou"
@@ -22132,6 +22305,9 @@ msgstr "Default postavke vreme buđenja - 5 minuta i vreme početka tajmera + 5 
 msgid "The detailed information is intended for developers only."
 msgstr "Detaljni info je namenjen samo projektantima."
 
+msgid "The device is still mounted. Stop recordings and time shift before checking the file system."
+msgstr "Uređaj je još uvek montiran. Zaustavi snimanje i vremensko pomeranje pre nego što proveriš datoteku sistema."
+
 msgid "The directory/file no longer exists."
 msgstr "Direktorijum/fajl više ne postoji."
 
@@ -22152,6 +22328,15 @@ msgstr "Fajl '%s' je promenjen. Želite li odbaciti promene?"
 #, python-format
 msgid "The file '%s' has been changed. Do you want to save it?"
 msgstr "Fajl '%s' je promenjen. Želite li sačuvati?"
+
+msgid "The file does not contain a valid swap header."
+msgstr "Datoteka ne sadrži važeće zamene zaglavlja."
+
+msgid "The file is created inactive. Start it in the swap manager when needed."
+msgstr "Datoteka je kreirana neaktivano. Pokreni u zameni menadžeru kada bude potrebno."
+
+msgid "The file system was repaired. Restart the receiver before using this device."
+msgstr "Datoteka sistema je popravljena. Ponovo pokreni prijemnik pre nego što koristiš uređaj."
 
 #, python-format
 msgid "The following files are related to '%s':"
@@ -22205,6 +22390,9 @@ msgstr "Direktorijum pikon već postoji i mora biti uklonjen. Da li želite da n
 msgid "The positioner tuner is currently unavailable. Stop recordings or other services using this tuner and try again."
 msgstr "Taj pozicioner tjuner trenutno nije dostupan. Zaustavite snimanja ili druge usluge koje koriste ovaj tuner i pokušajte ponovo."
 
+msgid "The previous mount point is already in use."
+msgstr "Prethodna tačka montiranja je već u upotrebi."
+
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
 msgstr "Proces će trajati otprilike %d minuta da se završi."
@@ -22234,6 +22422,9 @@ msgstr "Root poddirektorijum u STARTUP fajlu proizvođača ne može se bezbedno 
 msgid "The running Enigma2 version cannot safely save an active time shift buffer."
 msgstr "Trenutna verzija Enigma2 ne može bezbedno da sačuva aktivni vremenski pomak."
 
+msgid "The running system's file system cannot be checked."
+msgstr "Sistem datoteka koji se koristi ne može da se proveri."
+
 msgid "The saved PIN was cleared."
 msgstr "Sačuvani pin je očišćen."
 
@@ -22249,6 +22440,9 @@ msgstr "Izabrani uređaj nije podržani prenosivi blok uređaj."
 
 msgid "The selected device is too small. At least 3 GB is required."
 msgstr "Izabrani uređaj je premali. Potrebno je najmanje 2561 MiB."
+
+msgid "The selected storage device is no longer available."
+msgstr "Izabrani uređaj za skladištenje više nije dostupan."
 
 msgid "The service list is reloaded."
 msgstr "Lista kanala se ponovo učitava."
@@ -22268,6 +22462,15 @@ msgstr ""
 
 msgid "The storage check did not finish. Please check the device or network and try again."
 msgstr "Provera memorije nije završena. Proveri uređaj ili mrežu i pokušaj ponovo."
+
+msgid "The swap device has changed. Refresh the list and try again."
+msgstr "Uređaj za zamenu se promenio. Osveži listu i pokušaj ponovo."
+
+msgid "The swap file has changed. Refresh the list and try again."
+msgstr "Datoteka za zamenu je promenjena. Osveži listu i pokušaj ponovo."
+
+msgid "The swap file is still active and cannot be deleted."
+msgstr "Datoteka zamene je i dalje aktivana i ne može biti obrisana."
 
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Vreme se množi sa trenutnim brojačem ponavljanja."
@@ -22290,6 +22493,9 @@ msgstr "Uređaj za čuvanje pomeranja vremena nije dostupan. Molim te, proveri u
 
 msgid "The time shift storage device was removed. Time shift has been stopped."
 msgstr "Uređaj za čuvanje vremenskog pomaka je uklonjen. Vremenski pomak je zaustavljen."
+
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
+msgstr "Tajmer se poklapa sa lokalnim tajmerom i nije premješten sa rezervnog tunera."
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -22399,6 +22605,9 @@ msgstr "Ovaj kanal trenutno ne emituje."
 msgid "This channel requires an HbbTV plugin. Please install a compatible HbbTV plugin."
 msgstr "Ovom kanalu je potreban HbbTV dodatak. Molimo instalirajte kompatibilan HbbTV dodatak."
 
+msgid "This device has multiple mount points. Unmount them before checking the file system."
+msgstr "Ovaj uređaj ima više tačaka montaže. Otkači ih pre nego što proveriš datoteku sistema."
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Ovo polje vam omogućava da pretražite dodatni simbol rate do %s."
@@ -22408,6 +22617,9 @@ msgstr "Ova opcija nije dostupna jer obrada velikih fajlova može potrajati pred
 
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "Ovo je zaobilazno rešenje za uređaje koji se odmah bude nakon ulaska u stanje pripravnosti. Komande za buđenje sa drugih uređaja se ignorišu na nekoliko sekundi."
+
+msgid "This is not a regular swap file."
+msgstr "Ovo nije regularna zamena datoteka."
 
 msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
 msgstr "Ovo je jedan tip prijema sa jednim tjunerom. Omogućeni tipovi prijema se automatski prebacuju i skeniraju zasebno."
@@ -22527,9 +22739,6 @@ msgstr "Ova opcija vam omogućava da postavite pomak vrednosti razlike Letterbox
 
 msgid "This option allows you to set the Auto Volume Level output."
 msgstr "Оva opcija konfiguriše da možete podesiti nivo Auto Jačine Zvuka."
-
-msgid "This option allows you to set the layout view (Text or Graphics)."
-msgstr "Ova opcija vam omogućava da postavite izgled prikaza (Tekst ili Grafika)."
 
 msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "Ova opcija vam omogućava da prebacite zvuk na Bluetooth zvučnike."
@@ -22794,6 +23003,9 @@ msgstr "Podrazumevana Podešavanja Tajmera i Čuvanje"
 msgid "Timer Log Actions"
 msgstr "Radnje log Tajmera"
 
+msgid "Timer Menu"
+msgstr "Meni Tajmera"
+
 msgid "Timer Sanity Error"
 msgstr "Greška u razumu Tajmera"
 
@@ -22884,6 +23096,9 @@ msgstr "Da biste obnovili sliku, koristite opciju 'Online Flash' u meniju 'Uprav
 #, python-format
 msgid "To where would you like to extract '%s'?"
 msgstr "Gde želite da izdvojite '%s'?"
+
+msgid "Toast fade"
+msgstr "Nestanak zdravice"
 
 msgid "Today"
 msgstr "Danas"
@@ -22995,6 +23210,9 @@ msgstr "Tonga"
 
 msgid "Top"
 msgstr "Vrh"
+
+msgid "Top 40"
+msgstr "Top 40"
 
 msgid "Top and Bottom"
 msgstr "Vrh i Dno"
@@ -23316,6 +23534,12 @@ msgstr "Dupli Tjuner"
 msgid "Two lines"
 msgstr "Dve linije"
 
+msgid "Two tuners share one SAT input and one C/T input. Reception types switch automatically. Use compatible SAT settings and separate Unicable User Bands. Cable and terrestrial reception cannot run together."
+msgstr "Dva tunera dele jedan SAT ulaz i jedan C/T ulaz. Tip prijema se automatski menja. Koristite kompatibilna SAT podešavanja i odvojene Unicable korisničke opsege. Kabelski i zemaljski prijem ne mogu raditi zajedno."
+
+msgid "Two tuners, two SAT sockets, one shared C/T socket. Two frequencies of the same reception type can run together. Cable and terrestrial cannot run together."
+msgstr "Dva tunera, dve SAT utičnice, jedna zajednička C/T utičnica. Dve frekvencije istog tipa prijema mogu raditi zajedno. Kabl i zemaljska ne mogu raditi zajedno."
+
 msgid "Type"
 msgstr "Tip"
 
@@ -23416,6 +23640,14 @@ msgid "Ukrainian"
 msgstr "Ukrainian"
 
 #, python-format
+msgid ""
+"Unable to change swap state for '%s'.\n"
+"%s"
+msgstr ""
+"Nije moguće promeniti stanjezamene za '%s'.\n"
+"%s"
+
+#, python-format
 msgid "Unable to check HDD replacement: %s"
 msgstr "Ne mogu da proverim zamenu HDD-a: %s"
 
@@ -23446,6 +23678,9 @@ msgstr "Nije moguće pripremiti ažuriranje buketa. Skener će nastaviti bez až
 msgid "Unable to prepare the time shift storage device."
 msgstr "Ne mogu da pripremim uređaj za čuvanje vremenskog pomaka."
 
+msgid "Unable to read the list of mounted file systems."
+msgstr "Ne mogu da pročitam listu montiranih datoteka sistema."
+
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr "Ne mogu da pročitam STARTUP fajl proizvođača '%s'!"
@@ -23464,9 +23699,6 @@ msgstr "Ne mogu da sačuvam podešavanja mreže!"
 
 msgid "Unable to save network mount configuration!"
 msgstr "Ne mogu da sačuvam konfiguraciju mrežne montaže!"
-
-msgid "Unable to start RAM time shift."
-msgstr "Ne mogu da pokrenem RAM vremenski pomak."
 
 msgid "Unable to start the DAB+ feed"
 msgstr "Ne mogu da pokrenem DAB+ strim"
@@ -23948,6 +24180,9 @@ msgstr "Koristi postavke po direktorijumu"
 msgid "Use power measurement"
 msgstr "Koristi merenje napajanja"
 
+msgid "Use skin default"
+msgstr "Koristi zadani skin"
+
 msgid "Use small screen"
 msgstr "Koristi mali ekran"
 
@@ -24037,6 +24272,10 @@ msgstr "Tip skeniranja kanala"
 
 msgid "Used:"
 msgstr "Korisnik:"
+
+#, python-format
+msgid "Used: %s"
+msgstr "Korišćeno: %s"
 
 msgid "User  (keymap.usr)"
 msgstr "Korisnik (keymap.usr)"
@@ -24204,6 +24443,9 @@ msgstr "Važeća"
 
 msgid "Vanuatu"
 msgstr "Vanuatu"
+
+msgid "Varied"
+msgstr "Raznovrsno"
 
 msgid "Variety"
 msgstr "Variety"
@@ -24505,12 +24747,6 @@ msgstr "WSS na 4:3"
 msgid "Wait for timesync at startup"
 msgstr "Sačekajte sinhronizaciju vremena pri pokretanju"
 
-msgid "Wait please while creating swap file..."
-msgstr "Sačekajte da kreirate fajl zamene..."
-
-msgid "Wait please while scanning..."
-msgstr "Sačekajte tokom skeniranja..."
-
 msgid "Waiting"
 msgstr "Čekanje"
 
@@ -24605,6 +24841,9 @@ msgstr "Vreme"
 
 msgid "Weather settings"
 msgstr "Podešavanja vremena"
+
+msgid "Weather/meteorology"
+msgstr "Vreme/meteorologija"
 
 msgid "Web Interface"
 msgstr "Web Interfejs"
@@ -24841,6 +25080,9 @@ msgstr "Kada je omogućeno, pritiskom na '0' bićeš prebačen na izabrani panic
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Kada je omogućeno, ponovo promenite titlove tako da se podudaraju sa širinom ekrana."
+
+msgid "When enabled, services without EPG data will be hidden."
+msgstr "Izaberi 'Da' da bi sakrili kanale bez EPG podataka."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Kada je omogućeno, prikažite brojeve kanala na ekranu za izbor kanala."
@@ -25141,10 +25383,10 @@ msgstr "Xhosa"
 msgid "Y-Resolution"
 msgstr "Y-Rezolucija"
 
-msgid "YELLOW button"
+msgid "YELLOW"
 msgstr "ŽUTI taster"
 
-msgid "YELLOW long"
+msgid "YELLOW (Long press)"
 msgstr "ŽUTA dugo"
 
 msgid "Year"
@@ -25258,9 +25500,6 @@ msgstr "Nema skripte za pokretanje."
 
 msgid "You have selected no logs to delete."
 msgstr "Nema izabrane evidencije za brisanje."
-
-msgid "You have to create a Swap File before to activate the autostart."
-msgstr "Trebate kreirati Zameni Fajl pre nego što aktivirate automatski start."
 
 #, python-format
 msgid "You have to wait %s!"
@@ -26185,6 +26424,165 @@ msgstr "da (zadrži fidove)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Add a RecordTimer for current event"
+#~ msgstr "Dodavanje Tajmera Snimanja za trenutni događaj"
+
+#~ msgid "Add a ZapTimer for current event"
+#~ msgstr "Dodavanje u ZapTajmer za trenutni događaj"
+
+#~ msgid "Add an AutoTimer for the current event"
+#~ msgstr "Dodavanje u AutoTajmera za trenutni događaj"
+
+#~ msgid "Add/Remove Timer"
+#~ msgstr "Dodaj/Ukloni Tajmer"
+
+#~ msgid "Add/Remove a timer for the current event"
+#~ msgstr "Dodavanje/Uklanjanje tajmera za trenutni događaj"
+
+#~ msgid "AutoTimer"
+#~ msgstr "AutoTajmer"
+
+#~ msgid "Browse mode"
+#~ msgstr "Režim pregleda"
+
+#~ msgid "CHANNEL +/-"
+#~ msgstr "KANAL +/-"
+
+#~ msgid "Change to bouquet"
+#~ msgstr "Premesti u buket"
+
+#~ msgid "Close bouquet list"
+#~ msgstr "Zatvori listu buketa"
+
+#~ msgid "Close bouquet list."
+#~ msgstr "Zatvori listu buketa."
+
+#~ msgid "Color Button Assignments"
+#~ msgstr "Dodeljivanje Boja Dugmadi"
+
+#~ msgid "Country Music"
+#~ msgstr "Kantri Muzika"
+
+#~ msgid "EPG Bouquet Actions"
+#~ msgstr "EPG Buket Radnja"
+
+#~ msgid "EPG Display Actions"
+#~ msgstr "EPG Radnja Displeja"
+
+#~ msgid "EPG Other Actions"
+#~ msgstr "EPG Ostale Radnje"
+
+#~ msgid "Easy Listening Music"
+#~ msgstr "Lagana Muzika"
+
+#~ msgid "Getting event information failed!"
+#~ msgstr "Dobijanje informacija o događaju nije uspelo!"
+
+#~ msgid "IMDb search for current event"
+#~ msgstr "IMDB traženje trenutnog događaja"
+
+#~ msgid "Info button (short)"
+#~ msgstr "Info taster (kratko)"
+
+#~ msgid "Jazz Music"
+#~ msgstr "Džez Muzika"
+
+#~ msgid "Jump back 24 hours"
+#~ msgstr "Skoči 24 sata unazad"
+
+#~ msgid "Jump forward 24 hours"
+#~ msgstr "Skoči napred 24 sata"
+
+#~ msgid "Jump to next page or all up (setup in menu)"
+#~ msgstr "Prelazak na sledeću stranicu ili na više (podešavanje u meniju)"
+
+#~ msgid "Jump to previous page or all down (setup in menu)"
+#~ msgstr "Prelazak na predhodnu stranicu ili na dole (podešavanje u meniju)"
+
+#~ msgid "Move to home of list"
+#~ msgstr "Premesti na domaću listu"
+
+#~ msgid "Navigation And Button Assignments"
+#~ msgstr "Navigacija i Dodela Dugmadi"
+
+#~ msgid "OK button (short)"
+#~ msgstr "Taster OK (kratko)"
+
+#~ msgid "Oldies Music"
+#~ msgstr "Stara Muzika"
+
+#~ msgid "Previous/Next bouquet"
+#~ msgstr "Predhodni/Sledeći buket"
+
+#~ msgid "Primetime hour"
+#~ msgstr "Udarno vreme sat"
+
+#~ msgid "Primetime minute"
+#~ msgstr "Udarno vreme minute"
+
+#~ msgid "Program type"
+#~ msgstr "Tip programa"
+
+#~ msgid "Record - same as record button"
+#~ msgstr "Snimanje - isto kao taster za snimanje"
+
+#~ msgid "Record Actions"
+#~ msgstr "Snimanje Radnja"
+
+#~ msgid "Rock Music"
+#~ msgstr "Rok Muzika"
+
+#~ msgid "Search for similar events"
+#~ msgstr "Traženje sličnih događaja"
+
+#~ msgid "Show Movies List"
+#~ msgstr "Pokaži Listu Filmova"
+
+#~ msgid "Sort EPG List"
+#~ msgstr "Sortiraj EPG Listu"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "Tajmšift nije moguć!"
+
+#~ msgid "Please select device to use as swap file location"
+#~ msgstr "Izaberite uređaj koji ćete koristiti kao lokaciju fajla za zamenu"
+
+#~ msgid "Select the Swap File Size:"
+#~ msgstr "Izaberi Veličinu Fajla Zamene:"
+
+#~ msgid "Set to the desired primetime hour."
+#~ msgstr "Podesite na željeno udarno vreme."
+
+#~ msgid "Set to the desired primetime minutes."
+#~ msgstr "Podesite na željene minute udarno vremena."
+
+#~ msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
+#~ msgstr "Žao mi je, nema fizičkih uređaja koji podržavaju SWAP povezane. Ne mogu da kreiram swap datoteku na mreži ili FAT32 fajl sistemima"
+
+#~ msgid "Status:"
+#~ msgstr "Status:"
+
+#~ msgid "Swap File not found. You have to create the file before to activate."
+#~ msgstr "Fajl zamene nije pronađen. Morate kreirati fajl pr nego što se aktivira."
+
+#~ msgid "Swap Place:"
+#~ msgstr "Zameni Mesta:"
+
+#~ msgid "Swap Size:"
+#~ msgstr "Veličina Zamene:"
+
+#~ msgid "Unable to start RAM time shift."
+#~ msgstr "Ne mogu da pokrenem RAM vremenski pomak."
+
+#~ msgid "Wait please while creating swap file..."
+#~ msgstr "Sačekajte da kreirate fajl zamene..."
+
+#~ msgid "Wait please while scanning..."
+#~ msgstr "Sačekajte tokom skeniranja..."
+
+#~ msgid "You have to create a Swap File before to activate the autostart."
+#~ msgstr "Trebate kreirati Zameni Fajl pre nego što aktivirate automatski start."
+
 #~ msgid "Aspect"
 #~ msgstr "Odnos"
 
@@ -26348,9 +26746,6 @@ msgstr "®"
 #~ msgstr ""
 #~ "Uređaj za čuvanje vremenskog pomaka nije dostupan.\n"
 #~ "Proveri uređaj i putanju pomeranja vremena."
-
-#~ msgid "Time shift not possible!"
-#~ msgstr "Tajmšift nije moguć!"
 
 #~ msgid "Time shift save failed!"
 #~ msgstr "Čuvanje Tajmšifta nije uspelo!"
@@ -27865,9 +28260,6 @@ msgstr "®"
 
 #~ msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (e.g. EPGrefresh)."
 #~ msgstr "Podesite simbol 'snimanje' (u ekranu skina i LCD skina) vidljiv samo za realne snimke ili i za striming i pseudo snimke (npr. EPG osvežavanje)."
-
-#~ msgid "Current Affairs"
-#~ msgstr "Trenutni Događaji"
 
 #~ msgid "Current status"
 #~ msgstr "Trenutni status"
