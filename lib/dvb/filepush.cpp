@@ -1,10 +1,12 @@
 #include "filepush.h"
 #include <lib/base/eerror.h>
 #include <lib/base/esimpleconfig.h>
+#include <algorithm>
 #include <errno.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
 #include <poll.h>
+#include <time.h>
 
 //#define SHOW_WRITE_TIME
 
@@ -66,6 +68,9 @@ void eFilePushThread::thread()
 	setIoPrio(prio_class, prio);
 	eDebug("[eFilePushThread] START thread");
 	bool sourceReady = !m_source->isStream();
+	/* Whole blocks from the start of the buffer, which holds whole blocks
+	 * of the source, so no TS packet is split between two writes. */
+	const int write_chunk = std::max<int>(1, MAX_DVR_WRITE / m_blocksize) * m_blocksize;
 
 	do
 	{
@@ -246,10 +251,11 @@ void eFilePushThread::thread()
 			{
 				/* Write data to mux */
 				int buf_start = 0;
+				int nomem_count = 0;
 				filterRecordData(m_buffer, buf_end);
 				while ((buf_start != buf_end) && !m_stop)
 				{
-					int w = write(m_fd_dest, m_buffer + buf_start, buf_end - buf_start);
+					int w = write(m_fd_dest, m_buffer + buf_start, std::min(buf_end - buf_start, write_chunk));
 
 					if (w <= 0)
 					{
@@ -274,11 +280,20 @@ void eFilePushThread::thread()
 #endif
 							continue;
 						}
+						/* Wait for the kernel to free memory, give up after 1 s. */
+						if (w < 0 && errno == ENOMEM && nomem_count < 100)
+						{
+							nomem_count++;
+							const timespec delay = {0, 10000000};
+							nanosleep(&delay, nullptr);
+							continue;
+						}
 						eDebug("[eFilePushThread] write: %m");
 						sendEvent(evtWriteError);
 						break;
 					}
 					buf_start += w;
+					nomem_count = 0;
 				}
 
 				eofcount = 0;
