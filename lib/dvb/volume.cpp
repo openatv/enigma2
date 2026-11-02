@@ -157,6 +157,26 @@ static void da_set_master(snd_mixer_elem_t *elem, int level,
     }
 }
 
+/* Master stops at its minimum dB, not at silence: mute the outputs of the
+ * chip as well, so HDMI and S/PDIF send zeros. */
+static void da_mute_outputs(snd_mixer_t *handle, bool on)
+{
+    static const char *const names[] = {
+        "Audio hdmi-out mute",
+        "Audio spdif mute",
+        "Audio spdif_b mute"
+    };
+    if (!handle) return;
+    snd_mixer_selem_id_t *sid = 0;
+    snd_mixer_selem_id_alloca(&sid);
+    for (const char *name : names) {
+        snd_mixer_selem_id_set_name(sid, name);
+        snd_mixer_elem_t *elem = snd_mixer_find_selem(handle, sid);
+        if (elem && snd_mixer_selem_has_playback_switch(elem))
+            snd_mixer_selem_set_playback_switch_all(elem, on ? 1 : 0);
+    }
+}
+
 bool eDVBVolumecontrol::ensureMixer()
 {
 	if (alsaMixerHandle && mainVolume)
@@ -474,6 +494,8 @@ void eDVBVolumecontrol::volumeMute()
 		              alsa_has_db, alsa_min_db, alsa_max_db);
 		if (snd_mixer_selem_has_playback_switch(mainVolume))
 			snd_mixer_selem_set_playback_switch_all(mainVolume, 0);
+		/* after the Master is down, so the switch does not click */
+		da_mute_outputs(alsaMixerHandle, true);
 	}
 	if (s_volume_change_cb)
 		s_volume_change_cb(0);
@@ -522,6 +544,8 @@ void eDVBVolumecontrol::volumeUnMute()
 	muted = false;
 	if (ensureMixer() && mainVolume)
 	{
+		/* before the Master is up, so the switch does not click */
+		da_mute_outputs(alsaMixerHandle, false);
 		da_set_master(mainVolume, leftVol,
 		              alsa_has_db, alsa_min_db, alsa_max_db);
 		if (snd_mixer_selem_has_playback_switch(mainVolume))
