@@ -22,6 +22,7 @@ class ClockToText(Converter):
 		"DateShortDayShortMonth": lambda t: dateTimes.getDateShortDayShortMonth(localtime(t)),  # Day Date Mon Year; Day and month names in short words.
 		"DateShortDayShortMonthNoYear": lambda t: dateTimes.getDateShortDayShortMonthNoYear(localtime(t)),  # Day Date Mon; Day and month names in short words and no year.
 		"DateTime": lambda t: dateTimes.getDateTime(localtime(t)),  # "Date" followed by the date/time separator then "Time".
+		"DateTimeShortDayShortMonthNoSeconds": lambda t: dateTimes.getDateTimeShortDayShortMonthNoSeconds(localtime(t)),  # Day Date Mon Year Hours Minutes Meridiem; Day and month names in short words and time with no seconds and meridiem (AM/PM) for 12 hour clocks.
 		"Default": lambda t: dateTimes.getTimeShort(localtime(t)),  # Hours Minutes Meridiem; Time in hours, minutes and meridiem (AM/PM) for a 12 hour clock.
 		"Display": lambda t: dateTimes.getTimeShort(localtime(t)),  # Hours Minutes Meridiem; Time in hours, minutes and meridiem (AM/PM) for a 12 hour clock.
 		"DisplayDate": lambda t: dateTimes.getDateNoDayShortMonthNoYear(localtime(t)),  #  Date Mon; No day, month name in short word and no year.
