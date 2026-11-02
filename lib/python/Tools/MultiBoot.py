@@ -97,7 +97,7 @@ class MultiBootClass():
 				print(f"MultiBoot] Unable to interpret dual boot file '{DUAL_BOOT_FILE}' data!  ({err})")
 		else:
 			self.bootSlot, self.bootCode = self.loadCurrentSlotAndBootCodes()
-		if exists(DREAM_BOOT_FILE):
+		if exists(DREAM_BOOT_FILE) and self.canMultiBoot():
 			runningRoot = None
 			for token in fileReadLine("/proc/cmdline", default="", source=MODULE_NAME).split():
 				if token.startswith("root="):
