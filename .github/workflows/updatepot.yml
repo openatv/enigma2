@@ -12,7 +12,18 @@ jobs:
         with:
           ref: 'master'
 
-      - uses: jbleyel/gettext-action@v1
+      - name: install gettext
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gettext libxml2
+          # f-string support in xgettext needs gettext 0.24 or newer
+          minversion="0.24"
+          version=$(xgettext --version | head -n 1 | grep -oE '[0-9]+(\.[0-9]+)+' | tail -n 1)
+          echo "xgettext $version"
+          if [ "$(printf '%s\n' "$minversion" "$version" | sort -V | head -n 1)" != "$minversion" ]; then
+            echo "xgettext $version is too old, $minversion or newer is required"
+            exit 1
+          fi
 
       - name: updatepot
         run: |
