@@ -15,7 +15,7 @@ jobs:
       - name: install gettext
         run: |
           sudo apt-get update
-          sudo apt-get install -y gettext libxml2
+          sudo apt-get install -y gettext
           # f-string support in xgettext needs gettext 0.24 or newer
           minversion="0.24"
           version=$(xgettext --version | head -n 1 | grep -oE '[0-9]+(\.[0-9]+)+' | tail -n 1)
