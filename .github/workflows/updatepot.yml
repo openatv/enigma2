@@ -12,18 +12,28 @@ jobs:
         with:
           ref: 'master'
 
-      - name: install gettext
+      - name: cache gettext
+        id: gettext-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/gettext
+          key: gettext-1.0
+
+      - name: build gettext
+        if: steps.gettext-cache.outputs.cache-hit != 'true'
         run: |
           sudo apt-get update
-          sudo apt-get install -y gettext
-          # f-string support in xgettext needs gettext 0.24 or newer
-          minversion="0.24"
-          version=$(xgettext --version | head -n 1 | grep -oE '[0-9]+(\.[0-9]+)+' | tail -n 1)
-          echo "xgettext $version"
-          if [ "$(printf '%s\n' "$minversion" "$version" | sort -V | head -n 1)" != "$minversion" ]; then
-            echo "xgettext $version is too old, $minversion or newer is required"
-            exit 1
-          fi
+          sudo apt-get install -y build-essential xz-utils
+          curl -fsSL https://ftpmirror.gnu.org/gnu/gettext/gettext-1.0.tar.xz | tar -xJ
+          cd gettext-1.0
+          ./configure --prefix="$HOME/gettext" --with-included-libxml --disable-java --disable-csharp --disable-docs --disable-openmp --disable-static --without-emacs
+          make -j"$(nproc)"
+          make install
+
+      - name: check gettext
+        run: |
+          echo "$HOME/gettext/bin" >> "$GITHUB_PATH"
+          "$HOME/gettext/bin/xgettext" --version | head -n 1
 
       - name: updatepot
         run: |
