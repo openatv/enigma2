@@ -58,6 +58,11 @@ public:
 	// Wait for first data to be written (for SoftDecoder sync)
 	virtual bool waitForFirstData(int timeout_ms) = 0;
 
+	// Hold playback back by delay_ms so that variation in CW arrival no
+	// longer reaches the decoder. 0 = off. Only recorders that descramble
+	// act on it.
+	virtual void setPlaybackDelay(int /*delay_ms*/) { /* Not every recorder descrambles. */ }
+
 	// Set write accumulation threshold (0 = continuous writing)
 	virtual void setMinWrite(size_t size) = 0;
 	// Single-service output only. Other demux implementations may leave PSI unchanged.

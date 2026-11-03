@@ -164,6 +164,9 @@ private:
 	bool m_user_pause_active = false;
 #endif
 	int setState();
+#ifdef DREAMNEXTGEN
+	void setupKernelSync();
+#endif
 	ePtr<eConnection> m_demux_event_conn;
 	ePtr<eConnection> m_video_event_conn;
 

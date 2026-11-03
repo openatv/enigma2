@@ -468,6 +468,11 @@ bool eDVBCSASession::hasKeys() const
 	return m_engine && m_engine->hasAnyKey();
 }
 
+int eDVBCSASession::takeLateDeficitMs()
+{
+	return m_engine ? m_engine->takeLateDeficitMs() : 0;
+}
+
 void eDVBCSASession::descramble(unsigned char* packets, int len)
 {
 	// Not active = Passthrough (CI+, StreamRelay, FTA, or detection pending)

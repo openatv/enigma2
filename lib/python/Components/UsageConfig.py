@@ -2202,6 +2202,10 @@ def InitUsageConfig():
 		default=0,
 		choices=[(0, _("Disabled"))] + [(x, _("%d ms") % x) for x in range(100, 2001, 100)]
 	)
+	config.softcsa.playbackDelay = ConfigSelection(
+		default=-1,
+		choices=[(0, _("Disabled")), (-1, _("Automatic"))] + [(x, _("%d ms") % x) for x in list(range(250, 2001, 250)) + list(range(2500, 5001, 500))]
+	)
 	config.softcsa.bufferTime = ConfigSelection(
 		default=0,
 		choices=[(0, _("Disabled"))] + [(x, _("%d ms") % x) for x in range(100, 2001, 100)]

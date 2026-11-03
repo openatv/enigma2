@@ -264,6 +264,9 @@ void eDVBCSAEngine::clearKeys()
 	m_prev_run_gen[1] = 0;
 	m_run_suspect = false;
 	m_probe_armed = false;
+	m_run_rebound = false;
+	m_run_start_us = 0;
+	m_late_deficit_ms = 0;
 }
 
 /* Try a key on one payload: does a PES start code come out? Only valid where
@@ -284,6 +287,20 @@ bool eDVBCSAEngine::probeKey(const dvbcsa_bs_key_t* key, const unsigned char* pk
 	g_csa_api.decrypt(key, one, 184);
 
 	return scratch[0] == 0x00 && scratch[1] == 0x00 && scratch[2] == 0x01;
+}
+
+static uint64_t csaMonotonicUs()
+{
+	struct timespec ts;
+	clock_gettime(CLOCK_MONOTONIC, &ts);
+	return (uint64_t)ts.tv_sec * 1000000ULL + (uint64_t)(ts.tv_nsec / 1000);
+}
+
+int eDVBCSAEngine::takeLateDeficitMs()
+{
+	const int ms = m_late_deficit_ms;
+	m_late_deficit_ms = 0;
+	return ms;
 }
 
 // TS Packet Helpers
@@ -374,6 +391,7 @@ void eDVBCSAEngine::descramble(unsigned char* packets, int len)
 			m_bound_gen[m_last_parity] = now;
 			m_prev_run_gen[m_last_parity] = now;
 			m_probe_armed = true;  // the new key still has to prove itself
+			m_run_rebound = true;  // only this proves a key came late
 		}
 	}
 
@@ -451,7 +469,9 @@ void eDVBCSAEngine::descramble(unsigned char* packets, int len)
 						even ? gen_even_now : gen_odd_now);
 			}
 
+			m_run_start_us = csaMonotonicUs();
 			m_probe_armed = true;
+			m_run_rebound = false;
 		}
 
 		/* Verify the bound key once, on a payload that must start with a PES
@@ -460,7 +480,19 @@ void eDVBCSAEngine::descramble(unsigned char* packets, int len)
 		{
 			m_probe_armed = false;
 			if (probeKey(key, pkt, offset))
+			{
+				/* Only a key switch mid-run proves a CW came late; a run that
+				 * checks out had its key from the start. */
+				if (m_run_suspect && m_run_rebound)
+				{
+					m_late_deficit_ms = (int)((csaMonotonicUs() - m_run_start_us) / 1000);
+					++m_late_keys;
+					if (m_late_keys <= 20 || !(m_late_keys % 500))
+						eWarning("[eDVBCSAEngine] late key #%u: parity=%d generation=%u arrived %dms into its period",
+							m_late_keys, parity, m_bound_gen[parity], m_late_deficit_ms);
+				}
 				m_run_suspect = false;
+			}
 			else if (!m_run_suspect)
 			{
 				/* In time, from the ECM, and still does not decrypt. */

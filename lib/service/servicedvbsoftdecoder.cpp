@@ -339,6 +339,14 @@ int eDVBSoftDecoder::setupRecorder()
 	{
 		eDebug("[eDVBSoftDecoder] Attaching session as descrambler (active=%d)", m_session->isActive());
 		m_record->setDescrambler(ePtr<iServiceScrambled>(m_session.operator->()));
+
+		/* Playback delay: the buffer thread may block on the DVR write, which
+		 * paces it against the decoder - so nothing may be discarded there. */
+		if (int delay = eSimpleConfig::getInt("config.softcsa.playbackDelay", eDVBRecordScrambledThread::AUTO_PLAYBACK_DELAY); delay != 0)
+		{
+			m_record->setDiscardOnTimeout(false);
+			m_record->setPlaybackDelay(delay);
+		}
 	}
 	else
 		eWarning("[eDVBSoftDecoder] No session attached!");
