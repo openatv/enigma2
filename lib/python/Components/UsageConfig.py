@@ -1,6 +1,5 @@
 from gettext import bindtextdomain, dgettext
 from glob import glob
-from locale import AM_STR, PM_STR, nl_langinfo
 from os import makedirs, remove, unlink
 from os.path import dirname, exists, isdir, isfile, join as pathjoin, normpath, splitext
 from sys import maxsize
@@ -8,8 +7,9 @@ from sys import maxsize
 from enigma import Misc_Options, eActionMap, eBackgroundFileEraser, eDVBDB, eDVBFrontend, eEPGCache, eEnv, eServiceEvent, eSettings, eSubtitleSettings, setEnableTtCachingOnOff, setPreferredTuner, setSpinnerColor, setSpinnerOnOff, setTunerTypePriorityOrder
 
 from keyids import KEYIDS
-from skin import domScreens, getcomponentTemplateNames, parameters
+from skin import domScreens, getcomponentTemplateNames
 from Components.config import ConfigBoolean, ConfigDictionarySet, ConfigDirectory, ConfigFloat, ConfigIP, ConfigInteger, ConfigLocations, ConfigNumber, ConfigPassword, ConfigSelection, ConfigSelectionNumber, ConfigSequence, ConfigService, ConfigSet, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, configfile
+from Components.DateTimes import dateTimes
 from Components.EpgConfig import initEPGConfig
 from Components.Harddisk import harddiskmanager
 from Components.International import international
@@ -87,6 +87,7 @@ def InitUsageConfig():
 
 	def spinnerColorChanged(configElement):
 		setSpinnerColor(int(configElement.value, 16))
+
 	config.misc.spinnerColor.addNotifier(spinnerColorChanged)
 	config.misc.disableServiceHiSilicon = ConfigYesNo(default=False)
 	config.misc.toastFade = ConfigSelection(default=10, choices=[
@@ -109,6 +110,8 @@ def InitUsageConfig():
 
 	# "UserInterface" settings.
 	#
+	dateTimes.initConfig()  # This method initializes the config.usage.date and config.usage.time elements.
+
 	config.usage.menuType = ConfigSelection(default=0, choices=[
 		(0, _("Vertical menu")),
 		(1, _("Horizontal menu"))
@@ -996,315 +999,6 @@ def InitUsageConfig():
 		("(1920, 1080)", "1920x1080")
 	])
 	config.usage.enable_delivery_system_workaround = ConfigYesNo(default=False)
-
-	config.usage.date = ConfigSubsection()
-	config.usage.date.enabled = NoSave(ConfigBoolean(default=False))
-	config.usage.date.enabled_display = NoSave(ConfigBoolean(default=False))
-	config.usage.time = ConfigSubsection()
-	config.usage.time.enabled = NoSave(ConfigBoolean(default=False))
-	config.usage.time.disabled = NoSave(ConfigBoolean(default=True))
-	config.usage.time.enabled_display = NoSave(ConfigBoolean(default=False))
-	config.usage.time.wide = NoSave(ConfigBoolean(default=False))
-	config.usage.time.wide_display = NoSave(ConfigBoolean(default=False))
-
-	# TRANSLATORS: Full date representation dayname daynum monthname year in strftime() format! See 'man strftime'.
-	choicelist = [
-		(_("%A %d %B %Y"), _("Dayname DD Month Year")),
-		(_("%A %d. %B %Y"), _("Dayname DD. Month Year")),
-		(_("%A %-d %B %Y"), _("Dayname D Month Year")),
-		(_("%A %-d. %B %Y"), _("Dayname D. Month Year")),
-		(_("%A %d-%B-%Y"), _("Dayname DD-Month-Year")),
-		(_("%A %-d-%B-%Y"), _("Dayname D-Month-Year")),
-		(_("%A %d/%m/%Y"), _("Dayname DD/MM/Year")),
-		(_("%A %d.%m.%Y"), _("Dayname DD.MM.Year")),
-		(_("%A %-d/%m/%Y"), _("Dayname D/MM/Year")),
-		(_("%A %-d.%m.%Y"), _("Dayname D.MM.Year")),
-		(_("%A %d/%-m/%Y"), _("Dayname DD/M/Year")),
-		(_("%A %d.%-m.%Y"), _("Dayname DD.M.Year")),
-		(_("%A %-d/%-m/%Y"), _("Dayname D/M/Year")),
-		(_("%A %-d.%-m.%Y"), _("Dayname D.M.Year")),
-		(_("%A %B %d %Y"), _("Dayname Month DD Year")),
-		(_("%A %B %-d %Y"), _("Dayname Month D Year")),
-		(_("%A %B-%d-%Y"), _("Dayname Month-DD-Year")),
-		(_("%A %B-%-d-%Y"), _("Dayname Month-D-Year")),
-		(_("%A %m/%d/%Y"), _("Dayname MM/DD/Year")),
-		(_("%A %-m/%d/%Y"), _("Dayname M/DD/Year")),
-		(_("%A %m/%-d/%Y"), _("Dayname MM/D/Year")),
-		(_("%A %-m/%-d/%Y"), _("Dayname M/D/Year")),
-		(_("%A %Y %B %d"), _("Dayname Year Month DD")),
-		(_("%A %Y %B %-d"), _("Dayname Year Month D")),
-		(_("%A %Y-%B-%d"), _("Dayname Year-Month-DD")),
-		(_("%A %Y-%B-%-d"), _("Dayname Year-Month-D")),
-		(_("%A %Y/%m/%d"), _("Dayname Year/MM/DD")),
-		(_("%A %Y/%m/%-d"), _("Dayname Year/MM/D")),
-		(_("%A %Y/%-m/%d"), _("Dayname Year/M/DD")),
-		(_("%A %Y/%-m/%-d"), _("Dayname Year/M/D"))]
-
-	config.usage.date.dayfull = ConfigSelection(default=_("%A %d.%m.%Y") if config.misc.locale.value == "de_DE" else _("%A %-d %B %Y"), choices=choicelist)
-
-	# TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
-	config.usage.date.shortdayfull = ConfigText(default=_("%a %-d %B %Y"))
-
-	# TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
-	config.usage.date.daylong = ConfigText(default=_("%a %-d %b %Y"))
-
-	# TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
-	config.usage.date.dayshortfull = ConfigText(default=_("%A %-d %B"))
-
-	# TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
-	config.usage.date.dayshort = ConfigText(default=_("%a %-d %b"))
-
-	# TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
-	config.usage.date.daysmall = ConfigText(default=_("%a %-d"))
-
-	# TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
-	config.usage.date.full = ConfigText(default=_("%-d %B %Y"))
-
-	# TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
-	config.usage.date.long = ConfigText(default=_("%-d %b %Y"))
-
-	# TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
-	config.usage.date.short = ConfigText(default=_("%-d %b"))
-
-	def setDateStyles(configElement):
-		dateStyles = {
-			# dayfull            shortdayfull      daylong           dayshortfull   dayshort       daysmall    full           long           short
-			_("%A %d %B %Y"): (_("%a %d %B %Y"), _("%a %d %b %Y"), _("%A %d %B"), _("%a %d %b"), _("%a %d"), _("%d %B %Y"), _("%d %b %Y"), _("%d %b")),
-			_("%A %d. %B %Y"): (_("%a %d. %B %Y"), _("%a %d. %b %Y"), _("%A %d. %B"), _("%a %d. %b"), _("%a %d"), _("%d. %B %Y"), _("%d. %b %Y"), _("%d. %b")),
-			_("%A %-d %B %Y"): (_("%a %-d %B %Y"), _("%a %-d %b %Y"), _("%A %-d %B"), _("%a %-d %b"), _("%a %-d"), _("%-d %B %Y"), _("%-d %b %Y"), _("%-d %b")),
-			_("%A %-d. %B %Y"): (_("%a %-d. %B %Y"), _("%a %-d. %b %Y"), _("%A %-d. %B"), _("%a %-d. %b"), _("%a %-d"), _("%-d. %B %Y"), _("%-d. %b %Y"), _("%-d. %b")),
-			_("%A %d-%B-%Y"): (_("%a %d-%B-%Y"), _("%a %d-%b-%Y"), _("%A %d-%B"), _("%a %d-%b"), _("%a %d"), _("%d-%B-%Y"), _("%d-%b-%Y"), _("%d-%b")),
-			_("%A %-d-%B-%Y"): (_("%a %-d-%B-%Y"), _("%a %-d-%b-%Y"), _("%A %-d-%B"), _("%a %-d-%b"), _("%a %-d"), _("%-d-%B-%Y"), _("%-d-%b-%Y"), _("%-d-%b")),
-			_("%A %d/%m/%Y"): (_("%a %d/%m/%Y"), _("%a %d/%m/%Y"), _("%A %d/%m"), _("%a %d/%m"), _("%a %d"), _("%d/%m/%Y"), _("%d/%m/%Y"), _("%d/%m")),
-			_("%A %d.%m.%Y"): (_("%a %d.%m.%Y"), _("%a %d.%m.%Y"), _("%A %d.%m"), _("%a %d.%m"), _("%a %d"), _("%d.%m.%Y"), _("%d.%m.%Y"), _("%d.%m")),
-			_("%A %-d/%m/%Y"): (_("%a %-d/%m/%Y"), _("%a %-d/%m/%Y"), _("%A %-d/%m"), _("%a %-d/%m"), _("%a %-d"), _("%-d/%m/%Y"), _("%-d/%m/%Y"), _("%-d/%m")),
-			_("%A %-d.%m.%Y"): (_("%a %-d.%m.%Y"), _("%a %-d.%m.%Y"), _("%A %-d.%m"), _("%a %-d.%m"), _("%a %-d"), _("%-d.%m.%Y"), _("%-d.%m.%Y"), _("%-d.%m")),
-			_("%A %d/%-m/%Y"): (_("%a %d/%-m/%Y"), _("%a %d/%-m/%Y"), _("%A %d/%-m"), _("%a %d/%-m"), _("%a %d"), _("%d/%-m/%Y"), _("%d/%-m/%Y"), _("%d/%-m")),
-			_("%A %d.%-m.%Y"): (_("%a %d.%-m.%Y"), _("%a %d.%-m.%Y"), _("%A %d.%-m"), _("%a %d.%-m"), _("%a %d"), _("%d.%-m.%Y"), _("%d.%-m.%Y"), _("%d.%-m")),
-			_("%A %-d/%-m/%Y"): (_("%a %-d/%-m/%Y"), _("%a %-d/%-m/%Y"), _("%A %-d/%-m"), _("%a %-d/%-m"), _("%a %-d"), _("%-d/%-m/%Y"), _("%-d/%-m/%Y"), _("%-d/%-m")),
-			_("%A %-d.%-m.%Y"): (_("%a %-d.%-m.%Y"), _("%a %-d.%-m.%Y"), _("%A %-d.%-m"), _("%a %-d.%-m"), _("%a %-d"), _("%-d.%-m.%Y"), _("%-d.%-m.%Y"), _("%-d.%-m")),
-			_("%A %B %d %Y"): (_("%a %B %d %Y"), _("%a %b %d %Y"), _("%A %B %d"), _("%a %b %d"), _("%a %d"), _("%B %d %Y"), _("%b %d %Y"), _("%b %d")),
-			_("%A %B %-d %Y"): (_("%a %B %-d %Y"), _("%a %b %-d %Y"), _("%A %B %-d"), _("%a %b %-d"), _("%a %-d"), _("%B %-d %Y"), _("%b %-d %Y"), _("%b %-d")),
-			_("%A %B-%d-%Y"): (_("%a %B-%d-%Y"), _("%a %b-%d-%Y"), _("%A %B-%d"), _("%a %b-%d"), _("%a %d"), _("%B-%d-%Y"), _("%b-%d-%Y"), _("%b-%d")),
-			_("%A %B-%-d-%Y"): (_("%a %B-%-d-%Y"), _("%a %b-%-d-%Y"), _("%A %B-%-d"), _("%a %b-%-d"), _("%a %-d"), _("%B-%-d-%Y"), _("%b-%-d-%Y"), _("%b-%-d")),
-			_("%A %m/%d/%Y"): (_("%a %m/%d/%Y"), _("%a %m/%d/%Y"), _("%A %m/%d"), _("%a %m/%d"), _("%a %d"), _("%m/%d/%Y"), _("%m/%d/%Y"), _("%m/%d")),
-			_("%A %-m/%d/%Y"): (_("%a %-m/%d/%Y"), _("%a %-m/%d/%Y"), _("%A %-m/%d"), _("%a %-m/%d"), _("%a %d"), _("%-m/%d/%Y"), _("%-m/%d/%Y"), _("%-m/%d")),
-			_("%A %m/%-d/%Y"): (_("%a %m/%-d/%Y"), _("%a %m/%-d/%Y"), _("%A %m/%-d"), _("%a %m/%-d"), _("%a %-d"), _("%m/%-d/%Y"), _("%m/%-d/%Y"), _("%m/%-d")),
-			_("%A %-m/%-d/%Y"): (_("%a %-m/%-d/%Y"), _("%a %-m/%-d/%Y"), _("%A %-m/%-d"), _("%a %-m/%-d"), _("%a %-d"), _("%-m/%-d/%Y"), _("%-m/%-d/%Y"), _("%-m/%-d")),
-			_("%A %Y %B %d"): (_("%a %Y %B %d"), _("%a %Y %b %d"), _("%A %B %d"), _("%a %b %d"), _("%a %d"), _("%Y %B %d"), _("%Y %b %d"), _("%b %d")),
-			_("%A %Y %B %-d"): (_("%a %Y %B %-d"), _("%a %Y %b %-d"), _("%A %B %-d"), _("%a %b %-d"), _("%a %-d"), _("%Y %B %-d"), _("%Y %b %-d"), _("%b %-d")),
-			_("%A %Y-%B-%d"): (_("%a %Y-%B-%d"), _("%a %Y-%b-%d"), _("%A %B-%d"), _("%a %b-%d"), _("%a %d"), _("%Y-%B-%d"), _("%Y-%b-%d"), _("%b-%d")),
-			_("%A %Y-%B-%-d"): (_("%a %Y-%B-%-d"), _("%a %Y-%b-%-d"), _("%A %B-%-d"), _("%a %b-%-d"), _("%a %-d"), _("%Y-%B-%-d"), _("%Y-%b-%-d"), _("%b-%-d")),
-			_("%A %Y/%m/%d"): (_("%a %Y/%m/%d"), _("%a %Y/%m/%d"), _("%A %m/%d"), _("%a %m/%d"), _("%a %d"), _("%Y/%m/%d"), _("%Y/%m/%d"), _("%m/%d")),
-			_("%A %Y/%m/%-d"): (_("%a %Y/%m/%-d"), _("%a %Y/%m/%-d"), _("%A %m/%-d"), _("%a %m/%-d"), _("%a %-d"), _("%Y/%m/%-d"), _("%Y/%m/%-d"), _("%m/%-d")),
-			_("%A %Y/%-m/%d"): (_("%a %Y/%-m/%d"), _("%a %Y/%-m/%d"), _("%A %-m/%d"), _("%a %-m/%d"), _("%a %d"), _("%Y/%-m/%d"), _("%Y/%-m/%d"), _("%-m/%d")),
-			_("%A %Y/%-m/%-d"): (_("%a %Y/%-m/%-d"), _("%a %Y/%-m/%-d"), _("%A %-m/%-d"), _("%a %-m/%-d"), _("%a %-d"), _("%Y/%-m/%-d"), _("%Y/%-m/%-d"), _("%-m/%-d"))
-		}
-		style = dateStyles.get(configElement.value, ((_("Invalid")) * 8))
-		config.usage.date.shortdayfull.value = style[0]
-		config.usage.date.shortdayfull.save()
-		config.usage.date.daylong.value = style[1]
-		config.usage.date.daylong.save()
-		config.usage.date.dayshortfull.value = style[2]
-		config.usage.date.dayshortfull.save()
-		config.usage.date.dayshort.value = style[3]
-		config.usage.date.dayshort.save()
-		config.usage.date.daysmall.value = style[4]
-		config.usage.date.daysmall.save()
-		config.usage.date.full.value = style[5]
-		config.usage.date.full.save()
-		config.usage.date.long.value = style[6]
-		config.usage.date.long.save()
-		config.usage.date.short.value = style[7]
-		config.usage.date.short.save()
-
-	config.usage.date.dayfull.addNotifier(setDateStyles)
-
-	# TRANSLATORS: Full time representation hour:minute:seconds.
-	if nl_langinfo(AM_STR) and nl_langinfo(PM_STR):
-		config.usage.time.long = ConfigSelection(default=_("%T"), choices=[
-			(_("%T"), _("HH:mm:ss")),
-			(_("%-H:%M:%S"), _("H:mm:ss")),
-			(_("%I:%M:%S%^p"), _("hh:mm:ssAM/PM")),
-			(_("%-I:%M:%S%^p"), _("h:mm:ssAM/PM")),
-			(_("%I:%M:%S%P"), _("hh:mm:ssam/pm")),
-			(_("%-I:%M:%S%P"), _("h:mm:ssam/pm")),
-			(_("%I:%M:%S"), _("hh:mm:ss")),
-			(_("%-I:%M:%S"), _("h:mm:ss"))
-		])
-	else:
-		config.usage.time.long = ConfigSelection(default=_("%T"), choices=[
-			(_("%T"), _("HH:mm:ss")),
-			(_("%-H:%M:%S"), _("H:mm:ss")),
-			(_("%I:%M:%S"), _("hh:mm:ss")),
-			(_("%-I:%M:%S"), _("h:mm:ss"))
-		])
-
-	# TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
-	config.usage.time.mixed = ConfigText(default=_("%T"))
-
-	# TRANSLATORS: Short time representation hour:minute (Same as "Default").
-	config.usage.time.short = ConfigText(default=_("%R"))
-
-	def setTimeStyles(configElement):
-		timeStyles = {
-			# long      mixed    short
-			_("%T"): (_("%T"), _("%R")),
-			_("%-H:%M:%S"): (_("%-H:%M:%S"), _("%-H:%M")),
-			_("%I:%M:%S%^p"): (_("%I:%M%^p"), _("%I:%M%^p")),
-			_("%-I:%M:%S%^p"): (_("%-I:%M%^p"), _("%-I:%M%^p")),
-			_("%I:%M:%S%P"): (_("%I:%M%P"), _("%I:%M%P")),
-			_("%-I:%M:%S%P"): (_("%-I:%M%P"), _("%-I:%M%P")),
-			_("%I:%M:%S"): (_("%I:%M:%S"), _("%I:%M")),
-			_("%-I:%M:%S"): (_("%-I:%M:%S"), _("%-I:%M"))
-		}
-		style = timeStyles.get(configElement.value, ((_("Invalid")) * 2))
-		config.usage.time.mixed.value = style[0]
-		config.usage.time.mixed.save()
-		config.usage.time.short.value = style[1]
-		config.usage.time.short.save()
-		config.usage.time.wide.value = style[1].endswith(("P", "p"))
-
-	config.usage.time.long.addNotifier(setTimeStyles)
-
-	try:
-		dateEnabled, timeEnabled = parameters.get("AllowUserDatesAndTimes", (0, 0))
-	except Exception as error:
-		print(f"[UsageConfig] Error loading 'AllowUserDatesAndTimes' skin parameter! ({error})")
-		dateEnabled, timeEnabled = (0, 0)
-	if dateEnabled:
-		config.usage.date.enabled.value = True
-	else:
-		config.usage.date.enabled.value = False
-		config.usage.date.dayfull.value = config.usage.date.dayfull.default
-	if timeEnabled:
-		config.usage.time.enabled.value = True
-		config.usage.time.disabled.value = not config.usage.time.enabled.value
-	else:
-		config.usage.time.enabled.value = False
-		config.usage.time.disabled.value = not config.usage.time.enabled.value
-		config.usage.time.long.value = config.usage.time.long.default
-
-	# TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
-	config.usage.date.display = ConfigSelection(default=_("%-d %b"), choices=[
-		("", _("Hidden / Blank")),
-		(_("%d %b"), _("Day DD Mon")),
-		(_("%-d %b"), _("Day D Mon")),
-		(_("%d-%b"), _("Day DD-Mon")),
-		(_("%-d-%b"), _("Day D-Mon")),
-		(_("%d/%m"), _("Day DD/MM")),
-		(_("%-d/%m"), _("Day D/MM")),
-		(_("%d/%-m"), _("Day DD/M")),
-		(_("%-d/%-m"), _("Day D/M")),
-		(_("%b %d"), _("Day Mon DD")),
-		(_("%b %-d"), _("Day Mon D")),
-		(_("%b-%d"), _("Day Mon-DD")),
-		(_("%b-%-d"), _("Day Mon-D")),
-		(_("%m/%d"), _("Day MM/DD")),
-		(_("%m/%-d"), _("Day MM/D")),
-		(_("%-m/%d"), _("Day M/DD")),
-		(_("%-m/%-d"), _("Day M/D"))
-	])
-
-	config.usage.date.displayday = ConfigText(default=_("%a %-d+%b_"))
-	config.usage.date.display_template = ConfigText(default=_("%-d+%b_"))
-	config.usage.date.compact = ConfigText(default=_("%-d+%b_"))
-	config.usage.date.compressed = ConfigText(default=_("%-d+%b_"))
-
-	timeDisplayValue = [_("%R")]
-
-	def adjustDisplayDates():
-		if timeDisplayValue[0] == "":
-			if config.usage.date.display.value == "":  # If the date and time are both hidden output a space to blank the VFD display.
-				config.usage.date.compact.value = " "
-				config.usage.date.compressed.value = " "
-			else:
-				config.usage.date.compact.value = config.usage.date.displayday.value
-				config.usage.date.compressed.value = config.usage.date.displayday.value
-		else:
-			if config.usage.time.wide_display.value:
-				config.usage.date.compact.value = config.usage.date.display_template.value.replace("_", "").replace("=", "").replace("+", "")
-				config.usage.date.compressed.value = config.usage.date.display_template.value.replace("_", "").replace("=", "").replace("+", "")
-			else:
-				config.usage.date.compact.value = config.usage.date.display_template.value.replace("_", " ").replace("=", "-").replace("+", " ")
-				config.usage.date.compressed.value = config.usage.date.display_template.value.replace("_", " ").replace("=", "").replace("+", "")
-		config.usage.date.compact.save()
-		config.usage.date.compressed.save()
-
-	def setDateDisplayStyles(configElement):
-		dateDisplayStyles = {
-			# display      displayday     template
-			"": ("", ""),
-			_("%d %b"): (_("%a %d %b"), _("%d+%b_")),
-			_("%-d %b"): (_("%a %-d %b"), _("%-d+%b_")),
-			_("%d-%b"): (_("%a %d-%b"), _("%d=%b_")),
-			_("%-d-%b"): (_("%a %-d-%b"), _("%-d=%b_")),
-			_("%d/%m"): (_("%a %d/%m"), _("%d/%m ")),
-			_("%-d/%m"): (_("%a %-d/%m"), _("%-d/%m ")),
-			_("%d/%-m"): (_("%a %d/%-m"), _("%d/%-m ")),
-			_("%-d/%-m"): (_("%a %-d/%-m"), _("%-d/%-m ")),
-			_("%b %d"): (_("%a %b %d"), _("%b+%d ")),
-			_("%b %-d"): (_("%a %b %-d"), _("%b+%-d ")),
-			_("%b-%d"): (_("%a %b-%d"), _("%b=%d ")),
-			_("%b-%-d"): (_("%a %b-%-d"), _("%b=%-d ")),
-			_("%m/%d"): (_("%a %m/%d"), _("%m/%d ")),
-			_("%m/%-d"): (_("%a %m/%-d"), _("%m/%-d ")),
-			_("%-m/%d"): (_("%a %-m/%d"), _("%-m/%d ")),
-			_("%-m/%-d"): (_("%a %-m/%-d"), _("%-m/%-d "))
-		}
-		style = dateDisplayStyles.get(configElement.value, ((_("Invalid")) * 2))
-		config.usage.date.displayday.value = style[0]
-		config.usage.date.displayday.save()
-		config.usage.date.display_template.value = style[1]
-		config.usage.date.display_template.save()
-		adjustDisplayDates()
-
-	config.usage.date.display.addNotifier(setDateDisplayStyles)
-
-	# TRANSLATORS: Short time representation hour:minute (Same as "Default").
-	if nl_langinfo(AM_STR) and nl_langinfo(PM_STR):
-		config.usage.time.display = ConfigSelection(default=_("%R"), choices=[
-			("", _("Hidden / Blank")),
-			(_("%R"), _("HH:mm")),
-			(_("%-H:%M"), _("H:mm")),
-			(_("%I:%M%^p"), _("hh:mmAM/PM")),
-			(_("%-I:%M%^p"), _("h:mmAM/PM")),
-			(_("%I:%M%P"), _("hh:mmam/pm")),
-			(_("%-I:%M%P"), _("h:mmam/pm")),
-			(_("%I:%M"), _("hh:mm")),
-			(_("%-I:%M"), _("h:mm"))
-		])
-	else:
-		config.usage.time.display = ConfigSelection(default=_("%R"), choices=[
-			("", _("Hidden / Blank")),
-			(_("%R"), _("HH:mm")),
-			(_("%-H:%M"), _("H:mm")),
-			(_("%I:%M"), _("hh:mm")),
-			(_("%-I:%M"), _("h:mm"))
-		])
-
-	def setTimeDisplayStyles(configElement):
-		timeDisplayValue[0] = config.usage.time.display.value
-		config.usage.time.wide_display.value = configElement.value.endswith(("P", "p"))
-		adjustDisplayDates()
-
-	config.usage.time.display.addNotifier(setTimeDisplayStyles)
-
-	try:
-		dateDisplayEnabled, timeDisplayEnabled = parameters.get("AllowUserDatesAndTimesDisplay", (0, 0))
-	except Exception as error:
-		print(f"[UsageConfig] Error loading 'AllowUserDatesAndTimesDisplay' display skin parameter! ({error})")
-		dateDisplayEnabled, timeDisplayEnabled = (0, 0)
-	if dateDisplayEnabled:
-		config.usage.date.enabled_display.value = True
-	else:
-		config.usage.date.enabled_display.value = False
-		config.usage.date.display.value = config.usage.date.display.default
-	if timeDisplayEnabled:
-		config.usage.time.enabled_display.value = True
-	else:
-		config.usage.time.enabled_display.value = False
-		config.usage.time.display.value = config.usage.time.display.default
 
 	config.usage.boolean_graphic = ConfigYesNo(default=False)
 	config.usage.show_slider_value = ConfigYesNo(default=True)
