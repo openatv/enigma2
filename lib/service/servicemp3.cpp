@@ -9,6 +9,8 @@ Licensed under GPLv2.
 /* note: this requires gstreamer 0.10.x and a big list of plugins. */
 /* it's currently hardcoded to use a big-endian alsasink as sink. */
 #include <inttypes.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include <lib/base/ebase.h>
 #include <lib/base/eerror.h>
 #include <lib/base/esettings.h>
@@ -49,6 +51,7 @@ Licensed under GPLv2.
 
 #include <gst/gst.h>
 #include <gst/pbutils/missing-plugins.h>
+#include <gst/video/video.h>
 #include <sys/stat.h>
 
 #include <sys/time.h>
@@ -1115,6 +1118,23 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_errorInfo.missing_codec = "";
 	m_decoder = NULL;
 	m_subs_to_pull_handler_id = m_notify_source_handler_id = m_notify_element_added_handler_id = 0;
+	m_cc_probe_pad = nullptr;
+	m_cc_probe_id = 0;
+	m_cc_probe_context = nullptr;
+	m_cc_notify_pipe[0] = m_cc_notify_pipe[1] = -1;
+	m_cc_available = false;
+	m_cc_generation = 0;
+	m_cc_enabled = false;
+	m_cc_from_video = true;
+	gst_segment_init(&m_cc_segment, GST_FORMAT_TIME);
+	m_cc_sync_timer = eTimer::create(eApp);
+	CONNECT(m_cc_sync_timer->timeout, eServiceMP3::pushClosedCaptions);
+	if (pipe2(m_cc_notify_pipe, O_NONBLOCK | O_CLOEXEC) == 0) {
+		m_cc_notify = eSocketNotifier::create(eApp, m_cc_notify_pipe[0], eSocketNotifier::Read);
+		CONNECT(m_cc_notify->activated, eServiceMP3::captionDataReady);
+	} else {
+		eWarning("[eServiceMP3] caption notification pipe failed: %m");
+	}
 
 	std::string sref = ref.toString();
 	if (!sref.empty()) {
@@ -1483,6 +1503,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 												 "application/x-ssa; " // Alternative SSA format
 												 "application/x-subtitle-vtt; "
 												 "video/x-dvd-subpicture; "
+												 "closedcaption/x-cea-608; " // MP4 c608 caption track
+												 "closedcaption/x-cea-708; " // MP4 c708 caption track
 												 "subpicture/x-xsub");
 			g_object_set(dvb_subsink, "caps", caps, NULL);
 			gst_caps_unref(caps);
@@ -1528,6 +1550,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		eDebug("[eServiceMP3] sorry, can't play: %s", m_errorInfo.error_message.c_str());
 	}
 	}  /* end !m_is_dash_pipeline */
+	if (m_gst_playbin)
+		installCCProbe();
 	g_free(uri);
 	if (suburi != NULL)
 		g_free(suburi);
@@ -1541,6 +1565,12 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
  * are stopped to prevent memory leaks or dangling pointers.
  */
 eServiceMP3::~eServiceMP3() {
+	invalidateCCProbe();
+	if (m_cc_notify)
+		m_cc_notify->stop();
+	m_cc_enabled = false;
+	m_cc_sync_timer->stop();
+
 	// disconnect subtitle callback
 
 	if (dvb_subsink) {
@@ -1568,6 +1598,10 @@ eServiceMP3::~eServiceMP3() {
 	}
 
 	stop();
+	removeCCProbe();
+	for (int fd : m_cc_notify_pipe)
+		if (fd >= 0)
+			close(fd);
 
 	if (m_decoder) {
 		m_decoder = NULL;
@@ -1703,6 +1737,8 @@ RESULT eServiceMP3::connectEvent(const sigc::slot<void(iPlayableService*, int)>&
  */
 RESULT eServiceMP3::start() {
 	ASSERT(m_state == stIdle);
+	if (m_cc_available || m_cc_enabled)
+		m_cc_sync_timer->start(100, true);
 	if (eDVBIFallback::hasSchedule(m_ref))
 	{
 		m_dvbiAvailabilityTimer = eTimer::create(eApp);
@@ -1765,6 +1801,8 @@ RESULT eServiceMP3::start() {
  * @return RESULT Returns 0 on success, or an error code if the service fails to stop.
  */
 RESULT eServiceMP3::stop() {
+	invalidateCCProbe();
+	m_cc_sync_timer->stop();
 	if (m_dvbiAvailabilityTimer)
 		m_dvbiAvailabilityTimer->stop();
 	if (!m_gst_playbin || m_state == stStopped)
@@ -1793,6 +1831,7 @@ RESULT eServiceMP3::stop() {
 	ret = gst_element_get_state(m_gst_playbin, &state, &pending, 5 * GST_SECOND);
 	eDebug("[eServiceMP3] **** TO NULL state:%s pending:%s ret:%s ****", gst_element_state_get_name(state),
 		   gst_element_state_get_name(pending), gst_element_state_change_return_get_name(ret));
+	removeCCProbe();
 
 	return 0;
 }
@@ -1993,6 +2032,12 @@ RESULT eServiceMP3::pause() {
 		return -1;
 
 	m_subtitles_paused = true;
+	m_cc_sync_timer->stop();
+	{
+		std::lock_guard<std::mutex> lock(m_cc_queue_mutex);
+		m_cc_track.hide();
+		m_cc_video.hide();
+	}
 	m_subtitle_sync_timer->start(1, true);
 	eDebug("[eServiceMP3] pause");
 #ifdef DREAMNEXTGEN
@@ -2020,6 +2065,8 @@ RESULT eServiceMP3::unpause() {
 		return -1;
 
 	m_subtitles_paused = false;
+	if (m_cc_available || m_cc_enabled)
+		m_cc_sync_timer->start(100, true);
 	m_decoder_time_valid_state = 0;
 	m_subtitle_sync_timer->start(1, true);
 #ifdef DREAMNEXTGEN
@@ -2114,6 +2161,8 @@ RESULT eServiceMP3::seekToImpl(pts_t to) {
 		return 0;
 	}
 	m_last_trickseek_ms = now_ms_k;
+	/* Clear before seek: fresh buffers can arrive before gst_element_seek returns. */
+	flushClosedCaptions();
 	if (!gst_element_seek(m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME,
 						  (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT), GST_SEEK_TYPE_SET,
 						  (gint64)(m_last_seek_pos * 11111LL), GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE)) {
@@ -3392,7 +3441,7 @@ RESULT eServiceMP3::getTrackInfo(struct iAudioTrackInfo& info, unsigned int i) {
  * @param[in] g_codec An optional codec string to match against known subtitle types.
  * @return subtype_t Returns the identified subtitle type, or stUnknown if not identified.
  */
-subtype_t getSubtitleType(GstPad* pad, gchar* g_codec = NULL) {
+subtype_t getSubtitleType(GstPad* pad, gchar* g_codec = nullptr, int* cc_payload_type = nullptr) {
 	subtype_t type = stUnknown;
 	GstCaps* caps = gst_pad_get_current_caps(pad);
 	if (!caps && !g_codec) {
@@ -3419,7 +3468,29 @@ subtype_t getSubtitleType(GstPad* pad, gchar* g_codec = NULL) {
 				else if (!strcmp(g_type, "text/vtt") || !strcmp(g_type, "text/x-webvtt") ||
 						 !strcmp(g_type, "application/x-subtitle-vtt"))
 					type = stWebVTT;
-				else
+				else if (!strcmp(g_type, "closedcaption/x-cea-608") || !strcmp(g_type, "closedcaption/x-cea-708")) {
+					/* dedicated caption track (MP4 c608/c708), as opposed to the
+					 * captions embedded in the video stream */
+					bool is608 = !strcmp(g_type, "closedcaption/x-cea-608");
+					const gchar* g_format = gst_structure_get_string(str, "format");
+					int payload = is608 ? eCea608Decoder::PAYLOAD_CEA608_S334_1A : eCea608Decoder::PAYLOAD_CEA708_CDP;
+					if (g_format) {
+						if (is608) {
+							if (!strcmp(g_format, "raw"))
+								payload = eCea608Decoder::PAYLOAD_CEA608_RAW;
+							else if (!strcmp(g_format, "s334-1a"))
+								payload = eCea608Decoder::PAYLOAD_CEA608_S334_1A;
+						} else {
+							if (!strcmp(g_format, "cc_data"))
+								payload = eCea608Decoder::PAYLOAD_CEA708_RAW;
+							else if (!strcmp(g_format, "cdp"))
+								payload = eCea608Decoder::PAYLOAD_CEA708_CDP;
+						}
+					}
+					type = stCC;
+					if (cc_payload_type)
+						*cc_payload_type = payload;
+				} else
 					eDebug("[eServiceMP3] getSubtitleType::unsupported subtitle caps %s (%s)", g_type,
 						   g_codec ? g_codec : "(null)");
 			}
@@ -3889,7 +3960,7 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 						// eDebug("[eServiceMP3] subtitle Text pad %d caps: %s", i, gst_caps_to_string (caps));
 						gst_caps_unref(caps);
 
-						subs.type = getSubtitleType(pad, g_codec);
+						subs.type = getSubtitleType(pad, g_codec, &subs.cc_payload_type);
 
 						if (i == 0 && !m_external_subtitle_extension.empty()) {
 							if (m_external_subtitle_extension == "srt")
@@ -4466,7 +4537,7 @@ void eServiceMP3::gstTextpadHasCAPS_synced(GstPad* pad) {
 			g_signal_emit_by_name(m_gst_playbin, "get-text-tags", m_currentSubtitleStream, &tags);
 
 			subs.language_code = "und";
-			subs.type = getSubtitleType(pad);
+			subs.type = getSubtitleType(pad, NULL, &subs.cc_payload_type);
 			if (tags && GST_IS_TAG_LIST(tags)) {
 				if (gst_tag_list_get_string(tags, GST_TAG_LANGUAGE_CODE, &g_lang)) {
 					subs.language_code = std::string(g_lang);
@@ -4557,6 +4628,23 @@ void eServiceMP3::pullSubtitle(GstBuffer* buffer) {
 				m_dvb_subtitle_parser->processBuffer(map.data, map.size, buf_pos / 1000000ULL);
 			else
 				eDebug("[eServiceMP3] DVB subtitle buffer without pts, dropped");
+		} else if (subType == stCC) {
+			int payload = m_subtitleStreams[m_currentSubtitleStream].cc_payload_type;
+			GstClockTime pts = GST_BUFFER_PTS(buffer);
+			if (payload >= 0 && map.size && GST_CLOCK_TIME_IS_VALID(pts)) {
+				std::vector<uint16_t> pairs;
+				eCea608Decoder::extractField1Pairs(payload, map.data, map.size, pairs);
+				if (!pairs.empty()) {
+					int64_t ms = (int64_t)(pts / 1000000);
+					{
+						std::lock_guard<std::mutex> lock(m_cc_queue_mutex);
+						for (uint16_t pair : pairs)
+							m_cc_track.enqueue(ms, pair);
+					}
+					if (m_cc_enabled && !m_cc_sync_timer->isActive())
+						m_cc_sync_timer->start(100, true);
+				}
+			}
 		} else if (subType < stVOB) {
 			GstClockTime buf_pos = GST_BUFFER_PTS(buffer);
 			GstClockTime buf_dur = GST_BUFFER_DURATION(buffer);
@@ -4880,6 +4968,231 @@ exit:
 	m_subtitle_sync_timer->start(next_timer, true);
 }
 
+/*
+ * CEA-608/708 closed captions ride inside the video elementary stream (A/53
+ * user data / SEI); the GStreamer parsers (h264parse, h265parse,
+ * mpegvideoparse) extract them onto every buffer as GstVideoCaptionMeta since
+ * 1.16. Nothing downstream consumes that meta on an STB (the video goes as ES
+ * into the hardware decoder), so a buffer probe on the video sink pad harvests
+ * it: pairs are queued by buffer pts (SEI data arrives in decode order, the
+ * pts-ordered queue restores presentation order across B frames), fed to the
+ * CEA-608 decoder in sync with the playback position and rendered through the
+ * regular pango subtitle path.
+ */
+/** @brief Wake the main thread after the first real field-1 caption payload. */
+void eServiceMP3::captionDataReady(int events) {
+	char ready;
+	while (read(m_cc_notify_pipe[0], &ready, sizeof(ready)) > 0) {}
+	if (m_state == stRunning && !m_subtitles_paused && !m_cc_sync_timer->isActive())
+		m_cc_sync_timer->start(100, true);
+}
+
+/** @brief Prevent new service access and wait for an in-flight caption callback. */
+void eServiceMP3::invalidateCCProbe() {
+	if (m_cc_probe_context) {
+		std::lock_guard<std::mutex> lock(m_cc_probe_context->mutex);
+		m_cc_probe_context->service = nullptr;
+	}
+}
+
+/** @brief Release probe context after GStreamer releases its last callback reference. */
+void eServiceMP3::destroyCCProbe(gpointer context) {
+	delete static_cast<CCProbeContext*>(context);
+}
+
+/** @brief Attach caption collection without starting a polling timer. */
+void eServiceMP3::installCCProbe() {
+	if (m_cc_probe_pad || m_sourceinfo.is_audio || !m_cc_notify)
+		return;
+	GstElement* vsink = nullptr;
+	if (m_is_dash_pipeline && m_gst_playbin)
+		vsink = gst_bin_get_by_name(GST_BIN(m_gst_playbin), "dashvideosink");
+	else if (dvb_videosink)
+		vsink = GST_ELEMENT(gst_object_ref(dvb_videosink));
+	if (!vsink)
+		return;
+	m_cc_probe_pad = gst_element_get_static_pad(vsink, "sink");
+	gst_object_unref(vsink);
+	if (!m_cc_probe_pad)
+		return;
+	m_cc_probe_context = new CCProbeContext(this);
+	m_cc_probe_id = gst_pad_add_probe(m_cc_probe_pad,
+		(GstPadProbeType)(GST_PAD_PROBE_TYPE_BUFFER | GST_PAD_PROBE_TYPE_EVENT_DOWNSTREAM | GST_PAD_PROBE_TYPE_EVENT_FLUSH),
+		ccVideoProbe, m_cc_probe_context, destroyCCProbe);
+}
+
+/** @brief Detach collection after invalidating callback access. */
+void eServiceMP3::removeCCProbe() {
+	invalidateCCProbe();
+	if (m_cc_probe_pad) {
+		if (m_cc_probe_id)
+			gst_pad_remove_probe(m_cc_probe_pad, m_cc_probe_id);
+		m_cc_probe_id = 0;
+		m_cc_probe_context = nullptr;
+		gst_object_unref(m_cc_probe_pad);
+		m_cc_probe_pad = nullptr;
+	}
+}
+
+/** @brief Collect timestamped CC1 pairs on the streaming thread. */
+GstPadProbeReturn eServiceMP3::ccVideoProbe(GstPad* pad, GstPadProbeInfo* info, gpointer user_data) {
+	CCProbeContext *context = static_cast<CCProbeContext*>(user_data);
+	std::lock_guard<std::mutex> lifetime(context->mutex);
+	eServiceMP3 *_this = context->service;
+	if (!_this)
+		return GST_PAD_PROBE_OK;
+	std::lock_guard<std::mutex> lock(_this->m_cc_queue_mutex);
+	if (GST_PAD_PROBE_INFO_TYPE(info) & (GST_PAD_PROBE_TYPE_EVENT_DOWNSTREAM | GST_PAD_PROBE_TYPE_EVENT_FLUSH)) {
+		GstEvent* event = GST_PAD_PROBE_INFO_EVENT(info);
+		if (GST_EVENT_TYPE(event) == GST_EVENT_SEGMENT || GST_EVENT_TYPE(event) == GST_EVENT_FLUSH_START
+			|| GST_EVENT_TYPE(event) == GST_EVENT_FLUSH_STOP) {
+			++_this->m_cc_generation;
+			_this->m_cc_timestamp.reset();
+			_this->m_cc_video.reset();
+			gst_segment_init(&_this->m_cc_segment, GST_FORMAT_TIME);
+			if (GST_EVENT_TYPE(event) == GST_EVENT_SEGMENT) {
+				const GstSegment* segment = nullptr;
+				gst_event_parse_segment(event, &segment);
+				if (segment && segment->format == GST_FORMAT_TIME)
+					gst_segment_copy_into(segment, &_this->m_cc_segment);
+			}
+		}
+		return GST_PAD_PROBE_OK;
+	}
+	GstBuffer* buffer = GST_PAD_PROBE_INFO_BUFFER(info);
+	if (!buffer)
+		return GST_PAD_PROBE_OK;
+	/* Update on every NAL, not just caption-bearing buffers. Vu+ h264parse
+	 * emits caption SEIs without PTS, following a timestamped NAL with the
+	 * same DTS. Recover only that access unit's presentation timestamp. */
+	GstClockTime pts = _this->m_cc_timestamp.resolve(GST_BUFFER_PTS(buffer), GST_BUFFER_DTS(buffer),
+		GST_BUFFER_FLAG_IS_SET(buffer, GST_BUFFER_FLAG_DISCONT));
+	gpointer state = nullptr;
+	GstMeta* meta;
+	while ((meta = gst_buffer_iterate_meta_filtered(buffer, &state, GST_VIDEO_CAPTION_META_API_TYPE))) {
+		GstVideoCaptionMeta* cc = (GstVideoCaptionMeta*)meta;
+
+		if (!cc->data || !cc->size)
+			continue;
+		int payload_type;
+		switch (cc->caption_type) {
+			case GST_VIDEO_CAPTION_TYPE_CEA608_RAW:
+				payload_type = eCea608Decoder::PAYLOAD_CEA608_RAW;
+				break;
+			case GST_VIDEO_CAPTION_TYPE_CEA608_S334_1A:
+				payload_type = eCea608Decoder::PAYLOAD_CEA608_S334_1A;
+				break;
+			case GST_VIDEO_CAPTION_TYPE_CEA708_RAW:
+				payload_type = eCea608Decoder::PAYLOAD_CEA708_RAW;
+				break;
+			case GST_VIDEO_CAPTION_TYPE_CEA708_CDP:
+				payload_type = eCea608Decoder::PAYLOAD_CEA708_CDP;
+				break;
+			default:
+				continue;
+		}
+		std::vector<uint16_t> pairs;
+		eCea608Decoder::extractField1Pairs(payload_type, cc->data, cc->size, pairs);
+		if (!eCea608Decoder::hasCaptionData(pairs))
+			continue;
+		if (!_this->m_cc_available.exchange(true)) {
+			const char ready = 1;
+			// One nonblocking wake-up per service; timer operations stay on the main thread.
+			ssize_t result = write(_this->m_cc_notify_pipe[1], &ready, sizeof(ready));
+			(void)result;
+		}
+		if (!GST_CLOCK_TIME_IS_VALID(pts)) {
+			continue;
+		}
+		if (pts < _this->m_cc_segment.start)
+			continue;
+		int64_t ms = (int64_t)(pts / 1000000);
+		for (size_t i = 0; i < pairs.size(); ++i)
+			_this->m_cc_video.enqueue(ms, pairs[i]);
+	}
+	return GST_PAD_PROBE_OK;
+}
+
+/** @brief Reset both playback queues and decoder memories on seek. */
+void eServiceMP3::flushClosedCaptions() {
+	{
+		std::lock_guard<std::mutex> lock(m_cc_queue_mutex);
+		++m_cc_generation;
+		m_cc_track.reset();
+		m_cc_timestamp.reset();
+		m_cc_video.reset();
+	}
+}
+
+/** @brief Advance both caption sources using the hardware video clock. */
+void eServiceMP3::pushClosedCaptions() {
+	if (m_state != stRunning || m_subtitles_paused || (!m_cc_available && !m_cc_enabled))
+		return;
+
+	const int next_timer = 100;
+	if (m_paused || m_seeking_or_paused) {
+		m_cc_sync_timer->start(next_timer, true);
+		return;
+	}
+	pts_t running_pts = 0;
+	bool clock_valid = false;
+	GstClockTime clock_ns = GST_CLOCK_TIME_NONE;
+	uint64_t clock_generation;
+	{
+		std::lock_guard<std::mutex> lock(m_cc_queue_mutex);
+		clock_generation = m_cc_generation;
+	}
+	/* Hardware sinks can accept the entire file before playback catches up.
+	 * A playbin position fallback at startup would consume every CC immediately.
+	 * Use the actual video decoder clock when the sink exposes it; if it is
+	 * unavailable, wait rather than substituting demux/read-ahead position. */
+	GstElement* video_sink = m_cc_probe_pad ? gst_pad_get_parent_element(m_cc_probe_pad) : nullptr;
+	if (video_sink && g_signal_lookup("get-decoder-time", G_OBJECT_TYPE(video_sink))) {
+		gint64 position = GST_CLOCK_TIME_NONE;
+		if (m_state == stRunning && !m_paused && !m_seeking_or_paused)
+			g_signal_emit_by_name(video_sink, "get-decoder-time", &position);
+		clock_valid = GST_CLOCK_TIME_IS_VALID(position) && position >= 0;
+		if (clock_valid)
+			clock_ns = position;
+	}
+	if (video_sink)
+		gst_object_unref(video_sink);
+	if (clock_valid) {
+		int64_t decoder_ms;
+		std::string video_text, track_text;
+		bool video_changed, track_changed;
+		{
+			std::lock_guard<std::mutex> lock(m_cc_queue_mutex);
+			GstClockTime raw = eCea608Timestamp::rawTime(clock_ns, m_cc_segment.start, m_cc_segment.position);
+			if (clock_generation != m_cc_generation || !GST_CLOCK_TIME_IS_VALID(raw)) {
+				m_cc_sync_timer->start(next_timer, true);
+				return;
+			}
+			decoder_ms = raw / 1000000;
+			running_pts = raw / 11111LL;
+			video_changed = m_cc_video.advance(decoder_ms,
+				m_cc_enabled && m_cc_from_video, video_text);
+			track_changed = m_cc_track.advance(decoder_ms,
+				m_cc_enabled && !m_cc_from_video, track_text);
+
+		}
+		const std::string &text = m_cc_from_video ? video_text : track_text;
+		const bool changed = m_cc_from_video ? video_changed : track_changed;
+
+		if (changed && m_cc_enabled && m_subtitle_widget && !m_paused) {
+			ePangoSubtitlePage pango_page;
+			pango_page.m_show_pts = running_pts;
+			pango_page.m_timeout = 10000; /* stays up until the next update */
+			if (!text.empty()) {
+				gRGB rgbcol(0xff, 0xff, 0xff);
+				pango_page.m_elements.push_back(ePangoSubtitlePageElement(rgbcol, text));
+			}
+			m_subtitle_widget->setPage(pango_page);
+		}
+	}
+	m_cc_sync_timer->start(next_timer, true);
+}
+
 /**
  * @brief Enables subtitles for the current service.
  *
@@ -4892,8 +5205,18 @@ exit:
  * @return RESULT indicating success or failure.
  */
 RESULT eServiceMP3::enableSubtitles(iSubtitleUser* user, struct SubtitleTrack& track) {
-	if (m_currentSubtitleStream == track.pid && !eSubtitleSettings::pango_autoturnon)
+	const bool closed_caption = track.type == 2 && track.page_number == (int)stCC;
+	if (m_currentSubtitleStream == track.pid && !eSubtitleSettings::pango_autoturnon
+		&& m_cc_enabled == closed_caption)
 		return 0;
+
+	m_cc_enabled = false;
+	/* Selection is not a seek: preserve video read-ahead and decoder memory. */
+	{
+		std::lock_guard<std::mutex> lock(m_cc_queue_mutex);
+		m_cc_track.reset();
+		m_cc_video.hide();
+	}
 
 	/* the page on screen belongs to the old track and would sit there until
 	   its own timeout elapses */
@@ -4916,6 +5239,20 @@ RESULT eServiceMP3::enableSubtitles(iSubtitleUser* user, struct SubtitleTrack& t
 	m_pgs_subtitle_parser->reset();
 
 	m_subtitle_widget = user;
+	if (closed_caption) {
+		bool from_video = true;
+		if (track.pid >= 0 && track.pid < (int)m_subtitleStreams.size())
+			from_video = m_subtitleStreams[track.pid].cc_payload_type < 0;
+		m_cachedSubtitleStream = from_video ? -1 : track.pid;
+		setCacheEntry(false, m_cachedSubtitleStream);
+		m_cc_from_video = from_video;
+		m_cc_enabled = true;
+		m_cc_sync_timer->start(100, true);
+		if (m_is_dash_pipeline) {
+			m_subtitle_switch_deferred = false;
+			return 0;
+		}
+	}
 
 	/* The forced selector commit in applySubtitleStreamSwitch() cannot complete
 	   while a streaming thread sits blocked in the text sink, which it does until
@@ -4941,7 +5278,9 @@ RESULT eServiceMP3::enableSubtitles(iSubtitleUser* user, struct SubtitleTrack& t
  * enableSubtitles().
  */
 void eServiceMP3::applySubtitleStreamSwitch() {
-	g_object_set(m_gst_playbin, "current-text", m_currentSubtitleStream, NULL);
+	// Video CC has a synthetic track id, not a playbin text-pad index.
+	const int textStream = m_cc_enabled && m_cc_from_video ? -1 : m_currentSubtitleStream;
+	g_object_set(m_gst_playbin, "current-text", textStream, NULL);
 
 	/* Work around a playbin/input-selector timing bug in GStreamer >= 1.28
 	   (verified against the gstplaybin2.c and gstinputselector.c sources, and
@@ -4969,8 +5308,8 @@ void eServiceMP3::applySubtitleStreamSwitch() {
 	   time -- for external SRT/ASS up to the next cue. Hence the event is sent
 	   from a GStreamer pool thread, never from the E2 main thread. */
 	GstPad* textPad = NULL;
-	if (g_signal_lookup("get-text-pad", G_OBJECT_TYPE(m_gst_playbin)))
-		g_signal_emit_by_name(m_gst_playbin, "get-text-pad", m_currentSubtitleStream, &textPad);
+	if (textStream >= 0 && g_signal_lookup("get-text-pad", G_OBJECT_TYPE(m_gst_playbin)))
+		g_signal_emit_by_name(m_gst_playbin, "get-text-pad", textStream, &textPad);
 	if (textPad) {
 		// eDebug("[eServiceMP3] applySubtitleStreamSwitch: forcing input-selector active-pad commit for %s",
 		//	   GST_PAD_NAME(textPad));
@@ -4999,6 +5338,12 @@ void eServiceMP3::applySubtitleStreamSwitch() {
  */
 RESULT eServiceMP3::disableSubtitles() {
 	eDebug("[eServiceMP3] disableSubtitles");
+	m_cc_enabled = false;
+	{
+		std::lock_guard<std::mutex> lock(m_cc_queue_mutex);
+		m_cc_track.reset();
+		m_cc_video.hide();
+	}
 	m_subtitle_generation++;
 	m_subtitle_switch_deferred = false;
 	m_currentSubtitleStream = -1;
@@ -5128,6 +5473,20 @@ RESULT eServiceMP3::getSubtitleList(std::vector<struct SubtitleTrack>& subtitlel
 		track.language_code = stream.language_code;
 		track.title = stream.title;
 
+		subtitlelist.push_back(track);
+	}
+
+	/* captions embedded in the video stream have no gstreamer stream to
+	 * enumerate; offer them as an extra track once caption data has been seen.
+	 * The pid is deliberately one past the last real stream, which is how
+	 * enableSubtitles tells them apart from a dedicated caption track. */
+	if (m_cc_available) {
+		struct SubtitleTrack track;
+		track.type = 2;
+		track.pid = m_subtitleStreams.size();
+		track.page_number = int(stCC);
+		track.magazine_number = 0;
+		track.language_code = "und";
 		subtitlelist.push_back(track);
 	}
 

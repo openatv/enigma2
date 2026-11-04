@@ -372,7 +372,8 @@ class AudioSelection(ConfigListScreen, Screen):
 
 					elif x[0] == 2:
 						types = ("unknown", "embedded", "SSA file", "ASS file",
-								"SRT file", "VOB file", "PGS file", "WebVTT")
+								"SRT file", "VOB file", "PGS file", "WebVTT",
+								"DVB", "CC")
 						try:
 							description = types[x[2]]
 						except Exception:
