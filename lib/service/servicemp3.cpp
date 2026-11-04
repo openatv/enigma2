@@ -1118,9 +1118,9 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_errorInfo.missing_codec = "";
 	m_decoder = NULL;
 	m_subs_to_pull_handler_id = m_notify_source_handler_id = m_notify_element_added_handler_id = 0;
-	m_cc_probe_pad = NULL;
+	m_cc_probe_pad = nullptr;
 	m_cc_probe_id = 0;
-	m_cc_probe_context = NULL;
+	m_cc_probe_context = nullptr;
 	m_cc_notify_pipe[0] = m_cc_notify_pipe[1] = -1;
 	m_cc_available = false;
 	m_cc_generation = 0;
@@ -3441,7 +3441,7 @@ RESULT eServiceMP3::getTrackInfo(struct iAudioTrackInfo& info, unsigned int i) {
  * @param[in] g_codec An optional codec string to match against known subtitle types.
  * @return subtype_t Returns the identified subtitle type, or stUnknown if not identified.
  */
-subtype_t getSubtitleType(GstPad* pad, gchar* g_codec = NULL, int* cc_payload_type = NULL) {
+subtype_t getSubtitleType(GstPad* pad, gchar* g_codec = nullptr, int* cc_payload_type = nullptr) {
 	subtype_t type = stUnknown;
 	GstCaps* caps = gst_pad_get_current_caps(pad);
 	if (!caps && !g_codec) {
@@ -4991,7 +4991,7 @@ void eServiceMP3::captionDataReady(int events) {
 void eServiceMP3::invalidateCCProbe() {
 	if (m_cc_probe_context) {
 		std::lock_guard<std::mutex> lock(m_cc_probe_context->mutex);
-		m_cc_probe_context->service = NULL;
+		m_cc_probe_context->service = nullptr;
 	}
 }
 
@@ -5004,7 +5004,7 @@ void eServiceMP3::destroyCCProbe(gpointer context) {
 void eServiceMP3::installCCProbe() {
 	if (m_cc_probe_pad || m_sourceinfo.is_audio || !m_cc_notify)
 		return;
-	GstElement* vsink = NULL;
+	GstElement* vsink = nullptr;
 	if (m_is_dash_pipeline && m_gst_playbin)
 		vsink = gst_bin_get_by_name(GST_BIN(m_gst_playbin), "dashvideosink");
 	else if (dvb_videosink)
@@ -5028,9 +5028,9 @@ void eServiceMP3::removeCCProbe() {
 		if (m_cc_probe_id)
 			gst_pad_remove_probe(m_cc_probe_pad, m_cc_probe_id);
 		m_cc_probe_id = 0;
-		m_cc_probe_context = NULL;
+		m_cc_probe_context = nullptr;
 		gst_object_unref(m_cc_probe_pad);
-		m_cc_probe_pad = NULL;
+		m_cc_probe_pad = nullptr;
 	}
 }
 
@@ -5051,7 +5051,7 @@ GstPadProbeReturn eServiceMP3::ccVideoProbe(GstPad* pad, GstPadProbeInfo* info, 
 			_this->m_cc_video.reset();
 			gst_segment_init(&_this->m_cc_segment, GST_FORMAT_TIME);
 			if (GST_EVENT_TYPE(event) == GST_EVENT_SEGMENT) {
-				const GstSegment* segment = NULL;
+				const GstSegment* segment = nullptr;
 				gst_event_parse_segment(event, &segment);
 				if (segment && segment->format == GST_FORMAT_TIME)
 					gst_segment_copy_into(segment, &_this->m_cc_segment);
@@ -5067,7 +5067,7 @@ GstPadProbeReturn eServiceMP3::ccVideoProbe(GstPad* pad, GstPadProbeInfo* info, 
 	 * same DTS. Recover only that access unit's presentation timestamp. */
 	GstClockTime pts = _this->m_cc_timestamp.resolve(GST_BUFFER_PTS(buffer), GST_BUFFER_DTS(buffer),
 		GST_BUFFER_FLAG_IS_SET(buffer, GST_BUFFER_FLAG_DISCONT));
-	gpointer state = NULL;
+	gpointer state = nullptr;
 	GstMeta* meta;
 	while ((meta = gst_buffer_iterate_meta_filtered(buffer, &state, GST_VIDEO_CAPTION_META_API_TYPE))) {
 		GstVideoCaptionMeta* cc = (GstVideoCaptionMeta*)meta;
@@ -5146,7 +5146,7 @@ void eServiceMP3::pushClosedCaptions() {
 	 * A playbin position fallback at startup would consume every CC immediately.
 	 * Use the actual video decoder clock when the sink exposes it; if it is
 	 * unavailable, wait rather than substituting demux/read-ahead position. */
-	GstElement* video_sink = m_cc_probe_pad ? gst_pad_get_parent_element(m_cc_probe_pad) : NULL;
+	GstElement* video_sink = m_cc_probe_pad ? gst_pad_get_parent_element(m_cc_probe_pad) : nullptr;
 	if (video_sink && g_signal_lookup("get-decoder-time", G_OBJECT_TYPE(video_sink))) {
 		gint64 position = GST_CLOCK_TIME_NONE;
 		if (m_state == stRunning && !m_paused && !m_seeking_or_paused)

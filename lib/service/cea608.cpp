@@ -1,7 +1,7 @@
 #include <lib/service/cea608.h>
 
 /* basic character set (0x20 - 0x7f) with the CEA-608 substitutions */
-static const char *basic_chars[0x60] = {
+static const char *const basic_chars[0x60] = {
 	" ", "!", "\"", "#", "$", "%", "&", "'", "(", ")", "\xc3\xa1", "+", ",", "-", ".", "/",
 	"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ":", ";", "<", "=", ">", "?",
 	"@", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
@@ -11,13 +11,13 @@ static const char *basic_chars[0x60] = {
 };
 
 /* special characters, 0x11 0x30 - 0x11 0x3f */
-static const char *special_chars[16] = {
+static const char *const special_chars[16] = {
 	"\xc2\xae", "\xc2\xb0", "\xc2\xbd", "\xc2\xbf", "\xe2\x84\xa2", "\xc2\xa2", "\xc2\xa3", "\xe2\x99\xaa",
 	"\xc3\xa0", " ", "\xc3\xa8", "\xc3\xa2", "\xc3\xaa", "\xc3\xae", "\xc3\xb4", "\xc3\xbb",
 };
 
 /* extended characters, 0x12 0x20 - 0x12 0x3f (Spanish / misc) */
-static const char *extended_chars_12[32] = {
+static const char *const extended_chars_12[32] = {
 	"\xc3\x81", "\xc3\x89", "\xc3\x93", "\xc3\x9a", "\xc3\x9c", "\xc3\xbc", "\xe2\x80\x98", "\xc2\xa1",
 	"*", "'", "\xe2\x80\x94", "\xc2\xa9", "\xe2\x84\xa0", "\xe2\x80\xa2", "\xe2\x80\x9c", "\xe2\x80\x9d",
 	"\xc3\x80", "\xc3\x82", "\xc3\x87", "\xc3\x88", "\xc3\x8a", "\xc3\x8b", "\xc3\xab", "\xc3\x8e",
@@ -25,7 +25,7 @@ static const char *extended_chars_12[32] = {
 };
 
 /* extended characters, 0x13 0x20 - 0x13 0x3f (French / Portuguese / German) */
-static const char *extended_chars_13[32] = {
+static const char *const extended_chars_13[32] = {
 	"\xc3\x83", "\xc3\xa3", "\xc3\x8d", "\xc3\x8c", "\xc3\xac", "\xc3\x92", "\xc3\xb2", "\xc3\x95",
 	"\xc3\xb5", "{", "}", "\\", "^", "_", "\xc2\xa6", "~",
 	"\xc3\x84", "\xc3\xa4", "\xc3\x96", "\xc3\xb6", "\xc3\x9f", "\xc2\xa5", "\xc2\xa4", "|",
