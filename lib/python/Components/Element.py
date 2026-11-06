@@ -25,11 +25,11 @@ class Element:
 		self.__suspended = True
 		self.cache = None
 		self.onChanged = []
-		self.animationEnabled = None
+		self.elementAnimationOverride = None
 
 	def getIsAnimated(self):
-		if self.animationEnabled is not None:
-			return self.animationEnabled
+		if self.elementAnimationOverride is not None:
+			return self.elementAnimationOverride
 		if type(self).__name__ in self.ANIMATION_EXCLUDED:
 			return False
 		if type(self).__name__ == "ClockToText" and any(x in getattr(self, "converter_arguments", "") for x in ("WithSeconds", "Timestamp", "Format", "AsLength", "Mixed")):
@@ -38,7 +38,7 @@ class Element:
 		return all(getattr(x, "isAnimated", False) for x in self.sources)
 
 	def setIsAnimated(self, enabled):
-		self.animationEnabled = bool(enabled)
+		self.elementAnimationOverride = bool(enabled)
 		self.updateAnimationPolicy()
 
 	isAnimated = property(getIsAnimated, setIsAnimated)
