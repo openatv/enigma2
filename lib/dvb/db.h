@@ -258,7 +258,8 @@ public:
 
 class eDVBDBBouquetQuery: public eDVBDBQueryBase
 {
-	std::list<eServiceReference>::iterator m_cursor;
+	std::vector<eServiceReference> m_services;
+	size_t m_cursor = 0;
 public:
 	eDVBDBBouquetQuery(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query);
 	RESULT getNextResult(eServiceReferenceDVB &ref);

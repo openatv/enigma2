@@ -1,4 +1,5 @@
 #include <array>
+#include <utility>
 #include <errno.h>
 #include <unistd.h>
 #include <lib/dvb/db.h>
@@ -3178,24 +3179,23 @@ RESULT eDVBDBQuery::getNextResult(eServiceReferenceDVB &ref)
 }
 
 eDVBDBBouquetQuery::eDVBDBBouquetQuery(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query)
-	:eDVBDBQueryBase(db, source, query), m_cursor(db->m_bouquets[query->m_bouquet_name].m_services.begin())
+	:eDVBDBQueryBase(db, source, query)
 {
+	// A bouquet can be edited or reloaded between calls to getNextResult().
+	const auto &services = db->m_bouquets[query->m_bouquet_name].m_services;
+	m_services.assign(services.begin(), services.end());
 }
 
 RESULT eDVBDBBouquetQuery::getNextResult(eServiceReferenceDVB &ref)
 {
-	eBouquet &bouquet = m_db->m_bouquets[m_query->m_bouquet_name];
-	std::list<eServiceReference> &list = bouquet.m_services;
-	while (m_cursor != list.end())
+	while (m_cursor < m_services.size())
 	{
-		ref = *((eServiceReferenceDVB*)&(*m_cursor));
+		static_cast<eServiceReference &>(ref) = std::move(m_services[m_cursor++]);
 
 		std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it =
 			m_db->m_services.find(ref);
 
 		int res = (!m_query) || it == m_db->m_services.end() || !(it->second->isHidden() && it->second->checkFilter(ref, *m_query));
-
-		++m_cursor;
 
 		if (res)
 			return 0;
