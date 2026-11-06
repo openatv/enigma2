@@ -524,10 +524,10 @@ class FlashImage(Screen, ProtectedScreen):
 		self.close()
 
 	def keyCloseRecursive(self):
-		self.close(True)
+		if not self.containerOFGWrite:
+			self.close(True)
 
 	def keyOK(self):
-		self.unlockGraphics()
 		if self["header"].text == _("Flashing image successful"):
 			if MultiBoot.canMultiBoot():
 				self.session.openWithCallback(self.keyCancel, MultiBootManager)
@@ -826,29 +826,30 @@ class FlashImage(Screen, ProtectedScreen):
 		self.flashImage()
 
 	def lockGraphics(self):
+		mainDC = gMainDC.getInstance()
+		if mainDC is None or mainDC.isGraphicsSuspended():
+			return False
 		framebuffer = fbClass.getInstance()
-		if framebuffer is not None:
-			if framebuffer.lock() >= 0:
-				self.graphicsAccess = ("framebuffer", framebuffer)
-				return True
-		else:
-			mainDC = gMainDC.getInstance()
-			if mainDC is not None and mainDC.suspendGraphics():
-				self.graphicsAccess = ("mainDC", mainDC)
-				print("[FlashManager] Main graphics suspended for ofgwrite.")
-				return True
-		print("[FlashManager] Unable to lock graphics for ofgwrite!")
-		return False
+		if framebuffer is not None and framebuffer.lock() < 0:
+			return False
+		# Locking the framebuffer stops new paints but leaves the last OSD frame visible.
+		if not mainDC.suspendGraphics():
+			if framebuffer is not None:
+				framebuffer.unlock(False)
+			print("[FlashManager] Unable to suspend main graphics for ofgwrite!")
+			return False
+		self.graphicsAccess = (framebuffer, mainDC)
+		print("[FlashManager] Main graphics suspended for ofgwrite.")
+		return True
 
 	def unlockGraphics(self):
-		graphicsAccess = self.graphicsAccess
-		self.graphicsAccess = None
-		if graphicsAccess is None:
+		if self.graphicsAccess is None:
 			return
-		mode, graphics = graphicsAccess
-		if mode == "framebuffer":
-			graphics.unlock()
-		elif not graphics.resumeGraphics():
+		framebuffer, mainDC = self.graphicsAccess
+		self.graphicsAccess = None
+		if framebuffer is not None:
+			framebuffer.unlock()
+		if not mainDC.resumeGraphics():
 			print("[FlashManager] Unable to resume main graphics after ofgwrite!")
 
 	def flashImage(self):
@@ -929,9 +930,12 @@ class FlashImage(Screen, ProtectedScreen):
 			if not self.lockGraphics():
 				self.session.openWithCallback(self.keyCancel, MessageBox, _("Error: Unable to lock the graphics system for flashing!"), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 				return
-			self.containerOFGWrite = Console()
 			try:
-				self.containerOFGWrite.ePopen([OFGWRITE, OFGWRITE] + cmdArgs + ['%s' % imageFiles], callback=self.flashImageDone)
+				self.containerOFGWrite = Console()
+				self.containerOFGWrite.ePopen((OFGWRITE, OFGWRITE, *cmdArgs, imageFiles), callback=self.flashImageDone)
+			except OSError as err:
+				print(f"[FlashManager] Unable to start ofgwrite: {err}")
+				self.flashImageDone("", -1, None)
 			except Exception:
 				self.containerOFGWrite = None
 				self.unlockGraphics()
