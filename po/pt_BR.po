@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-01 20:39+0100\n"
+"POT-Creation-Date: 2026-11-03 13:20+0100\n"
 "PO-Revision-Date: 2026-08-16 18:09+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt_BR/>\n"
@@ -101,116 +101,6 @@ msgstr ""
 msgid "%-H:%M"
 msgstr "%H:%M"
 
-#, fuzzy
-msgid "%-H:%M:%S"
-msgstr "%H:%M"
-
-msgid "%-I:%M"
-msgstr ""
-
-msgid "%-I:%M%P"
-msgstr ""
-
-msgid "%-I:%M%^p"
-msgstr ""
-
-msgid "%-I:%M:%S"
-msgstr ""
-
-msgid "%-I:%M:%S%P"
-msgstr ""
-
-msgid "%-I:%M:%S%^p"
-msgstr ""
-
-#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
-#, fuzzy
-msgid "%-d %B %Y"
-msgstr "%d.%B %Y"
-
-#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
-#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
-msgid "%-d %b"
-msgstr ""
-
-#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
-msgid "%-d %b %Y"
-msgstr ""
-
-msgid "%-d+%b_"
-msgstr ""
-
-msgid "%-d-%B-%Y"
-msgstr ""
-
-msgid "%-d-%b"
-msgstr ""
-
-msgid "%-d-%b-%Y"
-msgstr ""
-
-#, fuzzy
-msgid "%-d. %B %Y"
-msgstr "%d.%B %Y"
-
-msgid "%-d. %b"
-msgstr ""
-
-#, fuzzy
-msgid "%-d. %b %Y"
-msgstr "%A %e %B %Y"
-
-msgid "%-d.%-m"
-msgstr ""
-
-msgid "%-d.%-m.%Y"
-msgstr ""
-
-msgid "%-d.%m"
-msgstr ""
-
-msgid "%-d.%m.%Y"
-msgstr ""
-
-msgid "%-d/%-m"
-msgstr ""
-
-msgid "%-d/%-m "
-msgstr ""
-
-msgid "%-d/%-m/%Y"
-msgstr ""
-
-msgid "%-d/%m"
-msgstr ""
-
-msgid "%-d/%m "
-msgstr ""
-
-msgid "%-d/%m/%Y"
-msgstr ""
-
-msgid "%-d=%b_"
-msgstr ""
-
-msgid "%-m/%-d"
-msgstr ""
-
-msgid "%-m/%-d "
-msgstr ""
-
-msgid "%-m/%-d/%Y"
-msgstr ""
-
-msgid "%-m/%d"
-msgstr ""
-
-msgid "%-m/%d "
-msgstr ""
-
-msgid "%-m/%d/%Y"
-msgstr ""
-
 #, python-format
 msgid "%.0f GB"
 msgstr ""
@@ -257,473 +147,17 @@ msgstr ""
 msgid "%A"
 msgstr "A"
 
-#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
-#, fuzzy
-msgid "%A %-d %B"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %-d %B %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %-d-%B"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %-d-%B-%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %-d. %B"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %-d. %B %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %-d.%-m"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%A %-d.%-m.%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %-d.%m"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %-d.%m.%Y"
-msgstr "%A %e %B %Y"
-
-msgid "%A %-d/%-m"
-msgstr ""
-
-msgid "%A %-d/%-m/%Y"
-msgstr ""
-
-msgid "%A %-d/%m"
-msgstr ""
-
-#, fuzzy
-msgid "%A %-d/%m/%Y"
-msgstr "%A %e %B %Y"
-
-msgid "%A %-m/%-d"
-msgstr ""
-
-msgid "%A %-m/%-d/%Y"
-msgstr ""
-
-msgid "%A %-m/%d"
-msgstr ""
-
-#, fuzzy
-msgid "%A %-m/%d/%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %B %-d"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %B %-d %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %B %d"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %B %d %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %B-%-d"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %B-%-d-%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %B-%d"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %B-%d-%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %Y %B %-d"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %Y %B %d"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %Y-%B-%-d"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %Y-%B-%d"
-msgstr "%A %e %B %Y"
-
-msgid "%A %Y/%-m/%-d"
-msgstr ""
-
-msgid "%A %Y/%-m/%d"
-msgstr ""
-
-msgid "%A %Y/%m/%-d"
-msgstr ""
-
-msgid "%A %Y/%m/%d"
-msgstr ""
-
 msgid "%A %d %B"
-msgstr ""
-
-#, fuzzy
-msgid "%A %d %B %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %d-%B"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %d-%B-%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %d. %B"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %d. %B %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %d.%-m"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %d.%-m.%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %d.%m"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %d.%m.%Y"
-msgstr "%A %e %B %Y"
-
-msgid "%A %d/%-m"
-msgstr ""
-
-#, fuzzy
-msgid "%A %d/%-m/%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %d/%m"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %d/%m/%Y"
-msgstr "%A %e %B %Y"
-
-msgid "%A %m/%-d"
-msgstr ""
-
-#, fuzzy
-msgid "%A %m/%-d/%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %m/%d"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %m/%d/%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%B %-d %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%B %d %Y"
-msgstr "%A %e %B %Y"
-
-msgid "%B-%-d-%Y"
-msgstr ""
-
-msgid "%B-%d-%Y"
 msgstr ""
 
 msgid "%H:%M"
 msgstr "%H:%M"
 
-msgid "%I:%M"
-msgstr ""
-
-msgid "%I:%M%P"
-msgstr ""
-
-msgid "%I:%M%^p"
-msgstr ""
-
-msgid "%I:%M:%S"
-msgstr ""
-
-msgid "%I:%M:%S%P"
-msgstr ""
-
-msgid "%I:%M:%S%^p"
-msgstr ""
-
-#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
-msgid "%R"
-msgstr ""
-
-#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
-msgid "%T"
-msgstr ""
-
-#, fuzzy
-msgid "%Y %B %-d"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%Y %B %d"
-msgstr "%A %e %B %Y"
-
-msgid "%Y %b %-d"
-msgstr ""
-
-msgid "%Y %b %d"
-msgstr ""
-
-msgid "%Y-%B-%-d"
-msgstr ""
-
-msgid "%Y-%B-%d"
-msgstr ""
-
-msgid "%Y-%b-%-d"
-msgstr ""
-
-msgid "%Y-%b-%d"
-msgstr ""
-
 msgid "%Y-%m-%d"
-msgstr ""
-
-msgid "%Y/%-m/%-d"
-msgstr ""
-
-msgid "%Y/%-m/%d"
-msgstr ""
-
-msgid "%Y/%m/%-d"
-msgstr ""
-
-msgid "%Y/%m/%d"
 msgstr ""
 
 msgid "%a"
 msgstr ""
-
-#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
-msgid "%a %-d"
-msgstr ""
-
-#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
-#, fuzzy
-msgid "%a %-d %B %Y"
-msgstr "%A %e %B %Y"
-
-#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
-#, fuzzy
-msgid "%a %-d %b"
-msgstr "%A %e %B %Y"
-
-#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
-#, fuzzy
-msgid "%a %-d %b %Y"
-msgstr "%A %e %B %Y"
-
-msgid "%a %-d+%b_"
-msgstr ""
-
-#, fuzzy
-msgid "%a %-d-%B-%Y"
-msgstr "%A %e %B %Y"
-
-msgid "%a %-d-%b"
-msgstr ""
-
-#, fuzzy
-msgid "%a %-d-%b-%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %-d. %B %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %-d. %b"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %-d. %b %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %-d.%-m"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %-d.%-m.%Y"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %-d.%m"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %-d.%m.%Y"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %-d/%-m"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %-d/%-m/%Y"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %-d/%m"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %-d/%m/%Y"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %-m/%-d"
-msgstr "%a %e/%m"
-
-msgid "%a %-m/%-d/%Y"
-msgstr ""
-
-#, fuzzy
-msgid "%a %-m/%d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %-m/%d/%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %B %-d %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %B %d %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %B-%-d-%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %B-%d-%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %Y %B %-d"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %Y %B %d"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %Y %b %-d"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %Y %b %d"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %Y-%B-%-d"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %Y-%B-%d"
-msgstr "%A %e %B %Y"
-
-msgid "%a %Y-%b-%-d"
-msgstr ""
-
-msgid "%a %Y-%b-%d"
-msgstr ""
-
-#, fuzzy
-msgid "%a %Y/%-m/%-d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %Y/%-m/%d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %Y/%m/%-d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %Y/%m/%d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %b %-d"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %b %-d %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %b %d"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %b %d %Y"
-msgstr "%A %e %B %Y"
-
-msgid "%a %b-%-d"
-msgstr ""
-
-#, fuzzy
-msgid "%a %b-%-d-%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %b-%d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %b-%d-%Y"
-msgstr "%A %e %B %Y"
 
 #, fuzzy
 msgid "%a %d"
@@ -734,133 +168,8 @@ msgid "%a %d %B"
 msgstr "%A %e %B %Y"
 
 #, fuzzy
-msgid "%a %d %B %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
 msgid "%a %d %b"
 msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %d %b %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %d-%B-%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %d-%b"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d-%b-%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %d. %B %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %d. %b"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %d. %b %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %d.%-m"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d.%-m.%Y"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d.%m"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d.%m.%Y"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d/%-m"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d/%-m/%Y"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d/%m"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d/%m/%Y"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %m/%-d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %m/%-d/%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %m/%d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %m/%d/%Y"
-msgstr "%A %e %B %Y"
-
-msgid "%b %-d"
-msgstr ""
-
-msgid "%b %-d %Y"
-msgstr ""
-
-msgid "%b %d"
-msgstr ""
-
-msgid "%b %d %Y"
-msgstr ""
-
-msgid "%b+%-d "
-msgstr ""
-
-msgid "%b+%d "
-msgstr ""
-
-msgid "%b-%-d"
-msgstr ""
-
-msgid "%b-%-d-%Y"
-msgstr ""
-
-msgid "%b-%d"
-msgstr ""
-
-msgid "%b-%d-%Y"
-msgstr ""
-
-msgid "%b=%-d "
-msgstr ""
-
-msgid "%b=%d "
-msgstr ""
-
-msgid "%d %B %Y"
-msgstr ""
-
-msgid "%d %b"
-msgstr ""
-
-msgid "%d %b %Y"
-msgstr ""
 
 #, python-format
 msgid "%d + %d + %d Minute"
@@ -916,23 +225,6 @@ msgstr ""
 msgid "%d MHz"
 msgstr ""
 
-#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
-#. _("%A %e %B %Y")
-#. TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
-#. _("%R")
-#. TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
-#. _("%R")
-#. TRANSLATORS: short date representation daynum short monthname in strftime() format! See 'man strftime'
-#. _("%e %b")
-#. TRANSLATORS: short date representation daynum short monthname in strftime() format! See 'man strftime'
-#. _("%a %e %b")
-#. TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
-#. _("%R")
-#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
-#. _("%a %e %b %R")
-#. TRANSLATORS: full date representations short dayname daynum monthname long year in strftime() format! See 'man strftime'
-#. _("%a %e %B %Y")
-#.
 #, python-format
 msgid "%d Min"
 msgid_plural "%d Mins"
@@ -1163,36 +455,6 @@ msgstr ""
 msgid "%d times"
 msgstr "Tempo final"
 
-msgid "%d+%b_"
-msgstr ""
-
-msgid "%d-%B-%Y"
-msgstr ""
-
-msgid "%d-%b"
-msgstr ""
-
-msgid "%d-%b-%Y"
-msgstr ""
-
-#, fuzzy
-msgid "%d. %B %Y"
-msgstr "%d.%B %Y"
-
-msgid "%d. %b"
-msgstr ""
-
-#, fuzzy
-msgid "%d. %b %Y"
-msgstr "%A %e %B %Y"
-
-msgid "%d.%-m"
-msgstr ""
-
-#, fuzzy
-msgid "%d.%-m.%Y"
-msgstr "%d.%B %Y"
-
 #, fuzzy, python-format
 msgid "%d.%03d GB"
 msgstr "%2d:%02d"
@@ -1201,55 +463,8 @@ msgid "%d.%B %Y"
 msgstr ""
 
 #, fuzzy
-msgid "%d.%m"
-msgstr "%d.%B %Y"
-
-#, fuzzy
-msgid "%d.%m.%Y"
-msgstr "%d.%B %Y"
-
-msgid "%d/%-m"
-msgstr ""
-
-msgid "%d/%-m "
-msgstr ""
-
-msgid "%d/%-m/%Y"
-msgstr ""
-
-msgid "%d/%m"
-msgstr ""
-
-msgid "%d/%m "
-msgstr ""
-
-msgid "%d/%m/%Y"
-msgstr ""
-
-msgid "%d=%b_"
-msgstr ""
-
-#, fuzzy
 msgid "%e/%m, %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
-
-msgid "%m/%-d"
-msgstr ""
-
-msgid "%m/%-d "
-msgstr ""
-
-msgid "%m/%-d/%Y"
-msgstr ""
-
-msgid "%m/%d"
-msgstr ""
-
-msgid "%m/%d "
-msgstr ""
-
-msgid "%m/%d/%Y"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "%s %02d.%02d."
@@ -1934,6 +1149,9 @@ msgstr ""
 msgid "AI Translation subscription code"
 msgstr ""
 
+msgid "AM/PM display"
+msgstr ""
+
 msgid "ARM"
 msgstr ""
 
@@ -1954,6 +1172,12 @@ msgid "AV Receiver, Soundbar And Remote"
 msgstr ""
 
 msgid "AV Setup"
+msgstr ""
+
+msgid "Abbreviated day name"
+msgstr ""
+
+msgid "Abbreviated month name"
 msgstr ""
 
 msgid "Abkhazian"
@@ -4623,19 +3847,7 @@ msgstr ""
 msgid "Choose the amount of additional slots."
 msgstr ""
 
-msgid "Choose the display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr ""
-
-msgid "Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds. ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr ""
-
 msgid "Choose the fallback font."
-msgstr ""
-
-msgid "Choose the front panel display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr ""
-
-msgid "Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes. ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
 msgstr ""
 
 msgid "Choose the location for crash and debug logs."
@@ -4894,6 +4106,9 @@ msgstr ""
 msgid "Colombia"
 msgstr "Formato da cor"
 
+msgid "Colon ':'"
+msgstr ""
+
 #, fuzzy
 msgid "Color"
 msgstr "Formato da cor"
@@ -4923,6 +4138,12 @@ msgstr ""
 #, fuzzy
 msgid "Comedy"
 msgstr "comédia"
+
+msgid "Comma ','"
+msgstr ""
+
+msgid "Comma and space ', '"
+msgstr ""
 
 #, python-format
 msgid "Command '%s' is unknown"
@@ -6291,16 +5512,25 @@ msgstr "Data"
 msgid "Date / Time"
 msgstr ""
 
-msgid "Date And Time"
+msgid "Date Format"
 msgstr ""
 
 msgid "Date Time Input Actions"
+msgstr ""
+
+msgid "Date and Time Settings"
+msgstr ""
+
+msgid "Date and Time Setup Actions"
 msgstr ""
 
 msgid "Date ascending"
 msgstr ""
 
 msgid "Date descending"
+msgstr ""
+
+msgid "Date display style"
 msgstr ""
 
 msgid "Date style"
@@ -6313,146 +5543,22 @@ msgstr "Informe a data/hora"
 msgid "Date: %s   Author: %s"
 msgstr ""
 
-msgid "Day D Mon"
+msgid "Day Date Month Year"
 msgstr ""
 
-msgid "Day D-Mon"
+msgid "Day Month Date Year"
 msgstr ""
 
-msgid "Day D/M"
+msgid "Day Year Month Date"
 msgstr ""
 
-msgid "Day D/MM"
-msgstr ""
-
-msgid "Day DD Mon"
-msgstr ""
-
-msgid "Day DD-Mon"
-msgstr ""
-
-#, fuzzy
-msgid "Day DD/M"
-msgstr "Reproduzir DVD"
-
-msgid "Day DD/MM"
-msgstr ""
-
-msgid "Day M/D"
-msgstr ""
-
-msgid "Day M/DD"
-msgstr ""
-
-msgid "Day MM/D"
-msgstr ""
-
-msgid "Day MM/DD"
-msgstr ""
-
-msgid "Day Mon D"
-msgstr ""
-
-msgid "Day Mon DD"
-msgstr ""
-
-msgid "Day Mon-D"
-msgstr ""
-
-msgid "Day Mon-DD"
+msgid "Day display style"
 msgstr ""
 
 msgid "Day of week"
 msgstr ""
 
-msgid "Dayname D Month Year"
-msgstr ""
-
-msgid "Dayname D-Month-Year"
-msgstr ""
-
-msgid "Dayname D. Month Year"
-msgstr ""
-
-msgid "Dayname D.M.Year"
-msgstr ""
-
-msgid "Dayname D.MM.Year"
-msgstr ""
-
-msgid "Dayname D/M/Year"
-msgstr ""
-
-msgid "Dayname D/MM/Year"
-msgstr ""
-
-msgid "Dayname DD Month Year"
-msgstr ""
-
-msgid "Dayname DD-Month-Year"
-msgstr ""
-
-msgid "Dayname DD. Month Year"
-msgstr ""
-
-msgid "Dayname DD.M.Year"
-msgstr ""
-
-msgid "Dayname DD.MM.Year"
-msgstr ""
-
-msgid "Dayname DD/M/Year"
-msgstr ""
-
-msgid "Dayname DD/MM/Year"
-msgstr ""
-
-msgid "Dayname M/D/Year"
-msgstr ""
-
-msgid "Dayname M/DD/Year"
-msgstr ""
-
-msgid "Dayname MM/D/Year"
-msgstr ""
-
-msgid "Dayname MM/DD/Year"
-msgstr ""
-
-msgid "Dayname Month D Year"
-msgstr ""
-
-msgid "Dayname Month DD Year"
-msgstr ""
-
-msgid "Dayname Month-D-Year"
-msgstr ""
-
-msgid "Dayname Month-DD-Year"
-msgstr ""
-
-msgid "Dayname Year Month D"
-msgstr ""
-
-msgid "Dayname Year Month DD"
-msgstr ""
-
-msgid "Dayname Year-Month-D"
-msgstr ""
-
-msgid "Dayname Year-Month-DD"
-msgstr ""
-
-msgid "Dayname Year/M/D"
-msgstr ""
-
-msgid "Dayname Year/M/DD"
-msgstr ""
-
-msgid "Dayname Year/MM/D"
-msgstr ""
-
-msgid "Dayname Year/MM/DD"
+msgid "Day separator"
 msgstr ""
 
 msgid "Deactivate"
@@ -7242,6 +6348,9 @@ msgid "Display more information about this file"
 msgstr ""
 
 msgid "Display oscam information."
+msgstr ""
+
+msgid "Display seconds"
 msgstr ""
 
 msgid "Display selection list as a selection menu"
@@ -9557,6 +8666,9 @@ msgstr "Finlandês"
 msgid "First playable time shift file!"
 msgstr ""
 
+msgid "First separator"
+msgstr ""
+
 #, fuzzy
 msgid "Fishing"
 msgstr "Flash"
@@ -9745,6 +8857,9 @@ msgstr ""
 msgid "Forward Error Correction (FEC)"
 msgstr ""
 
+msgid "Forward slash '/'"
+msgstr ""
+
 msgid "Forward volume keys"
 msgstr "Avançar teclas de volume"
 
@@ -9846,7 +8961,13 @@ msgstr ""
 msgid "Full Stretch"
 msgstr ""
 
+msgid "Full day name"
+msgstr ""
+
 msgid "Full factory reset"
+msgstr ""
+
+msgid "Full month name"
 msgstr ""
 
 msgid "Full path of the existing swap file"
@@ -10217,12 +9338,6 @@ msgstr ""
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr ""
 
-msgid "H:mm"
-msgstr ""
-
-msgid "H:mm:ss"
-msgstr ""
-
 msgid "HARD DISK: "
 msgstr ""
 
@@ -10272,12 +9387,6 @@ msgid "HELP"
 msgstr ""
 
 msgid "HELP provides brief information for buttons in your current context."
-msgstr ""
-
-msgid "HH:mm"
-msgstr ""
-
-msgid "HH:mm:ss"
 msgstr ""
 
 msgid "HI-cleanup for external subtitles"
@@ -10420,10 +9529,6 @@ msgstr ""
 
 msgid "HiSilicon specific information not found."
 msgstr ""
-
-#, fuzzy
-msgid "Hidden / Blank"
-msgstr "Rede oculta"
 
 msgid "Hidden network"
 msgstr "Rede oculta"
@@ -10618,6 +9723,9 @@ msgstr ""
 msgid "Hotkey Settings"
 msgstr ""
 
+msgid "Hour display style"
+msgstr ""
+
 msgid "Hourly"
 msgstr ""
 
@@ -10644,6 +9752,9 @@ msgid "Hungary"
 msgstr "Húngaro"
 
 msgid "Hybrid Tuner"
+msgstr ""
+
+msgid "Hyphen '-'"
 msgstr ""
 
 msgid "Hz"
@@ -12653,6 +11764,9 @@ msgstr ""
 msgid "Merging time shift files"
 msgstr ""
 
+msgid "Meridiem (AM/PM) display"
+msgstr ""
+
 msgid "Merlin EPG Center"
 msgstr ""
 
@@ -12796,6 +11910,9 @@ msgid "Mono"
 msgstr ""
 
 msgid "Montenegro"
+msgstr ""
+
+msgid "Month display style"
 msgstr ""
 
 #, fuzzy
@@ -13758,6 +12875,9 @@ msgstr ""
 msgid "No (supported) DVDROM found!"
 msgstr "Nenhum DVD suportado encontrado!"
 
+msgid "No AM/PM display"
+msgstr ""
+
 #, fuzzy
 msgid "No ECM PIDs available"
 msgstr "Descrição não disponível."
@@ -13830,6 +12950,9 @@ msgid ""
 msgstr ""
 "Sem dados no transponder!\n"
 "(Timeout reading PAT)"
+
+msgid "No day name"
+msgstr ""
 
 msgid "No delay"
 msgstr "Sem atraso"
@@ -14383,7 +13506,28 @@ msgstr ""
 msgid "Once"
 msgstr "Uma vez"
 
+msgid "One digit"
+msgstr ""
+
+msgid "One digit (12 hour time)"
+msgstr ""
+
+msgid "One digit (24 hour time)"
+msgstr ""
+
+msgid "One digit, space padded"
+msgstr ""
+
+msgid "One digit, space padded (12 hour time)"
+msgstr ""
+
+msgid "One digit, space padded (24 hour time)"
+msgstr ""
+
 msgid "One line"
+msgstr ""
+
+msgid "One space ' '"
 msgstr ""
 
 msgid "Online manual"
@@ -15082,6 +14226,12 @@ msgstr ""
 
 msgid "Performing arts"
 msgstr "Artes Cênicas"
+
+msgid "Period '.'"
+msgstr ""
+
+msgid "Period and space '. '"
+msgstr ""
 
 msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Deseja remover permanentemente todas os itens da lixeira?"
@@ -18095,6 +17245,9 @@ msgstr "Buscando a oeste..."
 msgid "Second cable of motorized LNB"
 msgstr ""
 
+msgid "Second separator"
+msgstr ""
+
 msgid "Secondary DNS (IPv4)"
 msgstr ""
 
@@ -18841,6 +17994,9 @@ msgstr ""
 msgid "Select the AI-Powered Translation target language."
 msgstr ""
 
+msgid "Select the AM/PM indication for a 12 hour clock. This is ignored for a 24 hour clock."
+msgstr ""
+
 msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
 msgstr ""
 
@@ -19059,6 +18215,18 @@ msgstr ""
 msgid "Select the display sequence of previously visited services."
 msgstr ""
 
+msgid "Select the display style for dates. The screen display will be based on your choices but can be influenced by the skin."
+msgstr ""
+
+msgid "Select the display style for day of the week. The screen display will be based on your choice but can be influenced by the skin."
+msgstr ""
+
+msgid "Select the display style for hours/times."
+msgstr ""
+
+msgid "Select the display style for months. The screen display will be based on your choices but can be influenced by the skin."
+msgstr ""
+
 msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr "Configurar o intervalo em minutos para a proteção de tela."
 
@@ -19241,6 +18409,21 @@ msgstr ""
 msgid "Select the security protocol that will be used to access the selected wireless network."
 msgstr ""
 
+msgid "Select the separator between the date and the time elements."
+msgstr ""
+
+msgid "Select the separator between the day and the date elements."
+msgstr ""
+
+msgid "Select the separator between the first two date elements."
+msgstr ""
+
+msgid "Select the separator between the second two date elements."
+msgstr ""
+
+msgid "Select the separator between the time elements."
+msgstr ""
+
 msgid "Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares)."
 msgstr ""
 
@@ -19276,6 +18459,12 @@ msgid "Select the start time after which this timer can be activated. Before thi
 msgstr ""
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
+msgstr ""
+
+msgid "Select the style for displaying dates."
+msgstr ""
+
+msgid "Select the suffix character to be appended to the date string. This is used for some locales."
 msgstr ""
 
 msgid "Select the tags that should be used for this recording."
@@ -19518,6 +18707,9 @@ msgid "Selecting satellites 2 (USALS)"
 msgstr ""
 
 msgid "Selecting this option allows you to configure a group of satellites in one block."
+msgstr ""
+
+msgid "Semicolon ';'"
 msgstr ""
 
 msgid "Send DiSEqC"
@@ -21640,6 +20832,12 @@ msgstr ""
 msgid "South Sudan"
 msgstr "Sul"
 
+msgid "Space ' '"
+msgstr ""
+
+msgid "Space Hyphen Space ' - '"
+msgstr ""
+
 msgid "Space to reserve for recordings (GB)"
 msgstr "Espaço reservado no disco para gravações (GB) "
 
@@ -22215,6 +21413,9 @@ msgid "Succeeded:"
 msgstr ""
 
 msgid "Sudan"
+msgstr ""
+
+msgid "Suffix character"
 msgstr ""
 
 msgid "Suitable for ages 12+"
@@ -23507,11 +22708,7 @@ msgstr ""
 msgid "Time"
 msgstr "Hora"
 
-#, fuzzy
-msgid "Time Settings"
-msgstr "Editar definições"
-
-msgid "Time Setup Actions"
+msgid "Time Format"
 msgstr ""
 
 #, fuzzy
@@ -23549,6 +22746,9 @@ msgstr ""
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr ""
 
+msgid "Time separator"
+msgstr ""
+
 msgid "Time shift buffer location"
 msgstr "Diretório para o timeshift"
 
@@ -23581,10 +22781,6 @@ msgstr ""
 
 msgid "Time shift will get saved at end of event."
 msgstr ""
-
-#, fuzzy
-msgid "Time style"
-msgstr "Escala de tempo"
 
 msgid "Time taken for the backup:"
 msgstr ""
@@ -24196,9 +23392,21 @@ msgstr ""
 msgid "Twin Tuner"
 msgstr ""
 
+msgid "Two digits"
+msgstr ""
+
+msgid "Two digits (12 hour time)"
+msgstr ""
+
+msgid "Two digits (24 hour time)"
+msgstr ""
+
 #, fuzzy
 msgid "Two lines"
 msgstr "Mostrar Infoline"
+
+msgid "Two spaces '  '"
+msgstr ""
 
 msgid "Two tuners share one SAT input and one C/T input. Reception types switch automatically. Use compatible SAT settings and separate Unicable User Bands. Cable and terrestrial reception cannot run together."
 msgstr ""
@@ -25739,6 +24947,9 @@ msgstr ""
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr ""
 
+msgid "When enabled, seconds will be shown in time displays. The seconds display will be based on your selection but will be influenced by code and space requirements and the skin."
+msgstr ""
+
 msgid "When enabled, services without EPG data will be hidden."
 msgstr ""
 
@@ -26467,6 +25678,9 @@ msgstr ""
 msgid "am"
 msgstr ""
 
+msgid "am/pm display"
+msgstr ""
+
 #, python-format
 msgid "audio track (%s) format"
 msgstr ""
@@ -26646,24 +25860,6 @@ msgstr "Verde"
 msgid "guest"
 msgstr ""
 
-msgid "h:mm"
-msgstr ""
-
-msgid "h:mm:ss"
-msgstr ""
-
-msgid "h:mm:ssAM/PM"
-msgstr ""
-
-msgid "h:mm:ssam/pm"
-msgstr ""
-
-msgid "h:mmAM/PM"
-msgstr ""
-
-msgid "h:mmam/pm"
-msgstr ""
-
 #, fuzzy
 msgid "handled"
 msgstr "UnhandledKey"
@@ -26685,24 +25881,6 @@ msgstr "Altura"
 
 msgid "help..."
 msgstr "Ajuda"
-
-msgid "hh:mm"
-msgstr ""
-
-msgid "hh:mm:ss"
-msgstr ""
-
-msgid "hh:mm:ssAM/PM"
-msgstr ""
-
-msgid "hh:mm:ssam/pm"
-msgstr ""
-
-msgid "hh:mmAM/PM"
-msgstr ""
-
-msgid "hh:mmam/pm"
-msgstr ""
 
 msgid "hops:"
 msgstr ""
@@ -27107,6 +26285,470 @@ msgstr "Sim (manter os feeds)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "%-H:%M:%S"
+#~ msgstr "%H:%M"
+
+#, fuzzy
+#~ msgid "%-d %B %Y"
+#~ msgstr "%d.%B %Y"
+
+#, fuzzy
+#~ msgid "%-d. %B %Y"
+#~ msgstr "%d.%B %Y"
+
+#, fuzzy
+#~ msgid "%-d. %b %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %-d %B"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %-d %B %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %-d-%B"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %-d-%B-%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %-d. %B"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %-d. %B %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %-d.%-m"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%A %-d.%-m.%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %-d.%m"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %-d.%m.%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %-d/%m/%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %-m/%d/%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %B %-d"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %B %-d %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %B %d"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %B %d %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %B-%-d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %B-%-d-%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %B-%d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %B-%d-%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %Y %B %-d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %Y %B %d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %Y-%B-%-d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %Y-%B-%d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %d %B %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %d-%B"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %d-%B-%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %d. %B"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %d. %B %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %d.%-m"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %d.%-m.%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %d.%m"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %d.%m.%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %d/%-m/%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %d/%m"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %d/%m/%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %m/%-d/%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %m/%d"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %m/%d/%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%B %-d %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%B %d %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%Y %B %-d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%Y %B %d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %-d %B %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %-d %b"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %-d %b %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %-d-%B-%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %-d-%b-%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %-d. %B %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %-d. %b"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %-d. %b %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %-d.%-m"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %-d.%-m.%Y"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %-d.%m"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %-d.%m.%Y"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %-d/%-m"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %-d/%-m/%Y"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %-d/%m"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %-d/%m/%Y"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %-m/%-d"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %-m/%d"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %-m/%d/%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %B %-d %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %B %d %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %B-%-d-%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %B-%d-%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %Y %B %-d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %Y %B %d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %Y %b %-d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %Y %b %d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %Y-%B-%-d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %Y-%B-%d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %Y/%-m/%-d"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %Y/%-m/%d"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %Y/%m/%-d"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %Y/%m/%d"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %b %-d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %b %-d %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %b %d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %b %d %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %b-%-d-%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %b-%d"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %b-%d-%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %d %B %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %d %b %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %d-%B-%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %d-%b"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %d-%b-%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %d. %B %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %d. %b"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %d. %b %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %d.%-m"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %d.%-m.%Y"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %d.%m"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %d.%m.%Y"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %d/%-m"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %d/%-m/%Y"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %d/%m"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %d/%m/%Y"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %m/%-d"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %m/%-d/%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %m/%d"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %m/%d/%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%d. %B %Y"
+#~ msgstr "%d.%B %Y"
+
+#, fuzzy
+#~ msgid "%d. %b %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%d.%-m.%Y"
+#~ msgstr "%d.%B %Y"
+
+#, fuzzy
+#~ msgid "%d.%m"
+#~ msgstr "%d.%B %Y"
+
+#, fuzzy
+#~ msgid "%d.%m.%Y"
+#~ msgstr "%d.%B %Y"
+
+#, fuzzy
+#~ msgid "Day DD/M"
+#~ msgstr "Reproduzir DVD"
+
+#, fuzzy
+#~ msgid "Hidden / Blank"
+#~ msgstr "Rede oculta"
+
+#, fuzzy
+#~ msgid "Time Settings"
+#~ msgstr "Editar definições"
+
+#, fuzzy
+#~ msgid "Time style"
+#~ msgstr "Escala de tempo"
 
 #, fuzzy
 #~ msgid "Add a RecordTimer for current event"
