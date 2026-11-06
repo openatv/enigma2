@@ -34,7 +34,8 @@ class Element:
 			return False
 		if type(self).__name__ == "ClockToText" and any(x in getattr(self, "converter_arguments", "") for x in ("WithSeconds", "Timestamp", "Format", "AsLength", "Mixed")):
 			return False
-		return all(x.isAnimated for x in self.sources)
+		# Legacy skin components such as Label can act as sources without an animation policy.
+		return all(getattr(x, "isAnimated", False) for x in self.sources)
 
 	def setIsAnimated(self, enabled):
 		self.animationEnabled = bool(enabled)
