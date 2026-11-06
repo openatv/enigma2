@@ -47,6 +47,16 @@ constexpr uint64_t LOAS_PROBE_OVERRUNS = 3;
 constexpr uint16_t DAB_LIVE_EPG_EVENT_ID = 0xdab0;
 constexpr int DAB_LIVE_EPG_WINDOW = 4 * 60 * 60;
 
+void releaseDVBParent(ePtr<iPlayableService> &service, ePtr<eConnection> &connection, bool stop)
+{
+	// Releasing the tuner can synchronously query frontendInfo() on this DAB service.
+	ePtr<iPlayableService> parent = service;
+	service = nullptr;
+	connection = nullptr;
+	if (stop && parent)
+		parent->stop();
+}
+
 enum class DABAudioMode
 {
 	Automatic,
@@ -1753,8 +1763,7 @@ bool eServiceDABRecord::prepareParent()
 	m_event(this, evTuneStart);
 	if (m_parent->start())
 	{
-		m_parent_event_connection = nullptr;
-		m_parent = nullptr;
+		releaseDVBParent(m_parent, m_parent_event_connection, false);
 		return false;
 	}
 	return true;
@@ -1902,10 +1911,7 @@ RESULT eServiceDABRecord::stop()
 	m_state = stateIdle;
 	stopRTLSDR();
 	stopTap();
-	if (m_parent)
-		m_parent->stop();
-	m_parent_event_connection = nullptr;
-	m_parent = nullptr;
+	releaseDVBParent(m_parent, m_parent_event_connection, true);
 	if (m_file_fd >= 0)
 	{
 		::close(m_file_fd);
@@ -2368,8 +2374,7 @@ RESULT eServiceDAB::start()
 	if (result)
 	{
 		m_running = false;
-		m_parent_event_connection = nullptr;
-		m_parent = nullptr;
+		releaseDVBParent(m_parent, m_parent_event_connection, false);
 		m_event(this, evTuneFailed);
 	}
 	return result;
@@ -2382,10 +2387,7 @@ RESULT eServiceDAB::stop()
 	m_running = false;
 	stopRTLSDR();
 	stopTap();
-	if (m_parent)
-		m_parent->stop();
-	m_parent_event_connection = nullptr;
-	m_parent = nullptr;
+	releaseDVBParent(m_parent, m_parent_event_connection, true);
 	m_event(this, evStopped);
 	return 0;
 }
