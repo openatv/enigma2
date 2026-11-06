@@ -32,7 +32,7 @@ public:
 	~gShader();
 
 	bool init();
-	void release();
+	void release(bool contextCurrent = true);
 	void bind();
 
 	void setResolution(float width, float height);

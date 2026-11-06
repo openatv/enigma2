@@ -1053,6 +1053,10 @@ void gTextureManager::resetContextGeneration()
 {
 	std::lock_guard<std::mutex> lock(m_deletion_mutex);
 	// Also cover a lost context where GL cleanup could no longer run.
+	m_offscreen_advanced_shader.release(false);
+	m_offscreen_texture_shader.release(false);
+	m_offscreen_advanced_shader_initialized = false;
+	m_offscreen_texture_shader_initialized = false;
 	for (const auto& entry : m_nativeTargets) {
 		if (entry.second.mapping)
 			munmap(entry.second.mapping, entry.second.length);

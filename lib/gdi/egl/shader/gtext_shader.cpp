@@ -81,21 +81,16 @@ gTextShader::gTextShader() : m_program_id(0), m_vbo(0), m_vbo_capacity_bytes(0)
 {
 }
 
-gTextShader::~gTextShader()
-{
-	release();
-}
+gTextShader::~gTextShader() = default;
 
-void gTextShader::release()
+void gTextShader::release(bool contextCurrent)
 {
-	if (m_vbo) {
+	if (contextCurrent && m_vbo)
 		glDeleteBuffers(1, &m_vbo);
-		m_vbo = 0;
-	}
-	if (m_program_id) {
+	if (contextCurrent && m_program_id)
 		glDeleteProgram(m_program_id);
-		m_program_id = 0;
-	}
+	m_vbo = 0;
+	m_program_id = 0;
 	m_vbo_capacity_bytes = 0;
 }
 

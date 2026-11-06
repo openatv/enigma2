@@ -4563,6 +4563,16 @@ bool gEGLDC::getGraphicsPreservedSwap() const
 	return !e2eglForceDestroyedSwap() && m_preserved_swap;
 }
 
+#ifdef HAVE_VUPLUS_MIPSEL_EGL
+void gEGLDC::setNativeWindowVisible(bool visible)
+{
+	if (runOnRenderThread([this, visible]() { setNativeWindowVisible(visible); }))
+		return;
+	if (auto *provider = dynamic_cast<VuplusMipsWindowProvider*>(m_window_provider))
+		provider->setVisible(visible);
+}
+#endif
+
 bool gEGLDC::suspendGraphics()
 {
 	if (!islocked())
@@ -5020,8 +5030,17 @@ void gEGLDC::cleanupEGL() {
 
 	std::lock_guard<std::recursive_mutex> lock(m_egl_mutex);
 
+	// VUGLES can no longer answer context queries after its platform shuts down.
+	// Release every shader here, including partially initialized ones.
+	const bool contextCurrent = m_egl_display != EGL_NO_DISPLAY && m_egl_context != EGL_NO_CONTEXT &&
+		m_egl_surface != EGL_NO_SURFACE && eglMakeCurrent(m_egl_display, m_egl_surface, m_egl_surface, m_egl_context);
+	m_basic_shader.release(contextCurrent);
+	m_advanced_shader.release(contextCurrent);
+	m_texture_shader.release(contextCurrent);
+	m_text_shader.release(contextCurrent);
+	m_font_atlas.release();
 	if (m_egl_display != EGL_NO_DISPLAY) {
-		if (makeCurrent()) {
+		if (contextCurrent) {
 			m_texture_manager.releaseGLResources();
 			m_texture_manager.releaseNativeTargets();
 			deleteSceneFramebuffer();
@@ -5029,13 +5048,7 @@ void gEGLDC::cleanupEGL() {
 #ifdef DREAMNEXTGEN
 			m_fb_output.destroy();
 #endif
-#ifdef HAVE_DREAMBCM_EGL
-			m_basic_shader.release();
-			m_advanced_shader.release();
-			m_texture_shader.release();
-			m_text_shader.release();
-#endif
-			unbindContext();
+			eglMakeCurrent(m_egl_display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
 		}
 #ifdef DREAMNEXTGEN
 		// Without a current context only the EGL images and the dma-buf are left to release.
@@ -5075,9 +5088,7 @@ void gEGLDC::cleanupEGL() {
 	m_frame_texture_surface = false;
 	m_frame_texture_scene_scaled = false;
 	m_graphics_suspended = false;
-#ifdef HAVE_DREAMBCM_EGL
 	m_texture_manager.setDisplay(EGL_NO_DISPLAY);
-#endif
 	gles::version = 0;
 }
 

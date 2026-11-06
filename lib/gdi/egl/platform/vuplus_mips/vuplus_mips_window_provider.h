@@ -26,6 +26,7 @@ public:
 	virtual ~VuplusMipsWindowProvider();
 
 	bool init(int width, int height) override;
+	void setVisible(bool visible);
 	EGLNativeDisplayType getNativeDisplay() override;
 	EGLNativeWindowType getNativeWindow() override;
 	void cleanup() override;

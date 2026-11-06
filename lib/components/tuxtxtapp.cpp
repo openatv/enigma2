@@ -70,6 +70,9 @@ void eTuxtxtApp::recvEvent(const int &evt)
 			fb->unlock();
 		else
 			eDebug("[eTuxtxtApp] framebuffer disappeared while teletext was running");
+		ePtr<gMainDC> mainDC;
+		if (!gMainDC::getInstance(mainDC))
+			mainDC->setNativeWindowVisible(true);
 	}
 	else if (graphicsAccessMode == graphicsAccessMainDC)
 	{
@@ -92,6 +95,10 @@ int eTuxtxtApp::startUi()
 	{
 		if (fb->lock() >= 0)
 		{
+			// TuxTxt draws to fb0. Some compositors keep the last GLES frame above it.
+			ePtr<gMainDC> mainDC;
+			if (!gMainDC::getInstance(mainDC))
+				mainDC->setNativeWindowVisible(false);
 			graphicsAccessMode = graphicsAccessFramebuffer;
 			graphicsReady = true;
 		}

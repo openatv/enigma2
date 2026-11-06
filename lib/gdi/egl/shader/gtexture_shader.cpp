@@ -1,7 +1,6 @@
 #include <lib/gdi/egl/shader/gtexture_shader.h>
 #include <lib/gdi/egl/gles_version.h>
 #include <lib/base/eerror.h>
-#include <EGL/egl.h>
 
 // ---------------------------------------------------------------------------
 // GLES 3.0 shader sources
@@ -184,26 +183,16 @@ gTextureShader::gTextureShader() : m_program_id(0), m_vbo(0)
 {
 }
 
-gTextureShader::~gTextureShader()
-{
-    release();
-}
+gTextureShader::~gTextureShader() = default;
 
-void gTextureShader::release()
+void gTextureShader::release(bool contextCurrent)
 {
-    if (eglGetCurrentContext() == EGL_NO_CONTEXT) {
-        m_vbo = 0;
-        m_program_id = 0;
-        return;
-    }
-    if (m_vbo) {
+    if (contextCurrent && m_vbo)
         glDeleteBuffers(1, &m_vbo);
-        m_vbo = 0;
-    }
-    if (m_program_id) {
+    if (contextCurrent && m_program_id)
         glDeleteProgram(m_program_id);
-        m_program_id = 0;
-    }
+    m_vbo = 0;
+    m_program_id = 0;
 }
 
 GLuint gTextureShader::compileShader(GLenum type, const char *source)

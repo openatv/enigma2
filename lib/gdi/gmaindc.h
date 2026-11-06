@@ -40,6 +40,7 @@ public:
 	virtual bool hasOSDPosition() const { return false; }
 	virtual bool setOSDPosition(int left, int top, int width, int height) { return false; }
 #ifndef SWIG
+	virtual void setNativeWindowVisible(bool) {}
 	static int getInstance(ePtr<gMainDC> &ptr) { if (!m_instance) return -1; ptr = m_instance; return 0; }
 #endif
 };

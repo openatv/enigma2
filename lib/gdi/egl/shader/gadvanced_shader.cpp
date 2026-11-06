@@ -1,7 +1,6 @@
 #include <lib/base/eerror.h>
 #include <lib/gdi/egl/gles_version.h>
 #include <lib/gdi/egl/shader/gadvanced_shader.h>
-#include <EGL/egl.h>
 #include <algorithm>
 
 // ---------------------------------------------------------------------------
@@ -321,24 +320,15 @@ static const char* fragment_shader_es2 = R"(#version 100
 
 gAdvancedShader::gAdvancedShader() : m_program_id(0), m_vbo(0) {}
 
-gAdvancedShader::~gAdvancedShader() {
-	release();
-}
+gAdvancedShader::~gAdvancedShader() = default;
 
-void gAdvancedShader::release() {
-	if (eglGetCurrentContext() == EGL_NO_CONTEXT) {
-		m_vbo = 0;
-		m_program_id = 0;
-		return;
-	}
-	if (m_vbo) {
+void gAdvancedShader::release(bool contextCurrent) {
+	if (contextCurrent && m_vbo)
 		glDeleteBuffers(1, &m_vbo);
-		m_vbo = 0;
-	}
-	if (m_program_id) {
+	if (contextCurrent && m_program_id)
 		glDeleteProgram(m_program_id);
-		m_program_id = 0;
-	}
+	m_vbo = 0;
+	m_program_id = 0;
 }
 
 static int channelDistance(unsigned char a, unsigned char b) {

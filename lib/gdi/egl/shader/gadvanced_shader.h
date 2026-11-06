@@ -46,7 +46,7 @@ public:
 	~gAdvancedShader();
 
 	bool init();
-	void release();
+	void release(bool contextCurrent = true);
 	void bind();
 
 	bool isInitialized() const { return m_program_id != 0; }

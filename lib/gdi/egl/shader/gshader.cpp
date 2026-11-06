@@ -89,23 +89,18 @@ static const char* colored_fragment_shader_es2 = R"(#version 100
 
 gShader::gShader() : m_program_id(0), m_colored_program_id(0), m_vbo(0), m_vbo_capacity_bytes(0) {}
 
-gShader::~gShader() {
-	release();
-}
+gShader::~gShader() = default;
 
-void gShader::release() {
-	if (m_vbo) {
+void gShader::release(bool contextCurrent) {
+	if (contextCurrent && m_vbo)
 		glDeleteBuffers(1, &m_vbo);
-		m_vbo = 0;
-	}
-	if (m_program_id) {
+	if (contextCurrent && m_program_id)
 		glDeleteProgram(m_program_id);
-		m_program_id = 0;
-	}
-	if (m_colored_program_id) {
+	if (contextCurrent && m_colored_program_id)
 		glDeleteProgram(m_colored_program_id);
-		m_colored_program_id = 0;
-	}
+	m_vbo = 0;
+	m_program_id = 0;
+	m_colored_program_id = 0;
 	m_vbo_capacity_bytes = 0;
 }
 

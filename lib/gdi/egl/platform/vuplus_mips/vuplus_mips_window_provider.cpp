@@ -109,6 +109,12 @@ bool VuplusMipsWindowProvider::init(int width, int height)
 	return true;
 }
 
+void VuplusMipsWindowProvider::setVisible(bool visible)
+{
+	if (m_native_window)
+		VUGLES_SetVisible(m_client_id, visible);
+}
+
 EGLNativeDisplayType VuplusMipsWindowProvider::getNativeDisplay()
 {
 	return m_native_display;

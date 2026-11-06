@@ -387,6 +387,9 @@ private:
 public:
 	bool runSurfaceOperation(const std::function<bool(gTextureManager&)>& operation);
 	bool initEGL();
+#ifdef HAVE_VUPLUS_MIPSEL_EGL
+	void setNativeWindowVisible(bool visible) override;
+#endif
 	gEGLDC(INativeWindowProvider* window_provider = nullptr, int width = 1280, int height = 720);
 	virtual ~gEGLDC();
 
