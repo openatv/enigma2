@@ -2,7 +2,13 @@
 #include <lib/gdi/egl/platform/vuplus/vuplus_window_provider.h>
 
 #include <cstdlib>
+#include <cstring>
+#include <fcntl.h>
+#include <linux/fb.h>
 #include <stdint.h>
+#include <sys/ioctl.h>
+#include <sys/mman.h>
+#include <unistd.h>
 
 extern "C" {
 typedef unsigned NEXUS_Error;
@@ -70,6 +76,31 @@ static void fillNativeWindowInfo(NXPL_NativeWindowInfoEXT &native_window, int wi
 	native_window.stretch = true;
 	native_window.clientID = 0;
 	native_window.zOrder = 0;
+}
+
+// The Linux OSD remains in the Vu+ mixer underneath the separate NXPL window.
+// A GUI restart from the classic renderer can leave both its pages opaque.
+static void clearLegacyOsd()
+{
+	const int fd = open("/dev/fb0", O_RDWR | O_CLOEXEC);
+	if (fd < 0)
+		return;
+
+	fb_fix_screeninfo fix = {};
+	fb_var_screeninfo var = {};
+	if (ioctl(fd, FBIOGET_FSCREENINFO, &fix) == 0 && ioctl(fd, FBIOGET_VSCREENINFO, &var) == 0 &&
+		fix.type == FB_TYPE_PACKED_PIXELS && var.bits_per_pixel == 32 && var.transp.length == 8 &&
+		fix.line_length && var.yres_virtual && var.yres_virtual <= fix.smem_len / fix.line_length) {
+		const size_t bytes = (size_t)fix.line_length * var.yres_virtual;
+		void *pages = mmap(nullptr, bytes, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+		if (pages != MAP_FAILED) {
+			std::memset(pages, 0, bytes);
+			munmap(pages, bytes);
+			eDebug("[VuplusWindowProvider] cleared legacy OSD: %u virtual rows, %zu bytes", var.yres_virtual, bytes);
+		} else
+			eDebug("[VuplusWindowProvider] could not map legacy OSD: %m");
+	}
+	close(fd);
 }
 
 VuplusWindowProvider::VuplusWindowProvider()
@@ -182,6 +213,8 @@ bool VuplusWindowProvider::init(int width, int height)
 		return false;
 	}
 
+	if (!m_width)
+		clearLegacyOsd();
 	m_width = width;
 	m_height = height;
 	eDebug("[VuplusWindowProvider] NXPL native window %p for %dx%d stretch=%d", m_native_window, width, height, native_window.stretch ? 1 : 0);

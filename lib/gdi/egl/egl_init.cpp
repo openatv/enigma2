@@ -1,6 +1,7 @@
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 #include <lib/base/eerror.h>
+#include <lib/base/esimpleconfig.h>
 #include <lib/gdi/egl/egl_config.h>
 #include <lib/gdi/egl/gegldc.h>
 
@@ -19,6 +20,11 @@ class gEGLDCAutoInit : protected eAutoInit
 		if (egl_config::disable_egl)
 		{
 			eDebug("[gEGLDC] EGL disabled via command line");
+			return;
+		}
+		if (eSimpleConfig::getString("config.usage.osdRenderer", "gles") == "framebuffer")
+		{
+			eDebug("[gEGLDC] Classic framebuffer selected in OSD settings");
 			return;
 		}
 

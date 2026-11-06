@@ -573,6 +573,7 @@ class VideoCodec:  # Stream type to codec name mapping.
 BoxInfo.setItem("DebugLevel", eGetEnigmaDebugLvl())
 BoxInfo.setItem("InDebugMode", eGetEnigmaDebugLvl() >= 4)
 BoxInfo.setItem("KernelVersion", getKernelVersion())
+BoxInfo.setItem("HasEGLRenderer", BoxInfo.getItem("e2egl", False))  # Image capability, also visible when the framebuffer is active.
 BoxInfo.setMutableItem("e2egl", getGraphicsInfo().get("backend", "") == "e2egl")
 
 BoxInfo.setItem("RCImage", getRCFile("png"))

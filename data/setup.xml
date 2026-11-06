@@ -1460,6 +1460,7 @@
 		</if>
 	</setup>
 	<setup key="UserInterface" title="OSD Settings" showOpenWebif="yes">
+		<item level="0" text="OSD renderer" description="Choose how Enigma2 draws menus and skins. Select the classic framebuffer to disable GLES and its animations. The change takes effect after restarting the GUI." requires="HasEGLRenderer" restart="gui">config.usage.osdRenderer</item>
 		<item level="0" text="Menus And Setup" />
 		<item level="0" text="Menu style" description="Select the display design for menus." indent="1">config.usage.menuType</item>
 		<item level="0" text="Menu entry style" description="Select the display options for each menu entry item. If menu numbers are available, then the number buttons can be used to select the numbered menu entries directly." indent="1">config.usage.menuEntryStyle</item>

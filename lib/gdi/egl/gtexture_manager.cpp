@@ -667,6 +667,28 @@ GLuint gTextureManager::createTextureFromSurface(gUnmanagedSurface* surface) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
+	auto retryWithCacheSpace = [&](GLenum error, GLint internalFormat, GLenum format, const void *data, unsigned int bytesPerPixel) {
+		if (error != GL_OUT_OF_MEMORY || m_content_texture_cache.empty())
+			return error;
+		const size_t entries = m_content_texture_cache.size();
+		const unsigned long long bytes = m_content_texture_bytes;
+		const unsigned long long needed = (unsigned long long)width * height * bytesPerPixel;
+		auto retry = [&]() {
+			processDeletions();
+			glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, width, height, 0, format, GL_UNSIGNED_BYTE, data);
+			return glGetError();
+		};
+		trimContentTextureCache(entries, bytes > needed ? bytes - needed : 0);
+		error = retry();
+		if (error == GL_OUT_OF_MEMORY && !m_content_texture_cache.empty()) {
+			clearContentTextureCache();
+			error = retry();
+		}
+		eDebug("[gTextureManager] GL_OUT_OF_MEMORY on %d-bit upload %dx%d (CLUT %d); released %zu cached texture(s), %llu KiB; retry=0x%x",
+			surface->bpp, width, height, surface->clut.colors, entries - m_content_texture_cache.size(), (bytes - m_content_texture_bytes) / 1024ULL, error);
+		return error;
+	};
+
 	if (surface->bpp == 32) {
 #ifndef GL_BGRA_EXT
 #define GL_BGRA_EXT 0x80E1
@@ -726,24 +748,7 @@ GLuint gTextureManager::createTextureFromSurface(gUnmanagedSurface* surface) {
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, upload_data);
 			err = glGetError();
 		}
-		if (err == GL_OUT_OF_MEMORY && !m_content_texture_cache.empty()) {
-			// Release the least recently used cached textures for the size of this upload first, the whole cache only if that is not enough.
-			const size_t cached_entries = m_content_texture_cache.size();
-			const unsigned long long cached_bytes = m_content_texture_bytes;
-			const unsigned long long needed_bytes = (unsigned long long)width * height * 4;
-			trimContentTextureCache(cached_entries, cached_bytes > needed_bytes ? cached_bytes - needed_bytes : 0);
-			processDeletions();
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, upload_format, GL_UNSIGNED_BYTE, upload_data);
-			err = glGetError();
-			if (err == GL_OUT_OF_MEMORY && !m_content_texture_cache.empty()) {
-				clearContentTextureCache();
-				processDeletions();
-				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, upload_format, GL_UNSIGNED_BYTE, upload_data);
-				err = glGetError();
-			}
-			eDebug("[gTextureManager] texture memory pressure: released %zu of %zu cached texture(s), %llu KiB, for a %dx%d upload",
-				cached_entries - m_content_texture_cache.size(), cached_entries, (cached_bytes - m_content_texture_bytes) / 1024ULL, width, height);
-		}
+		err = retryWithCacheSpace(err, GL_RGBA, upload_format, upload_data, 4);
 		if (err != GL_NO_ERROR) {
 			eDebug("[gTextureManager] glTexImage2D 32-bit upload failed: 0x%x for %dx%d stride=%d", err, width, height, surface->stride);
 			glBindTexture(GL_TEXTURE_2D, 0);
@@ -793,9 +798,14 @@ GLuint gTextureManager::createTextureFromSurface(gUnmanagedSurface* surface) {
 
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, rgba_buffer.data());
-		if (glGetError() == GL_NO_ERROR)
-			recordUpload(width, height, width * height * 4, false, false, false, true, false);
+		const GLenum error = retryWithCacheSpace(glGetError(), GL_RGBA, GL_RGBA, rgba_buffer.data(), 4);
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
+		if (error != GL_NO_ERROR) {
+			eDebug("[gTextureManager] 8-bit CLUT upload failed: 0x%x for %dx%d stride=%d colors=%d", error, width, height, surface->stride, surface->clut.colors);
+			glDeleteTextures(1, &texture_id);
+			return 0;
+		}
+		recordUpload(width, height, width * height * 4, false, false, false, true, false);
 	} else if (surface->bpp == 8) {
 		const uint8_t* upload_data = (const uint8_t*)surface->data;
 		std::vector<uint8_t> upload_buffer;
@@ -816,12 +826,14 @@ GLuint gTextureManager::createTextureFromSurface(gUnmanagedSurface* surface) {
 		}
 #endif
 		glTexImage2D(GL_TEXTURE_2D, 0, internal_fmt, width, height, 0, src_fmt, GL_UNSIGNED_BYTE, upload_data);
-		GLenum err = glGetError();
-		if (err == GL_NO_ERROR)
-			recordUpload(width, height, width * height, false, false, false, false, true);
-		else
-			eDebug("[gTextureManager] glTexImage2D 8-bit luminance upload failed: 0x%x", err);
+		const GLenum error = retryWithCacheSpace(glGetError(), internal_fmt, src_fmt, upload_data, 1);
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
+		if (error != GL_NO_ERROR) {
+			eDebug("[gTextureManager] 8-bit luminance upload failed: 0x%x for %dx%d stride=%d", error, width, height, surface->stride);
+			glDeleteTextures(1, &texture_id);
+			return 0;
+		}
+		recordUpload(width, height, width * height, false, false, false, false, true);
 	} else {
 		eDebug("[gTextureManager] unsupported surface format (bpp: %d)", surface->bpp);
 		glDeleteTextures(1, &texture_id);
