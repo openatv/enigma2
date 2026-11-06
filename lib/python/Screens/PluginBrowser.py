@@ -289,7 +289,7 @@ class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 			self.protectedCallback(self.createFeedConfig)()
 		self.callLater(self.protectedCallback(self.checkWarnings))
 		self.onLayoutFinish.append(self.layoutFinished)
-		self.onClose.append(self.doClose)
+		self.onClose.append(self.closeInternetCheck)
 
 	def createGUIScreen(self, parent, desktop, updateonly=False):
 		for item in self.renderer:
@@ -303,7 +303,7 @@ class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 						item.skinAttributes.remove((attribute, value))
 		Screen.createGUIScreen(self, parent, desktop, updateonly)
 
-	def doClose(self):
+	def closeInternetCheck(self):
 		if self.internetCheckThread:
 			Processing.instance.hideProgress()
 			self.internetCheckThread.callback.get().clear()
@@ -393,7 +393,7 @@ class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 		self.internetCheckThread.startThread(FEED_SERVER, INTERNET_TIMEOUT, True)
 
 	def internetCheckCallback(self, result, mode):  # 0=Site reachable, 1=DNS error, 2=Other network error, 3=No link, 4=No active adapter.
-		# Keep the native check alive until doClose or the next check, after its signal has finished dispatching.
+		# Keep the native check alive until the screen closes or the next check starts, after signal dispatch.
 		Processing.instance.hideProgress()
 		self.updateButtons()
 		if result == 0:
@@ -1082,12 +1082,13 @@ class PackageAction(Screen, NumericalTextInput, ProtectedScreen):
 		# 	print(f"[PluginBrowser] DEBUG: Plugin exclude filter {count} is '{exclude}'.")
 		# print("[PluginBrowser] DEBUG: Exclude filter is '%s'." % (r"(%s)$" % "|".join(displayExclude) if displayExclude else r"^$"))
 		self.onLayoutFinish.append(self.protectedCallback(self.layoutFinished))
-		self.onClose.append(self.doClose)
+		self.onClose.append(self.closePackageList)
 
-	def doClose(self):
+	def closePackageList(self):
 		self.quickSelectTimer.stop()
 		self.opkgComponent.removeCallback(self.fetchOpkgDataCallback)
 		if self.internetCheckThread:
+			self.internetCheckThread.callback.get().clear()
 			self.internetCheckThread = None
 
 	def layoutFinished(self):
