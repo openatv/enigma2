@@ -618,7 +618,8 @@ class NetworkManager:
 			cmds.append(f"wl -i {interface} wowl 0")
 		procPath = BoxInfo.getItem("WakeOnLAN") or ""
 		if procPath and exists(procPath):
-			cmds.append(f"echo '{'enable' if enable else 'disable'}' > {procPath}")
+			value = BoxInfo.getItem("WakeOnLANType")[enable]
+			cmds.append(f"echo '{value}' > {procPath}")
 		return cmds
 
 	def getWakeOnWiFi(self, interface: str) -> bool:
