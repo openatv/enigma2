@@ -204,7 +204,7 @@ public:
 
 	RESULT getBouquet(const eServiceReference &ref, eBouquet* &bouquet);
 //////
-	void loadBouquet(const char *path);
+	bool loadBouquet(const char *path);
 	void searchAllReferences(std::vector<eServiceReference> &result, int tsid, int onid, int sid);
 	eDVBDB();
 	virtual ~eDVBDB();
