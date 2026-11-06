@@ -40,6 +40,7 @@ class Screen(dict):
 		self.onShown = []
 		self.onShow = []
 		self.onHide = []
+		self.activeComponents = []
 		self.execing = False
 		self.shown = True
 		self.alreadyShown = False  # Already shown is false until the screen is really shown (after creation).

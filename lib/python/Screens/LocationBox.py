@@ -92,6 +92,7 @@ class LocationBox(Screen, NumericalTextInput):
 		self["key_green"] = StaticText(_("Select"))
 		self["key_yellow"] = StaticText(_("Remove Bookmark"))
 		self["key_blue"] = StaticText(_("Rename"))
+		self["key_menu"] = StaticText(_("MENU"))
 		self.currList = None
 
 		class LocationBoxActionMap(HelpableActionMap):  # Custom action handler.
