@@ -10,7 +10,6 @@
 #endif
 #include <algorithm>
 #include <cmath>
-#include <condition_variable>
 #include <fstream>
 #include <iterator>
 #include <errno.h>
@@ -1001,23 +1000,7 @@ bool gEGLDC::runOnRenderThread(const std::function<void()>& function) {
 		}
 	}
 
-	std::mutex mutex;
-	std::condition_variable done_condition;
-	bool done = false;
-	std::function<void()> call = [&]() {
-		function();
-		std::lock_guard<std::mutex> lock(mutex);
-		done = true;
-		done_condition.notify_all();
-	};
-	gOpcode o;
-	o.opcode = gOpcode::invoke;
-	o.dc = this;
-	AddRef();
-	o.parm.invoke = &call;
-	rc->submit(o);
-	std::unique_lock<std::mutex> lock(mutex);
-	done_condition.wait(lock, [&]() { return done; });
+	rc->invoke(function, this);
 	return true;
 }
 

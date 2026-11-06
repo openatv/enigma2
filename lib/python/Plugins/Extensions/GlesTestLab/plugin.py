@@ -227,13 +227,18 @@ class GlesTestLabScreen(Screen):
 		pixmap = gRenderTest.createPaintedPixmap(pattern, accel, width, height)
 		if pixmap is not None:
 			self.nativePixmaps.append(pixmap)
-			info = loads(gRenderTest.pixmapInfo(pixmap))
-			info["pattern"] = pattern
-			info["paddingMismatches"] = gRenderTest.verifyPadding(pixmap)
-			if pattern == 0:
-				info["cpuColorBarMismatches"] = gRenderTest.verifyColorBars(pixmap)
-			self.formats.append(info)
+			self.formats.append(self.checkPaintedFixture(pixmap, pattern))
 		return pixmap
+
+	@staticmethod
+	def checkPaintedFixture(pixmap, pattern):
+		info = loads(gRenderTest.pixmapInfo(pixmap))
+		info["pattern"] = pattern
+		info["paddingBytesPerRow"] = info["stride"] - info["width"] * 4
+		info["paddingMismatches"] = gRenderTest.verifyPadding(pixmap) if info["paddingBytesPerRow"] else 0
+		if pattern == 0:
+			info["cpuColorBarMismatches"] = gRenderTest.verifyColorBars(pixmap)
+		return info
 
 	def drawCase(self, case, xPos, yPos):
 		title = ""
@@ -291,7 +296,8 @@ class GlesTestLabScreen(Screen):
 				widget = self.pixmap(fixture, xPos + 20, yPos + 65, 520, 210)
 				self.reusedWidgets.append((widget, fixture, pattern))
 				info = self.formats[-1]
-				title = f"{'CPU' if accel < 0 else 'HW'} · {width} px · Pitch {info['stride']} · Randfehler {info['paddingMismatches']}"
+				padding = f"Randfehler {info['paddingMismatches']}" if info["paddingBytesPerRow"] else "kein Padding"
+				title = f"{'CPU' if accel < 0 else 'HW'} · {width} px · Pitch {info['stride']} · {padding}"
 		elif self.page == 9:
 			if case < 3:
 				widget = self.label(xPos + 20, yPos + 65, 520, 210, "Alter Inhalt · ÄÖÜ", color=0x00172c60 if case == 0 else None, zPosition=20)
@@ -415,7 +421,11 @@ class GlesTestLabScreen(Screen):
 				if fixture is not None:
 					widget.setPixmap(fixture)
 		for widget, fixture, pattern in self.reusedWidgets:
-			gRenderTest.paintPixmap(fixture, pattern)
+			if gRenderTest.paintPixmap(fixture, pattern):
+				self.autoRun = False
+				self.finishRun("paint-error")
+				self["status"].setText(f"Test angehalten. Schreibfehler bei Muster {pattern}.")
+				return
 			widget.invalidate()
 		if self.animatedWidgets and now - self.lastFastChange >= .1:
 			self.lastFastChange = now
@@ -447,11 +457,7 @@ class GlesTestLabScreen(Screen):
 			for index, name in enumerate(columns):
 				series[name] = [x[index] for x in frames]
 			for widget, fixture, pattern in self.reusedWidgets:
-				info = loads(gRenderTest.pixmapInfo(fixture))
-				info["paddingMismatches"] = gRenderTest.verifyPadding(fixture)
-				if pattern == 0:
-					info["cpuColorBarMismatches"] = gRenderTest.verifyColorBars(fixture)
-				self.formats.append(info)
+				self.formats.append(self.checkPaintedFixture(fixture, pattern))
 			run = {"page": self.page, "name": self.PAGES[self.page], "status": status, "seconds": after["time"] - self.before["time"], "cpuSeconds": after["cpuSeconds"] - self.before["cpuSeconds"], "before": self.before, "after": after, "memorySamples": self.memorySamples, "sourceSurfaces": self.formats, "renderer": renderer, "workload": "full screen invalidate at requested 20ms; page 6 recreates native sources; page 7 recreates and paints CPU and HW-requested surfaces including CPU verification; 8bit content cache may hit", "unsupported": ["16bit pixel alpha (RGB565 has no alpha channel)", "GPU timer query", "physical GPU memory accounting"], "timerIntervalsMs": self.measurements.distribution([(self.ticks[x] - self.ticks[x - 1]) * 1000 for x in range(1, len(self.ticks))]), "totals": {x[0]: sum(x[1]) for x in series.items() if not x[0].endswith("Us")}}
 			for name in ("nativeBytes", "contentBytes"):
 				run["totals"].pop(name, None)

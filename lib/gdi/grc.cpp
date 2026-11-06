@@ -1,6 +1,8 @@
 #include <unistd.h>
 #include <fstream>
 #include <algorithm>
+#include <condition_variable>
+#include <mutex>
 #include <lib/gdi/grc.h>
 #include <lib/gdi/font.h>
 #include <lib/base/init.h>
@@ -130,6 +132,34 @@ void gRC::submit(const gOpcode &o)
 	}
 }
 
+void gRC::invoke(const std::function<void()>& function, gDC* dc)
+{
+#ifndef SYNC_PAINT
+	if (pthread_equal(pthread_self(), the_thread)) {
+		function();
+		return;
+	}
+#endif
+	std::mutex mutex;
+	std::condition_variable completed;
+	bool done = false;
+	std::function<void()> call = [&]() {
+		function();
+		std::lock_guard<std::mutex> lock(mutex);
+		done = true;
+		completed.notify_one();
+	};
+	gOpcode op;
+	op.opcode = gOpcode::invoke;
+	op.dc = dc;
+	if (dc)
+		dc->AddRef();
+	op.parm.invoke = &call;
+	submit(op);
+	std::unique_lock<std::mutex> lock(mutex);
+	completed.wait(lock, [&]() { return done; });
+}
+
 void *gRC::thread()
 {
 	int need_notify = 0;
@@ -158,6 +188,8 @@ void *gRC::thread()
 				break;
 			else if (o.opcode == gOpcode::notify)
 				need_notify = 1;
+			else if (o.opcode == gOpcode::invoke && !o.dc)
+				(*o.parm.invoke)();
 			else if (o.opcode == gOpcode::setCompositing)
 			{
 				m_compositing = o.parm.setCompositing;

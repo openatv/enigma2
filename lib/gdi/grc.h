@@ -305,6 +305,7 @@ public:
 	virtual ~gRC();
 
 	void submit(const gOpcode &o);
+	void invoke(const std::function<void()>& function, gDC* dc = nullptr);
 
 #ifdef CONFIG_ION
 	void lock();

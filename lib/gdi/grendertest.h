@@ -12,6 +12,7 @@ struct gRenderTestFrame {
 #endif
 
 class gRenderTest {
+	static int paintFixture(ePtr<gPixmap>& output, int pattern);
 public:
 	static bool startCapture(int limit = 4096);
 	static std::string stopCapture();

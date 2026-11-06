@@ -1,5 +1,6 @@
 #include <lib/gdi/grendertest.h>
 #include <lib/gdi/accel.h>
+#include <lib/gdi/grc.h>
 #include <lib/gdi/region.h>
 #include <algorithm>
 #include <atomic>
@@ -151,21 +152,7 @@ std::string gRenderTest::pixmapInfo(ePtr<gPixmap>& pixmap)
 	return result.str();
 }
 
-int gRenderTest::createPaintedPixmap(ePtr<gPixmap>& output, int pattern, int accel, int width, int height)
-{
-	output = 0;
-	if (pattern < 0 || pattern > 2 || (accel != -1 && accel != 1) || width < 4 || width > 1024 || height < 1 || height > 1024)
-		return -1;
-	output = new gPixmap(eSize(width, height), 32, accel);
-	if (!output->surface || !output->surface->data) {
-		output = 0;
-		return -1;
-	}
-	memset(output->surface->data, 0xa5, output->surface->stride * height);
-	return paintPixmap(output, pattern);
-}
-
-int gRenderTest::paintPixmap(ePtr<gPixmap>& output, int pattern)
+int gRenderTest::paintFixture(ePtr<gPixmap>& output, int pattern)
 {
 	if (!output || !output->surface || output->surface->bpp != 32 || pattern < 0 || pattern > 2)
 		return -1;
@@ -191,6 +178,32 @@ int gRenderTest::paintPixmap(ePtr<gPixmap>& output, int pattern)
 		}
 	}
 	return 0;
+}
+
+int gRenderTest::createPaintedPixmap(ePtr<gPixmap>& output, int pattern, int accel, int width, int height)
+{
+	output = 0;
+	if (pattern < 0 || pattern > 2 || (accel != -1 && accel != 1) || width < 4 || width > 1024 || height < 1 || height > 1024)
+		return -1;
+	output = new gPixmap(eSize(width, height), 32, accel);
+	if (!output->surface || !output->surface->data) {
+		output = 0;
+		return -1;
+	}
+	memset(output->surface->data, 0xa5, output->surface->stride * height);
+	return paintFixture(output, pattern);
+}
+
+int gRenderTest::paintPixmap(ePtr<gPixmap>& output, int pattern)
+{
+	gRC* rc = gRC::getInstance();
+	if (!rc)
+		return -1;
+	// A queued blit can still read this published surface. Clear and paint it
+	// in one render command before the GUI invalidates the widget again.
+	int result = -1;
+	rc->invoke([&]() { result = paintFixture(output, pattern); });
+	return result;
 }
 
 int gRenderTest::verifyColorBars(ePtr<gPixmap>& pixmap)
