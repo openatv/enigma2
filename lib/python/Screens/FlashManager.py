@@ -920,7 +920,7 @@ class FlashImage(Screen, ProtectedScreen):
 					cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel, "-m0"] if (rootSubDir) is None else ["-r", "-k", "-m%s" % self.slotCode]
 			elif BoxInfo.getItem("model") == "dm7405nand":  # Temp solution ofgwrite auto detection not ready.
 				cmdArgs = ["-r%s" % mtdRootFS, "-f"]
-			elif BoxInfo.getItem("model") in ("zgemmah82h",):  # Temp solution ofgwrite kill e2 not allways works.
+			elif BoxInfo.getItem("machinebuild") in ("zgemmah82h",):  # Temp solution ofgwrite kill e2 not allways works.
 				cmdArgs = ["-r", "-k", "-f"]
 			elif mtdKernel == mtdRootFS:  # Receiver with kernel and rootfs on one partition.
 				cmdArgs = ["-r"]
