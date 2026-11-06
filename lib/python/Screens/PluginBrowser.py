@@ -1262,17 +1262,17 @@ class PackageAction(Screen, NumericalTextInput, ProtectedScreen):
 			self.displayPluginList(self.pluginList, False)
 
 	def keyGreen(self):
-		def confirmSelection(prompt, items, default):
+		def formatSelection(prompt, items):
 			if len(items) > 15:
 				items = "'\n    '".join(items[0:15])
 				items = f"'{items}'\n    ..."
 			else:
 				items = "'\n    '".join(items)
 				items = f"'{items}'"
-			self.session.openWithCallback(keyGreenCallback, MessageBox, text=f"{prompt}\n    {items}", default=default, windowTitle=self.getTitle())
+			return f"{prompt}\n    {items}"
 
 		def keyGreenCallback(answer):
-			if answer:
+			if answer and not self.processing and selection == (self.selectedRemoveItems, self.selectedInstallItems, self.selectedUpdateItems):
 				args = {}
 				if self.selectedRemoveItems:
 					args["arguments"] = self.selectedRemoveItems
@@ -1326,15 +1326,16 @@ class PackageAction(Screen, NumericalTextInput, ProtectedScreen):
 				self.selectedUpdateItems = []
 
 		current = self["plugins"].getCurrent()
-		if self.selectedRemoveItems and self.selectedInstallItems and self.selectedUpdateItems:  # Mixing install, remove and update is currently not possible.
-			pass
-		elif self.selectedRemoveItems:
-			confirmSelection(_("Do you want to remove:"), self.selectedRemoveItems, False)
+		if self.selectedRemoveItems:
+			text = formatSelection(_("Do you want to remove:"), self.selectedRemoveItems)
+			default = False
 		elif self.selectedInstallItems:
-			confirmSelection(_("Do you want to install:"), self.selectedInstallItems, True)
+			text = formatSelection(_("Do you want to install:"), self.selectedInstallItems)
+			default = True
 		elif self.selectedUpdateItems:
-			confirmSelection(_("Do you want to update:"), self.selectedUpdateItems, True)
-		elif current:
+			text = formatSelection(_("Do you want to update:"), self.selectedUpdateItems)
+			default = True
+		elif current and current[self.PLUGIN_CATEGORY] is None:
 			package = current[self.PLUGIN_PACKAGE]
 			if self.mode in (self.MODE_REMOVE, self.MODE_MANAGE) and current[self.PLUGIN_INSTALLED]:
 				self.selectedRemoveItems = [package]
@@ -1358,6 +1359,13 @@ class PackageAction(Screen, NumericalTextInput, ProtectedScreen):
 				self.selectedUpdateItems = [package]
 				text = f"{_('Do you want to update:')}\n    '{package}'"
 				default = False
+			else:
+				return
+		else:
+			return
+		# A delayed confirmation is valid only for the action and packages shown in the dialog.
+		selection = (self.selectedRemoveItems.copy(), self.selectedInstallItems.copy(), self.selectedUpdateItems.copy())
+		if sum(bool(x) for x in selection) == 1:
 			self.session.openWithCallback(keyGreenCallback, MessageBox, text=text, default=default, windowTitle=self.getTitle())
 
 	def keyShowLog(self):
