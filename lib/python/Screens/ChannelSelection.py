@@ -1863,12 +1863,16 @@ class ChannelContextMenu(Screen):
 			self.close()
 
 	def showServiceInPiP(self):
-		if self.csel.dopipzap or (self.parentalControlEnabled and not parentalControl.getProtectionLevel(self.csel.getCurrentSelection().toCompareString()) == -1):
+		selectedService = self.csel.getCurrentSelection()
+		currentRoot = self.csel.getRoot()
+		if self.csel.dopipzap or not selectedService or not selectedService.valid() or not currentRoot:
+			return 0
+		if self.parentalControlEnabled and parentalControl.getProtectionLevel(selectedService.toCompareString()) != -1:
 			return 0
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
-		xres = str(info.getInfo(iServiceInformation.sVideoWidth))
-		if int(xres) <= 720 or BoxInfo.getItem("model") != "blackbox7405":
+		videoWidth = info.getInfo(iServiceInformation.sVideoWidth) if info else -1
+		if videoWidth <= 720 or BoxInfo.getItem("model") != "blackbox7405":
 			if self.session.pipshown:
 				del self.session.pip
 				if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
@@ -1877,24 +1881,20 @@ class ChannelContextMenu(Screen):
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
 			self.session.pip.setAnimationMode(0)
 			self.session.pip.show()
-			newservice = self.csel.servicelist.getCurrent()
-			currentBouquet = self.csel.servicelist and self.csel.servicelist.getRoot()
-			if newservice and newservice.valid():
-				if self.session.pip.playService(newservice):
-					self.session.pipshown = True
-					self.session.pip.servicePath = self.csel.getCurrentServicePath()
-					self.session.pip.servicePath[1] = currentBouquet
-					if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
-						print("[ChannelSelection] LCDMiniTV enable PiP.")
-						eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value, True)
-					self.close(True)
-				else:
-					self.session.pipshown = False
-					del self.session.pip
-					if BoxInfo.getItem("LCDMiniTV") and config.lcd.modepip.value >= 1:
-						print("[ChannelSelection] LCDMiniTV disable PiP.")
-						eDBoxLCD.getInstance().setLCDMode(config.lcd.modeminitv.value)
-					self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
+			if self.session.pip.playService(selectedService):
+				self.session.pipshown = True
+				self.session.pip.servicePath = self.csel.servicePath[:-1] + [currentRoot, selectedService]
+				if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
+					print("[ChannelSelection] LCDMiniTV enable PiP.")
+					eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value, True)
+				self.close(True)
+			else:
+				self.session.pipshown = False
+				del self.session.pip
+				if BoxInfo.getItem("LCDMiniTV") and config.lcd.modepip.value >= 1:
+					print("[ChannelSelection] LCDMiniTV disable PiP.")
+					eDBoxLCD.getInstance().setLCDMode(config.lcd.modeminitv.value)
+				self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
 		else:
 			self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % getBoxDisplayName(), type=MessageBox.TYPE_INFO, timeout=5)
 

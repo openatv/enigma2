@@ -143,10 +143,6 @@ protected:
 		int pollPart(struct aiocb& aio, int* short_write_count, bool allowCancelled);
 		void countShortWrite(int* short_write_count);
 	};
-	// Descrambled data written to the DVR is split into parts of at most this
-	// size: the DVR driver copies each write into one contiguous kernel buffer,
-	// which fails with ENOMEM for 188 kB blocks on fragmented memory.
-	static const size_t MAX_DVR_WRITE = 32768;
 	void updateWriteChunk();
 	std::atomic<size_t> m_write_chunk{0}; // 0 = write whole buffers
 	eMPEGStreamParserTS m_ts_parser;

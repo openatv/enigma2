@@ -3,6 +3,7 @@
 #include <lib/base/modelinformation.h>
 #include <string>
 #include <memory>
+#include <utility>
 #include <lib/service/servicedvb.h>
 #include <lib/service/service.h>
 #include <lib/hbbtv/hbbtv.h>
@@ -42,8 +43,11 @@
 #include <sys/vfs.h>
 #include <linux/magic.h>
 #include <sys/stat.h>
+#include <sys/sysmacros.h>
 #include <sys/ioctl.h>
 #include <fcntl.h>
+#include <limits.h>
+#include <stdlib.h>
 #include <chrono>
 #include <thread>
 #include <lib/dvb_ci/descrambler.h>
@@ -1279,7 +1283,13 @@ RESULT eDVBServiceList::getNext(eServiceReference &ref)
 	if (!m_query)
 		return -1;
 
-	return m_query->getNextResult((eServiceReferenceDVB&)ref);
+	eServiceReferenceDVB dvbRef;
+	RESULT result = m_query->getNextResult(dvbRef);
+	if (!result)
+		ref = std::move(dvbRef);
+	else
+		ref.type = eServiceReference::idInvalid;
+	return result;
 }
 
 RESULT eDVBServiceList::startEdit(ePtr<iMutableServiceList> &res)
@@ -3580,6 +3590,38 @@ RESULT eDVBServicePlay::getSubservice(eServiceReference &sub, unsigned int n)
 	return -1;
 }
 
+static bool isTimeshiftDisk(dev_t device)
+{
+	// Resolve the actual device: mmcblk names include both SD cards and eMMC.
+	const std::string devicePath = "/sys/dev/block/" + std::to_string(major(device)) + ":" + std::to_string(minor(device));
+	char resolved[PATH_MAX];
+	if (!realpath(devicePath.c_str(), resolved))
+		return false;
+	std::string path(resolved);
+	while (path.compare(0, 13, "/sys/devices/") == 0)
+	{
+		char target[PATH_MAX];
+		const ssize_t length = readlink((path + "/subsystem").c_str(), target, sizeof(target) - 1);
+		if (length >= 0)
+		{
+			target[length] = '\0';
+			const std::string link(target);
+			const std::string subsystem = link.substr(link.find_last_of('/') + 1);
+			if (subsystem == "mmc")
+			{
+				std::ifstream typeFile(path + "/type");
+				std::string type;
+				typeFile >> type;
+				return type == "SD" || type == "SDcombo";
+			}
+			if (subsystem == "usb" || subsystem == "ata_port" || subsystem == "ide" || subsystem == "nvme")
+				return true;
+		}
+		path.resize(path.find_last_of('/'));
+	}
+	return false;
+}
+
 RESULT eDVBServicePlay::startTimeshift()
 {
 	ePtr<iDVBDemux> demux;
@@ -3649,7 +3691,8 @@ RESULT eDVBServicePlay::startTimeshift()
 		_timeshiftInode = fileStatus.st_ino;
 	}
 	if (!haveIdentity || !S_ISREG(fileStatus.st_mode) || fstatfs(m_timeshift_fd, &fs) < 0 || stat("/", &rootStatus) < 0
-		|| fileStatus.st_dev == rootStatus.st_dev || fs.f_type == TMPFS_MAGIC || fs.f_type == RAMFS_MAGIC)
+		|| fs.f_type == TMPFS_MAGIC || fs.f_type == RAMFS_MAGIC
+		|| (fileStatus.st_dev == rootStatus.st_dev && !isTimeshiftDisk(fileStatus.st_dev)))
 	{
 		eWarning("[eDVBServicePlay] refusing unavailable or memory-backed time shift storage");
 		close(m_timeshift_fd);

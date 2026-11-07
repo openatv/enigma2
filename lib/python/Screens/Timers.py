@@ -11,6 +11,7 @@ from skin import parseBoolean, parseFont, parseInteger
 from timer import TimerEntry
 from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigClock, ConfigDateTime, ConfigIP, ConfigSelection, ConfigSubDict, ConfigText, ConfigYesNo, config, configfile
+from Components.DateTimes import dateTimes
 from Components.GUIComponent import GUIComponent
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
@@ -1025,7 +1026,9 @@ class RecordTimerOverview(TimerOverviewBase):
 			return
 		if result[0]:
 			entry = result[1]
-			if entry.external:
+			if entry.external_prev != entry.external:  # Timer moved between local and fallback tuner.
+				self.fallbackTimer.moveTimer(entry, lambda newEntry: self.addTimerCallback((True, newEntry)), self.reloadTimerList)
+			elif entry.external:
 				self.fallbackTimer.editTimer(entry, self.reloadTimerList)
 			else:
 				timerSanityCheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, entry)
@@ -1318,7 +1321,7 @@ class SchedulerEdit(Setup):
 			ipAddress = timerIPAddress[i] if (len(timerIPAddress) > i and len(timerIPAddress[i].split(".")) == 4) else "0.0.0.0"
 			self.timerIPAddress.append(ConfigIP(default=[int(x) for x in ipAddress.split(".")]))
 		self.timerRepeatPeriod = ConfigSelection(default=repeated, choices=REPEAT_OPTIONS)
-		self.timerRepeatStartDate = ConfigDateTime(default=self.timer.repeatedbegindate, formatstring=config.usage.date.daylong.value, increment=86400)
+		self.timerRepeatStartDate = ConfigDateTime(default=self.timer.repeatedbegindate, formatstring=dateTimes.dateShortDayShortMonth, increment=86400)
 		self.timerWeekday = ConfigSelection(default=weekday, choices=DAY_NAMES)
 		self.timerDay = {}
 		for day in DAY_LIST:
@@ -1460,6 +1463,8 @@ class SchedulerEdit(Setup):
 
 
 class RecordTimerEdit(Setup):
+	fallbackDefault = True
+
 	def __init__(self, session, timer):
 		self.timer = timer
 		self.timer.service_ref_prev = self.timer.service_ref
@@ -1470,8 +1475,9 @@ class RecordTimerEdit(Setup):
 		self.fallbackInfo = None
 		self.initEndTime = True
 		self.session = session  # We need session before createConfig.
-		if not self.timer.external_prev and config.usage.remote_fallback_external_timer.value and config.usage.remote_fallback.value and config.usage.remote_fallback_external_timer_default.value:
+		if self.fallbackDefault and not self.timer.external_prev and config.usage.remote_fallback_external_timer.value and config.usage.remote_fallback.value and config.usage.remote_fallback_external_timer_default.value:
 			self.timer.external_prev = self.timer not in session.nav.RecordTimer.timer_list and self.timer not in session.nav.RecordTimer.processed_timers
+			self.timer.external = self.timer.external_prev
 		self.createConfig()
 		if self.timer.external:
 			FallbackTimerDirs(self, self.fallbackResult)
@@ -1523,14 +1529,13 @@ class RecordTimerEdit(Setup):
 		])
 		self.timerRepeat = ConfigSelection(default=type, choices=REPEAT_CHOICES)
 		self.timerRepeatPeriod = ConfigSelection(default=repeated, choices=REPEAT_OPTIONS)
-		self.timerRepeatStartDate = ConfigDateTime(default=self.timer.repeatedbegindate, formatstring=config.usage.date.daylong.value, increment=86400)
+		self.timerRepeatStartDate = ConfigDateTime(default=self.timer.repeatedbegindate, formatstring=dateTimes.dateShortDayShortMonth, increment=86400)
 		self.timerWeekday = ConfigSelection(default=weekday, choices=DAY_NAMES)
 		self.timerDay = ConfigSubDict()
 		for day in DAY_LIST:
 			self.timerDay[day] = ConfigYesNo(default=days[day])
 		self.timerRename = ConfigYesNo(default=self.timer.rename_repeat != 0)
-		# self.timerStartDate = ConfigDateTime(default=self.timer.begin, formatstring=config.usage.date.daylong.value, increment=86400)
-		self.timerStartDate = ConfigDateTime(default=self.timer.eventBegin, formatstring=config.usage.date.daylong.value, increment=86400)
+		self.timerStartDate = ConfigDateTime(default=self.timer.eventBegin, formatstring=dateTimes.dateShortDayShortMonth, increment=86400)
 		# self.timerStartTime = ConfigClock(default=self.timer.begin)
 		self.timerStartTime = ConfigClock(default=self.timer.eventBegin)
 		marginChoices = [(x, ngettext("%d Minute", "%d Minutes", x) % x) for x in range(121)]
@@ -1596,8 +1601,11 @@ class RecordTimerEdit(Setup):
 			callback(self)
 
 	def changedEntry(self):
-		Setup.changedEntry(self)
 		current = self["config"].getCurrent()[1]
+		if current == self.timerFallback and self.timerFallback.value and not self.timer.external_prev and self.timer.state in (TimerEntry.StatePrepared, TimerEntry.StateRunning):
+			self.timerFallback.value = False  # A prepared or running recording can not be moved.
+			self.session.open(MessageBox, _("A prepared or running timer can not be moved to the fallback tuner."), MessageBox.TYPE_ERROR)
+		Setup.changedEntry(self)
 		if current == self.timerFallback:
 			self.timer.external = self.timerFallback.value
 			self.selectionChanged()  # Force getSpace().
@@ -1850,6 +1858,8 @@ class RecordTimerEdit(Setup):
 
 
 class InstantRecordTimerEdit(RecordTimerEdit):
+	fallbackDefault = False  # Instant timers are always local.
+
 	def __init__(self, session, timer, zap=0, zaprecord=0):
 		RecordTimerEdit.__init__(self, session, timer)
 		self.timer.justplay = zap
@@ -1995,7 +2005,8 @@ class TimerLog(Screen):
 
 	def refreshLog(self):
 		self.timerLog = self.timer.log_entries[:]
-		self["log"].setText("\n".join(["%s: %s" % (strftime("%s %s" % (config.usage.date.long.value, config.usage.time.short.value), localtime(x[0])), x[2]) for x in self.timerLog]))
+		dateFormat = f"{dateTimes.dateNoDayShortMonth} {dateTimes.timeShort}"
+		self["log"].setText("\n".join(f"{dateTimes.getDate(localtime(x[0]), dataFormat=dateFormat)}: {x[2]}" for x in self.timerLog))
 		self.refreshButtons()
 
 	def refreshButtons(self):

@@ -1,4 +1,4 @@
-import sys
+from sys import modules
 
 from enigma import ePythonOutput
 
@@ -13,8 +13,13 @@ class EnigmaLog:
 			data = data.decode(encoding="UTF-8", errors="ignore")
 		self.line += data
 		if "\n" in data:
-			ePythonOutput(self.line, self.level)
+			line = self.line
 			self.line = ""
+			try:
+				ePythonOutput(line, self.level)
+			except (TypeError, UnicodeEncodeError):
+				# Filesystem names can contain surrogate escapes rejected by SWIG.
+				ePythonOutput(line.encode("UTF-8", errors="backslashreplace").decode("UTF-8"), self.level)
 
 	def flush(self):
 		pass
@@ -33,5 +38,5 @@ class EnigmaLogFatal(EnigmaLog):
 		EnigmaLog.__init__(self, 1)  # lvlError = 1
 
 
-sys.stdout = EnigmaLogDebug()
-sys.stderr = EnigmaLogFatal()
+modules["sys"].stdout = EnigmaLogDebug()
+modules["sys"].stderr = EnigmaLogFatal()

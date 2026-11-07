@@ -5,9 +5,9 @@ registry and the export's progress counters; it never polls a remote file.
 """
 
 from errno import EEXIST, ENOTEMPTY
-from functools import wraps
+from functools import lru_cache, wraps
 from json import JSONDecodeError, dump, dumps, load
-from os import O_CREAT, O_EXCL, O_RDONLY, O_WRONLY, W_OK, X_OK, access, close, fdopen, fstat, fsync, link, listdir, makedirs, mkdir, open as openFile, rename, replace, rmdir, stat, supports_dir_fd, unlink
+from os import O_CREAT, O_EXCL, O_RDONLY, O_WRONLY, W_OK, X_OK, access, close, fdopen, fstat, fsync, link, listdir, makedirs, mkdir, open as openFile, readlink, rename, replace, rmdir, stat, supports_dir_fd, unlink
 from os.path import basename, dirname, join, normpath, realpath
 from re import fullmatch
 from stat import S_ISDIR, S_ISREG
@@ -49,13 +49,36 @@ class TimeshiftStorage:
 		return metadata
 
 	@staticmethod
+	@lru_cache(maxsize=1)
+	def isDiskStorage(device):
+		from os import major, minor  # Linux device numbers; portable test adapters need no sysfs.
+		# Only used for the running root device, whose bus cannot change while E2 runs.
+		try:
+			path = realpath(join("/sys/dev/block", f"{major(device)}:{minor(device)}"), strict=True)
+			while path.startswith("/sys/devices/"):
+				try:
+					subsystem = basename(readlink(join(path, "subsystem")))
+				except OSError:
+					subsystem = ""
+				if subsystem == "mmc":
+					with open(join(path, "type"), encoding="ascii") as typeFile:
+						return typeFile.read().strip() in ("SD", "SDcombo")
+				if subsystem in ("usb", "ata_port", "ide", "nvme"):
+					return True
+				path = dirname(path)
+		except OSError:
+			pass
+		return False
+
+	@staticmethod
 	def storageMount(descriptor, path):
 		"""Reject fallback flash/RAM paths; mutations themselves remain fd-relative."""
 		status = fstat(descriptor)
 		current = stat(path, follow_symlinks=False)
 		if (current.st_dev, current.st_ino) != (status.st_dev, status.st_ino):
 			raise OSError(f"Time shift storage directory changed: {path}")
-		if status.st_dev == stat("/").st_dev:
+		# USB/SD multiboot can share the root filesystem with a separate data mount.
+		if status.st_dev == stat("/").st_dev and not TimeshiftStorage.isDiskStorage(status.st_dev):
 			raise OSError(f"Time shift storage is on the root filesystem: {path}")
 		with open("/proc/self/mountinfo", encoding="utf-8") as mountsFile:
 			mounts = []

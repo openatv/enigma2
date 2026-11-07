@@ -786,10 +786,13 @@ class GPTSlotManager(Setup):
 	def emmcSlotCount(self):
 		count = 0
 		try:
-			for entry in listdir("/dev/disk/by-partlabel"):
-				if entry == "dreambox-rootfs" or (entry.startswith("dreambox-rootfs") and entry[len("dreambox-rootfs"):].isdigit()):
-					if realpath(join("/dev/disk/by-partlabel", entry)).startswith("/dev/mmcblk0p"):
-						count += 1
+			for partition in listdir("/sys/block/mmcblk0"):
+				if partition.startswith("mmcblk0p"):
+					for line in fileReadLines(f"/sys/block/mmcblk0/{partition}/uevent", [], source=MODULE_NAME):
+						if line.startswith("PARTNAME="):
+							name = line[len("PARTNAME="):]
+							if name == "dreambox-rootfs" or (name.startswith("dreambox-rootfs") and name[len("dreambox-rootfs"):].isdigit()):
+								count += 1
 		except OSError:
 			pass
 		return count if count > 0 else 4

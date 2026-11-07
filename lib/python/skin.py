@@ -85,6 +85,7 @@ currentPrimarySkin = None
 currentDisplaySkin = None
 callbacks = []
 runCallbacks = False
+onReload = []
 
 
 # Skins are loaded in order of priority.  Skin with highest priority is
@@ -263,6 +264,9 @@ def reloadSkins():
 	avSwitch.updateOSDCalibration()
 	from Components.UsageConfig import refreshChannelSelectionStyleChoices
 	refreshChannelSelectionStyleChoices()
+	for callback in onReload:
+		if callable(callback):
+			callback()
 
 
 # Method to load a skinTemplates.xml if one exists or load the templates from the screens.
