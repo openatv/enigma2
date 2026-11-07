@@ -2943,11 +2943,18 @@ bool eServiceDAB::startAudioPipeline(bool loasInput, bool pcmInput, bool mp2Inpu
 	m_audio_input_pcm = pcmInput;
 	m_audio_input_mp2 = mp2Input;
 	m_audio_loas = !mp2Input && !pcmCompatibility && !loasSinkRejected() && sinkAcceptsLOAS(hardwareSink);
+	bool alsaPCM = false;
+#if defined(HWOSMIO4K) || defined(HWOSMIO4KPLUS)
+	/* The Edision driver accepts PCM through ALSA; raw PCM sent to audio0
+	 * remains silent. Keep compressed MPEG audio on the DVB decoder. */
+	alsaPCM = !m_audio_loas && !mp2Input;
+#endif
+	const char *outputSink = alsaPCM ? "alsasink" : hardwareSink;
 	if (mp2Input)
 		eDABDebug("[eServiceDAB] selected MPEG Layer II hardware decode via '%s'", hardwareSink);
 	else
 		eDABDebug("[eServiceDAB] selected %s AAC decode via '%s' (mode=%s, pcmCompatibility=%d)",
-			m_audio_loas ? "hardware" : "software", hardwareSink,
+			m_audio_loas ? "hardware" : "software", outputSink,
 			audioMode == DABAudioMode::HardwareAAC ? "aac" :
 				audioMode == DABAudioMode::SoftwarePCM ? "pcm" : "auto",
 			pcmCompatibility);
@@ -2977,9 +2984,9 @@ bool eServiceDAB::startAudioPipeline(bool loasInput, bool pcmInput, bool mp2Inpu
 	}
 	else if (!m_audio_loas)
 		description += "faad ! audioconvert ! audioresample ! ";
-	if (!m_audio_loas && !pcmInput && pcmCompatibility)
+	if (!m_audio_loas && !pcmInput && (pcmCompatibility || alsaPCM))
 		description += "audio/x-raw,format=S16LE,rate=48000,channels=2 ! ";
-	description += hardwareSink;
+	description += outputSink;
 	description += " name=dabaudiosink";
 	GError *error = nullptr;
 	eDABDebug("[eServiceDAB] creating GStreamer pipeline: %s", description.c_str());
@@ -3042,6 +3049,9 @@ bool eServiceDAB::startAudioPipeline(bool loasInput, bool pcmInput, bool mp2Inpu
 	GstElement *audioSink = gst_bin_get_by_name(GST_BIN(m_audio_pipeline), "dabaudiosink");
 	if (audioSink)
 	{
+		if (alsaPCM)
+			/* ALSA paces the audio-only stream through its playback buffer. */
+			g_object_set(audioSink, "sync", FALSE, "async", FALSE, nullptr);
 		if (g_object_class_find_property(G_OBJECT_GET_CLASS(audioSink), "e2-sync"))
 		{
 			/* Match eServiceMP3's audio-only setup unless the platform needs
