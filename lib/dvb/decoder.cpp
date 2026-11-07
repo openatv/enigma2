@@ -712,8 +712,8 @@ void eDVBVideo::stop()
 
 void eDVBVideo::clearLastFrame()
 {
-#if defined(HWDM900) || defined(HWDM920) || defined(HWDM820) || defined(HWDM7080)
-	// These drivers retain the displayed frame despite VIDEO_STOP(1).
+#if defined(DREAMBOX) && !defined(DREAMNEXTGEN)
+	// Broadcom Dreambox drivers can retain the displayed frame despite VIDEO_STOP(1).
 	// Replace it before releasing the main decoder, so radio and services
 	// without decodable video cannot expose the previous channel's picture.
 	if (m_dev != 0 || !m_demux || m_demux->adapter != 0)
