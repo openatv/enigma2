@@ -6,6 +6,7 @@ from enigma import addFont, ePicLoad
 from Components.config import ConfigSelection, NoSave, config
 from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
+from Components.SystemInfo import BoxInfo
 from Plugins.Plugin import PluginDescriptor
 from Screens.Processing import Processing
 from Screens.Setup import Setup
@@ -42,12 +43,16 @@ class SkinSelection(Setup):
 		choices = []
 		for directory in [x for x in listdir(self.guiRoot) if isdir(join(self.guiRoot, x))]:
 			path = join(directory, "skin.xml")
+			if directory == "Umbra":
+				if not BoxInfo.getItem("fhdskin"):
+					path = join(directory, "HD", "skin.xml")
+				elif (guiDirectory == directory or guiDirectory.startswith(join(directory, ""))) and isfile(join(self.guiRoot, guiDirectory, guiSkin)):
+					path = join(guiDirectory, guiSkin)
 			if exists(join(self.guiRoot, path)):
 				label = _("< Default >") if directory == "skin_default" else directory
 				if directory == "MetrixHD":
 					if isfile(join(self.guiRoot, directory, "skin.MySkin.xml")):
-						guiSkin = "skin.MySkin.xml"
-					path = join(directory, guiSkin)
+						path = join(directory, "skin.MySkin.xml")
 				choices.append((path, label))
 		config.skin.guiSkin = NoSave(ConfigSelection(default=config.skin.primary_skin.value, choices=choices))
 		lcdDirectory, lcdSkin = split(config.skin.display_skin.value)
