@@ -967,7 +967,13 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		program.isCached = true;
 
 		if ( vpidtype == -1 )
-			vpidtype = videoStream::vtMPEG2;
+		{
+			/* Infer HEVC only when the PID cache has no video codec. An explicit
+			 * cached codec or the current PMT must take precedence over the service type. */
+			const int serviceType = m_reference.getServiceType();
+			vpidtype = (serviceType == eServiceReferenceDVB::nvecTv || serviceType == eServiceReferenceDVB::nvecTv20)
+				? videoStream::vtH265_HEVC : videoStream::vtMPEG2;
+		}
 		if ( cached_vpid != -1 )
 		{
 			videoStream s;
@@ -1015,27 +1021,6 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		if (cnt)
 		{
 			ret = 0;
-		}
-	}
-
-	/*
-	 * A freshly tuned service can initially be built from the lamedb PID cache.
-	 * When cVTYPE is absent, the legacy cache path labels the video as MPEG-2.
-	 * That is not valid for DVB service types 0x1f/0x20, which explicitly mean
-	 * HEVC.  Normalize the stream type before it reaches eTSMPEGDecoder so the
-	 * decoder and the HEVC HDR fallback are started with the correct codec.
-	 */
-	const int service_type = m_reference.getServiceType();
-	if (service_type == eServiceReferenceDVB::nvecTv || service_type == eServiceReferenceDVB::nvecTv20)
-	{
-		for (std::vector<videoStream>::iterator stream = program.videoStreams.begin(); stream != program.videoStreams.end(); ++stream)
-		{
-			if (stream->type != videoStream::vtH265_HEVC)
-			{
-				eDebug("[eDVBServicePMTHandler] service type 0x%02x forces video PID %04x type %d -> HEVC",
-					service_type, stream->pid, stream->type);
-				stream->type = videoStream::vtH265_HEVC;
-			}
 		}
 	}
 
