@@ -23,8 +23,13 @@ struct CFile
 	}
 	~CFile()
 	{
-		if (handle)
-			fclose(handle);
+		close();
+	}
+	int close()
+	{
+		FILE *file = handle;
+		handle = nullptr;
+		return file ? fclose(file) : 0;
 	}
 	void sync() { fsync(fileno(handle)); }
 	operator bool() const { return handle != NULL; }

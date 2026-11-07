@@ -3,6 +3,7 @@
 #include <lib/base/modelinformation.h>
 #include <string>
 #include <memory>
+#include <utility>
 #include <lib/service/servicedvb.h>
 #include <lib/service/service.h>
 #include <lib/hbbtv/hbbtv.h>
@@ -1282,7 +1283,13 @@ RESULT eDVBServiceList::getNext(eServiceReference &ref)
 	if (!m_query)
 		return -1;
 
-	return m_query->getNextResult((eServiceReferenceDVB&)ref);
+	eServiceReferenceDVB dvbRef;
+	RESULT result = m_query->getNextResult(dvbRef);
+	if (!result)
+		ref = std::move(dvbRef);
+	else
+		ref.type = eServiceReference::idInvalid;
+	return result;
 }
 
 RESULT eDVBServiceList::startEdit(ePtr<iMutableServiceList> &res)

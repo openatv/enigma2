@@ -32,12 +32,16 @@ DEBUG_LOG_PATTERN = r"^.*-enigma\d?-debug\.log$"
 def get_size(start_path=None):
 	totalSize = 0
 	if start_path:
-		for dirpath, dirnames, filenames in walk(start_path):
-			for f in filenames:
-				fp = join(dirpath, f)
-				totalSize += getsize(fp)
-		return totalSize
-	return 0
+		for directory, _, fileNames in walk(start_path):
+			for fileName in fileNames:
+				path = join(directory, fileName)
+				try:
+					totalSize += getsize(path)
+				except FileNotFoundError:
+					continue
+				except OSError as error:
+					print(f"[LogManager] Unable to read size of {path}: {error}")
+	return totalSize
 
 
 def AutoLogManager(session=None, **kwargs):
@@ -169,6 +173,8 @@ class LogManagerPoller:
 							else:
 								candidates.append((st.st_mtime, fn, st.st_size))
 								size += st.st_size
+						except FileNotFoundError:
+							continue
 						except Exception as e:
 							print(f"[LogManager] Failed to stat {name}:{e}")
 					# Remove empty directories if possible

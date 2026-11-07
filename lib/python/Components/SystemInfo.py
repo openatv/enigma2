@@ -554,8 +554,11 @@ def getWakeOnLANType(fileName):
 	value = ""
 	if fileName:
 		value = fileReadLine(fileName)
-	onOff = ("off", "on")
-	return onOff if value in onOff else ("disable", "enable")
+	choices = ("disable", "enable")
+	for values in (("off", "on"), ("0", "1")):
+		if value in values:
+			choices = values
+	return choices
 
 
 class VideoCodec:  # Stream type to codec name mapping.
@@ -706,7 +709,7 @@ BoxInfo.setItem("VFD_scroll_delay", eDBoxLCD.getInstance().get_VFD_scroll_delay(
 BoxInfo.setItem("VFD_initial_scroll_delay", eDBoxLCD.getInstance().get_VFD_initial_scroll_delay())
 BoxInfo.setItem("VFD_final_scroll_delay", eDBoxLCD.getInstance().get_VFD_final_scroll_delay())
 BoxInfo.setItem("VideoDestinationConfigurable", fileExists("/proc/stb/vmpeg/0/dst_left") or fileExists("/sys/class/video/axis"))
-BoxInfo.setItem("WakeOnLAN", fileCheck("/proc/stb/power/wol") or fileCheck("/proc/stb/fp/wol"))
+BoxInfo.setItem("WakeOnLAN", fileCheck("/proc/stb/power/wol") or fileCheck("/proc/stb/fp/wol") or fileCheck("/proc/stb/fp/phy_powered"))
 BoxInfo.setItem("WakeOnLANType", getWakeOnLANType(BoxInfo.getItem("WakeOnLAN")))
 BoxInfo.setItem("XcoreVFD", MODEL in ("xc7346", "xc7439"))
 BoxInfo.setItem("ZapMode", fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode"))

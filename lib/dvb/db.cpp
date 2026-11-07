@@ -1,4 +1,5 @@
 #include <array>
+#include <utility>
 #include <errno.h>
 #include <unistd.h>
 #include <lib/dvb/db.h>
@@ -50,6 +51,19 @@ static int root2gold(int root)
 
 DEFINE_REF(eDVBService);
 
+static std::string quotedBouquetFilename(const std::string &path)
+{
+	const char prefix[] = "FROM BOUQUET \"";
+	size_t start = path.find(prefix);
+	if (start == std::string::npos)
+		return {};
+	start += sizeof(prefix) - 1;
+	size_t end = path.find('"', start);
+	if (end == std::string::npos)
+		return {};
+	return path.substr(start, end - start);
+}
+
 RESULT eBouquet::addService(const eServiceReference &ref, eServiceReference before)
 {
 	list::iterator it =
@@ -75,22 +89,13 @@ RESULT eBouquet::removeService(const eServiceReference &ref, bool renameBouquet)
 		return -1;
 	if (renameBouquet && (ref.flags & eServiceReference::canDescent))
 	{
-		std::string filename = ref.toString();
-		size_t pos = filename.find("FROM BOUQUET ");
-		if(pos != std::string::npos)
+		std::string filename = quotedBouquetFilename(ref.path);
+		if (!filename.empty())
 		{
-			char endchr = filename[pos+13];
-			if (endchr == '"')
-			{
-				char *beg = &filename[pos+14];
-				char *end = strchr(beg, endchr);
-				filename.assign(beg, end - beg);
-				filename = eEnv::resolve("${sysconfdir}/enigma2/" + filename);
-				std::string newfilename(filename);
-				newfilename.append(".del");
-				eDebug("[eBouquet] Rename bouquet file '%s' to '%s'.", filename.c_str(), newfilename.c_str());
-				rename(filename.c_str(), newfilename.c_str());
-			}
+			filename = eEnv::resolve("${sysconfdir}/enigma2/" + filename);
+			std::string newfilename = filename + ".del";
+			eDebug("[eBouquet] Rename bouquet file '%s' to '%s'.", filename.c_str(), newfilename.c_str());
+			rename(filename.c_str(), newfilename.c_str());
 		}
 	}
 	m_services.erase(it);
@@ -134,28 +139,26 @@ RESULT eBouquet::moveService(const eServiceReference &ref, unsigned int pos)
 RESULT eBouquet::flushChanges()
 {
 	std::string filename = eEnv::resolve("${sysconfdir}/enigma2/" + m_filename);
+	std::string tempFilename = filename + ".writing";
+	CFile f(tempFilename, "w");
+	if (!f)
 	{
-		CFile f((filename + ".writing").c_str(), "w");
-		if (!f)
-			goto err;
-		if ( fprintf(f, "#NAME %s\r\n", m_bouquet_name.c_str()) < 0 )
-			goto err;
-		for (list::iterator i(m_services.begin()); i != m_services.end(); ++i)
-		{
-			eServiceReference tmp = *i;
-			std::string str = tmp.path;
-			if ( fprintf(f, "#SERVICE %s\r\n", tmp.toString().c_str()) < 0 )
-				goto err;
-			if ( i->name.length() )
-				if ( fprintf(f, "#DESCRIPTION %s\r\n", i->name.c_str()) < 0 )
-					goto err;
-		}
-		f.sync();
+		eDebug("[eBouquet] Error: Couldn't open '%s' for writing! (%m)", tempFilename.c_str());
+		return -1;
 	}
-	rename((filename + ".writing").c_str(), filename.c_str());
-	return 0;
-err:
-	eDebug("[eBouquet] Error: Couldn't write file '%s'!", m_filename.c_str());
+	fprintf(f, "#NAME %s\r\n", m_bouquet_name.c_str());
+	for (const auto &service : m_services)
+	{
+		if (fprintf(f, "#SERVICE %s\r\n", service.toString().c_str()) < 0)
+			break;
+		if (!service.name.empty() && fprintf(f, "#DESCRIPTION %s\r\n", service.name.c_str()) < 0)
+			break;
+	}
+	// A full filesystem can report the write error only when the stdio buffer is flushed.
+	if (!ferror(f) && fflush(f) == 0 && fsync(fileno(f)) == 0 && f.close() == 0 && rename(tempFilename.c_str(), filename.c_str()) == 0)
+		return 0;
+	eDebug("[eBouquet] Error: Couldn't save '%s'! (%m)", filename.c_str());
+	unlink(tempFilename.c_str());
 	return -1;
 }
 
@@ -1306,7 +1309,7 @@ void eDVBDB::saveIptvServicelist(const char *file)
 
 }
 
-void eDVBDB::loadBouquet(const char *path)
+bool eDVBDB::loadBouquet(const char *path)
 {
 	std::vector<std::string> userbouquetsfiles;
 	std::string extension;
@@ -1321,7 +1324,7 @@ void eDVBDB::loadBouquet(const char *path)
 		if (!dir)
 		{
 			eDebug("[eDVBDB] Error: Cannot open directory '%s' where the userbouquets should be expected.", p.c_str());
-			return;
+			return false;
 		}
 		dirent *entry;
 		while((entry = readdir(dir)) != NULL)
@@ -1337,7 +1340,7 @@ void eDVBDB::loadBouquet(const char *path)
 	if (!bouquet_name.length())
 	{
 		eDebug("[eDVBDB] Error: Bouquet load failed!  (No path given.)");
-		return;
+		return false;
 	}
 	size_t pos = bouquet_name.rfind('/');
 	if ( pos != std::string::npos )
@@ -1345,7 +1348,7 @@ void eDVBDB::loadBouquet(const char *path)
 	if (bouquet_name.empty())
 	{
 		eDebug("[eDVBDB] Error: Bouquet load failed!  (No filename given.)");
-		return;
+		return false;
 	}
 	eBouquet &bouquet = m_bouquets[bouquet_name];
 	bouquet.m_filename = bouquet_name;
@@ -1397,7 +1400,7 @@ void eDVBDB::loadBouquet(const char *path)
 			else
 			{
 				eDebug("[eDVBDB] Error: Can't load bouquet '%s'!", path);
-				return;
+				return false;
 			}
 		}
 	}
@@ -1405,25 +1408,33 @@ void eDVBDB::loadBouquet(const char *path)
 	if(m_debug)
 		eDebug("[eDVBDB] Loading bouquet '%s'.", file_path.c_str());
 	CFile fp(file_path, "rt");
-
+	bool complete = fp;
 	if (fp)
 	{
 		size_t linesize = 256;
 		char *line = (char*)malloc(linesize);
 		bool read_descr=false;
 		eServiceReference *e = NULL;
-		while (1)
+		ssize_t len;
+		while ((len = getline(&line, &linesize, fp)) >= 0)
 		{
-			int len;
-			if ((len = getline(&line, &linesize, fp)) < 2) break;
-			/* strip newline */
-			line[--len] = 0;
-			/* strip carriage return (when found) */
-			if (line[len - 1] == '\r') line[--len] = 0;
+			while (len && (line[len - 1] == '\n' || line[len - 1] == '\r'))
+				line[--len] = 0;
 			if (!strncmp(line, "#SERVICE", 8))
 			{
+				read_descr = false;
 				int offs = line[8] == ':' ? 10 : 9;
+				if (len <= offs)
+				{
+					complete = false;
+					continue;
+				}
 				eServiceReference tmp(line+offs);
+				if (!tmp.valid())
+				{
+					complete = false;
+					continue;
+				}
 				if ( tmp.flags&eServiceReference::canDescent )
 				{
 					size_t pos = tmp.path.rfind('/');
@@ -1433,21 +1444,20 @@ void eDVBDB::loadBouquet(const char *path)
 						path.erase(0, pos+1);
 					if (path.empty())
 					{
+						complete = false;
 						eDebug("[eDVBDB] Error: Bouquet load failed!  (No filename given.)");
 						continue;
 					}
 					pos = path.find("FROM BOUQUET ");
 					if (pos != std::string::npos)
 					{
-						char endchr = path[pos+13];
-						if (endchr != '"')
+						path = quotedBouquetFilename(path);
+						if (path.empty())
 						{
-							eDebug("[eDVBDB] Error: Ignore invalid bouquet '%s'!  (Only \" are allowed.)", tmp.toString().c_str());
+							eDebug("[eDVBDB] Ignoring malformed bouquet reference in '%s'.", file_path.c_str());
+							complete = false;
 							continue;
 						}
-						char *beg = &path[pos+14];
-						char *end = strchr(beg, endchr);
-						path.assign(beg, end - beg);
 					}
 					else
 					{
@@ -1472,7 +1482,7 @@ void eDVBDB::loadBouquet(const char *path)
 			else if (read_descr && !strncmp(line, "#DESCRIPTION", 12))
 			{
 				int offs = line[12] == ':' ? 14 : 13;
-				std::string name_temp = line+offs;
+				std::string name_temp = len > offs ? line + offs : "";
 				std::string res_name = "";
 				std::string res_provider = "";
 				eServiceReference::parseNameAndProviderFromName(name_temp, res_name, res_provider);
@@ -1483,9 +1493,14 @@ void eDVBDB::loadBouquet(const char *path)
 			else if (!strncmp(line, "#NAME ", 6))
 				bouquet.m_bouquet_name=line+6;
 		}
+		if (!feof(fp) || ferror(fp))
+			complete = false;
 		free(line);
 	}
 
+	// A partial index cannot tell us which user bouquets are really unlinked.
+	if (!complete)
+		return false;
 	if (userbouquetsfiles.size())
 	{
 		for(unsigned int i=0; i<userbouquetsfiles.size(); ++i)
@@ -1521,15 +1536,16 @@ void eDVBDB::loadBouquet(const char *path)
 	}
 	if(m_debug)
 		eDebug("[eDVBDB] %d entries in bouquet '%s'.", entries, bouquet_name.c_str());
+	return true;
 }
 
 void eDVBDB::reloadBouquets()
 {
 	m_bouquets.clear();
-	loadBouquet("bouquets.tv");
-	loadBouquet("bouquets.radio");
+	bool tvComplete = loadBouquet("bouquets.tv");
+	bool radioComplete = loadBouquet("bouquets.radio");
 	// create default bouquets when missing
-	if ( m_bouquets.find("userbouquet.favourites.tv") == m_bouquets.end() )
+	if (tvComplete && m_bouquets.find("userbouquet.favourites.tv") == m_bouquets.end())
 	{
 		eBouquet &b = m_bouquets["userbouquet.favourites.tv"];
 		b.m_filename = "userbouquet.favourites.tv";
@@ -1544,7 +1560,7 @@ void eDVBDB::reloadBouquets()
 		parent.m_services.push_back(ref);
 		parent.flushChanges();
 	}
-	if ( m_bouquets.find("userbouquet.favourites.radio") == m_bouquets.end() )
+	if (radioComplete && m_bouquets.find("userbouquet.favourites.radio") == m_bouquets.end())
 	{
 		eBouquet &b = m_bouquets["userbouquet.favourites.radio"];
 		b.m_filename = "userbouquet.favourites.radio";
@@ -1596,22 +1612,14 @@ int eDVBDB::renumberBouquet(eBouquet &bouquet, int startChannelNum)
 		eServiceReference &ref = *it;
 		if (ref.flags & eServiceReference::canDescent)
 		{
-			std::string filename = ref.toString();
-			size_t pos = filename.find("FROM BOUQUET ");
-			if(pos != std::string::npos)
+			std::string filename = quotedBouquetFilename(ref.path);
+			if (!filename.empty())
 			{
-				char endchr = filename[pos+13];
-				if (endchr == '"')
-				{
-					char *beg = &filename[pos+14];
-					char *end = strchr(beg, endchr);
-					filename.assign(beg, end - beg);
-					eBouquet &subBouquet = m_bouquets[filename];
-					if ((m_numbering_mode == 1) || filename.find("alternatives.") == 0)
-						renumberBouquet(subBouquet);
-					else
-						startChannelNum = renumberBouquet(subBouquet, startChannelNum);
-				}
+				eBouquet &subBouquet = m_bouquets[filename];
+				if ((m_numbering_mode == 1) || filename.find("alternatives.") == 0)
+					renumberBouquet(subBouquet);
+				else
+					startChannelNum = renumberBouquet(subBouquet, startChannelNum);
 			}
 
 		}
@@ -2937,16 +2945,8 @@ RESULT eDVBDB::getBouquet(const eServiceReference &ref, eBouquet* &bouquet)
 		eDebug("[eDVBDB] getBouquet Error: No path given!");
 		return -1;
 	}
-	size_t pos = str.find("FROM BOUQUET \"");
-	if ( pos != std::string::npos )
-	{
-		str.erase(0, pos+14);
-		pos = str.find('"');
-		if ( pos != std::string::npos )
-			str.erase(pos);
-		else
-			str.clear();
-	}
+	if (str.find("FROM BOUQUET ") != std::string::npos)
+		str = quotedBouquetFilename(str);
 	if (str.empty())
 	{
 		eDebug("[eDVBDB] getBouquet Error: Couldn't parse bouquet name!");
@@ -3178,24 +3178,23 @@ RESULT eDVBDBQuery::getNextResult(eServiceReferenceDVB &ref)
 }
 
 eDVBDBBouquetQuery::eDVBDBBouquetQuery(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query)
-	:eDVBDBQueryBase(db, source, query), m_cursor(db->m_bouquets[query->m_bouquet_name].m_services.begin())
+	:eDVBDBQueryBase(db, source, query)
 {
+	// A bouquet can be edited or reloaded between calls to getNextResult().
+	const auto &services = db->m_bouquets[query->m_bouquet_name].m_services;
+	m_services.assign(services.begin(), services.end());
 }
 
 RESULT eDVBDBBouquetQuery::getNextResult(eServiceReferenceDVB &ref)
 {
-	eBouquet &bouquet = m_db->m_bouquets[m_query->m_bouquet_name];
-	std::list<eServiceReference> &list = bouquet.m_services;
-	while (m_cursor != list.end())
+	while (m_cursor < m_services.size())
 	{
-		ref = *((eServiceReferenceDVB*)&(*m_cursor));
+		static_cast<eServiceReference &>(ref) = std::move(m_services[m_cursor++]);
 
 		std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it =
 			m_db->m_services.find(ref);
 
 		int res = (!m_query) || it == m_db->m_services.end() || !(it->second->isHidden() && it->second->checkFilter(ref, *m_query));
-
-		++m_cursor;
 
 		if (res)
 			return 0;

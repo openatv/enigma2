@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-01 20:39+0100\n"
+"POT-Creation-Date: 2026-11-03 13:20+0100\n"
 "PO-Revision-Date: 2026-08-17 04:54+0000\n"
 "Last-Translator: Abdulelah Aqeil <dr.romantic@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -112,112 +112,6 @@ msgstr "# = يتطلب اعادة التشغيل عند تغيير هذا الع
 msgid "%-H:%M"
 msgstr "%-H:%M"
 
-msgid "%-H:%M:%S"
-msgstr "%-H:%M:%S"
-
-msgid "%-I:%M"
-msgstr "%-I:%M"
-
-msgid "%-I:%M%P"
-msgstr "%-I:%M%P"
-
-msgid "%-I:%M%^p"
-msgstr "%-I:%M%^p"
-
-msgid "%-I:%M:%S"
-msgstr "%-I:%M:%S"
-
-msgid "%-I:%M:%S%P"
-msgstr "%-I:%M:%S%P"
-
-msgid "%-I:%M:%S%^p"
-msgstr "%-I:%M:%S%^p"
-
-#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
-msgid "%-d %B %Y"
-msgstr "%-d %B %Y"
-
-#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
-#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
-msgid "%-d %b"
-msgstr "%-d %b"
-
-#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
-msgid "%-d %b %Y"
-msgstr "%-d %b %Y"
-
-msgid "%-d+%b_"
-msgstr "%-d+%b_"
-
-msgid "%-d-%B-%Y"
-msgstr "%-d-%B-%Y"
-
-msgid "%-d-%b"
-msgstr "%-d-%b"
-
-msgid "%-d-%b-%Y"
-msgstr "%-d-%b-%Y"
-
-msgid "%-d. %B %Y"
-msgstr "%-d. %B %Y"
-
-msgid "%-d. %b"
-msgstr "%-d. %b"
-
-msgid "%-d. %b %Y"
-msgstr "%-d. %b %Y"
-
-msgid "%-d.%-m"
-msgstr "%-d.%-m"
-
-msgid "%-d.%-m.%Y"
-msgstr "%-d.%-m.%Y"
-
-msgid "%-d.%m"
-msgstr "%-d.%m"
-
-msgid "%-d.%m.%Y"
-msgstr "%-d.%m.%Y"
-
-msgid "%-d/%-m"
-msgstr "%-d/%-m"
-
-msgid "%-d/%-m "
-msgstr "%-d/%-m "
-
-msgid "%-d/%-m/%Y"
-msgstr "%-d/%-m/%Y"
-
-msgid "%-d/%m"
-msgstr "%-d/%m"
-
-msgid "%-d/%m "
-msgstr "%-d/%m "
-
-msgid "%-d/%m/%Y"
-msgstr "%-d/%m/%Y"
-
-msgid "%-d=%b_"
-msgstr "%-d=%b_"
-
-msgid "%-m/%-d"
-msgstr "%-m/%-d"
-
-msgid "%-m/%-d "
-msgstr "%-m/%-d "
-
-msgid "%-m/%-d/%Y"
-msgstr "%-m/%-d/%Y"
-
-msgid "%-m/%d"
-msgstr "%-m/%d"
-
-msgid "%-m/%d "
-msgstr "%-m/%d "
-
-msgid "%-m/%d/%Y"
-msgstr "%-m/%d/%Y"
-
 #, python-format
 msgid "%.0f GB"
 msgstr "%.0f جيجابايت"
@@ -268,390 +162,17 @@ msgstr "%2.1f ثانية"
 msgid "%A"
 msgstr "%A"
 
-#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
-msgid "%A %-d %B"
-msgstr "%A %-d %B"
-
-msgid "%A %-d %B %Y"
-msgstr "%A %-d %B %Y"
-
-msgid "%A %-d-%B"
-msgstr "%A %-d-%B"
-
-msgid "%A %-d-%B-%Y"
-msgstr "%A %-d-%B-%Y"
-
-msgid "%A %-d. %B"
-msgstr "%A %-d. %B"
-
-msgid "%A %-d. %B %Y"
-msgstr "%A %-d. %B %Y"
-
-msgid "%A %-d.%-m"
-msgstr "%A %-d.%-m"
-
-msgid "%A %-d.%-m.%Y"
-msgstr "%A %-d.%-m.%Y"
-
-msgid "%A %-d.%m"
-msgstr "%A %-d.%m"
-
-msgid "%A %-d.%m.%Y"
-msgstr "%A %-d.%m.%Y"
-
-msgid "%A %-d/%-m"
-msgstr "%A %-d/%-m"
-
-msgid "%A %-d/%-m/%Y"
-msgstr "%A %-d/%-m/%Y"
-
-msgid "%A %-d/%m"
-msgstr "%A %-d/%m"
-
-msgid "%A %-d/%m/%Y"
-msgstr "%A %-d/%m/%Y"
-
-msgid "%A %-m/%-d"
-msgstr "%A %-m/%-d"
-
-msgid "%A %-m/%-d/%Y"
-msgstr "%A %-m/%-d/%Y"
-
-msgid "%A %-m/%d"
-msgstr "%A %-m/%d"
-
-msgid "%A %-m/%d/%Y"
-msgstr "%A %-m/%d/%Y"
-
-msgid "%A %B %-d"
-msgstr "%A %B %-d"
-
-msgid "%A %B %-d %Y"
-msgstr "%A %B %-d %Y"
-
-msgid "%A %B %d"
-msgstr "%A %B %d"
-
-msgid "%A %B %d %Y"
-msgstr "%A %B %d %Y"
-
-msgid "%A %B-%-d"
-msgstr "%A %B-%-d"
-
-msgid "%A %B-%-d-%Y"
-msgstr "%A %B-%-d-%Y"
-
-msgid "%A %B-%d"
-msgstr "%A %B-%d"
-
-msgid "%A %B-%d-%Y"
-msgstr "%A %B-%d-%Y"
-
-msgid "%A %Y %B %-d"
-msgstr "%A %Y %B %-d"
-
-msgid "%A %Y %B %d"
-msgstr "%A %Y %B %d"
-
-msgid "%A %Y-%B-%-d"
-msgstr "%A %Y-%B-%-d"
-
-msgid "%A %Y-%B-%d"
-msgstr "%A %Y-%B-%d"
-
-msgid "%A %Y/%-m/%-d"
-msgstr "%A %Y/%-m/%-d"
-
-msgid "%A %Y/%-m/%d"
-msgstr "%A %Y/%-m/%d"
-
-msgid "%A %Y/%m/%-d"
-msgstr "%A %Y/%m/%-d"
-
-msgid "%A %Y/%m/%d"
-msgstr "%A %Y/%m/%d"
-
 msgid "%A %d %B"
 msgstr "%A %d %B"
-
-msgid "%A %d %B %Y"
-msgstr "%A %d %B %Y"
-
-msgid "%A %d-%B"
-msgstr "%A %d-%B"
-
-msgid "%A %d-%B-%Y"
-msgstr "%A %d-%B-%Y"
-
-msgid "%A %d. %B"
-msgstr "%A %d. %B"
-
-msgid "%A %d. %B %Y"
-msgstr "%A %d. %B %Y"
-
-msgid "%A %d.%-m"
-msgstr "%A %d.%-m"
-
-msgid "%A %d.%-m.%Y"
-msgstr "%A %d.%-m.%Y"
-
-msgid "%A %d.%m"
-msgstr "%A %d.%m"
-
-msgid "%A %d.%m.%Y"
-msgstr "%A %d.%m.%Y"
-
-msgid "%A %d/%-m"
-msgstr "%A %d/%-m"
-
-msgid "%A %d/%-m/%Y"
-msgstr "%A %d/%-m/%Y"
-
-msgid "%A %d/%m"
-msgstr "%A %d/%m"
-
-msgid "%A %d/%m/%Y"
-msgstr "%A %d/%m/%Y"
-
-msgid "%A %m/%-d"
-msgstr "%A %m/%-d"
-
-msgid "%A %m/%-d/%Y"
-msgstr "%A %m/%-d/%Y"
-
-msgid "%A %m/%d"
-msgstr "%A %m/%d"
-
-msgid "%A %m/%d/%Y"
-msgstr "%A %m/%d/%Y"
-
-msgid "%B %-d %Y"
-msgstr "%B %-d %Y"
-
-msgid "%B %d %Y"
-msgstr "%B %d %Y"
-
-msgid "%B-%-d-%Y"
-msgstr "%B-%-d-%Y"
-
-msgid "%B-%d-%Y"
-msgstr "%B-%d-%Y"
 
 msgid "%H:%M"
 msgstr "%H:%M"
 
-msgid "%I:%M"
-msgstr "%I:%M"
-
-msgid "%I:%M%P"
-msgstr "%I:%M%P"
-
-msgid "%I:%M%^p"
-msgstr "%I:%M%^p"
-
-msgid "%I:%M:%S"
-msgstr "%I:%M:%S"
-
-msgid "%I:%M:%S%P"
-msgstr "%I:%M:%S%P"
-
-msgid "%I:%M:%S%^p"
-msgstr "%I:%M:%S%^p"
-
-#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
-msgid "%R"
-msgstr "%R"
-
-#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
-msgid "%T"
-msgstr "%T"
-
-msgid "%Y %B %-d"
-msgstr "%Y %B %-d"
-
-msgid "%Y %B %d"
-msgstr "%Y %B %d"
-
-msgid "%Y %b %-d"
-msgstr "%Y %b %-d"
-
-msgid "%Y %b %d"
-msgstr "%Y %b %d"
-
-msgid "%Y-%B-%-d"
-msgstr "%Y-%B-%-d"
-
-msgid "%Y-%B-%d"
-msgstr "%Y-%B-%d"
-
-msgid "%Y-%b-%-d"
-msgstr "%Y-%b-%-d"
-
-msgid "%Y-%b-%d"
-msgstr "%Y-%b-%d"
-
 msgid "%Y-%m-%d"
 msgstr "%Y-%m-%d"
 
-msgid "%Y/%-m/%-d"
-msgstr "%Y/%-m/%-d"
-
-msgid "%Y/%-m/%d"
-msgstr "%Y/%-m/%d"
-
-msgid "%Y/%m/%-d"
-msgstr "%Y/%m/%-d"
-
-msgid "%Y/%m/%d"
-msgstr "%Y/%m/%d"
-
 msgid "%a"
 msgstr "%a"
-
-#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
-msgid "%a %-d"
-msgstr "%a %-d"
-
-#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
-msgid "%a %-d %B %Y"
-msgstr "%a %-d %B %Y"
-
-#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
-msgid "%a %-d %b"
-msgstr "%a %-d %b"
-
-#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
-msgid "%a %-d %b %Y"
-msgstr "%a %-d %b %Y"
-
-msgid "%a %-d+%b_"
-msgstr "%a %-d+%b_"
-
-msgid "%a %-d-%B-%Y"
-msgstr "%a %-d-%B-%Y"
-
-msgid "%a %-d-%b"
-msgstr "%a %-d-%b"
-
-msgid "%a %-d-%b-%Y"
-msgstr "%a %-d-%b-%Y"
-
-msgid "%a %-d. %B %Y"
-msgstr "%a %-d. %B %Y"
-
-msgid "%a %-d. %b"
-msgstr "%a %-d. %b"
-
-msgid "%a %-d. %b %Y"
-msgstr "%a %-d. %b %Y"
-
-msgid "%a %-d.%-m"
-msgstr "%a %-d.%-m"
-
-msgid "%a %-d.%-m.%Y"
-msgstr "%a %-d.%-m.%Y"
-
-msgid "%a %-d.%m"
-msgstr "%a %-d.%m"
-
-msgid "%a %-d.%m.%Y"
-msgstr "%a %-d.%m.%Y"
-
-msgid "%a %-d/%-m"
-msgstr "%a %-d/%-m"
-
-msgid "%a %-d/%-m/%Y"
-msgstr "%a %-d/%-m/%Y"
-
-msgid "%a %-d/%m"
-msgstr "%a %-d/%m"
-
-msgid "%a %-d/%m/%Y"
-msgstr "%a %-d/%m/%Y"
-
-msgid "%a %-m/%-d"
-msgstr "%a %-m/%-d"
-
-msgid "%a %-m/%-d/%Y"
-msgstr "%a %-m/%-d/%Y"
-
-msgid "%a %-m/%d"
-msgstr "%a %-m/%d"
-
-msgid "%a %-m/%d/%Y"
-msgstr "%a %-m/%d/%Y"
-
-msgid "%a %B %-d %Y"
-msgstr "%a %B %-d %Y"
-
-msgid "%a %B %d %Y"
-msgstr "%a %B %d %Y"
-
-msgid "%a %B-%-d-%Y"
-msgstr "%a %B-%-d-%Y"
-
-msgid "%a %B-%d-%Y"
-msgstr "%a %B-%d-%Y"
-
-msgid "%a %Y %B %-d"
-msgstr "%a %Y %B %-d"
-
-msgid "%a %Y %B %d"
-msgstr "%a %Y %B %d"
-
-msgid "%a %Y %b %-d"
-msgstr "%a %Y %b %-d"
-
-msgid "%a %Y %b %d"
-msgstr "%a %Y %b %d"
-
-msgid "%a %Y-%B-%-d"
-msgstr "%a %Y-%B-%-d"
-
-msgid "%a %Y-%B-%d"
-msgstr "%a %Y-%B-%d"
-
-msgid "%a %Y-%b-%-d"
-msgstr "%a %Y-%b-%-d"
-
-msgid "%a %Y-%b-%d"
-msgstr "%a %Y-%b-%d"
-
-msgid "%a %Y/%-m/%-d"
-msgstr "%a %Y/%-m/%-d"
-
-msgid "%a %Y/%-m/%d"
-msgstr "%a %Y/%-m/%d"
-
-msgid "%a %Y/%m/%-d"
-msgstr "%a %Y/%m/%-d"
-
-msgid "%a %Y/%m/%d"
-msgstr "%a %Y/%m/%d"
-
-msgid "%a %b %-d"
-msgstr "%a %b %-d"
-
-msgid "%a %b %-d %Y"
-msgstr "%a %b %-d %Y"
-
-msgid "%a %b %d"
-msgstr "%a %b %d"
-
-msgid "%a %b %d %Y"
-msgstr "%a %b %d %Y"
-
-msgid "%a %b-%-d"
-msgstr "%a %b-%-d"
-
-msgid "%a %b-%-d-%Y"
-msgstr "%a %b-%-d-%Y"
-
-msgid "%a %b-%d"
-msgstr "%a %b-%d"
-
-msgid "%a %b-%d-%Y"
-msgstr "%a %b-%d-%Y"
 
 msgid "%a %d"
 msgstr "%a %d"
@@ -659,113 +180,8 @@ msgstr "%a %d"
 msgid "%a %d %B"
 msgstr "%a %d %B"
 
-msgid "%a %d %B %Y"
-msgstr "%a %d %B %Y"
-
 msgid "%a %d %b"
 msgstr "%a %d %b"
-
-msgid "%a %d %b %Y"
-msgstr "%a %d %b %Y"
-
-msgid "%a %d-%B-%Y"
-msgstr "%a %d-%B-%Y"
-
-msgid "%a %d-%b"
-msgstr "%a %d-%b"
-
-msgid "%a %d-%b-%Y"
-msgstr "%a %d-%b-%Y"
-
-msgid "%a %d. %B %Y"
-msgstr "%a %d. %B %Y"
-
-msgid "%a %d. %b"
-msgstr "%a %d. %b"
-
-msgid "%a %d. %b %Y"
-msgstr "%a %d. %b %Y"
-
-msgid "%a %d.%-m"
-msgstr "%a %d.%-m"
-
-msgid "%a %d.%-m.%Y"
-msgstr "%a %d.%-m.%Y"
-
-msgid "%a %d.%m"
-msgstr "%a %d.%m"
-
-msgid "%a %d.%m.%Y"
-msgstr "%a %d.%m.%Y"
-
-msgid "%a %d/%-m"
-msgstr "%a %d/%-m"
-
-msgid "%a %d/%-m/%Y"
-msgstr "%a %d/%-m/%Y"
-
-msgid "%a %d/%m"
-msgstr "%a %d/%m"
-
-msgid "%a %d/%m/%Y"
-msgstr "%a %d/%m/%Y"
-
-msgid "%a %m/%-d"
-msgstr "%a %m/%-d"
-
-msgid "%a %m/%-d/%Y"
-msgstr "%a %m/%-d/%Y"
-
-msgid "%a %m/%d"
-msgstr "%a %m/%d"
-
-msgid "%a %m/%d/%Y"
-msgstr "%a %m/%d/%Y"
-
-msgid "%b %-d"
-msgstr "%b %-d"
-
-msgid "%b %-d %Y"
-msgstr "%b %-d %Y"
-
-msgid "%b %d"
-msgstr "%b %d"
-
-msgid "%b %d %Y"
-msgstr "%b %d %Y"
-
-msgid "%b+%-d "
-msgstr "%b+%-d "
-
-msgid "%b+%d "
-msgstr "%b+%d "
-
-msgid "%b-%-d"
-msgstr "%b-%-d"
-
-msgid "%b-%-d-%Y"
-msgstr "%b-%-d-%Y"
-
-msgid "%b-%d"
-msgstr "%b-%d"
-
-msgid "%b-%d-%Y"
-msgstr "%b-%d-%Y"
-
-msgid "%b=%-d "
-msgstr "%b=%-d "
-
-msgid "%b=%d "
-msgstr "%b=%d "
-
-msgid "%d %B %Y"
-msgstr "%d %B %Y"
-
-msgid "%d %b"
-msgstr "%d %b"
-
-msgid "%d %b %Y"
-msgstr "%d %b %Y"
 
 #, python-format
 msgid "%d + %d + %d Minute"
@@ -841,23 +257,6 @@ msgstr "%d ميجابايت/ث"
 msgid "%d MHz"
 msgstr "%d ميجاهيرتز"
 
-#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
-#. _("%A %e %B %Y")
-#. TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
-#. _("%R")
-#. TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
-#. _("%R")
-#. TRANSLATORS: short date representation daynum short monthname in strftime() format! See 'man strftime'
-#. _("%e %b")
-#. TRANSLATORS: short date representation daynum short monthname in strftime() format! See 'man strftime'
-#. _("%a %e %b")
-#. TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
-#. _("%R")
-#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
-#. _("%a %e %b %R")
-#. TRANSLATORS: full date representations short dayname daynum monthname long year in strftime() format! See 'man strftime'
-#. _("%a %e %B %Y")
-#.
 #, python-format
 msgid "%d Min"
 msgid_plural "%d Mins"
@@ -1207,33 +606,6 @@ msgstr "%d خانة تم انشاؤها على الجهاز.\n"
 msgid "%d times"
 msgstr "%d مرات"
 
-msgid "%d+%b_"
-msgstr "%d+%b_"
-
-msgid "%d-%B-%Y"
-msgstr "%d-%B-%Y"
-
-msgid "%d-%b"
-msgstr "%d-%b"
-
-msgid "%d-%b-%Y"
-msgstr "%d-%b-%Y"
-
-msgid "%d. %B %Y"
-msgstr "%d.%B %Y"
-
-msgid "%d. %b"
-msgstr "%d. %b"
-
-msgid "%d. %b %Y"
-msgstr "%d. %b %Y"
-
-msgid "%d.%-m"
-msgstr "%d.%-m"
-
-msgid "%d.%-m.%Y"
-msgstr "%d.%-m.%Y"
-
 #, python-format
 msgid "%d.%03d GB"
 msgstr "%d.%03d جيجابايت"
@@ -1241,53 +613,8 @@ msgstr "%d.%03d جيجابايت"
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
-msgid "%d.%m"
-msgstr "%d.%m"
-
-msgid "%d.%m.%Y"
-msgstr "%d.%m.%Y"
-
-msgid "%d/%-m"
-msgstr "%d/%-m"
-
-msgid "%d/%-m "
-msgstr "%d/%-m "
-
-msgid "%d/%-m/%Y"
-msgstr "%d/%-m/%Y"
-
-msgid "%d/%m"
-msgstr "%d/%m"
-
-msgid "%d/%m "
-msgstr "%d/%m "
-
-msgid "%d/%m/%Y"
-msgstr "%d/%m/%Y"
-
-msgid "%d=%b_"
-msgstr "%d=%b_"
-
 msgid "%e/%m, %-H:%M"
 msgstr "%e/%m, %-H:%M"
-
-msgid "%m/%-d"
-msgstr "%m/%-d"
-
-msgid "%m/%-d "
-msgstr "%m/%-d "
-
-msgid "%m/%-d/%Y"
-msgstr "%m/%-d/%Y"
-
-msgid "%m/%d"
-msgstr "%m/%d"
-
-msgid "%m/%d "
-msgstr "%m/%d "
-
-msgid "%m/%d/%Y"
-msgstr "%m/%d/%Y"
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -1984,6 +1311,9 @@ msgstr ""
 msgid "AI Translation subscription code"
 msgstr "وضع الإنتقال"
 
+msgid "AM/PM display"
+msgstr ""
+
 msgid "ARM"
 msgstr "ARM"
 
@@ -2004,6 +1334,12 @@ msgstr ""
 
 msgid "AV Setup"
 msgstr "إعدادات الصوت و الصورة"
+
+msgid "Abbreviated day name"
+msgstr ""
+
+msgid "Abbreviated month name"
+msgstr ""
 
 msgid "Abkhazian"
 msgstr ""
@@ -4748,19 +4084,7 @@ msgstr ""
 msgid "Choose the amount of additional slots."
 msgstr ""
 
-msgid "Choose the display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr ""
-
-msgid "Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds. ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr ""
-
 msgid "Choose the fallback font."
-msgstr ""
-
-msgid "Choose the front panel display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr ""
-
-msgid "Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes. ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
 msgstr ""
 
 msgid "Choose the location for crash and debug logs."
@@ -5021,6 +4345,9 @@ msgstr ""
 msgid "Colombia"
 msgstr "كولومبيا"
 
+msgid "Colon ':'"
+msgstr ""
+
 msgid "Color"
 msgstr "اللون"
 
@@ -5047,6 +4374,12 @@ msgstr ""
 
 msgid "Comedy"
 msgstr "كوميديا"
+
+msgid "Comma ','"
+msgstr ""
+
+msgid "Comma and space ', '"
+msgstr ""
 
 #, python-format
 msgid "Command '%s' is unknown"
@@ -6384,16 +5717,25 @@ msgstr "تاريخ"
 msgid "Date / Time"
 msgstr ""
 
-msgid "Date And Time"
+msgid "Date Format"
 msgstr ""
 
 msgid "Date Time Input Actions"
+msgstr ""
+
+msgid "Date and Time Settings"
+msgstr ""
+
+msgid "Date and Time Setup Actions"
 msgstr ""
 
 msgid "Date ascending"
 msgstr ""
 
 msgid "Date descending"
+msgstr ""
+
+msgid "Date display style"
 msgstr ""
 
 msgid "Date style"
@@ -6406,147 +5748,23 @@ msgstr "دقائق وقت الذروة"
 msgid "Date: %s   Author: %s"
 msgstr ""
 
-msgid "Day D Mon"
-msgstr "يوم ي شر"
+msgid "Day Date Month Year"
+msgstr ""
 
-msgid "Day D-Mon"
-msgstr "يوم ي-شر"
+msgid "Day Month Date Year"
+msgstr ""
 
-msgid "Day D/M"
-msgstr "يوم ي/ش"
+msgid "Day Year Month Date"
+msgstr ""
 
-msgid "Day D/MM"
-msgstr "يوم ي/ش ش"
-
-msgid "Day DD Mon"
-msgstr "يوم ي ي شر"
-
-msgid "Day DD-Mon"
-msgstr "يوم ي ي-شر"
-
-#
-msgid "Day DD/M"
-msgstr "يوم ي ي/ ش"
-
-msgid "Day DD/MM"
-msgstr "يوم ي ي/ش ش"
-
-msgid "Day M/D"
-msgstr "يوم ش/ي"
-
-msgid "Day M/DD"
-msgstr "يوم ش/ي ي"
-
-msgid "Day MM/D"
-msgstr "يوم ش ش/ي"
-
-msgid "Day MM/DD"
-msgstr "يوم ش ش/ي ي"
-
-msgid "Day Mon D"
-msgstr "يوم شر ي"
-
-msgid "Day Mon DD"
-msgstr "يوم شر ي ي"
-
-msgid "Day Mon-D"
-msgstr "يوم شر-ي"
-
-msgid "Day Mon-DD"
-msgstr "يوم شر-ي ي"
+msgid "Day display style"
+msgstr ""
 
 msgid "Day of week"
 msgstr "اليوم من الاسبوع"
 
-msgid "Dayname D Month Year"
-msgstr "اسم اليوم ي الشهر السنة"
-
-msgid "Dayname D-Month-Year"
-msgstr "اسم اليوم ي-الشهر-السنة"
-
-msgid "Dayname D. Month Year"
-msgstr "اسم اليوم ي. الشهر السنة"
-
-msgid "Dayname D.M.Year"
-msgstr "اسم اليوم ي.ش.السنة"
-
-msgid "Dayname D.MM.Year"
-msgstr "اسم اليوم ي.ش ش.السنة"
-
-msgid "Dayname D/M/Year"
-msgstr "اسم اليوم ي/ش/السنة"
-
-msgid "Dayname D/MM/Year"
-msgstr "اسم اليوم ي/ش ش/السنة"
-
-msgid "Dayname DD Month Year"
-msgstr "اسم اليوم ي ي الشهر السنة"
-
-msgid "Dayname DD-Month-Year"
-msgstr "اسم اليوم ي ي-الشهر-السنة"
-
-msgid "Dayname DD. Month Year"
-msgstr "اسم اليوم ي ي. الشهر السنة"
-
-msgid "Dayname DD.M.Year"
-msgstr "اسم اليوم ي ي.ش.السنة"
-
-msgid "Dayname DD.MM.Year"
-msgstr "اسم اليوم ي ي.ش ش.السنة"
-
-msgid "Dayname DD/M/Year"
-msgstr "اسم اليوم ي ي/ش/السنة"
-
-msgid "Dayname DD/MM/Year"
-msgstr "اسم اليوم ي ي/ش ش/السنة"
-
-msgid "Dayname M/D/Year"
-msgstr "اسم اليوم ش/ي/السنة"
-
-msgid "Dayname M/DD/Year"
-msgstr "اسم اليوم ش/ي ي/السنة"
-
-msgid "Dayname MM/D/Year"
-msgstr "اسم اليوم ش ش/ي/السنة"
-
-msgid "Dayname MM/DD/Year"
-msgstr "اسم اليوم ش ش/ي ي/السنة"
-
-msgid "Dayname Month D Year"
-msgstr "اسم اليوم الشهر ي السنة"
-
-msgid "Dayname Month DD Year"
-msgstr "اسم اليوم الشهر ي ي السنة"
-
-msgid "Dayname Month-D-Year"
-msgstr "اسم اليوم الشهر-ي-السنة"
-
-msgid "Dayname Month-DD-Year"
-msgstr "اسم اليوم الشهر-ي ي-السنة"
-
-msgid "Dayname Year Month D"
-msgstr "اسم اليوم السنة الشهر ي"
-
-msgid "Dayname Year Month DD"
-msgstr "اسم اليوم السنة الشهر ي ي"
-
-msgid "Dayname Year-Month-D"
-msgstr "اسم اليوم السنة-الشهر-ي"
-
-msgid "Dayname Year-Month-DD"
-msgstr "اسم اليوم السنة-الشهر-ي ي"
-
-msgid "Dayname Year/M/D"
-msgstr "اسم اليوم السنة/ش/ي"
-
-msgid "Dayname Year/M/DD"
-msgstr "اسم اليوم السنة/ش/ي ي"
-
-msgid "Dayname Year/MM/D"
-msgstr "اسم اليوم السنة/ش ش/ي"
-
-msgid "Dayname Year/MM/DD"
-msgstr "اسم اليوم السنة/ش ش/ي ي"
+msgid "Day separator"
+msgstr ""
 
 msgid "Deactivate"
 msgstr "تعطيل"
@@ -7342,6 +6560,9 @@ msgid "Display more information about this file"
 msgstr ""
 
 msgid "Display oscam information."
+msgstr ""
+
+msgid "Display seconds"
 msgstr ""
 
 msgid "Display selection list as a selection menu"
@@ -9694,6 +8915,9 @@ msgstr "اللغة الفنلندية"
 msgid "First playable time shift file!"
 msgstr ""
 
+msgid "First separator"
+msgstr ""
+
 msgid "Fishing"
 msgstr ""
 
@@ -9876,6 +9100,9 @@ msgstr ""
 msgid "Forward Error Correction (FEC)"
 msgstr ""
 
+msgid "Forward slash '/'"
+msgstr ""
+
 msgid "Forward volume keys"
 msgstr "مفاتيح رفع مستوى الصوت"
 
@@ -9983,8 +9210,14 @@ msgstr ""
 msgid "Full Stretch"
 msgstr ""
 
+msgid "Full day name"
+msgstr ""
+
 msgid "Full factory reset"
 msgstr "إعادة ضبط المصنع بالكامل"
+
+msgid "Full month name"
+msgstr ""
 
 msgid "Full path of the existing swap file"
 msgstr ""
@@ -10345,12 +9578,6 @@ msgstr ""
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "ساعة: = كل ساعة / د: = يوميا / ث: = أسبوعي / م: = شهريا"
 
-msgid "H:mm"
-msgstr "H:mm"
-
-msgid "H:mm:ss"
-msgstr "H:mm:ss"
-
 msgid "HARD DISK: "
 msgstr ""
 
@@ -10399,12 +9626,6 @@ msgstr "مساعدة HELP"
 
 msgid "HELP provides brief information for buttons in your current context."
 msgstr ""
-
-msgid "HH:mm"
-msgstr "HH:mm"
-
-msgid "HH:mm:ss"
-msgstr "HH:mm:ss"
 
 msgid "HI-cleanup for external subtitles"
 msgstr "تنظيف HI للعناوين الفرعية الخارجية"
@@ -10546,9 +9767,6 @@ msgstr ""
 
 msgid "HiSilicon specific information not found."
 msgstr ""
-
-msgid "Hidden / Blank"
-msgstr "مخفي/فارغ"
 
 msgid "Hidden network"
 msgstr "شبكة مخفية"
@@ -10737,6 +9955,9 @@ msgstr "مفتاح التشغيل السريع"
 msgid "Hotkey Settings"
 msgstr "إعدادات الاختصارات"
 
+msgid "Hour display style"
+msgstr ""
+
 msgid "Hourly"
 msgstr "كل ساعة"
 
@@ -10764,6 +9985,9 @@ msgid "Hungary"
 msgstr "هنغاريا"
 
 msgid "Hybrid Tuner"
+msgstr ""
+
+msgid "Hyphen '-'"
 msgstr ""
 
 msgid "Hz"
@@ -12805,6 +12029,9 @@ msgstr ""
 msgid "Merging time shift files"
 msgstr ""
 
+msgid "Meridiem (AM/PM) display"
+msgstr ""
+
 msgid "Merlin EPG Center"
 msgstr ""
 
@@ -12954,6 +12181,9 @@ msgstr ""
 
 msgid "Montenegro"
 msgstr "الجبل الأسود"
+
+msgid "Month display style"
+msgstr ""
 
 msgid "Monthly"
 msgstr "شهري"
@@ -13909,6 +13139,9 @@ msgstr ""
 msgid "No (supported) DVDROM found!"
 msgstr "لايوجد سواقة ديفيدي مدعومه!"
 
+msgid "No AM/PM display"
+msgstr ""
+
 #
 #, fuzzy
 msgid "No ECM PIDs available"
@@ -13985,6 +13218,9 @@ msgid ""
 msgstr ""
 "لا توجد بيانات عن المستجيب! \n"
 " (الوقت المستقطع لقراءة جدول البرامج المرتبطه)"
+
+msgid "No day name"
+msgstr ""
 
 msgid "No delay"
 msgstr "بدون تأخير"
@@ -14551,8 +13787,29 @@ msgstr "غير صالح الرقم التعريفي، تجاهل جزء الشب
 msgid "Once"
 msgstr "مره واحده"
 
+msgid "One digit"
+msgstr ""
+
+msgid "One digit (12 hour time)"
+msgstr ""
+
+msgid "One digit (24 hour time)"
+msgstr ""
+
+msgid "One digit, space padded"
+msgstr ""
+
+msgid "One digit, space padded (12 hour time)"
+msgstr ""
+
+msgid "One digit, space padded (24 hour time)"
+msgstr ""
+
 msgid "One line"
 msgstr "سطر واحد"
+
+msgid "One space ' '"
+msgstr ""
 
 msgid "Online manual"
 msgstr ""
@@ -15255,6 +14512,12 @@ msgstr ""
 
 msgid "Performing arts"
 msgstr "الفنون التمثيلية"
+
+msgid "Period '.'"
+msgstr ""
+
+msgid "Period and space '. '"
+msgstr ""
 
 msgid "Permanently delete all recordings in the trashcan?"
 msgstr "حذف جميع التسجيلات في سله المهملات بشكل دائم ؟"
@@ -18318,6 +17581,9 @@ msgstr "البحث الغرب ..."
 msgid "Second cable of motorized LNB"
 msgstr "الكيبل الثاني من اللاقط المتحرك"
 
+msgid "Second separator"
+msgstr ""
+
 msgid "Secondary DNS (IPv4)"
 msgstr ""
 
@@ -19059,6 +18325,9 @@ msgstr ""
 msgid "Select the AI-Powered Translation target language."
 msgstr ""
 
+msgid "Select the AM/PM indication for a 12 hour clock. This is ignored for a 24 hour clock."
+msgstr ""
+
 msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
 msgstr ""
 
@@ -19277,6 +18546,18 @@ msgstr ""
 msgid "Select the display sequence of previously visited services."
 msgstr ""
 
+msgid "Select the display style for dates. The screen display will be based on your choices but can be influenced by the skin."
+msgstr ""
+
+msgid "Select the display style for day of the week. The screen display will be based on your choice but can be influenced by the skin."
+msgstr ""
+
+msgid "Select the display style for hours/times."
+msgstr ""
+
+msgid "Select the display style for months. The screen display will be based on your choices but can be influenced by the skin."
+msgstr ""
+
 msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr ""
 
@@ -19458,6 +18739,21 @@ msgstr ""
 msgid "Select the security protocol that will be used to access the selected wireless network."
 msgstr ""
 
+msgid "Select the separator between the date and the time elements."
+msgstr ""
+
+msgid "Select the separator between the day and the date elements."
+msgstr ""
+
+msgid "Select the separator between the first two date elements."
+msgstr ""
+
+msgid "Select the separator between the second two date elements."
+msgstr ""
+
+msgid "Select the separator between the time elements."
+msgstr ""
+
 msgid "Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares)."
 msgstr ""
 
@@ -19493,6 +18789,12 @@ msgid "Select the start time after which this timer can be activated. Before thi
 msgstr ""
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
+msgstr ""
+
+msgid "Select the style for displaying dates."
+msgstr ""
+
+msgid "Select the suffix character to be appended to the date string. This is used for some locales."
 msgstr ""
 
 msgid "Select the tags that should be used for this recording."
@@ -19750,6 +19052,9 @@ msgstr "اختيار الأقمار الصناعية 2 (نظام مواقع ال
 
 msgid "Selecting this option allows you to configure a group of satellites in one block."
 msgstr "يسمح لك تحديد هذا الخيار بتكوين مجموعة من الأقمار الصناعية في كتلة واحدة."
+
+msgid "Semicolon ';'"
+msgstr ""
 
 msgid "Send DiSEqC"
 msgstr "أرسل دايزك"
@@ -21891,6 +21196,12 @@ msgstr ""
 msgid "South Sudan"
 msgstr "جنوب السودان"
 
+msgid "Space ' '"
+msgstr ""
+
+msgid "Space Hyphen Space ' - '"
+msgstr ""
+
 msgid "Space to reserve for recordings (GB)"
 msgstr "مساحة القرص الصلب للتسجيلات (في الجيجابايت)"
 
@@ -22480,6 +21791,9 @@ msgstr ":نجح"
 
 msgid "Sudan"
 msgstr "السودان"
+
+msgid "Suffix character"
+msgstr ""
 
 msgid "Suitable for ages 12+"
 msgstr ""
@@ -23769,10 +23083,7 @@ msgstr ""
 msgid "Time"
 msgstr "الوقت"
 
-msgid "Time Settings"
-msgstr "إعدادات الوقت"
-
-msgid "Time Setup Actions"
+msgid "Time Format"
 msgstr ""
 
 msgid "Time Shift Settings"
@@ -23808,6 +23119,9 @@ msgstr ""
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr ""
 
+msgid "Time separator"
+msgstr ""
+
 #
 msgid "Time shift buffer location"
 msgstr "موقع ملفات التايم شفت"
@@ -23838,11 +23152,6 @@ msgstr ""
 
 msgid "Time shift will get saved at end of event."
 msgstr ""
-
-#
-#, fuzzy
-msgid "Time style"
-msgstr "إختيار المؤقت"
 
 msgid "Time taken for the backup:"
 msgstr ""
@@ -24476,8 +23785,20 @@ msgstr ""
 msgid "Twin Tuner"
 msgstr ""
 
+msgid "Two digits"
+msgstr ""
+
+msgid "Two digits (12 hour time)"
+msgstr ""
+
+msgid "Two digits (24 hour time)"
+msgstr ""
+
 msgid "Two lines"
 msgstr "سطرين"
+
+msgid "Two spaces '  '"
+msgstr ""
 
 msgid "Two tuners share one SAT input and one C/T input. Reception types switch automatically. Use compatible SAT settings and separate Unicable User Bands. Cable and terrestrial reception cannot run together."
 msgstr ""
@@ -26038,6 +25359,9 @@ msgstr ""
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "عند التمكين، سيعمل تهئية لعرض خط الترجمة لكي يطابق عرض الشاشة."
 
+msgid "When enabled, seconds will be shown in time displays. The seconds display will be based on your selection but will be influenced by code and space requirements and the skin."
+msgstr ""
+
 msgid "When enabled, services without EPG data will be hidden."
 msgstr ""
 
@@ -26775,6 +26099,9 @@ msgstr ""
 msgid "am"
 msgstr ""
 
+msgid "am/pm display"
+msgstr ""
+
 #, python-format
 msgid "audio track (%s) format"
 msgstr ""
@@ -26958,28 +26285,6 @@ msgstr "أخضر"
 msgid "guest"
 msgstr ""
 
-msgid "h:mm"
-msgstr "h:mm"
-
-msgid "h:mm:ss"
-msgstr "h:mm:ss"
-
-#, fuzzy
-msgid "h:mm:ssAM/PM"
-msgstr "h:mm:ssAM/PM"
-
-#, fuzzy
-msgid "h:mm:ssam/pm"
-msgstr "h:mm:ssam/pm"
-
-#, fuzzy
-msgid "h:mmAM/PM"
-msgstr "h:mmAM/PM"
-
-#, fuzzy
-msgid "h:mmam/pm"
-msgstr "h:mmam/pm"
-
 #, fuzzy
 msgid "handled"
 msgstr "يعالج"
@@ -27001,28 +26306,6 @@ msgstr "طول"
 
 msgid "help..."
 msgstr "مساعدة..."
-
-msgid "hh:mm"
-msgstr "hh:mm"
-
-msgid "hh:mm:ss"
-msgstr "hh:mm:ss"
-
-#, fuzzy
-msgid "hh:mm:ssAM/PM"
-msgstr "hh:mm:ssAM/PM"
-
-#, fuzzy
-msgid "hh:mm:ssam/pm"
-msgstr "hh:mm:ssam/pm"
-
-#, fuzzy
-msgid "hh:mmAM/PM"
-msgstr "hh:mmAM/PM"
-
-#, fuzzy
-msgid "hh:mmam/pm"
-msgstr "hh:mmam/pm"
 
 msgid "hops:"
 msgstr "عدد الحلقات (Hops):"
@@ -27443,6 +26726,857 @@ msgstr "نعم (احتفظ بالفيدز)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "%-H:%M:%S"
+#~ msgstr "%-H:%M:%S"
+
+#~ msgid "%-I:%M"
+#~ msgstr "%-I:%M"
+
+#~ msgid "%-I:%M%P"
+#~ msgstr "%-I:%M%P"
+
+#~ msgid "%-I:%M%^p"
+#~ msgstr "%-I:%M%^p"
+
+#~ msgid "%-I:%M:%S"
+#~ msgstr "%-I:%M:%S"
+
+#~ msgid "%-I:%M:%S%P"
+#~ msgstr "%-I:%M:%S%P"
+
+#~ msgid "%-I:%M:%S%^p"
+#~ msgstr "%-I:%M:%S%^p"
+
+#~ msgid "%-d %B %Y"
+#~ msgstr "%-d %B %Y"
+
+#~ msgid "%-d %b"
+#~ msgstr "%-d %b"
+
+#~ msgid "%-d %b %Y"
+#~ msgstr "%-d %b %Y"
+
+#~ msgid "%-d+%b_"
+#~ msgstr "%-d+%b_"
+
+#~ msgid "%-d-%B-%Y"
+#~ msgstr "%-d-%B-%Y"
+
+#~ msgid "%-d-%b"
+#~ msgstr "%-d-%b"
+
+#~ msgid "%-d-%b-%Y"
+#~ msgstr "%-d-%b-%Y"
+
+#~ msgid "%-d. %B %Y"
+#~ msgstr "%-d. %B %Y"
+
+#~ msgid "%-d. %b"
+#~ msgstr "%-d. %b"
+
+#~ msgid "%-d. %b %Y"
+#~ msgstr "%-d. %b %Y"
+
+#~ msgid "%-d.%-m"
+#~ msgstr "%-d.%-m"
+
+#~ msgid "%-d.%-m.%Y"
+#~ msgstr "%-d.%-m.%Y"
+
+#~ msgid "%-d.%m"
+#~ msgstr "%-d.%m"
+
+#~ msgid "%-d.%m.%Y"
+#~ msgstr "%-d.%m.%Y"
+
+#~ msgid "%-d/%-m"
+#~ msgstr "%-d/%-m"
+
+#~ msgid "%-d/%-m "
+#~ msgstr "%-d/%-m "
+
+#~ msgid "%-d/%-m/%Y"
+#~ msgstr "%-d/%-m/%Y"
+
+#~ msgid "%-d/%m"
+#~ msgstr "%-d/%m"
+
+#~ msgid "%-d/%m "
+#~ msgstr "%-d/%m "
+
+#~ msgid "%-d/%m/%Y"
+#~ msgstr "%-d/%m/%Y"
+
+#~ msgid "%-d=%b_"
+#~ msgstr "%-d=%b_"
+
+#~ msgid "%-m/%-d"
+#~ msgstr "%-m/%-d"
+
+#~ msgid "%-m/%-d "
+#~ msgstr "%-m/%-d "
+
+#~ msgid "%-m/%-d/%Y"
+#~ msgstr "%-m/%-d/%Y"
+
+#~ msgid "%-m/%d"
+#~ msgstr "%-m/%d"
+
+#~ msgid "%-m/%d "
+#~ msgstr "%-m/%d "
+
+#~ msgid "%-m/%d/%Y"
+#~ msgstr "%-m/%d/%Y"
+
+#~ msgid "%A %-d %B"
+#~ msgstr "%A %-d %B"
+
+#~ msgid "%A %-d %B %Y"
+#~ msgstr "%A %-d %B %Y"
+
+#~ msgid "%A %-d-%B"
+#~ msgstr "%A %-d-%B"
+
+#~ msgid "%A %-d-%B-%Y"
+#~ msgstr "%A %-d-%B-%Y"
+
+#~ msgid "%A %-d. %B"
+#~ msgstr "%A %-d. %B"
+
+#~ msgid "%A %-d. %B %Y"
+#~ msgstr "%A %-d. %B %Y"
+
+#~ msgid "%A %-d.%-m"
+#~ msgstr "%A %-d.%-m"
+
+#~ msgid "%A %-d.%-m.%Y"
+#~ msgstr "%A %-d.%-m.%Y"
+
+#~ msgid "%A %-d.%m"
+#~ msgstr "%A %-d.%m"
+
+#~ msgid "%A %-d.%m.%Y"
+#~ msgstr "%A %-d.%m.%Y"
+
+#~ msgid "%A %-d/%-m"
+#~ msgstr "%A %-d/%-m"
+
+#~ msgid "%A %-d/%-m/%Y"
+#~ msgstr "%A %-d/%-m/%Y"
+
+#~ msgid "%A %-d/%m"
+#~ msgstr "%A %-d/%m"
+
+#~ msgid "%A %-d/%m/%Y"
+#~ msgstr "%A %-d/%m/%Y"
+
+#~ msgid "%A %-m/%-d"
+#~ msgstr "%A %-m/%-d"
+
+#~ msgid "%A %-m/%-d/%Y"
+#~ msgstr "%A %-m/%-d/%Y"
+
+#~ msgid "%A %-m/%d"
+#~ msgstr "%A %-m/%d"
+
+#~ msgid "%A %-m/%d/%Y"
+#~ msgstr "%A %-m/%d/%Y"
+
+#~ msgid "%A %B %-d"
+#~ msgstr "%A %B %-d"
+
+#~ msgid "%A %B %-d %Y"
+#~ msgstr "%A %B %-d %Y"
+
+#~ msgid "%A %B %d"
+#~ msgstr "%A %B %d"
+
+#~ msgid "%A %B %d %Y"
+#~ msgstr "%A %B %d %Y"
+
+#~ msgid "%A %B-%-d"
+#~ msgstr "%A %B-%-d"
+
+#~ msgid "%A %B-%-d-%Y"
+#~ msgstr "%A %B-%-d-%Y"
+
+#~ msgid "%A %B-%d"
+#~ msgstr "%A %B-%d"
+
+#~ msgid "%A %B-%d-%Y"
+#~ msgstr "%A %B-%d-%Y"
+
+#~ msgid "%A %Y %B %-d"
+#~ msgstr "%A %Y %B %-d"
+
+#~ msgid "%A %Y %B %d"
+#~ msgstr "%A %Y %B %d"
+
+#~ msgid "%A %Y-%B-%-d"
+#~ msgstr "%A %Y-%B-%-d"
+
+#~ msgid "%A %Y-%B-%d"
+#~ msgstr "%A %Y-%B-%d"
+
+#~ msgid "%A %Y/%-m/%-d"
+#~ msgstr "%A %Y/%-m/%-d"
+
+#~ msgid "%A %Y/%-m/%d"
+#~ msgstr "%A %Y/%-m/%d"
+
+#~ msgid "%A %Y/%m/%-d"
+#~ msgstr "%A %Y/%m/%-d"
+
+#~ msgid "%A %Y/%m/%d"
+#~ msgstr "%A %Y/%m/%d"
+
+#~ msgid "%A %d %B %Y"
+#~ msgstr "%A %d %B %Y"
+
+#~ msgid "%A %d-%B"
+#~ msgstr "%A %d-%B"
+
+#~ msgid "%A %d-%B-%Y"
+#~ msgstr "%A %d-%B-%Y"
+
+#~ msgid "%A %d. %B"
+#~ msgstr "%A %d. %B"
+
+#~ msgid "%A %d. %B %Y"
+#~ msgstr "%A %d. %B %Y"
+
+#~ msgid "%A %d.%-m"
+#~ msgstr "%A %d.%-m"
+
+#~ msgid "%A %d.%-m.%Y"
+#~ msgstr "%A %d.%-m.%Y"
+
+#~ msgid "%A %d.%m"
+#~ msgstr "%A %d.%m"
+
+#~ msgid "%A %d.%m.%Y"
+#~ msgstr "%A %d.%m.%Y"
+
+#~ msgid "%A %d/%-m"
+#~ msgstr "%A %d/%-m"
+
+#~ msgid "%A %d/%-m/%Y"
+#~ msgstr "%A %d/%-m/%Y"
+
+#~ msgid "%A %d/%m"
+#~ msgstr "%A %d/%m"
+
+#~ msgid "%A %d/%m/%Y"
+#~ msgstr "%A %d/%m/%Y"
+
+#~ msgid "%A %m/%-d"
+#~ msgstr "%A %m/%-d"
+
+#~ msgid "%A %m/%-d/%Y"
+#~ msgstr "%A %m/%-d/%Y"
+
+#~ msgid "%A %m/%d"
+#~ msgstr "%A %m/%d"
+
+#~ msgid "%A %m/%d/%Y"
+#~ msgstr "%A %m/%d/%Y"
+
+#~ msgid "%B %-d %Y"
+#~ msgstr "%B %-d %Y"
+
+#~ msgid "%B %d %Y"
+#~ msgstr "%B %d %Y"
+
+#~ msgid "%B-%-d-%Y"
+#~ msgstr "%B-%-d-%Y"
+
+#~ msgid "%B-%d-%Y"
+#~ msgstr "%B-%d-%Y"
+
+#~ msgid "%I:%M"
+#~ msgstr "%I:%M"
+
+#~ msgid "%I:%M%P"
+#~ msgstr "%I:%M%P"
+
+#~ msgid "%I:%M%^p"
+#~ msgstr "%I:%M%^p"
+
+#~ msgid "%I:%M:%S"
+#~ msgstr "%I:%M:%S"
+
+#~ msgid "%I:%M:%S%P"
+#~ msgstr "%I:%M:%S%P"
+
+#~ msgid "%I:%M:%S%^p"
+#~ msgstr "%I:%M:%S%^p"
+
+#~ msgid "%R"
+#~ msgstr "%R"
+
+#~ msgid "%T"
+#~ msgstr "%T"
+
+#~ msgid "%Y %B %-d"
+#~ msgstr "%Y %B %-d"
+
+#~ msgid "%Y %B %d"
+#~ msgstr "%Y %B %d"
+
+#~ msgid "%Y %b %-d"
+#~ msgstr "%Y %b %-d"
+
+#~ msgid "%Y %b %d"
+#~ msgstr "%Y %b %d"
+
+#~ msgid "%Y-%B-%-d"
+#~ msgstr "%Y-%B-%-d"
+
+#~ msgid "%Y-%B-%d"
+#~ msgstr "%Y-%B-%d"
+
+#~ msgid "%Y-%b-%-d"
+#~ msgstr "%Y-%b-%-d"
+
+#~ msgid "%Y-%b-%d"
+#~ msgstr "%Y-%b-%d"
+
+#~ msgid "%Y/%-m/%-d"
+#~ msgstr "%Y/%-m/%-d"
+
+#~ msgid "%Y/%-m/%d"
+#~ msgstr "%Y/%-m/%d"
+
+#~ msgid "%Y/%m/%-d"
+#~ msgstr "%Y/%m/%-d"
+
+#~ msgid "%Y/%m/%d"
+#~ msgstr "%Y/%m/%d"
+
+#~ msgid "%a %-d"
+#~ msgstr "%a %-d"
+
+#~ msgid "%a %-d %B %Y"
+#~ msgstr "%a %-d %B %Y"
+
+#~ msgid "%a %-d %b"
+#~ msgstr "%a %-d %b"
+
+#~ msgid "%a %-d %b %Y"
+#~ msgstr "%a %-d %b %Y"
+
+#~ msgid "%a %-d+%b_"
+#~ msgstr "%a %-d+%b_"
+
+#~ msgid "%a %-d-%B-%Y"
+#~ msgstr "%a %-d-%B-%Y"
+
+#~ msgid "%a %-d-%b"
+#~ msgstr "%a %-d-%b"
+
+#~ msgid "%a %-d-%b-%Y"
+#~ msgstr "%a %-d-%b-%Y"
+
+#~ msgid "%a %-d. %B %Y"
+#~ msgstr "%a %-d. %B %Y"
+
+#~ msgid "%a %-d. %b"
+#~ msgstr "%a %-d. %b"
+
+#~ msgid "%a %-d. %b %Y"
+#~ msgstr "%a %-d. %b %Y"
+
+#~ msgid "%a %-d.%-m"
+#~ msgstr "%a %-d.%-m"
+
+#~ msgid "%a %-d.%-m.%Y"
+#~ msgstr "%a %-d.%-m.%Y"
+
+#~ msgid "%a %-d.%m"
+#~ msgstr "%a %-d.%m"
+
+#~ msgid "%a %-d.%m.%Y"
+#~ msgstr "%a %-d.%m.%Y"
+
+#~ msgid "%a %-d/%-m"
+#~ msgstr "%a %-d/%-m"
+
+#~ msgid "%a %-d/%-m/%Y"
+#~ msgstr "%a %-d/%-m/%Y"
+
+#~ msgid "%a %-d/%m"
+#~ msgstr "%a %-d/%m"
+
+#~ msgid "%a %-d/%m/%Y"
+#~ msgstr "%a %-d/%m/%Y"
+
+#~ msgid "%a %-m/%-d"
+#~ msgstr "%a %-m/%-d"
+
+#~ msgid "%a %-m/%-d/%Y"
+#~ msgstr "%a %-m/%-d/%Y"
+
+#~ msgid "%a %-m/%d"
+#~ msgstr "%a %-m/%d"
+
+#~ msgid "%a %-m/%d/%Y"
+#~ msgstr "%a %-m/%d/%Y"
+
+#~ msgid "%a %B %-d %Y"
+#~ msgstr "%a %B %-d %Y"
+
+#~ msgid "%a %B %d %Y"
+#~ msgstr "%a %B %d %Y"
+
+#~ msgid "%a %B-%-d-%Y"
+#~ msgstr "%a %B-%-d-%Y"
+
+#~ msgid "%a %B-%d-%Y"
+#~ msgstr "%a %B-%d-%Y"
+
+#~ msgid "%a %Y %B %-d"
+#~ msgstr "%a %Y %B %-d"
+
+#~ msgid "%a %Y %B %d"
+#~ msgstr "%a %Y %B %d"
+
+#~ msgid "%a %Y %b %-d"
+#~ msgstr "%a %Y %b %-d"
+
+#~ msgid "%a %Y %b %d"
+#~ msgstr "%a %Y %b %d"
+
+#~ msgid "%a %Y-%B-%-d"
+#~ msgstr "%a %Y-%B-%-d"
+
+#~ msgid "%a %Y-%B-%d"
+#~ msgstr "%a %Y-%B-%d"
+
+#~ msgid "%a %Y-%b-%-d"
+#~ msgstr "%a %Y-%b-%-d"
+
+#~ msgid "%a %Y-%b-%d"
+#~ msgstr "%a %Y-%b-%d"
+
+#~ msgid "%a %Y/%-m/%-d"
+#~ msgstr "%a %Y/%-m/%-d"
+
+#~ msgid "%a %Y/%-m/%d"
+#~ msgstr "%a %Y/%-m/%d"
+
+#~ msgid "%a %Y/%m/%-d"
+#~ msgstr "%a %Y/%m/%-d"
+
+#~ msgid "%a %Y/%m/%d"
+#~ msgstr "%a %Y/%m/%d"
+
+#~ msgid "%a %b %-d"
+#~ msgstr "%a %b %-d"
+
+#~ msgid "%a %b %-d %Y"
+#~ msgstr "%a %b %-d %Y"
+
+#~ msgid "%a %b %d"
+#~ msgstr "%a %b %d"
+
+#~ msgid "%a %b %d %Y"
+#~ msgstr "%a %b %d %Y"
+
+#~ msgid "%a %b-%-d"
+#~ msgstr "%a %b-%-d"
+
+#~ msgid "%a %b-%-d-%Y"
+#~ msgstr "%a %b-%-d-%Y"
+
+#~ msgid "%a %b-%d"
+#~ msgstr "%a %b-%d"
+
+#~ msgid "%a %b-%d-%Y"
+#~ msgstr "%a %b-%d-%Y"
+
+#~ msgid "%a %d %B %Y"
+#~ msgstr "%a %d %B %Y"
+
+#~ msgid "%a %d %b %Y"
+#~ msgstr "%a %d %b %Y"
+
+#~ msgid "%a %d-%B-%Y"
+#~ msgstr "%a %d-%B-%Y"
+
+#~ msgid "%a %d-%b"
+#~ msgstr "%a %d-%b"
+
+#~ msgid "%a %d-%b-%Y"
+#~ msgstr "%a %d-%b-%Y"
+
+#~ msgid "%a %d. %B %Y"
+#~ msgstr "%a %d. %B %Y"
+
+#~ msgid "%a %d. %b"
+#~ msgstr "%a %d. %b"
+
+#~ msgid "%a %d. %b %Y"
+#~ msgstr "%a %d. %b %Y"
+
+#~ msgid "%a %d.%-m"
+#~ msgstr "%a %d.%-m"
+
+#~ msgid "%a %d.%-m.%Y"
+#~ msgstr "%a %d.%-m.%Y"
+
+#~ msgid "%a %d.%m"
+#~ msgstr "%a %d.%m"
+
+#~ msgid "%a %d.%m.%Y"
+#~ msgstr "%a %d.%m.%Y"
+
+#~ msgid "%a %d/%-m"
+#~ msgstr "%a %d/%-m"
+
+#~ msgid "%a %d/%-m/%Y"
+#~ msgstr "%a %d/%-m/%Y"
+
+#~ msgid "%a %d/%m"
+#~ msgstr "%a %d/%m"
+
+#~ msgid "%a %d/%m/%Y"
+#~ msgstr "%a %d/%m/%Y"
+
+#~ msgid "%a %m/%-d"
+#~ msgstr "%a %m/%-d"
+
+#~ msgid "%a %m/%-d/%Y"
+#~ msgstr "%a %m/%-d/%Y"
+
+#~ msgid "%a %m/%d"
+#~ msgstr "%a %m/%d"
+
+#~ msgid "%a %m/%d/%Y"
+#~ msgstr "%a %m/%d/%Y"
+
+#~ msgid "%b %-d"
+#~ msgstr "%b %-d"
+
+#~ msgid "%b %-d %Y"
+#~ msgstr "%b %-d %Y"
+
+#~ msgid "%b %d"
+#~ msgstr "%b %d"
+
+#~ msgid "%b %d %Y"
+#~ msgstr "%b %d %Y"
+
+#~ msgid "%b+%-d "
+#~ msgstr "%b+%-d "
+
+#~ msgid "%b+%d "
+#~ msgstr "%b+%d "
+
+#~ msgid "%b-%-d"
+#~ msgstr "%b-%-d"
+
+#~ msgid "%b-%-d-%Y"
+#~ msgstr "%b-%-d-%Y"
+
+#~ msgid "%b-%d"
+#~ msgstr "%b-%d"
+
+#~ msgid "%b-%d-%Y"
+#~ msgstr "%b-%d-%Y"
+
+#~ msgid "%b=%-d "
+#~ msgstr "%b=%-d "
+
+#~ msgid "%b=%d "
+#~ msgstr "%b=%d "
+
+#~ msgid "%d %B %Y"
+#~ msgstr "%d %B %Y"
+
+#~ msgid "%d %b"
+#~ msgstr "%d %b"
+
+#~ msgid "%d %b %Y"
+#~ msgstr "%d %b %Y"
+
+#~ msgid "%d+%b_"
+#~ msgstr "%d+%b_"
+
+#~ msgid "%d-%B-%Y"
+#~ msgstr "%d-%B-%Y"
+
+#~ msgid "%d-%b"
+#~ msgstr "%d-%b"
+
+#~ msgid "%d-%b-%Y"
+#~ msgstr "%d-%b-%Y"
+
+#~ msgid "%d. %B %Y"
+#~ msgstr "%d.%B %Y"
+
+#~ msgid "%d. %b"
+#~ msgstr "%d. %b"
+
+#~ msgid "%d. %b %Y"
+#~ msgstr "%d. %b %Y"
+
+#~ msgid "%d.%-m"
+#~ msgstr "%d.%-m"
+
+#~ msgid "%d.%-m.%Y"
+#~ msgstr "%d.%-m.%Y"
+
+#~ msgid "%d.%m"
+#~ msgstr "%d.%m"
+
+#~ msgid "%d.%m.%Y"
+#~ msgstr "%d.%m.%Y"
+
+#~ msgid "%d/%-m"
+#~ msgstr "%d/%-m"
+
+#~ msgid "%d/%-m "
+#~ msgstr "%d/%-m "
+
+#~ msgid "%d/%-m/%Y"
+#~ msgstr "%d/%-m/%Y"
+
+#~ msgid "%d/%m"
+#~ msgstr "%d/%m"
+
+#~ msgid "%d/%m "
+#~ msgstr "%d/%m "
+
+#~ msgid "%d/%m/%Y"
+#~ msgstr "%d/%m/%Y"
+
+#~ msgid "%d=%b_"
+#~ msgstr "%d=%b_"
+
+#~ msgid "%m/%-d"
+#~ msgstr "%m/%-d"
+
+#~ msgid "%m/%-d "
+#~ msgstr "%m/%-d "
+
+#~ msgid "%m/%-d/%Y"
+#~ msgstr "%m/%-d/%Y"
+
+#~ msgid "%m/%d"
+#~ msgstr "%m/%d"
+
+#~ msgid "%m/%d "
+#~ msgstr "%m/%d "
+
+#~ msgid "%m/%d/%Y"
+#~ msgstr "%m/%d/%Y"
+
+#~ msgid "Day D Mon"
+#~ msgstr "يوم ي شر"
+
+#~ msgid "Day D-Mon"
+#~ msgstr "يوم ي-شر"
+
+#~ msgid "Day D/M"
+#~ msgstr "يوم ي/ش"
+
+#~ msgid "Day D/MM"
+#~ msgstr "يوم ي/ش ش"
+
+#~ msgid "Day DD Mon"
+#~ msgstr "يوم ي ي شر"
+
+#~ msgid "Day DD-Mon"
+#~ msgstr "يوم ي ي-شر"
+
+#
+#~ msgid "Day DD/M"
+#~ msgstr "يوم ي ي/ ش"
+
+#~ msgid "Day DD/MM"
+#~ msgstr "يوم ي ي/ش ش"
+
+#~ msgid "Day M/D"
+#~ msgstr "يوم ش/ي"
+
+#~ msgid "Day M/DD"
+#~ msgstr "يوم ش/ي ي"
+
+#~ msgid "Day MM/D"
+#~ msgstr "يوم ش ش/ي"
+
+#~ msgid "Day MM/DD"
+#~ msgstr "يوم ش ش/ي ي"
+
+#~ msgid "Day Mon D"
+#~ msgstr "يوم شر ي"
+
+#~ msgid "Day Mon DD"
+#~ msgstr "يوم شر ي ي"
+
+#~ msgid "Day Mon-D"
+#~ msgstr "يوم شر-ي"
+
+#~ msgid "Day Mon-DD"
+#~ msgstr "يوم شر-ي ي"
+
+#~ msgid "Dayname D Month Year"
+#~ msgstr "اسم اليوم ي الشهر السنة"
+
+#~ msgid "Dayname D-Month-Year"
+#~ msgstr "اسم اليوم ي-الشهر-السنة"
+
+#~ msgid "Dayname D. Month Year"
+#~ msgstr "اسم اليوم ي. الشهر السنة"
+
+#~ msgid "Dayname D.M.Year"
+#~ msgstr "اسم اليوم ي.ش.السنة"
+
+#~ msgid "Dayname D.MM.Year"
+#~ msgstr "اسم اليوم ي.ش ش.السنة"
+
+#~ msgid "Dayname D/M/Year"
+#~ msgstr "اسم اليوم ي/ش/السنة"
+
+#~ msgid "Dayname D/MM/Year"
+#~ msgstr "اسم اليوم ي/ش ش/السنة"
+
+#~ msgid "Dayname DD Month Year"
+#~ msgstr "اسم اليوم ي ي الشهر السنة"
+
+#~ msgid "Dayname DD-Month-Year"
+#~ msgstr "اسم اليوم ي ي-الشهر-السنة"
+
+#~ msgid "Dayname DD. Month Year"
+#~ msgstr "اسم اليوم ي ي. الشهر السنة"
+
+#~ msgid "Dayname DD.M.Year"
+#~ msgstr "اسم اليوم ي ي.ش.السنة"
+
+#~ msgid "Dayname DD.MM.Year"
+#~ msgstr "اسم اليوم ي ي.ش ش.السنة"
+
+#~ msgid "Dayname DD/M/Year"
+#~ msgstr "اسم اليوم ي ي/ش/السنة"
+
+#~ msgid "Dayname DD/MM/Year"
+#~ msgstr "اسم اليوم ي ي/ش ش/السنة"
+
+#~ msgid "Dayname M/D/Year"
+#~ msgstr "اسم اليوم ش/ي/السنة"
+
+#~ msgid "Dayname M/DD/Year"
+#~ msgstr "اسم اليوم ش/ي ي/السنة"
+
+#~ msgid "Dayname MM/D/Year"
+#~ msgstr "اسم اليوم ش ش/ي/السنة"
+
+#~ msgid "Dayname MM/DD/Year"
+#~ msgstr "اسم اليوم ش ش/ي ي/السنة"
+
+#~ msgid "Dayname Month D Year"
+#~ msgstr "اسم اليوم الشهر ي السنة"
+
+#~ msgid "Dayname Month DD Year"
+#~ msgstr "اسم اليوم الشهر ي ي السنة"
+
+#~ msgid "Dayname Month-D-Year"
+#~ msgstr "اسم اليوم الشهر-ي-السنة"
+
+#~ msgid "Dayname Month-DD-Year"
+#~ msgstr "اسم اليوم الشهر-ي ي-السنة"
+
+#~ msgid "Dayname Year Month D"
+#~ msgstr "اسم اليوم السنة الشهر ي"
+
+#~ msgid "Dayname Year Month DD"
+#~ msgstr "اسم اليوم السنة الشهر ي ي"
+
+#~ msgid "Dayname Year-Month-D"
+#~ msgstr "اسم اليوم السنة-الشهر-ي"
+
+#~ msgid "Dayname Year-Month-DD"
+#~ msgstr "اسم اليوم السنة-الشهر-ي ي"
+
+#~ msgid "Dayname Year/M/D"
+#~ msgstr "اسم اليوم السنة/ش/ي"
+
+#~ msgid "Dayname Year/M/DD"
+#~ msgstr "اسم اليوم السنة/ش/ي ي"
+
+#~ msgid "Dayname Year/MM/D"
+#~ msgstr "اسم اليوم السنة/ش ش/ي"
+
+#~ msgid "Dayname Year/MM/DD"
+#~ msgstr "اسم اليوم السنة/ش ش/ي ي"
+
+#~ msgid "H:mm"
+#~ msgstr "H:mm"
+
+#~ msgid "H:mm:ss"
+#~ msgstr "H:mm:ss"
+
+#~ msgid "HH:mm"
+#~ msgstr "HH:mm"
+
+#~ msgid "HH:mm:ss"
+#~ msgstr "HH:mm:ss"
+
+#~ msgid "Hidden / Blank"
+#~ msgstr "مخفي/فارغ"
+
+#~ msgid "Time Settings"
+#~ msgstr "إعدادات الوقت"
+
+#
+#, fuzzy
+#~ msgid "Time style"
+#~ msgstr "إختيار المؤقت"
+
+#~ msgid "h:mm"
+#~ msgstr "h:mm"
+
+#~ msgid "h:mm:ss"
+#~ msgstr "h:mm:ss"
+
+#, fuzzy
+#~ msgid "h:mm:ssAM/PM"
+#~ msgstr "h:mm:ssAM/PM"
+
+#, fuzzy
+#~ msgid "h:mm:ssam/pm"
+#~ msgstr "h:mm:ssam/pm"
+
+#, fuzzy
+#~ msgid "h:mmAM/PM"
+#~ msgstr "h:mmAM/PM"
+
+#, fuzzy
+#~ msgid "h:mmam/pm"
+#~ msgstr "h:mmam/pm"
+
+#~ msgid "hh:mm"
+#~ msgstr "hh:mm"
+
+#~ msgid "hh:mm:ss"
+#~ msgstr "hh:mm:ss"
+
+#, fuzzy
+#~ msgid "hh:mm:ssAM/PM"
+#~ msgstr "hh:mm:ssAM/PM"
+
+#, fuzzy
+#~ msgid "hh:mm:ssam/pm"
+#~ msgstr "hh:mm:ssam/pm"
+
+#, fuzzy
+#~ msgid "hh:mmAM/PM"
+#~ msgstr "hh:mmAM/PM"
+
+#, fuzzy
+#~ msgid "hh:mmam/pm"
+#~ msgstr "hh:mmam/pm"
 
 #~ msgid "Add a RecordTimer for current event"
 #~ msgstr "اضف موقت تسجيل للحدث الحالي"
