@@ -259,6 +259,8 @@ def reloadSkins():
 	clearPixmapCache()
 	componentTemplates.clear()
 	InitSkins()
+	from Components.AVSwitch import avSwitch  # AVSwitch initialization depends on skin loading.
+	avSwitch.updateOSDCalibration()
 	from Components.UsageConfig import refreshChannelSelectionStyleChoices
 	refreshChannelSelectionStyleChoices()
 

@@ -2,9 +2,9 @@ from os import W_OK, access
 from os.path import exists
 from time import sleep
 
-from enigma import eAVControl, getDesktop, getGraphicsInfo, gMainDC
+from enigma import eAVControl, gMainDC, getDesktop, getGraphicsInfo
 
-from Components.config import ConfigBoolean, ConfigEnableDisable, ConfigInteger, ConfigNothing, ConfigOnOff, ConfigSelection, ConfigSelectionInteger, ConfigSelectionNumber, ConfigSlider, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config
+from Components.config import ConfigBoolean, ConfigEnableDisable, ConfigInteger, ConfigNothing, ConfigOnOff, ConfigSelection, ConfigSelectionInteger, ConfigSelectionNumber, ConfigSlider, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, configfile
 from Components.SystemInfo import BoxInfo
 from Tools.CList import CList
 from Tools.Directories import fileReadLine, fileWriteLine
@@ -276,6 +276,7 @@ def InitAVSwitch():
 	config.av.policy_169.addNotifier(avSwitch.setPolicy169)
 	config.osd = ConfigSubsection()
 	config.osd.language = ConfigText(default=config.misc.locale.value)
+	config.osd.calibrationResolution = ConfigText(default="")
 	if useOSDPositionAxis():
 		limits = [int(x) for x in eAVControl.getInstance().getOSDAxis().split()]
 		config.osd.dst_left = ConfigSelectionInteger(default=limits[0], first=limits[0] - 255, last=limits[0] + 255, step=1, wrap=False)
@@ -1244,6 +1245,26 @@ class AVSwitchBase:
 
 	def setVideoModeDirect(self, mode):
 		eAVControl.getInstance().setVideoMode(mode)
+
+	def updateOSDCalibration(self):
+		size = getDesktop(0).size()
+		resolution = f"{size.width()}x{size.height()}"
+		previousResolution = config.osd.calibrationResolution.value
+		if previousResolution != resolution:
+			if previousResolution:
+				useAxis = useOSDPositionAxis()
+				limits = [int(x) for x in eAVControl.getInstance().getOSDAxis().split()] if useAxis else (0, 0, 720, 576)
+				positionConfig = (config.osd.dst_left, config.osd.dst_top, config.osd.dst_width, config.osd.dst_height)
+				for configElement, default in zip(positionConfig, limits):
+					if useAxis:
+						configElement.setChoices(default=default, first=default - 255, last=default + 255)
+					configElement.setValue(default)
+					configElement.save()
+				print(f"[AVSwitch] Reset OSD calibration after GUI resolution change from {previousResolution} to {resolution}.")
+			# Adopt existing calibration on first use; subsequent resolution changes reset it.
+			config.osd.calibrationResolution.value = resolution
+			config.osd.calibrationResolution.save()
+			configfile.save()
 
 	def setMode(self, port, mode, rate, force=None):
 		print(f"[AVSwitch] Setting mode for port '{port}', mode '{mode}', rate '{rate}'.")

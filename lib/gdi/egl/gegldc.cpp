@@ -4059,6 +4059,8 @@ void gEGLDC::enableSpinner() {
 		updateNativeSpinnerGeometry();
 		m_nativeSpinnerVisible = false;
 	}
+	// A new spinner must capture the current OSD, including redraws since the last surface reset.
+	m_spinner_clear_pending = false;
 	captureSpinnerBackground();
 	incrementSpinner();
 }
@@ -5149,8 +5151,8 @@ void gEGLDC::setResolution(int xres, int yres, int bpp) {
 	const bool osd_was_fullscreen = m_osd_left == 0 && m_osd_top == 0 && m_osd_width == m_width && m_osd_height == m_height;
 	const bool egl_ready = isInitialized() && m_egl_display != EGL_NO_DISPLAY && m_egl_context != EGL_NO_CONTEXT;
 #ifdef HAVE_HISILICON_EGL
-	// While fb0 is held open, the Mali driver only allocates a larger window surface for a new EGL client.
-	if (egl_ready && !m_graphics_suspended && m_egl_surface != EGL_NO_SURFACE && (surface_xres > m_surface_width || surface_yres > m_surface_height)) {
+	// Mali retains the window buffer layout until the EGL client is released, including when shrinking.
+	if (egl_ready && !m_graphics_suspended && m_egl_surface != EGL_NO_SURFACE && surface_size_changed) {
 		if (releaseGraphics(true)) {
 			setResolution(xres, yres, bpp);
 			if (!resumeGraphics())

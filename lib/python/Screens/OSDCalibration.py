@@ -3,6 +3,7 @@ from os.path import exists
 
 from enigma import eAVControl, getDesktop, getGraphicsInfo
 
+from Components.AVSwitch import avSwitch
 from Components.config import config, configfile
 from Components.Label import Label
 from Components.SystemInfo import BoxInfo
@@ -71,6 +72,7 @@ def InitOSDCalibration():
 	BoxInfo.setItem("CanChangeOsdAlpha", eAVControl.getInstance().hasOSDAlpha())
 	BoxInfo.setItem("OSDCalibration", BoxInfo.getItem("CanChangeOsdPosition") or BoxInfo.getItem("CanChangeOsdAlpha"))
 	BoxInfo.setItem("OSD3DCalibration", access("/proc/stb/fb/3dmode", W_OK))
+	avSwitch.updateOSDCalibration()
 	print(f"[OSDCalibration] Setting OSD position to (X={config.osd.dst_left.value}, Y={config.osd.dst_top.value}) and size to (W={config.osd.dst_width.value}, H={config.osd.dst_height.value}).")
 	config.osd.dst_left.addNotifier(setLeft)
 	config.osd.dst_top.addNotifier(setTop)
