@@ -2955,7 +2955,12 @@ bool eServiceDAB::startAudioPipeline(bool loasInput, bool pcmInput, bool mp2Inpu
 	description += pcmInput ? "false " : "true ";
 	description +=
 		"format=time do-timestamp=false block=false "
-		"! queue name=dabqueue min-threshold-buffers=24 max-size-buffers=256 "
+		"! queue name=dabqueue ";
+	/* Timed frames need the same reserve at every AAC rate. Unlike a buffer
+	 * count, a time threshold is also included in GStreamer's latency query.
+	 * RTL-SDR LOAS is timestamped by aacparse downstream of this queue. */
+	description += m_audio_input_loas ? "min-threshold-buffers=24 " : "min-threshold-time=480000000 ";
+	description += "max-size-buffers=256 "
 		"max-size-bytes=1048576 max-size-time=5000000000 leaky=downstream ! ";
 	if (pcmInput)
 	{
@@ -3039,10 +3044,13 @@ bool eServiceDAB::startAudioPipeline(bool loasInput, bool pcmInput, bool mp2Inpu
 	{
 		if (g_object_class_find_property(G_OBJECT_GET_CLASS(audioSink), "e2-sync"))
 		{
-			/* Match eServiceMP3's audio-only setup. Compatibility sinks must
-			 * be clocked by GStreamer when software-decoded PCM is used. */
+			/* Match eServiceMP3's audio-only setup unless the platform needs
+			 * driver-paced PCM instead of GStreamer clock synchronization. */
 			bool sinkSync = pcmCompatibility;
-#ifdef DREAMNEXTGEN
+#if defined(DREAMBOX) && defined(__MIPSEL__)
+			/* Dreambox MIPS drivers pace PCM, as in automatic mode. */
+			sinkSync = false;
+#elif defined(DREAMNEXTGEN)
 			sinkSync = true;
 #endif
 			g_object_set(audioSink, "e2-sync", sinkSync, nullptr);
@@ -3182,6 +3190,28 @@ void eServiceDAB::setAudioCaps(uint8_t config)
 		coreSampleRateTable[formatIndex], coreChannels, sbr, ps);
 }
 
+void eServiceDAB::setAudioTimestamp(GstBuffer *buffer, uint64_t durationNs)
+{
+	if (!m_audio_next_pts && !m_audio_input_pcm)
+	{
+		/* The live pipeline starts before the ensemble has delivered audio.
+		 * Start its media timeline at the first frame, not at pipeline creation. */
+		GstClock *clock = gst_element_get_clock(m_audio_pipeline);
+		if (clock)
+		{
+			const GstClockTime now = gst_clock_get_time(clock);
+			const GstClockTime baseTime = gst_element_get_base_time(m_audio_pipeline);
+			if (GST_CLOCK_TIME_IS_VALID(baseTime) && now >= baseTime)
+				m_audio_next_pts = now - baseTime;
+			gst_object_unref(clock);
+		}
+	}
+	GST_BUFFER_PTS(buffer) = m_audio_next_pts;
+	GST_BUFFER_DTS(buffer) = m_audio_next_pts;
+	GST_BUFFER_DURATION(buffer) = durationNs;
+	m_audio_next_pts += durationNs;
+}
+
 void eServiceDAB::pushAudio(const uint8_t *data, size_t length, uint64_t durationNs, uint8_t config)
 {
 	if (!data || !length || !durationNs)
@@ -3195,10 +3225,7 @@ void eServiceDAB::pushAudio(const uint8_t *data, size_t length, uint64_t duratio
 	if (!buffer)
 		return;
 	gst_buffer_fill(buffer, 0, data, length);
-	GST_BUFFER_PTS(buffer) = m_audio_next_pts;
-	GST_BUFFER_DTS(buffer) = m_audio_next_pts;
-	GST_BUFFER_DURATION(buffer) = durationNs;
-	m_audio_next_pts += durationNs;
+	setAudioTimestamp(buffer, durationNs);
 	GstFlowReturn flow = GST_FLOW_OK;
 	g_signal_emit_by_name(m_audio_source, "push-buffer", buffer, &flow);
 	gst_buffer_unref(buffer);
@@ -3214,10 +3241,7 @@ void eServiceDAB::pushMP2(const uint8_t *data, size_t length, uint64_t durationN
 	if (!buffer)
 		return;
 	gst_buffer_fill(buffer, 0, data, length);
-	GST_BUFFER_PTS(buffer) = m_audio_next_pts;
-	GST_BUFFER_DTS(buffer) = m_audio_next_pts;
-	GST_BUFFER_DURATION(buffer) = durationNs;
-	m_audio_next_pts += durationNs;
+	setAudioTimestamp(buffer, durationNs);
 	GstFlowReturn flow = GST_FLOW_OK;
 	g_signal_emit_by_name(m_audio_source, "push-buffer", buffer, &flow);
 	gst_buffer_unref(buffer);
@@ -3286,10 +3310,7 @@ void eServiceDAB::pushPCM(const uint8_t *data, size_t length, unsigned sampleRat
 	if (!buffer)
 		return;
 	gst_buffer_fill(buffer, 0, data, length);
-	GST_BUFFER_PTS(buffer) = m_audio_next_pts;
-	GST_BUFFER_DTS(buffer) = m_audio_next_pts;
-	GST_BUFFER_DURATION(buffer) = durationNs;
-	m_audio_next_pts += durationNs;
+	setAudioTimestamp(buffer, durationNs);
 	GstFlowReturn flow = GST_FLOW_OK;
 	g_signal_emit_by_name(m_audio_source, "push-buffer", buffer, &flow);
 	gst_buffer_unref(buffer);
@@ -3537,8 +3558,15 @@ void eServiceDAB::pollAudioBus()
 		return;
 	GstMessage *message;
 	while ((message = gst_bus_pop_filtered(bus,
-		static_cast<GstMessageType>(GST_MESSAGE_ERROR | GST_MESSAGE_WARNING))) != nullptr)
+		static_cast<GstMessageType>(GST_MESSAGE_ERROR | GST_MESSAGE_WARNING | GST_MESSAGE_LATENCY))) != nullptr)
 	{
+		if (GST_MESSAGE_TYPE(message) == GST_MESSAGE_LATENCY)
+		{
+			if (!gst_bin_recalculate_latency(GST_BIN(m_audio_pipeline)))
+				eDABDebug("[eServiceDAB] audio latency is not available yet");
+			gst_message_unref(message);
+			continue;
+		}
 		GError *error = nullptr;
 		gchar *debug = nullptr;
 		if (GST_MESSAGE_TYPE(message) == GST_MESSAGE_ERROR)
