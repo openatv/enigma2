@@ -717,6 +717,20 @@ int eDVBFrontend::openFrontend()
 		if (m_fd < 0)
 		{
 			m_fd = ::open(m_filename.c_str(), O_RDWR | O_NONBLOCK | O_CLOEXEC);
+			if (m_fd < 0 && errno == EBUSY && !m_dvbversion)
+			{
+				// A previous user or the driver may still be releasing the frontend at startup.
+				eDebug("[eDVBFrontend] %s busy during initial probe, retrying for up to 1 second", m_filename.c_str());
+				for (int retry = 0; retry < 10; ++retry)
+				{
+					std::this_thread::sleep_for(std::chrono::milliseconds(100));
+					m_fd = ::open(m_filename.c_str(), O_RDWR | O_NONBLOCK | O_CLOEXEC);
+					if (m_fd >= 0 || errno != EBUSY)
+						break;
+				}
+				if (m_fd >= 0)
+					eDebug("[eDVBFrontend] %s available after initial probe retry", m_filename.c_str());
+			}
 			if (m_fd < 0)
 			{
 				eWarning("[eDVBFrontend] failed! (%s) %m", m_filename.c_str());
