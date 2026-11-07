@@ -30,6 +30,7 @@
 #include <lib/python/python.h>
 #include <lib/base/nconfig.h> // access to python config
 #include <lib/base/esimpleconfig.h>
+#include <lib/dvb/demux.h>
 #include <lib/base/httpsstream.h>
 #include <lib/base/httpstream.h>
 #include <lib/base/esettings.h>
@@ -3738,6 +3739,10 @@ RESULT eDVBServicePlay::startTimeshift()
 
 			eDebug("[eDVBServicePlay] Attaching timeshift CSA session to recorder");
 			m_record->setDescrambler(static_cast<iServiceScrambled*>(m_timeshift_csa_session.operator->()));
+
+			/* An error would stay in the timeshift file, same as a recording. */
+			if (int delay = eSimpleConfig::getInt("config.softcsa.playbackDelay", eDVBRecordScrambledThread::AUTO_PLAYBACK_DELAY); delay != 0)
+				m_record->setPlaybackDelay(delay);
 		}
 		else
 		{
@@ -3990,6 +3995,9 @@ bool eDVBServicePlay::startTapToFD(int fd, const std::vector<int> &pids, int pac
 	{
 		m_tap_recorder->setDescrambler(static_cast<iServiceScrambled*>(m_csa_session.operator->()));
 		eDebug("[eServiceTap] CSA session attached to tap recorder (active=%d)", m_csa_session->isActive());
+
+		if (int delay = eSimpleConfig::getInt("config.softcsa.playbackDelay", eDVBRecordScrambledThread::AUTO_PLAYBACK_DELAY); delay != 0)
+			m_tap_recorder->setPlaybackDelay(delay);
 	}
 
 	for(auto i : pids)

@@ -21,6 +21,16 @@ public:
 	 * Otherwise: passthrough (no changes to data)
 	 */
 	virtual void descramble(unsigned char*, int) = 0;
+
+	/**
+	 * Milliseconds the last control word came too late by, cleared on read
+	 *
+	 * Reports how far into its own crypto period a key arrived, so a
+	 * playback delay can grow by what it was short of. Zero when nothing
+	 * is pending, and for implementations that do not track it.
+	 */
+	virtual int takeLateDeficitMs() { return 0; }
+
 	virtual bool hasKeys() const { return true; }
 };
 

@@ -22,6 +22,10 @@ public:
 	/* Trigger tsync_pcr_stop via TSYNC_IOC_STOP_TSYNC_PCR. */
 	int stopPCRSync();
 
+	/* What the pacer is told at service start: the video lags the PCR by
+	 * 75ms of hardware pipeline, in 90 kHz units. */
+	static const int PCR_OFFSET_BASE = 0x1a5e;
+
 	/* /proc/stb/pcr_offset in 90 kHz units (HW pipeline latency). */
 	int setPCROffset(int offset_90khz);
 

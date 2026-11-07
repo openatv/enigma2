@@ -1553,6 +1553,68 @@ eDVBTText::~eDVBTText()
 
 DEFINE_REF(eTSMPEGDecoder);
 
+#ifdef DREAMNEXTGEN
+/* Kernel-tsync PCRMASTER bootstrap: STOP_TSYNC_PCR (clear previous
+ * pts_start) then SET_DEMUX_INFO, before eDVBVideo::startPid.
+ * The sync belongs to the main decoder; PiP has none.
+ *
+ * force re-runs it although nothing about the service changed, for when
+ * the data reaches the decoder at a different time than before. The clock
+ * is read from the demux and not from that data, so it does not move along
+ * and has to be set up again. */
+
+/* a mosaic window ran the system clock since the main sync was set up */
+static bool s_mosaic_clock = false;
+
+void eTSMPEGDecoder::setupKernelSync()
+{
+	eAVSyncCore *avsync = eAVSyncCore::getInstance();
+	bool stopping = (m_state != statePlay && m_state != statePause);
+	static int s_last_vpid    = -1;
+	static int s_last_pcrpid  = -1;
+	static int s_last_demux   = -1;
+
+	int new_vpid = (m_vpid > 0 && m_vpid < 0x1FFF) ? m_vpid : 0x1FFF;
+	int new_apid = (m_apid > 0 && m_apid < 0x1FFF) ? m_apid : 0x1FFF;
+	int new_pcr  = (m_pcrpid > 0 && m_pcrpid < 0x1FFF) ? m_pcrpid : 0x1FFF;
+	int new_demux = -1;
+	if (m_demux) {
+		uint8_t did = 0;
+		m_demux->getCADemuxID(did);
+		new_demux = did;
+	}
+
+	bool video_unchanged = !stopping && !s_mosaic_clock
+		&& s_last_vpid   == new_vpid
+		&& s_last_pcrpid == new_pcr
+		&& s_last_demux  == new_demux
+		&& new_vpid != 0x1FFF;
+
+	if (video_unchanged) {
+		/* Audio-only re-init on same video stream. Leave kernel-tsync
+		 * running undisturbed. */
+	} else if (stopping) {
+		avsync->stopPCRSync();
+		s_last_vpid = s_last_pcrpid = s_last_demux = -1;
+	} else if ((m_vpid > 0 && m_vpid < 0x1FFF) ||
+	           (m_apid > 0 && m_apid < 0x1FFF) ||
+	           (m_pcrpid > 0 && m_pcrpid < 0x1FFF))
+	{
+		avsync->stopPCRSync();
+		avsync->enableKernelSync();
+		avsync->setPCROffset(eAVSyncCore::PCR_OFFSET_BASE);
+		avsync->setAutoPCROffset(0);
+		if (new_demux >= 0)
+			avsync->setDemuxInfo(new_demux, 0, new_vpid, new_apid, new_pcr);
+		s_last_vpid   = new_vpid;
+		s_last_pcrpid = new_pcr;
+		s_last_demux  = new_demux;
+		s_mosaic_clock = false;
+	}
+}
+
+#endif
+
 int eTSMPEGDecoder::setState()
 {
 	int res = 0;
@@ -1603,59 +1665,8 @@ int eTSMPEGDecoder::setState()
 	}
 
 #ifdef DREAMNEXTGEN
-	/* a mosaic window ran the system clock since the main sync was set up */
-	static bool s_mosaic_clock = false;
-
-	/* Kernel-tsync PCRMASTER bootstrap: STOP_TSYNC_PCR (clear previous
-	 * pts_start) then SET_DEMUX_INFO, before eDVBVideo::startPid.
-	 * The sync belongs to the main decoder; PiP has none. */
 	if (m_decoder == 0 && (changed & (changeState|changeVideo|changePCR)))
-	{
-		eAVSyncCore *avsync = eAVSyncCore::getInstance();
-		bool stopping = (m_state != statePlay && m_state != statePause);
-		static int s_last_vpid    = -1;
-		static int s_last_pcrpid  = -1;
-		static int s_last_demux   = -1;
-
-		int new_vpid = (m_vpid > 0 && m_vpid < 0x1FFF) ? m_vpid : 0x1FFF;
-		int new_apid = (m_apid > 0 && m_apid < 0x1FFF) ? m_apid : 0x1FFF;
-		int new_pcr  = (m_pcrpid > 0 && m_pcrpid < 0x1FFF) ? m_pcrpid : 0x1FFF;
-		int new_demux = -1;
-		if (m_demux) {
-			uint8_t did = 0;
-			m_demux->getCADemuxID(did);
-			new_demux = did;
-		}
-
-		bool video_unchanged = !stopping && !s_mosaic_clock
-			&& s_last_vpid   == new_vpid
-			&& s_last_pcrpid == new_pcr
-			&& s_last_demux  == new_demux
-			&& new_vpid != 0x1FFF;
-
-		if (video_unchanged) {
-			/* Audio-only re-init on same video stream. Leave kernel-tsync
-			 * running undisturbed. */
-		} else if (stopping) {
-			avsync->stopPCRSync();
-			s_last_vpid = s_last_pcrpid = s_last_demux = -1;
-		} else if ((m_vpid > 0 && m_vpid < 0x1FFF) ||
-		           (m_apid > 0 && m_apid < 0x1FFF) ||
-		           (m_pcrpid > 0 && m_pcrpid < 0x1FFF))
-		{
-			avsync->stopPCRSync();
-			avsync->enableKernelSync();
-			/* the video lags the PCR by 75ms */
-			avsync->setPCROffset(0x1a5e);
-			avsync->setAutoPCROffset(0);
-			if (new_demux >= 0)
-				avsync->setDemuxInfo(new_demux, 0, new_vpid, new_apid, new_pcr);
-			s_last_vpid   = new_vpid;
-			s_last_pcrpid = new_pcr;
-			s_last_demux  = new_demux;
-			s_mosaic_clock = false;
-		}
-	}
+		setupKernelSync();
 #endif
 
 	if (m_changed & changePCR)
