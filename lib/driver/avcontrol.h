@@ -122,6 +122,17 @@ private:
 	std::string m_hdmi_colordepth = "auto";
 #ifdef DREAMNEXTGEN
 	bool m_hdmi_phy_off = false;
+	int m_videoPollFd = -1;
+	ePtr<eSocketNotifier> m_videoPollNotifier;
+	ePtr<eTimer> m_frameAspectTimer;
+	mutable std::string m_screenAspect = "16:9";
+	mutable int m_policy43 = 8;
+	mutable int m_policy169 = 11;
+	mutable std::string m_frameAspect;
+	mutable int m_screenMode = -1;
+	void videoChanged(int);
+	void checkFrameAspect();
+	void updateScreenMode(int flags = 0) const;
 #endif
 
 	bool m_b_has_proc_osd_alpha;

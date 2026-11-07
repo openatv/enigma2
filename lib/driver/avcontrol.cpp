@@ -290,7 +290,85 @@ eAVControl::eAVControl()
 			CONNECT(m_fp_notifier->activated, eAVControl::fp_event);
 		}
 	}
+
+#ifdef DREAMNEXTGEN
+	/* the video driver wakes a poll when the size or aspect of the video changes */
+	m_videoPollFd = open("/dev/amvideo_poll", O_RDONLY | O_CLOEXEC);
+	if (m_videoPollFd < 0)
+		eDebug("[%s] failed to open /dev/amvideo_poll: %m", __MODULE__);
+	else
+	{
+		m_videoPollNotifier = eSocketNotifier::create(eApp, m_videoPollFd, eSocketNotifier::Read);
+		CONNECT(m_videoPollNotifier->activated, eAVControl::videoChanged);
+	}
+	/* the change may come before the frame is shown, look again then */
+	m_frameAspectTimer = eTimer::create(eApp);
+	CONNECT(m_frameAspectTimer->timeout, eAVControl::checkFrameAspect);
+#endif
 }
+
+#ifdef DREAMNEXTGEN
+void eAVControl::videoChanged(int)
+{
+	checkFrameAspect();
+	m_frameAspectTimer->start(200, true);
+}
+
+void eAVControl::checkFrameAspect()
+{
+	std::string frameAspect = CFile::read("/sys/class/video/frame_aspect_ratio");
+	frameAspect.erase(frameAspect.find_last_not_of(" \n") + 1);
+	/* NA while no video is shown: keep the mode until the next frame */
+	if (frameAspect.empty() || frameAspect == "NA" || frameAspect == m_frameAspect)
+		return;
+	m_frameAspect = frameAspect;
+	updateScreenMode();
+}
+
+/*
+ * The driver has one screen mode for all video. Modes 6 to 9 fit video on a
+ * 4:3 screen, 10 to 13 on a 16:9 screen. Pick the policy for the aspect of
+ * the shown frame, in the modes of the screen.
+ */
+void eAVControl::updateScreenMode(int flags) const
+{
+	bool video43 = m_frameAspect == "0xc0";
+	std::string videoMode = CFile::read(proc_videomode, __MODULE__, flags);
+	bool screen43 = m_screenAspect == "4:3" && (videoMode.compare(0, 3, "480") == 0 || videoMode.compare(0, 3, "576") == 0);
+	int mode = video43 ? m_policy43 : m_policy169;
+
+	if (video43 && !screen43)
+	{
+		switch (mode)
+		{
+		case 2: // pillarbox
+		case 7: // letterbox
+			mode = 11;
+			break;
+		case 6: // ignore
+			mode = 10;
+			break;
+		case 8: // pan & scan
+			mode = 12;
+			break;
+		case 9: // combined
+			mode = 13;
+			break;
+		default:
+			break;
+		}
+	}
+	else if (!video43 && screen43 && mode >= 10 && mode <= 13)
+		mode -= 4;
+
+	if (mode != m_screenMode)
+	{
+		m_screenMode = mode;
+		CFile::writeInt(proc_policy169, mode, __MODULE__, flags);
+		eDebug("[%s] screen mode %d for frame aspect %s", __MODULE__, mode, m_frameAspect.c_str());
+	}
+}
+#endif
 
 #ifndef FP_IOCTL_GET_EVENT
 #define FP_IOCTL_GET_EVENT 20
@@ -358,6 +436,11 @@ eAVControl::~eAVControl()
 	m_instance = nullptr;
 	if (m_fp_fd >= 0)
 		close(m_fp_fd);
+#ifdef DREAMNEXTGEN
+	m_videoPollNotifier = nullptr;
+	if (m_videoPollFd >= 0)
+		close(m_videoPollFd);
+#endif
 }
 
 /// @brief Get video aspect
@@ -790,6 +873,7 @@ void eAVControl::setAspectRatio(int ratio, int flags) const
 	}
 
 	CFile::writeInt(proc_videoaspect_w, ratio, __MODULE__, flags);
+	m_screenMode = ratio;
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: %d", __MODULE__, "setAspectRatio", ratio);
 
@@ -852,17 +936,8 @@ void eAVControl::setAspect(const std::string &newFormat, int flags) const
 {
 
 #ifdef DREAMNEXTGEN
-
-	std::string newMode = "0";
-
-	if (newFormat == "16:9")
-		newMode = "7";
-	else if (newFormat == "4:3")
-		newMode = "2";
-	else if (newFormat == "16:10")
-		newMode = "9";
-
-	CFile::writeStr(proc_videoaspect_w, newMode, __MODULE__, flags);
+	m_screenAspect = newFormat;
+	updateScreenMode(flags);
 #else
 	CFile::writeStr(proc_videoaspect_w, newFormat, __MODULE__, flags);
 #endif
@@ -984,8 +1059,12 @@ void eAVControl::setWSS(int val, int flags) const
 /// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
 void eAVControl::setPolicy43(const std::string &newPolicy, int flags) const
 {
-
+#ifdef DREAMNEXTGEN
+	m_policy43 = static_cast<int>(std::strtol(newPolicy.c_str(), nullptr, 10));
+	updateScreenMode(flags);
+#else
 	CFile::writeStr(proc_policy43, newPolicy, __MODULE__, flags);
+#endif
 
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: %s", __MODULE__, "setPolicy43", newPolicy.c_str());
@@ -996,8 +1075,12 @@ void eAVControl::setPolicy43(const std::string &newPolicy, int flags) const
 /// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
 void eAVControl::setPolicy169(const std::string &newPolicy, int flags) const
 {
-
+#ifdef DREAMNEXTGEN
+	m_policy169 = static_cast<int>(std::strtol(newPolicy.c_str(), nullptr, 10));
+	updateScreenMode(flags);
+#else
 	CFile::writeStr(proc_policy169, newPolicy, __MODULE__, flags);
+#endif
 
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: %s", __MODULE__, "setPolicy169", newPolicy.c_str());
