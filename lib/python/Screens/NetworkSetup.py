@@ -802,6 +802,7 @@ class NetworkAdapterSetup(Setup):
 		self.buildConfigObjects()
 		self.hasWakeOnLan = adapter.name == "eth0" and BoxInfo.getItem("wol") and BoxInfo.getItem("WakeOnLAN")
 		Setup.__init__(self, session=session, setup="NetworkAdapter")
+		self.savePending = False
 		self.setTitle(_("Network Adapter '%s' Settings") % adapter.name)
 		self["key_info"] = StaticText(_("INFO"))
 		self["infoActions"] = HelpableActionMap(self, ["InfoActions"], {
@@ -852,6 +853,14 @@ class NetworkAdapterSetup(Setup):
 		self.session.open(NetworkInformation, self.adapter)
 
 	def keySave(self):
+		def saveCallback():
+			# Screen.doClose() clears the attributes if the dialog was already closed.
+			if getattr(self, "savePending", False):
+				self.close((False, True))
+
+		if self.savePending:
+			return
+		self.savePending = True  # Keep repeated Save presses from closing during an active network change.
 		adapter = self.adapter
 		connection = self.connection
 		wasEnabled = adapter.adapterEnabled
@@ -897,9 +906,9 @@ class NetworkAdapterSetup(Setup):
 			change |= CHANGE_GENERAL
 		if adapter.adapterEnabled != wasEnabled:
 			change |= CHANGE_ADAPTER_ENABLED if adapter.adapterEnabled else CHANGE_ADAPTER_DISABLED
-		applyAdapterChange(adapter.name, change, lambda: self.close((False, True)))
 		if self.hasWakeOnLan:
 			config.network.wol.save()
+		applyAdapterChange(adapter.name, change, saveCallback)
 
 
 # Setup screen for one Wi-Fi profile (SSID).

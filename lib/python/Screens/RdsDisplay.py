@@ -96,6 +96,10 @@ class DABSlideDisplay(Screen):
 			self.hideSlide()
 
 	def layoutFinished(self):
+		# A skin reload replaces the widgets and their pixmaps, even at the same size.
+		self.radioFrameLoaded = None
+		self.radioFrameFailed = None
+		self.slideSignature = None
 		self.hide()
 		self.updateSlide()
 

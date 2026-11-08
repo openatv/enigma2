@@ -4,6 +4,7 @@ service_libenigma_service_a_CXXFLAGS = \
 	$(LIBXINE_CFLAGS)
 
 service_libenigma_service_a_SOURCES = \
+	service/cea608.cpp \
 	service/event.cpp \
 	service/listboxservice.cpp \
 	service/elistboxservicecontent.cpp \
@@ -33,6 +34,7 @@ service_libenigma_service_a_SOURCES = \
 
 serviceincludedir = $(pkgincludedir)/lib/service
 serviceinclude_HEADERS = \
+	service/cea608.h \
 	service/event.h \
 	service/iservice.h \
 	service/iservicescrambled.h \
@@ -54,6 +56,7 @@ serviceinclude_HEADERS = \
 	service/servicedvbsoftdecoder.h \
 	service/dabdebug.h \
 	service/dabaudioframe.h \
+	service/dabsdrcontrol.h \
 	service/dabtsadapter.h \
 	service/dabdecoder.h \
 	service/dabpacketdecoder.h \

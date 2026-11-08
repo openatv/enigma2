@@ -88,7 +88,7 @@ VOLUME_FORWARDING_STATE_FILES = (VOLUME_FORWARDING_STATE_FILE, "/var/run/cec_vol
 
 WRONG_DATA_LENGTH = "<wrong data length>"
 UNKNOWN = "<unknown>"
-HDMI_CEC_CODE_MARKER = "ATV-CEC-20261010-01"
+HDMI_CEC_CODE_MARKER = "ATV-CEC-20261026-01"
 ACTIVE_SOURCE_SWITCH_INTERVAL_MS = 250
 ACTIVE_SOURCE_CONFIRM_DELAY_MS = 100
 TV_WAKEUP_ACTIVE_SOURCE_DELAY_MS = 300
@@ -596,6 +596,7 @@ class HdmiCec:
 		self.wait.timeout.get().append(self.sendCmd)
 		self.queue = []
 		self.messages = []
+		self.lastUserControlKeys = {}
 		self.activeSourceTimer = eTimer()
 		self.activeSourceTimer.callback.append(self.sendActiveSourceCommand)
 		self.activeSourceMessages = []
@@ -758,6 +759,9 @@ class HdmiCec:
 		if not config.hdmicec.enabled.value:
 			return
 		payload = self.payloadBytes(data)
+		if cmd == 0x44:
+			# Feature Abort identifies the opcode only; retain the last key per destination.
+			self.lastUserControlKeys[address] = payload[0] if payload else None
 		eHdmiCEC.getInstance().sendMessageBytes(address, cmd, payload.hex().upper())
 
 	def isReceiverActive(self):
@@ -1173,10 +1177,15 @@ class HdmiCec:
 				case 0x00:  # feature abort
 					if length == 0:  # only polling message ( it's same as ping )
 						self.CECwritedebug("[HdmiCec] received polling message", True)
-					elif ctrl0 == 68:  # feature abort
-						self.CECwritedebug(f"[HdmiCec] volume forwarding not supported by device {address:02x}", True)
-						self.volumeForwardingEnabled = False
-						self._clearVolumeForwardingState()
+					elif length >= 2 and ctrl0 == 0x44:
+						key = self.lastUserControlKeys.pop(address, None)
+						if address == self.volumeForwardingDestination and key in (0x41, 0x42, 0x43):
+							self.CECwritedebug(f"[HdmiCec] volume forwarding not supported by device {address:02x} (key {key:02x}, reason {ctrl1:02x})", True)
+							self.volumeForwardingEnabled = False
+							self._clearVolumeForwardingState()
+						else:
+							keyText = f"{key:02x}" if key is not None else "unknown"
+							self.CECwritedebug(f"[HdmiCec] user control rejected by device {address:02x} (key {keyText}, reason {ctrl1:02x}); volume forwarding unchanged", True)
 				case 0x46:  # request name
 					self.sendMessage(address, "osdname")
 				case 0x47 if length:  # set osd name
@@ -1823,6 +1832,7 @@ class HdmiCec:
 			self.sendMessagesIsActive(True)
 			self.queue = []
 			self.messages = []
+			self.lastUserControlKeys.clear()
 			self.handleTimerStop(reset=True)
 			self.activesource = False
 			self.setTvStatePending(False)

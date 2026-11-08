@@ -184,23 +184,19 @@ void eDVBAdapterLinux::scanDevices()
 		snprintf(filename, sizeof(filename), "/sys/class/dvb/dvb%d.frontend%d", m_nr, num_fe);
 		if (::access(filename, X_OK) < 0) break;
 		snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/frontend%d", m_nr, num_fe);
-		eDVBFrontend *fe;
 		std::string name = filename;
 		std::map<std::string, std::string>::iterator it = mappedFrontendName.find(name);
 		if (it != mappedFrontendName.end()) name = it->second;
 
+		int simulateOk = 0;
+		int frontendOk = 0;
+		ePtr<eDVBFrontend> simulateFrontend = new eDVBFrontend(name.c_str(), num_fe, simulateOk, true);
+		ePtr<eDVBFrontend> frontend = new eDVBFrontend(name.c_str(), num_fe, frontendOk, false, simulateFrontend);
+		if (simulateOk && frontendOk)
 		{
-			int ok = 0;
-			fe = new eDVBFrontend(name.c_str(), num_fe, ok, true);
-			if (ok)
-				m_simulate_frontend.push_back(ePtr<eDVBFrontend>(fe));
-		}
-
-		{
-			int ok = 0;
-			fe = new eDVBFrontend(name.c_str(), num_fe, ok, false, fe);
-			if (ok)
-				m_frontend.push_back(ePtr<eDVBFrontend>(fe));
+			// Both lists are indexed together; a failed probe must not shift their pairing.
+			m_simulate_frontend.push_back(simulateFrontend);
+			m_frontend.push_back(frontend);
 		}
 		++num_fe; // NOSONAR
 	}
@@ -2442,7 +2438,7 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 			if (current_offset < i->second)
 			{
 				start = current_offset;
-				size = diff_upto(i->second, start, max);
+				size = align(diff_upto(i->second, start, max), blocksize);
 				//eDebug("[eDVBChannel] HIT, %lld < %lld < %lld, size: %zd", i->first, current_offset, i->second, size);
 				return;
 			}

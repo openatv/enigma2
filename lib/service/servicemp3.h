@@ -9,9 +9,11 @@
 #include <lib/dvb/subtitle.h>
 #include <lib/dvb/teletext.h>
 #include <lib/service/iservice.h>
+#include <lib/service/cea608.h>
 /* for subtitles */
 #include <lib/gui/esubtitle.h>
 #include <atomic>
+#include <map>
 #include <mutex>
 
 class eStaticServiceMP3Info;
@@ -133,7 +135,7 @@ public:
 typedef struct _GstElement GstElement;
 
 typedef enum { atUnknown, atMPEG, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG, atFLAC, atWMA, atDRA, atEAC3 } audiotype_t;
-typedef enum { stUnknown, stPlainText, stSSA, stASS, stSRT, stVOB, stPGS, stWebVTT, stDVB } subtype_t;
+typedef enum { stUnknown, stPlainText, stSSA, stASS, stSRT, stVOB, stPGS, stWebVTT, stDVB, stCC } subtype_t;
 typedef enum {
 	ctNone,
 	ctMPEGTS,
@@ -291,10 +293,12 @@ public:
 		subtype_t type = stUnknown;
 		std::string language_code; /* iso-639, if available. */
 		std::string title;
+		/* -1 for video metadata; otherwise eCea608Decoder payload type. */
+		int cc_payload_type = -1;
 		subtitleStream() : pad(0) {}
 
 
-		bool operator==(const subtitleStream& rhs) const { return type == rhs.type && language_code == rhs.language_code && title == rhs.title; }
+		bool operator==(const subtitleStream& rhs) const { return type == rhs.type && language_code == rhs.language_code && title == rhs.title && cc_payload_type == rhs.cc_payload_type; }
 
 		bool operator!=(const subtitleStream& rhs) const { return !(*this == rhs); }
 	};
@@ -361,6 +365,11 @@ private:
 	void applySubtitleStreamSwitch();
 	/* audio stream requested while the pipeline was not settled in PLAYING, -1 if none */
 	int m_audio_switch_deferred = -1;
+	/* retries a deferred switch, the pipeline may not reach PAUSED->PLAYING again */
+	ePtr<eTimer> m_audio_switch_timer;
+	int m_audio_switch_retries = 0;
+	bool m_audio_switch_retrying = false;
+	void retryAudioSwitch();
 	int selectAudioStream(int i, bool skipAudioFix = false, bool remember = true);
 	GstElement* getAudioChannelSink();
 	std::vector<audioStream> m_audioStreams;
@@ -403,6 +412,20 @@ private:
 	// "&e2subtitletrack=" given, ignore pango_autoturnon
 	bool m_subtitle_requested;
 	int64_t m_last_trickseek_ms;   /* CLOCK_MONOTONIC, throttle 500ms */
+#ifdef DREAMNEXTGEN
+	/* winding by key frame seeks at the target position, the decoder has
+	 * no usable trick mode */
+	ePtr<eTimer> m_wind_timer;
+	int m_wind_ratio; /* 0: not winding */
+	pts_t m_wind_start;
+	int64_t m_wind_start_ms;
+	int64_t m_wind_seek_ms; /* a seek waits for its picture, 0: none */
+	unsigned int m_wind_vpts; /* the picture on screen at that seek */
+	void windTick();
+	void windStop();
+	pts_t windTarget(int64_t now_ms);
+	bool canWind();
+#endif
 	bufferInfo m_bufferInfo;
 	errorInfo m_errorInfo;
 	std::string m_download_buffer_path;
@@ -471,6 +494,36 @@ private:
 	void pullSubtitle(GstBuffer* buffer);
 	void sourceTimeout();
 	void clearBuffers(bool force = false);
+
+	/* CEA-608 CC1, including 608 pairs carried in CEA-708 caption metadata. */
+	GstPad* m_cc_probe_pad;
+	gulong m_cc_probe_id;
+	std::atomic<bool> m_cc_available;
+	std::atomic<bool> m_cc_enabled;
+	std::atomic<bool> m_cc_from_video;
+	std::mutex m_cc_queue_mutex;
+	eCea608Playback m_cc_track;
+	eCea608Timestamp m_cc_timestamp;
+	eCea608Playback m_cc_video;
+	GstSegment m_cc_segment;
+	uint64_t m_cc_generation;
+	ePtr<eTimer> m_cc_sync_timer;
+	struct CCProbeContext {
+		std::mutex mutex;
+		eServiceMP3 *service;
+		explicit CCProbeContext(eServiceMP3 *value) : service(value) {}
+	};
+	CCProbeContext *m_cc_probe_context;
+	int m_cc_notify_pipe[2];
+	ePtr<eSocketNotifier> m_cc_notify;
+	void captionDataReady(int events);
+	void invalidateCCProbe();
+	static void destroyCCProbe(gpointer context);
+	void installCCProbe();
+	void removeCCProbe();
+	void flushClosedCaptions();
+	void pushClosedCaptions();
+	static GstPadProbeReturn ccVideoProbe(GstPad* pad, GstPadProbeInfo* info, gpointer user_data);
 	sourceStream m_sourceinfo;
 	gulong m_subs_to_pull_handler_id, m_notify_source_handler_id, m_notify_element_added_handler_id;
 

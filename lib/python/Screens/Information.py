@@ -15,6 +15,7 @@ from Components.About import about
 from Components.ActionMap import HelpableActionMap
 from Components.config import config
 from Components.Console import Console
+from Components.DateTimes import dateTimes
 from Components.Harddisk import harddiskmanager
 from Components.InputDevice import remoteControl
 from Components.Label import Label
@@ -332,7 +333,8 @@ class InformationCommit(InformationBase):
 					log = loads(fd.read())
 				info = []
 				for data in log:
-					date = datetime.strptime(data["commit"]["committer"]["date"], "%Y-%m-%dT%H:%M:%SZ").strftime(f"{config.usage.date.daylong.value} {config.usage.time.long.value}")
+					commitTime = datetime.strptime(data["commit"]["committer"]["date"], "%Y-%m-%dT%H:%M:%SZ").timetuple()
+					date = f"{dateTimes.getDateShortDayShortMonth(commitTime)} {dateTimes.getTime(commitTime)}"
 					author = data["commit"]["author"]["name"]
 					# committer = data["commit"]["committer"]["name"]
 					message = [x.rstrip() for x in data["commit"]["message"].split("\n")]
@@ -1342,7 +1344,7 @@ class InformationReceiver(InformationBase):
 		if self.extraSpacing:
 			info.append("")
 		info.append(self.formatLine("P1", _("Drivers version"), formatDate(BoxInfo.getItem("driversdate"))))
-		info.append(self.formatLine("P1", _("Kernel version"), BoxInfo.getItem("kernel")))
+		info.append(self.formatLine("P1", _("Kernel version"), BoxInfo.getItem("KernelVersion")))
 		deviceId = fileReadLine("/proc/device-tree/amlogic-dt-id", source=MODULE_NAME)
 		if deviceId:
 			info.append(self.formatLine("P1", _("Device id"), deviceId))
@@ -1637,7 +1639,8 @@ class InformationService(InformationBase):
 				addIfAvailable(info, _("DAB+ channel"), channelText)
 			elif serviceRef:
 				addIfAvailable(info, _("DVB payload PID"), formatHex(serviceRef.getUnsignedData(5) & 0x1FFF))
-			addIfAvailable(info, _("Program type"), getServiceInfoValue(iServiceInformation.sTagGenre))
+			addIfAvailable(info, _("Genre"), getServiceInfoValue(iServiceInformation.sTagGenre))
+			addIfAvailable(info, _("Programme type (PTY)"), dabMetadata.programmeTypeName(getServiceInfoValue(iServiceInformation.sDABPTY), getServiceInfoValue(iServiceInformation.sDABPTYTable)))
 			addIfAvailable(info, _("Language"), dabMetadata.languageName(getServiceInfoValue(iServiceInformation.sTagLanguageCode)))
 			addIfAvailable(info, _("Codec"), getServiceInfoValue(iServiceInformation.sTagCodec))
 			addIfAvailable(info, _("Audio bit rate"), getServiceInfoValue(iServiceInformation.sTagBitrate))

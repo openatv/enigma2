@@ -18,8 +18,9 @@ class StaticText(Source):
 		return self.__text
 
 	def setText(self, text):
-		self.__text = text
-		self.changed((self.CHANGED_ALL,))
+		if self.__text != text:
+			self.__text = text
+			self.changed((self.CHANGED_ALL,))
 
 	text = property(getText, setText)
 

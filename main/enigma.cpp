@@ -21,6 +21,7 @@
 #include <lib/base/esimpleconfig.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
+#include <lib/base/modelinformation.h>
 #include <lib/gdi/gmaindc.h>
 #include <lib/gdi/glcddc.h>
 #include <lib/gdi/grc.h>
@@ -180,48 +181,6 @@ public:
 	}
 };
 
-bool replace(std::string &str, const std::string &from, const std::string &to)
-{
-	size_t start_pos = str.find(from);
-	if (start_pos == std::string::npos)
-		return false;
-	str.replace(start_pos, from.length(), to);
-	return true;
-}
-
-static const std::string getConfigCurrentSpinner(const char *key)
-{
-	auto value = eSimpleConfig::getString(key);
-
-	// if value is not empty, means config.skin.primary_skin exist in settings file
-
-	if (!value.empty())
-	{
-		replace(value, "skin.xml", "spinner");
-		std::string png_location = eEnv::resolve("${datadir}/enigma2/" + value + "/wait1.png");
-		std::ifstream png(png_location.c_str());
-		if (png.good())
-		{
-			png.close();
-			return value; // if value is NOT empty, means config.skin.primary_skin exist in settings file, so return SCOPE_GUISKIN + "/spinner" ( /usr/share/enigma2/MYSKIN/spinner/wait1.png exist )
-		}
-	}
-
-	// try to find spinner in skin_default/spinner subfolder
-	value = "skin_default/spinner";
-
-	// check /usr/share/enigma2/skin_default/spinner/wait1.png
-	std::string png_location = eEnv::resolve("${datadir}/enigma2/" + value + "/wait1.png");
-	std::ifstream png(png_location.c_str());
-	if (png.good())
-	{
-		png.close();
-		return value; // ( /usr/share/enigma2/skin_default/spinner/wait1.png exist )
-	}
-	else
-		return "spinner"; // ( /usr/share/enigma2/skin_default/spinner/wait1.png DOES NOT exist )
-}
-
 int exit_code;
 
 void quitMainloop(int exitCode)
@@ -351,7 +310,6 @@ int main(int argc, char **argv)
 	dsk.setRedrawTask(main);
 	dsk_lcd.setRedrawTask(main);
 
-	std::string active_skin = getConfigCurrentSpinner("config.skin.primary_skin");
 	std::string spinnerPostion = eSimpleConfig::getString("config.misc.spinnerPosition", "50,50");
 	int spinnerPostionX, spinnerPostionY;
 	if (sscanf(spinnerPostion.c_str(), "%d,%d", &spinnerPostionX, &spinnerPostionY) != 2)
@@ -361,59 +319,45 @@ int main(int argc, char **argv)
 
 	eDebug("[Enigma] Loading spinners.");
 	{
-#define MAX_SPINNER 64
-		int i = 0;
-		char filename[64];
-		std::string rfilename;
-		std::string skinpath = "${datadir}/enigma2/" + active_skin;
-		std::string defpath = "${datadir}/enigma2/spinner";
-		std::string userpath = "${sysconfdir}/enigma2/spinner";
-		bool def = (skinpath.compare(defpath) == 0);
-
-		snprintf(filename, sizeof(filename), "%s/wait%d.png", userpath.c_str(), i + 1);
-		rfilename = eEnv::resolve(filename);
-
-		struct stat st = {};
-		if (::stat(rfilename.c_str(), &st) == 0)
+		constexpr int MAX_SPINNER = 64;
+		std::vector<std::string> paths = {eEnv::resolve("${sysconfdir}/enigma2/spinner")};
+		// Match skin.py when the default skin has not been saved in settings yet.
+		const char *defaultSkin = eModelInformation::getInstance().getValue("smallflash") == "True" ? "Umbra/skin.xml" : "MetrixHD/skin.xml";
+		if (access(eEnv::resolve(std::string("${datadir}/enigma2/") + defaultSkin).c_str(), R_OK))
+			defaultSkin = "skin_default/skin.xml";
+		const std::string skin = eSimpleConfig::getString("config.skin.primary_skin", defaultSkin);
+		const auto separator = skin.find_last_of('/');
+		if (separator != std::string::npos && separator != 0)
 		{
-			def = true;
-			skinpath = userpath;
+			const std::string directory = skin.substr(0, separator);
+			paths.push_back(directory[0] == '/' ? directory + "/spinner" : eEnv::resolve("${datadir}/enigma2/" + directory + "/spinner"));
 		}
-
+		int frames = 0;
 		ePtr<gPixmap> wait[MAX_SPINNER];
-		while (i < MAX_SPINNER)
+		for (const auto &path : paths)
 		{
-			snprintf(filename, sizeof(filename), "%s/wait%d.png", skinpath.c_str(), i + 1);
-			rfilename = eEnv::resolve(filename);
-
-			wait[i] = 0;
-			if (::stat(rfilename.c_str(), &st) == 0)
-				loadPNG(wait[i], rfilename.c_str());
-
-			if (!wait[i])
+			while (frames < MAX_SPINNER)
 			{
-				// spinner failed
-				if (i == 0)
-				{
-					// retry default spinner only once
-					if (!def)
-					{
-						def = true;
-						skinpath = defpath;
-						continue;
-					}
-				}
-				// exit loop because of no more spinners
+				const std::string filename = path + "/wait" + std::to_string(frames + 1) + ".png";
+				if (access(filename.c_str(), R_OK) || loadPNG(wait[frames], filename.c_str()) || !wait[frames] || wait[frames]->size().isEmpty())
+					break;
+				++frames;
+			}
+			if (frames)
+			{
+				eDebug("[Enigma] Loaded %d PNG spinner frames from %s.", frames, path.c_str());
 				break;
 			}
-			i++;
 		}
-		eDebug("[Enigma] Found %d spinners. Position x=%d y=%d", i, spinnerPostionX, spinnerPostionY);
-		if (i == 0)
-			my_dc->setSpinner(eRect(spinnerPostionX, spinnerPostionY, 0, 0), wait, 1);
+		if (frames)
+			my_dc->setSpinner(eRect(ePoint(spinnerPostionX, spinnerPostionY), wait[0]->size()), wait, frames);
 		else
 		{
-			my_dc->setSpinner(eRect(ePoint(spinnerPostionX, spinnerPostionY), wait[0]->size()), wait, i);
+			const std::string value = eSimpleConfig::getString("config.misc.spinnerColor", "2b7fd9");
+			char *end = nullptr;
+			const unsigned long color = strtoul(value.c_str(), &end, 16);
+			my_dc->setNativeSpinner(ePoint(spinnerPostionX, spinnerPostionY), value.size() == 6 && end && !*end && color <= 0xffffff ? color : 0x2b7fd9);
+			eDebug("[Enigma] Using native spinner. Position x=%d y=%d", spinnerPostionX, spinnerPostionY);
 		}
 	}
 

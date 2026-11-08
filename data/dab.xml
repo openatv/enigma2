@@ -13,10 +13,10 @@ The native service supports MPE/UDP/EDI (fedi2eti), direct ETI-NA(V.11)
 framing (tsniv2ni), and E1 ETI-NA with either 12 or 0 payload padding bytes
 (ts2na12 and ts2na). All paths are normalized to ETI-NI before decoding.
 
-Source checked 2026-09-18: https://en.kingofsat.net/dab
+Source checked 2026-10-25: https://en.kingofsat.net/dab
 
 -->
-<dabFeeds version="2" updated="2026-09-18">
+<dabFeeds version="2" updated="2026-10-25">
 	<!--
 
 	Terrestrial Band III blocks are intentionally separate from the satellite
@@ -120,7 +120,7 @@ Source checked 2026-09-18: https://en.kingofsat.net/dab
 		</transponder>
 	</satellite>
 	<satellite name="Eutelsat 10B 10.0E" orbitalPosition="100" namespace="640000">
-		<transponder frequency="11220900" polarization="V" system="DVB-S2" modulation="QPSK" symbolRate="24760000" fec="5/6" onid="0010" tsid="0001" parentServiceType="000C" parentSid="1000">
+		<transponder frequency="11220900" polarization="V" system="DVB-S2" modulation="QPSK" symbolRate="24760000" fec="5/6" onid="0010" tsid="0001" parentServiceType="000C" parentSid="21FD">
 			<feed id="salisbury_10e" name="Salisbury" pid="02BD" decoder="fedi2eti" transport="MPE/UDP/EDI" multicastAddress="239.232.1.201" multicastPort="2048" ensembleId="C1D8" />
 		</transponder>
 	</satellite>
@@ -141,9 +141,17 @@ Source checked 2026-09-18: https://en.kingofsat.net/dab
 		</transponder>
 	</satellite>
 	<satellite name="Astra 2E 28.2E" orbitalPosition="282" namespace="11A0000">
+		<!--
+		Transponder and parent SIDs checked against https://en.kingofsat.net/tp732.
+		The DAB overview currently associates these feeds with 11493.50 H, but
+		the service list confirms 11426.50 H, NID 59 and TSID 2315. Keep these
+		parameters until a transponder move is independently confirmed.
+		-->
 		<transponder frequency="11426500" polarization="H" system="DVB-S" modulation="QPSK" symbolRate="27500000" fec="2/3" onid="003B" tsid="090B" parentServiceType="0001">
 			<feed id="bbc_national_282e" name="BBC National" parentSid="2954" pid="0425" decoder="ts2na12" transport="TS/NA" ensembleId="CE15" />
 			<feed id="d1_national_282e" name="D1 National" parentSid="2959" pid="0426" decoder="ts2na12" transport="TS/NA" ensembleId="C181" />
+			<feed id="sdl_national_282e" name="SDL National" parentSid="295E" pid="0427" decoder="ts2na12" transport="TS/NA" ensembleId="C1CE" />
+			<feed id="d1_scotland_282e" name="D1 Scotland" parentServiceType="0002" parentSid="295A" pid="0429" decoder="ts2na12" transport="TS/NA" ensembleId="C181" />
 		</transponder>
 	</satellite>
 	<satellite name="Hellas Sat 3 39.0E" orbitalPosition="390" namespace="1860000">

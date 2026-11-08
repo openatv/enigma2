@@ -159,6 +159,8 @@ class ImageBackup(Screen):
 
 	def keyStart(self):
 		current = self["config"].getCurrent()  # (label, slotCode, recovery, slotDistro, slotVersion)
+		if current is None:
+			return
 		slotDistro = current[0][3] if len(current[0]) > 3 else None
 		slotVersion = current[0][4] if len(current[0]) > 4 else None
 		targets = []

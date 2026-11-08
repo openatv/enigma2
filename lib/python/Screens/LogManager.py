@@ -32,12 +32,16 @@ DEBUG_LOG_PATTERN = r"^.*-enigma\d?-debug\.log$"
 def get_size(start_path=None):
 	totalSize = 0
 	if start_path:
-		for dirpath, dirnames, filenames in walk(start_path):
-			for f in filenames:
-				fp = join(dirpath, f)
-				totalSize += getsize(fp)
-		return totalSize
-	return 0
+		for directory, _, fileNames in walk(start_path):
+			for fileName in fileNames:
+				path = join(directory, fileName)
+				try:
+					totalSize += getsize(path)
+				except FileNotFoundError:
+					continue
+				except OSError as error:
+					print(f"[LogManager] Unable to read size of {path}: {error}")
+	return totalSize
 
 
 def AutoLogManager(session=None, **kwargs):
@@ -169,6 +173,8 @@ class LogManagerPoller:
 							else:
 								candidates.append((st.st_mtime, fn, st.st_size))
 								size += st.st_size
+						except FileNotFoundError:
+							continue
 						except Exception as e:
 							print(f"[LogManager] Failed to stat {name}:{e}")
 					# Remove empty directories if possible
@@ -375,22 +381,23 @@ class LogManagerViewLog(Screen):
 		fontwidth = getTextBoundarySize(self.instance, font, self["list"].instance.size(), " ").width()
 		listwidth = int(self["list"].instance.size().width() / fontwidth)
 		if exists(self.logfile):
-			for line in open(self.logfile).readlines():
-				line = line.replace('\t', ' ' * 9)
-				if len(line) > listwidth:
-					pos = 0
-					offset = 0
-					readyline = True
-					while readyline:
-						a = " " * offset + line[pos:pos + listwidth - offset]
-						self.log.append(a)
-						if len(line[pos + listwidth - offset:]):
-							pos += listwidth - offset
-							offset = 20
-						else:
-							readyline = False
-				else:
-					self.log.append(line)
+			with open(self.logfile, encoding="UTF-8", errors="replace") as logFile:
+				for line in logFile:
+					line = line.replace('\t', ' ' * 9)
+					if len(line) > listwidth:
+						pos = 0
+						offset = 0
+						readyline = True
+						while readyline:
+							a = " " * offset + line[pos:pos + listwidth - offset]
+							self.log.append(a)
+							if len(line[pos + listwidth - offset:]):
+								pos += listwidth - offset
+								offset = 20
+							else:
+								readyline = False
+					else:
+						self.log.append(line)
 		else:
 			self.log = [_("file can not displayed - file not found")]
 		self["list"].setList(self.log)

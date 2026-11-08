@@ -1,9 +1,11 @@
 from base64 import b64encode
 from urllib.parse import quote
 
+from RecordTimer import AFTEREVENT, createRecordTimerEntry
 from ServiceReference import ServiceReference
 from timer import TimerEntry as TimerObject
 from Components.config import config
+from Components.TimerSanityCheck import TimerSanityCheck
 from Screens.MessageBox import MessageBox
 from Tools.Downloader import formatError, getJson
 
@@ -126,6 +128,46 @@ class FallbackTimerList():
 		self.fallbackFunctionNOK = fallbackFunctionNOK or fallbackFunction
 		url = f"api/timerchange?sRef={self.cleanServiceRef(timer.service_ref)}&channelOld={timer.service_ref_prev}&beginOld={timer.begin_prev}&endOld={timer.end_prev}{self.timerurldata(timer)}"
 		self.getUrl(url).addCallback(self.getUrlFallback).addErrback(self.fallbackError)
+
+	def moveTimer(self, timer, addLocal, fallbackFunction, fallbackFunctionNOK=None):
+		# Move an edited timer between local and fallback tuner, "addLocal" receives the new local entry.
+		def restorePrev():
+			timer.service_ref, timer.begin, timer.end = timer.service_ref_prev, timer.begin_prev, timer.end_prev
+
+		def removeLocal():
+			restorePrev()
+			timer.external = timer.external_prev
+			timer.afterEvent = AFTEREVENT.NONE
+			self.parent.session.nav.RecordTimer.removeEntry(timer)
+			fallbackFunction()
+
+		def moveError():
+			timer.external = timer.external_prev
+			if not timer.external:  # The local timer was edited in place and keeps its changes.
+				# NOTE: No TimerSanityCheck here, changed times may conflict with other local timers.
+				# NOTE: If timeradd worked but reloading the timer list failed, the timer exists on both sides.
+				print(f"[FallbackTimer] moveTimer failed, keep local timer '{timer.name}'")
+				self.parent.session.nav.RecordTimer.timeChanged(timer)
+				self.parent.session.nav.RecordTimer.saveTimers()
+			(fallbackFunctionNOK or fallbackFunction)()
+
+		def removeRemote():
+			addLocal(newEntry)
+			fallbackFunction()
+
+		if timer.external:
+			if timer.state in (TimerObject.StatePrepared, TimerObject.StateRunning):  # A prepared or running recording can not be moved.
+				self.parent.session.openWithCallback(lambda answer: moveError(), MessageBox, _("A prepared or running timer can not be moved to the fallback tuner."), MessageBox.TYPE_ERROR)
+			else:
+				self.addTimer(timer, removeLocal, moveError)
+		else:
+			newEntry = createRecordTimerEntry(timer)
+			newEntry.check_justplay()
+			if TimerSanityCheck(self.parent.session.nav.RecordTimer.timer_list, newEntry).check():
+				restorePrev()
+				self.removeTimer(timer, removeRemote, moveError)
+			else:  # Check before removing the fallback timer, so a conflict can not lose it.
+				self.parent.session.openWithCallback(lambda answer: moveError(), MessageBox, _("The timer conflicts with a local timer and was not moved from the fallback tuner."), MessageBox.TYPE_ERROR)
 
 	def getUrlFallback(self, data):
 		if data.get("result"):

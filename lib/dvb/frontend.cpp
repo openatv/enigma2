@@ -717,6 +717,20 @@ int eDVBFrontend::openFrontend()
 		if (m_fd < 0)
 		{
 			m_fd = ::open(m_filename.c_str(), O_RDWR | O_NONBLOCK | O_CLOEXEC);
+			if (m_fd < 0 && errno == EBUSY && !m_dvbversion)
+			{
+				// A previous user or the driver may still be releasing the frontend at startup.
+				eDebug("[eDVBFrontend] %s busy during initial probe, retrying for up to 1 second", m_filename.c_str());
+				for (int retry = 0; retry < 10; ++retry)
+				{
+					std::this_thread::sleep_for(std::chrono::milliseconds(100));
+					m_fd = ::open(m_filename.c_str(), O_RDWR | O_NONBLOCK | O_CLOEXEC);
+					if (m_fd >= 0 || errno != EBUSY)
+						break;
+				}
+				if (m_fd >= 0)
+					eDebug("[eDVBFrontend] %s available after initial probe retry", m_filename.c_str());
+			}
 			if (m_fd < 0)
 			{
 				eWarning("[eDVBFrontend] failed! (%s) %m", m_filename.c_str());
@@ -973,9 +987,10 @@ int eDVBFrontend::closeFrontend(bool force, bool no_delayed)
 			inputData(ROTOR_CMD) = -1;
 	}
 
-	if (sharedInputInUse(m_type))
+	if (sharedInputInUse(m_type) || (m_type != feSatellite && sharedInputInUse(feSatellite)))
 	{
 		// Closing either demodulator may switch off their common antenna/LNB supply.
+		// A C/T demodulator can also cut power to the shared SAT input after a zap.
 		if (!m_simulate && m_sn)
 			m_sn->stop();
 		m_state = stateIdle;
@@ -3456,6 +3471,12 @@ RESULT eDVBFrontend::setVoltage(int voltage)
 			eDVBWarmStart::voltageOff(*this);
 			if (sharedCTInput < 0 || m_type == feSatellite)
 				inputData(CSW) = inputData(UCSW) = inputData(TONEBURST) = -1; // reset diseqc
+			else if (sharedSatData && !sharedInputInUse(feSatellite))
+			{
+				// The demodulator also switches off the LNB supply of the shared SAT input.
+				(*sharedSatData)[CUR_VOLTAGE] = voltageOff;
+				(*sharedSatData)[CSW] = (*sharedSatData)[UCSW] = (*sharedSatData)[TONEBURST] = -1;
+			}
 			vlt = SEC_VOLTAGE_OFF;
 			char filename[256];
 			snprintf(filename, sizeof(filename), "/proc/stb/frontend/%d/active_antenna_power", m_slotid);

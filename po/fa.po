@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 19:43+0000\n"
+"POT-Creation-Date: 2026-11-03 13:20+0100\n"
 "PO-Revision-Date: 2026-08-16 18:21+0000\n"
 "Last-Translator: Hamed Beyrami <h.beyrami@outlook.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fa/>\n"
@@ -99,116 +99,6 @@ msgstr ""
 msgid "%-H:%M"
 msgstr "%ساعت:%دقیقه"
 
-#, fuzzy
-msgid "%-H:%M:%S"
-msgstr "%ساعت:%دقیقه"
-
-msgid "%-I:%M"
-msgstr ""
-
-msgid "%-I:%M%P"
-msgstr ""
-
-msgid "%-I:%M%^p"
-msgstr ""
-
-msgid "%-I:%M:%S"
-msgstr ""
-
-msgid "%-I:%M:%S%P"
-msgstr ""
-
-msgid "%-I:%M:%S%^p"
-msgstr ""
-
-#. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
-#, fuzzy
-msgid "%-d %B %Y"
-msgstr "%d.%B %Y"
-
-#. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
-#. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
-msgid "%-d %b"
-msgstr ""
-
-#. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
-msgid "%-d %b %Y"
-msgstr ""
-
-msgid "%-d+%b_"
-msgstr ""
-
-msgid "%-d-%B-%Y"
-msgstr ""
-
-msgid "%-d-%b"
-msgstr ""
-
-msgid "%-d-%b-%Y"
-msgstr ""
-
-#, fuzzy
-msgid "%-d. %B %Y"
-msgstr "%d.%B %Y"
-
-msgid "%-d. %b"
-msgstr ""
-
-#, fuzzy
-msgid "%-d. %b %Y"
-msgstr "%a %e/%m"
-
-msgid "%-d.%-m"
-msgstr ""
-
-msgid "%-d.%-m.%Y"
-msgstr ""
-
-msgid "%-d.%m"
-msgstr ""
-
-msgid "%-d.%m.%Y"
-msgstr ""
-
-msgid "%-d/%-m"
-msgstr ""
-
-msgid "%-d/%-m "
-msgstr ""
-
-msgid "%-d/%-m/%Y"
-msgstr ""
-
-msgid "%-d/%m"
-msgstr ""
-
-msgid "%-d/%m "
-msgstr ""
-
-msgid "%-d/%m/%Y"
-msgstr ""
-
-msgid "%-d=%b_"
-msgstr ""
-
-msgid "%-m/%-d"
-msgstr ""
-
-msgid "%-m/%-d "
-msgstr ""
-
-msgid "%-m/%-d/%Y"
-msgstr ""
-
-msgid "%-m/%d"
-msgstr ""
-
-msgid "%-m/%d "
-msgstr ""
-
-msgid "%-m/%d/%Y"
-msgstr ""
-
 #, python-format
 msgid "%.0f GB"
 msgstr "%.0f گیگابایت"
@@ -254,457 +144,16 @@ msgstr "%2.1f ثانیه"
 msgid "%A"
 msgstr "A"
 
-#. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
-#, fuzzy
-msgid "%A %-d %B"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %-d %B %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %-d-%B"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %-d-%B-%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %-d. %B"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %-d. %B %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %-d.%-m"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%A %-d.%-m.%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %-d.%m"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %-d.%m.%Y"
-msgstr "%A %e %B %Y"
-
-msgid "%A %-d/%-m"
-msgstr ""
-
-msgid "%A %-d/%-m/%Y"
-msgstr ""
-
-msgid "%A %-d/%m"
-msgstr ""
-
-#, fuzzy
-msgid "%A %-d/%m/%Y"
-msgstr "%A %e %B %Y"
-
-msgid "%A %-m/%-d"
-msgstr ""
-
-msgid "%A %-m/%-d/%Y"
-msgstr ""
-
-msgid "%A %-m/%d"
-msgstr ""
-
-#, fuzzy
-msgid "%A %-m/%d/%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %B %-d"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %B %-d %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %B %d"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %B %d %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %B-%-d"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %B-%-d-%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %B-%d"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %B-%d-%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %Y %B %-d"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %Y %B %d"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %Y-%B-%-d"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %Y-%B-%d"
-msgstr "%A %e %B %Y"
-
-msgid "%A %Y/%-m/%-d"
-msgstr ""
-
-msgid "%A %Y/%-m/%d"
-msgstr ""
-
-msgid "%A %Y/%m/%-d"
-msgstr ""
-
-msgid "%A %Y/%m/%d"
-msgstr ""
-
 msgid "%A %d %B"
 msgstr "%A %d %B"
-
-#, fuzzy
-msgid "%A %d %B %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %d-%B"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %d-%B-%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %d. %B"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %d. %B %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %d.%-m"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %d.%-m.%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %d.%m"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %d.%m.%Y"
-msgstr "%A %e %B %Y"
-
-msgid "%A %d/%-m"
-msgstr ""
-
-#, fuzzy
-msgid "%A %d/%-m/%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %d/%m"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %d/%m/%Y"
-msgstr "%A %e %B %Y"
-
-msgid "%A %m/%-d"
-msgstr ""
-
-#, fuzzy
-msgid "%A %m/%-d/%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%A %m/%d"
-msgstr "%A %e %B"
-
-#, fuzzy
-msgid "%A %m/%d/%Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%B %-d %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%B %d %Y"
-msgstr "%A %e %B %Y"
-
-msgid "%B-%-d-%Y"
-msgstr ""
-
-msgid "%B-%d-%Y"
-msgstr ""
 
 msgid "%H:%M"
 msgstr "%ساعت:%دقیقه"
 
-msgid "%I:%M"
-msgstr ""
-
-msgid "%I:%M%P"
-msgstr ""
-
-msgid "%I:%M%^p"
-msgstr ""
-
-msgid "%I:%M:%S"
-msgstr ""
-
-msgid "%I:%M:%S%P"
-msgstr ""
-
-msgid "%I:%M:%S%^p"
-msgstr ""
-
-#. TRANSLATORS: Short time representation hour:minute (Same as "Default").
-msgid "%R"
-msgstr ""
-
-#. TRANSLATORS: Time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM.
-msgid "%T"
-msgstr ""
-
-#, fuzzy
-msgid "%Y %B %-d"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%Y %B %d"
-msgstr "%A %e %B %Y"
-
-msgid "%Y %b %-d"
-msgstr ""
-
-msgid "%Y %b %d"
-msgstr ""
-
-msgid "%Y-%B-%-d"
-msgstr ""
-
-msgid "%Y-%B-%d"
-msgstr ""
-
-msgid "%Y-%b-%-d"
-msgstr ""
-
-msgid "%Y-%b-%d"
-msgstr ""
-
 msgid "%Y-%m-%d"
 msgstr ""
 
-msgid "%Y/%-m/%-d"
-msgstr ""
-
-msgid "%Y/%-m/%d"
-msgstr ""
-
-msgid "%Y/%m/%-d"
-msgstr ""
-
-msgid "%Y/%m/%d"
-msgstr ""
-
 msgid "%a"
-msgstr ""
-
-#. TRANSLATORS: Small date representation short dayname daynum in strftime() format! See 'man strftime'.
-msgid "%a %-d"
-msgstr ""
-
-#. TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
-#, fuzzy
-msgid "%a %-d %B %Y"
-msgstr "%A %e %B %Y"
-
-#. TRANSLATORS: Short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'.
-msgid "%a %-d %b"
-msgstr ""
-
-#. TRANSLATORS: Long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'.
-msgid "%a %-d %b %Y"
-msgstr ""
-
-msgid "%a %-d+%b_"
-msgstr ""
-
-msgid "%a %-d-%B-%Y"
-msgstr ""
-
-msgid "%a %-d-%b"
-msgstr ""
-
-msgid "%a %-d-%b-%Y"
-msgstr ""
-
-#, fuzzy
-msgid "%a %-d. %B %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %-d. %b"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %-d. %b %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %-d.%-m"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %-d.%-m.%Y"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %-d.%m"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %-d.%m.%Y"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %-d/%-m"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %-d/%-m/%Y"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %-d/%m"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %-d/%m/%Y"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %-m/%-d"
-msgstr "%a %e/%m"
-
-msgid "%a %-m/%-d/%Y"
-msgstr ""
-
-#, fuzzy
-msgid "%a %-m/%d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %-m/%d/%Y"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %B %-d %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %B %d %Y"
-msgstr "%A %e %B %Y"
-
-msgid "%a %B-%-d-%Y"
-msgstr ""
-
-msgid "%a %B-%d-%Y"
-msgstr ""
-
-#, fuzzy
-msgid "%a %Y %B %-d"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %Y %B %d"
-msgstr "%A %e %B %Y"
-
-msgid "%a %Y %b %-d"
-msgstr ""
-
-msgid "%a %Y %b %d"
-msgstr ""
-
-msgid "%a %Y-%B-%-d"
-msgstr ""
-
-msgid "%a %Y-%B-%d"
-msgstr ""
-
-msgid "%a %Y-%b-%-d"
-msgstr ""
-
-msgid "%a %Y-%b-%d"
-msgstr ""
-
-#, fuzzy
-msgid "%a %Y/%-m/%-d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %Y/%-m/%d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %Y/%m/%-d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %Y/%m/%d"
-msgstr "%a %e/%m"
-
-msgid "%a %b %-d"
-msgstr ""
-
-msgid "%a %b %-d %Y"
-msgstr ""
-
-#, fuzzy
-msgid "%a %b %d"
-msgstr "%a %e/%m"
-
-msgid "%a %b %d %Y"
-msgstr ""
-
-msgid "%a %b-%-d"
-msgstr ""
-
-msgid "%a %b-%-d-%Y"
-msgstr ""
-
-#, fuzzy
-msgid "%a %b-%d"
-msgstr "%a %e/%m"
-
-msgid "%a %b-%d-%Y"
 msgstr ""
 
 #, fuzzy
@@ -716,130 +165,8 @@ msgid "%a %d %B"
 msgstr "%a %e/%m"
 
 #, fuzzy
-msgid "%a %d %B %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
 msgid "%a %d %b"
 msgstr "%a %e/%m"
-
-msgid "%a %d %b %Y"
-msgstr ""
-
-msgid "%a %d-%B-%Y"
-msgstr ""
-
-#, fuzzy
-msgid "%a %d-%b"
-msgstr "%a %e/%m"
-
-msgid "%a %d-%b-%Y"
-msgstr ""
-
-#, fuzzy
-msgid "%a %d. %B %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %d. %b"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d. %b %Y"
-msgstr "%A %e %B %Y"
-
-#, fuzzy
-msgid "%a %d.%-m"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d.%-m.%Y"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d.%m"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d.%m.%Y"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d/%-m"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d/%-m/%Y"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d/%m"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %d/%m/%Y"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %m/%-d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %m/%-d/%Y"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %m/%d"
-msgstr "%a %e/%m"
-
-#, fuzzy
-msgid "%a %m/%d/%Y"
-msgstr "%a %e/%m"
-
-msgid "%b %-d"
-msgstr ""
-
-msgid "%b %-d %Y"
-msgstr ""
-
-msgid "%b %d"
-msgstr ""
-
-msgid "%b %d %Y"
-msgstr ""
-
-msgid "%b+%-d "
-msgstr ""
-
-msgid "%b+%d "
-msgstr ""
-
-msgid "%b-%-d"
-msgstr ""
-
-msgid "%b-%-d-%Y"
-msgstr ""
-
-msgid "%b-%d"
-msgstr ""
-
-msgid "%b-%d-%Y"
-msgstr ""
-
-msgid "%b=%-d "
-msgstr ""
-
-msgid "%b=%d "
-msgstr ""
-
-msgid "%d %B %Y"
-msgstr ""
-
-msgid "%d %b"
-msgstr ""
-
-msgid "%d %b %Y"
-msgstr ""
 
 #, python-format
 msgid "%d + %d + %d Minute"
@@ -890,23 +217,6 @@ msgstr ""
 msgid "%d MHz"
 msgstr ""
 
-#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
-#. _("%A %e %B %Y")
-#. TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
-#. _("%R")
-#. TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
-#. _("%R")
-#. TRANSLATORS: short date representation daynum short monthname in strftime() format! See 'man strftime'
-#. _("%e %b")
-#. TRANSLATORS: short date representation daynum short monthname in strftime() format! See 'man strftime'
-#. _("%a %e %b")
-#. TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
-#. _("%R")
-#. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
-#. _("%a %e %b %R")
-#. TRANSLATORS: full date representations short dayname daynum monthname long year in strftime() format! See 'man strftime'
-#. _("%a %e %B %Y")
-#.
 #, python-format
 msgid "%d Min"
 msgid_plural "%d Mins"
@@ -1108,36 +418,6 @@ msgstr ""
 msgid "%d times"
 msgstr "زمان پایان"
 
-msgid "%d+%b_"
-msgstr ""
-
-msgid "%d-%B-%Y"
-msgstr ""
-
-msgid "%d-%b"
-msgstr ""
-
-msgid "%d-%b-%Y"
-msgstr ""
-
-#, fuzzy
-msgid "%d. %B %Y"
-msgstr "%d.%B %Y"
-
-msgid "%d. %b"
-msgstr ""
-
-#, fuzzy
-msgid "%d. %b %Y"
-msgstr "%a %e/%m"
-
-msgid "%d.%-m"
-msgstr ""
-
-#, fuzzy
-msgid "%d.%-m.%Y"
-msgstr "%d.%B %Y"
-
 #, python-format
 msgid "%d.%03d GB"
 msgstr "%d.%03d گیگابایت"
@@ -1146,55 +426,8 @@ msgid "%d.%B %Y"
 msgstr ""
 
 #, fuzzy
-msgid "%d.%m"
-msgstr "%d.%B %Y"
-
-#, fuzzy
-msgid "%d.%m.%Y"
-msgstr "%d.%B %Y"
-
-msgid "%d/%-m"
-msgstr ""
-
-msgid "%d/%-m "
-msgstr ""
-
-msgid "%d/%-m/%Y"
-msgstr ""
-
-msgid "%d/%m"
-msgstr ""
-
-msgid "%d/%m "
-msgstr ""
-
-msgid "%d/%m/%Y"
-msgstr ""
-
-msgid "%d=%b_"
-msgstr ""
-
-#, fuzzy
 msgid "%e/%m, %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
-
-msgid "%m/%-d"
-msgstr ""
-
-msgid "%m/%-d "
-msgstr ""
-
-msgid "%m/%-d/%Y"
-msgstr ""
-
-msgid "%m/%d"
-msgstr ""
-
-msgid "%m/%d "
-msgstr ""
-
-msgid "%m/%d/%Y"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "%s %02d.%02d."
@@ -1568,6 +801,9 @@ msgstr ""
 msgid "2"
 msgstr "2"
 
+msgid "2 tuners: 2 SAT sockets, 1 C/T socket"
+msgstr ""
+
 msgid "2nd InfoBar"
 msgstr ""
 
@@ -1762,6 +998,9 @@ msgstr ""
 msgid "A new storage device has been connected:"
 msgstr ""
 
+msgid "A prepared or running timer can not be moved to the fallback tuner."
+msgstr ""
+
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -1874,6 +1113,9 @@ msgstr ""
 msgid "AI Translation subscription code"
 msgstr ""
 
+msgid "AM/PM display"
+msgstr ""
+
 msgid "ARM"
 msgstr ""
 
@@ -1894,6 +1136,12 @@ msgid "AV Receiver, Soundbar And Remote"
 msgstr ""
 
 msgid "AV Setup"
+msgstr ""
+
+msgid "Abbreviated day name"
+msgstr ""
+
+msgid "Abbreviated month name"
 msgstr ""
 
 msgid "Abkhazian"
@@ -2110,13 +1358,7 @@ msgstr ""
 msgid "Add a RecordTimer"
 msgstr "اضافه کردن زمان"
 
-msgid "Add a RecordTimer for current event"
-msgstr ""
-
 msgid "Add a TV service to the Volume Offset list"
-msgstr ""
-
-msgid "Add a ZapTimer for current event"
 msgstr ""
 
 #, fuzzy
@@ -2150,7 +1392,7 @@ msgstr ""
 msgid "Add a timer for the current event"
 msgstr ""
 
-msgid "Add an AutoTimer for the current event"
+msgid "Add an existing swap file"
 msgstr ""
 
 msgid "Add current directory to bookmarks"
@@ -2235,13 +1477,6 @@ msgstr ""
 msgid "Add title"
 msgstr "اضافه کردن عنوان"
 
-#, fuzzy
-msgid "Add/Remove Timer"
-msgstr "حذف زمان"
-
-msgid "Add/Remove a timer for the current event"
-msgstr ""
-
 msgid "Add/Remove highlighted plugin to/from install list"
 msgstr ""
 
@@ -2295,6 +1530,9 @@ msgid "Adult"
 msgstr ""
 
 msgid "Adult Audience, Strong Violence 15+"
+msgstr ""
+
+msgid "Adult Hits"
 msgstr ""
 
 msgid "Adult movie/Drama"
@@ -2673,6 +1911,9 @@ msgid "Animations"
 msgstr ""
 
 msgid "Anonymize client IPs"
+msgstr ""
+
+msgid "Another swap operation is still running."
 msgstr ""
 
 msgid "Antarctica"
@@ -3063,9 +2304,6 @@ msgstr ""
 msgid "AutoRefresh"
 msgstr ""
 
-msgid "AutoTimer"
-msgstr ""
-
 #, fuzzy
 msgid "AutoUpdate"
 msgstr "به روز رسانی"
@@ -3175,10 +2413,10 @@ msgid "BLUDISC RECORDABLE"
 msgstr ""
 
 #, fuzzy
-msgid "BLUE button"
+msgid "BLUE"
 msgstr "دکمه قرمز"
 
-msgid "BLUE long"
+msgid "BLUE (Long press)"
 msgstr ""
 
 msgid "BLUE switch: BLUE/BLUE long"
@@ -3808,9 +3046,17 @@ msgstr ""
 msgid "CHANGE BOUQUET"
 msgstr ""
 
-#, fuzzy
-msgid "CHANNEL +/-"
-msgstr "کانال"
+msgid "CHANNEL+"
+msgstr ""
+
+msgid "CHANNEL+ button (setup in menu)"
+msgstr ""
+
+msgid "CHANNEL-"
+msgstr ""
+
+msgid "CHANNEL- button (setup in menu)"
+msgstr ""
 
 msgid "CI (Common Interface) Setup"
 msgstr ""
@@ -4268,10 +3514,6 @@ msgstr ""
 msgid "Change to TV services mode"
 msgstr ""
 
-#, fuzzy
-msgid "Change to bouquet"
-msgstr "اضافه کردن به لیست"
-
 msgid "Changed"
 msgstr ""
 
@@ -4374,9 +3616,6 @@ msgid "Channel name"
 msgstr ""
 
 msgid "Channel number"
-msgstr ""
-
-msgid "Channel preview mode"
 msgstr ""
 
 msgid "Channel selection configuration"
@@ -4541,19 +3780,7 @@ msgstr ""
 msgid "Choose the amount of additional slots."
 msgstr ""
 
-msgid "Choose the display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr ""
-
-msgid "Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds. ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr ""
-
 msgid "Choose the fallback font."
-msgstr ""
-
-msgid "Choose the front panel display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr ""
-
-msgid "Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes. ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
 msgstr ""
 
 msgid "Choose the location for crash and debug logs."
@@ -4623,6 +3850,9 @@ msgid "Circular right"
 msgstr "چرخش راست"
 
 msgid "City"
+msgstr ""
+
+msgid "Classic Rock"
 msgstr ""
 
 msgid "Classical"
@@ -4720,13 +3950,6 @@ msgstr ""
 msgid "Close Task View"
 msgstr ""
 
-msgid "Close bouquet list"
-msgstr ""
-
-#, fuzzy
-msgid "Close bouquet list."
-msgstr "ویرایش لیست های کانال"
-
 msgid "Close dialog"
 msgstr ""
 
@@ -4775,6 +3998,9 @@ msgstr ""
 msgid "Close the screen without saving any changes"
 msgstr ""
 
+msgid "Close the swap manager"
+msgstr ""
+
 msgid "Close the window"
 msgstr ""
 
@@ -4805,15 +4031,18 @@ msgstr "نام مجموعه"
 msgid "Collection settings"
 msgstr "تنظیمات مجموعه"
 
+msgid "College"
+msgstr ""
+
 msgid "Colombia"
+msgstr ""
+
+msgid "Colon ':'"
 msgstr ""
 
 #, fuzzy
 msgid "Color"
 msgstr "فرمت رنگ"
-
-msgid "Color Button Assignments"
-msgstr ""
 
 msgid "Color format"
 msgstr ""
@@ -4838,6 +4067,12 @@ msgid "Combo Tuner"
 msgstr ""
 
 msgid "Comedy"
+msgstr ""
+
+msgid "Comma ','"
+msgstr ""
+
+msgid "Comma and space ', '"
 msgstr ""
 
 #, python-format
@@ -5172,9 +4407,6 @@ msgstr ""
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr ""
 
-msgid "Configure the number of rows shown."
-msgstr ""
-
 msgid "Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change."
 msgstr ""
 
@@ -5302,6 +4534,9 @@ msgstr "پیکربندی nameservers"
 
 msgid "Configure your network settings, and press OK to start the scan"
 msgstr "تنظیمات شبکه را پیکربندی کنید ، دکمه OK را برای شروع اسکن فشار دهید"
+
+msgid "Configured in /etc/fstab. Starting or stopping here only changes the current session."
+msgstr ""
 
 msgid "Configures which video output connector will be used."
 msgstr ""
@@ -5673,6 +4908,9 @@ msgstr ""
 msgid "Create Slots"
 msgstr ""
 
+msgid "Create Zap Timer"
+msgstr ""
+
 msgid "Create a directory"
 msgstr ""
 
@@ -5683,6 +4921,9 @@ msgid "Create a separate bouquet for radio services. When disabled, radio servic
 msgstr ""
 
 msgid "Create a settings backup"
+msgstr ""
+
+msgid "Create a swap file"
 msgstr ""
 
 msgid "Create a symbolic link"
@@ -5734,6 +4975,9 @@ msgstr ""
 msgid "Create swap"
 msgstr ""
 
+msgid "Create swap file"
+msgstr ""
+
 msgid "Create tar file of root file system."
 msgstr ""
 
@@ -5763,6 +5007,15 @@ msgstr ""
 #, fuzzy
 msgid "Creating partition"
 msgstr "ایجاد پارتیشن"
+
+msgid "Creating swap file. This can take several minutes."
+msgstr ""
+
+#, python-format
+msgid ""
+"Creating the swap file failed.\n"
+"%s"
+msgstr ""
 
 msgid "Credentials"
 msgstr ""
@@ -5800,6 +5053,9 @@ msgstr ""
 msgid "Cult"
 msgstr ""
 
+msgid "Culture"
+msgstr ""
+
 msgid "Curacao"
 msgstr ""
 
@@ -5810,6 +5066,9 @@ msgid "Current"
 msgstr ""
 
 msgid "Current 1/1"
+msgstr ""
+
+msgid "Current Affairs"
 msgstr ""
 
 msgid "Current CEC address"
@@ -6163,16 +5422,25 @@ msgstr "تاریخ"
 msgid "Date / Time"
 msgstr ""
 
-msgid "Date And Time"
+msgid "Date Format"
 msgstr ""
 
 msgid "Date Time Input Actions"
+msgstr ""
+
+msgid "Date and Time Settings"
+msgstr ""
+
+msgid "Date and Time Setup Actions"
 msgstr ""
 
 msgid "Date ascending"
 msgstr ""
 
 msgid "Date descending"
+msgstr ""
+
+msgid "Date display style"
 msgstr ""
 
 msgid "Date style"
@@ -6185,146 +5453,22 @@ msgstr ""
 msgid "Date: %s   Author: %s"
 msgstr ""
 
-msgid "Day D Mon"
+msgid "Day Date Month Year"
 msgstr ""
 
-msgid "Day D-Mon"
+msgid "Day Month Date Year"
 msgstr ""
 
-msgid "Day D/M"
+msgid "Day Year Month Date"
 msgstr ""
 
-msgid "Day D/MM"
-msgstr ""
-
-msgid "Day DD Mon"
-msgstr ""
-
-msgid "Day DD-Mon"
-msgstr ""
-
-#, fuzzy
-msgid "Day DD/M"
-msgstr "پخش DVD"
-
-msgid "Day DD/MM"
-msgstr ""
-
-msgid "Day M/D"
-msgstr ""
-
-msgid "Day M/DD"
-msgstr ""
-
-msgid "Day MM/D"
-msgstr ""
-
-msgid "Day MM/DD"
-msgstr ""
-
-msgid "Day Mon D"
-msgstr ""
-
-msgid "Day Mon DD"
-msgstr ""
-
-msgid "Day Mon-D"
-msgstr ""
-
-msgid "Day Mon-DD"
+msgid "Day display style"
 msgstr ""
 
 msgid "Day of week"
 msgstr ""
 
-msgid "Dayname D Month Year"
-msgstr ""
-
-msgid "Dayname D-Month-Year"
-msgstr ""
-
-msgid "Dayname D. Month Year"
-msgstr ""
-
-msgid "Dayname D.M.Year"
-msgstr ""
-
-msgid "Dayname D.MM.Year"
-msgstr ""
-
-msgid "Dayname D/M/Year"
-msgstr ""
-
-msgid "Dayname D/MM/Year"
-msgstr ""
-
-msgid "Dayname DD Month Year"
-msgstr ""
-
-msgid "Dayname DD-Month-Year"
-msgstr ""
-
-msgid "Dayname DD. Month Year"
-msgstr ""
-
-msgid "Dayname DD.M.Year"
-msgstr ""
-
-msgid "Dayname DD.MM.Year"
-msgstr ""
-
-msgid "Dayname DD/M/Year"
-msgstr ""
-
-msgid "Dayname DD/MM/Year"
-msgstr ""
-
-msgid "Dayname M/D/Year"
-msgstr ""
-
-msgid "Dayname M/DD/Year"
-msgstr ""
-
-msgid "Dayname MM/D/Year"
-msgstr ""
-
-msgid "Dayname MM/DD/Year"
-msgstr ""
-
-msgid "Dayname Month D Year"
-msgstr ""
-
-msgid "Dayname Month DD Year"
-msgstr ""
-
-msgid "Dayname Month-D-Year"
-msgstr ""
-
-msgid "Dayname Month-DD-Year"
-msgstr ""
-
-msgid "Dayname Year Month D"
-msgstr ""
-
-msgid "Dayname Year Month DD"
-msgstr ""
-
-msgid "Dayname Year-Month-D"
-msgstr ""
-
-msgid "Dayname Year-Month-DD"
-msgstr ""
-
-msgid "Dayname Year/M/D"
-msgstr ""
-
-msgid "Dayname Year/M/DD"
-msgstr ""
-
-msgid "Dayname Year/MM/D"
-msgstr ""
-
-msgid "Dayname Year/MM/DD"
+msgid "Day separator"
 msgstr ""
 
 msgid "Deactivate"
@@ -6691,6 +5835,12 @@ msgstr "حذف مورد لیست پخش"
 msgid "Delete saved play list"
 msgstr "حذف لیست پخش ذخیره شده"
 
+#, python-format
+msgid ""
+"Delete swap file '%s'?\n"
+"An active file will be stopped first. Its swap entry in /etc/fstab will also be removed."
+msgstr ""
+
 msgid "Delete the character to the left of text cursor"
 msgstr ""
 
@@ -6720,6 +5870,9 @@ msgid "Delete the flash expander in the selected device"
 msgstr ""
 
 msgid "Delete the selected locally stored image"
+msgstr ""
+
+msgid "Delete the selected swap file"
 msgstr ""
 
 #, python-format
@@ -6860,6 +6013,10 @@ msgid "Device name:"
 msgstr "نام وسیله:"
 
 msgid "Device number"
+msgstr ""
+
+#, python-format
+msgid "Device: %s"
 msgstr ""
 
 msgid "Devices"
@@ -7102,6 +6259,9 @@ msgid "Display more information about this file"
 msgstr ""
 
 msgid "Display oscam information."
+msgstr ""
+
+msgid "Display seconds"
 msgstr ""
 
 msgid "Display selection list as a selection menu"
@@ -7487,6 +6647,9 @@ msgstr ""
 msgid "Drop unconfigured satellites"
 msgstr ""
 
+msgid "Dual channel"
+msgstr ""
+
 msgid "Duplex"
 msgstr ""
 
@@ -7531,10 +6694,10 @@ msgstr ""
 msgid "EPG"
 msgstr ""
 
-msgid "EPG Actions"
+msgid "EPG (Long press)"
 msgstr ""
 
-msgid "EPG Bouquet Actions"
+msgid "EPG Actions"
 msgstr ""
 
 msgid "EPG Cache Check"
@@ -7546,9 +6709,6 @@ msgstr ""
 msgid "EPG Data In Streams"
 msgstr ""
 
-msgid "EPG Display Actions"
-msgstr ""
-
 msgid "EPG Jump"
 msgstr ""
 
@@ -7556,9 +6716,6 @@ msgid "EPG Language"
 msgstr ""
 
 msgid "EPG Navigation Actions"
-msgstr ""
-
-msgid "EPG Other Actions"
 msgstr ""
 
 msgid "EPG Range And History"
@@ -7580,6 +6737,9 @@ msgid "EPG Sources"
 msgstr ""
 
 msgid "EPG Storage And Refresh"
+msgstr ""
+
+msgid "EPG button long (setup in menu)"
 msgstr ""
 
 msgid "EPG button mode"
@@ -7630,6 +6790,9 @@ msgid "East limit set"
 msgstr "تنظیم محدودیت شرق"
 
 msgid "Eastern satellites"
+msgstr ""
+
+msgid "Easy Listening"
 msgstr ""
 
 msgid "Easy listening"
@@ -9354,6 +8517,9 @@ msgstr ""
 msgid "Finance"
 msgstr "انصراف"
 
+msgid "Finance/Business"
+msgstr ""
+
 msgid "Find Currently Playing Service"
 msgstr ""
 
@@ -9392,6 +8558,9 @@ msgid "Finnish"
 msgstr "پایان"
 
 msgid "First playable time shift file!"
+msgstr ""
+
+msgid "First separator"
 msgstr ""
 
 msgid "Fishing"
@@ -9491,6 +8660,9 @@ msgstr "موقعیت مداری"
 msgid "Flush Cache and Rescan"
 msgstr ""
 
+msgid "Folk Music"
+msgstr ""
+
 msgid "Folk and Country"
 msgstr ""
 
@@ -9553,6 +8725,9 @@ msgstr "فعال شد"
 msgid "Force progressive for streams and files"
 msgstr ""
 
+msgid "Foreign Language"
+msgstr ""
+
 msgid "Foreign countries/Expeditions"
 msgstr ""
 
@@ -9569,6 +8744,9 @@ msgid "Formatting storage device..."
 msgstr ""
 
 msgid "Forward Error Correction (FEC)"
+msgstr ""
+
+msgid "Forward slash '/'"
 msgstr ""
 
 msgid "Forward volume keys"
@@ -9590,6 +8768,10 @@ msgid "Free flash"
 msgstr ""
 
 msgid "Free memory"
+msgstr ""
+
+#, python-format
+msgid "Free space: %s"
 msgstr ""
 
 msgid "Free swap"
@@ -9666,7 +8848,16 @@ msgstr ""
 msgid "Full Stretch"
 msgstr ""
 
+msgid "Full day name"
+msgstr ""
+
 msgid "Full factory reset"
+msgstr ""
+
+msgid "Full month name"
+msgstr ""
+
+msgid "Full path of the existing swap file"
 msgstr ""
 
 msgid "Full range (no clipping)"
@@ -9691,10 +8882,10 @@ msgid "G"
 msgstr ""
 
 #, fuzzy
-msgid "GREEN button"
+msgid "GREEN"
 msgstr "دکمه قرمز"
 
-msgid "GREEN long"
+msgid "GREEN (Long press)"
 msgstr ""
 
 msgid "GStreamer debug log category *"
@@ -9810,9 +9001,6 @@ msgstr "آلمانی"
 
 msgid "Germany"
 msgstr "آلمان"
-
-msgid "Getting event information failed!"
-msgstr ""
 
 msgid "Getting plugin information. Please wait..."
 msgstr "در حال جمع آوری اطلاعات پلاگین ها - لطفا صبر کنید"
@@ -10022,12 +9210,6 @@ msgstr ""
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr ""
 
-msgid "H:mm"
-msgstr ""
-
-msgid "H:mm:ss"
-msgstr ""
-
 msgid "HARD DISK: "
 msgstr ""
 
@@ -10075,12 +9257,6 @@ msgid "HELP"
 msgstr ""
 
 msgid "HELP provides brief information for buttons in your current context."
-msgstr ""
-
-msgid "HH:mm"
-msgstr ""
-
-msgid "HH:mm:ss"
 msgstr ""
 
 msgid "HI-cleanup for external subtitles"
@@ -10224,10 +9400,6 @@ msgstr ""
 msgid "HiSilicon specific information not found."
 msgstr ""
 
-#, fuzzy
-msgid "Hidden / Blank"
-msgstr "شبکه مخفی"
-
 msgid "Hidden network"
 msgstr "شبکه مخفی"
 
@@ -10248,6 +9420,9 @@ msgstr ""
 
 msgid "Hide any zap error messages."
 msgstr ""
+
+msgid "Hide empty services"
+msgstr "نادیده گرفتن کانال خالی"
 
 msgid "Hide error messages from the Common Interface module."
 msgstr ""
@@ -10420,6 +9595,9 @@ msgstr ""
 msgid "Hotkey Settings"
 msgstr ""
 
+msgid "Hour display style"
+msgstr ""
+
 msgid "Hourly"
 msgstr ""
 
@@ -10448,6 +9626,9 @@ msgstr "مجارستانی"
 msgid "Hybrid Tuner"
 msgstr ""
 
+msgid "Hyphen '-'"
+msgstr ""
+
 msgid "Hz"
 msgstr ""
 
@@ -10463,10 +9644,10 @@ msgstr ""
 msgid "IMDb Search"
 msgstr ""
 
-msgid "IMDb search for current event"
+msgid "INFO"
 msgstr ""
 
-msgid "INFO"
+msgid "INFO (Long press)"
 msgstr ""
 
 msgid "INFO button mode"
@@ -10902,12 +10083,6 @@ msgstr ""
 msgid "Info"
 msgstr "اطلاعات"
 
-msgid "Info button (long)"
-msgstr ""
-
-msgid "Info button (short)"
-msgstr ""
-
 msgid "Info file checksum"
 msgstr ""
 
@@ -11169,6 +10344,9 @@ msgstr ""
 msgid "Invalid location!"
 msgstr "محل نامعتبر"
 
+msgid "Invalid swap file size."
+msgstr ""
+
 #, fuzzy
 msgid "Invalid transponder data"
 msgstr "ترانسپوندر دستی"
@@ -11259,13 +10437,13 @@ msgstr ""
 msgid "Joined"
 msgstr ""
 
+msgid "Joint stereo"
+msgstr ""
+
 msgid "Jordan"
 msgstr ""
 
 msgid "Jump"
-msgstr ""
-
-msgid "Jump back 24 hours"
 msgstr ""
 
 msgid "Jump back one day"
@@ -11275,9 +10453,6 @@ msgid "Jump back one hour"
 msgstr ""
 
 msgid "Jump first press in channel selection"
-msgstr ""
-
-msgid "Jump forward 24 hours"
 msgstr ""
 
 msgid "Jump forward one day"
@@ -11302,13 +10477,7 @@ msgstr "پرش به پایان لیست"
 msgid "Jump to next marked position"
 msgstr ""
 
-msgid "Jump to next page or all up (setup in menu)"
-msgstr ""
-
 msgid "Jump to previous marked position"
-msgstr ""
-
-msgid "Jump to previous page or all down (setup in menu)"
 msgstr ""
 
 msgid "Jump to prime time"
@@ -11700,6 +10869,9 @@ msgstr ""
 msgid "Legacy mode"
 msgstr ""
 
+msgid "Leisure"
+msgstr ""
+
 msgid "Leisure hobbies"
 msgstr ""
 
@@ -11738,6 +10910,9 @@ msgstr ""
 #, fuzzy
 msgid "Lifestyle"
 msgstr "انتخاب زمان"
+
+msgid "Light Classical"
+msgstr ""
 
 msgid "Light Grey"
 msgstr ""
@@ -12378,6 +11553,9 @@ msgstr "عمودی"
 msgid "Medicine/Physiology/Psychology"
 msgstr ""
 
+msgid "Medium"
+msgstr ""
+
 msgid "Medium is not a writeable DVD!"
 msgstr "DVD قابل رایت نیست"
 
@@ -12438,6 +11616,9 @@ msgid "Merge broadcast EPG with IceTV"
 msgstr ""
 
 msgid "Merging time shift files"
+msgstr ""
+
+msgid "Meridiem (AM/PM) display"
 msgstr ""
 
 msgid "Merlin EPG Center"
@@ -12581,7 +11762,13 @@ msgstr ""
 msgid "Mongolian"
 msgstr ""
 
+msgid "Mono"
+msgstr ""
+
 msgid "Montenegro"
+msgstr ""
+
+msgid "Month display style"
 msgstr ""
 
 #, fuzzy
@@ -12647,6 +11834,10 @@ msgid "Mount or unmount the selected share"
 msgstr ""
 
 msgid "Mount point"
+msgstr ""
+
+#, python-format
+msgid "Mount point: %s"
 msgstr ""
 
 msgid "Mount root file system."
@@ -12826,9 +12017,6 @@ msgid "Move to first line"
 msgstr ""
 
 msgid "Move to first line / screen in the panel"
-msgstr ""
-
-msgid "Move to home of list"
 msgstr ""
 
 msgid "Move to last item / screen"
@@ -13179,6 +12367,9 @@ msgstr ""
 msgid "Narration"
 msgstr ""
 
+msgid "National Music"
+msgstr ""
+
 msgid "National music"
 msgstr ""
 
@@ -13208,9 +12399,6 @@ msgid "Navigate to the selected directory"
 msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
-msgstr ""
-
-msgid "Navigation And Button Assignments"
 msgstr ""
 
 msgid "Navigation And Time Range"
@@ -13541,6 +12729,9 @@ msgstr ""
 msgid "No (supported) DVDROM found!"
 msgstr "هیچ DVDROM قابل پشتیبانی یافت نشد"
 
+msgid "No AM/PM display"
+msgstr ""
+
 #
 #, fuzzy
 msgid "No ECM PIDs available"
@@ -13612,6 +12803,9 @@ msgstr ""
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
+msgstr ""
+
+msgid "No day name"
 msgstr ""
 
 #, fuzzy
@@ -13730,6 +12924,9 @@ msgstr "تیونر کابلی یافت نشد"
 msgid "No supported DAB+ feeds are available for the satellite positions configured on this box."
 msgstr ""
 
+msgid "No swap files or partitions found. Use Create to add a swap file."
+msgstr ""
+
 msgid "No system softcam configured!"
 msgstr ""
 
@@ -13774,6 +12971,9 @@ msgstr ""
 msgid "No tuners are currently streaming."
 msgstr ""
 
+msgid "No unused swap file name is available."
+msgstr ""
+
 msgid "No update required!"
 msgstr ""
 
@@ -13797,6 +12997,9 @@ msgid "No valid mount for '%s' found!"
 msgstr ""
 
 msgid "No valid region details were found"
+msgstr ""
+
+msgid "No writable ext2, ext3 or ext4 storage is available for a swap file."
 msgstr ""
 
 msgid "No, but restart from begin"
@@ -13881,6 +13084,9 @@ msgstr "نروژی"
 msgid "Norwegian Nynorsk"
 msgstr "نروژی"
 
+msgid "Nostalgia"
+msgstr ""
+
 msgid "Not Classified"
 msgstr ""
 
@@ -13919,6 +13125,9 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
 msgstr "فضای کافی وجود ندارد ، لطفا مقداری فضا خالی و دوباره تلاش کنید . (%d مگابایت نیاز است و %d مگابایت در دسترس است)"
+
+msgid "Not enough free space for this swap file."
+msgstr ""
 
 msgid "Not found"
 msgstr ""
@@ -14016,10 +13225,7 @@ msgstr ""
 msgid "OK"
 msgstr "OK"
 
-msgid "OK button (long)"
-msgstr ""
-
-msgid "OK button (short)"
+msgid "OK (Long press)"
 msgstr ""
 
 msgid "OK button mode"
@@ -14134,6 +13340,9 @@ msgstr ""
 msgid "Ojibwa"
 msgstr ""
 
+msgid "Oldies"
+msgstr ""
+
 msgid "Olympic blue"
 msgstr ""
 
@@ -14158,7 +13367,28 @@ msgstr ""
 msgid "Once"
 msgstr "یکبار"
 
+msgid "One digit"
+msgstr ""
+
+msgid "One digit (12 hour time)"
+msgstr ""
+
+msgid "One digit (24 hour time)"
+msgstr ""
+
+msgid "One digit, space padded"
+msgstr ""
+
+msgid "One digit, space padded (12 hour time)"
+msgstr ""
+
+msgid "One digit, space padded (24 hour time)"
+msgstr ""
+
 msgid "One line"
+msgstr ""
+
+msgid "One space ' '"
 msgstr ""
 
 msgid "Online manual"
@@ -14197,6 +13427,9 @@ msgid "Only on startup"
 msgstr ""
 
 msgid "Only one network share can be used as HDD replacement. Disable 'Use as HDD replacement' on the other share first."
+msgstr ""
+
+msgid "Only swap files can be deleted."
 msgstr ""
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
@@ -14519,6 +13752,9 @@ msgstr "دیگر"
 msgid "Other Actions"
 msgstr "محل"
 
+msgid "Other Music"
+msgstr ""
+
 msgid "Other OSD Elements"
 msgstr ""
 
@@ -14621,6 +13857,9 @@ msgstr ""
 
 msgid "PIN code needed"
 msgstr "رمز مورد نیاز است"
+
+msgid "PLAY"
+msgstr ""
 
 msgid "PLP ID"
 msgstr ""
@@ -14845,6 +14084,12 @@ msgstr ""
 msgid "Performing arts"
 msgstr ""
 
+msgid "Period '.'"
+msgstr ""
+
+msgid "Period and space '. '"
+msgstr ""
+
 msgid "Permanently delete all recordings in the trashcan?"
 msgstr "حذف دائمی همه ضبط شده ها در سطل زباله ؟"
 
@@ -14876,6 +14121,9 @@ msgstr ""
 msgid "Persian"
 msgstr "فارسی"
 
+msgid "Personality"
+msgstr ""
+
 msgid "Personalize your Skin"
 msgstr ""
 
@@ -14883,6 +14131,9 @@ msgid "Peru"
 msgstr ""
 
 msgid "Philippines"
+msgstr ""
+
+msgid "Phone In"
 msgstr ""
 
 #, fuzzy
@@ -14916,6 +14167,9 @@ msgstr ""
 msgid "Picon and service name"
 msgstr ""
 
+msgid "Picon and service number"
+msgstr ""
+
 msgid "Picon install location"
 msgstr ""
 
@@ -14931,6 +14185,9 @@ msgid "Picon search mode"
 msgstr ""
 
 msgid "Picon width"
+msgstr ""
+
+msgid "Picon, service number and service name"
 msgstr ""
 
 msgid "Picture In Picture"
@@ -15196,9 +14453,6 @@ msgstr ""
 msgid "Please select an aspect ratio..."
 msgstr ""
 
-msgid "Please select device to use as swap file location"
-msgstr ""
-
 #, fuzzy
 msgid "Please select medium to be scanned"
 msgstr "لطفا یک رسانه را برای اسکن انتخاب کنید"
@@ -15303,6 +14557,9 @@ msgstr ""
 msgid "Please wait while the plugin is updated."
 msgstr ""
 
+msgid "Please wait while the swap file is stopped and deleted."
+msgstr ""
+
 msgid "Please wait while unused locales/languages are purged..."
 msgstr ""
 
@@ -15325,6 +14582,9 @@ msgid "Please wait, loading picture..."
 msgstr ""
 
 msgid "Please wait, swap is being created. This could take a few minutes to complete."
+msgstr ""
+
+msgid "Please wait. Stopping swap can take a while."
 msgstr ""
 
 msgid "Please wait..."
@@ -15397,6 +14657,9 @@ msgid "Polish"
 msgstr "لهستانی"
 
 msgid "Politics"
+msgstr ""
+
+msgid "Pop Music"
 msgstr ""
 
 msgid "Popular culture/Traditional arts"
@@ -15718,9 +14981,6 @@ msgstr "پخش قبلی"
 msgid "Previous channel page"
 msgstr ""
 
-msgid "Previous/Next bouquet"
-msgstr ""
-
 msgid "Previous/Next page"
 msgstr ""
 
@@ -15739,14 +14999,12 @@ msgstr ""
 msgid "Prime time"
 msgstr ""
 
-msgid "Primetime hour"
-msgstr ""
-
-msgid "Primetime minute"
-msgstr ""
-
 msgid "Priority"
 msgstr "اولویت"
+
+#, python-format
+msgid "Priority: %d"
+msgstr ""
 
 msgid "Privacy level"
 msgstr ""
@@ -15800,7 +15058,7 @@ msgstr ""
 msgid "Program '%s' needs to be installed to perform this action. Do you want to install the '%s' package to install the program?"
 msgstr ""
 
-msgid "Program type"
+msgid "Programme type (PTY)"
 msgstr ""
 
 msgid "Programmlisten History"
@@ -15931,6 +15189,9 @@ msgid "Providers:"
 msgstr ""
 
 msgid "Proxy detected"
+msgstr ""
+
+msgid "Public"
 msgstr ""
 
 msgid "Public IP"
@@ -16093,15 +15354,21 @@ msgstr ""
 msgid "REC symbol"
 msgstr ""
 
+msgid "RECORD"
+msgstr ""
+
+msgid "RECORD (Long press)"
+msgstr ""
+
 #, fuzzy
-msgid "RED button"
+msgid "RED"
 msgstr "دکمه قرمز"
+
+msgid "RED (Long press)"
+msgstr ""
 
 msgid "RED button / HbbTV"
 msgstr "دکمه قرمز"
-
-msgid "RED long"
-msgstr ""
 
 msgid "RF Output Settings"
 msgstr "خروجی RF"
@@ -16303,12 +15570,6 @@ msgstr ""
 msgid "Record"
 msgstr "ضبط"
 
-msgid "Record - same as record button"
-msgstr ""
-
-msgid "Record Actions"
-msgstr ""
-
 msgid "Record icon"
 msgstr ""
 
@@ -16490,6 +15751,9 @@ msgstr ""
 msgid "Refresh the update-able package list"
 msgstr ""
 
+msgid "Refresh, add an existing swap file or change autostart"
+msgstr ""
+
 msgid "Regard Deep Standby as Standby"
 msgstr ""
 
@@ -16514,6 +15778,12 @@ msgid "Religion"
 msgstr ""
 
 msgid "Religious"
+msgstr ""
+
+msgid "Religious Music"
+msgstr ""
+
+msgid "Religious Talk"
 msgstr ""
 
 msgid "Reload Bookmarks"
@@ -17171,6 +16441,9 @@ msgstr "سرعت بازگشت"
 msgid "Rewrap subtitles"
 msgstr "بازکردن زیرنویس"
 
+msgid "Rhythm and Blues"
+msgstr ""
+
 msgid "Right"
 msgstr "راست"
 
@@ -17196,6 +16469,9 @@ msgid "Right, front USB"
 msgstr ""
 
 msgid "Right, wrapped"
+msgstr ""
+
+msgid "Rock"
 msgstr ""
 
 msgid "Rock/Pop"
@@ -17691,6 +16967,9 @@ msgstr[0] ""
 msgid "Scanning for shares..."
 msgstr ""
 
+msgid "Scanning swap devices..."
+msgstr ""
+
 msgid "Scanning..."
 msgstr "در حال اسکن"
 
@@ -17791,9 +17070,6 @@ msgstr "جستجوی شرق"
 msgid "Search for network shares"
 msgstr ""
 
-msgid "Search for similar events"
-msgstr ""
-
 msgid "Search in the current view"
 msgstr ""
 
@@ -17816,6 +17092,9 @@ msgid "Searching west ..."
 msgstr "جستجوی غرب"
 
 msgid "Second cable of motorized LNB"
+msgstr ""
+
+msgid "Second separator"
 msgstr ""
 
 msgid "Secondary DNS (IPv4)"
@@ -17983,9 +17262,6 @@ msgid "Select 'Yes' to enable the monitoring UI web interface for the DNSCrypt s
 msgstr ""
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
-msgstr ""
-
-msgid "Select 'Yes' to hide channels without EPG data."
 msgstr ""
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
@@ -18314,6 +17590,9 @@ msgstr ""
 msgid "Select a specific SMB protocol version to use instead of allowing an automatic negotiation. Use 'Legacy (SMB1)' only for older servers that do not support the newer and more secure SMB2/SMB3 protocols."
 msgstr ""
 
+msgid "Select a swap file on local storage."
+msgstr ""
+
 msgid "Select a time period to display a confirmation prompt before a Zap timer changes the current service. This allows the user to cancel the Zap. Select 'Disabled' to allow the Zap to proceed without confirmation."
 msgstr ""
 
@@ -18371,6 +17650,9 @@ msgstr ""
 msgid "Select copy destination for:"
 msgstr "انتخاب مقصد رونوشت برای:"
 
+msgid "Select current service"
+msgstr ""
+
 msgid "Select default EPG type"
 msgstr ""
 
@@ -18392,6 +17674,9 @@ msgstr ""
 #
 msgid "Select files/folders to backup"
 msgstr "انتخاب فایل و پوشه ها برای تهیه نسخه پشتیبان"
+
+msgid "Select first service in bouquet"
+msgstr ""
 
 msgid "Select how long a correctly entered service PIN is remembered. This does not unlock protected settings or system actions."
 msgstr ""
@@ -18459,6 +17744,9 @@ msgstr ""
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr ""
 
+msgid "Select if the layout will use a text display or if it will use graphical backgrounds."
+msgstr ""
+
 msgid "Select if the screen menu path history is displayed and, if so, how it is to be displayed."
 msgstr ""
 
@@ -18500,6 +17788,9 @@ msgstr "انتخاب وسیله ورودی"
 
 msgid "Select input device."
 msgstr "انتخاب وسیله ورودی"
+
+msgid "Select last browsed service"
+msgstr ""
 
 #, fuzzy
 msgid "Select movie"
@@ -18548,6 +17839,9 @@ msgstr ""
 msgid "Select the AI-Powered Translation target language."
 msgstr ""
 
+msgid "Select the AM/PM indication for a 12 hour clock. This is ignored for a 24 hour clock."
+msgstr ""
+
 msgid "Select the DNS server(s) that will be used to lookup hostnames to resolve IP addresses."
 msgstr ""
 
@@ -18582,9 +17876,6 @@ msgstr ""
 msgid "Select the Softcam protocol."
 msgstr ""
 
-msgid "Select the Swap File Size:"
-msgstr ""
-
 msgid "Select the Unicable channel to be assigned to this tuner. This is a unique value. Be certain that no other device connected to this same Unicable system is allocated to the same Unicable channel."
 msgstr ""
 
@@ -18611,6 +17902,9 @@ msgstr ""
 
 #, python-format
 msgid "Select the action for '%s'"
+msgstr ""
+
+msgid "Select the action that this button will perform."
 msgstr ""
 
 msgid "Select the action to perform when the timer ends."
@@ -18656,6 +17950,9 @@ msgid "Select the character set (iocharset) to be used to match/translate remote
 msgstr ""
 
 msgid "Select the color depth to be used with the HDMI attached UHD capable TV/monitor."
+msgstr ""
+
+msgid "Select the color of the built-in busy spinner. Custom PNG spinners keep their own colors."
 msgstr ""
 
 msgid "Select the color of the front panel power LED when the receiver is Running. This option also allows the LED to be deactivated/turned off."
@@ -18761,6 +18058,18 @@ msgid "Select the display options for each menu entry item. If menu numbers are 
 msgstr ""
 
 msgid "Select the display sequence of previously visited services."
+msgstr ""
+
+msgid "Select the display style for dates. The screen display will be based on your choices but can be influenced by the skin."
+msgstr ""
+
+msgid "Select the display style for day of the week. The screen display will be based on your choice but can be influenced by the skin."
+msgstr ""
+
+msgid "Select the display style for hours/times."
+msgstr ""
+
+msgid "Select the display style for months. The screen display will be based on your choices but can be influenced by the skin."
 msgstr ""
 
 msgid "Select the duration of inactivity before the screen saver will be displayed."
@@ -18885,6 +18194,9 @@ msgstr ""
 msgid "Select the number of events to be kept in the time shift buffer. Events in excess of this limit will be removed during cleanup. A buffer may contain several physical file parts, which count as one. Buffers still in use remain protected, so the limit may be temporarily exceeded."
 msgstr ""
 
+msgid "Select the number of services to be shown in the list."
+msgstr ""
+
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr ""
 
@@ -18942,6 +18254,21 @@ msgstr ""
 msgid "Select the security protocol that will be used to access the selected wireless network."
 msgstr ""
 
+msgid "Select the separator between the date and the time elements."
+msgstr ""
+
+msgid "Select the separator between the day and the date elements."
+msgstr ""
+
+msgid "Select the separator between the first two date elements."
+msgstr ""
+
+msgid "Select the separator between the second two date elements."
+msgstr ""
+
+msgid "Select the separator between the time elements."
+msgstr ""
+
 msgid "Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares)."
 msgstr ""
 
@@ -18970,10 +18297,19 @@ msgstr ""
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
 msgstr ""
 
+msgid "Select the speed of the fade-in and fade-out of toast messages."
+msgstr ""
+
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
+msgstr ""
+
+msgid "Select the style for displaying dates."
+msgstr ""
+
+msgid "Select the suffix character to be appended to the date string. This is used for some locales."
 msgstr ""
 
 msgid "Select the tags that should be used for this recording."
@@ -19139,6 +18475,9 @@ msgstr ""
 msgid "Select which IP protocols can be used with this adapter."
 msgstr ""
 
+msgid "Select which service to use when opening the EPG."
+msgstr ""
+
 #, fuzzy
 msgid "Select your ATSC provider."
 msgstr "انتخاب ارائه دهنده برای اضافه کردن"
@@ -19209,6 +18548,9 @@ msgstr ""
 msgid "Selecting this option allows you to configure a group of satellites in one block."
 msgstr ""
 
+msgid "Semicolon ';'"
+msgstr ""
+
 msgid "Send DiSEqC"
 msgstr "ارسال DiSEqC"
 
@@ -19242,6 +18584,9 @@ msgid "Serial No"
 msgstr ""
 
 msgid "Serial number"
+msgstr ""
+
+msgid "Serious Classical"
 msgstr ""
 
 msgid "Serious music/Classic music"
@@ -19353,6 +18698,9 @@ msgstr ""
 "کانال یافت نشد\n"
 "(SID در PAT یافت نشد)"
 
+msgid "Service number and picon"
+msgstr ""
+
 msgid "Service number and service name"
 msgstr ""
 
@@ -19373,6 +18721,9 @@ msgid "Service picons aspect ratio"
 msgstr ""
 
 msgid "Service picons downsize"
+msgstr ""
+
+msgid "Service preview mode"
 msgstr ""
 
 msgid "Service reference"
@@ -19539,6 +18890,9 @@ msgstr ""
 msgid "Set the delay time between repeated loops, this is used by software renderer in some skins."
 msgstr ""
 
+msgid "Set the desired primetime (hour and minute)."
+msgstr ""
+
 msgid "Set the hostname or IP address."
 msgstr ""
 
@@ -19651,15 +19005,6 @@ msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr ""
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr ""
-
-msgid "Set to the desired primetime hour."
-msgstr ""
-
-msgid "Set to the desired primetime minutes."
-msgstr ""
-
-msgid "Set to what you want the button to do."
 msgstr ""
 
 msgid "Set to yes for debugging the root cause of a spinner."
@@ -19858,6 +19203,9 @@ msgstr ""
 msgid "Share View"
 msgstr ""
 
+msgid "Shared SAT and C/T inputs"
+msgstr ""
+
 msgid "Shares"
 msgstr ""
 
@@ -20053,9 +19401,6 @@ msgid "Show MiniTV in the Front Display"
 msgstr ""
 
 msgid "Show Movie Selection in Main Menu"
-msgstr ""
-
-msgid "Show Movies List"
 msgstr ""
 
 msgid "Show Multi EPG"
@@ -20826,9 +20171,6 @@ msgstr ""
 msgid "Skip backward (enter time)"
 msgstr "پرش به عقب - با وارد کردن مدت زمان"
 
-msgid "Skip empty services"
-msgstr "نادیده گرفتن کانال خالی"
-
 #, python-format
 msgid "Skip for '%s' is disabled"
 msgstr ""
@@ -21068,6 +20410,9 @@ msgstr ""
 msgid "Soccer"
 msgstr ""
 
+msgid "Social Affairs"
+msgstr ""
+
 msgid "Social/Political issues/Economics"
 msgstr ""
 
@@ -21083,6 +20428,15 @@ msgstr ""
 #, fuzzy
 msgid "Socket"
 msgstr "قفل شده"
+
+msgid "Soft"
+msgstr ""
+
+msgid "Soft Rhythm and Blues"
+msgstr ""
+
+msgid "Soft Rock"
+msgstr ""
 
 msgid "Soft mount"
 msgstr ""
@@ -21196,9 +20550,6 @@ msgstr ""
 msgid "Sorry, no backups found!"
 msgstr ""
 
-msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
-msgstr ""
-
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "Please select a different one."
@@ -21208,9 +20559,6 @@ msgid "Sort"
 msgstr "چیدن"
 
 msgid "Sort Bookmarks"
-msgstr ""
-
-msgid "Sort EPG List"
 msgstr ""
 
 msgid "Sort Extension Menu"
@@ -21295,6 +20643,12 @@ msgstr ""
 msgid "South Sudan"
 msgstr "جنوب"
 
+msgid "Space ' '"
+msgstr ""
+
+msgid "Space Hyphen Space ' - '"
+msgstr ""
+
 msgid "Space to reserve for recordings (GB)"
 msgstr ""
 
@@ -21339,6 +20693,9 @@ msgid "Speed"
 msgstr ""
 
 msgid "Spinner Position"
+msgstr ""
+
+msgid "Spinner color"
 msgstr ""
 
 msgid "Split preview mode"
@@ -21409,6 +20766,9 @@ msgstr ""
 msgid "Start Wizard"
 msgstr ""
 
+msgid "Start all available swap files and partitions when Enigma2 starts. Entries marked noauto in /etc/fstab are excluded. System autostart from /etc/fstab is independent of this setting."
+msgstr ""
+
 msgid "Start an instant recording"
 msgstr ""
 
@@ -21444,6 +20804,9 @@ msgid "Start offline decode"
 msgstr "شروع رمز گشایی آفلاین"
 
 msgid "Start or Stop service"
+msgstr ""
+
+msgid "Start or stop the selected swap"
 msgstr ""
 
 msgid "Start recording current event"
@@ -21551,9 +20914,6 @@ msgstr ""
 msgid "Status unavailable!"
 msgstr ""
 
-msgid "Status:"
-msgstr ""
-
 msgid "Stay in time shift at buffer end (for plugins)"
 msgstr ""
 
@@ -21571,6 +20931,9 @@ msgstr "به شرق جابجا شد"
 
 msgid "Stepped west"
 msgstr "به غرب جابجا شد"
+
+msgid "Stereo"
+msgstr ""
 
 msgid "Stop"
 msgstr "توقف"
@@ -21681,6 +21044,9 @@ msgstr ""
 #, fuzzy
 msgid "Storage Devices"
 msgstr "لیست دستگاه های ذخیره سازی"
+
+msgid "Storage device"
+msgstr ""
 
 msgid "Storage device full!"
 msgstr ""
@@ -21858,6 +21224,9 @@ msgstr ""
 msgid "Sudan"
 msgstr ""
 
+msgid "Suffix character"
+msgstr ""
+
 msgid "Suitable for ages 12+"
 msgstr ""
 
@@ -21884,6 +21253,15 @@ msgstr ""
 msgid "Suriname"
 msgstr "نام کاربری"
 
+msgid "Surround"
+msgstr ""
+
+msgid "Surround 5.1"
+msgstr ""
+
+msgid "Surround 7.1"
+msgstr ""
+
 msgid "Svalbard and Jan Mayen"
 msgstr ""
 
@@ -21896,9 +21274,6 @@ msgstr ""
 msgid "Swap File Manager"
 msgstr ""
 
-msgid "Swap File not found. You have to create the file before to activate."
-msgstr ""
-
 msgid "Swap Manager"
 msgstr ""
 
@@ -21909,13 +21284,19 @@ msgstr ""
 msgid "Swap PiP and main picture"
 msgstr "جابجایی حالت تصویر در تصویر با تصویر اصلی"
 
-msgid "Swap Place:"
-msgstr ""
-
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr ""
 
-msgid "Swap Size:"
+msgid "Swap autostart"
+msgstr ""
+
+msgid "Swap file"
+msgstr ""
+
+msgid "Swap partition"
+msgstr ""
+
+msgid "Swap partition detection failed. Active and configured swaps are still listed."
 msgstr ""
 
 msgid "Swap services"
@@ -22182,6 +21563,9 @@ msgid "Tajik"
 msgstr ""
 
 msgid "Tajikistan"
+msgstr ""
+
+msgid "Talk"
 msgstr ""
 
 msgid "Talk show"
@@ -22553,6 +21937,9 @@ msgstr ""
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+msgid "The device is still mounted. Stop recordings and time shift before checking the file system."
+msgstr ""
+
 msgid "The directory/file no longer exists."
 msgstr ""
 
@@ -22569,6 +21956,15 @@ msgstr ""
 
 #, python-format
 msgid "The file '%s' has been changed. Do you want to save it?"
+msgstr ""
+
+msgid "The file does not contain a valid swap header."
+msgstr ""
+
+msgid "The file is created inactive. Start it in the swap manager when needed."
+msgstr ""
+
+msgid "The file system was repaired. Restart the receiver before using this device."
 msgstr ""
 
 #, python-format
@@ -22624,6 +22020,9 @@ msgstr ""
 msgid "The positioner tuner is currently unavailable. Stop recordings or other services using this tuner and try again."
 msgstr ""
 
+msgid "The previous mount point is already in use."
+msgstr ""
+
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
 msgstr ""
@@ -22650,6 +22049,9 @@ msgstr ""
 msgid "The running Enigma2 version cannot safely save an active time shift buffer."
 msgstr ""
 
+msgid "The running system's file system cannot be checked."
+msgstr ""
+
 msgid "The saved PIN was cleared."
 msgstr ""
 
@@ -22662,6 +22064,9 @@ msgid "The selected device is not a supported removable block device."
 msgstr ""
 
 msgid "The selected device is too small. At least 3 GB is required."
+msgstr ""
+
+msgid "The selected storage device is no longer available."
 msgstr ""
 
 msgid "The service list is reloaded."
@@ -22678,6 +22083,15 @@ msgid ""
 msgstr ""
 
 msgid "The storage check did not finish. Please check the device or network and try again."
+msgstr ""
+
+msgid "The swap device has changed. Refresh the list and try again."
+msgstr ""
+
+msgid "The swap file has changed. Refresh the list and try again."
+msgstr ""
+
+msgid "The swap file is still active and cannot be deleted."
 msgstr ""
 
 msgid "The time is multiplied by the current repeat counter."
@@ -22698,6 +22112,9 @@ msgid "The time shift storage device is not available. Please check the device a
 msgstr ""
 
 msgid "The time shift storage device was removed. Time shift has been stopped."
+msgstr ""
+
+msgid "The timer conflicts with a local timer and was not moved from the fallback tuner."
 msgstr ""
 
 #, python-format
@@ -22808,6 +22225,9 @@ msgstr ""
 msgid "This channel requires an HbbTV plugin. Please install a compatible HbbTV plugin."
 msgstr ""
 
+msgid "This device has multiple mount points. Unmount them before checking the file system."
+msgstr ""
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr ""
@@ -22816,6 +22236,9 @@ msgid "This function is not available as processing of large files may take too 
 msgstr ""
 
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
+msgstr ""
+
+msgid "This is not a regular swap file."
 msgstr ""
 
 msgid "This is one reception type of a single tuner. Enabled reception types are switched automatically and scanned separately."
@@ -22935,9 +22358,6 @@ msgid "This option allows you to set offset values for different Letterbox resol
 msgstr ""
 
 msgid "This option allows you to set the Auto Volume Level output."
-msgstr ""
-
-msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr ""
 
 msgid "This option allows you to switch Audio to Bluetooth speakers."
@@ -23076,10 +22496,7 @@ msgstr ""
 msgid "Time"
 msgstr "زمان"
 
-msgid "Time Settings"
-msgstr ""
-
-msgid "Time Setup Actions"
+msgid "Time Format"
 msgstr ""
 
 msgid "Time Shift Settings"
@@ -23115,6 +22532,9 @@ msgstr ""
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr ""
 
+msgid "Time separator"
+msgstr ""
+
 msgid "Time shift buffer location"
 msgstr "محل تغییر زمان"
 
@@ -23144,10 +22564,6 @@ msgstr ""
 
 msgid "Time shift will get saved at end of event."
 msgstr ""
-
-#, fuzzy
-msgid "Time style"
-msgstr "انتخاب زمان"
 
 msgid "Time taken for the backup:"
 msgstr ""
@@ -23205,6 +22621,9 @@ msgid "Timer Defaults And Retention"
 msgstr ""
 
 msgid "Timer Log Actions"
+msgstr ""
+
+msgid "Timer Menu"
 msgstr ""
 
 msgid "Timer Sanity Error"
@@ -23299,6 +22718,9 @@ msgstr ""
 
 #, python-format
 msgid "To where would you like to extract '%s'?"
+msgstr ""
+
+msgid "Toast fade"
 msgstr ""
 
 msgid "Today"
@@ -23412,6 +22834,9 @@ msgstr ""
 
 msgid "Top"
 msgstr "بالا"
+
+msgid "Top 40"
+msgstr ""
 
 msgid "Top and Bottom"
 msgstr ""
@@ -23747,7 +23172,25 @@ msgstr ""
 msgid "Twin Tuner"
 msgstr ""
 
+msgid "Two digits"
+msgstr ""
+
+msgid "Two digits (12 hour time)"
+msgstr ""
+
+msgid "Two digits (24 hour time)"
+msgstr ""
+
 msgid "Two lines"
+msgstr ""
+
+msgid "Two spaces '  '"
+msgstr ""
+
+msgid "Two tuners share one SAT input and one C/T input. Reception types switch automatically. Use compatible SAT settings and separate Unicable User Bands. Cable and terrestrial reception cannot run together."
+msgstr ""
+
+msgid "Two tuners, two SAT sockets, one shared C/T socket. Two frequencies of the same reception type can run together. Cable and terrestrial cannot run together."
 msgstr ""
 
 #
@@ -23851,6 +23294,12 @@ msgid "Ukrainian"
 msgstr ""
 
 #, python-format
+msgid ""
+"Unable to change swap state for '%s'.\n"
+"%s"
+msgstr ""
+
+#, python-format
 msgid "Unable to check HDD replacement: %s"
 msgstr ""
 
@@ -23881,6 +23330,9 @@ msgstr ""
 msgid "Unable to prepare the time shift storage device."
 msgstr ""
 
+msgid "Unable to read the list of mounted file systems."
+msgstr ""
+
 #, python-format
 msgid "Unable to read the manufacturer STARTUP file '%s'!"
 msgstr ""
@@ -23898,9 +23350,6 @@ msgid "Unable to save network configuration!"
 msgstr ""
 
 msgid "Unable to save network mount configuration!"
-msgstr ""
-
-msgid "Unable to start RAM time shift."
 msgstr ""
 
 msgid "Unable to start the DAB+ feed"
@@ -24382,6 +23831,9 @@ msgstr ""
 msgid "Use power measurement"
 msgstr "استفاده از اندازه گیری توان"
 
+msgid "Use skin default"
+msgstr ""
+
 msgid "Use small screen"
 msgstr ""
 
@@ -24471,6 +23923,10 @@ msgid "Used service scan type"
 msgstr ""
 
 msgid "Used:"
+msgstr ""
+
+#, python-format
+msgid "Used: %s"
 msgstr ""
 
 msgid "User  (keymap.usr)"
@@ -24615,6 +24071,9 @@ msgstr ""
 #, fuzzy
 msgid "Vanuatu"
 msgstr "دستی"
+
+msgid "Varied"
+msgstr ""
 
 msgid "Variety"
 msgstr ""
@@ -24924,12 +24383,6 @@ msgstr "WSS روی 4:3"
 msgid "Wait for timesync at startup"
 msgstr ""
 
-msgid "Wait please while creating swap file..."
-msgstr ""
-
-msgid "Wait please while scanning..."
-msgstr ""
-
 msgid "Waiting"
 msgstr "صبر کردن"
 
@@ -25026,6 +24479,9 @@ msgid "Weather"
 msgstr "دیگر"
 
 msgid "Weather settings"
+msgstr ""
+
+msgid "Weather/meteorology"
 msgstr ""
 
 msgid "Web Interface"
@@ -25257,6 +24713,12 @@ msgid "When enabled, pressing '0' will zap you to the selected panic channel and
 msgstr ""
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
+msgstr ""
+
+msgid "When enabled, seconds will be shown in time displays. The seconds display will be based on your selection but will be influenced by code and space requirements and the skin."
+msgstr ""
+
+msgid "When enabled, services without EPG data will be hidden."
 msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
@@ -25561,10 +25023,10 @@ msgid "Y-Resolution"
 msgstr ""
 
 #, fuzzy
-msgid "YELLOW button"
+msgid "YELLOW"
 msgstr "دکمه قرمز"
 
-msgid "YELLOW long"
+msgid "YELLOW (Long press)"
 msgstr ""
 
 msgid "Year"
@@ -25676,9 +25138,6 @@ msgid "You have no script to run."
 msgstr ""
 
 msgid "You have selected no logs to delete."
-msgstr ""
-
-msgid "You have to create a Swap File before to activate the autostart."
 msgstr ""
 
 #, python-format
@@ -25978,6 +25437,9 @@ msgstr ""
 msgid "am"
 msgstr ""
 
+msgid "am/pm display"
+msgstr ""
+
 #, python-format
 msgid "audio track (%s) format"
 msgstr ""
@@ -26153,24 +25615,6 @@ msgstr "سبز"
 msgid "guest"
 msgstr ""
 
-msgid "h:mm"
-msgstr ""
-
-msgid "h:mm:ss"
-msgstr ""
-
-msgid "h:mm:ssAM/PM"
-msgstr ""
-
-msgid "h:mm:ssam/pm"
-msgstr ""
-
-msgid "h:mmAM/PM"
-msgstr ""
-
-msgid "h:mmam/pm"
-msgstr ""
-
 msgid "handled"
 msgstr ""
 
@@ -26190,24 +25634,6 @@ msgid "height"
 msgstr "ارتفاع"
 
 msgid "help..."
-msgstr ""
-
-msgid "hh:mm"
-msgstr ""
-
-msgid "hh:mm:ss"
-msgstr ""
-
-msgid "hh:mm:ssAM/PM"
-msgstr ""
-
-msgid "hh:mm:ssam/pm"
-msgstr ""
-
-msgid "hh:mmAM/PM"
-msgstr ""
-
-msgid "hh:mmam/pm"
 msgstr ""
 
 msgid "hops:"
@@ -26608,6 +26034,413 @@ msgid "®"
 msgstr ""
 
 #, fuzzy
+#~ msgid "%-H:%M:%S"
+#~ msgstr "%ساعت:%دقیقه"
+
+#, fuzzy
+#~ msgid "%-d %B %Y"
+#~ msgstr "%d.%B %Y"
+
+#, fuzzy
+#~ msgid "%-d. %B %Y"
+#~ msgstr "%d.%B %Y"
+
+#, fuzzy
+#~ msgid "%-d. %b %Y"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%A %-d %B"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %-d %B %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %-d-%B"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %-d-%B-%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %-d. %B"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %-d. %B %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %-d.%-m"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%A %-d.%-m.%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %-d.%m"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %-d.%m.%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %-d/%m/%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %-m/%d/%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %B %-d"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %B %-d %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %B %d"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %B %d %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %B-%-d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %B-%-d-%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %B-%d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %B-%d-%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %Y %B %-d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %Y %B %d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %Y-%B-%-d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %Y-%B-%d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %d %B %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %d-%B"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %d-%B-%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %d. %B"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %d. %B %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %d.%-m"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %d.%-m.%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %d.%m"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %d.%m.%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %d/%-m/%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %d/%m"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %d/%m/%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %m/%-d/%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%A %m/%d"
+#~ msgstr "%A %e %B"
+
+#, fuzzy
+#~ msgid "%A %m/%d/%Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%B %-d %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%B %d %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%Y %B %-d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%Y %B %d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %-d %B %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %-d. %B %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %-d. %b"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %-d. %b %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %-d.%-m"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %-d.%-m.%Y"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %-d.%m"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %-d.%m.%Y"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %-d/%-m"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %-d/%-m/%Y"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %-d/%m"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %-d/%m/%Y"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %-m/%-d"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %-m/%d"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %-m/%d/%Y"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %B %-d %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %B %d %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %Y %B %-d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %Y %B %d"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %Y/%-m/%-d"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %Y/%-m/%d"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %Y/%m/%-d"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %Y/%m/%d"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %b %d"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %b-%d"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %d %B %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %d-%b"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %d. %B %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %d. %b"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %d. %b %Y"
+#~ msgstr "%A %e %B %Y"
+
+#, fuzzy
+#~ msgid "%a %d.%-m"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %d.%-m.%Y"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %d.%m"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %d.%m.%Y"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %d/%-m"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %d/%-m/%Y"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %d/%m"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %d/%m/%Y"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %m/%-d"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %m/%-d/%Y"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %m/%d"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%a %m/%d/%Y"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%d. %B %Y"
+#~ msgstr "%d.%B %Y"
+
+#, fuzzy
+#~ msgid "%d. %b %Y"
+#~ msgstr "%a %e/%m"
+
+#, fuzzy
+#~ msgid "%d.%-m.%Y"
+#~ msgstr "%d.%B %Y"
+
+#, fuzzy
+#~ msgid "%d.%m"
+#~ msgstr "%d.%B %Y"
+
+#, fuzzy
+#~ msgid "%d.%m.%Y"
+#~ msgstr "%d.%B %Y"
+
+#, fuzzy
+#~ msgid "Day DD/M"
+#~ msgstr "پخش DVD"
+
+#, fuzzy
+#~ msgid "Hidden / Blank"
+#~ msgstr "شبکه مخفی"
+
+#, fuzzy
+#~ msgid "Time style"
+#~ msgstr "انتخاب زمان"
+
+#, fuzzy
+#~ msgid "Add/Remove Timer"
+#~ msgstr "حذف زمان"
+
+#, fuzzy
+#~ msgid "CHANNEL +/-"
+#~ msgstr "کانال"
+
+#, fuzzy
+#~ msgid "Change to bouquet"
+#~ msgstr "اضافه کردن به لیست"
+
+#, fuzzy
+#~ msgid "Close bouquet list."
+#~ msgstr "ویرایش لیست های کانال"
+
+#~ msgid "Time shift not possible!"
+#~ msgstr "تغییر زمان امکان پذیر نیست"
+
+#, fuzzy
 #~ msgid "History"
 #~ msgstr "پوشه"
 
@@ -26618,9 +26451,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "Program"
 #~ msgstr "پیشرفت"
-
-#~ msgid "Time shift not possible!"
-#~ msgstr "تغییر زمان امکان پذیر نیست"
 
 #~ msgid "Seconds"
 #~ msgstr "ثانیه"

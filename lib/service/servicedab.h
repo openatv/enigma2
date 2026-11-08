@@ -14,11 +14,13 @@
 #include <lib/base/message.h>
 #include <lib/base/thread.h>
 #include <lib/dvb/idvb.h>
+#include <lib/service/dabaudioframe.h>
 #include <lib/service/dabtsadapter.h>
 #include <lib/service/iservice.h>
 
 class eDABDecoder;
 class eDABSDRWorker;
+typedef struct _GstBuffer GstBuffer;
 typedef struct _GstElement GstElement;
 
 enum { DAB_MAX_SCANNED_SERVICES = 64 };
@@ -80,8 +82,11 @@ struct eDABWorkerStats
 	int slideFormat;
 	int bitrate;
 	int snrCentidB;
+	eDABAudioFormat audioFormat;
 	int ficQuality;
 	int mscQuality;
+	int programmeType = -1;
+	int programmeTypeTable = -1;
 	bool rfSynced;
 	bool serviceFound;
 	bool dabplus;
@@ -100,6 +105,8 @@ struct eDABWorkerStats
 	char programType[64];
 	char protection[32];
 	int error;
+	uint64_t sdrGeneration = 0;
+	bool sdrRestartRequired = false;
 
 	eDABWorkerStats();
 };
@@ -193,6 +200,8 @@ class eServiceDAB : public iPlayableService, public iServiceInformation, public 
 public:
 	explicit eServiceDAB(const eServiceReference &ref);
 	~eServiceDAB() override;
+	static bool prepareRTLSDRZap(iPlayableService *previous, const eServiceReference &reference,
+		ePtr<iPlayableService> &next);
 
 	RESULT connectEvent(const sigc::slot<void(iPlayableService *, int)> &event, ePtr<eConnection> &connection) override;
 	RESULT start() override;
@@ -255,6 +264,7 @@ private:
 	static bool sinkAcceptsLOAS(const char *factoryName);
 	bool startAudioPipeline(bool loasInput = false, bool pcmInput = false, bool mp2Input = false);
 	void stopAudioPipeline();
+	void setAudioTimestamp(GstBuffer *buffer, uint64_t durationNs);
 	void pushAudio(const uint8_t *data, size_t length, uint64_t durationNs, uint8_t config);
 	void pushMP2(const uint8_t *data, size_t length, uint64_t durationNs);
 	void pushSDRAudio(const uint8_t *data, size_t length, uint64_t durationNs, bool dabplus);
@@ -282,6 +292,7 @@ private:
 	eFixedMessagePump<eDABWorkerStats> m_worker_pump;
 	std::unique_ptr<eDABWorker> m_worker;
 	std::unique_ptr<eDABSDRWorker> m_sdr_worker;
+	bool m_sdr_reused = false;
 	struct RTLSDRConsumer
 	{
 		std::function<void(const uint8_t *, size_t)> audioCallback;
@@ -291,6 +302,7 @@ private:
 	static eServiceDAB *s_rtlsdr_source;
 	std::mutex m_rtlsdr_consumers_mutex;
 	std::map<uint64_t, RTLSDRConsumer> m_rtlsdr_consumers;
+	bool m_rtlsdr_handover = false;
 	uint64_t m_next_rtlsdr_consumer = 1;
 	int m_socket[2];
 	bool m_running;

@@ -624,9 +624,16 @@ void eHdmiCEC::hdmiEvent(int what)
 				if (msg.sequence && msg.tx_status)
 				{
 					if (!(msg.tx_status & CEC_TX_STATUS_OK))
-						eDebug("[eHdmiCEC] transmit to %X failed (status %02X, nack %u, arbitration lost %u, low drive %u, errors %u)",
-							(unsigned int)cec_msg_destination(&msg), (unsigned int)msg.tx_status, (unsigned int)msg.tx_nack_cnt,
-							(unsigned int)msg.tx_arb_lost_cnt, (unsigned int)msg.tx_low_drive_cnt, (unsigned int)msg.tx_error_cnt);
+					{
+						if (msg.tx_error_cnt)
+							eDebug("[eHdmiCEC] transmit to %X failed (status %02X, nack %u, arbitration lost %u, low drive %u, errors %u)",
+								(unsigned int)cec_msg_destination(&msg), (unsigned int)msg.tx_status, (unsigned int)msg.tx_nack_cnt,
+								(unsigned int)msg.tx_arb_lost_cnt, (unsigned int)msg.tx_low_drive_cnt, (unsigned int)msg.tx_error_cnt);
+						else
+							eDebug("[eHdmiCEC] transmit to %X failed (status %02X, nack %u, arbitration lost %u, low drive %u)",
+								(unsigned int)cec_msg_destination(&msg), (unsigned int)msg.tx_status, (unsigned int)msg.tx_nack_cnt,
+								(unsigned int)msg.tx_arb_lost_cnt, (unsigned int)msg.tx_low_drive_cnt);
+					}
 					continue;
 				}
 

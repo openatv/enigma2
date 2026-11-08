@@ -7,6 +7,8 @@
 #include <string.h>
 #include <errno.h>
 #include <stdlib.h>
+#include <array>
+#include <string>
 
 #define EXTERNAL_VIDEO_SOCKET "/var/run/video.socket"
 
@@ -42,26 +44,27 @@ eExternalVideo::eExternalVideo()
 }
 
 /* the number after "key": in msg, def if missing */
-static int jsonInt(const char *msg, const char *key, int def)
+static int jsonInt(const std::string &msg, const char *key, int def)
 {
-	const char *p = strstr(msg, key);
-	if (!p)
+	size_t pos = msg.find(key);
+	if (pos == std::string::npos)
 		return def;
-	p = strchr(p + strlen(key), ':');
-	return p ? atoi(p + 1) : def;
+	pos = msg.find(':', pos);
+	return pos == std::string::npos ? def : atoi(msg.c_str() + pos + 1);
 }
 
 void eExternalVideo::readable(int)
 {
-	char msg[512];
+	std::array<char, 512> buf;
 	ssize_t len;
 
-	while ((len = ::recv(m_fd, msg, sizeof(msg) - 1, 0)) > 0) {
-		msg[len] = 0;
+	while ((len = ::recv(m_fd, buf.data(), buf.size(), 0)) > 0) {
 		/* only the video track of a player */
-		const char *vc = strstr(msg, "\"v_c\"");
-		if (!vc)
+		std::string msg(buf.data(), len);
+		size_t pos = msg.find("\"v_c\"");
+		if (pos == std::string::npos)
 			continue;
+		std::string vc = msg.substr(pos);
 		int width = jsonInt(vc, "\"w\"", 0);
 		int height = jsonInt(vc, "\"h\"", 0);
 		int framerate = jsonInt(vc, "\"f\"", 0);

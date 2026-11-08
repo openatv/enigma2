@@ -3,10 +3,10 @@ from binascii import hexlify
 from glob import glob
 from hashlib import md5
 from locale import format_string
-from os import listdir, readlink, stat
+from os import listdir, readlink, stat, uname
 from os.path import basename, exists, isfile, islink, join
 from platform import libc_ver
-from re import search
+from re import fullmatch, search
 from sys import version as pyversion
 from time import localtime, strftime
 
@@ -422,6 +422,15 @@ def getRCFile(ext):
 	return filename
 
 
+def getKernelVersion():  # Version of the package of the running kernel, with its git revision when it is built from git.
+	result = BoxInfo.getItem("kernel")
+	version = next((line[9:].strip() for line in fileReadLines(f"/var/lib/opkg/info/kernel-image-{uname().release}.control", default=[], source=MODULE_NAME) if line.startswith("Version:")), "")
+	if version:
+		parts = version.split(":", 1)[-1].rsplit("-", 1)[0].split("+")
+		result = f"{parts[0]} ({parts[-1][:10]})" if len(parts) > 1 and fullmatch(r"[0-9a-f]{7,40}", parts[-1]) else parts[0]
+	return result
+
+
 def getChipsetString():
 	if MODEL in ("dm7080", "dm820"):
 		chipset = "7435"
@@ -545,8 +554,11 @@ def getWakeOnLANType(fileName):
 	value = ""
 	if fileName:
 		value = fileReadLine(fileName)
-	onOff = ("off", "on")
-	return onOff if value in onOff else ("disable", "enable")
+	choices = ("disable", "enable")
+	for values in (("off", "on"), ("0", "1")):
+		if value in values:
+			choices = values
+	return choices
 
 
 class VideoCodec:  # Stream type to codec name mapping.
@@ -554,14 +566,16 @@ class VideoCodec:  # Stream type to codec name mapping.
 		"MPEG2", "AVC", "H263", "VC1", "MPEG4-VC", "VC1-SM", "MPEG1", "HEVC", "VP8", "VP9", "XVID",
 		"N/A 11", "N/A 12", "DIVX 3.11", "DIVX 4", "DIVX 5", "AVS", "N/A 17", "VP6", "N/A 19", "N/A 20", "SPARK"
 	)
+	EXTRA_NAMES = {40: "AVS2"}
 
 	@staticmethod
 	def getName(videoType, default="N/A"):
-		return VideoCodec.NAMES[videoType] if 0 <= videoType < len(VideoCodec.NAMES) else default
+		return VideoCodec.NAMES[videoType] if 0 <= videoType < len(VideoCodec.NAMES) else VideoCodec.EXTRA_NAMES.get(videoType, default)
 
 
 BoxInfo.setItem("DebugLevel", eGetEnigmaDebugLvl())
 BoxInfo.setItem("InDebugMode", eGetEnigmaDebugLvl() >= 4)
+BoxInfo.setItem("KernelVersion", getKernelVersion())
 
 BoxInfo.setItem("RCImage", getRCFile("png"))
 BoxInfo.setItem("RCMapping", getRCFile("xml"))
@@ -695,7 +709,7 @@ BoxInfo.setItem("VFD_scroll_delay", eDBoxLCD.getInstance().get_VFD_scroll_delay(
 BoxInfo.setItem("VFD_initial_scroll_delay", eDBoxLCD.getInstance().get_VFD_initial_scroll_delay())
 BoxInfo.setItem("VFD_final_scroll_delay", eDBoxLCD.getInstance().get_VFD_final_scroll_delay())
 BoxInfo.setItem("VideoDestinationConfigurable", fileExists("/proc/stb/vmpeg/0/dst_left") or fileExists("/sys/class/video/axis"))
-BoxInfo.setItem("WakeOnLAN", fileCheck("/proc/stb/power/wol") or fileCheck("/proc/stb/fp/wol"))
+BoxInfo.setItem("WakeOnLAN", fileCheck("/proc/stb/power/wol") or fileCheck("/proc/stb/fp/wol") or fileCheck("/proc/stb/fp/phy_powered"))
 BoxInfo.setItem("WakeOnLANType", getWakeOnLANType(BoxInfo.getItem("WakeOnLAN")))
 BoxInfo.setItem("XcoreVFD", MODEL in ("xc7346", "xc7439"))
 BoxInfo.setItem("ZapMode", fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode"))

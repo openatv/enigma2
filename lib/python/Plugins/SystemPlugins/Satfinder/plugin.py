@@ -15,6 +15,7 @@ from Tools.Transponder import channel2frequency
 class Satfinder(ScanSetup, ServiceScan):
 	def __init__(self, session):
 		self.initcomplete = False
+		self.frontend = None
 		service = session and session.nav.getCurrentService()
 		feinfo = service and service.frontendInfo()
 		self.frontendData = feinfo and feinfo.getAll(True)
@@ -38,7 +39,6 @@ class Satfinder(ScanSetup, ServiceScan):
 
 		ScanSetup.__init__(self, session)
 		self.setTitle(_("Signal Finder"))
-		self["introduction"].setText(_("Press OK to scan"))
 		self["Frontend"] = FrontendStatus(frontend_source=lambda: self.frontend, update_interval=100)
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
@@ -50,8 +50,12 @@ class Satfinder(ScanSetup, ServiceScan):
 
 		self.initcomplete = True
 		self.session.postScanService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		self.onClose.append(self.__onClose)
-		self.onShow.append(self.prepareFrontend)
+		if self.scan_nims.value:
+			self["introduction"].setText(_("Press OK to scan"))
+			self.onClose.append(self.__onClose)
+			self.onShow.append(self.prepareFrontend)
+		else:
+			self["key_green"].setText("")
 
 	def openFrontend(self):
 		res_mgr = eDVBResourceManager.getInstance()
@@ -210,6 +214,8 @@ class Satfinder(ScanSetup, ServiceScan):
 
 	def createConfig(self):
 		ScanSetup.createConfig(self)
+		if not self.scan_nims.value:
+			return
 		for x in (
 			self.scan_sat.frequency,
 			self.scan_satselection[int(self.scan_nims.value)],
@@ -465,6 +471,8 @@ def SatfinderMain(session, close=None, **kwargs):
 	nims = nimmanager.nim_slots
 	nimList = []
 	for n in nims:
+		if not any(n.canBeCompatible(x[0]) and getattr(n.config, x[1]).configMode.value != "nothing" for x in (("DVB-S", "dvbs"), ("DVB-C", "dvbc"), ("DVB-T", "dvbt"), ("ATSC", "atsc"))):
+			continue
 		if n.isMultiType():
 			if not (n.isCompatible("DVB-S") or n.isCompatible("DVB-T") or n.isCompatible("DVB-C") or n.isCompatible("ATSC")):
 				continue

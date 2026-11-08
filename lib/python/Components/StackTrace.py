@@ -42,7 +42,7 @@ class StackTracePrinter(Thread):
 							else:
 								log.append("[StackTrace] ========== Thread ID  0x%08x =========================" % threadId)
 							for filename, lineno, name, line in extract_stack(stack):
-								log.append('[StackTrace] File: "%s", line %d, in %s' % (filename, lineno, name))
+								log.append(f'[StackTrace] File: "{filename}", line {lineno if lineno is not None else "?"}, in {name}')
 								if line:
 									log.append("[StackTrace]   %s" % (line.strip()))
 					del stack

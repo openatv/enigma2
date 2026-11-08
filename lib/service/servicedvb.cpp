@@ -3,6 +3,7 @@
 #include <lib/base/modelinformation.h>
 #include <string>
 #include <memory>
+#include <utility>
 #include <lib/service/servicedvb.h>
 #include <lib/service/service.h>
 #include <lib/hbbtv/hbbtv.h>
@@ -17,9 +18,6 @@
 #include <lib/dvb/db.h>
 #include <lib/dvb/decoder.h>
 #include <lib/dvb/warmstart.h>
-#ifdef DREAMNEXTGEN
-#include <lib/dvb/alsa.h>
-#endif
 
 #include <lib/base/cfile.h>
 #include <lib/dvb/pmtparse.h>
@@ -45,8 +43,11 @@
 #include <sys/vfs.h>
 #include <linux/magic.h>
 #include <sys/stat.h>
+#include <sys/sysmacros.h>
 #include <sys/ioctl.h>
 #include <fcntl.h>
+#include <limits.h>
+#include <stdlib.h>
 #include <chrono>
 #include <thread>
 #include <lib/dvb_ci/descrambler.h>
@@ -881,7 +882,7 @@ RESULT eStaticServiceDVBPVRInformation::getEvent(const eServiceReference &ref, e
 			equivalentref.path.clear();
 			return eEPGCache::getInstance()->lookupEventTime(equivalentref, start_time, evt);
 		}
-		else
+		else if (ref.path.length() >= 2)
 		{
 			ePtr<eServiceEvent> event = new eServiceEvent;
 			std::string filename = ref.path;
@@ -1282,7 +1283,13 @@ RESULT eDVBServiceList::getNext(eServiceReference &ref)
 	if (!m_query)
 		return -1;
 
-	return m_query->getNextResult((eServiceReferenceDVB&)ref);
+	eServiceReferenceDVB dvbRef;
+	RESULT result = m_query->getNextResult(dvbRef);
+	if (!result)
+		ref = std::move(dvbRef);
+	else
+		ref.type = eServiceReference::idInvalid;
+	return result;
 }
 
 RESULT eDVBServiceList::startEdit(ePtr<iMutableServiceList> &res)
@@ -2467,12 +2474,6 @@ RESULT eDVBServicePlay::getLength(pts_t &len)
 RESULT eDVBServicePlay::pause()
 {
 	eDebug("[eDVBServicePlay] pause");
-#ifdef DREAMNEXTGEN
-	/* Hold ALSA writer (drain + park, FIFO preserved) before decoder
-	 * freezes its kernel state. */
-	if (eAlsaOutput *a = eAlsaOutput::instance(nullptr))
-		a->pauseWriter();
-#endif
 	setFastForward_internal(0, m_slowmotion || m_fastforward > 1 || m_skipmode != 0);
 	// Check SoftDecoder first (only if session is active AND not in timeshift playback)
 	// During timeshift playback, we use the normal decoder for the timeshift file
@@ -2502,10 +2503,6 @@ RESULT eDVBServicePlay::pause()
 RESULT eDVBServicePlay::unpause()
 {
 	eDebug("[eDVBServicePlay] unpause");
-#ifdef DREAMNEXTGEN
-	/* Writer wakes AFTER decoder kernel state has resumed. First writei
-	 * hits EBADFD → handler runs snd_pcm_prepare + re-anchor. */
-#endif
 	setFastForward_internal(0, m_slowmotion || m_fastforward > 1 || m_skipmode != 0);
 	// Check SoftDecoder first (only if session is active AND not in timeshift playback)
 	// During timeshift playback, we use the normal decoder for the timeshift file
@@ -2521,8 +2518,6 @@ RESULT eDVBServicePlay::unpause()
 		RESULT r = m_soft_decoder->play();
 #ifdef DREAMNEXTGEN
 		m_soft_decoder->setUserPauseActive(false);
-		if (eAlsaOutput *a = eAlsaOutput::instance(nullptr))
-			a->resumeWriter();
 #endif
 		return r;
 	}
@@ -2543,8 +2538,6 @@ RESULT eDVBServicePlay::unpause()
 		RESULT r = m_decoder->play();
 #ifdef DREAMNEXTGEN
 		m_decoder->setUserPauseActive(false);
-		if (eAlsaOutput *a = eAlsaOutput::instance(nullptr))
-			a->resumeWriter();
 #endif
 		return r;
 	} else
@@ -2571,14 +2564,6 @@ RESULT eDVBServicePlay::seekTo(pts_t to)
 	m_cue->seekTo(0, to);
 	m_dvb_subtitle_pages.clear();
 	m_subtitle_pages.clear();
-#ifdef DREAMNEXTGEN
-	/* Drop FIFO + re-arm anchor + signal kernel discontinuity so the new
-	 * post-seek PCR epoch becomes the next anchor target. Without this the
-	 * old in-flight chunks keep playing while pts_video jumps to the new
-	 * file offset (audio "wo ganz anders"). */
-	if (eAlsaOutput *a = eAlsaOutput::instance(nullptr))
-		a->flushOnSeek();
-#endif
 
 	return 0;
 }
@@ -2611,10 +2596,6 @@ RESULT eDVBServicePlay::seekRelative(int direction, pts_t to)
 	m_cue->seekTo(mode, to);
 	m_dvb_subtitle_pages.clear();
 	m_subtitle_pages.clear();
-#ifdef DREAMNEXTGEN
-	if (eAlsaOutput *a = eAlsaOutput::instance(nullptr))
-		a->flushOnSeek();
-#endif
 	return 0;
 }
 
@@ -3628,6 +3609,38 @@ RESULT eDVBServicePlay::getSubservice(eServiceReference &sub, unsigned int n)
 	return -1;
 }
 
+static bool isTimeshiftDisk(dev_t device)
+{
+	// Resolve the actual device: mmcblk names include both SD cards and eMMC.
+	const std::string devicePath = "/sys/dev/block/" + std::to_string(major(device)) + ":" + std::to_string(minor(device));
+	char resolved[PATH_MAX];
+	if (!realpath(devicePath.c_str(), resolved))
+		return false;
+	std::string path(resolved);
+	while (path.compare(0, 13, "/sys/devices/") == 0)
+	{
+		char target[PATH_MAX];
+		const ssize_t length = readlink((path + "/subsystem").c_str(), target, sizeof(target) - 1);
+		if (length >= 0)
+		{
+			target[length] = '\0';
+			const std::string link(target);
+			const std::string subsystem = link.substr(link.find_last_of('/') + 1);
+			if (subsystem == "mmc")
+			{
+				std::ifstream typeFile(path + "/type");
+				std::string type;
+				typeFile >> type;
+				return type == "SD" || type == "SDcombo";
+			}
+			if (subsystem == "usb" || subsystem == "ata_port" || subsystem == "ide" || subsystem == "nvme")
+				return true;
+		}
+		path.resize(path.find_last_of('/'));
+	}
+	return false;
+}
+
 RESULT eDVBServicePlay::startTimeshift()
 {
 	ePtr<iDVBDemux> demux;
@@ -3697,7 +3710,8 @@ RESULT eDVBServicePlay::startTimeshift()
 		_timeshiftInode = fileStatus.st_ino;
 	}
 	if (!haveIdentity || !S_ISREG(fileStatus.st_mode) || fstatfs(m_timeshift_fd, &fs) < 0 || stat("/", &rootStatus) < 0
-		|| fileStatus.st_dev == rootStatus.st_dev || fs.f_type == TMPFS_MAGIC || fs.f_type == RAMFS_MAGIC)
+		|| fs.f_type == TMPFS_MAGIC || fs.f_type == RAMFS_MAGIC
+		|| (fileStatus.st_dev == rootStatus.st_dev && !isTimeshiftDisk(fileStatus.st_dev)))
 	{
 		eWarning("[eDVBServicePlay] refusing unavailable or memory-backed time shift storage");
 		close(m_timeshift_fd);
@@ -4310,18 +4324,6 @@ void eDVBServicePlay::switchToTimeshift()
 	pause();
 	updateDecoder(true); /* mainly to switch off PCR, and to set pause */
 
-#ifdef DREAMNEXTGEN
-	/* Re-point eAlsaOutput's PCR demux fd to the timeshift demux. Live
-	 * and timeshift often share the same demux ID — force a close+reopen
-	 * so setPcrDemux doesn't early-return on the matching id. */
-	if (m_decode_demux) {
-		uint8_t did = 0;
-		m_decode_demux->getCADemuxID(did);
-		eAlsaOutput::instance()->setPcrDemux(0, -1);   /* force close cached fd */
-		eAlsaOutput::instance()->setPcrDemux(0, did);  /* re-open on timeshift demux */
-		eDebug("[eDVBServicePlay] timeshift entry: re-opened PCR fd on adapter0/demux%d", did);
-	}
-#endif
 }
 
 void eDVBServicePlay::ciRoutingChanged(int tuner)

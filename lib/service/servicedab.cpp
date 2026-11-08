@@ -1,5 +1,6 @@
 #include <lib/service/servicedab.h>
 #include <lib/service/dabaudioframe.h>
+#include <lib/service/dabsdrcontrol.h>
 #include <lib/service/dabdecoder.h>
 #include <lib/service/dabpacketdecoder.h>
 #include <lib/service/dabspi.h>
@@ -45,6 +46,16 @@ constexpr uint64_t LOAS_PROBE_MS = 8000;
 constexpr uint64_t LOAS_PROBE_OVERRUNS = 3;
 constexpr uint16_t DAB_LIVE_EPG_EVENT_ID = 0xdab0;
 constexpr int DAB_LIVE_EPG_WINDOW = 4 * 60 * 60;
+
+void releaseDVBParent(ePtr<iPlayableService> &service, ePtr<eConnection> &connection, bool stop)
+{
+	// Releasing the tuner can synchronously query frontendInfo() on this DAB service.
+	ePtr<iPlayableService> parent = service;
+	service = nullptr;
+	connection = nullptr;
+	if (stop && parent)
+		parent->stop();
+}
 
 enum class DABAudioMode
 {
@@ -526,6 +537,9 @@ void eDABWorker::updateDecoderStats()
 	m_stats.bitrate = m_decoder->bitrate();
 	m_stats.serviceFound = m_decoder->serviceFound();
 	m_stats.dabplus = m_decoder->isDABPlus();
+	m_stats.audioFormat = m_decoder->audioFormat();
+	m_stats.programmeType = m_decoder->programmeType();
+	m_stats.programmeTypeTable = m_decoder->programmeTypeTable();
 	const int language = m_decoder->language();
 	if (language > 0)
 		snprintf(m_stats.language, sizeof(m_stats.language), "%d", language);
@@ -614,7 +628,7 @@ public:
 		  m_pcm_callback(pcmCallback),
 		  m_image_callback(imageCallback), m_spi_image_callback(spiImageCallback), m_spi_callback(spiCallback),
 		  m_mot_callback(motCallback),
-		  m_pump(pump), m_stop(false), m_started(false),
+		  m_pump(&pump), m_pcm_output(static_cast<bool>(pcmCallback)), m_stop(false), m_started(false),
 		  m_child_pid(-1), m_stdin_fd(-1), m_last_publish_ms(0), m_last_audio_ms(0)
 	{
 		/* eConfigManager belongs to Enigma2's main thread. Cache every setting
@@ -631,6 +645,62 @@ public:
 	~eDABSDRWorker()
 	{
 		stop();
+	}
+
+	bool canReuse(const std::string &channel, bool pcmOutput)
+	{
+		std::lock_guard<std::mutex> lock(m_delivery_mutex);
+		return m_alive && m_can_switch && !m_control.failed() && !m_stop && m_child_pid > 0 &&
+			channel == m_channel && pcmOutput == m_pcm_output &&
+			m_ppm == configValue("config.dab.rtlsdr.ppm", "0") &&
+			m_device == configValue("config.dab.rtlsdr.deviceIndex", "0") &&
+			m_gain == configValue("config.dab.rtlsdr.gain", "35") &&
+			m_automatic_gain == eConfigManager::getConfigBoolValue("config.dab.rtlsdr.automaticGain", true);
+	}
+
+	void detach()
+	{
+		// Wait for in-flight callbacks before the old service can be destroyed.
+		std::lock_guard<std::mutex> lock(m_delivery_mutex);
+		m_pump = nullptr;
+		m_audio_callback = AudioCallback();
+		m_pcm_callback = PCMCallback();
+		m_image_callback = ImageCallback();
+		m_spi_image_callback = SPIImageCallback();
+		m_spi_callback = SPICallback();
+		m_mot_callback = MOTCallback();
+	}
+
+	bool selectService(uint32_t serviceId, const std::string &motCachePrefix,
+		const AudioCallback &audioCallback, const PCMCallback &pcmCallback,
+		const ImageCallback &imageCallback, const SPIImageCallback &spiImageCallback,
+		const SPICallback &spiCallback, const MOTCallback &motCallback,
+		eFixedMessagePump<eDABWorkerStats> &pump)
+	{
+		std::lock_guard<std::mutex> lock(m_delivery_mutex);
+		if (!m_alive || m_stop || m_child_pid <= 0)
+			return false;
+		m_audio_callback = audioCallback;
+		m_pcm_callback = pcmCallback;
+		m_image_callback = imageCallback;
+		m_spi_image_callback = spiImageCallback;
+		m_spi_callback = spiCallback;
+		m_mot_callback = motCallback;
+		m_pump = &pump;
+		m_service_id = serviceId;
+		m_mot_cache_prefix = motCachePrefix;
+		m_control.select(serviceId, motCachePrefix, monotonicMilliseconds());
+		m_stats.sdrGeneration = m_control.generation();
+		eDABDebug("[eDABSDRWorker] reusing receiver pid=%d channel=%s sid=%08x generation=%llu",
+			m_child_pid.load(), m_channel.c_str(), serviceId,
+			static_cast<unsigned long long>(m_control.generation()));
+		return true;
+	}
+
+	uint64_t generation()
+	{
+		std::lock_guard<std::mutex> lock(m_delivery_mutex);
+		return m_control.generation();
 	}
 
 	bool start()
@@ -650,11 +720,6 @@ public:
 		const int child = m_child_pid.load();
 		if (child > 0)
 			::kill(child, SIGTERM);
-		if (m_stdin_fd >= 0)
-		{
-			close(m_stdin_fd);
-			m_stdin_fd = -1;
-		}
 		eThread::kill();
 		m_started = false;
 	}
@@ -722,8 +787,9 @@ private:
 		int audioPipe[2] = {-1, -1};
 		int errorPipe[2] = {-1, -1};
 		int inputPipe[2] = {-1, -1};
-		const bool pcmRequested = static_cast<bool>(m_pcm_callback);
-		if ((pcmRequested && pipe(pcmPipe)) || pipe(audioPipe) || pipe(errorPipe) || pipe(inputPipe))
+		const bool pcmRequested = m_pcm_output;
+		if ((pcmRequested && pipe(pcmPipe)) || pipe(audioPipe) || pipe(errorPipe) ||
+			socketpair(AF_UNIX, SOCK_STREAM, 0, inputPipe))
 		{
 			m_stats.error = errno;
 			closePipes(audioPipe, errorPipe, inputPipe, pcmPipe);
@@ -824,8 +890,28 @@ private:
 		bool audioOpen = true;
 		bool errorOpen = true;
 		bool pcmOpen = pcmRequested;
+		{
+			std::lock_guard<std::mutex> lock(m_delivery_mutex);
+			m_alive = true;
+		}
 		while (!m_stop && (audioOpen || errorOpen || pcmOpen))
 		{
+			{
+				std::lock_guard<std::mutex> lock(m_delivery_mutex);
+				const std::string command = m_control.takeCommand();
+				if (!command.empty() && ::send(m_stdin_fd, command.data(), command.size(),
+					MSG_DONTWAIT | MSG_NOSIGNAL) != static_cast<ssize_t>(command.size()))
+					m_control.fail();
+				m_control.expired(monotonicMilliseconds());
+				if (m_control.failed())
+				{
+					m_stats.sdrRestartRequired = true;
+					publish(true);
+					m_stop = true;
+				}
+			}
+			if (m_stop)
+				break;
 			struct pollfd descriptors[3] = {};
 			descriptors[0].fd = audioPipe[0];
 			descriptors[0].events = audioOpen ? POLLIN : 0;
@@ -836,18 +922,24 @@ private:
 			const int result = poll(descriptors, 3, 250);
 			if (result < 0 && errno != EINTR)
 			{
+				std::lock_guard<std::mutex> lock(m_delivery_mutex);
 				m_stats.error = errno;
 				break;
 			}
+			std::lock_guard<std::mutex> lock(m_delivery_mutex);
+			if (errorOpen && result > 0 && descriptors[1].revents)
+				errorOpen = readMetadata(errorPipe[0], audioPipe[0], audioOpen, pcmPipe[0]);
 			if (audioOpen && result > 0 && descriptors[0].revents)
 				audioOpen = readAudio(audioPipe[0]);
-			if (errorOpen && result > 0 && descriptors[1].revents)
-				errorOpen = readMetadata(errorPipe[0], audioPipe[0], audioOpen);
 			if (pcmOpen && result > 0 && descriptors[2].revents)
 				pcmOpen = readPCM(pcmPipe[0]);
 			publish();
 		}
 
+		{
+			std::lock_guard<std::mutex> lock(m_delivery_mutex);
+			m_alive = false;
+		}
 		if (!m_stop)
 		{
 			int status = 0;
@@ -880,7 +972,12 @@ private:
 			close(m_stdin_fd);
 			m_stdin_fd = -1;
 		}
-		publish(true);
+		{
+			std::lock_guard<std::mutex> lock(m_delivery_mutex);
+			if (m_control.generation())
+				m_stats.sdrRestartRequired = true;
+			publish(true);
+		}
 	}
 
 	static void closePipes(int (&audioPipe)[2], int (&errorPipe)[2], int (&inputPipe)[2], int (&pcmPipe)[2])
@@ -904,6 +1001,8 @@ private:
 		const ssize_t bytes = read(fd, buffer, sizeof(buffer));
 		if (bytes > 0)
 		{
+			if (!m_pump || m_control.muted())
+				return true;
 			m_stats.bytes += bytes;
 			m_audio.insert(m_audio.end(), buffer, buffer + bytes);
 			size_t offset = 0;
@@ -924,9 +1023,12 @@ private:
 						frame.dabplus ? "LOAS" : "MP2", static_cast<unsigned long long>(now - m_last_audio_ms),
 						static_cast<unsigned long long>(m_stats.audioFrames + 1));
 				m_last_audio_ms = now;
+				m_control.audioReceived();
 				m_audio_callback(m_audio.data() + offset, frame.length, frame.durationNs, frame.dabplus);
 				offset += frame.length;
 				m_stats.dabplus = frame.dabplus;
+				if (!frame.dabplus)
+					m_stats.audioFormat = frame.format;
 				++m_stats.audioFrames;
 				m_stats.serviceFound = true;
 				m_publish_pending = true;
@@ -943,6 +1045,8 @@ private:
 		const ssize_t bytes = read(fd, buffer, sizeof(buffer));
 		if (bytes > 0)
 		{
+			if (!m_pump || m_control.muted())
+				return true;
 			m_pcm.insert(m_pcm.end(), buffer, buffer + bytes);
 			while (m_pcm.size() >= 12)
 			{
@@ -989,7 +1093,7 @@ private:
 		return true;
 	}
 
-	bool readMetadata(int fd, int audioFd, bool &audioOpen)
+	bool readMetadata(int fd, int audioFd, bool &audioOpen, int pcmFd)
 	{
 		char buffer[4096];
 		const ssize_t bytes = read(fd, buffer, sizeof(buffer));
@@ -999,7 +1103,7 @@ private:
 			size_t newline;
 			while ((newline = m_stderr.find('\n')) != std::string::npos)
 			{
-				handleMetadataLine(m_stderr.substr(0, newline));
+				handleMetadataLine(m_stderr.substr(0, newline), audioFd, pcmFd);
 				m_stderr.erase(0, newline + 1);
 				/* Do not let a directory full of SPI logos monopolise the
 				 * worker: drain compressed audio between metadata callbacks. */
@@ -1011,8 +1115,53 @@ private:
 		return bytes < 0 && (errno == EAGAIN || errno == EINTR);
 	}
 
-	void handleMetadataLine(const std::string &line)
+	void handleMetadataLine(const std::string &line, int audioFd, int pcmFd)
 	{
+		if (jsonValue(line, "serviceControl") == "1")
+		{
+			m_can_switch = true;
+			return;
+		}
+		if (m_control.ready(jsonValue(line, "switchReady"), monotonicMilliseconds()))
+		{
+			// READY is emitted only after the old audio decoder has been joined.
+			// Drain both pipes before allowing the backend to start new output.
+			char discarded[32768];
+			for (int fd : {audioFd, pcmFd})
+				if (fd >= 0)
+					while (read(fd, discarded, sizeof(discarded)) > 0) { }
+			m_audio.clear();
+			m_pcm.clear();
+			m_packet_decoders.clear();
+			m_spi_entries.clear();
+			const eDABWorkerStats previous = m_stats;
+			m_stats = eDABWorkerStats();
+			m_stats.sdrGeneration = m_control.generation();
+			m_stats.ensembleId = previous.ensembleId;
+			m_stats.etiFrames = previous.etiFrames;
+			m_stats.serviceCount = previous.serviceCount;
+			m_stats.serviceRevision = previous.serviceRevision;
+			memcpy(m_stats.services, previous.services, sizeof(m_stats.services));
+			memcpy(m_stats.ensembleLabel, previous.ensembleLabel, sizeof(m_stats.ensembleLabel));
+			memcpy(m_stats.tunerName, previous.tunerName, sizeof(m_stats.tunerName));
+			m_stats.rfSynced = previous.rfSynced;
+			m_stats.snrCentidB = previous.snrCentidB;
+			m_stats.ficQuality = previous.ficQuality;
+			m_last_audio_ms = 0;
+			return;
+		}
+		if (m_control.started(jsonValue(line, "switchStarted"), monotonicMilliseconds()))
+		{
+			m_publish_pending = true;
+			return;
+		}
+		if (m_control.generation() && jsonValue(line, "switchError") == std::to_string(m_control.generation()))
+		{
+			m_control.fail();
+			return;
+		}
+		if (!m_pump || m_control.muted())
+			return;
 		if (line.compare(0, 6, "Found ") == 0 && line.size() > 12 && line.compare(line.size() - 6, 6, " tuner") == 0)
 		{
 			const std::string tuner = line.substr(6, line.size() - 12);
@@ -1112,7 +1261,41 @@ private:
 			}
 			return;
 		}
+		const std::string audioCodec = jsonValue(line, "audioCodec");
+		if (!audioCodec.empty())
+		{
+			// Metadata belongs to the selected programme, never the PCM sink.
+			if (jsonValue(line, "audioServiceId") != std::to_string(m_service_id))
+				return;
+			const std::string rate = jsonValue(line, "audioSampleRate");
+			const unsigned sampleRate = !rate.empty() && rate.size() <= 6 &&
+				rate.find_first_not_of("0123456789") == std::string::npos ? strtoul(rate.c_str(), nullptr, 10) : 0;
+			eDABAudioFormat format;
+			format.setMetadata(audioCodec, sampleRate, jsonValue(line, "audioChannelMode"));
+			if (m_stats.audioFormat != format)
+			{
+				m_stats.audioFormat = format;
+				m_publish_pending = true;
+			}
+			return;
+		}
 		const std::string bitrate = jsonValue(line, "bitrate");
+		// Numeric FIG metadata is separate from legacy programType/genre text.
+		// Empty/malformed values mean unavailable, never PTY zero.
+		const std::string pty = jsonValue(line, "pty");
+		const std::string ptyTable = jsonValue(line, "ptyTable");
+		if (!pty.empty() || !ptyTable.empty())
+		{
+			auto parseCode = [](const std::string &text, int maximum) {
+				if (text.empty() || text.find_first_not_of("0123456789") != std::string::npos || text.size() > 3)
+					return -1;
+				const int value = atoi(text.c_str());
+				return value <= maximum ? value : -1;
+			};
+			m_stats.programmeType = parseCode(pty, 31);
+			m_stats.programmeTypeTable = parseCode(ptyTable, 255);
+			m_publish_pending = true;
+		}
 		const std::string dabType = jsonValue(line, "dabType");
 		if (!bitrate.empty() && !dabType.empty())
 		{
@@ -1311,12 +1494,14 @@ private:
 
 	void publish(bool force = false)
 	{
+		if (!m_pump || (m_control.muted() && !m_stats.sdrRestartRequired))
+			return;
 		const uint64_t now = monotonicMilliseconds();
 		if (!force && !m_publish_pending && now - m_last_publish_ms < 1000)
 			return;
 		m_publish_pending = false;
 		m_last_publish_ms = now;
-		m_pump.send(m_stats);
+		m_pump->send(m_stats);
 	}
 
 	std::string m_channel;
@@ -1334,7 +1519,12 @@ private:
 	MOTCallback m_mot_callback;
 	std::map<uint16_t, std::string> m_spi_entries;
 	std::map<uint32_t, std::unique_ptr<eDABPacketDecoder> > m_packet_decoders;
-	eFixedMessagePump<eDABWorkerStats> &m_pump;
+	eFixedMessagePump<eDABWorkerStats> *m_pump;
+	std::mutex m_delivery_mutex;
+	eDABSDRControl m_control;
+	const bool m_pcm_output;
+	bool m_can_switch = false;
+	bool m_alive = false;
 	std::atomic<bool> m_stop;
 	bool m_started;
 	std::atomic<int> m_child_pid;
@@ -1573,8 +1763,7 @@ bool eServiceDABRecord::prepareParent()
 	m_event(this, evTuneStart);
 	if (m_parent->start())
 	{
-		m_parent_event_connection = nullptr;
-		m_parent = nullptr;
+		releaseDVBParent(m_parent, m_parent_event_connection, false);
 		return false;
 	}
 	return true;
@@ -1722,10 +1911,7 @@ RESULT eServiceDABRecord::stop()
 	m_state = stateIdle;
 	stopRTLSDR();
 	stopTap();
-	if (m_parent)
-		m_parent->stop();
-	m_parent_event_connection = nullptr;
-	m_parent = nullptr;
+	releaseDVBParent(m_parent, m_parent_event_connection, true);
 	if (m_file_fd >= 0)
 	{
 		::close(m_file_fd);
@@ -2027,6 +2213,47 @@ eServiceDAB::~eServiceDAB()
 	stop();
 }
 
+bool eServiceDAB::prepareRTLSDRZap(iPlayableService *previous, const eServiceReference &reference,
+	ePtr<iPlayableService> &next)
+{
+	if (!previous || reference.type != eServiceFactoryDAB::id || !reference.getUnsignedData(6) ||
+		reference.path.compare(0, 13, "dab://rtlsdr/") != 0 ||
+		!eConfigManager::getConfigBoolValue("config.dab.rtlsdr.enabled", false))
+		return false;
+	ePtr<eServiceDAB> source;
+	{
+		std::lock_guard<std::mutex> lock(s_rtlsdr_source_mutex);
+		if (!s_rtlsdr_source || static_cast<iPlayableService *>(s_rtlsdr_source) != previous)
+			return false;
+		source = s_rtlsdr_source;
+	}
+	if (!source->m_running || !source->m_sdr_worker || !source->m_reference.getUnsignedData(6) ||
+		(source->m_reference.getUnsignedData(7) && reference.getUnsignedData(7) &&
+		 source->m_reference.getUnsignedData(7) != reference.getUnsignedData(7)))
+		return false;
+	ePtr<eServiceDAB> target = new eServiceDAB(reference);
+	std::string channel;
+	if (!target->parseRTLSDRChannel(channel) || !source->m_sdr_worker->canReuse(channel, useDABPCMCompatibility()))
+		return false;
+	{
+		std::lock_guard<std::mutex> lock(source->m_rtlsdr_consumers_mutex);
+		if (!source->m_rtlsdr_consumers.empty())
+			return false;
+		// Close the recording/stream attachment race before detaching callbacks.
+		source->m_rtlsdr_handover = true;
+	}
+	source->m_sdr_worker->detach();
+	target->m_sdr_worker = std::move(source->m_sdr_worker);
+	target->m_sdr_reused = true;
+	{
+		std::lock_guard<std::mutex> lock(s_rtlsdr_source_mutex);
+		if (s_rtlsdr_source == source.operator->())
+			s_rtlsdr_source = nullptr;
+	}
+	next = target;
+	return true;
+}
+
 RESULT eServiceDAB::connectEvent(const sigc::slot<void(iPlayableService *, int)> &event, ePtr<eConnection> &connection)
 {
 	connection = new eConnection(static_cast<iPlayableService *>(this), m_event.connect(event));
@@ -2147,8 +2374,7 @@ RESULT eServiceDAB::start()
 	if (result)
 	{
 		m_running = false;
-		m_parent_event_connection = nullptr;
-		m_parent = nullptr;
+		releaseDVBParent(m_parent, m_parent_event_connection, false);
 		m_event(this, evTuneFailed);
 	}
 	return result;
@@ -2161,17 +2387,14 @@ RESULT eServiceDAB::stop()
 	m_running = false;
 	stopRTLSDR();
 	stopTap();
-	if (m_parent)
-		m_parent->stop();
-	m_parent_event_connection = nullptr;
-	m_parent = nullptr;
+	releaseDVBParent(m_parent, m_parent_event_connection, true);
 	m_event(this, evStopped);
 	return 0;
 }
 
 bool eServiceDAB::startRTLSDR()
 {
-	if (m_sdr_worker)
+	if (m_sdr_worker && !m_sdr_reused)
 		return true;
 	{
 		std::lock_guard<std::mutex> lock(s_rtlsdr_source_mutex);
@@ -2193,24 +2416,37 @@ bool eServiceDAB::startRTLSDR()
 	/* A SID of zero is the transient scan service.  It needs ensemble and
 	 * service metadata only, so no audio pipeline is opened while scanning. */
 	if (serviceId && !startAudioPipeline(!pcmOutput, pcmOutput))
+	{
+		m_sdr_worker.reset();
+		m_sdr_reused = false;
 		return false;
+	}
 	eDABSDRWorker::PCMCallback pcmCallback;
 	if (pcmOutput)
 		pcmCallback = [this](const uint8_t *data, size_t length, unsigned sampleRate) {
 			std::lock_guard<std::mutex> lock(m_audio_mutex);
 			pushPCM(data, length, sampleRate);
 		};
-	m_sdr_worker.reset(new eDABSDRWorker(channel, serviceId, motCachePrefix,
-		[this](const uint8_t *data, size_t length, uint64_t durationNs, bool dabplus) { pushSDRAudio(data, length, durationNs, dabplus); },
-		pcmCallback,
-		[this](const uint8_t *data, size_t length, int format) { storeSlide(data, length, format); },
-		[this](const std::string &path, const std::string &contentName) { return cacheSPIImage(path, contentName); },
-		[this](const std::string &path) { return importSPI(path); },
-		[this](const uint8_t *data, size_t length, int contentType, int contentSubType,
+	const auto audioCallback = [this](const uint8_t *data, size_t length, uint64_t durationNs, bool dabplus) {
+		pushSDRAudio(data, length, durationNs, dabplus);
+	};
+	const auto imageCallback = [this](const uint8_t *data, size_t length, int format) { storeSlide(data, length, format); };
+	const auto spiImageCallback = [this](const std::string &path, const std::string &contentName) { return cacheSPIImage(path, contentName); };
+	const auto spiCallback = [this](const std::string &path) { return importSPI(path); };
+	const auto motCallback = [this](const uint8_t *data, size_t length, int contentType, int contentSubType,
 			const std::string &contentName, uint16_t transportId) {
 			return handleMOTObject(data, length, contentType, contentSubType, contentName, transportId);
-		},
-		m_worker_pump));
+		};
+	if (m_sdr_reused)
+	{
+		if (!m_sdr_worker->selectService(serviceId, motCachePrefix, audioCallback, pcmCallback,
+			imageCallback, spiImageCallback, spiCallback, motCallback, m_worker_pump))
+			m_sdr_worker.reset();
+		m_sdr_reused = false;
+	}
+	if (!m_sdr_worker)
+		m_sdr_worker.reset(new eDABSDRWorker(channel, serviceId, motCachePrefix,
+			audioCallback, pcmCallback, imageCallback, spiImageCallback, spiCallback, motCallback, m_worker_pump));
 	if (!m_sdr_worker->start())
 	{
 		m_sdr_worker.reset();
@@ -2251,6 +2487,7 @@ void eServiceDAB::stopRTLSDR(bool force)
 	}
 	m_sdr_worker->stop();
 	m_sdr_worker.reset();
+	m_sdr_reused = false;
 	stopAudioPipeline();
 }
 
@@ -2268,7 +2505,7 @@ bool eServiceDAB::attachRTLSDRConsumer(const eServiceReference &reference,
 	}
 	{
 		std::lock_guard<std::mutex> lock(candidate->m_rtlsdr_consumers_mutex);
-		if (!candidate->m_sdr_worker)
+		if (candidate->m_rtlsdr_handover || !candidate->m_sdr_worker)
 			return false;
 		token = candidate->m_next_rtlsdr_consumer++;
 		candidate->m_rtlsdr_consumers[token] = {audioCallback, statsCallback};
@@ -2438,6 +2675,16 @@ void eServiceDAB::parentEvent(iPlayableService *, int event)
 
 void eServiceDAB::workerMessage(const eDABWorkerStats &stats)
 {
+	if (m_sdr_worker && stats.sdrGeneration != m_sdr_worker->generation())
+		return;
+	if (m_running && m_sdr_worker && stats.sdrRestartRequired)
+	{
+		eWarning("[eServiceDAB] SDR service switch failed; restarting the receiver for '%s'", m_reference.path.c_str());
+		stopRTLSDR(true);
+		if (!startRTLSDR())
+			m_event(this, evTuneFailed);
+		return;
+	}
 	dispatchRTLSDRStats(stats);
 	if (!m_running)
 	{
@@ -2476,10 +2723,13 @@ void eServiceDAB::workerMessage(const eDABWorkerStats &stats)
 	const bool epgChanged = m_stats.spiRevision != stats.spiRevision;
 	const bool logoChanged = m_stats.logoRevision != stats.logoRevision;
 	const bool radioMetaChanged = m_stats.serviceFound != stats.serviceFound ||
+		m_stats.audioFormat != stats.audioFormat ||
 		m_stats.dabplus != stats.dabplus || m_stats.bitrate != stats.bitrate ||
 		strcmp(m_stats.serviceLabel, stats.serviceLabel) != 0 ||
 		strcmp(m_stats.ensembleLabel, stats.ensembleLabel) != 0 ||
 		strcmp(m_stats.language, stats.language) != 0 ||
+		m_stats.programmeType != stats.programmeType ||
+		m_stats.programmeTypeTable != stats.programmeTypeTable ||
 		strcmp(m_stats.programType, stats.programType) != 0 ||
 		strcmp(m_stats.protection, stats.protection) != 0;
 	m_transfer_bps = stats.bytes >= m_last_bytes ? stats.bytes - m_last_bytes : 0;
@@ -2682,11 +2932,7 @@ bool eServiceDAB::startAudioPipeline(bool loasInput, bool pcmInput, bool mp2Inpu
 		return true;
 	eDABDebug("[eServiceDAB] starting audio pipeline input=%s",
 		pcmInput ? "PCM" : (mp2Input ? "MPEG Layer II" : (loasInput ? "LOAS" : "raw AAC")));
-#ifdef DREAMNEXTGEN
-	const char *hardwareSink = "dreamaudiosink";
-#else
 	const char *hardwareSink = "dvbaudiosink";
-#endif
 	/* A sink that takes LOAS decodes in hardware. Fall back to the software
 	 * decoder when it does not. Legacy Dreambox hardware receives DAB-aware
 	 * FAAD2 PCM from the RTL-SDR backend because FFmpeg cannot decode SBR with
@@ -2697,11 +2943,18 @@ bool eServiceDAB::startAudioPipeline(bool loasInput, bool pcmInput, bool mp2Inpu
 	m_audio_input_pcm = pcmInput;
 	m_audio_input_mp2 = mp2Input;
 	m_audio_loas = !mp2Input && !pcmCompatibility && !loasSinkRejected() && sinkAcceptsLOAS(hardwareSink);
+	bool alsaPCM = false;
+#if defined(HWOSMIO4K) || defined(HWOSMIO4KPLUS)
+	/* The Edision driver accepts PCM through ALSA; raw PCM sent to audio0
+	 * remains silent. Keep compressed MPEG audio on the DVB decoder. */
+	alsaPCM = !m_audio_loas && !mp2Input;
+#endif
+	const char *outputSink = alsaPCM ? "alsasink" : hardwareSink;
 	if (mp2Input)
 		eDABDebug("[eServiceDAB] selected MPEG Layer II hardware decode via '%s'", hardwareSink);
 	else
 		eDABDebug("[eServiceDAB] selected %s AAC decode via '%s' (mode=%s, pcmCompatibility=%d)",
-			m_audio_loas ? "hardware" : "software", hardwareSink,
+			m_audio_loas ? "hardware" : "software", outputSink,
 			audioMode == DABAudioMode::HardwareAAC ? "aac" :
 				audioMode == DABAudioMode::SoftwarePCM ? "pcm" : "auto",
 			pcmCompatibility);
@@ -2709,7 +2962,12 @@ bool eServiceDAB::startAudioPipeline(bool loasInput, bool pcmInput, bool mp2Inpu
 	description += pcmInput ? "false " : "true ";
 	description +=
 		"format=time do-timestamp=false block=false "
-		"! queue name=dabqueue min-threshold-buffers=24 max-size-buffers=256 "
+		"! queue name=dabqueue ";
+	/* Timed frames need the same reserve at every AAC rate. Unlike a buffer
+	 * count, a time threshold is also included in GStreamer's latency query.
+	 * RTL-SDR LOAS is timestamped by aacparse downstream of this queue. */
+	description += m_audio_input_loas ? "min-threshold-buffers=24 " : "min-threshold-time=480000000 ";
+	description += "max-size-buffers=256 "
 		"max-size-bytes=1048576 max-size-time=5000000000 leaky=downstream ! ";
 	if (pcmInput)
 	{
@@ -2726,9 +2984,9 @@ bool eServiceDAB::startAudioPipeline(bool loasInput, bool pcmInput, bool mp2Inpu
 	}
 	else if (!m_audio_loas)
 		description += "faad ! audioconvert ! audioresample ! ";
-	if (!m_audio_loas && !pcmInput && pcmCompatibility)
+	if (!m_audio_loas && !pcmInput && (pcmCompatibility || alsaPCM))
 		description += "audio/x-raw,format=S16LE,rate=48000,channels=2 ! ";
-	description += hardwareSink;
+	description += outputSink;
 	description += " name=dabaudiosink";
 	GError *error = nullptr;
 	eDABDebug("[eServiceDAB] creating GStreamer pipeline: %s", description.c_str());
@@ -2791,12 +3049,18 @@ bool eServiceDAB::startAudioPipeline(bool loasInput, bool pcmInput, bool mp2Inpu
 	GstElement *audioSink = gst_bin_get_by_name(GST_BIN(m_audio_pipeline), "dabaudiosink");
 	if (audioSink)
 	{
+		if (alsaPCM)
+			/* ALSA paces the audio-only stream through its playback buffer. */
+			g_object_set(audioSink, "sync", FALSE, "async", FALSE, nullptr);
 		if (g_object_class_find_property(G_OBJECT_GET_CLASS(audioSink), "e2-sync"))
 		{
-			/* Match eServiceMP3's audio-only setup. Compatibility sinks must
-			 * be clocked by GStreamer when software-decoded PCM is used. */
+			/* Match eServiceMP3's audio-only setup unless the platform needs
+			 * driver-paced PCM instead of GStreamer clock synchronization. */
 			bool sinkSync = pcmCompatibility;
-#ifdef DREAMNEXTGEN
+#if defined(DREAMBOX) && defined(__MIPSEL__)
+			/* Dreambox MIPS drivers pace PCM, as in automatic mode. */
+			sinkSync = false;
+#elif defined(DREAMNEXTGEN)
 			sinkSync = true;
 #endif
 			g_object_set(audioSink, "e2-sync", sinkSync, nullptr);
@@ -2936,6 +3200,28 @@ void eServiceDAB::setAudioCaps(uint8_t config)
 		coreSampleRateTable[formatIndex], coreChannels, sbr, ps);
 }
 
+void eServiceDAB::setAudioTimestamp(GstBuffer *buffer, uint64_t durationNs)
+{
+	if (!m_audio_next_pts && !m_audio_input_pcm)
+	{
+		/* The live pipeline starts before the ensemble has delivered audio.
+		 * Start its media timeline at the first frame, not at pipeline creation. */
+		GstClock *clock = gst_element_get_clock(m_audio_pipeline);
+		if (clock)
+		{
+			const GstClockTime now = gst_clock_get_time(clock);
+			const GstClockTime baseTime = gst_element_get_base_time(m_audio_pipeline);
+			if (GST_CLOCK_TIME_IS_VALID(baseTime) && now >= baseTime)
+				m_audio_next_pts = now - baseTime;
+			gst_object_unref(clock);
+		}
+	}
+	GST_BUFFER_PTS(buffer) = m_audio_next_pts;
+	GST_BUFFER_DTS(buffer) = m_audio_next_pts;
+	GST_BUFFER_DURATION(buffer) = durationNs;
+	m_audio_next_pts += durationNs;
+}
+
 void eServiceDAB::pushAudio(const uint8_t *data, size_t length, uint64_t durationNs, uint8_t config)
 {
 	if (!data || !length || !durationNs)
@@ -2949,10 +3235,7 @@ void eServiceDAB::pushAudio(const uint8_t *data, size_t length, uint64_t duratio
 	if (!buffer)
 		return;
 	gst_buffer_fill(buffer, 0, data, length);
-	GST_BUFFER_PTS(buffer) = m_audio_next_pts;
-	GST_BUFFER_DTS(buffer) = m_audio_next_pts;
-	GST_BUFFER_DURATION(buffer) = durationNs;
-	m_audio_next_pts += durationNs;
+	setAudioTimestamp(buffer, durationNs);
 	GstFlowReturn flow = GST_FLOW_OK;
 	g_signal_emit_by_name(m_audio_source, "push-buffer", buffer, &flow);
 	gst_buffer_unref(buffer);
@@ -2968,10 +3251,7 @@ void eServiceDAB::pushMP2(const uint8_t *data, size_t length, uint64_t durationN
 	if (!buffer)
 		return;
 	gst_buffer_fill(buffer, 0, data, length);
-	GST_BUFFER_PTS(buffer) = m_audio_next_pts;
-	GST_BUFFER_DTS(buffer) = m_audio_next_pts;
-	GST_BUFFER_DURATION(buffer) = durationNs;
-	m_audio_next_pts += durationNs;
+	setAudioTimestamp(buffer, durationNs);
 	GstFlowReturn flow = GST_FLOW_OK;
 	g_signal_emit_by_name(m_audio_source, "push-buffer", buffer, &flow);
 	gst_buffer_unref(buffer);
@@ -3040,10 +3320,7 @@ void eServiceDAB::pushPCM(const uint8_t *data, size_t length, unsigned sampleRat
 	if (!buffer)
 		return;
 	gst_buffer_fill(buffer, 0, data, length);
-	GST_BUFFER_PTS(buffer) = m_audio_next_pts;
-	GST_BUFFER_DTS(buffer) = m_audio_next_pts;
-	GST_BUFFER_DURATION(buffer) = durationNs;
-	m_audio_next_pts += durationNs;
+	setAudioTimestamp(buffer, durationNs);
 	GstFlowReturn flow = GST_FLOW_OK;
 	g_signal_emit_by_name(m_audio_source, "push-buffer", buffer, &flow);
 	gst_buffer_unref(buffer);
@@ -3291,8 +3568,15 @@ void eServiceDAB::pollAudioBus()
 		return;
 	GstMessage *message;
 	while ((message = gst_bus_pop_filtered(bus,
-		static_cast<GstMessageType>(GST_MESSAGE_ERROR | GST_MESSAGE_WARNING))) != nullptr)
+		static_cast<GstMessageType>(GST_MESSAGE_ERROR | GST_MESSAGE_WARNING | GST_MESSAGE_LATENCY))) != nullptr)
 	{
+		if (GST_MESSAGE_TYPE(message) == GST_MESSAGE_LATENCY)
+		{
+			if (!gst_bin_recalculate_latency(GST_BIN(m_audio_pipeline)))
+				eDABDebug("[eServiceDAB] audio latency is not available yet");
+			gst_message_unref(message);
+			continue;
+		}
 		GError *error = nullptr;
 		gchar *debug = nullptr;
 		if (GST_MESSAGE_TYPE(message) == GST_MESSAGE_ERROR)
@@ -3467,6 +3751,12 @@ int eServiceDAB::getInfo(int w)
 		return m_stats.ficQuality;
 	case sDABMSCQuality:
 		return m_stats.mscQuality;
+	case sDABPTY:
+		return m_stats.programmeType;
+	case sDABPTYTable:
+		return m_stats.programmeTypeTable;
+	case sDABSampleRate:
+		return m_stats.audioFormat.sampleRate ? static_cast<int>(m_stats.audioFormat.sampleRate) : resNA;
 	case sTransferBPS:
 		return static_cast<int>(std::min<uint64_t>(m_transfer_bps, std::numeric_limits<int>::max()));
 	case sProvider:
@@ -3476,6 +3766,7 @@ int eServiceDAB::getInfo(int w)
 	case sTagArtist:
 	case sTagComment:
 	case sTagCodec:
+	case sTagChannelMode:
 	case sTagBitrate:
 	case sTagGenre:
 	case sTagLanguageCode:
@@ -3516,7 +3807,11 @@ std::string eServiceDAB::getInfoString(int w)
 	case sTagArtist:
 		return m_stats.dlPlusItemArtist;
 	case sTagCodec:
-		return m_stats.serviceFound ? (m_stats.dabplus ? "DAB+ HE-AAC" : "DAB MPEG Audio Layer II") : "DAB (probing)";
+		if (m_stats.audioFormat.codec != eDABAudioFormat::Unknown)
+			return m_stats.audioFormat.codecName();
+		return m_stats.serviceFound ? (m_stats.dabplus ? "DAB+ AAC" : "DAB MPEG Audio Layer II") : "DAB (probing)";
+	case sTagChannelMode:
+		return m_stats.audioFormat.modeName();
 	case sTagBitrate:
 		snprintf(text, sizeof(text), "%d kbit/s", m_stats.bitrate);
 		return text;

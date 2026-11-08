@@ -404,11 +404,14 @@ def InitAVSwitch():
 	else:
 		config.av.boxmode = ConfigNothing()
 	colorDepth = fileReadLine("/proc/stb/video/hdmi_colordepth", default=None, source=MODULE_NAME)
-	colorDepth = colorDepth.split() if colorDepth else False
+	colorDepth = colorDepth.split() if colorDepth else MACHINEBUILD in ("dreamone", "dreamtwo")
 	BoxInfo.setItem("havehdmicolordepth", colorDepth)
 	if colorDepth:
 		def setColorDepth(configElement):
-			fileWriteLine("/proc/stb/video/hdmi_colordepth", configElement.value, source=MODULE_NAME)
+			if MACHINEBUILD in ("dreamone", "dreamtwo"):
+				eAVControl.getInstance().setHDMIColordepth(configElement.value)
+			else:
+				fileWriteLine("/proc/stb/video/hdmi_colordepth", configElement.value, source=MODULE_NAME)
 
 		config.av.hdmicolordepth = ConfigSelection(default="auto", choices=[
 			("auto", _("Auto")),
@@ -466,14 +469,14 @@ def InitAVSwitch():
 			fileWriteLine("/sys/class/amhdmitx/amhdmitx0/config", configElement.value, source=MODULE_NAME)
 
 		config.av.amlhdr10_support = ConfigSelection(default="hdr10-2", choices=[
-			("hdr10-0", _("Force enabled")),
-			("hdr10-1", _("Force disabled")),
+			("hdr10-1", _("Force enabled")),
+			("hdr10-0", _("Force disabled")),
 			("hdr10-2", _("Controlled by HDMI"))
 		])
 		config.av.amlhdr10_support.addNotifier(setAMLHDR10)
 		config.av.amlhlg_support = ConfigSelection(default="hlg-2", choices=[
-			("hlg-0", _("Force enabled")),
-			("hlg-1", _("Force disabled")),
+			("hlg-1", _("Force enabled")),
+			("hlg-0", _("Force disabled")),
 			("hlg-2", _("Controlled by HDMI"))
 		])
 		config.av.amlhlg_support.addNotifier(setAMLHLG)
@@ -712,16 +715,19 @@ def InitAVSwitch():
 					("force_ac3", _("Convert to AC3"))
 				]
 		config.av.transcodeac3plus = ConfigSelection(default="force_ac3", choices=choiceList)
-		if MACHINEBUILD not in ("dreamone", "dreamtwo"):
-			config.av.transcodeac3plus.addNotifier(setAC3plusTranscode)
+		config.av.transcodeac3plus.addNotifier(setAC3plusTranscode)
 	AC4 = MACHINEBUILD in ("dreamone", "dreamtwo")
 	BoxInfo.setItem("CanAC4", AC4)
 	if AC4:
+		def setAC4(configElement):
+			fileWriteLine("/proc/stb/audio/ac4", configElement.value, source=MODULE_NAME)
+
 		config.av.ac4 = ConfigSelection(default="hdmi_best", choices=[
 			("hdmi_best", _("Use best / Controlled by HDMI")),
 			("passthrough", _("Pass-through")),
 			("downmix", _("Downmix"))
 		])
+		config.av.ac4.addNotifier(setAC4)
 	else:
 		config.av.ac4 = ConfigNothing()
 	dtsHD = fileReadLine("/proc/stb/audio/dtshd_choices", default=None, source=MODULE_NAME)
@@ -756,15 +762,18 @@ def InitAVSwitch():
 				("hdmi_best", _("Use best / Controlled by HDMI"))
 			]
 		config.av.dtshd = ConfigSelection(default=default, choices=choiceList)
-		if MACHINEBUILD not in ("dreamone", "dreamtwo"):
-			config.av.dtshd.addNotifier(setDTSHD)
+		config.av.dtshd.addNotifier(setDTSHD)
 	if MACHINEBUILD in ("dreamone", "dreamtwo"):
+		def setTrueHD(configElement):
+			fileWriteLine("/proc/stb/audio/truehd", configElement.value, source=MODULE_NAME)
+
 		BoxInfo.setItem("CanTrueHD", ["downmix", "passthrough", "hdmi_best"])
 		config.av.truehd = ConfigSelection(default="downmix", choices=[
 			("hdmi_best", _("Use best / Controlled by HDMI")),
 			("passthrough", _("Pass-through")),
 			("downmix", _("Downmix"))
 		])
+		config.av.truehd.addNotifier(setTrueHD)
 	else:
 		BoxInfo.setItem("CanTrueHD", False)
 	wmaPro = fileReadLine("/proc/stb/audio/wmapro_choices", default=None, source=MODULE_NAME)
@@ -836,7 +845,8 @@ def InitAVSwitch():
 		aacTranscodeAll = [
 			("off", _("Off")),
 			("ac3", "AC3"),
-			("dts", "DTS")
+			("dts", "DTS"),
+			("force_ac3", _("Convert to AC3"))
 		]
 		# The translation text must look exactly like the read value. It is then adjusted with the PO file.
 		aactranscodeChoices = fileReadLine("/proc/stb/audio/aac_transcode_choices", default=None, source=MODULE_NAME)
@@ -855,8 +865,7 @@ def InitAVSwitch():
 			fileWriteLine("/proc/stb/audio/aac_transcode", configElement.value, source=MODULE_NAME)
 
 		config.av.transcodeaac = ConfigSelection(default=default, choices=aacTranscode)
-		if MACHINEBUILD not in ("dreamone", "dreamtwo"):
-			config.av.transcodeaac.addNotifier(setAACTranscode)
+		config.av.transcodeaac.addNotifier(setAACTranscode)
 	else:
 		config.av.transcodeaac = ConfigNothing()
 	btAudio = fileReadLine("/proc/stb/audio/btaudio", default=None, source=MODULE_NAME)

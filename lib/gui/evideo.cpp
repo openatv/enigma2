@@ -64,6 +64,12 @@ static inline bool aml_has_axis()
 #endif
 }
 
+// the main and PiP layers take axis files; the mosaic decoders from 2 on use /proc/stb/vmpeg
+static inline bool aml_axis_decoder(int decoder)
+{
+	return decoder < 2 && aml_has_axis();
+}
+
 // robust desktop size: device_resolution → display/mode → fb0 (fix triple height)
 static inline void aml_get_desktop_size(int &dw, int &dh)
 {
@@ -192,7 +198,7 @@ void eVideoWidget::writeProc(const std::string &filename, int value)
 
 void eVideoWidget::setPosition(int index, int left, int top, int width, int height)
 {
-	if (aml_has_axis())
+	if (aml_axis_decoder(index))
 	{
 		// index 0 = main, 1 = PiP
 		const char *path = (index == 0) ? "/sys/class/video/axis"
@@ -285,7 +291,7 @@ void eVideoWidget::updatePosition(int disable)
 		m_state |= 1;
 	}
 
-	if (aml_has_axis())
+	if (aml_axis_decoder(m_decoder))
 	{
 		// On AML, /sys/class/video/axis{,_pip} expect real desktop pixels.
 		// Scale from the widget's FB space (usually 720x576) to desktop size.

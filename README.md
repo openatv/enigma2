@@ -37,7 +37,7 @@
 ## Git repositories involved
 
 * [OE Alliance Core](https://github.com/oe-alliance/oe-alliance-core.git "OE Alliance Core") - Core framework
-* [OpenATV 7.6](https://github.com/openatv/enigma2.git "OpenATV 7.6") - OpenATV core
+* [OpenATV 8.0](https://github.com/openatv/enigma2.git "OpenATV 8.0") - OpenATV core
 * [MetrixHD](https://github.com/openatv/MetrixHD.git "OpenATV Skin") - Default OpenATV skin
 * [OpenWebif](https://github.com/oe-alliance/OpenWebif.git "OpenWebif") - OpenWebif
 * [OE Alliance Plugins](https://github.com/oe-alliance-plugins "OE Alliance Plugins") - OE Alliance Plugins
@@ -112,7 +112,7 @@
 1. Create folder openatv8.0
 
     ```sh
-    mkdir -p openatv7.6
+    mkdir -p openatv8.0
     ```
 
 1. Switch to folder openatv8.0

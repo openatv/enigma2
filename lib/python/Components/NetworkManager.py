@@ -618,7 +618,8 @@ class NetworkManager:
 			cmds.append(f"wl -i {interface} wowl 0")
 		procPath = BoxInfo.getItem("WakeOnLAN") or ""
 		if procPath and exists(procPath):
-			cmds.append(f"echo '{'enable' if enable else 'disable'}' > {procPath}")
+			value = BoxInfo.getItem("WakeOnLANType")[enable]
+			cmds.append(f"echo '{value}' > {procPath}")
 		return cmds
 
 	def getWakeOnWiFi(self, interface: str) -> bool:
@@ -792,7 +793,7 @@ class NetworkManager:
 		from Screens.Toast import Toast
 		text = _("Network cable connected (%s)") % interface if up else _("Network cable disconnected (%s)") % interface
 		icon = "\uF003" if up else "\uF004"
-		Toast.instance.showToast(text=text, toasttype=Toast.TYPE_INFO, timeout=4, customIcon=icon)
+		Toast.instance.showToast(text=text, toastType=Toast.TYPE_INFO, timeout=4, customIcon=icon)
 
 	def onIpChange(self, interface: str, ipPrefix: str):
 		self.log(f"onIpChange: {interface} ipPrefix={ipPrefix}.")

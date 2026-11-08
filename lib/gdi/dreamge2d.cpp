@@ -134,13 +134,8 @@ struct dream_config_para_ex_s
 	struct dream_src_key_ctrl_s src_key;
 	struct dream_src_key_ctrl_s src2_key;
 
-	unsigned char src1_cmult_asel;
-	unsigned char src2_cmult_asel;
-	unsigned char src2_cmult_ad;
 	int alu_const_color;
-	unsigned char src1_gb_alpha_en;
 	unsigned int src1_gb_alpha;
-	unsigned char src2_gb_alpha_en;
 	unsigned int src2_gb_alpha;
 	unsigned int op_mode;
 	unsigned char bitmask_en;
@@ -164,6 +159,7 @@ struct dream_config_para_ex_s
 	struct dream_config_planes_s src_planes[4];
 	struct dream_config_planes_s src2_planes[4];
 	struct dream_config_planes_s dst_planes[4];
+	int mem_sec;
 };
 
 struct dream_config_planes_ion_s
@@ -215,6 +211,33 @@ struct dream_config_para_ex_ion_s
 	struct dream_config_planes_ion_s dst_planes[4];
 };
 
+struct dream_ge2d_matrix_s
+{
+	unsigned int pre_offset0;
+	unsigned int pre_offset1;
+	unsigned int pre_offset2;
+	unsigned int coef0;
+	unsigned int coef1;
+	unsigned int coef2;
+	unsigned int coef3;
+	unsigned int coef4;
+	unsigned int coef5;
+	unsigned int coef6;
+	unsigned int coef7;
+	unsigned int coef8;
+	unsigned int offset0;
+	unsigned int offset1;
+	unsigned int offset2;
+	unsigned char sat_in_en;
+};
+
+struct dream_ge2d_stride_s
+{
+	unsigned int src1_stride[4];
+	unsigned int src2_stride[4];
+	unsigned int dst_stride[4];
+};
+
 struct dream_config_para_ex_memtype_s
 {
 	int ge2d_magic;
@@ -222,6 +245,8 @@ struct dream_config_para_ex_memtype_s
 	unsigned int src1_mem_alloc_type;
 	unsigned int src2_mem_alloc_type;
 	unsigned int dst_mem_alloc_type;
+	struct dream_ge2d_matrix_s matrix_custom;
+	struct dream_ge2d_stride_s stride_custom;
 };
 
 struct dream_config_ge2d_para_ex_s

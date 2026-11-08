@@ -29,7 +29,7 @@ class ConsoleItem:
 		retVal = self.container.execute(*cmd)
 		if retVal:
 			self.finishedCB(retVal)
-		if not callback:
+		elif not callback:
 			pid = self.container.getPID()
 			try:
 				# print("[Console] Waiting for command (PID %d) to finish." % pid)

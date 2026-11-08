@@ -3,6 +3,46 @@
 #include <lib/python/python_helpers.h>
 %}
 
+// Linux filenames can contain bytes that Python represents with surrogateescape.
+// Keep those bytes in paths. A title derived from a filename must remain displayable.
+%define SERVICE_REFERENCE_TEXT(Type, Errors)
+%typemap(typecheck, precedence=SWIG_TYPECHECK_STRING) const eServiceReference::Type & {
+	$1 = PyUnicode_Check($input) || SWIG_CheckState(SWIG_ConvertPtr($input, NULL, $descriptor(std::string *), SWIG_POINTER_NO_NULL));
+}
+%typemap(in) const eServiceReference::Type & (std::string text) {
+	if (PyUnicode_Check($input))
+	{
+		Py_ssize_t size;
+		const char *utf8 = PyUnicode_AsUTF8AndSize($input, &size);
+		if (utf8)
+			text.assign(utf8, size);
+		else
+		{
+			if (!PyErr_ExceptionMatches(PyExc_UnicodeEncodeError))
+				SWIG_fail;
+			PyErr_Clear();
+			PyObject *encoded = PyUnicode_AsEncodedString($input, "utf-8", Errors);
+			if (!encoded)
+				SWIG_fail;
+			text.assign(PyBytes_AS_STRING(encoded), PyBytes_GET_SIZE(encoded));
+			Py_DECREF(encoded);
+		}
+		$1 = &text;
+	}
+	else
+	{
+		void *ptr = NULL;
+		if (!SWIG_IsOK(SWIG_ConvertPtr($input, &ptr, $descriptor(std::string *), SWIG_POINTER_NO_NULL)) || !ptr)
+			SWIG_exception_fail(SWIG_TypeError, "Expected a service reference string");
+		$1 = static_cast<std::string *>(ptr);
+	}
+}
+%typemap(freearg) const eServiceReference::Type & "";
+%enddef
+
+SERVICE_REFERENCE_TEXT(PathString, "surrogateescape")
+SERVICE_REFERENCE_TEXT(DisplayName, "replace")
+
 %extend iServiceInformation {
 PyObject *getInfoObject(int w)
 {
@@ -309,7 +349,7 @@ RESULT enableSubtitles(eWidget *parent, PyObject *tuple)
 	{
 		ePyObject entry;
 		int tuplesize = PyTuple_Size(tuple);
-		if (tuplesize < 1)
+		if (tuplesize < 4)
 			goto error_out;
 
 		entry = PyTuple_GET_ITEM(tuple, 0);
@@ -335,11 +375,18 @@ RESULT enableSubtitles(eWidget *parent, PyObject *tuple)
 		{
 			track.magazine_number = PyLong_AsLong(entry);
 		}
-		if (tuplesize==5){
+		if (tuplesize >= 5){
 			entry = PyTuple_GET_ITEM(tuple, 4);
 			if (PyUnicode_Check(entry))
 			{
 				track.language_code = PyUnicode_AsUTF8(entry);
+			}
+		}
+		if (tuplesize >= 6){
+			entry = PyTuple_GET_ITEM(tuple, 5);
+			if (PyUnicode_Check(entry))
+			{
+				track.title = PyUnicode_AsUTF8(entry);
 			}
 		}
 	}

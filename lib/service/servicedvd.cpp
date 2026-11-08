@@ -21,6 +21,16 @@ extern "C" {
 }
 #include "servicedvd.h"
 
+// A DVD can carry garbage in the language field; Python needs valid UTF-8.
+static std::string languageCode(uint16_t code)
+{
+	unsigned char first = (code >> 8) & 0xff;
+	unsigned char second = code & 0xff;
+	if (first < 0x20 || first > 0x7e || second < 0x20 || second > 0x7e)
+		return "";
+	return std::string{(char)first, (char)second};
+}
+
 // eServiceFactoryDVD
 
 eServiceFactoryDVD::eServiceFactoryDVD()
@@ -180,6 +190,7 @@ eServiceDVD::eServiceDVD(eServiceReference ref):
 
 	m_sn = eSocketNotifier::create(eApp, ddvd_get_messagepipe_fd(m_ddvdconfig), eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Error|eSocketNotifier::Hungup);
 	eDebug("[eServiceDVD] construct!");
+	m_resume_info = {};
 	// create handle
 	ddvd_set_dvd_path(m_ddvdconfig, ref.path.c_str());
 	ddvd_set_ac3thru(m_ddvdconfig, 0);
@@ -522,8 +533,8 @@ RESULT eServiceDVD::getTrackInfo(struct iAudioTrackInfo &info, unsigned int audi
 	int audio_type;
 	uint16_t audio_lang;
 	ddvd_get_audio_byid(m_ddvdconfig, audio_id, &audio_lang, &audio_type);
-	char audio_string[3]={(char) ((audio_lang >> 8) & 0xff), (char)(audio_lang & 0xff), 0};
-	eDebug("[eServiceDVD] getTrackInfo: audio id=%d lang=%s type=%d", audio_id, audio_string, audio_type);
+	std::string audio_string = languageCode(audio_lang);
+	eDebug("[eServiceDVD] getTrackInfo: audio id=%d lang=%s type=%d", audio_id, audio_string.c_str(), audio_type);
 	info.m_pid = audio_id + 1;
 	info.m_language = audio_string;
 	switch(audio_type)
@@ -731,10 +742,10 @@ ePtr<iServiceInfoContainer> eServiceDVD::getInfoObject(int w)
 			int audio_id,audio_type;
 			uint16_t audio_lang;
 			ddvd_get_last_audio(m_ddvdconfig, &audio_id, &audio_lang, &audio_type);
-			char audio_string[3]={(char) ((audio_lang >> 8) & 0xff), (char)(audio_lang & 0xff), 0};
-			eDebug("[eServiceDVD] getInfoObject sUser+6: audio_id=%d lang=%s type=%d", audio_id, audio_string, audio_type);
+			std::string audio_string = languageCode(audio_lang);
+			eDebug("[eServiceDVD] getInfoObject sUser+6: audio_id=%d lang=%s type=%d", audio_id, audio_string.c_str(), audio_type);
 			container->addInteger(audio_id + 1);
-			container->addString(audio_string);
+			container->addString(audio_string.c_str());
 			switch (audio_type)
 			{
 				case DDVD_MPEG:
@@ -757,8 +768,8 @@ ePtr<iServiceInfoContainer> eServiceDVD::getInfoObject(int w)
 			int spu_id;
 			uint16_t spu_lang;
 			ddvd_get_last_spu(m_ddvdconfig, &spu_id, &spu_lang);
-			char spu_string[3]={(char) ((spu_lang >> 8) & 0xff), (char)(spu_lang & 0xff), 0};
-			eDebug("[eServiceDVD] getInfoObject sUser+7: spu_id=%d lang=%s", spu_id, spu_string);
+			std::string spu_string = languageCode(spu_lang);
+			eDebug("[eServiceDVD] getInfoObject sUser+7: spu_id=%d lang=%s", spu_id, spu_string.c_str());
 			if (spu_id == -1)
 			{
 				container->addInteger(0);
@@ -767,7 +778,7 @@ ePtr<iServiceInfoContainer> eServiceDVD::getInfoObject(int w)
 			else
 			{
 				container->addInteger(spu_id + 1);
-				container->addString(spu_string);
+				container->addString(spu_string.c_str());
 			}
 			break;
 		}
@@ -846,8 +857,8 @@ RESULT eServiceDVD::getSubtitleList(std::vector<struct SubtitleTrack> &subtitlel
 			continue;
 		}
 
-		char spu_string[3] = {(char)((spu_lang >> 8) & 0xff), (char)(spu_lang & 0xff), 0};
-		eDebug("[eServiceDVD] getSubtitleList: spu_id=%d lang=%s", spu_id, spu_string);
+		std::string spu_string = languageCode(spu_lang);
+		eDebug("[eServiceDVD] getSubtitleList: spu_id=%d lang=%s", spu_id, spu_string.c_str());
 
 		track.type = 2;
 		track.pid = spu_id + 1;
@@ -880,13 +891,22 @@ RESULT eServiceDVD::getLength(pts_t &len)
 RESULT eServiceDVD::seekTo(pts_t to)
 {
 	eDebug("[eServiceDVD] seekTo(%lld)",to);
-	if (to > 0)
+	if (to > 0 && m_resume_info.title > 0) // only with a complete cue file
 	{
 		if(m_resume_info.block > 8000)
 			m_resume_info.block = m_resume_info.block - 4000; //resume - 10 seconds
 		eDebug("[eServiceDVD] set_resume_pos: resume_info.title=%d, chapter=%d, block=%lu, audio_id=%d, audio_lock=%d, spu_id=%d, spu_lock=%d",
 			m_resume_info.title, m_resume_info.chapter, m_resume_info.block, m_resume_info.audio_id, m_resume_info.audio_lock, m_resume_info.spu_id, m_resume_info.spu_lock);
 		ddvd_set_resume_pos(m_ddvdconfig, m_resume_info);
+	}
+	else if (to > 0) // no DVD position: go there by time
+	{
+		pts_t pos = 0;
+		getPlayPosition(pos);
+		int seconds = (to - pos) / 90000;
+		eDebug("[eServiceDVD] seekTo without resume info, skip %d seconds", seconds);
+		if (seconds)
+			ddvd_skip_seconds(m_ddvdconfig, seconds);
 	}
 	return 0;
 }
@@ -1069,14 +1089,18 @@ void eServiceDVD::loadCuesheet()
 	{
 		unsigned long long where;
 		unsigned int what;
+		struct ddvd_resume resume_info = {};
 
 		if (fread(&where, sizeof(where), 1, f))
 			if (fread(&what, sizeof(what), 1, f))
 				if (ntohl(what) == 3)
-					if (fread(&m_resume_info, sizeof(m_resume_info), 1, f))
+					if (fread(&resume_info, sizeof(resume_info), 1, f))
 						if (fread(&what, sizeof(what), 1, f))
 							if (ntohl(what) == 4)
+							{
+								m_resume_info = resume_info;
 								m_cue_pts = be64toh(where);
+							}
 		fclose(f);
 		if (m_cue_pts)
 		{

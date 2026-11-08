@@ -10,7 +10,7 @@ from os.path import exists, isfile, ismount, realpath, splitext
 from pickle import dump, load
 from re import match
 from sys import maxsize
-from time import localtime, strftime, time
+from time import localtime, monotonic, strftime, time
 from twisted.internet import reactor
 from twisted.internet.threads import deferToThread
 
@@ -27,6 +27,7 @@ from Components.Input import Input
 from Components.Label import Label
 from Components.MovieList import AUDIO_EXTENSIONS, DVD_EXTENSIONS, MOVIE_EXTENSIONS
 from Components.MovieListSettings import movieListSettings
+from Components.ParentalControl import parentalControl
 from Components.Pixmap import MovingPixmap, MultiPixmap
 from Components.PluginComponent import plugins
 from Components.ScrollLabel import ScrollLabel
@@ -1216,6 +1217,9 @@ class InfoBarSeek:
 		self.lastseekstate = self.SEEK_STATE_PLAY
 		self.seekAction = 0
 		self.LastseekAction = False
+		self.seekJumpSpeed = 0  # Speed of a state the service cannot wind at, DoSeekAction jumps instead.
+		self.jumpAnchor = None  # (speed, start pts, start time) of winding with jumps.
+		self.jumpTarget = None  # (target pts, position at the last tick, jump time) of the last jump.
 		self.onPlayStateChanged = []
 		self.lockedBecauseOfSkipping = False
 		self.__seekableStatusChanged()
@@ -1357,6 +1361,13 @@ class InfoBarSeek:
 			# print("not pauseable.")
 			state = self.SEEK_STATE_PLAY
 		self.seekstate = state
+		if self.seekJumpSpeed and not state[1]:  # Winding with jumps ends.
+			if self.seekAction == self.seekJumpSpeed:
+				self.seekAction = 0
+				self.LastseekAction = False
+			self.seekJumpSpeed = 0
+		if not self.seekAction:
+			self.jumpAnchor = self.jumpTarget = None
 		if pauseable is not None:
 			if self.seekstate[0] and self.seekstate[3] == "||":
 				# print("resolved to PAUSE")
@@ -1367,8 +1378,12 @@ class InfoBarSeek:
 				self.activityTimer.stop()
 			elif self.seekstate[1]:
 				if not pauseable.setFastForward(self.seekstate[1]):
-					pass
+					self.seekJumpSpeed = 0
 					# print("resolved to FAST FORWARD")
+				elif self.getSeek() and self.getSeek().isCurrentlySeekable() & 1:  # The service cannot wind, wind with jumps at the speed of the state.
+					self.seekJumpSpeed = self.seekAction = self.seekstate[1]
+					self.LastseekAction = True
+					self.activityTimer.start(int(config.seek.withjumps_repeat_ms.getValue()), False)
 				else:
 					self.seekstate = self.SEEK_STATE_PLAY
 					# print("FAST FORWARD not possible: resolved to PLAY")
@@ -1534,12 +1549,15 @@ class InfoBarSeek:
 			self.showAfterSeek()
 
 	def DoSeekAction(self):
-		if self.seekAction > int(config.seek.withjumps_after_ff_speed.getValue()):
-			self.doSeekRelativeAvoidStall(self.seekAction * int(config.seek.withjumps_forwards_ms.getValue()) * 90)
-		elif self.seekAction < 0:
-			self.doSeekRelativeAvoidStall(self.seekAction * int(config.seek.withjumps_backwards_ms.getValue()) * 90)
+		jumpForward = self.seekAction > (0 if self.seekJumpSpeed else int(config.seek.withjumps_after_ff_speed.getValue()))
+		if jumpForward or self.seekAction < 0:
+			if not (self.seekJumpSpeed and self.jumpToTarget(self.seekAction)):  # Jumps to a target time where the service cannot wind, the fixed steps otherwise.
+				self.jumpAnchor = self.jumpTarget = None
+				self.doSeekRelativeAvoidStall(self.seekAction * int((config.seek.withjumps_forwards_ms if jumpForward else config.seek.withjumps_backwards_ms).getValue()) * 90)
+		else:
+			self.jumpAnchor = self.jumpTarget = None
 		for c in self.onPlayStateChanged:
-			if self.seekAction > int(config.seek.withjumps_after_ff_speed.getValue()):  # Forward.
+			if jumpForward:  # Forward.
 				c((0, self.seekAction, 0, ">> %dx" % self.seekAction))
 			elif self.seekAction < 0:  # Backward.
 				c((0, self.seekAction, 0, "<< %dx" % abs(self.seekAction)))
@@ -1549,6 +1567,37 @@ class InfoBarSeek:
 			# global seek_withjumps_muted
 			# seek_withjumps_muted = False
 			self.setSeekState(self.SEEK_STATE_PLAY)
+
+	def jumpToTarget(self, speed):  # Jump to start + speed * elapsed time, the next jump only after the last one landed; False without a length.
+		seekable = self.getSeek()
+		if seekable is None:
+			return False
+		position = seekable.getPlayPosition()
+		length = seekable.getLength()
+		if position[0] or length[0] or length[1] < 180000:
+			return False
+		position = position[1]
+		now = monotonic()
+		if self.jumpAnchor is None or self.jumpAnchor[0] != speed:
+			self.jumpAnchor = (speed, self.jumpTarget[0] if self.jumpAnchor and self.jumpTarget else position, now)
+			self.jumpTarget = None
+		elif self.jumpTarget:
+			target, last, jumpTime = self.jumpTarget
+			self.jumpTarget = (target, position, jumpTime)
+			if now - jumpTime < 2 and not (0 < position - last < 90000 and abs(position - target) < 1800000):  # Wait until the picture runs near the target.
+				return True
+		target = int(self.jumpAnchor[1] + speed * (now - self.jumpAnchor[2]) * 90000)
+		end = length[1] - 90000
+		if target <= 0 or target >= end:  # Winding with jumps ends at the file start and before the file end.
+			target = max(0, min(target, end))
+			self.seekAction = 0
+		elif abs(target - position) < 9000:
+			return True
+		self.jumpTarget = (target, target, now)
+		self.doSeek(target)
+		if config.usage.show_infobar_on_skip.value:
+			self.showAfterSeek()
+		return True
 
 	def isServiceTypeTS(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -1654,16 +1703,21 @@ class InfoBarSeek:
 		return pts
 
 	def seekFwd(self):
-		if config.seek.withjumps.value and not self.isServiceTypeTS():
+		if config.seek.withjumps.value and not self.isServiceTypeTS() and self.windsWithJumps():
 			self.seekFwd_new()
 		else:
 			self.seekFwd_old()
 
 	def seekBack(self):
-		if config.seek.withjumps.value and not self.isServiceTypeTS():
+		if config.seek.withjumps.value and not self.isServiceTypeTS() and self.windsWithJumps():
 			self.seekBack_new()
 		else:
 			self.seekBack_old()
+
+	def windsWithJumps(self):  # A service that winds at every speed itself (4) or cannot seek (no 1) gets no jumps.
+		seek = self.getSeek()
+		seekable = seek.isCurrentlySeekable() if seek else 0
+		return bool(seekable & 1) and not seekable & 4
 
 	def seekFwd_new(self):
 		self.LastseekAction = True
@@ -2673,13 +2727,11 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				self.dlg_stack[dlgs - 1].close(dlgs > 1)
 		self.reopen(ret)
 
-	def eventViewCallback(self, setEvent, setService, val):  # Used for Now/Next display.
-		epglist = self.epglist
-		if len(epglist) > 1:
-			tmp = epglist[0]
-			epglist[0] = epglist[1]
-			epglist[1] = tmp
-			setEvent(epglist[0])
+	def eventViewCallback(self, setEvent, setService, val):
+		event = self.eventView and self.eventView.getAdjacentEvent(val, self.epglist)
+		if event:
+			self.is_now_next = False  # Keep live EPG updates from resetting the selected event.
+			setEvent(event)
 
 	def checkHideVBI(self):
 		service = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -3122,13 +3174,11 @@ class InfoBarSimpleEventView:
 				self.eventView = showEventViewCallback(self.closed, self.session, True, epglist[0], ServiceReference(ref))
 			self.dlg_stack.append(self.eventView)
 
-	def eventViewCallback(self, setEvent, setService, val):  # Used for Now/Next display.
-		epglist = self.epglist
-		if len(epglist) > 1:
-			tmp = epglist[0]
-			epglist[0] = epglist[1]
-			epglist[1] = tmp
-			setEvent(epglist[0])
+	def eventViewCallback(self, setEvent, setService, val):
+		event = self.eventView and self.eventView.getAdjacentEvent(val, self.epglist)
+		if event:
+			self.is_now_next = False  # Keep live EPG updates from resetting the selected event.
+			setEvent(event)
 
 	def showEventInfoWhenNotVisible(self):
 		if self.shown:
@@ -3367,7 +3417,7 @@ class InfoBarEPG:
 			cnt = 0
 		else:
 			cnt = len(bouquets)
-		if (self.EPGtype == "multi" and config.epgselection.multi_showbouquet.value) or (self.EPGtype == "graph" and config.epgselection.graph_showbouquet.value):
+		if (self.EPGtype == "multi" and config.epgselection.multi.showbouquet.value) or (self.EPGtype == "graph" and config.epgselection.grid.showbouquet.value):
 			if cnt > 1:  # Show bouquet list.
 				self.bouquetSel = self.session.openWithCallback(self.closed, EpgBouquetSelector, bouquets, self.openBouquetEPG, enableWrapAround=True)
 				self.dlg_stack.append(self.bouquetSel)
@@ -3423,7 +3473,7 @@ class InfoBarEPG:
 		if not reopen:
 			self.StartBouquet = self.servicelist.getRoot()
 			self.StartRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		if config.epgselection.infobar_type_mode.value == "single":
+		if config.epgselection.infobar.type_mode.value == "single":
 			self.EPGtype = "infobar"
 			self.SingleServiceEPG()
 		else:
@@ -3535,13 +3585,11 @@ class InfoBarEPG:
 				self.eventView = showEventViewCallback(self.closed, self.session, True, epglist[0], ServiceReference(ref))
 			self.dlg_stack.append(self.eventView)
 
-	def eventViewCallback(self, setEvent, setService, val):  # Used for Now/Next display.
-		epglist = self.epglist
-		if len(epglist) > 1:
-			tmp = epglist[0]
-			epglist[0] = epglist[1]
-			epglist[1] = tmp
-			setEvent(epglist[0])
+	def eventViewCallback(self, setEvent, setService, val):
+		event = self.eventView and self.eventView.getAdjacentEvent(val, self.epglist)
+		if event:
+			self.is_now_next = False  # Keep live EPG updates from resetting the selected event.
+			setEvent(event)
 
 
 class InfoBarRdsDecoder:
@@ -3786,9 +3834,15 @@ class InfoBarPiP:  # Depends on InfoBarExtensions.
 	def extShowHideName(self):
 		return _("Disable Picture in Picture") if self.session.pipshown else _("Activate Picture in Picture")
 
-	def showPiP(self):
+	def showPiP(self, ref=None, forceRestart=False):
+		if forceRestart and self.session.pipshown:
+			return  # A pending PIN callback must not close or replace an already opened PiP.
 		self.lastPiPServiceTimeoutTimer.stop()
 		slist = self.servicelist
+		if not slist:  # MoviePlayer without a channel list.
+			# Prevent circular import.
+			from Screens.InfoBar import InfoBar
+			slist = InfoBar.instance and InfoBar.instance.servicelist
 		if self.session.pipshown:
 			if slist and slist.dopipzap:
 				self.togglePipzap()
@@ -3812,24 +3866,29 @@ class InfoBarPiP:  # Depends on InfoBarExtensions.
 			if info:
 				xres = str(info.getInfo(iServiceInformation.sVideoWidth))
 			if info and int(xres) <= 720 or BoxInfo.getItem("model") != "blackbox7405":
+				if isStandardInfoBar(self):
+					newservice = ref or self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or slist.getCurrentSelection()
+				else:
+					newservice = ref or self.lastPiPService or slist.getCurrentSelection()
+				if newservice and not forceRestart and not parentalControl.isServicePlayable(newservice, self.showPiP):
+					return
 				self.session.pip = self.session.instantiateDialog(PictureInPicture)
 				self.session.pip.setAnimationMode(0)
 				self.session.pip.show()
-				if isStandardInfoBar(self):
-					newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.getCurrentSelection()
-				else:
-					newservice = self.lastPiPService or self.servicelist.getCurrentSelection()
-				if self.session.pip.playService(newservice):
+				if self.session.pip.playService(newservice, checkParentalControl=False):
 					self.session.pipshown = True
-					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+					self.session.pip.servicePath = slist.getCurrentServicePath()
 					if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
 						print("[InfoBarGenerics] [LCDMiniTV] enable PiP")
 						eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value, True)
 				else:
-					newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
-					if self.session.pip.playService(newservice):
+					fallbackService = self.session.nav.getCurrentlyPlayingServiceReference() or slist.servicelist.getCurrent()
+					if fallbackService and fallbackService != newservice and not parentalControl.isServicePlayable(fallbackService, self.showPiP):
+						del self.session.pip
+						return
+					if self.session.pip.playService(fallbackService, checkParentalControl=False):
 						self.session.pipshown = True
-						self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
+						self.session.pip.servicePath = slist.getCurrentServicePath()
 						if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
 							print("[InfoBarGenerics] [LCDMiniTV] enable PiP")
 							eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value, True)
@@ -3865,7 +3924,7 @@ class InfoBarPiP:  # Depends on InfoBarExtensions.
 				currentServicePath = self.servicelist.getCurrentServicePath()
 				currentBouquet = self.servicelist and self.servicelist.getRoot()
 				self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
-				self.session.pip.playService(swapService)
+				self.session.pip.playService(swapService, checkParentalControl=False)  # The live service is already authorized.
 				self.session.nav.stopService()  # Stop portal.
 				self.session.nav.playService(pipServiceReference, checkParentalControl=False, adjust=False)
 				self.session.pip.servicePath = currentServicePath
@@ -5112,18 +5171,29 @@ class InfoBarSubtitleSupport:
 			"subtitleSelection": (self.subtitleSelection, _("Open Subtitle options")),
 		}, prio=0, description=_("Subtitle Actions"))
 		self.selected_subtitle = None
-		if isStandardInfoBar(self):
-			self.subtitle_window = self.session.instantiateDialog(SubtitleDisplay)
-			self.subtitle_window.setAnimationMode(0)
-		else:
-			from Screens.InfoBar import InfoBar
-			self.subtitle_window = InfoBar.instance.subtitle_window
-		self.subtitle_window.hide()
+		self.subtitle_window = self.getSharedSubtitleWindow()
+		if self.subtitle_window is not None:
+			self.subtitle_window.hide()
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 			iPlayableService.evStart: self.__serviceChanged,
 			iPlayableService.evEnd: self.__serviceChanged,
 			iPlayableService.evUpdatedInfo: self.__updatedInfo
 		})
+
+	def getSharedSubtitleWindow(self):
+		if isStandardInfoBar(self):
+			owner = self
+		else:
+			from Screens.InfoBar import InfoBar  # InfoBar imports this mixin.
+			owner = InfoBar.instance
+		if getattr(owner, "session", None) is not self.session or self.session.shutdown:
+			return None
+		window = getattr(owner, "subtitle_window", None)
+		if getattr(window, "instance", None) is None:
+			window = self.session.instantiateDialog(SubtitleDisplay)
+			window.setAnimationMode(0)
+			owner.subtitle_window = window
+		return window
 
 	def getCurrentServiceSubtitle(self):
 		service = self.session.nav.getCurrentService()
@@ -5165,7 +5235,8 @@ class InfoBarSubtitleSupport:
 	def __serviceChanged(self):
 		if self.selected_subtitle:
 			self.selected_subtitle = None
-			self.subtitle_window.hide()
+			if getattr(self.subtitle_window, "instance", None) is not None:
+				self.subtitle_window.hide()
 
 	def __updatedInfo(self):
 		if not self.selected_subtitle:
@@ -5173,18 +5244,23 @@ class InfoBarSubtitleSupport:
 			cachedsubtitle = subtitle and subtitle.getCachedSubtitle()
 			if cachedsubtitle:
 				self.enableSubtitle(cachedsubtitle)
-				self.doCenterDVBSubs()
 
 	def enableSubtitle(self, selectedSubtitle):
 		subtitle = self.getCurrentServiceSubtitle()
+		if subtitle and selectedSubtitle and getattr(self.subtitle_window, "instance", None) is None:
+			self.subtitle_window = self.getSharedSubtitleWindow()
+		windowInstance = getattr(self.subtitle_window, "instance", None)
+		if windowInstance is None:
+			self.selected_subtitle = None
+			return
 		self.selected_subtitle = selectedSubtitle
 		if subtitle and self.selected_subtitle:
-			subtitle.enableSubtitles(self.subtitle_window.instance, self.selected_subtitle)
+			subtitle.enableSubtitles(windowInstance, self.selected_subtitle)
 			self.subtitle_window.show()
 			self.doCenterDVBSubs()
 		else:
 			if subtitle:
-				subtitle.disableSubtitles(self.subtitle_window.instance)
+				subtitle.disableSubtitles(windowInstance)
 			self.subtitle_window.hide()
 
 	def restartSubtitle(self):

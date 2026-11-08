@@ -32,8 +32,9 @@ class Boolean(Source):
 
 	def setBoolean(self, value):
 		assert self.function is None
-		self.fixed = value
-		self.poll()
+		if self.fixed != value:
+			self.fixed = value
+			self.poll()
 
 	boolean = property(getBoolean, setBoolean)
 

@@ -673,6 +673,11 @@ void eDABDecoder::parseFIG0(const uint8_t *data, size_t length)
 			}
 		}
 	}
+	else if (extension == 9 && !longSid && position + 3 <= length)
+	{
+		// FIG 0/9: LTO, ensemble ECC, International Table Identifier.
+		m_programme_type_table = data[position + 2];
+	}
 	else if (extension == 17 && !longSid)
 	{
 		while (position + 4 <= length)
@@ -684,6 +689,9 @@ void eDABDecoder::parseFIG0(const uint8_t *data, size_t length)
 				break;
 			if (flags & 0x20)
 				m_services[sid].language = data[position + 3];
+			// The international code follows the optional legacy language byte.
+			// Both static and dynamic FIGs update the service's current PTY.
+			m_services[sid].programmeType = data[position + 3 + ((flags & 0x20) ? 1 : 0)] & 0x1f;
 			position += recordLength;
 		}
 	}
@@ -772,6 +780,12 @@ int eDABDecoder::language() const
 	return service->second.language;
 }
 
+int eDABDecoder::programmeType() const
+{
+	const auto service = m_services.find(m_service_id);
+	return service == m_services.end() ? -1 : service->second.programmeType;
+}
+
 std::string eDABDecoder::protection() const
 {
 	const auto service = m_services.find(m_service_id);
@@ -799,6 +813,7 @@ void eDABDecoder::resolveService()
 	m_service_label = service->second.label;
 	if (changed)
 	{
+		m_audio_format = eDABAudioFormat();
 		m_mp2_frame.clear();
 		m_mp2_frame_count = -1;
 		m_superframe.clear();
@@ -872,6 +887,7 @@ void eDABDecoder::feedDAB(const uint8_t *data, size_t length, int frameCount)
 	}
 
 	const uint32_t header = read32(data);
+	m_audio_format = frame.format;
 	const bool mpeg1 = ((header >> 19) & 3) == 3;
 	const bool mono = ((header >> 6) & 3) == 3;
 	const size_t scaleFactorCRCLength = mpeg1 && m_selected_bitrate < (mono ? 56 : 112) ? 2 : 4;
@@ -976,6 +992,7 @@ void eDABDecoder::processSuperframe()
 			++m_crc_errors;
 			continue;
 		}
+		m_audio_format.setAAC(config);
 		inspectPAD(payload, size - 2);
 		emitLOAS(payload, size - 2, config, auDurationNs);
 	}

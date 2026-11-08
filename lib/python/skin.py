@@ -15,7 +15,10 @@ from Tools.LoadPixmap import LoadPixmap
 
 MODULE_NAME = __name__.split(".")[-1].capitalize()
 
-DEFAULT_SKIN = "Umbra/skin.xml" if BoxInfo.getItem("SmallFlash") else "MetrixHD/skin.xml"
+if BoxInfo.getItem("SmallFlash"):
+	DEFAULT_SKIN = "Umbra/skin.xml" if BoxInfo.getItem("fhdskin") else "Umbra/HD/skin.xml"
+else:
+	DEFAULT_SKIN = "MetrixHD/skin.xml"
 EMERGENCY_SKIN = "skin_default/skin.xml"
 EMERGENCY_NAME = "Default OE-A"
 DEFAULT_DISPLAY_SKIN = "skin_display_grautec.xml" if BoxInfo.getItem("grautec") else "skin_display.xml"
@@ -82,6 +85,7 @@ currentPrimarySkin = None
 currentDisplaySkin = None
 callbacks = []
 runCallbacks = False
+onReload = []
 
 
 # Skins are loaded in order of priority.  Skin with highest priority is
@@ -258,6 +262,9 @@ def reloadSkins():
 	InitSkins()
 	from Components.UsageConfig import refreshChannelSelectionStyleChoices
 	refreshChannelSelectionStyleChoices()
+	for callback in onReload:
+		if callable(callback):
+			callback()
 
 
 # Method to load a skinTemplates.xml if one exists or load the templates from the screens.

@@ -2,8 +2,7 @@ from os import remove
 from os.path import exists
 from time import ctime, time
 
-from enigma import eServiceCenter, eServiceReference, eStreamServer, eTimer, getBestPlayableServiceReference, iPlayableService, iServiceInformation, iRecordableService, iRecordableServicePtr, pNavigation
-from enigma import canDVBIFallbackReleaseForRecording, getDVBIFallbackService, getDVBIPlaybackService, getDVBIServiceAvailability
+from enigma import canDVBIFallbackReleaseForRecording, eServiceCenter, eServiceReference, eStreamServer, eTimer, getBestPlayableServiceReference, getDVBIFallbackService, getDVBIPlaybackService, getDVBIServiceAvailability, iPlayableService, iRecordableService, iRecordableServicePtr, iServiceInformation, pNavigation
 
 import NavigationInstance
 import RecordTimer
@@ -23,8 +22,8 @@ from Screens.MessageBox import MessageBox
 import Screens.Standby
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import fileWriteLine
-from Tools.StbHardware import getFPWasTimerWakeup
 from Tools.Notifications import AddPopup
+from Tools.StbHardware import getFPWasTimerWakeup
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -522,7 +521,13 @@ class Navigation:
 			else:
 				playref = ref
 			if self.pnav:
-				if not BoxInfo.getItem("FCCactive"):
+				# Let native navigation hand over a live SDR session before stopping
+				# the old service. Hooks and extensions resolve the final target first;
+				# native navigation checks whether the receiver can actually be reused.
+				keepSDRReceiver = (not forceRestart
+					and oldref and oldref.type == 4115 and playref.type == 4115
+					and oldref.getPath().startswith("dab://rtlsdr/") and oldref.getPath() == playref.getPath())
+				if (not BoxInfo.getItem("FCCactive") and not keepSDRReceiver) or (forceRestart and oldref and oldref.type == 4115):
 					self.pnav.stopService()
 				else:
 					self.skipServiceReferenceReset = True
@@ -543,6 +548,9 @@ class Navigation:
 				if not isStreamRelay:
 					playref, wrappererror = self.serviceHook(playref)
 					if wrappererror:
+						if keepSDRReceiver:
+							self.pnav.stopService()
+							self.skipServiceReferenceReset = False
 						return 1
 
 				originalPlayref = playref.toString()
@@ -554,6 +562,9 @@ class Navigation:
 						playref, isAsyncPlay = ret
 					if isAsyncPlay or playref.toString() != originalPlayref:
 						break
+				if keepSDRReceiver and isAsyncPlay:
+					self.pnav.stopService()
+					self.skipServiceReferenceReset = False
 
 				print(f"[Navigation] Playref is '{playref.toString()}'.")
 				# Keep the delivery route separate from the logical channel used for EPG.

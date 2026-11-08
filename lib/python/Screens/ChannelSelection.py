@@ -1,6 +1,7 @@
 from os import listdir, remove, rename
 from os.path import join
 from time import localtime, strftime, time
+from weakref import ref as weakrefRef
 
 from enigma import eActionMap, eDBoxLCD, eDVBDB, eEPGCache, ePoint, eRCInput, eServiceCenter, eServiceReference, eServiceReferenceDVB, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, loadPNG
 
@@ -1862,12 +1863,16 @@ class ChannelContextMenu(Screen):
 			self.close()
 
 	def showServiceInPiP(self):
-		if self.csel.dopipzap or (self.parentalControlEnabled and not parentalControl.getProtectionLevel(self.csel.getCurrentSelection().toCompareString()) == -1):
+		selectedService = self.csel.getCurrentSelection()
+		currentRoot = self.csel.getRoot()
+		if self.csel.dopipzap or not selectedService or not selectedService.valid() or not currentRoot:
+			return 0
+		if self.parentalControlEnabled and parentalControl.getProtectionLevel(selectedService.toCompareString()) != -1:
 			return 0
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
-		xres = str(info.getInfo(iServiceInformation.sVideoWidth))
-		if int(xres) <= 720 or BoxInfo.getItem("model") != "blackbox7405":
+		videoWidth = info.getInfo(iServiceInformation.sVideoWidth) if info else -1
+		if videoWidth <= 720 or BoxInfo.getItem("model") != "blackbox7405":
 			if self.session.pipshown:
 				del self.session.pip
 				if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
@@ -1876,24 +1881,20 @@ class ChannelContextMenu(Screen):
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
 			self.session.pip.setAnimationMode(0)
 			self.session.pip.show()
-			newservice = self.csel.servicelist.getCurrent()
-			currentBouquet = self.csel.servicelist and self.csel.servicelist.getRoot()
-			if newservice and newservice.valid():
-				if self.session.pip.playService(newservice):
-					self.session.pipshown = True
-					self.session.pip.servicePath = self.csel.getCurrentServicePath()
-					self.session.pip.servicePath[1] = currentBouquet
-					if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
-						print("[ChannelSelection] LCDMiniTV enable PiP.")
-						eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value, True)
-					self.close(True)
-				else:
-					self.session.pipshown = False
-					del self.session.pip
-					if BoxInfo.getItem("LCDMiniTV") and config.lcd.modepip.value >= 1:
-						print("[ChannelSelection] LCDMiniTV disable PiP.")
-						eDBoxLCD.getInstance().setLCDMode(config.lcd.modeminitv.value)
-					self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
+			if self.session.pip.playService(selectedService):
+				self.session.pipshown = True
+				self.session.pip.servicePath = self.csel.servicePath[:-1] + [currentRoot, selectedService]
+				if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
+					print("[ChannelSelection] LCDMiniTV enable PiP.")
+					eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value, True)
+				self.close(True)
+			else:
+				self.session.pipshown = False
+				del self.session.pip
+				if BoxInfo.getItem("LCDMiniTV") and config.lcd.modepip.value >= 1:
+					print("[ChannelSelection] LCDMiniTV disable PiP.")
+					eDBoxLCD.getInstance().setLCDMode(config.lcd.modeminitv.value)
+				self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
 		else:
 			self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % getBoxDisplayName(), type=MessageBox.TYPE_INFO, timeout=5)
 
@@ -2691,9 +2692,16 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if enable_pipzap and self.dopipzap:
 			ref = self.session.pip.getCurrentService()
 			if ref is None or ref != nref:
+				pipReference = weakrefRef(self.session.pip)
+
+				def zapAfterPin(ref, forceRestart=False):
+					pip = pipReference()
+					if pip is not None and self.dopipzap and getattr(self.session, "pip", None) is pip:
+						self.zap(enable_pipzap=True, checkParentalControl=False, ref=ref)
+
 				nref = self.session.pip.resolveAlternatePipService(nref)
-				if nref and (not checkParentalControl or parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False))):
-					zap_res = self.session.pip.playService(nref)
+				if nref and (not checkParentalControl or parentalControl.isServicePlayable(nref, zapAfterPin)):
+					zap_res = self.session.pip.playService(nref, checkParentalControl=False)
 					if zap_res == 1:
 						self.__evServiceStart()
 						self.showPipzapMessage()
@@ -3525,6 +3533,7 @@ class HistoryZapSelector(Screen):
 
 	def __init__(self, session, serviceReferences, markedItem=0, selectedItem=0):
 		Screen.__init__(self, session, enableHelp=True)
+		self.skinName = ["HistoryZap", "HistoryZapSelector"]
 		self.setTitle(_("History Zap"))
 		serviceHandler = eServiceCenter.getInstance()
 		historyList = []
@@ -3559,7 +3568,17 @@ class HistoryZapSelector(Screen):
 			self.selectedItem = selectedItem
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Select"))
-		self["menu"] = List(historyList)
+		indexNames = {
+			# "Spacer": 0,  # This is a legacy value that is not actively used.  This index can be reassigned to something more useful.
+			"ServiceMarker": 1,
+			"ServiceName": 2,
+			"EventName": 3,
+			"EventDescription": 4,
+			"EventDuration": 5,
+			"ServicePicon": 6,
+			# "ServiceReference": 7  # This is for internal use only.
+		}
+		self["menu"] = List(historyList, indexNames=indexNames)
 		self["actions"] = HelpableActionMap(self, ["SelectCancelActions"], {
 			"select": (self.keySelect, _("Select the currently highlighted service")),
 			"cancel": (self.keyCancel, _("Cancel the service history zap"))

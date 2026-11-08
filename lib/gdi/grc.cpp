@@ -1,5 +1,6 @@
 #include <unistd.h>
 #include <fstream>
+#include <algorithm>
 #include <lib/gdi/grc.h>
 #include <lib/gdi/font.h>
 #include <lib/base/init.h>
@@ -190,9 +191,9 @@ void *gRC::thread()
 
 				if (m_spinner_enabled)
 				{
-					timeout.tv_nsec += 100 * 1000 * 1000;
+					timeout.tv_nsec += (m_spinner_dc ? m_spinner_dc->spinnerInterval() : 100) * 1000 * 1000;
 					/* yes, this is required. */
-					if (timeout.tv_nsec > 1000 * 1000 * 1000)
+					if (timeout.tv_nsec >= 1000 * 1000 * 1000)
 					{
 						timeout.tv_nsec -= 1000 * 1000 * 1000;
 						timeout.tv_sec++;
@@ -269,6 +270,12 @@ void gRC::enableSpinner()
 		m_spinner_dc->exec(&o);
 	}
 	m_spinner_enabled = 1;
+}
+
+void gRC::setSpinnerColor(unsigned int color)
+{
+	if (m_spinner_dc)
+		m_spinner_dc->setSpinnerColor(color);
 }
 
 void gRC::disableSpinner()
@@ -1326,6 +1333,11 @@ gRGB gDC::getRGB(gColor col)
 
 void gDC::enableSpinner()
 {
+	if (m_nativeSpinner)
+	{
+		drawNativeSpinner();
+		return;
+	}
 	ASSERT(m_spinner_saved_HD);
 	ASSERT(m_spinner_saved_FHD);
 
@@ -1338,6 +1350,13 @@ void gDC::enableSpinner()
 
 void gDC::disableSpinner()
 {
+	if (m_nativeSpinner)
+	{
+		if (m_nativeSpinnerVisible && m_pixmap && size() == m_nativeSpinnerScreen && !islocked())
+			m_pixmap->blit(*m_nativeSpinnerSaved, eRect(m_nativeSpinnerRect.topLeft(), eSize()), gRegion(m_nativeSpinnerRect), 0, 0, 0);
+		m_nativeSpinnerVisible = false;
+		return;
+	}
 	ASSERT(m_spinner_saved_HD);
 	ASSERT(m_spinner_saved_FHD);
 
@@ -1350,6 +1369,11 @@ void gDC::disableSpinner()
 
 void gDC::incrementSpinner()
 {
+	if (m_nativeSpinner)
+	{
+		drawNativeSpinner();
+		return;
+	}
 	ASSERT(m_spinner_saved_HD);
 	ASSERT(m_spinner_saved_FHD);
 
@@ -1397,6 +1421,7 @@ void gDC::incrementSpinner()
 
 void gDC::setSpinner(eRect pos, ePtr<gPixmap> *pic, int len)
 {
+	m_nativeSpinner = false;
 	ASSERT(m_pixmap);
 	ASSERT(m_pixmap->surface);
 	m_spinner_saved_HD = new gPixmap(pos.size(), m_pixmap->surface->bpp);
@@ -1419,6 +1444,52 @@ void gDC::setSpinner(eRect pos, ePtr<gPixmap> *pic, int len)
 
 	for (i = 0; i < len; ++i)
 		m_spinner_pic[i] = pic[i];
+}
+
+void gDC::setNativeSpinner(ePoint position, unsigned int color)
+{
+	m_nativeSpinnerPosition = ePoint(std::max(0, std::min(1280, position.x())), std::max(0, std::min(720, position.y())));
+	setSpinnerColor(color);
+	m_nativeSpinner = true;
+	invalidateNativeSpinner();
+}
+
+void gDC::drawNativeSpinner()
+{
+	if (!m_pixmap || !m_pixmap->surface->data || islocked())
+		return;
+	const eSize screen = size();
+	if (screen.width() < 8 || screen.height() < 8)
+		return;
+	struct timespec now;
+	clock_gettime(CLOCK_MONOTONIC, &now);
+	const uint64_t milliseconds = uint64_t(now.tv_sec) * 1000 + now.tv_nsec / 1000000;
+	if (screen != m_nativeSpinnerScreen)
+	{
+		// 32 / 48 / 64 pixels at HD / FHD / WQHD: equal apparent size on the TV.
+		const int diameter = std::min(std::min(screen.width(), screen.height()), std::max(8, (32 * screen.height() + 360) / 720));
+		const int x = std::max(0, std::min(screen.width() - diameter, m_nativeSpinnerPosition.x() * screen.width() / 1280));
+		const int y = std::max(0, std::min(screen.height() - diameter, m_nativeSpinnerPosition.y() * screen.height() / 720));
+		const eSize spinnerSize(diameter, diameter);
+		m_nativeSpinnerRect = eRect(ePoint(x, y), spinnerSize);
+		m_nativeSpinnerFrame = new gPixmap(spinnerSize, 32, gPixmap::accelNever);
+		m_nativeSpinnerSaved = new gPixmap(spinnerSize, m_pixmap->surface->bpp, gPixmap::accelNever);
+		m_nativeSpinnerTemp = new gPixmap(spinnerSize, m_pixmap->surface->bpp, gPixmap::accelNever);
+		m_spinnerRenderer.resize(diameter);
+		m_nativeSpinnerScreen = screen;
+		m_nativeSpinnerVisible = false;
+	}
+	const eRect local(ePoint(0, 0), m_nativeSpinnerRect.size());
+	if (!m_nativeSpinnerVisible)
+	{
+		m_nativeSpinnerSaved->blit(*m_pixmap, eRect(-m_nativeSpinnerRect.topLeft(), eSize()), gRegion(local), 0, 0, 0);
+		m_nativeSpinnerStart = milliseconds;
+		m_nativeSpinnerVisible = true;
+	}
+	m_spinnerRenderer.render(m_nativeSpinnerFrame->surface->data, m_nativeSpinnerFrame->surface->stride, milliseconds - m_nativeSpinnerStart, m_spinnerColor.load(std::memory_order_relaxed));
+	m_nativeSpinnerTemp->blit(*m_nativeSpinnerSaved, eRect(), gRegion(local), 0, 0, 0);
+	m_nativeSpinnerTemp->blit(*m_nativeSpinnerFrame, eRect(), gRegion(local), 0, 0, gPixmap::blitAlphaBlend);
+	m_pixmap->blit(*m_nativeSpinnerTemp, eRect(m_nativeSpinnerRect.topLeft(), eSize()), gRegion(m_nativeSpinnerRect), 0, 0, 0);
 }
 
 DEFINE_REF(gDC);

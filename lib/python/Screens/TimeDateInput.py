@@ -1,11 +1,12 @@
 # Note. Do not delete because this is used by 3rd party plugins
 
-import datetime
-import time
+from datetime import datetime
+from time import localtime, mktime, time
 
 from Components.ActionMap import NumberActionMap
-from Components.config import ConfigClock, ConfigDateTime, config, getConfigListEntry
+from Components.config import ConfigClock, ConfigDateTime, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
+from Components.DateTimes import dateTimes
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 
@@ -37,11 +38,11 @@ class TimeDateInput(ConfigListScreen, Screen):
 		if conf_time:
 			self.save_mask |= 1
 		else:
-			conf_time = ConfigClock(default=time.time()),
+			conf_time = ConfigClock(default=time()),
 		if conf_date:
 			self.save_mask |= 2
 		else:
-			conf_date = ConfigDateTime(default=time.time(), formatstring=config.usage.date.dayfull.value, increment=86400)
+			conf_date = ConfigDateTime(default=time(), formatstring=dateTimes.date, increment=86400)
 		self.timeinput_date = conf_date
 		self.timeinput_time = conf_time
 
@@ -66,9 +67,9 @@ class TimeDateInput(ConfigListScreen, Screen):
 			self["config"].invalidateCurrent()
 
 	def getTimestamp(self, date, mytime):
-		d = time.localtime(date)
-		dt = datetime.datetime(d.tm_year, d.tm_mon, d.tm_mday, mytime[0], mytime[1])
-		return int(time.mktime(dt.timetuple()))
+		d = localtime(date)
+		dt = datetime(d.tm_year, d.tm_mon, d.tm_mday, mytime[0], mytime[1])
+		return int(mktime(dt.timetuple()))
 
 	def keyGo(self):
 		time = self.getTimestamp(self.timeinput_date.value, self.timeinput_time.value)

@@ -40,6 +40,7 @@ class Screen(dict):
 		self.onShown = []
 		self.onShow = []
 		self.onHide = []
+		self.activeComponents = []
 		self.execing = False
 		self.shown = True
 		self.alreadyShown = False  # Already shown is false until the screen is really shown (after creation).
@@ -165,6 +166,9 @@ class Screen(dict):
 		self.standAlone = value
 
 	def setTitle(self, title, showPath=True):
+		if isinstance(title, str) and not title.isascii():
+			# Titles may include filesystem names with undecodable bytes.
+			title = title.encode("UTF-8", errors="replace").decode("UTF-8")
 		try:  # This protects against calls to setTitle() before being fully initialized like self.session is accessed *before* being defined.
 			self.screenPath = ""
 			if self.session and len(self.session.dialog_stack) > 1:
@@ -205,7 +209,9 @@ class Screen(dict):
 				"setup": setups
 			}.get(source, screens)
 			defaultImage = images.get("default")
-			screenImage = images.get(image, defaultImage)
+			parentClassName = type(self).__base__.__name__  # Get the parent class name.
+			parentImage = images.get(parentClassName) if images is screens and parentClassName != "Screen" else None  # Check if the parent class has a pixmap or glyph.
+			screenImage = images.get(image, parentImage or defaultImage)  # Try current class name for the pixmap/glyph, if it exists in the screens list, then try the parent class, finally try the default.
 			if screenImage is not None:
 				if len(screenImage) > 1:  # Use pixmap image.
 					screenImage = resolveFilename(SCOPE_GUISKIN, screenImage)
