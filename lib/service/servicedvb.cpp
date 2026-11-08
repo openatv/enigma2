@@ -882,7 +882,7 @@ RESULT eStaticServiceDVBPVRInformation::getEvent(const eServiceReference &ref, e
 			equivalentref.path.clear();
 			return eEPGCache::getInstance()->lookupEventTime(equivalentref, start_time, evt);
 		}
-		else
+		else if (ref.path.length() >= 2)
 		{
 			ePtr<eServiceEvent> event = new eServiceEvent;
 			std::string filename = ref.path;

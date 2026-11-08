@@ -227,6 +227,8 @@ static bool isStartOfMetadata(const std::string& line) {
 }
 
 std::string eDVBMetaParser::parseTxtFile(const std::string& basename) {
+	if (basename.length() < 2)
+		return "";
 	std::string filename = basename;
 	filename.erase(filename.length() - 2, 2);
 	filename += "txt";
