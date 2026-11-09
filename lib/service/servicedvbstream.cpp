@@ -1,4 +1,6 @@
 #include <lib/service/servicedvbstream.h>
+#include <lib/base/esimpleconfig.h>
+#include <lib/dvb/demux.h>
 #include <lib/dvb/csasession.h>
 #include <lib/dvb/csaengine.h>
 #include <lib/base/eerror.h>
@@ -643,6 +645,11 @@ void eDVBServiceStream::setupSpeculativeDescrambler()
 	{
 		m_record->setDescrambler(static_cast<iServiceScrambled*>(m_csa_session.operator->()));
 		eDebug("[eDVBServiceStream] CSA session attached to recorder");
+
+		/* Latency is no concern on a stream, while an error reaches the
+		 * client as a hole. */
+		if (int delay = eSimpleConfig::getInt("config.softcsa.playbackDelay", eDVBRecordScrambledThread::AUTO_PLAYBACK_DELAY); delay != 0)
+			m_record->setPlaybackDelay(delay);
 	}
 
 	// Start ECM Monitor for CSA-ALT detection

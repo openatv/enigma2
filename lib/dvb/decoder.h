@@ -162,6 +162,7 @@ private:
 	bool m_mosaic_audio;
 #ifdef DREAMNEXTGEN
 	bool m_user_pause_active = false;
+	int m_blackout_policy = -1;   /* what it was before we held the frame */
 #endif
 	int setState();
 	ePtr<eConnection> m_demux_event_conn;
@@ -224,6 +225,8 @@ public:
 	RESULT pause(); /* -> pause */
 #ifdef DREAMNEXTGEN
 	void setUserPauseActive(bool b) override { m_user_pause_active = b; }
+	void holdLastFrame(bool on) override;
+	void afterPlaybackDelayGrown() override;
 #endif
 	RESULT setFastForward(int frames_to_skip); /* -> decoder fast forward */
 	RESULT setSlowMotion(int repeat); /* -> slow motion **/
