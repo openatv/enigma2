@@ -61,6 +61,14 @@ public:
 #ifdef DREAMNEXTGEN
 	void setUserPauseActive(bool b);
 #endif
+	/* The playback delay is growing: nothing comes out until the stream is
+	 * that much older, so the stall watchdog has to hold still. */
+	bool m_delay_settling{false};
+	void holdLastFrame(bool on);
+	void afterPlaybackDelayGrown();
+	/* Ticks of 500ms without the decoder moving before the watchdog steps in.
+	 * A stretch without a control word heals itself, so it is waited out. */
+	static const int STALL_RECOVERY_TICKS = 20;
 
 	// Audio Control
 	int setAudioPID(int pid, int type);

@@ -21,6 +21,12 @@ public:
 	 * Otherwise: passthrough (no changes to data)
 	 */
 	virtual void descramble(unsigned char*, int) = 0;
+
+	/** The stream cannot be descrambled right now and should be held back */
+	virtual bool holdPlayback() { return false; }
+
+	/** The playback delay has grown, so the periods in flight come out later */
+
 	virtual bool hasKeys() const { return true; }
 };
 

@@ -17,6 +17,7 @@
 #include <lib/base/eerror.h>
 #include <lib/base/cfile.h>
 #include <lib/dvb/idvb.h>
+#include <lib/dvb/csabuffer.h>
 #include <lib/dvb/demux.h>
 #include <lib/dvb/esection.h>
 #include <lib/dvb/decoder.h>
@@ -965,8 +966,9 @@ int eDVBRecordFileThread::_nextPart()
 	return 0;
 }
 
-int eDVBRecordFileThread::_syncWrite(int len, bool parse)
+int eDVBRecordFileThread::_syncWrite(int len, bool parse, const unsigned char *data)
 {
+	const unsigned char *src = data ? data : m_buffer;
 	// poll() only provides a readiness timeout for devices/sockets, not files.
 	if (!_fileOutput)
 	{
@@ -987,7 +989,7 @@ int eDVBRecordFileThread::_syncWrite(int len, bool parse)
 	}
 	int parseResult = 0;
 	if (parse && !getProtocol() && !m_serviceDescrambler)
-		parseResult = m_ts_parser.parseData(m_current_offset, m_buffer, len);
+		parseResult = m_ts_parser.parseData(m_current_offset, src, len);
 	if (parseResult == -2)
 	{
 		m_event(eFilePushThreadRecorder::evtStreamCorrupt);
@@ -1005,8 +1007,8 @@ int eDVBRecordFileThread::_syncWrite(int len, bool parse)
 		if (chunk && count > chunk)
 			count = chunk;
 		ssize_t result = _fileOutput
-			? ::pwrite(m_fd_dest, m_buffer + written, count, m_current_offset - _partStart)
-			: ::write(m_fd_dest, m_buffer + written, count);
+			? ::pwrite(m_fd_dest, src + written, count, m_current_offset - _partStart)
+			: ::write(m_fd_dest, src + written, count);
 		if (result > 0)
 		{
 			written += result;
@@ -1156,41 +1158,44 @@ eDVBRecordStreamThread::eDVBRecordStreamThread(int packetsize, int buffersize, b
 }
 
 
+int eDVBRecordStreamThread::syncWriteTo(const unsigned char *data, int len) const
+{
+	struct pollfd pfd = {};
+	int pos = 0;
+	int count = 0;
+
+	do
+	{
+		pfd.fd = m_fd_dest;
+		pfd.events = POLLOUT;
+		if (poll(&pfd, 1, 1000) <= 0)
+			return pos;
+
+		int w = write(m_fd_dest, data + pos, len - pos);
+
+		if (w < 0)
+		{
+			eWarning("[eDVBRecordStreamThread] writedata write error len: %d return: %d %m", len, w);
+			return len;
+		}
+
+		if (w == 0)
+		{
+			eWarning("[eDVBRecordStreamThread] writedata write eof: %d %m", len);
+			return len;
+		}
+
+		pos += w;
+		count++;
+	} while (pos < len && count < 3); // Streams should not be held up. So stop after 3 tries.
+
+	return pos;
+}
+
 int eDVBRecordStreamThread::writeData(int len)
 {
 	if(m_sync_mode)
-	{
-		struct pollfd pfd = {};
-		int pos = 0;
-		int w = 0;
-		int count = 0;
-
-		do
-		{
-			pfd.fd = m_fd_dest;
-			pfd.events = POLLOUT;
-			if (poll(&pfd, 1, 1000) <= 0)
-				return pos;
-
-			w = write(m_fd_dest, m_buffer + pos, len - pos);
-
-			if(w < 0)
-			{
-				eWarning("[eDVBRecordStreamThread] writedata write error len: %d return: %d %m", len, w);
-				return(len);
-			}
-
-			if(w == 0)
-			{
-				eWarning("[eDVBRecordStreamThread] writedata write eof: %d %m", len);
-				return(len);
-			}
-
-			pos += w;
-			count++;
-		} while (pos < len && count < 3); // Streams should not be held up. So stop after 3 tries.
-		len = pos;
-	}
+		len = syncWriteTo(m_buffer, len);
 	else
 	{
 		len = asyncWrite(len);
@@ -1274,6 +1279,7 @@ eDVBRecordScrambledThread::eDVBRecordScrambledThread(int packetsize, int buffers
 eDVBRecordScrambledThread::~eDVBRecordScrambledThread()
 {
 	stop();
+	delete m_delay_buffer;
 	pthread_cond_destroy(&m_data_ready_cond);
 	pthread_mutex_destroy(&m_data_ready_mutex);
 }
@@ -1314,8 +1320,137 @@ bool eDVBRecordScrambledThread::waitForFirstData(int timeout_ms)
 	return true;
 }
 
+void eDVBRecordScrambledThread::setPlaybackDelay(int delay_ms)
+{
+	delete m_delay_buffer;
+	m_delay_buffer = nullptr;
+	m_delay_auto = false;
+	m_delay_config = delay_ms;
+	m_delay_restart = false;
+	m_delay_settling = false;
+
+	if (delay_ms == AUTO_PLAYBACK_DELAY)
+	{
+		/* Start small; a late control word buys what it needed. */
+		m_delay_auto = true;
+		delay_ms = AUTO_PLAYBACK_START_MS;
+	}
+	else if (delay_ms <= 0)
+		return;
+
+	if (delay_ms > MAX_PLAYBACK_DELAY_MS)
+	{
+		eDebug("[eDVBRecordScrambledThread] playback delay %d ms capped to %d ms", delay_ms, MAX_PLAYBACK_DELAY_MS);
+		delay_ms = MAX_PLAYBACK_DELAY_MS;
+	}
+
+	m_delay_buffer = new eDVBCSABuffer(delay_ms, m_buffersize);
+	m_delay_buffer->setMaxDelayMs(MAX_PLAYBACK_DELAY_MS);
+	m_delay_buffer->setConsumer([this](unsigned char *d, int l) { consumeDelayed(d, l); });
+	m_delay_buffer->setHoldQuery([this]() {
+		return m_serviceDescrambler && m_serviceDescrambler->holdPlayback();
+	});
+
+	if (!m_delay_buffer->start())
+	{
+		eWarning("[eDVBRecordScrambledThread] playback delay failed to start, running without");
+		delete m_delay_buffer;
+		m_delay_buffer = nullptr;
+		return;
+	}
+
+	eDebug("[eDVBRecordScrambledThread] playback delay active: %dms%s", delay_ms,
+		m_delay_auto ? " (automatic)" : "");
+}
+
+/* flush() stopped the buffer thread and the restart reuses this recorder:
+ * without a rebuild the data goes into a line nothing comes out of. */
+void eDVBRecordScrambledThread::restartPlaybackDelay()
+{
+	m_delay_restart = false;
+
+	if (!m_delay_buffer)
+		return;
+
+	eWarning("[eDVBRecordScrambledThread] writer restarted, playback delay starts over");
+	setPlaybackDelay(m_delay_config);
+}
+
+/* Buffer thread: a chunk has come due. What writeData() would have done,
+ * on the buffer's copy rather than m_buffer. */
+void eDVBRecordScrambledThread::consumeDelayed(unsigned char *data, int len)
+{
+	if (m_serviceDescrambler)
+	{
+		m_serviceDescrambler->descramble(data, len);
+
+		if (!getProtocol())
+			m_ts_parser.parseData(m_current_offset, data, len);
+	}
+
+	signalFirstData(m_is_streaming ? syncWriteTo(data, len)
+		: _syncWrite(len, false, data));
+
+	if (!m_delay_buffer)
+		return;
+
+	/* Nothing here could be descrambled, so hold the stream until a word
+	 * opens it. The wait is what grows the delay. */
+	const bool hold = m_serviceDescrambler && m_serviceDescrambler->holdPlayback();
+
+	m_delay_buffer->setHold(hold);
+
+	/* Tied to the buffer, not to the verdict: at the ceiling it gives the
+	 * period up without ever holding, and no release would follow. */
+	if (m_delay_buffer->holding() && !m_delay_settling)
+	{
+		m_delay_settling = true;
+		sendEvent(eFilePushThreadRecorder::evtDelayGrowing);
+	}
+
+	/* The stream runs again and the decoder has played out. */
+	if (m_delay_buffer->takeDelayGrown())
+	{
+		const int held = m_delay_buffer->heldMs();
+
+		m_delay_settling = false;
+		sendEvent(eFilePushThreadRecorder::evtDelayGrown);
+
+		/* A hold the decoders bridge from their own buffers needs no repair, and
+		 * setting them up again would blank the screen for nothing. */
+		if (held > HOLD_BRIDGE_MS)
+			sendEvent(eFilePushThreadRecorder::evtPlaybackDrained);
+	}
+}
+
+void eDVBRecordScrambledThread::signalFirstData(int written)
+{
+	if (written <= 0 || m_first_data_written)
+		return;
+
+	pthread_mutex_lock(&m_data_ready_mutex);
+	if (!m_first_data_written)
+	{
+		m_first_data_written = true;
+		eDebug("[eDVBRecordScrambledThread] First data written (%d bytes), signaling", written);
+		pthread_cond_signal(&m_data_ready_cond);
+	}
+	pthread_mutex_unlock(&m_data_ready_mutex);
+}
+
 int eDVBRecordScrambledThread::writeData(int len)
 {
+	if (m_delay_restart)
+		restartPlaybackDelay();
+
+	/* Only queue here and return at once; the buffer thread descrambles and
+	 * writes once the chunk is due. */
+	if (m_delay_buffer)
+	{
+		m_delay_buffer->push(m_buffer, len);
+		return len;
+	}
+
 	// Descramble if we have a descrambler - ignore return value
 	// This allows CI+, StreamRelay and FTA to pass through unchanged
 	// (data is already clear or hardware-descrambled)
@@ -1340,23 +1475,21 @@ int eDVBRecordScrambledThread::writeData(int len)
 		ret = eDVBRecordFileThread::writeData(len);
 
 	// Signal first data written (for decoder sync)
-	if (ret > 0 && !m_first_data_written)
-	{
-		pthread_mutex_lock(&m_data_ready_mutex);
-		if (!m_first_data_written)
-		{
-			m_first_data_written = true;
-			eDebug("[eDVBRecordScrambledThread] First data written (%d bytes), signaling", ret);
-			pthread_cond_signal(&m_data_ready_cond);
-		}
-		pthread_mutex_unlock(&m_data_ready_mutex);
-	}
+	signalFirstData(ret);
 
 	return ret;
 }
 
 void eDVBRecordScrambledThread::flush()
 {
+	/* Filepush thread, before the target fd is closed. The buffer thread
+	 * writes to that fd and has to be gone by now. */
+	if (m_delay_buffer)
+	{
+		m_delay_buffer->stop();
+		m_delay_restart = true;
+	}
+
 	if (_fileOutput && !m_is_streaming && !m_discard_on_timeout)
 		eDVBRecordFileThread::flush();
 	else
@@ -1686,6 +1819,15 @@ void eDVBTSRecorder::filepushEvent(int event)
 		eDebug("[eDVBTSRecorder] Stream corruption detected, emitting signal!");
 		m_event(eventStreamCorrupt);
 		break;
+	case eFilePushThreadRecorder::evtDelayGrowing:
+		m_event(eventDelayGrowing);
+		break;
+	case eFilePushThreadRecorder::evtDelayGrown:
+		m_event(eventDelayGrown);
+		break;
+	case eFilePushThreadRecorder::evtPlaybackDrained:
+		m_event(eventPlaybackDrained);
+		break;
 	}
 }
 
@@ -1693,6 +1835,12 @@ RESULT eDVBTSRecorder::setDescrambler(ePtr<iServiceScrambled> serviceDescrambler
 {
 	m_thread->setDescrambler(serviceDescrambler);
 	return 0;
+}
+
+void eDVBTSRecorder::setPlaybackDelay(int delay_ms)
+{
+	// Virtual - a no-op on threads that do not descramble.
+	m_thread->setPlaybackDelay(delay_ms);
 }
 
 void eDVBTSRecorder::setDiscardOnTimeout(bool discard)
