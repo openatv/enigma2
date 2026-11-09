@@ -1182,18 +1182,27 @@ class InfoBarTimeshift:
 		return freespace
 
 	def ptsGetEventInfo(self):
+		# Do not carry an event ID or recording end time across channels without EPG.
+		self.pts_curevent_begin = int(self.pts_starttime)
+		self.pts_curevent_end = 0
+		self.pts_curevent_description = ""
+		self.pts_curevent_eventid = None
+		self.pts_curevent_servicerefname = ""
+		self.pts_curevent_station = ""
 		event = None
 		try:
-			serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			serviceHandler = eServiceCenter.getInstance()
-			info = serviceHandler.info(serviceref)
-			self.pts_curevent_servicerefname = serviceref.toString()
-			self.pts_curevent_station = info.getName(serviceref)
+			serviceRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			if serviceRef is not None:
+				self.pts_curevent_servicerefname = serviceRef.toString()
+				info = eServiceCenter.getInstance().info(serviceRef)
+				if info:
+					self.pts_curevent_station = info.getName(serviceRef)
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()
 			event = info and info.getEvent(0)
 		except Exception as err:
 			print(f"[Timeshift] Getting event information failed: {err}")
+		self.pts_curevent_name = self.pts_curevent_station or _("Timeshift")
 		if event is not None:
 			curEvent = parseEvent(event)
 			self.pts_curevent_begin = int(curEvent[0])
