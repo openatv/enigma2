@@ -2410,7 +2410,9 @@ def readSkin(screen, skin, names, desktop):
 			stackOrder += 1
 			pos = widget.attrib.get("position", "")
 			align = eWidget.eStackAlignNone
-			if stack.layout == 0:  # horizontal
+			if pos == "fill":  # Takes the space the other children leave over, the stack resizes it at runtime.
+				align = eWidget.eStackAlignFill | (eWidget.eStackAlignLeft if stack.layout == 0 else eWidget.eStackAlignTop)
+			elif stack.layout == 0:  # horizontal
 				if "left" in pos:
 					align = eWidget.eStackAlignLeft
 				elif "right" in pos:
