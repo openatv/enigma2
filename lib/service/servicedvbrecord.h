@@ -85,6 +85,9 @@ private:
 
 	int doPrepare();
 	int doRecord();
+	void retryProgramInfo();
+	ePtr<eTimer> m_programInfoRetryTimer;
+	unsigned int m_programInfoRetries;
 	void updatePvrDescrambleMeta(const eDVBServicePMTHandler::program &program);
 	void updateDecoder();
 

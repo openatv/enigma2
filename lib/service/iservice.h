@@ -1099,6 +1099,7 @@ public:
 		errMisconfiguration = -256,
 		errNoResources = -257,
 		errNoCiConnected = -258,
+		errNoProgramInfo = -259,
 	};
 };
 
