@@ -2,7 +2,10 @@
 #define _hdmi_cec_h
 
 #ifndef SWIG
+#include <atomic>
+#include <chrono>
 #include <condition_variable>
+#include <cstdint>
 #include <deque>
 #include <mutex>
 #include <thread>
@@ -123,10 +126,13 @@ protected:
 	/* with the logical address it was sent from */
 	std::deque<std::pair<struct cec_message, unsigned char>> sendQueue;
 	bool sendStop;
+	std::chrono::steady_clock::time_point sendDeadline;
+	/* bit per logical address whose transmit timed out, cleared when it sends something */
+	std::atomic<uint16_t> unreachableAddresses;
 	void startSendThread();
 	void stopSendThread();
 	void sendThreadLoop();
-	void transmitMessage(const struct cec_message &message, unsigned char source) const;
+	int transmitMessage(const struct cec_message &message, unsigned char source) const;
 #endif
 	static eHdmiCEC *instance;
 	bool linuxCEC;
