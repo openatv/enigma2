@@ -145,8 +145,7 @@ public:
 		begin(m);
 		m_demux = demux;
 		m_reader = 0;
-		next->start(demux, spec);
-		return 0;
+		return next->start(demux, spec);
 	}
 
 	int begin(eMainloop *m, const eDVBTableSpec &spec, ePtr<iDVBSectionReader> reader)
@@ -154,8 +153,7 @@ public:
 		begin(m);
 		m_demux = 0;
 		m_reader = reader;
-		next->start(reader, spec);
-		return 0;
+		return next->start(reader, spec);
 	}
 
 	int get()
@@ -208,9 +206,10 @@ public:
 		if (error)
 		{
 			next=0;
-			if (first)
-				/*emit*/ tableReady(error);
+			bool notify = first;
 			first=0;
+			if (notify)
+				/*emit*/ tableReady(error);
 			return;
 		} else
 			current=next;

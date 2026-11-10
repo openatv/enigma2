@@ -38,6 +38,7 @@ void eGTable::sectionRead(const uint8_t *d)
 
 void eGTable::timeout()
 {
+	ePtr<eGTable> self = this;
 	TABLE_eDebug("[eGTable] timeout %04x!", m_table.pid);
 	if (m_reader)
 	{

@@ -388,7 +388,9 @@ class RecordTimer(Timer):
 			if getattr(timer, "tunerHandoff", None):
 				timer.tunerHandoff.finish(False)
 			if timer.repeated:
-				timer.processRepeated()
+				timer.processRepeated(findNextEvent=timer.failed)
+				timer.failed = False
+				timer.lastend = 0
 				timer.state = RecordTimerEntry.StateWaiting
 				timer.first_try_prepare = 0  # Changed from a Boolean to a counter, not renamed for compatibility with OpenWebif.
 				timer.messageBoxAnswerPending = False
@@ -1092,7 +1094,7 @@ class RecordTimerEntry(TimerEntry):
 				return True
 		elif nextState == self.StateEnded or nextState == self.StateFailed:
 			oldEnd = self.end
-			if self.setAutoincreaseEnd():
+			if not self.failed and self.setAutoincreaseEnd():
 				self.log(12, f"Auto increase recording length {int((self.end - oldEnd) / 60)} minute(s).")
 				self.state -= 1
 				return True
@@ -1666,7 +1668,7 @@ class RecordTimerEntry(TimerEntry):
 
 	def gotRecordEvent(self, record, event):
 		# DEBUG: This is not working (never true), please fix. (Comparing two swig wrapped ePtrs.)
-		if record is None or self.__record_service.__deref__() != record.__deref__():
+		if record is None or self.__record_service is None or self.__record_service.__deref__() != record.__deref__():
 			return
 		# self.log(16, f"Record event {event}.")
 		if event == iRecordableService.evRecordWriteError:
@@ -1686,6 +1688,19 @@ class RecordTimerEntry(TimerEntry):
 			# Okay, the recording has been stopped. We need to properly note that in our
 			# state, with also keeping the possibility to re-try.
 			# DEBUG: This has to be done!
+		elif event == iRecordableService.evRecordFailed and record.getError() == iRecordableService.errNoProgramInfo:
+			NavigationInstance.instance.stopRecordService(self.record_service)
+			self.record_service = None
+			self.failed = True
+			self.lastend = self.end
+			self.end = int(time()) + 5
+			# Complete through the normal end state, including timers still preparing.
+			self.state = self.StateRunning
+			self.backoff = 0
+			self.log(16, "Recording stopped: no programme information after repeated attempts.")
+			AddPopup(text=_("Recording failed because the channel's programme information could not be received.\n%s") % self.name, type=MessageBox.TYPE_ERROR, timeout=20, id="RecordingProgramInfo")
+			NavigationInstance.instance.RecordTimer.timer_list.sort()
+			NavigationInstance.instance.RecordTimer.calcNextActivation()
 		elif event == iRecordableService.evStart:
 			if self.pvrConvert:
 				return
