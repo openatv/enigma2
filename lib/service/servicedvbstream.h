@@ -18,7 +18,7 @@ class eDVBServiceStream: public eDVBServiceBase, public sigc::trackable
 public:
 	eDVBServiceStream();
 	~eDVBServiceStream();
-	int start(const char *serviceref, int fd);
+	int start(const char *serviceref, int fd, bool isStreamRelay = false);
 	int stop();
 	RESULT frontendInfo(ePtr<iFrontendInformation>& ptr);
 
@@ -38,6 +38,8 @@ protected:
 	std::set<int> m_pids_active;
 
 	int m_target_fd;
+
+	bool m_is_streamrelay = false;
 
 	int doPrepare();
 	int doRecord();

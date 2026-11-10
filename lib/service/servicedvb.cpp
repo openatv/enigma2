@@ -76,6 +76,20 @@ using namespace std;
 #define SUBT_TXT_ABNORMAL_PTS_DIFFS 1800000
 #endif
 
+static unsigned long s_streamrelay_session_id = 0;
+
+static bool isStreamRelayUrl(const std::string &url)
+{
+	if (url.compare(0, 7, "http://"))
+		return false;
+
+	const std::string host = eSimpleConfig::getString("config.misc.softcam_streamrelay_url", "127.0.0.1");
+	const int port = eSimpleConfig::getInt("config.misc.softcam_streamrelay_port", 17999);
+	const std::string relay = "http://" + host + ":" + std::to_string(port) + "/";
+
+	return url.compare(0, relay.size(), relay) == 0;
+}
+
 class eStaticServiceDVBInformation: public iStaticServiceInformation
 {
 	DECLARE_REF(eStaticServiceDVBInformation);
@@ -2161,6 +2175,12 @@ RESULT eDVBServicePlay::start()
 
 		if(config_descramble_client)
 			scrambled = true;
+
+		if (m_reference.getIsStreamRelay() || isStreamRelayUrl(service.path))
+		{
+			service.path += "?srsid=" + std::to_string(++s_streamrelay_session_id);
+			eDebug("[eDVBServicePlay] StreamRelay request: %s", service.path.c_str());
+		}
 
 		type = eDVBServicePMTHandler::streamclient;
 	}
