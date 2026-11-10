@@ -29,6 +29,17 @@
 #define AML_CEC_IOC_CLR_LOGICAL_ADDR    _IOW(AML_CEC_IOC_MAGIC, 0x0c, uint32_t)
 #define AML_CEC_IOC_SET_DEVICE_TYPE     _IOW(AML_CEC_IOC_MAGIC, 0x0d, uint32_t)
 
+/* write() returns one of these instead of a byte count */
+#define AML_CEC_TX_OK                   0
+#define AML_CEC_TX_NACK                 1
+#define AML_CEC_TX_BUSY                 2
+#define AML_CEC_TX_TIMEOUT              3
+/* how long the driver waits for one frame */
+#define AML_CEC_FRAME_TIMEOUT           std::chrono::seconds(5)
+
+/* time the queue may still take on exit */
+#define CEC_SEND_STOP_DEADLINE          std::chrono::seconds(5)
+
 static const uint32_t *getLogicalAddressCandidates(unsigned char deviceType, size_t &addressCount)
 {
 	static const uint32_t tvAddresses[] = { CEC_LOG_ADDR_TV };
@@ -75,6 +86,21 @@ static int configureAmlogicCEC(int fd, unsigned char deviceType)
 			return addresses[i];
 	}
 	return -1;
+}
+
+static const char *getAmlogicStatusText(int status)
+{
+	switch (status)
+	{
+	case AML_CEC_TX_NACK:
+		return "no acknowledge";
+	case AML_CEC_TX_BUSY:
+		return "bus busy";
+	case AML_CEC_TX_TIMEOUT:
+		return "timeout";
+	default:
+		return "unknown";
+	}
 }
 
 static int hexValue(char value)
@@ -142,6 +168,7 @@ eHdmiCEC::eHdmiCEC()
 	amlogicCEC = false;
 	eventsSuspended = false;
 	sendStop = false;
+	unreachableAddresses = 0;
 	hdmiFd = -1;
 	fixedAddress = false;
 	cecEnabled = false;
@@ -297,7 +324,7 @@ void eHdmiCEC::initializeCEC()
 	{
 		messageNotifier = eSocketNotifier::create(eApp, hdmiFd, eSocketNotifier::Read | eSocketNotifier::Priority);
 		CONNECT(messageNotifier->activated, eHdmiCEC::hdmiEvent);
-		/* AOCEC write() waits for the follower's answer, up to half a second without one */
+		/* AOCEC write() blocks until the frame is acknowledged, several seconds on a hanging bus */
 		if (amlogicCEC)
 			startSendThread();
 	}
@@ -652,6 +679,8 @@ void eHdmiCEC::hdmiEvent(int what)
 				if (length >= 2 && length <= (ssize_t)sizeof(frame))
 				{
 					rxmessage.address = (frame[0] >> 4) & 0x0f;
+					if (uint16_t addressBit = (uint16_t)(1 << rxmessage.address); unreachableAddresses.fetch_and((uint16_t)~addressBit) & addressBit)
+						eDebug("[eHdmiCEC] device %X answers again", (unsigned int)rxmessage.address);
 					rxmessage.length = length - 1;
 					memcpy(rxmessage.data, &frame[1], rxmessage.length);
 					hasdata = true;
@@ -871,7 +900,7 @@ void eHdmiCEC::startSendThread()
 	sendThread = std::jthread(&eHdmiCEC::sendThreadLoop, this);
 }
 
-/* sends what is still queued, e.g. the standby of the TV, then ends the thread */
+/* sends what is still queued, e.g. the standby of the TV, for up to 5 s, then ends the thread */
 void eHdmiCEC::stopSendThread()
 {
 	if (!sendThread.joinable())
@@ -879,6 +908,7 @@ void eHdmiCEC::stopSendThread()
 	{
 		std::scoped_lock lock(sendMutex);
 		sendStop = true;
+		sendDeadline = std::chrono::steady_clock::now() + CEC_SEND_STOP_DEADLINE;
 	}
 	sendCondition.notify_one();
 	sendThread.join();
@@ -890,19 +920,38 @@ void eHdmiCEC::sendThreadLoop()
 	while (true)
 	{
 		sendCondition.wait(lock, [this] { return sendStop || !sendQueue.empty(); });
+		if (sendStop && !sendQueue.empty() && std::chrono::steady_clock::now() >= sendDeadline)
+		{
+			eDebug("[eHdmiCEC] dropping %u queued messages on exit", (unsigned int)sendQueue.size());
+			sendQueue.clear();
+		}
 		if (sendQueue.empty())
 			break;
 		struct cec_message message = sendQueue.front().first;
 		unsigned char source = sendQueue.front().second;
 		sendQueue.pop_front();
 		lock.unlock();
-		transmitMessage(message, source);
+		unsigned int destination = message.address & 0x0f;
+		uint16_t addressBit = (uint16_t)(1 << destination);
+		/* the TV and broadcasts are always sent */
+		if (bool skippable = destination != CEC_LOG_ADDR_TV && destination != CEC_LOG_ADDR_BROADCAST; skippable && (unreachableAddresses & addressBit))
+			eDebug("[eHdmiCEC] skip message to %X, its last transmit timed out", destination);
+		else
+		{
+			std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
+			int status = transmitMessage(message, source);
+			/* a retry after a timeout may end as busy instead */
+			bool timedOut = status == AML_CEC_TX_TIMEOUT || (status != AML_CEC_TX_OK && std::chrono::steady_clock::now() - start >= AML_CEC_FRAME_TIMEOUT);
+			if (timedOut && skippable)
+				unreachableAddresses |= addressBit;
+		}
 		lock.lock();
 	}
 }
 
-void eHdmiCEC::transmitMessage(const struct cec_message &message, unsigned char source) const
+int eHdmiCEC::transmitMessage(const struct cec_message &message, unsigned char source) const
 {
+	int transmitStatus = 0;
 	if (linuxCEC)
 	{
 		struct cec_msg msg;
@@ -942,6 +991,7 @@ void eHdmiCEC::transmitMessage(const struct cec_message &message, unsigned char 
 		frame[0] = ((source & 0x0f) << 4) | (message.address & 0x0f);
 		memcpy(&frame[1], message.data, payloadLength);
 
+		/* the driver retries on its own, so only a failed call is repeated */
 		ssize_t status = -1;
 		for (int attempt = 0; attempt < 3; ++attempt)
 		{
@@ -950,15 +1000,21 @@ void eHdmiCEC::transmitMessage(const struct cec_message &message, unsigned char 
 				status = ::write(hdmiFd, frame, payloadLength + 1);
 			}
 			while (status < 0 && errno == EINTR);
-			if (status == 0 || status == payloadLength + 1)
+			if (status >= 0)
 				break;
 			if (attempt < 2)
 				usleep(10000);
 		}
 		if (status < 0)
+		{
 			eDebug("[eHdmiCEC] Amlogic AOCEC transmit failed: %m");
-		else if (status != 0 && status != payloadLength + 1)
-			eDebug("[eHdmiCEC] Amlogic AOCEC transmit failed, status %d", (int)status);
+			transmitStatus = -1;
+		}
+		else if (status != AML_CEC_TX_OK)
+		{
+			eDebug("[eHdmiCEC] Amlogic AOCEC transmit to %X failed: %s (%d)", (unsigned int)message.address, getAmlogicStatusText((int)status), (int)status);
+			transmitStatus = (int)status;
+		}
 	}
 	else
 	{
@@ -971,6 +1027,7 @@ void eHdmiCEC::transmitMessage(const struct cec_message &message, unsigned char 
 		if (ret < 0) eDebug("[eHdmiCEC] write failed: %m");
 #endif
 	}
+	return transmitStatus;
 }
 
 void eHdmiCEC::sendMessage(unsigned char address, unsigned char cmd, char *data, int length)

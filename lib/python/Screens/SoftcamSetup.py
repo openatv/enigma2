@@ -67,16 +67,18 @@ class CamSetupCommon(Setup):
 	def __init__(self, session, setup):
 		self.switchTimer = eTimer()
 		self.oldServiceRef = None
+		self.camActionPending = False
 		Setup.__init__(self, session=session, setup=setup)
 		self["key_yellow"] = StaticText()
 		self["restartActions"] = HelpableActionMap(self, ["ColorActions"], {
 			"yellow": (self.keyRestart, _("Immediately restart selected devices."))
 		}, prio=0, description=_("Softcam Actions"))
 		self["restartActions"].setEnabled(False)
+		self.actionMaps.extend(("helpActions", "restartActions"))
 
 	def updateRestartButton(self, canrestart):
 		self["key_yellow"].setText(_("Restart") if canrestart else "")
-		self["restartActions"].setEnabled(canrestart)
+		self["restartActions"].setEnabled(canrestart and not self.camActionPending)
 
 	def keyRestart(self):  # This function needs to overwrite
 		pass
@@ -93,6 +95,8 @@ class CamSetupCommon(Setup):
 		Setup.changedEntry(self)
 
 	def showProcess(self, stopService):
+		self.camActionPending = True
+		self.suspendAllActionMaps()  # The processing overlay does not block input.
 		if stopService:
 			self.oldServiceRef = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			self.session.nav.stopService()
@@ -127,9 +131,12 @@ class CardserverSetup(CamSetupCommon):
 	def restartDone(self, exitCode=None):
 		if self.oldServiceRef:
 			self.session.nav.playService(self.oldServiceRef, adjust=False)
+		self.oldServiceRef = None
 		self.saveAll()
 		updateSysSoftCam()
 		Processing.instance.hideProgress()
+		self.camActionPending = False
+		self.resumeAllActionMaps()
 
 	def saveDone(self, exitCode=None):
 		self.restartDone()
@@ -157,6 +164,7 @@ class SoftcamSetup(CamSetupCommon):
 			"blue": (self.softcamInfo, _("Display oscam information."))
 		}, prio=0, description=_("Softcam Actions"))
 		self["infoActions"].setEnabled(False)
+		self.actionMaps.append("infoActions")
 		(newEcmFound, ecmInfo) = self.ecminfo.getEcm()
 		self["info"] = ScrollLabel("".join(ecmInfo))
 		self.EcmInfoPollTimer = eTimer()
@@ -182,14 +190,17 @@ class SoftcamSetup(CamSetupCommon):
 	def restartDone(self, exitCode=None):
 		if self.oldServiceRef:
 			self.session.nav.playService(self.oldServiceRef, adjust=False)
+		self.oldServiceRef = None
 		self.saveAll()
 		updateSysSoftCam()
 		Processing.instance.hideProgress()
+		self.camActionPending = False
+		self.resumeAllActionMaps()
 
 	def updateButtons(self):
 		valid = config.misc.softcams.value and config.misc.softcams.value.lower() != "none"
 		self["key_blue"].setText(_("Info") if valid else "")
-		self["infoActions"].setEnabled(valid)
+		self["infoActions"].setEnabled(valid and not self.camActionPending)
 		self.updateRestartButton(valid)
 
 	def softcamInfo(self):
