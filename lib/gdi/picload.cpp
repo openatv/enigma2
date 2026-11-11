@@ -1262,6 +1262,10 @@ RESULT ePicLoad::getThumbnail(const char* file, int x, int y, bool async) {
 
 PyObject* ePicLoad::getInfo(const char* filename) {
 	ePyObject list;
+	// EXIF text can contain legacy encodings or truncated UTF-8.
+	auto decodeText = [](const char* text) {
+		return PyUnicode_DecodeUTF8(text, strlen(text), "replace");
+	};
 
 	// FIXME : m_filepara destroyed by getData. Need refactor this but plugins rely in it :(
 	getExif(filename, m_filepara ? m_filepara->id : -1);
@@ -1269,44 +1273,52 @@ PyObject* ePicLoad::getInfo(const char* filename) {
 		char tmp[256];
 		int pos = 0;
 		list = PyList_New(23);
-		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(filename));
-		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(m_exif->m_exifinfo->Version));
-		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(m_exif->m_exifinfo->CameraMake));
-		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(m_exif->m_exifinfo->CameraModel));
-		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(m_exif->m_exifinfo->DateTime));
+		if (!list)
+			return nullptr;
+		PyList_SET_ITEM(list, pos++, decodeText(filename));
+		PyList_SET_ITEM(list, pos++, decodeText(m_exif->m_exifinfo->Version));
+		PyList_SET_ITEM(list, pos++, decodeText(m_exif->m_exifinfo->CameraMake));
+		PyList_SET_ITEM(list, pos++, decodeText(m_exif->m_exifinfo->CameraModel));
+		PyList_SET_ITEM(list, pos++, decodeText(m_exif->m_exifinfo->DateTime));
 		PyList_SET_ITEM(list, pos++, PyUnicode_FromFormat("%d x %d", m_exif->m_exifinfo->Width, m_exif->m_exifinfo->Height));
-		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(m_exif->m_exifinfo->FlashUsed));
-		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(m_exif->m_exifinfo->Orientation));
-		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(m_exif->m_exifinfo->Comments));
-		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(m_exif->m_exifinfo->MeteringMode));
-		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(m_exif->m_exifinfo->ExposureProgram));
-		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(m_exif->m_exifinfo->LightSource));
+		PyList_SET_ITEM(list, pos++, decodeText(m_exif->m_exifinfo->FlashUsed));
+		PyList_SET_ITEM(list, pos++, decodeText(m_exif->m_exifinfo->Orientation));
+		PyList_SET_ITEM(list, pos++, decodeText(m_exif->m_exifinfo->Comments));
+		PyList_SET_ITEM(list, pos++, decodeText(m_exif->m_exifinfo->MeteringMode));
+		PyList_SET_ITEM(list, pos++, decodeText(m_exif->m_exifinfo->ExposureProgram));
+		PyList_SET_ITEM(list, pos++, decodeText(m_exif->m_exifinfo->LightSource));
 		PyList_SET_ITEM(list, pos++, PyUnicode_FromFormat("%d", m_exif->m_exifinfo->CompressionLevel));
 		PyList_SET_ITEM(list, pos++, PyUnicode_FromFormat("%d", m_exif->m_exifinfo->ISOequivalent));
 		snprintf(tmp, sizeof(tmp) - 1, "%.2f", m_exif->m_exifinfo->Xresolution);
-		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(tmp));
+		PyList_SET_ITEM(list, pos++, decodeText(tmp));
 		snprintf(tmp, sizeof(tmp) - 1, "%.2f", m_exif->m_exifinfo->Yresolution);
-		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(tmp));
-		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(m_exif->m_exifinfo->ResolutionUnit));
+		PyList_SET_ITEM(list, pos++, decodeText(tmp));
+		PyList_SET_ITEM(list, pos++, decodeText(m_exif->m_exifinfo->ResolutionUnit));
 		snprintf(tmp, sizeof(tmp) - 1, "%.2f", m_exif->m_exifinfo->Brightness);
-		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(tmp));
+		PyList_SET_ITEM(list, pos++, decodeText(tmp));
 		snprintf(tmp, sizeof(tmp) - 1, "%.5f sec.", m_exif->m_exifinfo->ExposureTime);
-		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(tmp));
+		PyList_SET_ITEM(list, pos++, decodeText(tmp));
 		snprintf(tmp, sizeof(tmp) - 1, "%.5f", m_exif->m_exifinfo->ExposureBias);
-		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(tmp));
+		PyList_SET_ITEM(list, pos++, decodeText(tmp));
 		snprintf(tmp, sizeof(tmp) - 1, "%.5f", m_exif->m_exifinfo->Distance);
-		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(tmp));
+		PyList_SET_ITEM(list, pos++, decodeText(tmp));
 		snprintf(tmp, sizeof(tmp) - 1, "%.5f", m_exif->m_exifinfo->CCDWidth);
-		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(tmp));
+		PyList_SET_ITEM(list, pos++, decodeText(tmp));
 		snprintf(tmp, sizeof(tmp) - 1, "%.2f", m_exif->m_exifinfo->ApertureFNumber);
-		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(tmp));
+		PyList_SET_ITEM(list, pos++, decodeText(tmp));
 	} else {
 		list = PyList_New(2);
-		PyList_SET_ITEM(list, 0, PyUnicode_FromString(filename));
-		PyList_SET_ITEM(list, 1, PyUnicode_FromString(m_exif->m_szLastError));
+		if (!list)
+			return nullptr;
+		PyList_SET_ITEM(list, 0, decodeText(filename));
+		PyList_SET_ITEM(list, 1, decodeText(m_exif->m_szLastError));
 	}
 
-	return list ? (PyObject*)list : (PyObject*)PyList_New(0);
+	if (PyErr_Occurred()) {
+		Py_DECREF(list);
+		return nullptr;
+	}
+	return list;
 }
 
 bool ePicLoad::getExif(const char* filename, int fileType, int Thumb) {
