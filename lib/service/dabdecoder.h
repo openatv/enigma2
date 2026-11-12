@@ -50,6 +50,9 @@ public:
 	uint64_t slides() const { return m_slides; }
 	int slideFormat() const { return m_slide_format; }
 	int bitrate() const { return m_selected_bitrate; }
+	int subchannelId() const { return m_selected_subchannel; }
+	int capacityUnitStart() const { return m_selected_start_address; }
+	int capacityUnitSize() const { return m_selected_cu_size; }
 	int language() const;
 	int programmeType() const;
 	int programmeTypeTable() const { return m_programme_type_table; }
@@ -175,6 +178,7 @@ private:
 	std::string m_ensemble_label;
 	int m_selected_subchannel;
 	int m_selected_start_address;
+	int m_selected_cu_size;
 	int m_selected_bitrate;
 	bool m_selected_dabplus;
 	eDABAudioFormat m_audio_format;

@@ -444,7 +444,10 @@ public:
 		sDABDynamicLabel = sUser + 10,
 		sDABPTY = sUser + 11,
 		sDABPTYTable = sUser + 12,
-		sDABSampleRate = sUser + 13 /* source audio sample rate in Hz, after SBR */
+		sDABSampleRate = sUser + 13, /* source audio sample rate in Hz, after SBR */
+		sDABSubChId = sUser + 14,
+		sDABCuStart = sUser + 15, /* first capacity unit of the selected audio subchannel */
+		sDABCuSize = sUser + 16 /* number of capacity units of the selected audio subchannel */
 	};
 	enum {
 		resNA = -1,

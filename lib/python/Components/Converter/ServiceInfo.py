@@ -71,6 +71,9 @@ class ServiceInfo(Converter):
 	DAB_SAMPLE_RATE = 57
 	DAB_CHANNEL_MODE = 58
 	DAB_STEREO = 59
+	DAB_SUBCH_ID = 60
+	DAB_CU_SIZE = 61
+	DAB_CU_RANGE = 62
 	DAB_TEXT_FIELDS = {
 		"DABArtist": iServiceInformation.sTagArtist,
 		"DABBitrate": iServiceInformation.sTagBitrate,
@@ -104,12 +107,15 @@ class ServiceInfo(Converter):
 			"AudioPid": (self.APID, (iPlayableService.evUpdatedInfo,)),
 			"AudioTracksAvailable": (self.AUDIOTRACKS_AVAILABLE, (iPlayableService.evUpdatedInfo,)),
 			"DABChannelMode": (self.DAB_CHANNEL_MODE, (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evUpdatedInfo)),
+			"DABCuRange": (self.DAB_CU_RANGE, (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evUpdatedInfo)),
+			"DABCuSize": (self.DAB_CU_SIZE, (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evUpdatedInfo)),
 			"DABEnsembleId": (self.DAB_ENSEMBLE_ID, (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evUpdatedInfo)),
 			"DABLanguage": (self.DAB_LANGUAGE, (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evUpdatedInfo)),
 			"DABPTY": (self.DAB_PTY, (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evUpdatedInfo)),
 			"DABProtection": (self.DAB_PROTECTION, (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evUpdatedInfo)),
 			"DABSampleRate": (self.DAB_SAMPLE_RATE, (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evUpdatedInfo)),
 			"DABStereo": (self.DAB_STEREO, (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evUpdatedInfo)),
+			"DABSubChId": (self.DAB_SUBCH_ID, (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evUpdatedInfo)),
 			"DABTechnical": (self.DAB_TECHNICAL, (iPlayableService.evStart, iPlayableService.evEnd, iPlayableService.evUpdatedInfo)),
 			"EditMode": (self.EDITMODE, (iPlayableService.evUpdatedInfo,)),
 			"Editmode": (self.EDITMODE, (iPlayableService.evUpdatedInfo,)),
@@ -199,7 +205,7 @@ class ServiceInfo(Converter):
 		if self.token == self.DAB_STEREO:
 			serviceRef = info.getInfoString(iServiceInformation.sServiceref) if info else ""
 			return bool(serviceRef and eServiceReference(serviceRef).type == eServiceReference.idServiceDAB and info.getInfoString(iServiceInformation.sTagChannelMode) in ("stereo", "joint-stereo"))
-		if self.token in (self.DAB_LANGUAGE, self.DAB_PROTECTION, self.DAB_METADATA, self.DAB_ENSEMBLE_ID, self.DAB_TECHNICAL, self.DAB_PTY, self.DAB_SAMPLE_RATE, self.DAB_CHANNEL_MODE):
+		if self.token in (self.DAB_LANGUAGE, self.DAB_PROTECTION, self.DAB_METADATA, self.DAB_ENSEMBLE_ID, self.DAB_TECHNICAL, self.DAB_PTY, self.DAB_SAMPLE_RATE, self.DAB_CHANNEL_MODE, self.DAB_SUBCH_ID, self.DAB_CU_SIZE, self.DAB_CU_RANGE):
 			return bool(self.text)
 		if self.token == self.IS_DVBI:
 			result = bool(service and getattr(self.source, "isDVBI", False))
@@ -292,7 +298,7 @@ class ServiceInfo(Converter):
 		result = ""
 		service = self.source.service
 		info = service and service.info()
-		if self.token in (self.DAB_LANGUAGE, self.DAB_PROTECTION, self.DAB_METADATA, self.DAB_QUALITY, self.DAB_ENSEMBLE_ID, self.DAB_TECHNICAL, self.DAB_PTY, self.DAB_SAMPLE_RATE, self.DAB_CHANNEL_MODE, self.DAB_STEREO):
+		if self.token in (self.DAB_LANGUAGE, self.DAB_PROTECTION, self.DAB_METADATA, self.DAB_QUALITY, self.DAB_ENSEMBLE_ID, self.DAB_TECHNICAL, self.DAB_PTY, self.DAB_SAMPLE_RATE, self.DAB_CHANNEL_MODE, self.DAB_STEREO, self.DAB_SUBCH_ID, self.DAB_CU_SIZE, self.DAB_CU_RANGE):
 			if info:
 				serviceRef = info.getInfoString(iServiceInformation.sServiceref)
 				if serviceRef and eServiceReference(serviceRef).type == eServiceReference.idServiceDAB:
@@ -302,6 +308,14 @@ class ServiceInfo(Converter):
 						result = dabMetadata.programmeTypeName(info.getInfo(iServiceInformation.sDABPTY), info.getInfo(iServiceInformation.sDABPTYTable))
 					elif self.token == self.DAB_PROTECTION:
 						result = info.getInfoString(iServiceInformation.sDABProtection)
+					elif self.token in (self.DAB_SUBCH_ID, self.DAB_CU_SIZE):
+						value = self.value
+						result = str(value) if value >= 0 else ""
+					elif self.token == self.DAB_CU_RANGE:
+						cuStart = info.getInfo(iServiceInformation.sDABCuStart)
+						cuSize = info.getInfo(iServiceInformation.sDABCuSize)
+						if cuStart >= 0 and cuSize > 0:
+							result = f"{cuStart} - {cuStart + cuSize - 1}"
 					elif self.token == self.DAB_SAMPLE_RATE:
 						sampleRate = self.value
 						result = f"{sampleRate / 1000:g} kHz" if sampleRate > 0 else ""
@@ -398,6 +412,14 @@ class ServiceInfo(Converter):
 		result = -1
 		service = self.source.service
 		info = service and service.info()
+		if self.token in (self.DAB_SUBCH_ID, self.DAB_CU_SIZE):
+			serviceRef = info.getInfoString(iServiceInformation.sServiceref) if info else ""
+			if serviceRef and eServiceReference(serviceRef).type == eServiceReference.idServiceDAB:
+				field = iServiceInformation.sDABSubChId if self.token == self.DAB_SUBCH_ID else iServiceInformation.sDABCuSize
+				value = info.getInfo(field)
+				if value >= 0 and (self.token == self.DAB_SUBCH_ID or value > 0):
+					result = value
+			return result
 		if self.token == self.DAB_SAMPLE_RATE:
 			serviceRef = info.getInfoString(iServiceInformation.sServiceref) if info else ""
 			if serviceRef and eServiceReference(serviceRef).type == eServiceReference.idServiceDAB:
