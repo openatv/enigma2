@@ -87,6 +87,9 @@ struct eDABWorkerStats
 	int mscQuality;
 	int programmeType = -1;
 	int programmeTypeTable = -1;
+	int subchannelId = -1;
+	int capacityUnitStart = -1;
+	int capacityUnitSize = -1;
 	bool rfSynced;
 	bool serviceFound;
 	bool dabplus;

@@ -1629,6 +1629,13 @@ class InformationService(InformationBase):
 			ensembleId = getServiceInfoValue(iServiceInformation.sDABEnsembleId)
 			addIfAvailable(info, _("Ensemble ID (EID)"), formatHex(ensembleId))
 			addIfAvailable(info, _("Service ID (SID)"), formatHex(getServiceInfoValue(iServiceInformation.sSID)))
+			addIfAvailable(info, _("Subchannel ID"), getServiceInfoValue(iServiceInformation.sDABSubChId))
+			cuStart = self.serviceInfo.getInfo(iServiceInformation.sDABCuStart)
+			cuSize = self.serviceInfo.getInfo(iServiceInformation.sDABCuSize)
+			if cuSize > 0:
+				addIfAvailable(info, _("Capacity units (CU)"), cuSize)
+				if cuStart >= 0:
+					addIfAvailable(info, _("Capacity unit range"), f"{cuStart} - {cuStart + cuSize - 1}")
 			channel = getServiceInfoValue(iServiceInformation.sDABChannel)
 			serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
 			if channel:
