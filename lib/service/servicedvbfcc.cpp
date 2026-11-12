@@ -286,8 +286,8 @@ void eDVBServiceFCCPlay::updateFCCDecoder(bool sendSeekableStateChanged)
 		isProgramInfoCached = program.isCached;
 		if (m_pmtVersion != program.pmtVersion)
 		{
-			if (m_pmtVersion != -1)
-				pmtVersionChanged = true;
+			// The first PMT must also correct PIDs and codec from cached service data.
+			pmtVersionChanged = true;
 			m_pmtVersion = program.pmtVersion;
 			//eDebug("[eDVBServiceFCCPlay] updateFCCDecoder pmt version : %d", m_pmtVersion);
 		}

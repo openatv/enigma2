@@ -569,6 +569,10 @@ void eDABWorker::updateDecoderStats()
 	m_stats.dlPlusProgrammeHost[sizeof(m_stats.dlPlusProgrammeHost) - 1] = 0;
 	if (m_stats.serviceRevision != m_decoder->serviceRevision())
 	{
+		// These fields change with the FIC; reuse the existing metadata update.
+		m_stats.subchannelId = m_decoder->subchannelId();
+		m_stats.capacityUnitStart = m_decoder->capacityUnitStart();
+		m_stats.capacityUnitSize = m_decoder->capacityUnitSize();
 		m_publish_pending = true;  // A scan waits for this to stop changing.
 		const std::vector<eDABDecoder::ServiceInfo> services = m_decoder->serviceList();
 		m_stats.serviceRevision = m_decoder->serviceRevision();
@@ -3757,6 +3761,12 @@ int eServiceDAB::getInfo(int w)
 		return m_stats.programmeTypeTable;
 	case sDABSampleRate:
 		return m_stats.audioFormat.sampleRate ? static_cast<int>(m_stats.audioFormat.sampleRate) : resNA;
+	case sDABSubChId:
+		return m_stats.subchannelId;
+	case sDABCuStart:
+		return m_stats.capacityUnitStart;
+	case sDABCuSize:
+		return m_stats.capacityUnitSize > 0 ? m_stats.capacityUnitSize : resNA;
 	case sTransferBPS:
 		return static_cast<int>(std::min<uint64_t>(m_transfer_bps, std::numeric_limits<int>::max()));
 	case sProvider:

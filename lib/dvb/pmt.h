@@ -170,6 +170,7 @@ public:
 	int getService(ePtr<eDVBService> &service) { service = m_service; return 0; }
 	int getPMT(ePtr<eTable<ProgramMapSection> > &ptr) { return m_PMT.getCurrent(ptr); }
 	bool hasSharedPmtPid(int pmtPid);
+	int retryProgramInfo();
 	int getChannel(eUsePtr<iDVBChannel> &channel);
 	int getDemuxID() const { return m_decode_demux_num; }
 	void resetCachedProgram() { m_have_cached_program = false; }
