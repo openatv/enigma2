@@ -1398,6 +1398,11 @@ void eDVBServicePMTHandler::free()
 	m_PMT.stop();
 	m_PAT.stop();
 	m_service = 0;
+	// Releasing a frontend can synchronously query this handler from Python.
+	// Keep the channels alive until all handler references have been cleared.
+	ePtr<iDVBChannel> channel(m_channel);
+	ePtr<iDVBChannel> relayChannel(m_sr_channel);
+	ePtr<iDVBPVRChannel> pvrChannel(m_pvr_channel);
 	m_channel = 0;
 	m_sr_channel = 0;
 	m_pvr_channel = 0;
