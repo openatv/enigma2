@@ -1294,6 +1294,8 @@ RESULT eDVBServiceList::getNext(eServiceReference &ref)
 
 RESULT eDVBServiceList::startEdit(ePtr<iMutableServiceList> &res)
 {
+	res = 0;
+	m_edit_db = 0;
 	if (m_parent.flags & eServiceReference::canDescent) // bouquet
 	{
 		ePtr<iDVBChannelList> db;
@@ -1302,50 +1304,64 @@ RESULT eDVBServiceList::startEdit(ePtr<iMutableServiceList> &res)
 		if (eDVBResourceManager::getInstance(resm) || resm->getChannelList(db))
 			return -1;
 
-		if (db->getBouquet(m_parent, m_bouquet) != 0)
+		eBouquet *bouquet = nullptr;
+		if (db->getBouquet(m_parent, bouquet) != 0 || !bouquet)
 			return -1;
 
+		m_edit_db = db;
 		res = this;
 
 		return 0;
 	}
-	res = 0;
 	return -1;
+}
+
+eBouquet *eDVBServiceList::getEditBouquet()
+{
+	eBouquet *bouquet = nullptr;
+	if (m_edit_db && !m_edit_db->getBouquet(m_parent, bouquet))
+		return bouquet;
+	return nullptr;
 }
 
 RESULT eDVBServiceList::addService(eServiceReference &ref, eServiceReference before)
 {
-	if (!m_bouquet)
+	eBouquet *bouquet = getEditBouquet();
+	if (!bouquet)
 		return -1;
-	return m_bouquet->addService(ref, before);
+	return bouquet->addService(ref, before);
 }
 
 RESULT eDVBServiceList::removeService(eServiceReference &ref, bool renameBouquet)
 {
-	if (!m_bouquet)
+	eBouquet *bouquet = getEditBouquet();
+	if (!bouquet)
 		return -1;
-	return m_bouquet->removeService(ref, renameBouquet);
+	return bouquet->removeService(ref, renameBouquet);
 }
 
 RESULT eDVBServiceList::moveService(eServiceReference &ref, int pos)
 {
-	if (!m_bouquet)
+	eBouquet *bouquet = getEditBouquet();
+	if (!bouquet)
 		return -1;
-	return m_bouquet->moveService(ref, pos);
+	return bouquet->moveService(ref, pos);
 }
 
 RESULT eDVBServiceList::flushChanges()
 {
-	if (!m_bouquet)
+	eBouquet *bouquet = getEditBouquet();
+	if (!bouquet)
 		return -1;
-	return m_bouquet->flushChanges();
+	return bouquet->flushChanges();
 }
 
 RESULT eDVBServiceList::setListName(const std::string &name)
 {
-	if (!m_bouquet)
+	eBouquet *bouquet = getEditBouquet();
+	if (!bouquet)
 		return -1;
-	return m_bouquet->setListName(name);
+	return bouquet->setListName(name);
 }
 
 RESULT eServiceFactoryDVB::play(const eServiceReference &ref, ePtr<iPlayableService> &ptr)
