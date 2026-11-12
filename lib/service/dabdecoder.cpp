@@ -92,7 +92,7 @@ eDABDecoder::eDABDecoder(uint32_t serviceId, uint16_t ensembleId, const AudioCal
 	const ImageCallback &imageCallback, const MOTCallback &motCallback)
 	: m_service_id(serviceId), m_ensemble_id(ensembleId), m_audio_callback(audioCallback),
 	  m_image_callback(imageCallback), m_mot_callback(motCallback), m_pad_decoder(this, true),
-	  m_selected_subchannel(-1), m_selected_start_address(-1), m_selected_bitrate(0),
+	  m_selected_subchannel(-1), m_selected_start_address(-1), m_selected_cu_size(-1), m_selected_bitrate(0),
 	  m_selected_dabplus(false), m_superframe_part_size(0), m_superframe_parts(0),
 	  m_af_packets(0), m_eti_frames(0), m_fic_frames(0), m_msc_frames(0),
 	  m_audio_frames(0), m_crc_errors(0), m_pad_packets(0), m_dls_labels(0), m_dl_plus_revision(0),
@@ -808,6 +808,7 @@ void eDABDecoder::resolveService()
 		m_selected_bitrate != subchannel->second.bitrate || m_selected_dabplus != service->second.dabplus;
 	m_selected_subchannel = service->second.subchannel;
 	m_selected_start_address = subchannel->second.startAddress;
+	m_selected_cu_size = subchannel->second.size;
 	m_selected_bitrate = subchannel->second.bitrate;
 	m_selected_dabplus = service->second.dabplus;
 	m_service_label = service->second.label;
