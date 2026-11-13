@@ -769,6 +769,7 @@ public:
 	 * Default no-op — only used by RAM timeshift where the normal
 	 * cue-sheet seek path (through tstools) is not available. */
 	virtual void forceSourcePosition(off_t /*offset*/) {}
+	virtual RESULT seekSourcePosition(off_t /*offset*/) { return -1; }
 
 		/* skipping must be done with a cue sheet */
 };

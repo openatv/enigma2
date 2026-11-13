@@ -2833,6 +2833,20 @@ void eDVBChannel::forceSourcePosition(off_t offset)
 		m_pvr_thread->forcePosition(offset);
 }
 
+RESULT eDVBChannel::seekSourcePosition(off_t offset)
+{
+	if (!m_pvr_thread || offset < 0 || offset % 188)
+		return -1;
+	// Apply the new source position while stopped, then flush in playback order.
+	m_pvr_thread->pause();
+	m_pvr_thread->forcePosition(offset);
+	::ioctl(m_pvr_fd_dst, 0);
+	if (m_cue && m_cue->m_decoding_demux)
+		m_cue->m_decoding_demux->flush();
+	m_pvr_thread->resume();
+	return 0;
+}
+
 void eDVBChannel::flushPVR(iDVBDemux *decoding_demux)
 {
 			/* when seeking, we have to ensure that all buffers are flushed.

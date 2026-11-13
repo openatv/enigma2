@@ -709,13 +709,17 @@ class TimeshiftRegistry:
 			metadata = {}
 			storageDirectory = self.getDirectory(dirname(path))
 			try:
+				status = storageDirectory.stat(basename(path))
+			except FileNotFoundError:
+				continue
+			if not S_ISREG(status.st_mode):
+				print(f"[Timeshift] Ignoring non-file buffer candidate '{path}'.")
+				continue
+			try:
 				with storageDirectory.open(f"{basename(path)}.meta", "r", encoding="utf-8") as source:
 					metadata = parseTimeshiftMetadata(source.read())
 			except (FileNotFoundError, ValueError, KeyError):
-				try:
-					metadata["begin"] = storageDirectory.stat(basename(path)).st_mtime
-				except FileNotFoundError:
-					continue
+				metadata["begin"] = status.st_mtime
 			entry = TimeshiftBuffer(path, metadata)
 			try:
 				self.capture(entry)

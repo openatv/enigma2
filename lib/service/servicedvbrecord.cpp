@@ -10,6 +10,7 @@
 #include <lib/base/nconfig.h>
 #include <lib/base/httpstream.h>
 #include <fcntl.h>
+#include <time.h>
 
 	/* for cutlist */
 #include <byteswap.h>
@@ -803,6 +804,21 @@ int eDVBServiceRecord::doRecord()
 					return m_error;
 				}
 				m_state = stateRecording;
+				if (!m_is_pvr)
+				{
+					// Store the actual start, after tuning and recorder startup succeeded.
+					// Offline descrambling must retain the original recording's timestamp.
+					const time_t startTime = time(nullptr);
+					eDVBMetaParser meta;
+					if (meta.parseMeta(m_filename))
+						eWarning("[eDVBServiceRecord] unable to read recording start metadata for '%s'", m_filename.c_str());
+					else
+					{
+						meta.m_time_create = startTime;
+						if (meta.updateMeta(m_filename))
+							eWarning("[eDVBServiceRecord] unable to save recording start metadata for '%s'", m_filename.c_str());
+					}
+				}
 			}
 		}
 	}

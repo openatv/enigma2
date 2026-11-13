@@ -3876,7 +3876,12 @@ RESULT eDVBServicePlay::stopTimeshift(bool swToLive)
 	}
 	// A close failure also requires live playback before leases are released.
 	if (swToLive || result)
+	{
 		switchToLive();
+		// A full stop may remove this directory asynchronously. A new session
+		// must use its own directory instead of reusing the pending cleanup path.
+		m_timeshift_directory.clear();
+	}
 
 	ofstream fileout;
 	fileout.open("/proc/stb/lcd/symbol_timeshift");
