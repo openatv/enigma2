@@ -60,7 +60,7 @@ int eInput::event(int event, void *data, void *data2)
 
 		if (m_have_focus)
 		{
-			if (m_mode && cursor >= 0 && cursor < glyphs)
+			if (m_mode && cursor < glyphs)
 			{
 					/* in overwrite mode, when not at end of line, invert the current cursor position. */
 				para->setGlyphFlag(cursor, GS_INVERT);
@@ -71,13 +71,13 @@ int eInput::event(int event, void *data, void *data2)
 			{
 					/* otherwise, insert small cursor */
 				eRect bbox;
-				if (cursor >= 0 && cursor < glyphs)
+				if (cursor < glyphs)
 				{
 					bbox = para->getGlyphBBox(cursor);
 					bbox = eRect(bbox.left()-1, 0, 2, size().height());
-				} else if (cursor > 0 && glyphs)
+				} else if (cursor)
 				{
-					bbox = para->getGlyphBBox(glyphs - 1);
+					bbox = para->getGlyphBBox(cursor - 1);
 					bbox = eRect(bbox.right(), 0, 2, size().height());
 				} else
 				{
