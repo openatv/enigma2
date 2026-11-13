@@ -13,10 +13,10 @@ The native service supports MPE/UDP/EDI (fedi2eti), direct ETI-NA(V.11)
 framing (tsniv2ni), and E1 ETI-NA with either 12 or 0 payload padding bytes
 (ts2na12 and ts2na). All paths are normalized to ETI-NI before decoding.
 
-Source checked 2026-10-25: https://en.kingofsat.net/dab
+Source checked 2026-11-13: https://en.kingofsat.net/dab
 
 -->
-<dabFeeds version="2" updated="2026-10-25">
+<dabFeeds version="2" updated="2026-11-13">
 	<!--
 
 	Terrestrial Band III blocks are intentionally separate from the satellite
@@ -129,7 +129,7 @@ Source checked 2026-10-25: https://en.kingofsat.net/dab
 			<feed id="wdr_nrw_19e" name="WDR NRW" pid="0BB8" decoder="fedi2eti" transport="MPE/UDP/EDI" multicastAddress="228.10.1.5" multicastPort="10010" ensembleId="10EC" />
 			<feed id="wdr_regional_19e" name="WDR Regional" pid="0BB8" decoder="fedi2eti" transport="MPE/UDP/EDI" multicastAddress="228.10.2.5" multicastPort="10010" ensembleId="10FA" />
 		</transponder>
-		<transponder frequency="12460500" polarization="H" system="DVB-S" modulation="QPSK" symbolRate="27500000" fec="3/4" onid="0085" tsid="0005" parentServiceType="0002">
+		<transponder frequency="12461200" polarization="H" system="DVB-S" modulation="QPSK" symbolRate="27500000" fec="3/4" onid="0085" tsid="0005" parentServiceType="0002">
 			<feed id="bundesmux1" name="DAB Bundesmux 1" bouquetFile="userbouquet.dab_bundesmux_1.radio" bouquetName="DAB Bundesmux 1 (Radio)" parentSid="1019" pid="1019" decoder="fedi2eti" transport="MPE/UDP/EDI" multicastAddress="239.128.43.43" multicastPort="50043" ensembleId="10BC" />
 			<feed id="bundesmux2" name="DAB Bundesmux 2" bouquetFile="userbouquet.dab_bundesmux_2.radio" bouquetName="DAB Bundesmux 2 (Radio)" parentSid="101A" pid="101A" decoder="fedi2eti" transport="MPE/UDP/EDI" multicastAddress="239.128.72.10" multicastPort="50010" ensembleId="11F7" />
 		</transponder>
@@ -143,9 +143,8 @@ Source checked 2026-10-25: https://en.kingofsat.net/dab
 	<satellite name="Astra 2E 28.2E" orbitalPosition="282" namespace="11A0000">
 		<!--
 		Transponder and parent SIDs checked against https://en.kingofsat.net/tp732.
-		The DAB overview currently associates these feeds with 11493.50 H, but
-		the service list confirms 11426.50 H, NID 59 and TSID 2315. Keep these
-		parameters until a transponder move is independently confirmed.
+		The DAB overview now also confirms 11426.50 H, symbol rate 27500,
+		FEC 2/3, NID 59 and TSID 2315.
 		-->
 		<transponder frequency="11426500" polarization="H" system="DVB-S" modulation="QPSK" symbolRate="27500000" fec="2/3" onid="003B" tsid="090B" parentServiceType="0001">
 			<feed id="bbc_national_282e" name="BBC National" parentSid="2954" pid="0425" decoder="ts2na12" transport="TS/NA" ensembleId="CE15" />
