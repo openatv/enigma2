@@ -27,7 +27,8 @@
 #include <lib/base/init_num.h>
 
 #include <lib/gdi/font_arabic.h>
-#include <hb.h>
+#include <hb-ft.h>
+#include <hb-ot.h>
 #include <fribidi/fribidi.h>
 
 #include <map>
@@ -282,6 +283,7 @@ float fontRenderClass::getLineHeight(const gFont& font)
 fontRenderClass::~fontRenderClass()
 {
 	singleLock s(ftlock);
+	// Cached shaping fonts release their FT_Face while the FreeType library is alive.
 	for (auto &entry : fontMap)
 		delete entry.second;
 	fontMap.clear();
@@ -341,6 +343,28 @@ void addFont(const char *filename, const char *alias, int scale_factor, int is_r
 
 DEFINE_REF(Font);
 
+// renderString holds ftlock while shaping. Keep one font per registered face,
+// sharing its OpenType tables across labels without retaining rendered text.
+hb_font_t *Font::getShapingFont(FT_Face face)
+{
+	auto *entry = static_cast<fontRenderClass::fontListEntry *>(scaler.face_id);
+	if (!entry->shapingFont)
+	{
+		hb_face_t *hbFace = hb_ft_face_create_referenced(face);
+		entry->shapingFont = hb_font_create(hbFace);
+		hb_face_destroy(hbFace);
+		hb_ot_font_set_funcs(entry->shapingFont);
+	}
+	unsigned int width, height;
+	hb_font_get_ppem(entry->shapingFont, &width, &height);
+	if (width != scaler.width || height != scaler.height)
+	{
+		hb_font_set_scale(entry->shapingFont, scaler.width * 64, scaler.height * 64);
+		hb_font_set_ppem(entry->shapingFont, scaler.width, scaler.height);
+	}
+	return entry->shapingFont;
+}
+
 Font::Font(fontRenderClass *render, FTC_FaceID faceid, int isize, int tw, int renderflags): tabwidth(tw)
 {
 	renderer=render;
@@ -361,6 +385,16 @@ Font::Font(fontRenderClass *render, FTC_FaceID faceid, int isize, int tw, int re
 inline FT_Error Font::getGlyphBitmap(FT_UInt glyph_index, FTC_SBit *sbit)
 {
 	return renderer->getGlyphBitmap(&font, glyph_index, sbit);
+}
+
+int Font::getGlyphAdvance(FT_Face face, FT_UInt glyphIndex)
+{
+	FTC_SBit bitmap;
+	if (!getGlyphBitmap(glyphIndex, &bitmap) && bitmap->buffer)
+		return bitmap->xadvance;
+	if (FT_Load_Glyph(face, glyphIndex, FT_LOAD_DEFAULT))
+		return 0;
+	return face->glyph->advance.x >> 6;
 }
 
 inline FT_Error Font::getGlyphImage(FT_UInt glyph_index, FT_Glyph *glyph, FT_Glyph *borderglyph, int bordersize)
@@ -851,7 +885,7 @@ int eTextPara::renderString(const char *string, int rflags, int border, int mark
 			}
 			if (unicode == '\r')
 				continue;
-			if (unicode == 0x8A || unicode == 0xE08A)
+			if (unicode == 0x85 || unicode == 0x2029 || unicode == 0x8A || unicode == 0xE08A)
 				unicode = '\n';
 		}
 		uc_string.push_back(unicode);
@@ -861,6 +895,9 @@ int eTextPara::renderString(const char *string, int rflags, int border, int mark
 
 	std::vector<bool> paragraphRtl;
 	std::vector<PositionedGlyph> positioned;
+	std::vector<TextCluster> visualClusters;
+	const int characterOffset = characterCount;
+	characterCount += uc_string.size();
 	std::array<LayoutFont, 3> fonts = {{{current_font, current_face},
 		{replacement_font, replacement_face}, {fallback_font, fallback_face}}};
 	if (simpleLtr || (rflags & RS_DIRECT))
@@ -879,32 +916,22 @@ int eTextPara::renderString(const char *string, int rflags, int border, int mark
 				return -1;
 			entry.face = size->face;
 		}
-		if (!layoutParagraphs(uc_string, fonts, forced_replaces, uc_visual, paragraphRtl, positioned, logicalColors, visualColors))
+		if (!layoutParagraphs(uc_string, fonts, forced_replaces, uc_visual, paragraphRtl, positioned, logicalColors, visualColors,
+				&visualClusters, (rflags & RS_WRAP) ? std::max(1, area.right() - left - 2 * border) : 0,
+				std::max(1, area.right() - cursor.x() - 2 * border)))
 			return -1;
 		hasRtlParagraph |= std::find(paragraphRtl.begin(), paragraphRtl.end(), true) != paragraphRtl.end();
+		if (glyphClusters.empty())
+			for (size_t i = 0; i < glyphs.size(); ++i)
+				glyphClusters.push_back({int(i), int(i + 1), false});
 	}
 	auto nextPosition = positioned.begin();
 
 	glyphs.reserve(glyphs.size() + uc_visual.size());
 	size_t paragraph = 0;
-	size_t firstGlyph = glyphs.size();
-	int firstBaseline = cursor.y();
-	auto finishParagraph = [&]() {
-		// Wrapping consumes the visual buffer from left to right. For RTL
-		// paragraphs the first wrapped row therefore has the last words.
-		// This preserves explicit paragraph order; automatic RTL wraps may
-		// group different words than a logical-order line breaker would.
-		if (!paragraphRtl.empty() && paragraphRtl[paragraph] && firstBaseline != cursor.y())
-		{
-			for (size_t n = firstGlyph; n < glyphs.size(); ++n)
-			{
-				auto &glyph = glyphs[n];
-				int y = firstBaseline + (cursor.y() - glyph.y);
-				glyph.bbox.moveBy(0, y - glyph.y);
-				glyph.y = y;
-			}
-		}
-	};
+	bool trackClusters = !visualClusters.empty() || !glyphClusters.empty();
+	if (trackClusters)
+		glyphClusters.reserve(glyphs.size() + uc_visual.size());
 
 	// Multiple renderString calls can append to one paragraph. Leading text
 	// inherits its preceding style; an explicit reset uses the blit foreground.
@@ -924,8 +951,7 @@ int eTextPara::renderString(const char *string, int rflags, int border, int mark
 	}
 	int64_t previousColor = inherited;
 	int nextflags = 0;
-	int pos = 0;
-	int markedlen = 0;
+	int markedlen = 1;
 	if (markedpos > 0xFFFF)
 	{
 		markedlen = markedpos >> 16;
@@ -937,6 +963,13 @@ int eTextPara::renderString(const char *string, int rflags, int border, int mark
 	{
 		int isprintable=1;
 		int flags = nextflags;
+		int visualIndex = i - uc_visual.begin();
+		TextCluster cluster = visualClusters.empty() ? TextCluster{visualIndex, visualIndex + 1, false} : visualClusters[visualIndex];
+		if (cluster.start >= 0)
+		{
+			cluster.start += characterOffset;
+			cluster.end += characterOffset;
+		}
 		if (!paragraphRtl.empty() && paragraphRtl[paragraph])
 			flags |= GS_RTL;
 		unsigned long chr = *i;
@@ -956,11 +989,8 @@ int eTextPara::renderString(const char *string, int rflags, int border, int mark
 			case 0xE08A:
 			case '\n':
 				isprintable=0;
-				finishParagraph();
 				newLine(rflags);
 				++paragraph;
-				firstGlyph = glyphs.size();
-				firstBaseline = cursor.y();
 				nextflags|=GS_ISFIRST;
 				nextflags&=~GS_FIXED;
 				break;
@@ -994,15 +1024,8 @@ int eTextPara::renderString(const char *string, int rflags, int border, int mark
 			if (colorChanged && desiredColor == -1)
 				flags |= GS_COLORRESET;
 
-			if (markedpos == -2 || markedpos == pos++)
-			{
+			if (markedpos == -2 || (markedpos >= 0 && cluster.start < markedpos + markedlen && cluster.end > markedpos))
 				flags |= GS_INVERT;
-				if (markedlen)
-				{
-					--markedlen;
-					++markedpos;
-				}
-			}
 
 			FT_UInt index = 0;
 
@@ -1033,8 +1056,26 @@ int eTextPara::renderString(const char *string, int rflags, int border, int mark
 				}
 			}
 			if (index || position)
-				appendGlyph(source.font, source.face, index, flags, rflags, border, i == uc_visual.end() - 1,
-					colorChanged && desiredColor >= 0, static_cast<unsigned long>(desiredColor), position);
+			{
+				// Complex text was broken in logical order before per-line bidi layout.
+				int result = appendGlyph(source.font, source.face, index, flags, paragraphRtl.empty() ? rflags : rflags & ~RS_WRAP,
+					border, i == uc_visual.end() - 1, colorChanged && desiredColor >= 0, static_cast<unsigned long>(desiredColor), position);
+				if (!result)
+				{
+					const size_t glyphIndex = glyphs.size() - 1;
+					if (!trackClusters && cluster.start != int(glyphIndex))
+					{
+						// Tabs, newlines and missing glyphs can also break the LTR
+						// identity mapping. Earlier glyphs still map one-to-one.
+						glyphClusters.reserve(glyphs.size() + uc_visual.size() - visualIndex - 1);
+						for (size_t j = 0; j < glyphIndex; ++j)
+							glyphClusters.push_back({int(j), int(j + 1), false});
+						trackClusters = true;
+					}
+					if (trackClusters)
+						glyphClusters.push_back(cluster);
+				}
+			}
 			else
 				eDebug("[eTextPara] Unicode U+%4lx not present", chr);
 
@@ -1043,13 +1084,12 @@ int eTextPara::renderString(const char *string, int rflags, int border, int mark
 				nextflags = 0;
 				previousColor = desiredColor;
 			}
-		} else if (nextflags&GS_ISFIRST && !glyphs.empty())
+		} else if (nextflags&GS_ISFIRST && !glyphs.empty() && cluster.start >= 0)
 		{
 			// Newline found, mark the last glyph with the newline flag
 			glyphs.back().flags |= GS_LF;
 		}
 	}
-	finishParagraph();
 	bboxValid=false;
 	calc_bbox();
 	return 0;
@@ -1403,6 +1443,8 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 
 void eTextPara::realign(int dir, int markedpos, int scrollpos)	// der code hier ist ein wenig merkwuerdig.
 {
+	if (markedpos > 0xFFFF)
+		markedpos &= 0xFFFF;
 	glyphString::iterator begin(glyphs.begin()), c(glyphs.begin()), end(glyphs.begin()), last;
 	if ((dir == dirLeft || (dir == dirBidi && !hasRtlParagraph)) && markedpos < 0)
 		return;
@@ -1451,9 +1493,9 @@ void eTextPara::realign(int dir, int markedpos, int scrollpos)	// der code hier 
 		{
 			if (linelength > area.width())
 			{
-				if (markedpos >= (int)glyphs.size())
-					markedpos = glyphs.size() - 1;
-				eRect bbox = glyphs[markedpos].bbox;
+				eRect bbox;
+				if (!getCharacterBBox(markedpos, bbox) && !getCaretBBox(markedpos, bbox))
+					continue;
 				if (scrollpos == 50)
 				{
 					int mark_center = bbox.left() + bbox.width() / 2 - area.left();
@@ -1576,6 +1618,92 @@ void eTextPara::realign(int dir, int markedpos, int scrollpos)	// der code hier 
 	calc_bbox();
 }
 
+bool eTextPara::getCharacterBBox(int position, eRect &box) const
+{
+	if (position < 0)
+		return false;
+	if (glyphClusters.empty())
+	{
+		if (position >= int(glyphs.size()))
+			return false;
+		box = glyphs[position].bbox;
+		return true;
+	}
+	bool found = false;
+	for (size_t i = 0; i < glyphs.size(); ++i)
+	{
+		const auto &cluster = glyphClusters[i];
+		if (position >= cluster.start && position < cluster.end)
+		{
+			box = found ? box | glyphs[i].bbox : glyphs[i].bbox;
+			found = true;
+		}
+	}
+	return found;
+}
+
+bool eTextPara::getCaretBBox(int position, eRect &box) const
+{
+	if (position < 0 || position > characterCount)
+		return false;
+	if (glyphs.empty())
+	{
+		box = eRect(area.left(), area.top(), 2, cachedLineHeight);
+		return position == 0;
+	}
+	int character = position == characterCount ? position - 1 : position;
+	if (!getCharacterBBox(character, box))
+		return false;
+	TextCluster cluster{character, character + 1, false};
+	for (const auto &entry : glyphClusters)
+		if (character >= entry.start && character < entry.end)
+		{
+			cluster = entry;
+			break;
+		}
+	int offset = box.width() * (position - cluster.start) / (cluster.end - cluster.start);
+	int x = cluster.rtl ? box.right() - offset : box.left() + offset;
+	box = eRect(x - 1, box.top(), 2, box.height());
+	return true;
+}
+
+std::vector<eRect> eTextPara::getSelectionBoxes(int position, int length) const
+{
+	std::vector<eRect> boxes;
+	if (position < 0 || length <= 0)
+		return boxes;
+	size_t first = glyphClusters.empty() ? std::min(size_t(position), glyphs.size()) : 0;
+	size_t end = glyphClusters.empty() ? std::min(size_t(position + length), glyphs.size()) : glyphs.size();
+	bool adjacent = false;
+	int baseline = 0;
+	for (size_t i = first; i < end; ++i)
+	{
+		const auto cluster = glyphClusters.empty() ? TextCluster{int(i), int(i + 1), false} : glyphClusters[i];
+		if (cluster.start < position + length && cluster.end > position)
+		{
+			if (adjacent && baseline == glyphs[i].y)
+				boxes.back() |= glyphs[i].bbox;
+			else
+				boxes.push_back(glyphs[i].bbox);
+			baseline = glyphs[i].y;
+			adjacent = true;
+		}
+		else
+			adjacent = false;
+	}
+	return boxes;
+}
+
+void eTextPara::setCharacterFlag(int position, int flag)
+{
+	for (size_t i = 0; i < glyphs.size(); ++i)
+	{
+		const auto cluster = glyphClusters.empty() ? TextCluster{int(i), int(i + 1), false} : glyphClusters[i];
+		if (position >= cluster.start && position < cluster.end)
+			glyphs[i].flags |= flag;
+	}
+}
+
 void eTextPara::clear()
 {
 	singleLock s(ftlock);
@@ -1589,6 +1717,8 @@ void eTextPara::clear()
 		if (glyphs[i].borderimage) FT_Done_Glyph(glyphs[i].borderimage);
 	}
 	glyphs.clear();
+	glyphClusters.clear();
+	characterCount = 0;
 	hasRtlParagraph = false;
 	totalheight = 0;
 	lineCount = 0;

@@ -25,4 +25,5 @@ bool layoutParagraphs(const std::vector<unsigned long> &logical,
 	const std::array<LayoutFont, 3> &fonts, const std::set<int> &forcedReplacement,
 	std::vector<unsigned long> &visual, std::vector<bool> &paragraphRtl,
 	std::vector<PositionedGlyph> &positioned, const std::vector<int64_t> &logicalColors,
-	std::vector<int64_t> &visualColors);
+	std::vector<int64_t> &visualColors, std::vector<TextCluster> *clusters = nullptr,
+	int lineWidth = 0, int firstLineWidth = 0);

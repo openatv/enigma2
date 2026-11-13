@@ -116,6 +116,12 @@ public:
 
 struct PositionedGlyph;
 
+struct TextCluster
+{
+	int start, end;
+	bool rtl;
+};
+
 struct pGlyph
 {
 	int x, y, w;
@@ -151,6 +157,9 @@ class eTextPara : public iObject
 	eSize maximum             = eSize(0, 0);
 	int left;
 	glyphString glyphs;
+	// Allocated for shaping/bidi or when character and glyph indices diverge.
+	std::vector<TextCluster> glyphClusters;
+	int characterCount = 0;
 	int lineCount             = 0;
 	int totalheight           = 0;
 	bool hasRtlParagraph = false;
@@ -232,6 +241,11 @@ public:
 		return glyphs[num].bbox;
 	}
 
+	bool getCharacterBBox(int position, eRect &box) const;
+	bool getCaretBBox(int position, eRect &box) const;
+	std::vector<eRect> getSelectionBoxes(int position, int length) const;
+	void setCharacterFlag(int position, int flag);
+
 	void setGlyphFlag(int g, int f)
 	{
 		ASSERT(g >= 0);
@@ -255,8 +269,9 @@ public:
 	FTC_ScalerRec scaler;
 	FTC_Image_Desc font;
 	fontRenderClass *renderer;
-	hb_font_t *getShapingFont(FT_Face face) const;
+	hb_font_t *getShapingFont(FT_Face face);
 	FT_UInt getCharIndex(unsigned int codepoint);
+	int getGlyphAdvance(FT_Face face, FT_UInt glyphIndex);
 	FT_Error getGlyphBitmap(FT_UInt glyph_index, FTC_SBit *sbit);
 	FT_Error getGlyphImage(FT_UInt glyph_index, FT_Glyph *glyph, FT_Glyph *borderglyph, int bordersize);
 	FT_Face face;
