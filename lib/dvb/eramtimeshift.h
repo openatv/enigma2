@@ -10,6 +10,7 @@
 struct eRamBlock {
 	off_t offset; // absolute write offset at this block
 	bool is_access_point;
+	pts_t pts;
 };
 
 // eRamRingBuffer
@@ -34,7 +35,7 @@ public:
 
 	// Write TS data into the ring. Returns bytes written (aligned
 	// down to 188). is_access_point marks the block for fast seek.
-	int write(const uint8_t* data, size_t len, bool is_access_point = false);
+	int write(const uint8_t* data, size_t len, bool is_access_point = false, pts_t pts = -1);
 
 	// Read TS data from the ring at the given absolute offset.
 	// Returns bytes read, or -1 with errno=EAGAIN if the region
@@ -48,6 +49,8 @@ public:
 	// Linear scan: finds the first access point at or after
 	// from_offset that is still inside the valid ring window.
 	off_t findNearestAccessPoint(off_t from_offset) const;
+	// Find retained keyframe data no older than the requested delay (90 kHz).
+	off_t findDelayOffset(pts_t delay) const;
 
 	static int64_t nowMs();
 

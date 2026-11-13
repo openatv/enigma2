@@ -35,6 +35,7 @@ public:
 	RESULT activateTimeshift() override;
 	RESULT saveTimeshiftFile() override; // no-op: nothing on disk
 	bool isTimeshiftMemory() override { return true; }
+	RESULT seekTimeshiftDelay(int milliseconds) override;
 	long long getTimeshiftFileSize() override { return -1; }
 	void serviceEventTimeshift(int event) override;
 
