@@ -65,6 +65,7 @@ public:
 			quit,
 			startChannel,
 			leaveChannel,
+			restart,
 			got_private_pid,
 			got_mhw2_channel_pid,
 			got_mhw2_title_pid,
