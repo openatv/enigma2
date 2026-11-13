@@ -2,7 +2,7 @@ from datetime import datetime, timezone
 from errno import EEXIST, EINVAL, ENOTSUP, EXDEV
 from json import dumps, loads
 from os import O_RDONLY, close, fsync, link, listdir, name as osName, open as openDescriptor, replace, stat, unlink
-from os.path import basename, dirname, isabs, isdir, isfile, islink, join, lexists, normpath, splitext
+from os.path import basename, dirname, isdir, isfile, islink, join, lexists, normpath, splitext
 from re import fullmatch
 from shutil import copystat
 from struct import Struct
@@ -10,13 +10,17 @@ from threading import RLock
 from time import time
 from uuid import uuid4
 
+from enigma import iDVBMetaFile
+
 from Components.Task import Job, PythonTask
 from Tools.Directories import SCOPE_CONFIG, resolveFilename
 from Tools.EITFile import EITFile
+from Tools.MovieInfoParser import MovieMetaInfo
+from Tools.Trashcan import trashcanIndex
 
 
 class MovieFileBundle:
-	FULL_SUFFIXES = (".meta", ".cuts", ".ap", ".sc", ".aml.json", ".aml.trash.json")
+	FULL_SUFFIXES = (".meta", ".cuts", ".ap", ".sc")
 	BASE_SUFFIXES = (".eit", ".srt", ".ass", ".ssa", ".vtt", ".sub", ".idx", ".txt", ".info", ".nfo", ".jpg", ".jpeg", ".png")
 	CUTS = Struct(">QI")
 
@@ -256,16 +260,9 @@ class MovieChangeJournal:
 					applied = all(not lexists(source) and isdir(dirname(source)) for source, target, size in event.get("files", []))
 					unapplied = isfile(event["path"])
 				elif action == "metadata":
-					try:
-						with open(f"{event['path']}.meta", encoding="utf-8", errors="replace") as stream:
-							lines = stream.read().splitlines()
-					except FileNotFoundError:
-						lines = []
-					applied = lines[1:3] == [event["title"], event["description"]]
+					metadata = MovieMetaInfo(event["path"])
+					applied = metadata.lines[1:3] == [event["title"], event["description"]]
 					unapplied = not applied and isfile(event["path"])
-					if applied:
-						# Complete a metadata edit interrupted between its two atomic file writes.
-						writeMovieText(f"{event['path']}.aml.json", dumps({"version": 1, "title": event["title"], "description": event["description"]}, ensure_ascii=False))
 				elif action == "status":
 					applied = True  # A projection cannot change the authoritative cut list or resume data.
 				if applied:
@@ -378,6 +375,7 @@ class MovieFileTask(PythonTask):
 	def work(self):
 		result = dict(self.operation)
 		event = None
+		trashTarget = None
 		try:
 			if self.aborted:
 				raise InterruptedError(_("Operation cancelled."))
@@ -395,18 +393,9 @@ class MovieFileTask(PythonTask):
 				actual = bundle.signature(path) if lexists(path) and not islink(path) else None
 				if actual != expected or islink(path):
 					raise ValueError(_("The movie or its playback position changed since the maintenance scan. Scan again."))
-			if action == "trash":
-				bundle.destinations(self.operation["target"])
-				writeMovieText(f"{bundle.path}.aml.trash.json", dumps({"version": 1, "originalPath": bundle.path}, ensure_ascii=False))
-				bundle = MovieFileBundle(bundle.path, self.job.directoryNames[folder])
-			elif action == "restore":
-				try:
-					with open(f"{bundle.path}.aml.trash.json", encoding="utf-8") as stream:
-						metadata = loads(stream.read(65536))
-					target = metadata.get("originalPath") if metadata.get("version") == 1 else None
-					if not isinstance(target, str) or not isabs(target):
-						raise ValueError("Invalid original path")
-				except (OSError, ValueError, AttributeError):
+			if action == "restore":
+				target = trashcanIndex.get(bundle.path)
+				if not target:
 					raise ValueError(_("The original location is unknown. Use Move to select a destination."))
 				self.operation["target"] = target
 				result["target"] = target
@@ -415,6 +404,12 @@ class MovieFileTask(PythonTask):
 				event = dict(self.operation, id=uuid4().hex, providers=list(self.providers), timestamp=int(time()), state="pending", files=[(source, target, bundle.snapshot[source][2]) for source, target in pairs])
 				movieChangeJournal.append(event)  # Persist intent before touching recording data.
 			if action in ("copy", "move", "rename", "trash", "restore"):
+				target = self.operation["target"]
+				bundle.destinations(target)
+				if trashcanIndex.directory(target):
+					# Persist the destination's origin before moving any data into the trash.
+					trashcanIndex.add(target, trashcanIndex.get(bundle.path) or bundle.path)
+					trashTarget = target
 				self.transfer(bundle, self.operation["target"], action != "copy")
 			elif action == "delete":
 				bundle.checkUnchanged()
@@ -428,22 +423,21 @@ class MovieFileTask(PythonTask):
 			elif action == "eit":
 				result["created"] = createMovieEit(bundle.path, self.operation["metadata"])
 			elif action == "metadata":
-				metaPath = f"{bundle.path}.meta"
-				try:
-					with open(metaPath, encoding="utf-8", errors="replace") as stream:
-						lines = stream.read().splitlines()
-				except FileNotFoundError:
-					lines = [self.operation.get("service", ""), "", "", str(int(time())), ""]
-				lines.extend("" for index in range(max(0, 5 - len(lines))))
-				lines[1:3] = [self.operation["title"].replace("\n", " "), self.operation["description"].replace("\n", " ")]
-				writeMovieText(metaPath, "\n".join(lines) + "\n")
-				writeMovieText(f"{bundle.path}.aml.json", dumps({"version": 1, "title": lines[1], "description": lines[2]}, ensure_ascii=False))
+				metadata = MovieMetaInfo(bundle.path)
+				bundle.checkUnchanged()
+				values = {iDVBMetaFile.idName: self.operation["title"], iDVBMetaFile.idDescription: self.operation["description"]}
+				writeMovieText(f"{bundle.path}.meta", metadata.update(values, self.operation.get("service", "")))
 			else:
 				raise ValueError("Unknown movie file operation")
 			result["success"] = True
 		except (OSError, ValueError) as error:
 			result.update(success=False, error=str(error))
 		finally:
+			removed = [x for x in (self.operation["path"], trashTarget) if x and not lexists(x)]
+			try:
+				trashcanIndex.discard(removed)
+			except (OSError, ValueError) as error:
+				result["warning"] = str(error)
 			if event is not None:
 				try:
 					movieChangeJournal.finish(event["id"], bool(result.get("success")))

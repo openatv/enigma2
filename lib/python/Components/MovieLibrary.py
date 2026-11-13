@@ -1,5 +1,4 @@
 from collections import OrderedDict
-from json import loads
 from os.path import isabs, isfile, splitext
 from re import search
 from time import monotonic
@@ -11,7 +10,7 @@ from enigma import eTimer
 
 from Components.config import ConfigSelection, config
 from Tools.MovieFileOperations import movieChangeJournal, readMovieProgress
-from Tools.MovieInfoParser import getExtendedMovieDescription
+from Tools.MovieInfoParser import MovieMetaInfo, getExtendedMovieDescription
 
 
 class MovieVirtualFolders:
@@ -188,10 +187,9 @@ class MovieLibraryRegistry:
 			if poster:
 				items.setdefault(path, {}).update(path=path, poster=poster)
 			try:
-				with open(f"{path}.aml.json", encoding="utf-8") as stream:
-					metadata = loads(stream.read(65536))
-				if isinstance(metadata, dict) and metadata.get("version") == 1:
-					items.setdefault(path, {})["overrides"] = {name: metadata[name] for name in ("title", "description") if isinstance(metadata.get(name), str)}
+				recording = MovieMetaInfo(path).details()
+				if recording:
+					items.setdefault(path, {})["recording"] = recording
 			except (OSError, ValueError):
 				pass
 		return items
@@ -215,7 +213,8 @@ class MovieLibraryRegistry:
 						items.setdefault(path, {})["localDescription"] = item["localDescription"]
 					if not items.get(path, {}).get("poster"):
 						items.setdefault(path, {})["poster"] = item.get("poster", "")
-					items.setdefault(path, {}).update(item.get("overrides", {}))
+					for field, value in item.get("recording", {}).items():
+						items.setdefault(path, {}).setdefault(field, value)
 				for path in parameters["paths"]:
 					item = items.setdefault(path, {})
 					item["progress"] = readMovieProgress(path, item.get("duration", 0), parameters.get("resume", {}).get(path))
@@ -234,7 +233,8 @@ class MovieLibraryRegistry:
 						item["poster"] = values.get("poster", "")
 					# A grouped series title must not become the title of its first episode.
 					if operation == "members" or item.get("type") != "series":
-						item.update(values.get("overrides", {}))
+						for field, value in values.get("recording", {}).items():
+							item.setdefault(field, value)
 					if operation == "members" or result.get("physical"):
 						item["progress"] = readMovieProgress(item["path"], item.get("duration", 0))
 					else:
@@ -246,7 +246,7 @@ class MovieLibraryRegistry:
 			print(f"[MovieLibrary] Provider request failed: {error}")
 			items = self.localDetails(parameters["paths"]) if operation == "details" and not parameters.get("databaseOnly") else {}
 			for item in items.values():
-				item.update(item.pop("overrides", {}))
+				item.update(item.pop("recording", {}))
 			if operation == "details" and not parameters.get("databaseOnly"):
 				for path in parameters["paths"]:
 					items.setdefault(path, {})["progress"] = readMovieProgress(path, resume=parameters.get("resume", {}).get(path))

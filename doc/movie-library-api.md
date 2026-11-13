@@ -91,10 +91,19 @@ storage. Database and artwork caches themselves must be on always-available stor
 if the movie disk is to remain asleep. Cache keys separate this mode from ordinary
 filesystem detail requests.
 
-Outside database-only mode, the core overlays local manual title/description edits and local poster fallbacks.
-Local posters are `<stem>.jpg`, `<stem>.png` or `<filename>.jpg`. Manual overrides
-use `<filename>.aml.json`, version 1. Existing `.meta` files are updated too.
-Series group titles are kept separate from individual episode overrides.
+Outside database-only mode, the core reads standard recording metadata and local
+poster fallbacks. Local posters are `<stem>.jpg`, `<stem>.png` or `<filename>.jpg`.
+Title and description edits update the existing lines of `<filename>.meta`.
+Other fields are preserved; newly created files use the standard five-line
+recording metadata layout. AML adds no fields, flags or per-movie JSON files.
+There is no migration or compatibility reader for development-only formats.
+
+The ordinary file list uses native E2 recording information. Library requests
+use `.meta` values when the provider has no corresponding field, or when the
+provider is unavailable. A short recording description does not replace a rich
+provider description. AML edits reach e2MDB through the existing movie-change
+journal, including an intentionally empty description. No marker in `.meta`
+is needed. Series group titles remain separate from individual episode titles.
 
 Metadata is cached for up to 60 seconds, at most 256 paths. Artwork is decoded
 asynchronously through `ePicLoad` with a 12-MiB decoded cache per information
@@ -170,9 +179,15 @@ does not claim to monitor arbitrary filesystem changes. Trashed entries and
 metadata-only orphan rows are excluded from the catalogue. Files not yet scanned
 remain reachable in the ordinary folder view.
 
-Trash stores `<filename>.aml.trash.json` with the original location. Restore does
-not overwrite an existing original. Older trash without that sidecar can be moved
-to a chosen directory. Existing trash retention/reserve settings remain native.
+Each native `.Trash` directory has one `.trashinfo` index, a JSON object mapping
+paths relative to that trash directory to their original absolute paths. The
+index is updated atomically before movies enter the trash. Recording metadata
+is neither created nor modified for this purpose. Moving or renaming a movie
+within AML keeps the index consistent; restore, permanent deletion and native
+trash cleanup remove the relevant entries. An empty index is removed.
+The retention/reserve cleanup protects the index itself. Restore never
+overwrites an existing original. Files without an indexed original location
+can be moved to a chosen directory. No previous development format is imported.
 
 ## Extension actions and playlists
 

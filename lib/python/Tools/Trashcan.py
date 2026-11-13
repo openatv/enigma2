@@ -1,7 +1,10 @@
-from errno import ENOTEMPTY
-from os import W_OK, access, mkdir, rmdir, stat, statvfs, walk
-from os.path import getsize, isdir, join, realpath, split
+from errno import EINVAL, ENOTEMPTY, ENOTSUP
+from json import dumps, loads
+from os import O_RDONLY, W_OK, access, close, fsync, mkdir, name as osName, open as openDescriptor, replace, rmdir, stat, statvfs, unlink, walk
+from os.path import basename, dirname, getsize, isabs, isdir, islink, join, lexists, normpath, realpath, relpath, split
+from threading import RLock
 from time import time
+from uuid import uuid4
 
 from enigma import eBackgroundFileEraser, eLabel, iRecordableService
 
@@ -15,6 +18,102 @@ from Tools.Directories import fileReadLines
 
 MODULE_NAME = __name__.split(".")[-1]
 TRASHCAN = ".Trash"  # This should this be ".Trashcan" to be consistent with the module.
+
+
+class TrashcanIndex:
+	FILE_NAME = ".trashinfo"
+	MAX_SIZE = 4 * 1024 * 1024
+
+	def __init__(self):
+		self.lock = RLock()
+
+	def directory(self, path):
+		folder = dirname(normpath(path))
+		while folder != dirname(folder):
+			if basename(folder) == TRASHCAN:
+				return folder
+			folder = dirname(folder)
+		return None
+
+	def isIndexFile(self, path):
+		name = basename(path)
+		return name == self.FILE_NAME or (name.startswith(f"{self.FILE_NAME}.") and name.endswith(".tmp"))
+
+	def read(self, folder):
+		path = join(folder, self.FILE_NAME)
+		if islink(path):
+			raise ValueError(_("The trash index must not be a symbolic link."))
+		try:
+			with open(path, encoding="utf-8") as stream:
+				text = stream.read(self.MAX_SIZE + 1)
+		except FileNotFoundError:
+			return {}
+		if len(text) > self.MAX_SIZE:
+			raise ValueError(_("The trash index is too large."))
+		entries = loads(text)
+		if not isinstance(entries, dict) or any(not isinstance(x, str) or isabs(x) or normpath(x) != x or ".." in x.replace("\\", "/").split("/") or not isinstance(entries[x], str) or not isabs(entries[x]) or "\0" in x or "\0" in entries[x] for x in entries):
+			raise ValueError(_("The trash index is damaged."))
+		return entries
+
+	def write(self, folder, entries):
+		path = join(folder, self.FILE_NAME)
+		temporary = f"{path}.{uuid4().hex}.tmp"
+		try:
+			if entries:
+				text = dumps(entries, ensure_ascii=False)
+				if len(text) > self.MAX_SIZE:
+					raise ValueError(_("The trash index is too large."))
+				with open(temporary, "x", encoding="utf-8") as stream:
+					stream.write(text)
+					stream.flush()
+					fsync(stream.fileno())
+				replace(temporary, path)
+			elif lexists(path):
+				unlink(path)
+			if osName == "posix":
+				descriptor = openDescriptor(folder, O_RDONLY)
+				try:
+					try:
+						fsync(descriptor)
+					except OSError as error:
+						if error.errno not in (EINVAL, ENOTSUP):
+							raise
+				finally:
+					close(descriptor)
+		finally:
+			if lexists(temporary):
+				unlink(temporary)
+
+	def get(self, path):
+		folder = self.directory(path)
+		with self.lock:
+			return self.read(folder).get(relpath(path, folder)) if folder else None
+
+	def add(self, path, originalPath):
+		folder = self.directory(path)
+		if not folder or not isabs(originalPath) or "\0" in originalPath:
+			raise ValueError(_("Invalid original movie location."))
+		with self.lock:
+			entries = self.read(folder)
+			entries[relpath(path, folder)] = originalPath
+			self.write(folder, entries)
+
+	def discard(self, paths):
+		folders = {}
+		for path in paths:
+			folder = self.directory(path)
+			if folder:
+				folders.setdefault(folder, set()).add(relpath(path, folder))
+		with self.lock:
+			for folder, names in folders.items():
+				entries = self.read(folder)
+				# A failed erase or a new file at the same path must retain its location.
+				remaining = {x: entries[x] for x in entries if x not in names or lexists(join(folder, x))}
+				if remaining != entries:
+					self.write(folder, remaining)
+
+
+trashcanIndex = TrashcanIndex()
 
 
 def getTrashcan(path=None):  # Returns trashcan folder without symbolic links.
@@ -115,11 +214,15 @@ def clean(timeLimit, reserveBytes):
 def cleanAll(path=None):
 	trashcan = getTrashcan(path)
 	if isdir(trashcan):
+		removed = []
 		for root, dirs, files in walk(trashcan, topdown=False):
 			for file in files:
 				path = join(root, file)
+				if trashcanIndex.isIndexFile(path):
+					continue
 				try:
 					eBackgroundFileEraser.getInstance().erase(path)
+					removed.append(path)
 				except Exception as err:
 					print(f"[Trashcan] Error: Failed to erase '{path}'!  ({err})")
 			for dir in dirs:  # Remove empty directories if possible.
@@ -129,6 +232,10 @@ def cleanAll(path=None):
 				except OSError as err:
 					if err.errno != ENOTEMPTY:
 						print(f"[Trashcan] Error {err.errno}: Unable to remove directory '{path}'!  ({err.strerror})")
+		try:
+			trashcanIndex.discard(removed)
+		except (OSError, ValueError) as error:
+			print(f"[Trashcan] Unable to update original locations: {error}")
 	else:
 		print(f"[Trashcan] Trashcan '{trashcan}' is not a directory!")
 
@@ -164,6 +271,7 @@ class CleanTrashTask(PythonTask):
 				matches.append(join(mount, "movie", TRASHCAN))
 		print("[Trashcan] Found the following trashcans '%s'." % "', '".join(matches))
 		for trashcan in matches:
+			removed = []
 			print(f"[Trashcan] Looking in trashcan '{trashcan}'.")
 			trashcanSize = getTrashcanSize(trashcan)
 			try:
@@ -180,9 +288,12 @@ class CleanTrashTask(PythonTask):
 				for file in files:
 					try:
 						path = join(root, file)
+						if trashcanIndex.isIndexFile(path):
+							continue
 						status = stat(path)
 						if status.st_ctime < self.timeLimit:
 							eBackgroundFileEraser.getInstance().erase(path)
+							removed.append(path)
 							bytesToRemove -= status.st_size
 						else:
 							candidates.append((status.st_ctime, path, status.st_size))
@@ -204,11 +315,16 @@ class CleanTrashTask(PythonTask):
 						break
 					try:  # Sometimes the path doesn't exist. This can happen if trashcan is on a network or other code is emptying the trashcan at same time.
 						eBackgroundFileEraser.getInstance().erase(path)
+						removed.append(path)
 					except Exception as err:
 						print(f"[Trashcan] Error: Failed to erase '{path}'!  ({err})")  # Should we ignore any deletion errors?
 					bytesToRemove -= pathSize
 					size -= pathSize
 				print(f"[Trashcan] Trashcan '{trashcan}' is now using {size} bytes.")
+			try:
+				trashcanIndex.discard(removed)
+			except (OSError, ValueError) as error:
+				print(f"[Trashcan] Unable to update original locations: {error}")
 		if not matches:
 			print("[Trashcan] No trashcans found!")
 
