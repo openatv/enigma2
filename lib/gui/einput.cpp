@@ -56,33 +56,19 @@ int eInput::event(int event, void *data, void *data2)
 		eDebug("[eInput] cursor is %d", cursor);
 		para->setFont(m_font);
 		para->renderString(text.empty()?0:text.c_str(), 0);
-		int glyphs = para->size();
-
 		if (m_have_focus)
 		{
-			if (m_mode && cursor < glyphs)
+			eRect bbox;
+			if (m_mode && para->getCharacterBBox(cursor, bbox))
 			{
 					/* in overwrite mode, when not at end of line, invert the current cursor position. */
-				para->setGlyphFlag(cursor, GS_INVERT);
-				eRect bbox = para->getGlyphBBox(cursor);
+				para->setCharacterFlag(cursor, GS_INVERT);
 				bbox = eRect(bbox.left(), 0, bbox.width(), size().height());
 				painter.fill(bbox);
-			} else
+			} else if (para->getCaretBBox(cursor, bbox))
 			{
 					/* otherwise, insert small cursor */
-				eRect bbox;
-				if (cursor < glyphs)
-				{
-					bbox = para->getGlyphBBox(cursor);
-					bbox = eRect(bbox.left()-1, 0, 2, size().height());
-				} else if (cursor)
-				{
-					bbox = para->getGlyphBBox(cursor - 1);
-					bbox = eRect(bbox.right(), 0, 2, size().height());
-				} else
-				{
-					bbox = eRect(0, 0, 2, size().height());
-				}
+				bbox = eRect(bbox.left(), 0, 2, size().height());
 				painter.fill(bbox);
 			}
 		}
@@ -101,7 +87,7 @@ int eInput::event(int event, void *data, void *data2)
 					if (m_content)
 					{
 						extern int getPrevAsciiCode();  // defined in enigma.cpp
-						return m_content->haveKey(getPrevAsciiCode(), m_mode);
+						return m_content->haveKey(getPrevAsciiCode() | 0x8000, m_mode);
 					}
 				}
 			}
