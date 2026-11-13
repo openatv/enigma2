@@ -4119,6 +4119,7 @@ void gEGLDC::renderGlyph(const ePoint& pos, gPixmap* glyph_mask, const gRGB& col
 	const eRect screen_bounds(0, 0, m_width, m_height);
 	if (m_current_clip.empty() || !glyph_bounds.intersects(m_current_clip.extends) || !glyph_bounds.intersects(screen_bounds))
 		return;
+	recoverFontAtlas();
 
 	glyph_uv uv;
 	glyph_key_t key = hashGlyphMask(glyph_mask);
@@ -4180,32 +4181,66 @@ void gEGLDC::renderGlyph(const ePoint& pos, gPixmap* glyph_mask, const gRGB& col
 	}
 }
 
-void gEGLDC::flushTextBatch() {
-	flushFillBatch();
-	if (m_text_batch_buffer.empty())
+void gEGLDC::recoverFontAtlas()
+{
+	if (!m_fontAtlasRetrySmaller)
 		return;
-	e2eglScopedTimer timer(m_frame_stats.text_us);
-	++m_frame_stats.text_batches;
+	// Never resize inside flushTextBatch(): renderGlyph may still hold UVs
+	// for more clip rectangles of that glyph. Change the atlas before lookup.
+	flushTextBatchForReason(textFlushAtlas);
+	if (m_fontAtlasRetrySmaller) {
+		m_fontAtlasRetrySmaller = false;
+		m_font_atlas.reduceSize();
+	}
+}
 
-	glEnable(GL_BLEND);
-	glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+void gEGLDC::logTextRenderFailure(const char* stage, GLenum error, const eRect& area)
+{
+	++m_textRenderErrorCount;
+	if (m_textRenderErrorCount > 8 && m_textRenderErrorCount % 64 != 0)
+		return;
+	gPixmap* atlas = m_font_atlas.getPixmap();
+	GLint framebuffer = 0;
+	GLint viewport[4] = {};
+	glGetIntegerv(GL_FRAMEBUFFER_BINDING, &framebuffer);
+	glGetIntegerv(GL_VIEWPORT, viewport);
+	eWarning("[gEGLDC] text render failure stage=%s error=0x%x count=%u atlas=%dx%d texture=%u dirty=%d rect=%d,%d %dx%d quads=%zu osd=%dx%d framebuffer=%d viewport=%d,%d %dx%d",
+		stage, error, m_textRenderErrorCount, atlas ? atlas->size().width() : 0, atlas ? atlas->size().height() : 0,
+		atlas && atlas->surface ? atlas->surface->gl_texture_id : 0, m_font_atlas.isDirty(),
+		area.x(), area.y(), area.width(), area.height(), m_text_batch_buffer.size() / 48,
+		m_width, m_height, framebuffer, viewport[0], viewport[1], viewport[2], viewport[3]);
+}
 
-	m_text_shader.bind();
-
-	// Bind the atlas pixmap
+GLuint gEGLDC::prepareFontAtlasTexture()
+{
+	// Keep errors from earlier rendering separate from the atlas operation.
+	for (int i = 0; i < 8; ++i) {
+		const GLenum error = glGetError();
+		if (error == GL_NO_ERROR)
+			break;
+		logTextRenderFailure("before atlas upload", error);
+	}
+	glActiveTexture(GL_TEXTURE0);
+#ifdef HAVE_GLES3
+	if (gles::isGLES3())
+		glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
+#endif
 	gPixmap* atlas_pix = m_font_atlas.getPixmap();
+	if (atlas_pix && atlas_pix->surface)
+		m_texture_manager.prepareSurface(atlas_pix->surface);
 	const bool atlas_texture_valid = atlas_pix && atlas_pix->surface && atlas_pix->surface->gl_texture_id && atlas_pix->surface->gl_content_valid;
 	GLuint tex_id = m_texture_manager.getTexture(atlas_pix);
 	if (!tex_id) {
-		eDebug("[gEGLDC] failed to upload font atlas texture");
-		m_text_batch_buffer.clear();
-		m_text_batch_rects.clear();
-		m_text_batch_bounds_valid = false;
-		glDisable(GL_BLEND);
-		return;
+		// getTexture() reports the GL error; retain the CPU atlas and dirty state.
+		logTextRenderFailure("allocate atlas (see gTextureManager)", GL_NO_ERROR);
+		m_fontAtlasRetrySmaller = atlas_pix && atlas_pix->size().width() > 512;
+		return 0;
 	}
-	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, tex_id);
+	if (!atlas_texture_valid)
+		eDebug("[gEGLDC] font atlas uploaded size=%dx%d texture=%u bytes=%llu osd=%dx%d",
+			atlas_pix->size().width(), atlas_pix->size().height(), tex_id,
+			static_cast<unsigned long long>(atlas_pix->size().width()) * atlas_pix->size().height(), m_width, m_height);
 
 	if (m_font_atlas.isDirty()) {
 		if (!atlas_texture_valid) {
@@ -4215,6 +4250,7 @@ void gEGLDC::flushTextBatch() {
 			const eRect fallback_dirty = m_font_atlas.getDirtyRect();
 			const int dirty_count = dirty_rects.empty() ? 1 : (int)dirty_rects.size();
 			const int stride = atlas_pix->size().width();
+			GLenum uploadError = GL_NO_ERROR;
 
 			glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 			GLenum src_fmt = GL_LUMINANCE;
@@ -4245,6 +4281,11 @@ void gEGLDC::flushTextBatch() {
 				}
 #endif
 				glTexSubImage2D(GL_TEXTURE_2D, 0, start_x, start_y, upload_width, height, src_fmt, GL_UNSIGNED_BYTE, data);
+				uploadError = glGetError();
+				if (uploadError != GL_NO_ERROR) {
+					logTextRenderFailure("update atlas", uploadError, eRect(start_x, start_y, upload_width, height));
+					break;
+				}
 				++m_frame_stats.font_uploads;
 				m_frame_stats.font_upload_pixels += rectPixels(eRect(start_x, start_y, upload_width, height));
 			}
@@ -4254,12 +4295,51 @@ void gEGLDC::flushTextBatch() {
 				glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
 #endif
 			glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
+			if (uploadError != GL_NO_ERROR) {
+				for (int i = 0; i < 8; ++i) {
+					const GLenum error = glGetError();
+					if (error == GL_NO_ERROR)
+						break;
+					logTextRenderFailure("update atlas (pending error)", error);
+				}
+				// Re-upload the CPU copy once, keeping all glyphs and UVs. Do not
+				// mark a partial/failed update clean or keep using that texture.
+				m_texture_manager.queueForDeletion(tex_id, atlas_pix->surface->gl_context_generation);
+				atlas_pix->surface->gl_texture_id = 0;
+				atlas_pix->surface->gl_content_valid = false;
+				m_texture_manager.processDeletions();
+				tex_id = m_texture_manager.getTexture(atlas_pix);
+				if (!tex_id) {
+					logTextRenderFailure("rebuild atlas (see gTextureManager)", GL_NO_ERROR);
+					m_fontAtlasRetrySmaller = atlas_pix->size().width() > 512;
+					return 0;
+				}
+				glBindTexture(GL_TEXTURE_2D, tex_id);
+				if (m_textRenderErrorCount <= 8 || m_textRenderErrorCount % 64 == 0)
+					eWarning("[gEGLDC] font atlas recovered size=%dx%d texture=%u", atlas_pix->size().width(), atlas_pix->size().height(), tex_id);
+			}
 			m_font_atlas.clearDirty();
 		}
 	}
+	m_fontAtlasRetrySmaller = false;
+	return tex_id;
+}
 
-	glDisable(GL_SCISSOR_TEST);
-	m_text_shader.drawBatch(m_text_batch_buffer.data(), m_text_batch_buffer.size());
+void gEGLDC::flushTextBatch() {
+	flushFillBatch();
+	if (m_text_batch_buffer.empty())
+		return;
+	e2eglScopedTimer timer(m_frame_stats.text_us);
+	++m_frame_stats.text_batches;
+
+	const GLuint tex_id = prepareFontAtlasTexture();
+	if (tex_id) {
+		glEnable(GL_BLEND);
+		glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+		glDisable(GL_SCISSOR_TEST);
+		if (!m_text_shader.drawBatchChecked(m_text_batch_buffer.data(), m_text_batch_buffer.size()))
+			logTextRenderFailure("draw text (see gTextShader)", GL_NO_ERROR);
+	}
 
 	glDisable(GL_BLEND);
 

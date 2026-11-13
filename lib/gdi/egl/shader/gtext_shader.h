@@ -13,15 +13,17 @@ private:
 	GLuint m_program_id;
 	GLuint m_vbo;
 	size_t m_vbo_capacity_bytes;
+	unsigned int m_glErrorCount = 0;
 
 	GLint m_projection_location;
-	GLint m_color_location;
 	GLint m_texture_location;
 
 	GLuint compileShader(GLenum type, const char* source);
 	void bindVAO();
 	void unbindVAO();
-	void ensureVboCapacity(size_t bytes);
+	bool ensureVboCapacity(size_t bytes);
+	GLenum checkError(const char* stage, size_t bytes = 0);
+	bool uploadVertices(const float* vertices, size_t bytes);
 
 public:
 	gTextShader();
@@ -34,4 +36,5 @@ public:
 	void setResolution(float width, float height);
 	void drawGlyph(float x, float y, const glyph_uv& uv, float r, float g, float b, float a);
 	void drawBatch(const float* vertices, size_t float_count);
+	bool drawBatchChecked(const float* vertices, size_t float_count);
 };

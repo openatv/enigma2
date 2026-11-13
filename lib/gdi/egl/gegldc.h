@@ -72,6 +72,8 @@ private:
 
 	gFontAtlas m_font_atlas;
 	gTextureManager m_texture_manager;
+	unsigned int m_textRenderErrorCount = 0;
+	bool m_fontAtlasRetrySmaller = false;
 
 	struct PendingWindowAnimation {
 		bool active;
@@ -351,6 +353,9 @@ private:
 	void resetRectangleState();
 	void resetBlitState();
 	void flushTextBatch();
+	GLuint prepareFontAtlasTexture();
+	void recoverFontAtlas();
+	void logTextRenderFailure(const char* stage, GLenum error, const eRect& area = eRect());
 	void flushTextBatchForReason(TextFlushReason reason);
 	void flushTextBatchIfOverlaps(const eRect& area, TextFlushReason reason);
 	void flushTextBatchIfOverlaps(const gRegion& region, TextFlushReason reason);

@@ -97,6 +97,11 @@ void gTextShader::release(bool contextCurrent)
 GLuint gTextShader::compileShader(GLenum type, const char *source)
 {
     GLuint shader = glCreateShader(type);
+    if (!shader) {
+        checkError("create shader");
+        eWarning("[gTextShader] failed to create shader type=0x%x", type);
+        return 0;
+    }
     glShaderSource(shader, 1, &source, nullptr);
     glCompileShader(shader);
 
@@ -105,7 +110,8 @@ GLuint gTextShader::compileShader(GLenum type, const char *source)
     if (!success) {
         GLchar info_log[512];
         glGetShaderInfoLog(shader, 512, nullptr, info_log);
-        eDebug("[gTextShader] shader compilation failed: %s", info_log);
+        eWarning("[gTextShader] shader compilation failed: %s", info_log);
+        glDeleteShader(shader);
         return 0;
     }
     return shader;
@@ -113,6 +119,7 @@ GLuint gTextShader::compileShader(GLenum type, const char *source)
 
 bool gTextShader::init()
 {
+    checkError("before text shader init");
     gles::ShaderLocale shaderLocale;
     if (!shaderLocale.valid())
         return false;
@@ -132,7 +139,11 @@ bool gTextShader::init()
     GLuint vertex_shader   = compileShader(GL_VERTEX_SHADER,   vs_src);
     GLuint fragment_shader = compileShader(GL_FRAGMENT_SHADER, fs_src);
 
-    if (!vertex_shader || !fragment_shader) return false;
+    if (!vertex_shader || !fragment_shader) {
+        if (vertex_shader) glDeleteShader(vertex_shader);
+        if (fragment_shader) glDeleteShader(fragment_shader);
+        return false;
+    }
 
     m_program_id = glCreateProgram();
 
@@ -148,14 +159,31 @@ bool gTextShader::init()
     glDeleteShader(vertex_shader);
     glDeleteShader(fragment_shader);
 
+    GLint linked = GL_FALSE;
+    glGetProgramiv(m_program_id, GL_LINK_STATUS, &linked);
+    const GLenum linkError = checkError("link program");
+    if (!linked || linkError != GL_NO_ERROR) {
+        GLchar infoLog[512] = {};
+        glGetProgramInfoLog(m_program_id, sizeof(infoLog), nullptr, infoLog);
+        eWarning("[gTextShader] program link failed: %s", infoLog);
+        release();
+        return false;
+    }
+
     m_projection_location = glGetUniformLocation(m_program_id, "u_projection");
-    m_color_location      = glGetUniformLocation(m_program_id, "u_text_color");
     m_texture_location    = glGetUniformLocation(m_program_id, "u_texture");
+    if (m_projection_location < 0 || m_texture_location < 0) {
+        eWarning("[gTextShader] missing text uniforms projection=%d texture=%d", m_projection_location, m_texture_location);
+        release();
+        return false;
+    }
 
     glGenBuffers(1, &m_vbo);
     glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
-    m_vbo_capacity_bytes = buffer_size;
-    glBufferData(GL_ARRAY_BUFFER, m_vbo_capacity_bytes, nullptr, GL_DYNAMIC_DRAW);
+    if (!ensureVboCapacity(buffer_size)) {
+        release();
+        return false;
+    }
 
     // Attribute 0: pos_uv (4 floats)
     glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, floats_per_vertex * sizeof(float), (void*)0);
@@ -166,7 +194,10 @@ bool gTextShader::init()
     glEnableVertexAttribArray(1);
     
     glBindBuffer(GL_ARRAY_BUFFER, 0);
-
+    if (checkError("initialise text attributes") != GL_NO_ERROR) {
+        release();
+        return false;
+    }
     return true;
 }
 
@@ -191,21 +222,63 @@ void gTextShader::unbindVAO()
     glDisableVertexAttribArray(1);
 }
 
-void gTextShader::ensureVboCapacity(size_t bytes)
+GLenum gTextShader::checkError(const char* stage, size_t bytes)
+{
+    GLenum error = glGetError();
+    if (error == GL_NO_ERROR)
+        return error;
+    ++m_glErrorCount;
+    if (m_glErrorCount <= 8 || m_glErrorCount % 64 == 0)
+        eWarning("[gTextShader] GL error stage=%s error=0x%x count=%u program=%u vbo=%u capacity=%zu requested=%zu",
+            stage, error, m_glErrorCount, m_program_id, m_vbo, m_vbo_capacity_bytes, bytes);
+    // Do not attribute other pending flags from this operation to the next one.
+    for (int i = 0; i < 8 && glGetError() != GL_NO_ERROR; ++i) {}
+    return error;
+}
+
+bool gTextShader::ensureVboCapacity(size_t bytes)
 {
     if (bytes <= m_vbo_capacity_bytes)
-        return;
+        return true;
 
     size_t new_capacity = m_vbo_capacity_bytes ? m_vbo_capacity_bytes : sizeof(float) * 6 * 8;
     while (new_capacity < bytes)
         new_capacity *= 2;
 
     glBufferData(GL_ARRAY_BUFFER, new_capacity, nullptr, GL_DYNAMIC_DRAW);
+    if (checkError("allocate text VBO", new_capacity) != GL_NO_ERROR)
+        return false;
     m_vbo_capacity_bytes = new_capacity;
+    return true;
+}
+
+bool gTextShader::uploadVertices(const float* vertices, size_t bytes)
+{
+    if (ensureVboCapacity(bytes)) {
+        glBufferSubData(GL_ARRAY_BUFFER, 0, bytes, vertices);
+        if (checkError("upload text VBO", bytes) == GL_NO_ERROR)
+            return true;
+    }
+
+    // Retry once with an exact-sized store. A failed allocation must not
+    // leave a fictional capacity that suppresses all future allocations.
+    glDeleteBuffers(1, &m_vbo);
+    m_vbo = 0;
+    m_vbo_capacity_bytes = 0;
+    glGenBuffers(1, &m_vbo);
+    bindVAO();
+    glBufferData(GL_ARRAY_BUFFER, bytes, vertices, GL_DYNAMIC_DRAW);
+    if (checkError("rebuild text VBO", bytes) != GL_NO_ERROR)
+        return false;
+    m_vbo_capacity_bytes = bytes;
+    if (m_glErrorCount <= 8 || m_glErrorCount % 64 == 0)
+        eWarning("[gTextShader] text VBO recovered vbo=%u bytes=%zu", m_vbo, bytes);
+    return true;
 }
 
 void gTextShader::setResolution(float width, float height)
 {
+    checkError("before text projection");
     bind();
     float ortho[16] = {
         2.0f / width,  0.0f,           0.0f,  0.0f,
@@ -214,14 +287,11 @@ void gTextShader::setResolution(float width, float height)
        -1.0f,          1.0f,           0.0f,  1.0f
     };
     glUniformMatrix4fv(m_projection_location, 1, GL_FALSE, ortho);
+    checkError("set text projection");
 }
 
 void gTextShader::drawGlyph(float x, float y, const glyph_uv& uv, float r, float g, float b, float a)
 {
-    bind();
-    glUniform4f(m_color_location, r, g, b, a);
-    glUniform1i(m_texture_location, 0);
-
     float w = (float)uv.width;
     float h = (float)uv.height;
 
@@ -235,26 +305,32 @@ void gTextShader::drawGlyph(float x, float y, const glyph_uv& uv, float r, float
         x + w, y + h, uv.u1, uv.v1, r, g, b, a
     };
 
-    bindVAO();
-    glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
-    glDrawArrays(GL_TRIANGLES, 0, 6);
-    unbindVAO();
+    drawBatch(vertices, 48);
 }
 
 void gTextShader::drawBatch(const float* vertices, size_t float_count)
 {
-    if (!vertices || !float_count)
-        return;
+    drawBatchChecked(vertices, float_count);
+}
 
+bool gTextShader::drawBatchChecked(const float* vertices, size_t float_count)
+{
+    if (!vertices || !float_count)
+        return true;
+
+    checkError("before text batch");
     bind();
     glUniform1i(m_texture_location, 0);
+    if (checkError("bind text program") != GL_NO_ERROR)
+        return false;
 
     bindVAO();
-    glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
     const size_t bytes = float_count * sizeof(float);
-    ensureVboCapacity(bytes);
-    glBufferSubData(GL_ARRAY_BUFFER, 0, bytes, vertices);
-    glDrawArrays(GL_TRIANGLES, 0, static_cast<GLsizei>(float_count / 8));
+    bool success = uploadVertices(vertices, bytes);
+    if (success) {
+        glDrawArrays(GL_TRIANGLES, 0, static_cast<GLsizei>(float_count / 8));
+        success = checkError("draw text batch", bytes) == GL_NO_ERROR;
+    }
     unbindVAO();
+    return success;
 }

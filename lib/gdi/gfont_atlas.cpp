@@ -28,7 +28,7 @@ bool gFontAtlas::init(int width, int height)
     if (width <= 0 || height <= 0) {
         const char *setting = std::getenv("E2EGL_FONT_ATLAS_START");
         const int requested = setting ? std::atoi(setting) : 512;
-        const int initial = requested == 1024 || requested == 2048 ? requested : 512;
+        const int initial = std::min(m_atlas_limit, requested == 1024 || requested == 2048 ? requested : 512);
         width = height = initial;
     }
     release();
@@ -61,6 +61,19 @@ void gFontAtlas::release()
     std::vector<eRect>().swap(m_dirty_rects);
     std::vector<stbrp_node>().swap(m_pack_nodes);
     std::unordered_map<glyph_key_t, glyph_uv>().swap(m_glyphs);
+}
+
+bool gFontAtlas::reduceSize()
+{
+    const int size = std::max(m_atlas_width, m_atlas_height);
+    if (size <= 512)
+        return false;
+    // The caller must finish/discard the old batch before changing its UVs.
+    // Retain this limit for the session instead of growing back into the OOM.
+    m_atlas_limit = std::max(512, size / 2);
+    eWarning("[gFontAtlas] reducing atlas after upload failure %dx%d -> %dx%d; growth limited to %d",
+        m_atlas_width, m_atlas_height, m_atlas_limit, m_atlas_limit, m_atlas_limit);
+    return init(m_atlas_limit, m_atlas_limit);
 }
 
 static long long atlasRectArea(const eRect &rect)
@@ -144,9 +157,9 @@ bool gFontAtlas::addGlyph(glyph_key_t key, int width, int height, int pitch, con
         if (!allow_reset)
             return false;
 
-        if (m_atlas_width < 2048 || m_atlas_height < 2048) {
-            const int nextWidth = m_atlas_width < 2048 ? std::min(2048, m_atlas_width * 2) : m_atlas_width;
-            const int nextHeight = m_atlas_height < 2048 ? std::min(2048, m_atlas_height * 2) : m_atlas_height;
+        if (m_atlas_width < m_atlas_limit || m_atlas_height < m_atlas_limit) {
+            const int nextWidth = m_atlas_width < m_atlas_limit ? std::min(m_atlas_limit, m_atlas_width * 2) : m_atlas_width;
+            const int nextHeight = m_atlas_height < m_atlas_limit ? std::min(m_atlas_limit, m_atlas_height * 2) : m_atlas_height;
             eDebug("[gFontAtlas] growing %dx%d -> %dx%d after text batch flush", m_atlas_width, m_atlas_height, nextWidth, nextHeight);
             init(nextWidth, nextHeight);
             return addGlyph(key, width, height, pitch, data, uv, true);

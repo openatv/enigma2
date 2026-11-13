@@ -645,6 +645,9 @@ GLuint gTextureManager::createTextureFromSurface(gUnmanagedSurface* surface) {
 		return 0;
 	if (!surface->cpu_content_valid)
 		return 0;
+	// A resize/invalidation can queue the previous texture during this draw
+	// opcode. Release it before allocating its replacement, also with an empty cache.
+	processDeletions();
 
 	GLuint texture_id = createSharedNativeTarget(surface);
 	if (texture_id != 0)

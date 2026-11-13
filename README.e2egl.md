@@ -258,7 +258,8 @@ used. Content is synced back to CPU memory on demand
 ### Text
 
 `renderGlyph()` keys each glyph by a 64-bit FNV-1a hash of its 8-bit mask
-(size, pitch, pixels) and packs it into a 2048x2048 8-bit atlas
+(size, pitch, pixels) and packs it into an 8-bit atlas that starts at 512x512
+and grows to 1024x1024 and then 2048x2048
 (`gFontAtlas`, `stb_rect_pack`). Quads are clipped per clip rect and collected
 in a text batch of up to 4096 quads that is drawn with one call. The batch is
 flushed when a fill, rectangle, line, blit or clear overlaps it, on state
@@ -266,6 +267,30 @@ opcodes that cannot keep pending text, at present time, when it is full, or
 before the atlas is reset. A full atlas is reset completely. Dirty atlas rects
 are uploaded with `glTexSubImage2D` before drawing: GLES3 uploads only the
 dirty rect (`GL_UNPACK_ROW_LENGTH`), GLES2 the full rows.
+
+Atlas uploads, text VBO allocation/updates and text draw calls check GL
+errors. A failed atlas sub-upload keeps the CPU glyphs and UVs and attempts
+one complete texture rebuild. Dirty state is cleared only after a successful
+upload, so a failed rebuild is retried on a later text batch. Retired textures
+are deleted before replacement allocation to reduce the peak during growth.
+If full atlas allocation still fails, the next glyph starts with a smaller
+atlas (2048 -> 1024 -> 512). This happens only after finishing/discarding the
+old batch and before looking up new UVs. The lower growth limit persists for
+the session, so new glyphs reuse the smaller atlas instead of repeatedly
+attempting the failed size. Text from the failed batch needs a repaint;
+subsequent batches can render as soon as the smaller allocation succeeds.
+A failed text VBO allocation/update attempts one rebuild with an exact-sized
+buffer; its capacity is recorded only after successful allocation.
+
+`[gEGLDC] text render failure` includes the operation, error, atlas size,
+texture, dirty rectangle, batch size, OSD size, framebuffer and viewport.
+`[gTextShader] GL error` identifies shader/VBO/draw failures. Failure logs are
+limited to the first eight and every 64th failure per logger; recovery is
+reported with the same limit. Successful new atlas uploads are logged at
+debug level with size and texture ID, including growth to 2048x2048.
+These checks detect GL-reported failures, not a driver silently returning
+incorrect pixels. A repeat on a receiver still requires HDMI inspection and
+a debug log from the same run; desktop GLES tests do not validate its driver.
 
 ### Spinner
 
