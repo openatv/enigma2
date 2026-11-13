@@ -68,8 +68,9 @@ private:
 	eDVBServiceList(const eServiceReference& parent);
 	ePtr<iDVBChannelListQuery> m_query;
 
-	/* for editing purposes. WARNING: lifetime issue! */
-	eBouquet* m_bouquet;
+	/* Resolve the bouquet for each edit; reloadBouquets replaces its storage. */
+	ePtr<iDVBChannelList> m_edit_db;
+	eBouquet *getEditBouquet();
 };
 
 inline int eDVBServiceList::compareLessEqual(const eServiceReference& a, const eServiceReference& b) {

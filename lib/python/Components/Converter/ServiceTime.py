@@ -34,8 +34,20 @@ class ServiceTime(Converter):
 							duration = event.getDuration()
 					result = duration + 10 if duration >= 0 else None  # Keep unknown durations empty; round known durations to minutes.
 				case self.ENDTIME:
-					begin = info.getInfo(service, iServiceInformation.sTimeCreate)
-					result = begin + info.getLength(service) + 10  # Add 10 seconds to fix rounding to minutes.
+					from NavigationInstance import instance  # Read the current navigation instance after startup.
+					if instance:
+						path = service.getPath()
+						for timer in instance.RecordTimer.timer_list:
+							if timer.isRunning() and not timer.justplay and timer.record_service:
+								filename = getattr(timer, "Filename", None)
+								if filename and path == f"{filename}{timer.record_service.getFilenameExtension()}":
+									result = timer.end
+									break
+					if result is None:
+						begin = info.getInfo(service, iServiceInformation.sTimeCreate)
+						length = info.getLength(service)
+						if begin > 0 and length >= 0:
+							result = begin + length + 10  # Add 10 seconds to fix rounding to minutes.
 				case self.STARTTIME:
 					result = info.getInfo(service, iServiceInformation.sTimeCreate)
 		return result
