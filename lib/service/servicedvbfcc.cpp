@@ -131,6 +131,8 @@ void eDVBServiceFCCPlay::serviceEvent(int event)
 
 RESULT eDVBServiceFCCPlay::start()
 {
+	/* FCC event handlers may stop and release the service during promotion. */
+	ePtr<eDVBServiceFCCPlay> self = this;
 	RESULT ret = 0;
 
 	if (!m_is_primary) // PiP mode
@@ -174,6 +176,10 @@ void eDVBServiceFCCPlay::popFCCEvents()
 		}
 	}
 
+	/* Decoder updates can also emit events which stop or replace this service. */
+	if (!getFCCStateDecoding())
+		return;
+
 	/* add CaHandler */
 	m_service_handler.addCaHandler();
 
@@ -184,6 +190,8 @@ void eDVBServiceFCCPlay::popFCCEvents()
 	/* send events */
 	for (std::list<int>::iterator it = m_fcc_events.begin(); it != m_fcc_events.end(); ++it)
 	{
+		if (!getFCCStateDecoding())
+			break;
 		int event = *it;
 		m_event((iPlayableService*)this, event);
 	}
