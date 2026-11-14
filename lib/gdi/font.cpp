@@ -451,13 +451,13 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 			 * of the glyph, we only need to compensate for the part on the right)
 			 * And since xadvance is in 16.16 units, we use (dW/2) << 16 = dW << 15
 			 */
-			if (last)
+			if (last && ng.image)
 			{
 				int extraWidth = int(((FT_BitmapGlyph)ng.borderimage)->bitmap.width) - int(((FT_BitmapGlyph)ng.image)->bitmap.width);
 				xadvance += extraWidth * 32768;
 				endBorder = extraWidth / 2;
 			}
-			if (!previous)
+			if (!previous && ng.image)
 			{
 				/* Move the first character, to make sure the border does not get cut off by the boundingbox (xborder is in pixel units, so just divide the width difference by two)  */
 				xborder = (((FT_BitmapGlyph)ng.borderimage)->bitmap.width - ((FT_BitmapGlyph)ng.image)->bitmap.width) / 2;
