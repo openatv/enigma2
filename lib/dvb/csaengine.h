@@ -87,6 +87,9 @@ public:
 	 * a word arriving later reports the same shortfall once more. */
 	void creditPeriods(int ms);
 
+	/* A word arrived that does not open this service, cleared by reading. */
+	bool takeBadKey() { return m_bad_key.exchange(false); }
+
 	/* Leave a period nothing opens as it came in, marked scrambled, so the
 	 * decoder skips it. A file wants the hole blanked instead. */
 	void setKeepUnopened(bool on) { m_keep_unopened.store(on); }
@@ -138,6 +141,7 @@ private:
 	int m_pes_pid_count{0};
 	int m_batch_size;
 	std::atomic<int> m_late_ms{0};  // Written by the recorder thread, read by it
+	std::atomic<bool> m_bad_key{false};
 	std::atomic<bool> m_keep_unopened{false};
 	unsigned int m_bad_packets{0};  // Log rate limit only, races are harmless
 	unsigned int m_periods{0};  // Crypto periods seen, to put the others in scale

@@ -81,9 +81,14 @@ public:
 				 * expected, no reason to recover. */
 		eventDelayGrown,
 				/* the first data at the grown delay is out. */
-		eventPlaybackDrained
+		eventPlaybackDrained,
 				/* and the gap was longer than the decoders can bridge, so
 				 * they have played out and need setting up again. */
+		eventDelayLimit,
+				/* a word came too late and the delay could not be raised:
+				 * it is fixed, or already at the ceiling. */
+		eventBadKey
+				/* a word arrived that does not open this service. */
 	};
 	virtual RESULT connectEvent(const sigc::slot<void(int)> &event, ePtr<eConnection> &conn)=0;
 	// Append optional methods so existing recorder vtable slots stay unchanged.

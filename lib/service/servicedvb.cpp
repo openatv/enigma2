@@ -5335,6 +5335,10 @@ void eDVBServicePlay::setupSpeculativeDescrambling()
 	m_soft_decoder->m_audio_pid_selected.connect(
 		sigc::mem_fun(*this, &eDVBServicePlay::onSoftDecoderAudioPidSelected));
 
+	/* Descrambling state towards the user interface. */
+	m_soft_decoder->m_softcsa_notify.connect(
+		sigc::mem_fun(*this, &eDVBServicePlay::onSoftCSANotify));
+
 	// Suppress SoftCSA activation when CI module handles decryption
 	m_csa_session->shouldSuppressActivation = [this]() {
 		return m_service_handler.isCiConnected();
@@ -5442,6 +5446,12 @@ void eDVBServicePlay::onSoftDecoderAudioPidSelected(int pid)
 		eDebug("[eDVBServicePlay] SoftDecoder selected audio PID %04x, updating m_current_audio_pid", pid);
 		m_current_audio_pid = pid;
 	}
+}
+
+/* The soft decoder only knows the recorder; the event belongs to the service. */
+void eDVBServicePlay::onSoftCSANotify(int event)
+{
+	m_event((iPlayableService*)this, event);
 }
 
 void eDVBServicePlay::cleanupSoftwareDescrambling()

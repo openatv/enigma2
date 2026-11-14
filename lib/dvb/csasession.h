@@ -47,6 +47,7 @@ public:
 	// Descrambles in-place when active and CW available, otherwise passthrough
 	void descramble(unsigned char* packets, int len) override;
 	int takeLateMs() override;
+	bool takeBadKey() override;
 	void creditPeriods(int ms) override;
 	void setKeepUnopened(bool on) override;
 

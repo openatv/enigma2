@@ -575,7 +575,10 @@ void eDVBCSAEngine::probePeriodKey(int parity, const unsigned char* pkt, int off
 		eWarning("[eDVBCSAEngine] %s cw arrived %dms into its period", name, late);
 
 	if (bad)
+	{
+		m_bad_key.store(true);
 		eWarning("[eDVBCSAEngine] %s cw does not open this period, pid=%04X", name, pid);
+	}
 }
 
 void eDVBCSAEngine::logBadPacket(const char* reason, const unsigned char* pkt, int offset, int len)

@@ -1396,6 +1396,9 @@ void eDVBRecordScrambledThread::consumeDelayed(unsigned char *data, int len)
 
 	if (m_serviceDescrambler)
 	{
+		if (m_serviceDescrambler->takeBadKey())
+			sendEvent(eFilePushThreadRecorder::evtBadKey);
+
 		/* What a late word measured is what the delay fell short by. A value
 		 * the user set is theirs, so there only the gap is taken. */
 		if (const int late = m_serviceDescrambler->takeLateMs(); late > 0)
@@ -1405,6 +1408,8 @@ void eDVBRecordScrambledThread::consumeDelayed(unsigned char *data, int len)
 			/* The gap moves the periods in flight along with it. */
 			if (step > 0)
 				m_serviceDescrambler->creditPeriods(step);
+			else
+				sendEvent(eFilePushThreadRecorder::evtDelayLimit);
 		}
 	}
 
@@ -1834,6 +1839,12 @@ void eDVBTSRecorder::filepushEvent(int event)
 		break;
 	case eFilePushThreadRecorder::evtPlaybackDrained:
 		m_event(eventPlaybackDrained);
+		break;
+	case eFilePushThreadRecorder::evtDelayLimit:
+		m_event(eventDelayLimit);
+		break;
+	case eFilePushThreadRecorder::evtBadKey:
+		m_event(eventBadKey);
 		break;
 	}
 }

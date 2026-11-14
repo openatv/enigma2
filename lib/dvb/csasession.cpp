@@ -473,6 +473,11 @@ int eDVBCSASession::takeLateMs()
 	return (m_active && m_engine) ? m_engine->takeLateMs() : 0;
 }
 
+bool eDVBCSASession::takeBadKey()
+{
+	return (m_active && m_engine) ? m_engine->takeBadKey() : false;
+}
+
 void eDVBCSASession::creditPeriods(int ms)
 {
 	if (m_engine)

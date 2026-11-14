@@ -25,6 +25,9 @@ public:
 	/** How far into its period a word turned up, in ms; reading clears it */
 	virtual int takeLateMs() { return 0; }
 
+	/** A word arrived that does not open this service; reading clears it */
+	virtual bool takeBadKey() { return false; }
+
 	/** A raise pushes the periods in flight that much further out */
 	virtual void creditPeriods(int /*ms*/) { /* Default for services without software descrambling. */ }
 

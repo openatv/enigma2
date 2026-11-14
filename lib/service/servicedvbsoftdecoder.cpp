@@ -418,6 +418,13 @@ void eDVBSoftDecoder::recordEvent(int event)
 		m_stream_stalled = false;
 		m_recovery_attempts = 0;
 		holdLastFrame(false);
+		m_softcsa_notify(iPlayableService::evSoftCSADelayRaised);
+		break;
+	case iDVBTSRecorder::eventDelayLimit:
+		m_softcsa_notify(iPlayableService::evSoftCSADelayLimit);
+		break;
+	case iDVBTSRecorder::eventBadKey:
+		m_softcsa_notify(iPlayableService::evSoftCSABadKey);
 		break;
 	case iDVBTSRecorder::eventPlaybackDrained:
 		afterPlaybackDelayGrown();
