@@ -24,16 +24,18 @@ from Tools.MovieFileOperations import MovieFileJob
 from Tools.MovieMaintenance import MovieCatalogueJob, MovieMaintenanceJob, MovieOrphanJob, movieMaintenanceState
 from Tools.MoviePlaylist import moviePlayQueue, readMoviePlaylist, writeMoviePlaylist
 from Tools.Notifications import AddNotification
-from Tools.Trashcan import TRASHCAN, createTrashcan
+from Tools.Trashcan import TRASHCAN
 
 
 def movieOperationGuard(session, path):
+	path = normpath(path)
 	playing = session.nav.getCurrentlyPlayingServiceReference()
-	if playing is not None and normpath(playing.getPath()) == normpath(path):
+	if playing is not None and (normpath(playing.getPath()) == path or normpath(playing.getPath()).startswith(join(path, ""))):
 		return _("Stop playback or preview before changing this movie.")
-	base = splitext(normpath(path))[0]
+	base = splitext(path)[0]
 	for timer in session.nav.RecordTimer.timer_list:
-		if timer.isRunning() and not timer.justplay and normpath(getattr(timer, "Filename", "") or "") in (base, normpath(path)):
+		recording = normpath(getattr(timer, "Filename", "") or "")
+		if timer.isRunning() and not timer.justplay and (recording in (base, path) or recording.startswith(join(path, ""))):
 			return _("The movie is currently being recorded.")
 	return ""
 
@@ -125,12 +127,7 @@ class MoviePlayerFileActions:
 		operation = {"action": "delete", "path": service.getPath(), "reference": service.toString()}
 		trash = config.usage.movielist_trashcan.value and TRASHCAN not in normpath(service.getPath()).split("/")
 		if trash:
-			destination = createTrashcan(service.getPath())
-			if not destination:
-				self.screen.is_closing = False
-				self.screen.session.open(MessageBox, _("Cannot create the trashcan."), type=MessageBox.TYPE_ERROR)
-				return
-			operation.update(action="trash", target=join(destination, basename(service.getPath())))
+			operation["action"] = "trash"
 		returnToList = answer.startswith("deleteandmovielist")
 		if answer.endswith("confirmed") or trash and not config.usage.movielistTrashcanConfirm.value:
 			self.confirmed(operation, returnToList, True)
@@ -401,14 +398,14 @@ class MovieSelectionActions:
 		operations = self.operations("delete")
 		if not operations:
 			return
-		trash = config.usage.movielist_trashcan.value and all(TRASHCAN not in normpath(operation["path"]).split("/") for operation in operations)
+		inTrash = [TRASHCAN in normpath(x["path"]).split("/") for x in operations]
+		if any(inTrash) and not all(inTrash):
+			self.screen.session.open(MessageBox, _("Select movies inside or outside the trashcan separately."), type=MessageBox.TYPE_INFO)
+			return
+		trash = config.usage.movielist_trashcan.value and not any(inTrash)
 		if trash:
 			for operation in operations:
-				destination = createTrashcan(operation["path"])
-				if not destination:
-					self.screen.session.open(MessageBox, _("Cannot create the trashcan."), type=MessageBox.TYPE_ERROR)
-					return
-				operation.update(action="trash", target=join(destination, basename(operation["path"])))
+				operation["action"] = "trash"
 		message = (_("Move %d selected movies and their companion files to the trashcan?") if trash else _("Permanently delete %d selected movies and their companion files?")) % len(operations)
 		self.screen.session.openWithCallback(lambda confirmed: self.run(operations) if confirmed else None, MessageBox, message, type=MessageBox.TYPE_YESNO, default=False)
 
@@ -424,7 +421,11 @@ class MovieSelectionActions:
 		self.run(operations)
 
 	def restore(self):
-		self.run(self.operations("restore"))
+		item = self.screen.getCurrentSelection()
+		if item and item[1] is not None and item[0].flags & eServiceReference.mustDescent:
+			self.run([{"action": "restore", "path": normpath(item[0].getPath()), "reference": item[0].toString()}])
+		else:
+			self.run(self.operations("restore"))
 
 	def edit(self):
 		items = self.selectedItems()
@@ -579,12 +580,8 @@ class MovieSelectionActions:
 			operations = []
 			for candidate in candidates:
 				path = candidate["path"]
-				destination = createTrashcan(path)
-				if not destination:
-					self.screen.session.open(MessageBox, _("Cannot create the trashcan."), type=MessageBox.TYPE_ERROR)
-					return
 				service = eServiceReference(eServiceReference.idDVB if splitext(path)[1].lower() == ".ts" else 4097, 0, path)
-				operations.append(dict(candidate, action="trash", target=join(destination, basename(path)), reference=service.toString()))
+				operations.append(dict(candidate, action="trash", reference=service.toString()))
 			self.run(operations)
 
 	def orphansFinished(self, job):

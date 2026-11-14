@@ -1,4 +1,4 @@
-from os import W_OK, access, listdir, mkdir, rename, stat
+from os import listdir, mkdir, rename, stat
 from os.path import abspath, exists, isdir, isfile, join, normpath, pardir, realpath, split, splitext
 from pickle import dump, load
 from time import time
@@ -47,7 +47,7 @@ from Tools.Directories import SCOPE_HDD, isPluginInstalled, resolveFilename
 from Tools.MovieMaintenance import movieMaintenanceState
 from Tools.MoviePlaylist import moviePlayQueue
 from Tools.NumericalTextInput import NumericalTextInput
-from Tools.Trashcan import TRASHCAN, TrashInfo, cleanAll, createTrashcan, getTrashcan
+from Tools.Trashcan import TRASHCAN, TrashInfo, cleanAll, getTrashcan
 
 config.movielist = ConfigSubsection()
 config.movielist.curentlyplayingservice = ConfigText()
@@ -136,7 +136,8 @@ def isInTrashFolder(ref):
 	if not config.usage.movielist_trashcan.value or not ref.flags & eServiceReference.mustDescent:
 		return False
 	path = realpath(ref.getPath())
-	return path.startswith(getTrashcan(path))
+	trash = getTrashcan(path)
+	return bool(trash) and (path == trash or path.startswith(join(trash, "")))
 
 
 def isSimpleFile(item):
@@ -1460,8 +1461,6 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 			self["TrashcanSize"].update(config.movielist.last_videodir.value)
 		if self.reload_sel is None:
 			self.reload_sel = self.getCurrent()
-		if not cached and config.usage.movielist_trashcan.value and access(config.movielist.last_videodir.value, W_OK):
-			trash = createTrashcan(config.movielist.last_videodir.value)  # noqa F841
 		if cached and normpath(self.current_ref.getPath()) in movieMaintenanceState.directorySettings:
 			self.applyConfigSettings(movieMaintenanceState.directorySettings[normpath(self.current_ref.getPath())])
 		else:
@@ -1919,20 +1918,14 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 						files += 1
 			# preamble = f"{_("'%s' contains %d file(s) and %d sub-directories.") % (split(split(name)[0])[1], files, subdirs)}\n\n" if files or subdirs else ""
 			preamble = f"{_("'%s' contains %d file(s) and %d sub-directories.\n") % (split(split(name)[0])[1], files, subdirs)}\n" if files or subdirs else ""
-			if TRASHCAN not in currentPath and config.usage.movielist_trashcan.value:
+			if TRASHCAN not in normpath(currentPath).split("/") and config.usage.movielist_trashcan.value:
 				if isFolder(item):
 					areYouSure = _("Do you really want to move '%s' to the trashcan?") % name
 				else:
 					args = True
 					areYouSure = _("Do you really want to delete '%s'?") % name
 				if args:
-					trash = createTrashcan(currentPath)
-					if trash:
-						moveServiceFiles(current, trash, name, allowCopy=True)
-						self["list"].removeService(current)
-						self.showActionFeedback(f"{_("Deleted")} {name}")
-					else:
-						self.session.open(MessageBox, f"{_("Can't move to trashcan!")}\n\n", MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+					self.movieActions.run([{"action": "trash", "path": currentPath, "reference": current.toString()}])
 					return
 				self.session.openWithCallback(self.delete, MessageBox, f"{preamble}{areYouSure}", windowTitle=self.getTitle())
 				return
@@ -1973,21 +1966,12 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 					# self.session.openWithCallback(self.delete, MessageBox, f"{_("File '%s' appears to be busy!") % name}\n\n{_("Do you really want to delete '%s'?") % name}", windowTitle=self.getTitle())
 					self.session.openWithCallback(self.delete, MessageBox, f"{_("File appears to be busy!\n")}\n{_("Do you really want to delete '%s'?") % name}", windowTitle=self.getTitle())
 					return
-			if TRASHCAN not in currentPath and config.usage.movielist_trashcan.value:
+			if TRASHCAN not in normpath(currentPath).split("/") and config.usage.movielist_trashcan.value:
 				if not args and config.usage.movielistTrashcanConfirm.value:
 					self.session.openWithCallback(self.delete, MessageBox, _("Do you really want to move '%s' to the trashcan?") % name, type=MessageBox.TYPE_YESNO, default=False, windowTitle=self.getTitle())
 					return
-				trash = createTrashcan(currentPath)
-				if trash:
-					moveServiceFiles(current, trash, name, allowCopy=True)
-					self["list"].removeService(current)
-					from Screens.InfoBarGenerics import delResumePoint
-					delResumePoint(current)  # Files were moved to .Trash, okay.
-					self.showActionFeedback(f"{_("Deleted")} {name}")
-					return
-				else:
-					msg = f"{_("Can't move to trashcan!")}\n\n"
-					areYouSure = _("Do you really want to delete '%s'?") % name
+				self.movieActions.run([{"action": "trash", "path": currentPath, "reference": current.toString()}])
+				return
 			else:
 				msg = ""
 				areYouSure = (_("Do you really want to permanently remove '%s' from the trashcan?") if TRASHCAN in currentPath else _("Do you really want to delete '%s'?")) % name
@@ -2284,6 +2268,8 @@ class MovieContextMenu(Screen, ProtectedScreen):  # Contract: On OK returns a ca
 				if isTrashFolder(service):
 					menu.append((_("Permanently remove all deleted items"), csel.purgeAll))
 				else:
+					if TRASHCAN in normpath(service.getPath()).split("/"):
+						menu.append((_("Restore to original location"), csel.movieActions.restore))
 					menu.append((_("Delete"), csel.do_delete))
 					menu.append((_("Move"), csel.do_move))
 					menu.append((_("Copy"), csel.do_copy))

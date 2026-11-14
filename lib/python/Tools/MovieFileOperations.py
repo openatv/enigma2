@@ -16,7 +16,7 @@ from Components.Task import Job, PythonTask
 from Tools.Directories import SCOPE_CONFIG, resolveFilename
 from Tools.EITFile import EITFile
 from Tools.MovieInfoParser import MovieMetaInfo
-from Tools.Trashcan import trashcanIndex
+from Tools.Trashcan import createTrashcan, trashcanIndex, trashcanStorage
 
 
 class MovieFileBundle:
@@ -24,13 +24,20 @@ class MovieFileBundle:
 	BASE_SUFFIXES = (".eit", ".srt", ".ass", ".ssa", ".vtt", ".sub", ".idx", ".txt", ".info", ".nfo", ".jpg", ".jpeg", ".png")
 	CUTS = Struct(">QI")
 
-	def __init__(self, path, directoryNames=None, allowShared=False):
+	def __init__(self, path, directoryNames=None, allowShared=False, allowDirectory=False):
 		self.path = normpath(path)
-		if not isfile(self.path) or islink(self.path):
+		self.isDirectory = allowDirectory and isdir(self.path)
+		if not (isfile(self.path) or self.isDirectory) or islink(self.path):
 			raise ValueError(_("File operations require a regular movie file."))
 		self.base = splitext(self.path)[0]
 		if lexists(join(dirname(self.path), "dir.lock")):
 			raise ValueError(_("This directory is locked for movie file changes."))
+		if self.isDirectory:
+			if lexists(join(self.path, "dir.lock")):
+				raise ValueError(_("This directory is locked for movie file changes."))
+			self.files = [self.path]
+			self.snapshot = {self.path: self.signature(self.path)}
+			return
 		candidates = {f"{self.path}{suffix}" for suffix in self.FULL_SUFFIXES + self.BASE_SUFFIXES}
 		candidates.update(f"{self.base}{suffix}" for suffix in self.BASE_SUFFIXES)
 		if directoryNames is None:
@@ -333,6 +340,9 @@ class MovieFileTask(PythonTask):
 			raise
 
 	def transfer(self, bundle, target, move):
+		if move and (self.operation["action"] in ("trash", "restore") or trashcanIndex.directory(bundle.path) or trashcanIndex.directory(target)):
+			self.transferTrash(bundle, target)
+			return
 		pairs = bundle.destinations(target)
 		self.byteTotal = max(1, sum(signature[2] for signature in bundle.snapshot.values()))
 		self.byteDone = 0
@@ -372,6 +382,43 @@ class MovieFileTask(PythonTask):
 					raise OSError(_("The complete movie is at the destination, but some source files could not be removed."))
 			syncMovieDirectory(bundle.path)
 
+	def transferTrash(self, bundle, target):
+		pairs = bundle.destinations(target)
+		for source, destination in pairs:
+			trashcanStorage.validate(source, destination)
+		bundle.checkUnchanged()
+		moved = []
+		try:
+			for source, destination in pairs:
+				if self.aborted:
+					raise InterruptedError(_("Operation cancelled."))
+				trashcanStorage.validate(source, destination)
+				if bundle.signature(source) != bundle.snapshot[source]:
+					raise ValueError(_("The recording changed while the operation was running."))
+				try:
+					trashcanStorage.move(source, destination)
+				except OSError:
+					# An NFS server can complete a rename before reporting a transport error.
+					if lexists(source) or not lexists(destination) or bundle.signature(destination) != bundle.snapshot[source]:
+						raise
+				moved.append((source, destination))
+				self.pos = self.end * len(moved) // len(pairs)
+			syncMovieDirectory(target)
+			syncMovieDirectory(bundle.path)
+		except (OSError, ValueError) as error:
+			remaining = []
+			for source, destination in reversed(moved):
+				try:
+					trashcanStorage.validate(destination, source)
+					if bundle.signature(destination) != bundle.snapshot[source]:
+						raise ValueError(_("The destination changed during the operation."))
+					trashcanStorage.move(destination, source)
+				except (OSError, ValueError):
+					remaining.append(destination)
+			if remaining:
+				raise OSError(_("The operation failed. Some files remain at the destination: %s") % ", ".join(remaining)) from error
+			raise
+
 	def work(self):
 		result = dict(self.operation)
 		event = None
@@ -388,18 +435,25 @@ class MovieFileTask(PythonTask):
 			if action == "metadata":
 				for field in ("title", "description"):
 					self.operation[field] = self.operation[field].replace("\r", " ").replace("\n", " ")
-			bundle = MovieFileBundle(self.operation["path"], self.job.directoryNames[folder], allowShared=action in ("status", "metadata", "markers", "eit"))
+			bundle = MovieFileBundle(self.operation["path"], self.job.directoryNames[folder], allowShared=action in ("status", "metadata", "markers", "eit"), allowDirectory=action in ("trash", "restore"))
 			for path, expected in self.operation.get("expected", {}).items():
 				actual = bundle.signature(path) if lexists(path) and not islink(path) else None
 				if actual != expected or islink(path):
 					raise ValueError(_("The movie or its playback position changed since the maintenance scan. Scan again."))
+			if action == "trash":
+				trash = createTrashcan(dirname(bundle.path) if bundle.isDirectory else bundle.path)
+				if not trash:
+					raise ValueError(_("Cannot create a trashcan on this mounted filesystem. No files were deleted."))
+				self.operation["target"] = result["target"] = join(trash, basename(bundle.path))
 			if action == "restore":
 				target = trashcanIndex.get(bundle.path)
 				if not target:
 					raise ValueError(_("The original location is unknown. Use Move to select a destination."))
 				self.operation["target"] = target
 				result["target"] = target
-			if self.providers and action not in ("eit", "markers"):
+			if action in ("trash", "restore"):
+				trashcanStorage.validate(bundle.path, self.operation["target"])
+			if self.providers and not bundle.isDirectory and action not in ("eit", "markers"):
 				pairs = bundle.destinations(self.operation["target"]) if "target" in self.operation else [(path, "") for path in bundle.files]
 				event = dict(self.operation, id=uuid4().hex, providers=list(self.providers), timestamp=int(time()), state="pending", files=[(source, target, bundle.snapshot[source][2]) for source, target in pairs])
 				movieChangeJournal.append(event)  # Persist intent before touching recording data.
