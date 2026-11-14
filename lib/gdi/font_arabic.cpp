@@ -208,7 +208,10 @@ int measureLine(const Line &line, const std::array<LayoutFont, 3> &fonts, const 
 		{
 			auto ch = line.visual[i];
 			if (ch == '\t')
-				advance = fonts[0].font->tabwidth - total % fonts[0].font->tabwidth;
+			{
+				if (fonts[0].font && fonts[0].font->tabwidth > 0)
+					advance = fonts[0].font->tabwidth - total % fonts[0].font->tabwidth;
+			}
 			else if (ch != 0xAD && ch != 0x86 && ch != 0x87 && ch != 0xE086 && ch != 0xE087)
 			{
 				if (ch == 0x2010)
