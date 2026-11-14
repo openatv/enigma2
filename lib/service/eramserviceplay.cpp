@@ -192,6 +192,7 @@ RESULT eRamServicePlay::stopTimeshift(bool swToLive) {
 		m_watchdog_timer = nullptr;
 	}
 	resetRecoveryState();
+	m_timeshift_sync_enabled = false;
 
 	if (m_record) {
 		// Stop the push thread BEFORE releasing the source to avoid a
