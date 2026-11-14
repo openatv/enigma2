@@ -96,7 +96,8 @@ public:
 	void stop();
 	void start(int sourcefd);
 
-	enum { evtEOF, evtReadError, evtWriteError, evtUser, evtStopped, evtStreamCorrupt };
+	enum { evtEOF, evtReadError, evtWriteError, evtUser, evtStopped, evtStreamCorrupt,
+		evtDelayGrowing, evtDelayGrown, evtPlaybackDrained };
 	sigc::signal<void(int)> m_event;
 
 	int getProtocol() { return m_protocol;}

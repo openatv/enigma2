@@ -1995,6 +1995,78 @@ RESULT eTSMPEGDecoder::setSyncMaster(int who)
 	return -1;
 }
 
+#ifdef DREAMNEXTGEN
+static int readProcInt(const char *path, int fallback)
+{
+	FILE *f = fopen(path, "r");
+	int v = fallback;
+
+	if (!f)
+		return fallback;
+
+	if (fscanf(f, "%d", &v) != 1)
+		v = fallback;
+
+	fclose(f);
+
+	return v;
+}
+
+static void writeProcInt(const char *path, int value)
+{
+	FILE *f = fopen(path, "w");
+
+	if (!f)
+		return;
+
+	fprintf(f, "%d", value);
+	fclose(f);
+}
+
+/* Rebuilding the video stream is what brings the audio output back up
+ * after a hold; it costs the time the decoder needs for a key frame. */
+void eTSMPEGDecoder::afterPlaybackDelayGrown()
+{
+	if (m_decoder != 0 || m_apid <= 0 || m_apid >= 0x1FFF)
+		return;
+
+	const int vpid = m_vpid, vtype = m_vtype;
+
+	eDebug("[eTSMPEGDecoder] decoders played out, video feed started again: vpid=%04X", vpid);
+
+	const int blackout = readProcInt("/sys/class/video/blackout_policy", 1);
+
+	setVideoPID(-1, vtype);
+	set();
+	/* Stopping the video puts the policy back, so hold the frame again. */
+	writeProcInt("/sys/class/video/blackout_policy", 0);
+	setVideoPID(vpid, vtype);
+	set();
+	writeProcInt("/sys/class/video/blackout_policy", blackout);
+}
+
+/* An empty decoder blanks the screen, so while the stream is held the last
+ * picture is kept. The driver puts the policy back on its own. */
+void eTSMPEGDecoder::holdLastFrame(bool on)
+{
+	if (m_decoder != 0)
+		return;
+
+	if (on)
+	{
+		if (m_blackout_policy < 0)
+			m_blackout_policy = readProcInt("/sys/class/video/blackout_policy", 1);
+
+		writeProcInt("/sys/class/video/blackout_policy", 0);
+	}
+	else if (m_blackout_policy >= 0)
+	{
+		writeProcInt("/sys/class/video/blackout_policy", m_blackout_policy);
+		m_blackout_policy = -1;
+	}
+}
+#endif
+
 RESULT eTSMPEGDecoder::set()
 {
 	return setState();

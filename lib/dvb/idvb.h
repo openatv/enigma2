@@ -836,6 +836,12 @@ public:
 		/** Hint: user PVR/Timeshift pause (not stream-stall recovery /
 		 * trick handover). Gates the kernel STC-freeze ioctl chain. */
 	virtual void setUserPauseActive(bool /*active*/) {}
+		/** Keep the last picture while the stream is held, rather than
+		 * blanking the screen once the decoder has played out. */
+	virtual void holdLastFrame(bool /*on*/) {}
+		/** The stream was held back and runs again. The feeds have run dry
+		 * and the pacer still holds the anchor it took before. */
+	virtual void afterPlaybackDelayGrown() {}
 #endif
 
 		/** fast forward by skipping frames. 0 is disabled, 2 is twice-the-speed, ... */

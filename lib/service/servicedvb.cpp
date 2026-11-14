@@ -30,6 +30,7 @@
 #include <lib/python/python.h>
 #include <lib/base/nconfig.h> // access to python config
 #include <lib/base/esimpleconfig.h>
+#include <lib/dvb/demux.h>
 #include <lib/base/httpsstream.h>
 #include <lib/base/httpstream.h>
 #include <lib/base/esettings.h>
@@ -74,6 +75,20 @@ using namespace std;
 #ifndef SUBT_TXT_ABNORMAL_PTS_DIFFS
 #define SUBT_TXT_ABNORMAL_PTS_DIFFS 1800000
 #endif
+
+static unsigned long s_streamrelay_session_id = 0;
+
+static bool isStreamRelayUrl(const std::string &url)
+{
+	if (url.compare(0, 7, "http://"))
+		return false;
+
+	const std::string host = eSimpleConfig::getString("config.misc.softcam_streamrelay_url", "127.0.0.1");
+	const int port = eSimpleConfig::getInt("config.misc.softcam_streamrelay_port", 17999);
+	const std::string relay = "http://" + host + ":" + std::to_string(port) + "/";
+
+	return url.compare(0, relay.size(), relay) == 0;
+}
 
 class eStaticServiceDVBInformation: public iStaticServiceInformation
 {
@@ -2233,6 +2248,12 @@ RESULT eDVBServicePlay::start()
 		if(config_descramble_client)
 			scrambled = true;
 
+		if (m_reference.getIsStreamRelay() || isStreamRelayUrl(service.path))
+		{
+			service.path += "?srsid=" + std::to_string(++s_streamrelay_session_id);
+			eDebug("[eDVBServicePlay] StreamRelay request: %s", service.path.c_str());
+		}
+
 		type = eDVBServicePMTHandler::streamclient;
 	}
 
@@ -3828,6 +3849,10 @@ RESULT eDVBServicePlay::startTimeshift()
 
 			eDebug("[eDVBServicePlay] Attaching timeshift CSA session to recorder");
 			m_record->setDescrambler(static_cast<iServiceScrambled*>(m_timeshift_csa_session.operator->()));
+
+			/* An error would stay in the timeshift file, same as a recording. */
+			if (int delay = eSimpleConfig::getInt("config.softcsa.playbackDelay", eDVBRecordScrambledThread::AUTO_PLAYBACK_DELAY); delay != 0)
+				m_record->setPlaybackDelay(delay);
 		}
 		else
 		{
@@ -4086,6 +4111,9 @@ bool eDVBServicePlay::startTapToFD(int fd, const std::vector<int> &pids, int pac
 	{
 		m_tap_recorder->setDescrambler(static_cast<iServiceScrambled*>(m_csa_session.operator->()));
 		eDebug("[eServiceTap] CSA session attached to tap recorder (active=%d)", m_csa_session->isActive());
+
+		if (int delay = eSimpleConfig::getInt("config.softcsa.playbackDelay", eDVBRecordScrambledThread::AUTO_PLAYBACK_DELAY); delay != 0)
+			m_tap_recorder->setPlaybackDelay(delay);
 	}
 
 	for(auto i : pids)

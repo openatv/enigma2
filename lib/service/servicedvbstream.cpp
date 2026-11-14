@@ -1,4 +1,6 @@
 #include <lib/service/servicedvbstream.h>
+#include <lib/base/esimpleconfig.h>
+#include <lib/dvb/demux.h>
 #include <lib/dvb/csasession.h>
 #include <lib/dvb/csaengine.h>
 #include <lib/base/eerror.h>
@@ -122,10 +124,11 @@ void eDVBServiceStream::serviceEvent(int event)
 		eventUpdate(event);
 }
 
-int eDVBServiceStream::start(const char *serviceref, int fd)
+int eDVBServiceStream::start(const char *serviceref, int fd, bool isStreamRelay)
 {
 	if (m_state != stateIdle) return -1;
 
+	m_is_streamrelay = isStreamRelay;
 	m_ref = eServiceReferenceDVB(serviceref);
 	if (doPrepare() < 0) return -1;
 	m_target_fd = fd;
@@ -202,7 +205,7 @@ int eDVBServiceStream::doRecord()
 	// Check if PMT is available - we need it to determine if channel is encrypted
 	eDVBServicePMTHandler::program program;
 	bool have_program_info = (m_service_handler.getProgramInfo(program) == 0);
-	bool is_encrypted = have_program_info && program.isCrypted();
+	bool is_encrypted = have_program_info && program.isCrypted() && !m_is_streamrelay;
 
 	/* wait for real PMT if we only have cached (possibly incomplete) PIDs */
 	if (have_program_info && program.isCached)
@@ -601,6 +604,12 @@ RESULT eDVBServiceStream::frontendInfo(ePtr<iFrontendInformation> &ptr)
 
 void eDVBServiceStream::setupSpeculativeDescrambler()
 {
+	if (m_is_streamrelay)
+	{
+		eDebug("[eDVBServiceStream] StreamRelay source stream, no descrambler");
+		return;
+	}
+
 	// Check if channel is encrypted
 	eDVBServicePMTHandler::program program;
 	if (m_service_handler.getProgramInfo(program))
@@ -643,6 +652,11 @@ void eDVBServiceStream::setupSpeculativeDescrambler()
 	{
 		m_record->setDescrambler(static_cast<iServiceScrambled*>(m_csa_session.operator->()));
 		eDebug("[eDVBServiceStream] CSA session attached to recorder");
+
+		/* Latency is no concern on a stream, while an error reaches the
+		 * client as a hole. */
+		if (int delay = eSimpleConfig::getInt("config.softcsa.playbackDelay", eDVBRecordScrambledThread::AUTO_PLAYBACK_DELAY); delay != 0)
+			m_record->setPlaybackDelay(delay);
 	}
 
 	// Start ECM Monitor for CSA-ALT detection

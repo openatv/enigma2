@@ -714,6 +714,16 @@ void eStreamClient::notifier(int what)
 				if (pos != std::string::npos) {
 					serviceref.erase(pos, std::string::npos);
 				}
+				bool streamRelayRequest = false;
+				pos = serviceref.find("?srsid=");
+				if (pos == std::string::npos) {
+					pos = serviceref.find("&srsid=");
+				}
+				if (pos != std::string::npos) {
+					streamRelayRequest = true;
+					serviceref.erase(pos, std::string::npos);
+					eDebug("[eStreamClient] StreamRelay source stream requested");
+				}
 
 				pos = serviceref.find('?');
 				if (pos == std::string::npos)
@@ -722,7 +732,7 @@ void eStreamClient::notifier(int what)
 
 					eDebug("[eStreamClient] stream ref: %s", serviceref.c_str());
 					if ((dabRequest && startDABStream(serviceref)) ||
-						(!dabRequest && eDVBServiceStream::start(serviceref.c_str(), streamFd) >= 0))
+						(!dabRequest && eDVBServiceStream::start(serviceref.c_str(), streamFd, streamRelayRequest) >= 0))
 					{
 						running = true;
 						m_serviceref = serviceref;

@@ -10,6 +10,8 @@
 #include <lib/service/iservicescrambled.h>
 #include "filepush.h"
 
+class eDVBCSABuffer;
+
 class eDVBDemux: public iDVBDemux
 {
 	DECLARE_REF(eDVBDemux);
@@ -117,12 +119,16 @@ public:
 	// Virtual: wait for first data (only ScrambledThread actually waits)
 	virtual bool waitForFirstData(int /*timeout_ms*/) { return true; }
 
+	// Playback delay in ms, 0 = off. Only the ScrambledThread descrambles.
+	virtual void setPlaybackDelay(int /*delay_ms*/) { /* Only the ScrambledThread descrambles. */ }
+
 protected:
 	int asyncWrite(int len);
 	/* override */ int writeData(int len);
 	/* override */ void flush();
 	int _drainWrites(bool allowCancelled = false);
-	int _syncWrite(int len, bool parse = true);
+	/* data == nullptr writes m_buffer; the delay passes its own pointer. */
+	int _syncWrite(int len, bool parse = true, const unsigned char *data = nullptr);
 	int _nextPart();
 	int _cacheFileTarget();
 	int _checkTargetBase();
@@ -182,6 +188,9 @@ public:
 
 protected:
 	int writeData(int len);
+	/* Socket write of data outside m_buffer, for the delay buffer's chunk.
+	 * Synchronous: the AIO rotation belongs to the producer's buffers. */
+	int syncWriteTo(const unsigned char *data, int len) const;
 	void flush();
 };
 
@@ -198,6 +207,18 @@ public:
 	// Reset the first-data flag (call before start() if reusing)
 	void resetFirstDataFlag();
 
+	/* Call before start(). 0 = off, AUTO_PLAYBACK_DELAY = start small and
+	 * grow on late control words. */
+	void setPlaybackDelay(int delay_ms) override;
+
+	static const int MAX_PLAYBACK_DELAY_MS = 5000;
+	static const int AUTO_PLAYBACK_DELAY = -1;
+	/* Where the automatic starts. Small, so zapping stays quick. */
+	static const int AUTO_PLAYBACK_START_MS = 100;
+	/* What the audio output can bridge: its ring holds 16384 frames, which
+	 * is 341ms at 48kHz. A hold shorter than that is not noticed. */
+	static const int HOLD_BRIDGE_MS = 300;
+
 protected:
 	int writeData(int len);
 	void flush() override;
@@ -211,6 +232,17 @@ private:
 	pthread_cond_t m_data_ready_cond;
 	bool m_first_data_written;
 	bool m_is_streaming;
+
+	// While active, writeData() only queues; the buffer thread descrambles
+	// and writes once a chunk is due.
+	eDVBCSABuffer *m_delay_buffer{nullptr};
+	bool m_delay_auto{false};
+	int m_delay_config{0};        // What setPlaybackDelay() was asked for
+	bool m_delay_restart{false};  // flush() stopped the buffer, rebuild it
+	bool m_delay_settling{false};  // a growth is still working its way out
+	void restartPlaybackDelay();
+	void consumeDelayed(unsigned char *data, int len);
+	void signalFirstData(int written);
 };
 
 class eDVBTSRecorder: public iDVBTSRecorder, public sigc::trackable
@@ -244,6 +276,7 @@ public:
 
 	RESULT setDescrambler(ePtr<iServiceScrambled>);
 	void setDiscardOnTimeout(bool discard);
+	void setPlaybackDelay(int delay_ms) override;
 
 	// Wait for first data to be written (for SoftDecoder sync)
 	bool waitForFirstData(int timeout_ms);
