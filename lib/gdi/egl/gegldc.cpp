@@ -832,6 +832,13 @@ bool gEGLDC::tryInitEGL(int version) {
 	m_egl_minor = minor;
 	eDebug("[gEGLDC] EGL version %d.%d initialised", major, minor);
 
+#ifdef HAVE_DREAMBCM_EGL
+	if (auto *provider = dynamic_cast<DreamBcmWindowProvider*>(m_window_provider)) {
+		if (!provider->prepareEGL())
+			return false;
+	}
+#endif
+
 	// 3. choose EGL config for the requested GLES version
 	EGLint renderable_type = (version >= 3) ? EGL_OPENGL_ES3_BIT_KHR : EGL_OPENGL_ES2_BIT;
 

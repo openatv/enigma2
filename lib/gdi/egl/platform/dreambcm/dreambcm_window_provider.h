@@ -19,6 +19,7 @@ public:
 	virtual ~DreamBcmWindowProvider();
 
 	bool init(int width, int height) override;
+	bool prepareEGL();
 	EGLNativeDisplayType getNativeDisplay() override;
 	EGLNativeWindowType getNativeWindow() override;
 	void cleanup() override;
