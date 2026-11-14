@@ -582,10 +582,10 @@ class RdsInfoDisplay(Screen):
 			self.skinName = names
 			self.reloadSkin()
 		reference = self.session.nav.getCurrentlyPlayingServiceReference()
-		if (config.skin.primary_skin.value == EMERGENCY_SKIN or self.hasCustomLayout()) and not (reference and isRadioServiceReference(reference)):
-			self.hide()
-		else:
+		if reference and isRadioServiceReference(reference):
 			self.show()
+		else:
+			self.hide()
 
 	def layoutFinished(self):
 		for name in ("RadioText", "RtpText"):
@@ -661,8 +661,7 @@ class RdsInfoDisplay(Screen):
 
 	def __serviceStopped(self):
 		self.hideWidgets()
-		if config.skin.primary_skin.value == EMERGENCY_SKIN or self.hasCustomLayout():
-			self.hide()
+		self.hide()
 		if self.rassInteractivePossible:
 			self.rassInteractivePossible = False
 			for callback in self.onRassInteractivePossibilityChanged:

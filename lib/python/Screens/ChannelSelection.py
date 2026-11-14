@@ -158,7 +158,7 @@ class ChannelSelectionBase(Screen):
 	MODE_TV = 0
 	MODE_RADIO = 1
 
-	def __init__(self, session, forceLegacyList=False):
+	def __init__(self, session):
 		def digitHelp():
 			return _("LCN style QuickSelect entry selection") if config.usage.show_channel_jump_in_servicelist.value == "quick" else _("SMS style QuickSelect entry selection")
 
@@ -173,7 +173,7 @@ class ChannelSelectionBase(Screen):
 		self["key_green"] = StaticText(_("Reception Lists"))
 		self["key_yellow"] = StaticText(_("Providers"))
 		self["key_blue"] = StaticText(_("Bouquets"))
-		self["list"] = ServiceListLegacy(self) if forceLegacyList or not config.channelSelection.screenStyle.value or not config.channelSelection.widgetStyle.value else ServiceList(self)
+		self["list"] = self.createServiceList()
 		self.servicelist = self["list"]
 		self.numericalTextInput = NumericalTextInput(handleTimeout=False)
 		self.servicePath = []
@@ -250,6 +250,11 @@ class ChannelSelectionBase(Screen):
 		self.instanceInfoBarSubserviceSelection = None
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onShown.append(self.applyKeyMap)
+
+	def createServiceList(self):
+		if config.channelSelection.screenStyle.value and config.channelSelection.widgetStyle.value:
+			return ServiceList(self)
+		return ServiceListLegacy(self)
 
 	def layoutFinished(self):
 		self.servicelist.instance.enableAutoNavigation(config.misc.actionLeftRightToPageUpPageDown.value and ("keymap.ntr" not in config.usage.keymap.value))  # Override list box navigation.
@@ -3306,7 +3311,7 @@ class RadioInfoBar(Screen):
 
 class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, InfoBarBase, SelectionEventInfo):
 	def __init__(self, session, infobar):
-		ChannelSelectionBase.__init__(self, session, forceLegacyList=True)
+		ChannelSelectionBase.__init__(self, session)
 		InfoBarBase.__init__(self)
 		SelectionEventInfo.__init__(self)
 		self.infobar = infobar
@@ -3340,6 +3345,9 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self.onClose.append(self.__onClose)
 		self.onShow.append(self.updateRadioLayout)
 		self.onHide.append(self.hideRadioLayout)
+
+	def createServiceList(self):
+		return ServiceListLegacy(self)
 
 	def getRadioSkinName(self):
 		reference = self.session.nav.getCurrentlyPlayingServiceReference()
