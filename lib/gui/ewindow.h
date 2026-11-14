@@ -39,6 +39,7 @@ protected:
 	};
 	int event(int event, void *data=0, void *data2=0);
 private:
+	void borderFlagChanged(int oldFlags);
 	std::string m_title;
 	eWidget *m_child;
 	int m_flags;
