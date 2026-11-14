@@ -5,6 +5,8 @@ from os.path import splitext
 
 from enigma import eProfileWrite
 
+from skin import EMERGENCY_SKIN, findSkinScreen
+
 # workaround for required config entry dependencies.
 import Screens.MovieSelection
 from Components.PluginComponent import plugins
@@ -102,6 +104,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		# self.helpList.append((self["actions"], "InfobarActions", [("showMovies", _("Open Movie Selection"))]))
 		# self.helpList.append((self["actions"], "InfobarActions", [("showRadio", _("Open Radio bouquet selection"))]))
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
+			enigma.iPlayableService.evStart: self.updateInfoBarSkin,
 			enigma.iPlayableService.evUpdatedEventInfo: self.__eventInfoChanged,
 			enigma.iPlayableService.evUpdateTags: self.__eventInfoChanged
 		})
@@ -121,12 +124,15 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.onShow.append(self.doButtonsCheck)
 
 	def updateInfoBarSkin(self):
-		showInfoBarLite = config.usage.show_infobar_lite.value
-		if self.showInfoBarLite != showInfoBarLite:
-			self.showInfoBarLite = showInfoBarLite
-			self.skinName = ["InfoBarLite", "InfoBar"] if showInfoBarLite else "InfoBar"
-			# Rebuild on return from setup, before the components are activated.
-			self.reloadSkin()
+		self.showInfoBarLite = config.usage.show_infobar_lite.value
+		skinName = ["InfoBarLite", "InfoBar"] if self.showInfoBarLite else "InfoBar"
+		reference = self.session.nav.getCurrentlyPlayingServiceReference()
+		if reference and reference.type == enigma.eServiceReference.idServiceDAB and config.skin.primary_skin.value == EMERGENCY_SKIN and findSkinScreen("InfoBarDAB"):
+			skinName = "InfoBarDAB"
+		if self.skinName != skinName:
+			self.skinName = skinName
+			if self.instance is not None:
+				self.reloadSkin()
 
 	def showMenu(self):
 		self.onShown.remove(self.showMenu)
@@ -213,8 +219,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			else:
 				self.showRadioChannelList(True)
 		else:
-			self.rds_display.hide()  # in InfoBarRdsDecoder
-			from Screens.ChannelSelection import ChannelSelectionRadio
+			from Screens.ChannelSelection import ChannelSelectionRadio  # Avoid a circular import during InfoBar initialization.
 			self.session.openWithCallback(self.ChannelSelectionRadioClosed, ChannelSelectionRadio, self)
 
 	def toogleTvRadio(self):
@@ -226,7 +231,6 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.showRadio()
 
 	def ChannelSelectionRadioClosed(self, *arg):
-		self.rds_display.show()  # in InfoBarRdsDecoder
 		self.radioTV = 0
 		self.doShow()
 
