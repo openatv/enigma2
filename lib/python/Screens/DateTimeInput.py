@@ -43,7 +43,7 @@ class DateTime(Setup):
 			self["config"].invalidateCurrent()
 
 	def keySave(self):  # This overrides the same class in ConfigList.py as part of Setup.py.
-		self.close((True, self.dateTime.value))
+		self.close((True, int(self.dateTime.value)))
 
 	def keyCancel(self):  # This overrides the same class in ConfigList.py as part of Setup.py.
 		self.close((False,))
