@@ -82,16 +82,30 @@ void eWindow::setBackgroundColor(const gRGB &col)
 
 void eWindow::setFlag(int flags)
 {
+	const int oldFlags = m_flags;
 	m_flags |= flags;
 	if (flags & (wfModal | wfModalFull))
 		setModal(m_flags & wfModalFull ? 2 : 1);
+	borderFlagChanged(oldFlags);
 }
 
 void eWindow::clearFlag(int flags)
 {
+	const int oldFlags = m_flags;
 	m_flags &= ~flags;
 	if (flags & (wfModal | wfModalFull))
 		setModal(m_flags & wfModalFull ? 2 : (m_flags & wfModal ? 1 : 0));
+	borderFlagChanged(oldFlags);
+}
+
+void eWindow::borderFlagChanged(int oldFlags)
+{
+	/* Relayout an already sized window (skin reload) when wfNoBorder toggles. */
+	const eSize clientSize = csize();
+	if (!((oldFlags ^ m_flags) & wfNoBorder) || clientSize.width() <= 0 || clientSize.height() <= 0)
+		return;
+	resize(clientSize);
+	invalidate();
 }
 
 int eWindow::event(int event, void *data, void *data2)
@@ -110,8 +124,13 @@ int eWindow::event(int event, void *data, void *data2)
 //			eDebug("[eWindow] evtWillChangeSize to %d %d", new_size.width(), new_size.height());
 				style->handleNewSize(this, new_size, offset);
 			}
-		} else
+		}
+		else
+		{
+			/* No decoration: drop the inset left over from a bordered layout. */
+			m_child->move(ePoint(0, 0));
 			m_child->resize(new_size);
+		}
 		break;
 	}
 	case evtPaint:

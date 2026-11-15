@@ -4,7 +4,7 @@ from os.path import isfile
 from enigma import ePicLoad, ePoint, eServiceReference, eSize, getDesktop, iPlayableService, iRdsDecoder, iServiceInformation
 
 from ServiceReference import isRadioServiceReference
-from skin import applyAllAttributes, findSkinScreen
+from skin import EMERGENCY_SKIN, applyAllAttributes, findSkinScreen
 from Components.ActionMap import NumberActionMap
 from Components.config import config
 from Components.Element import Element
@@ -33,6 +33,8 @@ class DABSlideDisplay(Screen):
 		self.desktopHeight = height
 		self.pictureAreaHeight = height
 		self.radioDisplay = None
+		self.radioListVisible = False
+		self.radioListPicture = None
 		self.rassActive = False
 		self.radioFramePath = resolveFilename(SCOPE_SKINS, "icons/dab_radio.png")
 		self.hasRadioFrame = isfile(self.radioFramePath)
@@ -168,6 +170,8 @@ class DABSlideDisplay(Screen):
 		try:
 			displayTop = radioDisplay.instance.position().y()
 			textTops = [displayTop + radioDisplay[x].instance.position().y() for x in ("RadioText", "RtpText") if radioDisplay[x].instance is not None]
+			if config.skin.primary_skin.value == EMERGENCY_SKIN:
+				textTops.append(displayTop)
 			pictureHeight = min((x for x in textTops if x > 0), default=self.desktopHeight)
 		except (AttributeError, KeyError):
 			pictureHeight = self.desktopHeight
@@ -199,6 +203,7 @@ class DABSlideDisplay(Screen):
 		picture.resize(eSize(targetWidth, targetHeight))
 
 	def layoutRadioFrame(self, isDAB=True):
+		keepAspect = 0
 		if isDAB:
 			width, height = self.RADIO_IMAGE_SIZE
 			pictureHeight = self.imageAreaHeight()
@@ -209,8 +214,11 @@ class DABSlideDisplay(Screen):
 			self.radioPictureArea = (left + xPos * frameWidth // width, top + yPos * frameHeight // height, max(1, areaWidth * frameWidth // width), max(1, areaHeight * frameHeight // height))
 			path = self.radioFramePath
 		else:
-			# Preserve the full-screen DVB radio artwork, without a video decoder.
 			frameWidth, frameHeight = self.desktopWidth, self.desktopHeight
+			if config.skin.primary_skin.value == EMERGENCY_SKIN:
+				# Fit the complete radio image above the black RDS area.
+				frameHeight = self.imageAreaHeight()
+				keepAspect = 1
 			left, top = 0, 0
 			self.radioPictureArea = None
 			path = self.defaultDVBImage
@@ -231,9 +239,7 @@ class DABSlideDisplay(Screen):
 				self.radioFrameLoader = ePicLoad()
 				self.radioFrameLoader.PictureData.get().append(self.radioFrameDecoded)
 			self.radioFrameLoading = self.radioFrameKey
-			# The aspect fit is already done above. Fill the exact integer size;
-			# a second aspect calculation can leave an unpainted one-pixel edge.
-			self.radioFrameLoader.setPara((frameWidth, frameHeight, 0, 1, False, 1, "#00000000"))
+			self.radioFrameLoader.setPara((frameWidth, frameHeight, keepAspect, 1, False, 1, "#00000000"))
 			if self.radioFrameLoader.startDecode(path):
 				self.radioFrameFailed = self.radioFrameLoading
 				self.radioFrameLoading = None
@@ -259,6 +265,13 @@ class DABSlideDisplay(Screen):
 		# Keep the callable for skins/plugins; all audio modes now share the GUI.
 		return True
 
+	def setRadioListVisible(self, visible, picture=None):
+		if visible != self.radioListVisible or picture is not self.radioListPicture:
+			self.hideSlide()
+			self.radioListVisible = visible
+			self.radioListPicture = picture
+			self.updateSlide()
+
 	def updateSlide(self):
 		reference = self.session.nav.getCurrentlyPlayingServiceReference()
 		if self.radioDisplay is not None:
@@ -266,8 +279,14 @@ class DABSlideDisplay(Screen):
 		if not reference or not isRadioServiceReference(reference) or self.rassActive:
 			self.hideSlide()
 			return
-		self.updateTechnicalInfo(reference)
 		isDAB = reference.type == eServiceReference.idServiceDAB
+		if self.radioListVisible:
+			if not isDAB or self.radioListPicture is None:
+				self.hideSlide()
+				return
+			self.hideTechnicalInfo()
+		else:
+			self.updateTechnicalInfo(reference)
 		showBackground = config.misc.showradiopic.value
 		if not isDAB:
 			self["picture"].hide()
@@ -283,21 +302,28 @@ class DABSlideDisplay(Screen):
 			return
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
-		guiBackground = self.useGUIRadioPicture(info)
-		embeddedImage = self.radioDisplay["DabImage"] if isDAB and self.radioDisplay is not None else None
-		if embeddedImage is not None and not embeddedImage.skinAttributes:
-			embeddedImage = None
-		useRadioFrame = showBackground and embeddedImage is None and self.hasRadioFrame and self["radioFrame"].instance is not None
+		guiBackground = not self.radioListVisible and self.useGUIRadioPicture(info)
+		embeddedImage = self.radioListPicture
+		if not self.radioListVisible and self.radioDisplay is not None and not self.radioDisplay.suppressed:
+			embeddedImage = self.radioDisplay["DabImage"]
+			if not embeddedImage.skinAttributes:
+				embeddedImage = None
+		useRadioFrame = guiBackground and showBackground and embeddedImage is None and self.hasRadioFrame and self["radioFrame"].instance is not None
 		if useRadioFrame:
 			self.layoutRadioFrame()
 		else:
 			self["radioFrame"].hide()
 			self.radioPictureArea = None
-		path = info and isDAB and self.isEnabled(reference) and info.getInfoString(iServiceInformation.sTagPreviewImage) or ""
-		if showBackground and not (path and isfile(path)):
-			path = self.defaultRadioImage
+		path = info and self.isEnabled(reference) and info.getInfoString(iServiceInformation.sTagPreviewImage) or ""
+		if not self.radioListVisible and showBackground and not (path and isfile(path)):
+			logo = info and info.getInfoString(iServiceInformation.sTagImage)
+			path = logo if logo and isfile(logo) else self.defaultRadioImage
 		if not path or not isfile(path):
-			self.hideSlide(hideTechnicalInfo=False)
+			if useRadioFrame:
+				self["picture"].hide()
+				self.slideSignature = None
+			else:
+				self.hideSlide(hideTechnicalInfo=False)
 			if guiBackground:
 				self.show()
 			return
@@ -319,7 +345,8 @@ class DABSlideDisplay(Screen):
 			picture.show()
 			if embeddedImage is not None:
 				self["picture"].hide()
-				self.radioDisplay.show()
+				if not self.radioListVisible and self.radioDisplay is not None:
+					self.radioDisplay.show()
 				if guiBackground:
 					self.show()
 				else:
@@ -334,6 +361,8 @@ class DABSlideDisplay(Screen):
 		self["radioFrame"].hide()
 		if self.radioDisplay is not None:
 			self.radioDisplay["DabImage"].hide()
+		if self.radioListPicture is not None:
+			self.radioListPicture.hide()
 		self.slidePath = ""
 		self.slideSignature = None
 		self.hide()
@@ -509,6 +538,7 @@ class RdsInfoDisplay(Screen):
 		self["DabImage"] = Pixmap()
 		self["DabImage"].hide()
 		self.ignoreWidgets.append("DabImage")
+		self.suppressed = False
 		self.dabBackground = False
 		self.backgroundAttributes = []
 
@@ -530,6 +560,18 @@ class RdsInfoDisplay(Screen):
 	def hasCustomLayout(self):
 		return findSkinScreen(self.skinName) in ("DabRdsDisplay", "RdsDisplay") or bool(self["DabImage"].skinAttributes)
 
+	def setSuppressed(self, suppressed):
+		if self.suppressed != suppressed:
+			self.suppressed = suppressed
+			if suppressed:
+				self.hide()
+			else:
+				self.updateVisibility()
+
+	def show(self):
+		if not self.suppressed:
+			Screen.show(self)
+
 	def updateVisibility(self):
 		names = self.getSkinNames()
 		if self.skinName != names:
@@ -539,13 +581,11 @@ class RdsInfoDisplay(Screen):
 			self.setDABBackground(False)
 			self.skinName = names
 			self.reloadSkin()
-			self.RadioTextChanged()
-			self.RtpTextChanged()
 		reference = self.session.nav.getCurrentlyPlayingServiceReference()
-		if self.hasCustomLayout() and not (reference and isRadioServiceReference(reference)):
-			self.hide()
-		else:
+		if reference and isRadioServiceReference(reference):
 			self.show()
+		else:
+			self.hide()
 
 	def layoutFinished(self):
 		for name in ("RadioText", "RtpText"):
@@ -557,6 +597,10 @@ class RdsInfoDisplay(Screen):
 				widget.instance.setFontScale(1, max(1, widget.instance.getFont().pointSize // 2))
 		self.hideWidgets()
 		self.updateVisibility()
+		reference = self.session.nav.getCurrentlyPlayingServiceReference()
+		if reference and isRadioServiceReference(reference):
+			self.RadioTextChanged()
+			self.RtpTextChanged()
 
 	def setDABBackground(self, enabled):
 		# An explicit RDS layout or embedded DAB image owns its styling. Keep
@@ -617,8 +661,7 @@ class RdsInfoDisplay(Screen):
 
 	def __serviceStopped(self):
 		self.hideWidgets()
-		if self.hasCustomLayout():
-			self.hide()
+		self.hide()
 		if self.rassInteractivePossible:
 			self.rassInteractivePossible = False
 			for callback in self.onRassInteractivePossibilityChanged:
