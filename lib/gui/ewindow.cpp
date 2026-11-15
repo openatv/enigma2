@@ -101,9 +101,10 @@ void eWindow::clearFlag(int flags)
 void eWindow::borderFlagChanged(int oldFlags)
 {
 	/* Relayout an already sized window (skin reload) when wfNoBorder toggles. */
-	if (!((oldFlags ^ m_flags) & wfNoBorder) || m_client_size.width() <= 0 || m_client_size.height() <= 0)
+	const eSize clientSize = csize();
+	if (!((oldFlags ^ m_flags) & wfNoBorder) || clientSize.width() <= 0 || clientSize.height() <= 0)
 		return;
-	resize(m_client_size);
+	resize(clientSize);
 	invalidate();
 }
 
