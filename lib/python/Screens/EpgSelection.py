@@ -144,6 +144,9 @@ class EPGSelectionBase(Screen):
 		self.refreshTimer.timeout.get().append(self.refreshlist)
 		self.onClose.append(self.stopTimers)
 
+		self.onExecEnd.append(self.suspendChoiceBoxDialog)
+		self.onExecBegin.append(self.resumeChoiceBoxDialog)
+
 		# Defer actual list population until the screen layout is complete.
 		self.onLayoutFinish.append(self.onCreate)
 
@@ -675,6 +678,16 @@ class EPGSelectionBase(Screen):
 			self["numberactions"].setEnabled(False)
 		self.ChoiceBoxDialog.instantiateActionMap(True)
 		self.ChoiceBoxDialog.show()
+
+	def suspendChoiceBoxDialog(self):
+		if self.ChoiceBoxDialog:
+			self.ChoiceBoxDialog.instantiateActionMap(False)
+			self.ChoiceBoxDialog.hide()
+
+	def resumeChoiceBoxDialog(self):
+		if self.ChoiceBoxDialog:
+			self.ChoiceBoxDialog.instantiateActionMap(True)
+			self.ChoiceBoxDialog.show()
 
 	def closeChoiceBoxDialog(self):
 		self["dialogactions"].setEnabled(False)

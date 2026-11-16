@@ -1460,18 +1460,31 @@ class NetworkWiFiActivator(Screen):
 			"red": (self.keyClose, _("Close the screen")),
 		}, prio=0, description=_("Wi-Fi Activation Actions"))
 		self.pollTimer = eTimer()
+		self.pollTimer.callback.append(self.checkIp)
 		self.closeTimer = eTimer()
 		self.pollInterval = 1500
 		self.pollMaxAttempts = 20
 		self.ssid = connection.wifi.displaySsid if connection.wifi else adapter.name
 		self.pollCount = 0
+		self.activationActive = True
 		self.onLayoutFinish.append(self.start)
+		self.onClose.append(self.cleanup)
 
 	def keyClose(self):
+		self.cleanup()
 		self.close("")
+
+	def cleanup(self):
+		self.activationActive = False
+		for timer in (self.pollTimer, self.closeTimer):
+			timer.stop()
+			timer.callback.clear()
 
 	def start(self):
 		def startCallback(retval: int):
+			# Screen.doClose() also clears the flag when the dialog is destroyed.
+			if not getattr(self, "activationActive", False):
+				return
 			if retval:
 				self.setStatus(self.diagnoseFailure())
 				self["key_red"].setText(_("Close"))
@@ -1488,14 +1501,16 @@ class NetworkWiFiActivator(Screen):
 	def beginPolling(self):
 		self.pollCount = 0
 		self.setStatus(_("Waiting for IP address..."))
-		self.pollTimer.callback.append(self.checkIp)
 		self.pollTimer.start(self.pollInterval, True)
 
 	def checkIp(self):
 		def delayedCloseCallback():
-			self.closeTimer.stop()
-			self.close(ip)
+			if getattr(self, "activationActive", False):
+				self.cleanup()
+				self.close(ip)
 
+		if not getattr(self, "activationActive", False):
+			return
 		self.pollTimer.stop()
 		self.pollCount += 1
 		networkManager.applyNetinfo()

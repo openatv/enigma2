@@ -251,7 +251,8 @@ public:
 		eStackAlignRight = 2,
 		eStackAlignTop = 4,
 		eStackAlignBottom = 8,
-		eStackAlignCenter = 16
+		eStackAlignCenter = 16,
+		eStackAlignFill = 32 // combined with Left/Top: takes the space the other children leave over
 	};
 
 	void setAlign(uint8_t a) { m_align = a; }

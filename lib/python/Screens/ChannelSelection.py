@@ -3,7 +3,7 @@ from os.path import join
 from time import localtime, strftime, time
 from weakref import ref as weakrefRef
 
-from enigma import eActionMap, eDBoxLCD, eDVBDB, eEPGCache, ePoint, eRCInput, eServiceCenter, eServiceReference, eServiceReferenceDVB, eTimer, eWindow, getPrevAsciiCode, iPlayableService, iServiceInformation, loadPNG
+from enigma import eActionMap, eDBoxLCD, eDVBDB, eEPGCache, ePoint, eRCInput, eServiceCenter, eServiceReference, eServiceReferenceDVB, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, loadPNG
 
 from RecordTimer import AFTEREVENT, RecordTimerEntry, TIMERTYPE
 from ServiceReference import ServiceReference, getStreamRelayRef, hdmiInServiceRef, isRadioServiceReference, serviceRefAppendPath, service_types_radio_ref, service_types_tv_ref
@@ -259,15 +259,8 @@ class ChannelSelectionBase(Screen):
 	def layoutFinished(self):
 		self.servicelist.instance.enableAutoNavigation(config.misc.actionLeftRightToPageUpPageDown.value and ("keymap.ntr" not in config.usage.keymap.value))  # Override list box navigation.
 
-	def reloadChannelListSkin(self, skinName, borderless):
-		if borderless:
-			# Clear the old window's child inset when switching from a bordered list.
-			self.instance.setFlag(eWindow.wfNoBorder)
-			self.instance.child().move(ePoint(0, 0))
-		else:
-			self.instance.clearFlag(eWindow.wfNoBorder)
+	def reloadSkin(self):
 		selection = self.getCurrentSelection()
-		self.skinName = skinName
 		Screen.reloadSkin(self)
 		self.setCurrentSelection(selection)
 
@@ -2063,6 +2056,8 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 		self["channelSelectEPGActions"] = ButtonSetupActionMap(["ChannelSelectEPGActions"], dict((x[1], self.ButtonSetupGlobal) for x in self.hotkeys))
 		self.currentSavedPath = []
 		self.onExecBegin.append(self.clearLongKeyPressed)
+		self.onExecEnd.append(self.suspendChoiceBoxDialog)
+		self.onExecBegin.append(self.resumeChoiceBoxDialog)
 		self["channelSelectEPGActions"] = HelpableActionMap(self, ["ChannelSelectInfoActions", "ChannelSelectEPGActions"], {
 			"showEPGList": (self.showEPGList, _("Show EPG")),
 			"showEventInfo": (self.showEventInfo, _("Show event details"))
@@ -2149,12 +2144,23 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 		self.ChoiceBoxDialog.instantiateActionMap(True)
 		self.ChoiceBoxDialog.show()
 
+	def suspendChoiceBoxDialog(self):
+		if self.ChoiceBoxDialog:
+			self.ChoiceBoxDialog.instantiateActionMap(False)
+			self.ChoiceBoxDialog.hide()
+
+	def resumeChoiceBoxDialog(self):
+		if self.ChoiceBoxDialog:
+			self.ChoiceBoxDialog.instantiateActionMap(True)
+			self.ChoiceBoxDialog.show()
+
 	def closeChoiceBoxDialog(self, choice=None):
 		self["dialogActions"].setEnabled(False)
 		self["dialogActions"].execEnd()
 		if self.ChoiceBoxDialog:
 			self.ChoiceBoxDialog.instantiateActionMap(False)
 			self.session.deleteDialog(self.ChoiceBoxDialog)
+			self.ChoiceBoxDialog = None
 		self["actions"].setEnabled(True)
 		self["helpActions"].setEnabled(True)
 		self["recordingActions"].setEnabled(True)
@@ -2539,7 +2545,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			elif config.skin.primary_skin.value == EMERGENCY_SKIN and findSkinScreen("ChannelSelectionRadioList"):
 				skinNames = ["ChannelSelectionRadioList", *skinNames]
 		if self.skinName != skinNames:
-			self.reloadChannelListSkin(skinNames, borderless=skinNames != self.channelListSkinNames)
+			self.skinName = skinNames
+			self.reloadSkin()
 
 	def toogleTvRadio(self):
 		if self.radioTV == 1:
@@ -3361,8 +3368,8 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		return "ChannelSelectionRadio"
 
 	def reloadSkin(self):
-		skinName = self.getRadioSkinName()
-		self.reloadChannelListSkin(skinName, borderless=skinName != "ChannelSelectionRadio")
+		self.skinName = self.getRadioSkinName()
+		ChannelSelectionBase.reloadSkin(self)
 		if self.shown:
 			self.updateRadioLayout()
 

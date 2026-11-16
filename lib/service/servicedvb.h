@@ -198,6 +198,8 @@ public:
 	std::string getTimeshiftFilename();
 	long long getTimeshiftFileSize();
 	std::string getTimeshiftServiceData();
+	RESULT setTimeshiftSyncEnabled(bool enabled) override;
+	RESULT getTimeshiftDelay(pts_t &delay) override;
 	virtual void switchToLive();
 
 	// iTapService
@@ -401,6 +403,10 @@ protected:
 	enum class RecoveryPhase { Waiting, Playing, Refilling };
 	RecoveryPhase m_recovery_phase = RecoveryPhase::Waiting;
 	pts_t m_recovery_check_position = 0;
+	bool m_timeshift_sync_enabled = false;
+	pts_t m_timeshift_sync_playback_pts = -1;
+	pts_t m_timeshift_sync_live_pts = -1;
+	bool getTimeshiftSyncPosition(pts_t &live, pts_t &playback);
 
 	virtual void handleEofRecovery();
 	virtual void startPreciseRecoveryCheck();

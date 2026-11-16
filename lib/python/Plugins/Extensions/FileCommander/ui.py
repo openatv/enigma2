@@ -947,20 +947,25 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 	def keyMakeSymlink(self):
 		def makeSymlinkCallback(newName):
 			if newName:
-				oldPath = path
-				newPath = join(self.targetColumn.getCurrentDirectory(), newName)
+				newPath = join(targetDirectory, newName)
 				try:
-					symlink(oldPath, newPath)
+					symlink(path, newPath)
 				except OSError as err:
-					self.session.open(MessageBox, _("Error %d: Unable to link '%s' as '%s'!  (%s)") % (err.errno, oldPath, newPath, err.strerror), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
-				if isdir(path):
-					newPath = join(newPath, "")
-				self.targetColumn.refresh(newPath)
+					self.session.open(MessageBox, _("Error %d: Unable to link '%s' as '%s'!  (%s)") % (err.errno, path, newPath, err.strerror), MessageBox.TYPE_ERROR, windowTitle=self.baseTitle)
+				else:
+					if isdir(path):
+						newPath = join(newPath, "")
+					targetColumn.refresh(newPath)
 
 		path = self.sourceColumn.getPath()
-		if self.checkStillExists(path):
-			oldName = basename(normpath(path))
-			self.session.openWithCallback(makeSymlinkCallback, VirtualKeyBoard, title=_("Please enter name of the new symbolic link:"), text=oldName)
+		if path and self.checkStillExists(path):
+			targetColumn = self.targetColumn
+			targetDirectory = targetColumn.getCurrentDirectory()
+			if targetDirectory:
+				oldName = basename(normpath(path))
+				self.session.openWithCallback(makeSymlinkCallback, VirtualKeyBoard, title=_("Please enter name of the new symbolic link:"), text=oldName)
+			else:
+				self.displayStatus(_("Please select a target directory."))
 
 	def keyManageBookmarks(self, current):
 		bookmarks = config.plugins.FileCommander.bookmarks.value
