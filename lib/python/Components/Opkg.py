@@ -638,6 +638,10 @@ class OpkgComponent:
 			argv = line.split(" - ", 2)
 			argc = len(argv)
 			if not line.startswith("Not selecting ") and not line.startswith("error: "):
+				# Diagnostics share the output with package records; upgrades need both versions.
+				if argc < (3 if self.command == self.CMD_UPGRADE_LIST else 2):
+					print(f"[Opkg] Ignoring invalid package list entry: '{line}'.")
+					return
 				if self.command == self.CMD_UPGRADE_LIST and self.isExcluded(argv[0]):
 					self.excludeList.append(argv)
 				else:
