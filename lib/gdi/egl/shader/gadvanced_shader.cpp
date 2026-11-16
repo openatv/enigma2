@@ -33,6 +33,7 @@ static const char* fragment_shader_es3 = R"(#version 300 es
     uniform vec4 u_solid_color;
     uniform float u_border_width;
     uniform vec4 u_border_color;
+    uniform int u_coverage_pass;
     
     uniform int u_num_stops;
     uniform vec4 u_gradient_colors[16];
@@ -116,6 +117,10 @@ static const char* fragment_shader_es3 = R"(#version 300 es
         } else {
             frag_color = vec4(final_color.rgb, final_color.a * coverage);
         }
+        if (u_coverage_pass == 1)
+            frag_color = vec4(0.0, 0.0, 0.0, coverage);
+        else if (u_coverage_pass == 2)
+            frag_color.rgb *= coverage;
     }
 )";
 #endif
@@ -154,6 +159,7 @@ static const char* fragment_shader_es2 = R"(#version 100
     uniform vec4 u_solid_color;
     uniform float u_border_width;
     uniform vec4 u_border_color;
+    uniform int u_coverage_pass;
     
     uniform int u_num_stops;
     uniform vec4 u_gradient_colors[16];
@@ -313,6 +319,10 @@ static const char* fragment_shader_es2 = R"(#version 100
         } else {
             gl_FragColor = vec4(final_color.rgb, final_color.a * coverage);
         }
+        if (u_coverage_pass == 1)
+            gl_FragColor = vec4(0.0, 0.0, 0.0, coverage);
+        else if (u_coverage_pass == 2)
+            gl_FragColor.rgb *= coverage;
     }
 )";
 
@@ -394,6 +404,7 @@ bool gAdvancedShader::init() {
 	m_alphablend_location = glGetUniformLocation(m_program_id, "u_alphablend");
 	m_border_width_location = glGetUniformLocation(m_program_id, "u_border_width");
 	m_border_color_location = glGetUniformLocation(m_program_id, "u_border_color");
+	m_coveragePassLocation = glGetUniformLocation(m_program_id, "u_coverage_pass");
 	m_gradient_colors_location = glGetUniformLocation(m_program_id, "u_gradient_colors");
 	m_gradient_stops_location = glGetUniformLocation(m_program_id, "u_gradient_stops");
 	m_num_stops_location = glGetUniformLocation(m_program_id, "u_num_stops");
@@ -446,7 +457,7 @@ void gAdvancedShader::setFramebufferResolution(float width, float height) {
 }
 
 void gAdvancedShader::drawAdvancedRect(float x, float y, float width, float height, int radius, uint8_t edges, const std::vector<gRGB>& gradient_colors, uint8_t orientation, bool alphablend,
-									   int gradient_full_size, float alpha, const gRGB& solid_color, int border_width, const gRGB& border_color) {
+									   int gradient_full_size, float alpha, const gRGB& solid_color, int border_width, const gRGB& border_color, bool replaceCoverage) {
 	bind();
 	(void)alpha;
 
@@ -504,6 +515,23 @@ void gAdvancedShader::drawAdvancedRect(float x, float y, float width, float heig
 	bindVAO();
 	glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
 	glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
-	glDrawArrays(GL_TRIANGLES, 0, 6);
+	if (replaceCoverage) {
+		// Legacy rounded fills replace RGBA, interpolating with the destination
+		// only at the antialiased edge. Source-over would make stacked panels opaque.
+		// Two passes implement dst * (1 - coverage) + src * coverage without readback.
+		glEnable(GL_BLEND);
+		glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
+		glBlendFunc(GL_ZERO, GL_ONE_MINUS_SRC_ALPHA);
+		glUniform1i(m_coveragePassLocation, 1);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+		glBlendFunc(GL_ONE, GL_ONE);
+		glUniform1i(m_coveragePassLocation, 2);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+		glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+		glDisable(GL_BLEND);
+	} else {
+		glUniform1i(m_coveragePassLocation, 0);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+	}
 	unbindVAO();
 }

@@ -1261,7 +1261,8 @@ bool gTextureManager::drawRectangleSurface(gUnmanagedSurface* surface, const gRe
 		return true;
 
 	const bool blend_border = border_width > 0 && (use_new || radius > 0);
-	const bool blend_rect = use_new || radius > 0 || (!gradient_colors.empty() && alphablend);
+	const bool replaceCoverage = radius > 0 && border_width <= 0 && !use_new && (gradient_colors.empty() || !alphablend);
+	const bool blend_rect = !replaceCoverage && (use_new || radius > 0 || (!gradient_colors.empty() && alphablend));
 	const bool full_overwrite = !blend_border && !blend_rect && radius <= 0 && regionCoversRect(draw_region, surface_rect);
 	if (!ensureFramebuffer(surface, !full_overwrite && !surface->gl_content_valid))
 		return false;
@@ -1315,7 +1316,7 @@ bool gTextureManager::drawRectangleSurface(gUnmanagedSurface* surface, const gRe
 	for (const eRect& clipped : draw_region.rects) {
 		glScissor(clipped.left(), clipped.top(), clipped.width(), clipped.height());
 		m_offscreen_advanced_shader.drawAdvancedRect(area.x(), area.y(), area.width(), area.height(), radius, edges,
-			nativeColors, direction, alphablend, gradient_full_size, textureColorAlpha(background_color), swapChannels(background_color), border_width, swapChannels(border_color));
+			nativeColors, direction, alphablend, gradient_full_size, textureColorAlpha(background_color), swapChannels(background_color), border_width, swapChannels(border_color), replaceCoverage);
 	}
 
 	GLenum err = glGetError();

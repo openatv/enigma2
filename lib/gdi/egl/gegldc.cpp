@@ -1806,7 +1806,8 @@ void gEGLDC::executeRectangle(const gOpcode* op) {
 	}
 
 	if (m_radius > 0 || m_gradient_colors.size() > 0) {
-		const bool blend_rect = op->parm.rectangle->useNew || m_radius > 0 || (m_gradient_colors.size() > 0 && m_gradient_alphablend);
+		const bool replaceCoverage = m_radius > 0 && !op->parm.rectangle->useNew && (m_gradient_colors.empty() || !m_gradient_alphablend);
+		const bool blend_rect = !replaceCoverage && (op->parm.rectangle->useNew || (m_gradient_colors.size() > 0 && m_gradient_alphablend));
 		if (blend_rect) {
 			glEnable(GL_BLEND);
 			glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
@@ -1818,7 +1819,7 @@ void gEGLDC::executeRectangle(const gOpcode* op) {
 			inner_radius = std::max(0, m_radius - m_border_width);
 		if (m_gradient_colors.empty()) {
 			logColorOp("rect-rounded", area, m_background_color_rgb, blend_rect);
-			drawRoundedSolidRect(clip, area, inner_radius, m_radius_edges, m_background_color_rgb);
+			drawRoundedSolidRect(clip, area, inner_radius, m_radius_edges, m_background_color_rgb, replaceCoverage);
 			glDisable(GL_BLEND);
 			return;
 		}
@@ -1826,7 +1827,7 @@ void gEGLDC::executeRectangle(const gOpcode* op) {
 			setGlScissor(clip.rects[i]);
 			logColorOp(m_gradient_colors.size() > 0 ? "rect-gradient" : "rect-rounded", area, m_background_color_rgb, blend_rect);
 			m_advanced_shader.drawAdvancedRect(area.x(), area.y(), area.width(), area.height(), inner_radius, m_radius_edges, m_gradient_colors, m_gradient_orientation, m_gradient_alphablend > 0,
-											   m_gradient_fullSize, colorAlpha(m_background_color_rgb), m_background_color_rgb);
+											   m_gradient_fullSize, colorAlpha(m_background_color_rgb), m_background_color_rgb, 0, gRGB(), replaceCoverage);
 		}
 		if (blend_rect)
 			glDisable(GL_BLEND);
@@ -1861,7 +1862,7 @@ void gEGLDC::executeRectangle(const gOpcode* op) {
 	glDisable(GL_SCISSOR_TEST);
 }
 
-void gEGLDC::drawRoundedSolidRect(const gRegion& clip, const eRect& area, int radius, int edges, const gRGB& color) {
+void gEGLDC::drawRoundedSolidRect(const gRegion& clip, const eRect& area, int radius, int edges, const gRGB& color, bool replaceCoverage) {
 	// Only the corner squares need the coverage shader, inside the rest it outputs the plain colour.
 	const int corner = (int)std::ceil(std::min((float)radius, std::min(area.width(), area.height()) * 0.5f));
 	const int left = area.left();
@@ -1899,7 +1900,7 @@ void gEGLDC::drawRoundedSolidRect(const gRegion& clip, const eRect& area, int ra
 				continue;
 			glEnable(GL_SCISSOR_TEST);
 			setGlScissor(draw);
-			m_advanced_shader.drawAdvancedRect(area.x(), area.y(), area.width(), area.height(), radius, edges, std::vector<gRGB>(), 0, false, 0, colorAlpha(color), color);
+			m_advanced_shader.drawAdvancedRect(area.x(), area.y(), area.width(), area.height(), radius, edges, std::vector<gRGB>(), 0, false, 0, colorAlpha(color), color, 0, gRGB(), replaceCoverage);
 		}
 	}
 	glDisable(GL_SCISSOR_TEST);
