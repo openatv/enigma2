@@ -169,6 +169,9 @@ void eListbox::setLockFirstRow(bool lock)
 
 void eListbox::setContent(iListboxContent *content)
 {
+	// Pending callbacks may keep the old content alive after its widget is gone.
+	if (m_content)
+		m_content->m_listbox = nullptr;
 	m_content = content;
 	if (content)
 	{
