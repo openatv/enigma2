@@ -236,14 +236,14 @@ class MovieSelectionActions:
 				self.screen.reloadList()
 
 	def hiddenFolders(self):
-		choices = [(path, path) for path in config.movielist.hiddenFolders.value]
-		self.screen.session.openWithCallback(self.unhideFolder, ChoiceBox, title=_("Select a folder to show again. This does not change database scan paths."), list=choices or [(_("No hidden folders"), None)])
+		def unhideFolder(choice):
+			if choice and choice[1] is not None:
+				config.movielist.hiddenFolders.value = [path for path in config.movielist.hiddenFolders.value if path != choice[1]]
+				config.movielist.hiddenFolders.save()
+				self.screen.reloadList()
 
-	def unhideFolder(self, choice):
-		if choice and choice[1] is not None:
-			config.movielist.hiddenFolders.value = [path for path in config.movielist.hiddenFolders.value if path != choice[1]]
-			config.movielist.hiddenFolders.save()
-			self.screen.reloadList()
+		choices = [(path, path) for path in config.movielist.hiddenFolders.value]
+		self.screen.session.openWithCallback(unhideFolder, ChoiceBox, title=_("Select a folder to show again. This does not change database scan paths."), list=choices or [(_("No hidden folders"), None)])
 
 	def toggleMark(self):
 		item = self.screen.getCurrentSelection()
@@ -291,36 +291,36 @@ class MovieSelectionActions:
 		self.screen.session.openWithCallback(lambda choice: choice[1]() if choice else None, ChoiceBox, title=_("View for this movie list only"), list=choices)
 
 	def temporaryStyle(self, name):
+		def temporaryStyleSelected(choice):
+			if choice:
+				setattr(self, name, choice[1])
+				self.screen.setMovieView(self.screen.libraryActive, force=True)
+
 		setting = getattr(config.movielist, name)
 		choices = [(setting.description[x], x) for x in setting.choices]
-		self.screen.session.openWithCallback(partial(self.temporaryStyleSelected, name), ChoiceBox, title=_("View for this movie list only"), list=choices)
-
-	def temporaryStyleSelected(self, name, choice):
-		if choice:
-			setattr(self, name, choice[1])
-			self.screen.setMovieView(self.screen.libraryActive, force=True)
+		self.screen.session.openWithCallback(temporaryStyleSelected, ChoiceBox, title=_("View for this movie list only"), list=choices)
 
 	def temporarySort(self):
+		def temporarySortSelected(choice):
+			if choice:
+				self.sortType = int(choice[1])
+				self.screen.reloadList()
+
+		def librarySortSelected(choice):
+			if choice:
+				self.librarySort = choice[1]
+				self.screen.libraryView.parameters["page"] = 1
+				self.screen.reloadList()
+
 		if self.screen.libraryActive:
 			setting = config.movielist.libraryEpisodeSort if self.screen.libraryView.parameters.get("id") else config.movielist.librarySort
 			choices = [(setting.description[x], x) for x in setting.choices]
-			self.screen.session.openWithCallback(self.librarySortSelected, ChoiceBox, title=_("Sort this movie list"), list=choices)
+			self.screen.session.openWithCallback(librarySortSelected, ChoiceBox, title=_("Sort this movie list"), list=choices)
 			return
 		# MovieSelection imports these actions; obtain its existing sort choices after startup.
 		from Screens.MovieSelection import l_moviesort
 		choices = [(x[1], x[0]) for x in l_moviesort]
-		self.screen.session.openWithCallback(self.temporarySortSelected, ChoiceBox, title=_("Sort this movie list"), list=choices)
-
-	def temporarySortSelected(self, choice):
-		if choice:
-			self.sortType = int(choice[1])
-			self.screen.reloadList()
-
-	def librarySortSelected(self, choice):
-		if choice:
-			self.librarySort = choice[1]
-			self.screen.libraryView.parameters["page"] = 1
-			self.screen.reloadList()
+		self.screen.session.openWithCallback(temporarySortSelected, ChoiceBox, title=_("Sort this movie list"), list=choices)
 
 	def resetTemporaryView(self):
 		self.screenStyle = self.widgetStyle = self.sortType = self.librarySort = None
@@ -335,14 +335,14 @@ class MovieSelectionActions:
 				self.screen.playServices(services)
 
 	def markers(self):
-		choices = [(_("Remove chapter markers (keep cuts and resume position)"), "clearMarkers"), (_("Restore previous playback position"), "restoreResume")]
-		self.screen.session.openWithCallback(self.markersSelected, ChoiceBox, title=_("Chapter markers and playback position"), list=choices)
+		def markersSelected(choice):
+			if choice:
+				operations = [dict(x, mode=choice[1]) for x in self.operations("markers")]
+				if operations:
+					self.screen.session.openWithCallback(lambda confirmed: self.run(operations) if confirmed else None, MessageBox, _("Apply '%(action)s' to %(count)d selected movies?") % {"action": choice[0], "count": len(operations)}, type=MessageBox.TYPE_YESNO, default=False)
 
-	def markersSelected(self, choice):
-		if choice:
-			operations = [dict(x, mode=choice[1]) for x in self.operations("markers")]
-			if operations:
-				self.screen.session.openWithCallback(lambda confirmed: self.run(operations) if confirmed else None, MessageBox, _("Apply '%(action)s' to %(count)d selected movies?") % {"action": choice[0], "count": len(operations)}, type=MessageBox.TYPE_YESNO, default=False)
+		choices = [(_("Remove chapter markers (keep cuts and resume position)"), "clearMarkers"), (_("Restore previous playback position"), "restoreResume")]
+		self.screen.session.openWithCallback(markersSelected, ChoiceBox, title=_("Chapter markers and playback position"), list=choices)
 
 	def createEit(self):
 		self.eitPending = []
@@ -360,20 +360,20 @@ class MovieSelectionActions:
 		self.loadEitBatch()
 
 	def loadEitBatch(self):
+		def eitLoaded(batch, result):
+			for operation in batch:
+				operation["metadata"].update({x: value for x, value in result.get("items", {}).get(operation["path"], {}).items() if value})
+			self.eitOperations.extend(batch)
+			self.loadEitBatch()
+
 		if self.screen is None:
 			return
 		if self.eitPending:
 			batch = self.eitPending[:64]
 			del self.eitPending[:64]
-			self.client.request("details", {"paths": [x["path"] for x in batch]}, partial(self.eitLoaded, batch))
+			self.client.request("details", {"paths": [x["path"] for x in batch]}, partial(eitLoaded, batch))
 		else:
 			self.run(self.eitOperations)
-
-	def eitLoaded(self, batch, result):
-		for operation in batch:
-			operation["metadata"].update({x: value for x, value in result.get("items", {}).get(operation["path"], {}).items() if value})
-		self.eitOperations.extend(batch)
-		self.loadEitBatch()
 
 	def createSelectedEit(self, path, metadata):
 		if path in self.eitAttempted or not (metadata.get("description") or metadata.get("localDescription")):
@@ -384,15 +384,15 @@ class MovieSelectionActions:
 		job_manager.AddJob(job)
 
 	def transfer(self, action):
+		def transferDestination(destination):
+			if destination:
+				for operation in operations:
+					operation["target"] = join(destination, basename(operation["path"]))
+				self.run(operations)
+
 		operations = self.operations(action)
 		if operations:
-			self.screen.selectMovieLocation(_("Select destination for %d movies") % len(operations), partial(self.transferDestination, operations))
-
-	def transferDestination(self, operations, destination):
-		if destination:
-			for operation in operations:
-				operation["target"] = join(destination, basename(operation["path"]))
-			self.run(operations)
+			self.screen.selectMovieLocation(_("Select destination for %d movies") % len(operations), transferDestination)
 
 	def delete(self):
 		operations = self.operations("delete")
@@ -428,6 +428,11 @@ class MovieSelectionActions:
 			self.run(self.operations("restore"))
 
 	def edit(self):
+		def edited(values):
+			if values:
+				operation.update(title=values[0], description=values[1])
+				self.run([operation])
+
 		items = self.selectedItems()
 		if len(items) != 1:
 			self.screen.session.open(MessageBox, _("Select one movie to edit its information."), type=MessageBox.TYPE_INFO)
@@ -436,28 +441,24 @@ class MovieSelectionActions:
 		title = info.getName(service) if info is not None else basename(service.getPath())
 		description = info.getInfoString(service, iServiceInformation.sDescription) if info is not None else ""
 		operation = dict(self.operations("metadata")[0], service=service.toString())
-		self.screen.session.openWithCallback(partial(self.edited, operation), MovieMetadataEditor, title, description)
-
-	def edited(self, operation, values):
-		if values:
-			operation.update(title=values[0], description=values[1])
-			self.run([operation])
+		self.screen.session.openWithCallback(edited, MovieMetadataEditor, title, description)
 
 	def rename(self):
+		def renamed(name):
+			if name is None:
+				return
+			if not name.strip() or name in (".", "..") or any(character in name for character in ("/", "\\", "\0", "\n", "\r")):
+				self.screen.session.open(MessageBox, _("Invalid filename."), type=MessageBox.TYPE_ERROR)
+				return
+			operation["target"] = join(dirname(operation["path"]), f"{name.strip()}{splitext(operation['path'])[1]}")
+			self.run([operation])
+
 		operations = self.operations("rename")
 		if len(operations) != 1:
 			self.screen.session.open(MessageBox, _("Select one movie to rename its file."), type=MessageBox.TYPE_INFO)
 			return
-		self.screen.session.openWithCallback(partial(self.renamed, operations[0]), VirtualKeyBoard, title=_("New movie filename (without extension)"), text=splitext(basename(operations[0]["path"]))[0])
-
-	def renamed(self, operation, name):
-		if name is None:
-			return
-		if not name.strip() or name in (".", "..") or any(character in name for character in ("/", "\\", "\0", "\n", "\r")):
-			self.screen.session.open(MessageBox, _("Invalid filename."), type=MessageBox.TYPE_ERROR)
-			return
-		operation["target"] = join(dirname(operation["path"]), f"{name.strip()}{splitext(operation['path'])[1]}")
-		self.run([operation])
+		operation = operations[0]
+		self.screen.session.openWithCallback(renamed, VirtualKeyBoard, title=_("New movie filename (without extension)"), text=splitext(basename(operation["path"]))[0])
 
 	def run(self, operations):
 		if not operations or self.screen is None:
@@ -483,24 +484,35 @@ class MovieSelectionActions:
 			AddNotification(MessageBox, "\n".join(failures), type=MessageBox.TYPE_ERROR)
 
 	def maintenance(self):
+		def maintenanceSelected(choice):
+			if not choice or self.screen is None:
+				return
+			if choice[1] == "review":
+				self.reviewMaintenance()
+			elif choice[1] == "catalogue":
+				self.scanCatalogue()
+			elif movieMaintenanceState.running:
+				self.screen.session.open(MessageBox, _("A movie maintenance scan is already running. Its progress is shown in Tasks."), type=MessageBox.TYPE_INFO)
+			else:
+				def startMaintenance(root):
+					if not root or self.screen is None:
+						return
+					# Copy the live resume cache on the GUI thread; the worker only receives plain data.
+					from Screens import InfoBarGenerics
+					resumes = {eServiceReference(reference).getPath(): list(value) for reference, value in InfoBarGenerics.resumePointCache.items()}
+					job = MovieMaintenanceJob(root, choice[1], resumes, config.movielist.watchedPercent.value, config.movielist.maintenanceAge.value)
+					movieMaintenanceState.running = True
+					job_manager.AddJob(job, onSuccess=self.maintenanceScanned, onFail=self.maintenanceFailed)
+					self.screen.showActionFeedback(_("Scanning movie folders in the background"))
+
+				root = config.movielist.last_videodir.value if self.screen.libraryActive else self.screen.current_ref.getPath()
+				self.screen.session.openWithCallback(startMaintenance, MovieLocationBox, _("Select the movie folder to scan, including subfolders"), root)
+
 		choices = [(_("Update folder movie counts and sizes"), "statistics"), (_("Find orphaned movie companion files"), "orphans"), (_("Find old watched movies"), "watched")]
 		choices.insert(0, (_("Update movie folder snapshot / latest recordings"), "catalogue"))
 		if movieMaintenanceState.scan is not None:
 			choices.insert(0, (_("Review last maintenance scan"), "review"))
-		self.screen.session.openWithCallback(self.maintenanceSelected, ChoiceBox, title=_("Movie maintenance"), list=choices)
-
-	def maintenanceSelected(self, choice):
-		if not choice or self.screen is None:
-			return
-		if choice[1] == "review":
-			self.reviewMaintenance()
-		elif choice[1] == "catalogue":
-			self.scanCatalogue()
-		elif movieMaintenanceState.running:
-			self.screen.session.open(MessageBox, _("A movie maintenance scan is already running. Its progress is shown in Tasks."), type=MessageBox.TYPE_INFO)
-		else:
-			root = config.movielist.last_videodir.value if self.screen.libraryActive else self.screen.current_ref.getPath()
-			self.screen.session.openWithCallback(partial(self.startMaintenance, choice[1]), MovieLocationBox, _("Select the movie folder to scan, including subfolders"), root)
+		self.screen.session.openWithCallback(maintenanceSelected, ChoiceBox, title=_("Movie maintenance"), list=choices)
 
 	def scanCatalogue(self):
 		if self.screen is None or movieMaintenanceState.catalogueRunning:
@@ -532,17 +544,6 @@ class MovieSelectionActions:
 		if self.screen is not None:
 			self.screen.reloadList()
 
-	def startMaintenance(self, mode, root):
-		if not root or self.screen is None:
-			return
-		# Copy the live resume cache on the GUI thread; the worker only receives plain data.
-		from Screens import InfoBarGenerics
-		resumes = {eServiceReference(reference).getPath(): list(value) for reference, value in InfoBarGenerics.resumePointCache.items()}
-		job = MovieMaintenanceJob(root, mode, resumes, config.movielist.watchedPercent.value, config.movielist.maintenanceAge.value)
-		movieMaintenanceState.running = True
-		job_manager.AddJob(job, onSuccess=self.maintenanceScanned, onFail=self.maintenanceFailed)
-		self.screen.showActionFeedback(_("Scanning movie folders in the background"))
-
 	def maintenanceFailed(self, job, task, problems):
 		movieMaintenanceState.running = False
 		return job_manager.notifyFailed(job, task, problems)
@@ -557,17 +558,17 @@ class MovieSelectionActions:
 		AddNotification(MessageBox, message, type=MessageBox.TYPE_INFO, timeout=10)
 
 	def reviewMaintenance(self):
+		def maintenanceReviewed(candidates):
+			if candidates and self.screen is not None:
+				message = _("Permanently delete %d selected orphaned companion files?") if job["mode"] == "orphans" else _("Move %d selected watched movies and their companion files to the trashcan?")
+				self.screen.session.openWithCallback(partial(self.maintenanceConfirmed, job, candidates), MessageBox, message % len(candidates), type=MessageBox.TYPE_YESNO, default=False)
+
 		job = movieMaintenanceState.scan
 		if job is not None:
 			if job["candidates"]:
-				self.screen.session.openWithCallback(partial(self.maintenanceReviewed, job), MovieMaintenanceReview, job["candidates"])
+				self.screen.session.openWithCallback(maintenanceReviewed, MovieMaintenanceReview, job["candidates"])
 			else:
 				self.screen.session.open(MessageBox, _("No maintenance candidates found."), type=MessageBox.TYPE_INFO)
-
-	def maintenanceReviewed(self, job, candidates):
-		if candidates and self.screen is not None:
-			message = _("Permanently delete %d selected orphaned companion files?") if job["mode"] == "orphans" else _("Move %d selected watched movies and their companion files to the trashcan?")
-			self.screen.session.openWithCallback(partial(self.maintenanceConfirmed, job, candidates), MessageBox, message % len(candidates), type=MessageBox.TYPE_YESNO, default=False)
 
 	def maintenanceConfirmed(self, job, candidates, answer):
 		if not answer or self.screen is None:
@@ -644,7 +645,12 @@ class MovieSelectionActions:
 		self.loadSeriesBatch()
 
 	def queueMenu(self):
-		choices = [(_("Add selected movies to the play queue"), self.queueAdd), (_("Edit play queue (%d movies)") % len(moviePlayQueue.items), self.queueEdit), (_("Play queue"), self.queuePlay), (_("Load M3U playlist"), partial(self.queueFile, False)), (_("Save queue as M3U playlist"), partial(self.queueFile, True)), (_("Clear play queue"), self.queueClear)]
+		def queueClear():
+			moviePlayQueue.items.clear()
+			moviePlayQueue.changed()
+			self.screen.showActionFeedback(_("Play queue cleared"))
+
+		choices = [(_("Add selected movies to the play queue"), self.queueAdd), (_("Edit play queue (%d movies)") % len(moviePlayQueue.items), self.queueEdit), (_("Play queue"), self.queuePlay), (_("Load M3U playlist"), partial(self.queueFile, False)), (_("Save queue as M3U playlist"), partial(self.queueFile, True)), (_("Clear play queue"), queueClear)]
 		self.screen.session.openWithCallback(lambda choice: choice[1]() if choice else None, ChoiceBox, title=_("Movie play queue"), list=choices)
 
 	def queueAdd(self):
@@ -659,31 +665,26 @@ class MovieSelectionActions:
 		moviePlayQueue.add(items)
 		self.screen.showActionFeedback(_("Play queue: %d movies (maximum 1024)") % len(moviePlayQueue.items))
 
-	def queueClear(self):
-		moviePlayQueue.items.clear()
-		moviePlayQueue.changed()
-		self.screen.showActionFeedback(_("Play queue cleared"))
-
 	def queueEdit(self):
+		def queueSelected(choice):
+			if choice and choice[1] is not None:
+				def queueChanged(action):
+					if action and index < len(moviePlayQueue.items):
+						if action[1] == "play":
+							self.queuePlay(index)
+							return
+						item = moviePlayQueue.items.pop(index)
+						if action[1] != "remove":
+							moviePlayQueue.items.insert(max(0, index - 1) if action[1] == "up" else index + 1, item)
+						moviePlayQueue.changed()
+						self.queueEdit()
+
+				index = choice[1]
+				choices = [(_("Remove from queue"), "remove"), (_("Move up"), "up"), (_("Move down"), "down"), (_("Play from here"), "play")]
+				self.screen.session.openWithCallback(queueChanged, ChoiceBox, title=choice[0], list=choices)
+
 		choices = [(f"{index + 1}. {item.get('title') or basename(item['path'])}", index) for index, item in enumerate(moviePlayQueue.items)]
-		self.screen.session.openWithCallback(self.queueSelected, ChoiceBox, title=_("Edit play queue"), list=choices or [(_("The play queue is empty"), None)])
-
-	def queueSelected(self, choice):
-		if choice and choice[1] is not None:
-			index = choice[1]
-			choices = [(_("Remove from queue"), "remove"), (_("Move up"), "up"), (_("Move down"), "down"), (_("Play from here"), "play")]
-			self.screen.session.openWithCallback(partial(self.queueChanged, index), ChoiceBox, title=choice[0], list=choices)
-
-	def queueChanged(self, index, choice):
-		if choice and index < len(moviePlayQueue.items):
-			if choice[1] == "play":
-				self.queuePlay(index)
-				return
-			item = moviePlayQueue.items.pop(index)
-			if choice[1] != "remove":
-				moviePlayQueue.items.insert(max(0, index - 1) if choice[1] == "up" else index + 1, item)
-			moviePlayQueue.changed()
-			self.queueEdit()
+		self.screen.session.openWithCallback(queueSelected, ChoiceBox, title=_("Edit play queue"), list=choices or [(_("The play queue is empty"), None)])
 
 	def queuePlay(self, index=0):
 		services = []

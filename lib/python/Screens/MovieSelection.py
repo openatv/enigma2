@@ -2016,11 +2016,8 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		cleanAll(split(current.getPath())[0])
 
 	def showNetworkMounts(self):
-		try:
-			from Plugins.SystemPlugins.NetworkBrowser.plugin import MountManagerMain
-			MountManagerMain(self.session)
-		except ImportError:
-			pass
+		from Screens.NetworkMounts import NetworkMountsOverview
+		self.session.open(NetworkMountsOverview, openBrowser=True)
 
 	def showDeviceMounts(self):
 		from Screens.DeviceManager import DeviceManager
