@@ -1,4 +1,5 @@
-from os import X_OK, access, chmod, listdir, mkdir, path
+from os import X_OK, access, chmod, listdir, mkdir
+from os.path import exists
 
 from Components.ActionMap import ActionMap
 from Components.Button import Button
@@ -45,12 +46,17 @@ class ScriptRunner(Screen, ProtectedScreen):
 		self["key_green"] = Button(_("Run"))
 
 	def populate_List(self):
-		if not path.exists('/usr/script'):
-			mkdir('/usr/script', 0o755)
-		self['lab1'].setText(_("Select a script to run:"))
 		del self.list[:]
-		f = listdir('/usr/script')
-		for line in f:
+		try:
+			if not exists("/usr/script"):
+				mkdir("/usr/script", 0o755)
+			fileNames = listdir("/usr/script")
+		except OSError as err:
+			print(f"[ScriptRunner] Unable to access '/usr/script': {err}")
+			self["lab1"].setText(_("Unable to access the script directory."))
+			return
+		self["lab1"].setText(_("Select a script to run:"))
+		for line in fileNames:
 			parts = line.split()
 			pkg = parts[0]
 			if pkg.find('.sh') >= 0:

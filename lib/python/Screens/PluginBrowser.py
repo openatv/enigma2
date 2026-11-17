@@ -1,9 +1,10 @@
 from fnmatch import fnmatchcase
-from os import makedirs, symlink, unlink
-from os.path import exists, islink, join
+from os import makedirs, readlink, stat, statvfs, symlink, unlink
+from os.path import basename, dirname, exists, isdir, islink, join, lexists, realpath
 from re import compile
-from shutil import rmtree
+from shutil import copytree, move
 from time import time
+from twisted.internet.threads import deferToThread
 
 from enigma import eDVBDB, eInternetCheck, eTimer, gRGB
 
@@ -28,7 +29,7 @@ from Screens.Screen import Screen, ScreenSummary
 from Screens.Setup import Setup
 from Screens.Toast import Toast
 from Screens.VirtualKeyBoard import VirtualKeyboard
-from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, fileAccess, fileReadLines, fileWriteLine, fileWriteLines, resolveFilename
+from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, fileWriteLine, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
 
@@ -659,6 +660,79 @@ class PluginBrowser(Screen, NumericalTextInput, ProtectedScreen):
 		return PluginBrowserSummary
 
 
+class PiconStorage:
+	def checkDevice(self, path):
+		# Device numbers follow the filesystem, including symlinks and USB multiboot roots.
+		from os import major, minor  # These Linux-only functions are unavailable in host tools on Windows.
+		device = stat(path).st_dev
+		devicePath = realpath(join("/sys/dev/block", f"{major(device)}:{minor(device)}"), strict=True)
+		while devicePath.startswith("/sys/devices/"):
+			try:
+				subsystem = basename(readlink(join(devicePath, "subsystem")))
+			except OSError:
+				subsystem = ""
+			if subsystem in ("usb", "ata_port", "ide", "nvme"):
+				return
+			devicePath = dirname(devicePath)
+		raise ValueError(_("Select a connected HDD or USB device for the picons."))
+
+	def checkLocation(self, location):
+		self.checkDevice(location)
+		space = statvfs(location)
+		if space.f_flag & 1 or not space.f_bavail or (space.f_files and not space.f_favail):
+			raise ValueError(_("The picon storage device is read-only or full."))
+
+	def prepare(self, location):
+		self.checkLocation(location)
+		locations = []
+		for name in ("picon", "piconlcd"):
+			source = join("/", name)
+			target = join(realpath(location), name)
+			if exists(target) and realpath(source) == realpath(target):
+				self.checkLocation(target)
+				continue
+			if target.startswith(f"{realpath(source)}/"):
+				raise ValueError(_("The picon destination must be outside the existing picon directory."))
+			if lexists(target) and (exists(source) or not isdir(target)):
+				# Never merge or delete another collection while changing the install location.
+				raise ValueError(_("The destination '%s' already exists. Choose an empty destination or move the picons manually.") % target)
+			if exists(source) and not isdir(source):
+				raise ValueError(_("The picon path '%s' is not a directory.") % source)
+			locations.append((source, target))
+		for source, target in locations:
+			self.checkLocation(location)
+			if exists(target):
+				# Complete a previous move if creating the root link failed (e.g. full flash).
+				self.checkLocation(target)
+				if islink(source):
+					unlink(source)
+				symlink(target, source)
+				continue
+			if islink(source):
+				if exists(source):
+					copytree(source, target, symlinks=True)
+				else:
+					makedirs(target, mode=0o755)
+				self.checkLocation(target)
+				unlink(source)
+			elif exists(source):
+				# Cross-device move only removes the source after copying succeeds.
+				move(source, target)
+			else:
+				makedirs(target, mode=0o755)
+			symlink(target, source)
+
+	def useFlash(self):
+		for name in ("picon", "piconlcd"):
+			path = join("/", name)
+			if islink(path):
+				# Keep the external collection intact; only disconnect its link.
+				unlink(path)
+
+
+piconStorage = PiconStorage()
+
+
 class PluginBrowserSetup(Setup):
 	def __init__(self, session):
 		Setup.__init__(self, session, "PluginBrowser")
@@ -673,10 +747,14 @@ class PluginBrowserSetup(Setup):
 		choiceList = [("/", _("Internal flash"))]
 		oldLocation = config.usage.piconInstallLocation.savedValue
 		for partition in harddiskmanager.getMountedPartitions():
-			if partition.device and fileAccess(partition.mountpoint, "w") and partition.fileSystem() in ("ext3", "ext4"):  # Limit to physical drives with ext3 and ext4
+			if partition.device and partition.fileSystem() in ("ext3", "ext4"):
+				try:
+					piconStorage.checkLocation(partition.mountpoint)
+				except (OSError, ValueError):
+					continue
 				choiceList.append((partition.mountpoint, f"{partition.description} ({partition.mountpoint})"))
-		if oldLocation and oldLocation not in [location[0] for location in choiceList]:  # Add old location if not in calculated list of locations to prevent a setting change.
-			choiceList.append((oldLocation, oldLocation))
+		if oldLocation and oldLocation not in [x[0] for x in choiceList]:
+			choiceList.append((oldLocation, _("Unavailable: %s") % oldLocation))
 		config.usage.piconInstallLocation.setSelectionList(default="/", choices=sorted(choiceList))
 		config.usage.piconInstallLocation.value = oldLocation
 		self.opkgComponent = OpkgComponent()
@@ -685,6 +763,19 @@ class PluginBrowserSetup(Setup):
 		self.refreshIncomplete = 0
 		self.addSaveNotifier(self.onUpdateSettings)
 		self.onClose.append(self.clearSaveNotifiers)
+
+	def selectionChanged(self):
+		Setup.selectionChanged(self)
+		self.updatePiconFootnote()
+
+	def changedEntry(self):
+		Setup.changedEntry(self)
+		self.updatePiconFootnote()
+
+	def updatePiconFootnote(self):
+		current = self["config"].getCurrent()
+		if current and current[1] is config.usage.piconInstallLocation and config.usage.piconInstallLocation.value == "/" and not islink("/picon"):
+			self.setFootnote(_("Internal flash only allows small picon packages."))
 
 	def keyResetFeeds(self):
 		self.suspendAllActionMaps()
@@ -725,59 +816,26 @@ class PluginBrowserSetup(Setup):
 		self.resumeAllActionMaps()
 
 	def keySave(self):
-		def keySaveCallback(answer):
-			if answer:
-				try:
-					for dir in ("picon", "piconlcd"):
-						destDir = join("/", dir)
-						if exists(destDir):
-							if islink(destDir):
-								unlink(destDir)
-							else:
-								rmtree(destDir)
-						srcDir = join(location, dir)
-						makedirs(srcDir, mode=0o755, exist_ok=True)
-						symlink(srcDir, destDir)
-				except OSError as err:
-					print(f"[PluginBrowser] Setup Error {err.errno}: Unable to create picon links!  ({err.strerror})")
-					self.session.open(MessageBox, _("Error: Creating picon target directory: (%s)") % err.strerror, type=MessageBox.TYPE_ERROR)
-					config.usage.piconInstallLocation.cancel()
-			else:
-				config.usage.piconInstallLocation.cancel()
-			Setup.keySave(self)
-		self.swapGitHubDNS()
-		location = config.usage.piconInstallLocation.value
-		if location != "/" and location != config.usage.piconInstallLocation.savedValue:
-			srcExists = False
-			for dir in ("picon", "piconlcd"):
-				destDir = join("/", dir)
-				if exists(destDir) and not islink(destDir):
-					srcExists = True
-					break
-			if srcExists:
-				self.session.openWithCallback(keySaveCallback, MessageBox, _("The picon directory already exists and must be removed. Do you want to proceed?"), default=False, type=MessageBox.TYPE_YESNO, windowTitle=self.getTitle())
-			else:
-				keySaveCallback(True)
-		elif location == "/" and config.usage.piconInstallLocation.savedValue != "/":  # remove link if the setting has been changed to flash
-			errorDir = ""
-			try:
-				for dir in ("/picon", "/piconlcd"):
-					errorDir = dir
-					if islink(dir):
-						unlink(dir)
-			except OSError as err:
-				print(f"[PluginBrowser] Setup Error {err.errno}: Unable to remove picon link '{errorDir}'!  ({err.strerror})")
-			Setup.keySave(self)
-		else:
+		def saveFinished(result):
+			Processing.instance.hideProgress()
+			self.resumeAllActionMaps()
 			Setup.keySave(self)
 
-	def swapGitHubDNS(self):
-		if config.usage.alternateGitHubDNS.isChanged():
-			lines = fileReadLines("/etc/hosts", source=MODULE_NAME)
-			lines = [line for line in lines if "raw.githubusercontent.com" not in line]
-			if config.usage.alternateGitHubDNS.value:
-				lines += ["%s raw.githubusercontent.com" % ip for ip in ("185.199.108.133", "185.199.109.133", "185.199.110.133", "185.199.111.133", "2606:50c0:8000::154", "2606:50c0:8001::154", "2606:50c0:8002::154", "2606:50c0:8003::154")]
-			fileWriteLines("/etc/hosts", lines, source=MODULE_NAME)
+		def saveFailed(failure):
+			Processing.instance.hideProgress()
+			self.resumeAllActionMaps()
+			print(f"[PluginBrowser] Unable to change picon storage: {failure.value}")
+			self.session.open(MessageBox, _("Unable to change the picon storage location: %s") % failure.value, type=MessageBox.TYPE_ERROR)
+
+		location = config.usage.piconInstallLocation.value
+		if location != "/" or config.usage.piconInstallLocation.isChanged():
+			self.suspendAllActionMaps()
+			Processing.instance.setDescription(_("Preparing picon storage. Existing picons will be preserved. Please wait..."))
+			Processing.instance.showProgress(endless=True)
+			operation = deferToThread(piconStorage.prepare, location) if location != "/" else deferToThread(piconStorage.useFlash)
+			operation.addCallbacks(saveFinished, saveFailed)
+		else:
+			Setup.keySave(self)
 
 	def onUpdateSettings(self):
 		if config.usage.pluginListLayout.isChanged():
@@ -1272,8 +1330,22 @@ class PackageAction(Screen, NumericalTextInput, ProtectedScreen):
 				items = f"'{items}'"
 			return f"{prompt}\n    {items}"
 
-		def keyGreenCallback(answer):
+		def storageFailed(failure):
+			self.setWaiting(None)
+			print(f"[PluginBrowser] Unable to prepare picon storage: {failure.value}")
+			self.session.open(MessageBox, _("Unable to prepare picon storage: %s") % failure.value, type=MessageBox.TYPE_ERROR)
+
+		def storageReady(result):
+			self.setWaiting(None)
+			keyGreenCallback(True, prepared=True)
+
+		def keyGreenCallback(answer, prepared=False):
 			if answer and not self.processing and selection == (self.selectedRemoveItems, self.selectedInstallItems, self.selectedUpdateItems):
+				location = config.usage.piconInstallLocation.value
+				if not prepared and location != "/" and any(x.startswith("enigma2-plugin-picons-") for x in self.selectedInstallItems + self.selectedUpdateItems):
+					self.setWaiting(_("Preparing picon storage. Please wait..."))
+					deferToThread(piconStorage.prepare, location).addCallbacks(storageReady, storageFailed)
+					return
 				args = {}
 				if self.selectedRemoveItems:
 					args["arguments"] = self.selectedRemoveItems
@@ -1293,15 +1365,6 @@ class PackageAction(Screen, NumericalTextInput, ProtectedScreen):
 					elif package.startswith("enigma2-plugin-settings-") and self.currentSettings:
 						replace = True
 						args["options"] = {"remove": ["--autoremove", "--force-depends"]}
-					elif package.startswith("enigma2-plugin-picons-") and config.usage.piconInstallLocation.value:
-						location = config.usage.piconInstallLocation.value
-						try:
-							for dir in ("picon", "piconlcd"):
-								srcDir = join(location, dir)
-								if not exists(srcDir):
-									makedirs(srcDir, mode=0o755, exist_ok=True)
-						except OSError as err:
-							print(f"[PluginBrowser] PackageAction Error {err.errno}: Unable to create picon location!  ({err.strerror})")
 					args["arguments"] = self.selectedInstallItems
 					# args["debugMode"] = True
 					# args["testMode"] = True
@@ -1397,6 +1460,8 @@ class PackageAction(Screen, NumericalTextInput, ProtectedScreen):
 			case self.opkgComponent.EVENT_LIST_INSTALLED_DONE | self.opkgComponent.EVENT_LIST_INSTALLABLE_DONE | self.opkgComponent.EVENT_LIST_UPDATES_DONE | self.opkgComponent.EVENT_INFO_DONE:
 				# print(f"[PluginBrowser] PackageAction DEBUG: '{self.opkgComponent.getCommandText(self.opkgComponent.command)}' returned event '{self.opkgComponent.getEventText(event)}' with {len(eventData)} parameters.")
 				self.processListCallback(eventData)  # The eventData is a list of dictionary items for each package processed.
+			case self.opkgComponent.EVENT_PICON_STORAGE:
+				self.session.open(MessageBox, eventData, type=MessageBox.TYPE_ERROR)
 			case self.opkgComponent.EVENT_LOG:
 				print("[PluginBrowser] PackageAction: Command log data added to log screen.")
 				self.logData = f"{self.logData}{eventData}"
