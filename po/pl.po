@@ -19,15 +19,15 @@ msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-11-03 13:20+0100\n"
-"PO-Revision-Date: 2026-11-04 14:36+0000\n"
-"Last-Translator: Mat <mathew87@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2026-11-18 10:51+0000\n"
+"Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.11.1.dev0\n"
+"X-Generator: Weblate 2026.12.dev0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -3345,7 +3345,7 @@ msgid "Cancel service selection and exit"
 msgstr "Anuluj wybór usługi i wyjdź"
 
 msgid "Cancel the Reset Feeds command currently being processed"
-msgstr "Anuluj polecenie Reset Feeds, które jest obecnie przetwarzane"
+msgstr "Anuluj polecenie Zresetuj repo, które jest obecnie przetwarzane"
 
 msgid "Cancel the bouquet selection"
 msgstr "Anuluj wybór listy kanałów"
@@ -3699,7 +3699,7 @@ msgid "Check/Install online updates (you must have a working Internet connection
 msgstr "Sprawdzanie/Instalowanie aktualizacji online (wymagane połączenie z internetem)"
 
 msgid "Checking Feeds"
-msgstr "Sprawdzanie Feeds"
+msgstr "Sprawdzanie repozytorium"
 
 msgid "Checking Logs..."
 msgstr "Sprawdzanie Logów..."
@@ -5425,7 +5425,7 @@ msgid "Date / Time"
 msgstr "Data / Czas"
 
 msgid "Date Format"
-msgstr "Format daty"
+msgstr "Format Daty"
 
 msgid "Date Time Input Actions"
 msgstr "Akcje związane z wprowadzaniem daty i godziny"
@@ -5465,13 +5465,13 @@ msgid "Day Year Month Date"
 msgstr "Dzień tygodnia, rok, miesiąc, dzień miesiąca"
 
 msgid "Day display style"
-msgstr "Styl wyświetlania dnia tygodnia"
+msgstr "Styl wyświetlania dnia"
 
 msgid "Day of week"
 msgstr "Dzień tygodnia"
 
 msgid "Day separator"
-msgstr "Separator dnia tygodnia"
+msgstr "Separator dnia"
 
 msgid "Deactivate"
 msgstr "Dezaktywuj"
@@ -7680,7 +7680,7 @@ msgid ""
 "Error while retrieving fallback timer information\n"
 "%s"
 msgstr ""
-"Błąd podczas pobierania informacji o liczniku czasu awaryjnego\n"
+"Błąd podczas pobierania informacji o timerze zapasowym\n"
 "%s"
 
 msgid "Error writing 'epg.dat' on the remote receiver!"
@@ -7807,7 +7807,7 @@ msgstr "Błąd: Wystąpił problem z zapisem '%s'!"
 
 #, python-format
 msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
-msgstr "Błąd: Wystąpił problem podczas resetowania feed'ów! Proszę zrestartować %s %s i sprawdzić system plików pod kątem błędów przed ponowną próbą wykonania tego polecenia."
+msgstr "Błąd: Wystąpił problem podczas resetowania repozytoriów! Proszę zrestartować %s %s i sprawdzić system plików pod kątem błędów przed ponowną próbą wykonania tego polecenia."
 
 msgid "Error: Unable to check existing mounts so the HDD replacement has not be changed!"
 msgstr "Błąd: nie można sprawdzić istniejących punktów montowania, więc zamiennik HDD nie został zmieniony!"
@@ -8334,10 +8334,10 @@ msgid "Feed disabled!"
 msgstr "Serwer-wyłączony!"
 
 msgid "Feed server DNS error!"
-msgstr "Błąd DNS serwera feed!"
+msgstr "Błąd DNS serwera repozytoriów!"
 
 msgid "Feed server access error!"
-msgstr "Błąd dostępu do serwera feed!"
+msgstr "Błąd dostępu do serwera repozytoriów!"
 
 msgid "Feed stable."
 msgstr "Serwer-stabilny."
@@ -8757,7 +8757,7 @@ msgid "Free swap"
 msgstr "Wolne (swap)"
 
 msgid "Free to Air (FTA) Service"
-msgstr "Usługa niekodowana (FTA)"
+msgstr "Kanał niekodowany (FTA)"
 
 msgid "French"
 msgstr "Francuski"
@@ -8826,7 +8826,7 @@ msgid "Full Stretch"
 msgstr "Pełne rozciągnięcie"
 
 msgid "Full day name"
-msgstr "Pełna nazwa dnia tygodnia"
+msgstr "Pełna nazwa dnia"
 
 msgid "Full factory reset"
 msgstr "Pełny reset fabryczny"
@@ -9553,7 +9553,7 @@ msgid "Hotkey Settings"
 msgstr "Ustawienia skrótów klawiszowych"
 
 msgid "Hour display style"
-msgstr "Styl wyświetlania godziny"
+msgstr "Format wyświetlania godziny"
 
 msgid "Hourly"
 msgstr "Co Godzinę"
@@ -9977,7 +9977,7 @@ msgid "Include bouquet DB data"
 msgstr "Dołącz dane DB list kanałów"
 
 msgid "Include international data *"
-msgstr "Załącz dane międzynarodowe *"
+msgstr "Dołącz dane międzynarodowe *"
 
 msgid "Include keyboard data"
 msgstr "Dołącz dane klawiatury"
@@ -12239,7 +12239,7 @@ msgid "Nameserver setup"
 msgstr "Ustawienia dns"
 
 msgid "Namespace & Orbital position"
-msgstr "Przestrzeń nazw i pozycja orbitalna"
+msgstr "Przestrzeń nazw i poz. orbitalna"
 
 msgid "Namibia"
 msgstr "Namibia"
@@ -12681,7 +12681,7 @@ msgstr ""
 "(Koniec czasu czytania PAT)"
 
 msgid "No day name"
-msgstr "Bez nazwy dnia tygodnia"
+msgstr "Bez nazwy dnia"
 
 msgid "No delay"
 msgstr "Brak opóźnienia"
@@ -14320,7 +14320,7 @@ msgid "Please wait while LCN bouquets are created/updated..."
 msgstr "Proszę czekać, trwa tworzenie/aktualizacja list kanałów LCN..."
 
 msgid "Please wait while feeds are updated..."
-msgstr "Proszę czekać, trwa aktualizacja feed..."
+msgstr "Proszę czekać, trwa aktualizacja repozytoriów..."
 
 msgid "Please wait while gathering data..."
 msgstr "Proszę czekać, zbieranie danych..."
@@ -14344,7 +14344,7 @@ msgid "Please wait while the data is extracted..."
 msgstr "Proszę poczekać, aż dane zostaną wyodrębnione..."
 
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
-msgstr "Proszę czekać, aż feed'y zostaną zresetowane (wyczyszczone i ponownie załadowane)..."
+msgstr "Proszę czekać, aż repozytorium zostanie zresetowane (wyczyszczone i ponownie załadowane)..."
 
 msgid "Please wait while the file is read and processed..."
 msgstr "Proszę czekać, aż plik zostanie odczytany i przetworzony..."
@@ -14383,7 +14383,7 @@ msgid "Please wait while your network is restarting..."
 msgstr "Proszę czekać, sieć uruchamia się ponownie..."
 
 msgid "Please wait whilst feeds state is checked."
-msgstr "Proszę czekać, aż zostanie sprawdzony stan feed."
+msgstr "Proszę czekać, aż zostanie sprawdzony stan repozytoriów."
 
 msgid "Please wait, copy of flash memory is being deleted. This could take a few minutes to complete."
 msgstr "Proszę czekać, kopia pamięci flash jest usuwana. Może to potrwać kilka minut."
@@ -15964,10 +15964,10 @@ msgid "Reset"
 msgstr "Resetuj"
 
 msgid "Reset (clear and reload) the feeds"
-msgstr "Zresetuj (wyczyść i załaduj ponownie) feed'y"
+msgstr "Zresetuj (wyczyść i załaduj ponownie) repozytorium"
 
 msgid "Reset Feeds"
-msgstr "Zresetuj feed'y"
+msgstr "Zresetuj repo"
 
 msgid "Reset HDMI-CEC settings to default"
 msgstr "Przywróć ustawienia domyślne HDMI CEC"
@@ -17166,7 +17166,7 @@ msgid "Select 'Yes' to use PDC data, if available on the current service, to acc
 msgstr "Wybierz 'Tak', aby użyć danych PDC, jeśli są dostępne w bieżącej usłudze, w celu dokładnego zatrzymania natychmiastowego nagrywania po zakończeniu zdarzenia."
 
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
-msgstr "Wybierz 'Tak', aby użyć alternatywnego adresu IP feed'a GitHub. Może to być pomocne, gdy używasz VPN, a nie można uzyskać dostępu do normalnych feed'ów za pomocą opublikowanych nazw DNS."
+msgstr "Wybierz 'Tak', aby użyć alternatywnego adresu IP repozytorium GitHub. Może to być pomocne, gdy używasz VPN, a nie można uzyskać dostępu do normalnych repozytoriów za pomocą opublikowanych nazw DNS."
 
 msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
 msgstr "Wybierz 'Tak', aby użyć starszej nawigacji, w której CH+/- zamienia aktywną kolumnę. Wybierz 'Nie', aby użyć nowszej, ujednoliconej opcji nawigacji w celu spójnej nawigacji z innymi ekranami, gdzie LEWO/PRAWO zamienia aktywną kolumnę i strony CH+/- w górę i w dół listy."
@@ -17645,7 +17645,7 @@ msgid "Select the action for '%s'"
 msgstr "Wybierz akcję dla '%s'"
 
 msgid "Select the action that this button will perform."
-msgstr "Ustaw wymagane działanie danego przycisku."
+msgstr "Wybierz akcję, którą wykona ten przycisk."
 
 msgid "Select the action to perform when the timer ends."
 msgstr "Wybierz działanie, które ma być wykonane po zakończeniu timera."
@@ -17807,7 +17807,7 @@ msgid "Select the display style for day of the week. The screen display will be 
 msgstr "Wybierz styl wyświetlania dnia tygodnia. Sposób wyświetlania na ekranie będzie zależał od wybranego ustawienia, ale może być również modyfikowany przez skórkę."
 
 msgid "Select the display style for hours/times."
-msgstr "Wybierz styl wyświetlania godziny."
+msgstr "Wybierz styl wyświetlania godzin."
 
 msgid "Select the display style for months. The screen display will be based on your choices but can be influenced by the skin."
 msgstr "Wybierz styl wyświetlania miesiąca. Sposób wyświetlania na ekranie będzie zależał od wybranych ustawień, ale może być również modyfikowany przez skórkę."
@@ -17933,7 +17933,7 @@ msgid "Select the number of events to be kept in the time shift buffer. Events i
 msgstr "Wybierz liczbę audycji przechowywanych w buforze timeshift. Audycje przekraczające ten limit będą usuwane podczas czyszczenia. Bufor może składać się z kilku plików, które są liczone jako jeden. Bufory nadal używane są chronione przed usunięciem, dlatego limit może zostać tymczasowo przekroczony."
 
 msgid "Select the number of services to be shown in the list."
-msgstr "Wybierz liczbę kanałów wyświetlanych na liście."
+msgstr "Wybierz liczbę kanałów, które mają być wyświetlane na liście."
 
 msgid "Select the number of times to retry a task if an error occurs when running the task."
 msgstr "Wybierz liczbę ponownych prób wykonania zadania, jeśli podczas jego wykonywania wystąpi błąd."
@@ -17996,7 +17996,7 @@ msgid "Select the separator between the date and the time elements."
 msgstr "Wybierz separator między datą a godziną."
 
 msgid "Select the separator between the day and the date elements."
-msgstr "Wybierz separator między dniem tygodnia a datą."
+msgstr "Wybierz separator między elementami dnia i daty."
 
 msgid "Select the separator between the first two date elements."
 msgstr "Wybierz separator między dwoma pierwszymi elementami daty."
@@ -18005,7 +18005,7 @@ msgid "Select the separator between the second two date elements."
 msgstr "Wybierz separator między drugim a trzecim elementem daty."
 
 msgid "Select the separator between the time elements."
-msgstr "Wybierz separator między elementami godziny."
+msgstr "Wybierz separator między elementami czasu."
 
 msgid "Select the share protocol to be used, SMB (Windows-style shares) or NFS (Mac and Linux shares)."
 msgstr "Wybierz protokół udziału, który ma być używany: SMB (udziały w stylu Windows) lub NFS (udziały dla komputerów Mac i Linux)."
@@ -18212,7 +18212,7 @@ msgid "Select which IP protocols can be used with this adapter."
 msgstr "Wybierz protokoły IP, które mają być używane przez ten adapter sieciowy."
 
 msgid "Select which service to use when opening the EPG."
-msgstr "Który kanał wybrać po otwarciu EPG."
+msgstr "Wybierz kanał, z którego chcesz korzystać podczas otwierania EPG."
 
 msgid "Select your ATSC provider."
 msgstr "Wybierz dostawcę ATSC."
@@ -18747,7 +18747,7 @@ msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as f
 msgstr "Ustaw na 'Tak', aby umożliwić wysyłanie tych samych poleceń telewizora dla trybu wyłączenia, co dla zwykłego trybu czuwania."
 
 msgid "Set to yes for debugging the root cause of a spinner."
-msgstr "Ustaw na Tak, aby znaleźć przyczynę zawieszania się (kręcącego się kółka)."
+msgstr "Ustaw na Tak, aby znaleźć przyczynę zawieszania się (kręcącego się spinnera)."
 
 msgid "Set up network"
 msgstr "Skonfiguruj sieć"
@@ -18865,7 +18865,7 @@ msgid "Setup rotor"
 msgstr "Ustawienia pozycjonera"
 
 msgid "Setup tuner(s)"
-msgstr "Ustawienia tunera(ów) sat"
+msgstr "Ustawienia tunera(ów)"
 
 msgid "Setup uShare"
 msgstr "Ustawienia uShare"
@@ -19043,7 +19043,7 @@ msgid "Show Capabilities"
 msgstr "Pokaż możliwości"
 
 msgid "Show DAB+ slideshow"
-msgstr "Pokaż pokaz slajdów DAB+"
+msgstr "Pokaż slajdy DAB+"
 
 msgid "Show Default Backup Files"
 msgstr "Domyślne pliki kopii zapasowej"
@@ -20235,7 +20235,7 @@ msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Przepraszamy brak Konfig. MiniDLNA"
 
 msgid "Sorry feeds are down for maintenance, please try again later."
-msgstr "Przepraszamy, feedy są wyłączone z powodu konserwacji, spróbuj ponownie później."
+msgstr "Przepraszamy, repozytoria są wyłączone z powodu konserwacji, spróbuj ponownie później."
 
 msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "Przepraszamy, możliwe jest nagrywanie tylko 2 kanałów jednocześnie!"
@@ -20860,7 +20860,7 @@ msgid "Subtitle Quickmenu"
 msgstr "Menu podręczne napisów"
 
 msgid "Subtitle Selection"
-msgstr "Wybór napisów"
+msgstr "Wybierz napisy"
 
 msgid "Subtitle Settings"
 msgstr "Ustawienia napisów"
@@ -22209,7 +22209,7 @@ msgid "Time"
 msgstr "Czas"
 
 msgid "Time Format"
-msgstr "Format godziny"
+msgstr "Format Czasu"
 
 msgid "Time Shift Settings"
 msgstr "Ustawienia timeshiftu"
@@ -22245,7 +22245,7 @@ msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Skok czasowy: użyj normalnego szybkiego przewijania dla prędkości"
 
 msgid "Time separator"
-msgstr "Separator godziny"
+msgstr "Separator czasu"
 
 msgid "Time shift buffer location"
 msgstr "Lokalizacja bufora timeshiftu"
@@ -24134,10 +24134,10 @@ msgstr "Ostrzeżenie"
 
 #, python-format
 msgid "Warning: %d feeds were unable to be reloaded!"
-msgstr "Ostrzeżenie: Nie udało się przeładować %d feed'ów!"
+msgstr "Ostrzeżenie: Nie udało się przeładować %d repozytoriów!"
 
 msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
-msgstr "Ostrzeżenie: Anulowanie tego procesu spowoduje, że feed'y będą niekompletne i bezużyteczne!"
+msgstr "Ostrzeżenie: Anulowanie tego procesu spowoduje, że repozytoria będą niekompletne i bezużyteczne!"
 
 msgid "Warning: No Wi-Fi adapter found!"
 msgstr "Ostrzeżenie: Nie znaleziono karty Wi-Fi!"
@@ -24425,7 +24425,7 @@ msgid "When enabled, seconds will be shown in time displays. The seconds display
 msgstr "Po włączeniu tej opcji podczas wyświetlania godziny będą również pokazywane sekundy. Ich wyświetlanie będzie zależało od wybranego ustawienia, ale może być ograniczone przez kod programu, dostępne miejsce oraz skórkę."
 
 msgid "When enabled, services without EPG data will be hidden."
-msgstr "Wybierz 'Tak', aby ukryć kanały bez danych EPG."
+msgstr "Po włączeniu tej opcji kanały bez danych EPG zostaną ukryte."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Po włączeniu wyświetla numery kanałów na ekranie wyboru kanałów."
@@ -25729,7 +25729,7 @@ msgid "yellow"
 msgstr "Żółty"
 
 msgid "yes (keep feeds)"
-msgstr "tak (zachować feed'y)"
+msgstr "tak (zachować repo)"
 
 msgid "®"
 msgstr "®"
