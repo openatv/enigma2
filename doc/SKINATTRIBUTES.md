@@ -474,7 +474,10 @@ Radius of scrollbar corners
 
 #### scrollbarScroll=
 Scrollbar scroll behavior
-- Values: `byPage`, `byLine`
+- Values: `byPage`, `byLine`, `byCenter`
+- `byPage`: The list scrolls page by page.
+- `byLine`: The list scrolls line by line.
+- `byCenter`: The selection stays on the middle slot and the entries scroll past it. Slots before the first and after the last entry stay empty. Works for horizontal and vertical lists; grid lists and vertical lists with `lockFirstRow` fall back to `byPage`. Use an odd number of visible items for an exact center; with an even number the lower/right of the two middle slots is used. Every selection change repaints the whole list.
 
 #### scrollText=
 Defines scrolling behaviour for text widgets (for long label text that needs to scroll).

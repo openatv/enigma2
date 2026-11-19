@@ -794,6 +794,12 @@ int eDVBFrontend::openFrontend()
 					if (::ioctl(m_fd, FE_GET_INFO, &m_fe_info[delsys]) < 0)
 						eWarning("[eDVBFrontend] ioctl FE_GET_INFO failed: %m");
 				}
+				// Some drivers only list the delivery system that is currently set.
+				if (m_delsys.contains(SYS_DVBS2) && !m_delsys.contains(SYS_DVBS))
+				{
+					m_delsys[SYS_DVBS] = true;
+					m_fe_info[SYS_DVBS] = m_fe_info[SYS_DVBS2];
+				}
 				ioctlMeasureEval("DTV_ENUM_DELSYS");
 			}
 			else
