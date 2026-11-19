@@ -144,13 +144,18 @@ void eListbox::setScrollbarMode(uint8_t mode)
 
 void eListbox::setScrollbarScroll(uint8_t scroll)
 {
-	if (m_scrollbar && m_scrollbar_scroll != scroll)
-	{
-		m_scrollbar_scroll = scroll;
-		updateScrollBar();
+	if (m_scrollbar_scroll == scroll)
 		return;
-	}
 	m_scrollbar_scroll = scroll;
+	/* both modes use the cache for different values and the slider range differs */
+	m_prev_scrollbar_page = -1;
+	if (m_content)
+	{
+		/* recalc the start offset for the current selection right away, with or without scrollbar widget */
+		m_content_changed = true;
+		moveSelection(justCheck);
+	}
+	updateScrollBar();
 }
 
 void eListbox::setLockFirstRow(bool lock)
@@ -161,6 +166,12 @@ void eListbox::setLockFirstRow(bool lock)
 	if (m_content)
 	{
 		m_content->resetClip();
+		/* byCenter switches between line and page thumb, drop the stale cache and slider range */
+		if (m_scrollbar_scroll == byCenter && m_orientation == orVertical)
+		{
+			m_prev_scrollbar_page = -1;
+			m_content_changed = true;
+		}
 		moveSelection(justCheck);
 		updateScrollBar();
 		invalidate();
@@ -276,6 +287,13 @@ void eListbox::setStartIndex(int offset)
 	int maxItems = (m_orientation == orHorizontal) ? m_max_columns : effectiveMaxRows();
 	int max = std::max(0, (int)m_content->size() - maxItems);
 	int minOffset = (m_lock_first_row && m_orientation == orVertical) ? 1 : 0;
+	if (m_scrollbar_scroll == byCenter && m_orientation != orGrid && minOffset == 0)
+	{
+		/* an empty list is pinned to 0 */
+		minOffset = m_content->size() ? -(maxItems / 2) : 0;
+		/* a short list needs a negative start offset to stay centered, only an empty list is pinned to 0 */
+		max = m_content->size() ? (int)m_content->size() - 1 - maxItems / 2 : 0;
+	}
 	offset = std::max(minOffset, std::min(offset, max));
 	if (m_orientation == orHorizontal)
 	{
@@ -404,6 +422,8 @@ void eListbox::updateScrollBar()
 {
 	if (!m_scrollbar || !m_content || m_scrollbar_mode == showNever)
 		return;
+	/* byCenter only centers horizontal and vertical lists, grid and lockFirstRow fall back to page behavior */
+	const bool lineThumb = m_scrollbar_scroll == byLine || (m_scrollbar_scroll == byCenter && m_orientation != orGrid && !(m_lock_first_row && m_orientation == orVertical));
 	int entries = m_content->size();
 	if ((m_orientation == orGrid) && m_max_columns)
 		entries = (m_content->size() + m_max_columns - 1) / m_max_columns;
@@ -482,17 +502,17 @@ void eListbox::updateScrollBar()
 			scrollbarvisible = false;
 		}
 
-		if (m_scrollbar_scroll == byLine)
-		{
+		if (lineThumb)
 			m_scrollbar->setRange(0, m_scrollbar_calcsize - (m_scrollbar_border_width * 2));
-		}
+		else
+			m_scrollbar->setRange(0, 100);
 	}
 
 	// Don't set Start/End if scollbar not visible or entries/maxItems = 0
 	if (maxItems && entries && scrollbarvisible)
 	{
 
-		if (m_scrollbar_scroll == byLine)
+		if (lineThumb)
 		{
 
 			if (m_prev_scrollbar_page != m_selected)
@@ -637,10 +657,15 @@ int eListbox::event(int event, void *data, void *data2)
 
 		gRegion entryRect;
 		m_content->cursorSave();
+		/* byCenter: slots in front of the first entry stay empty (cursorMove would clamp to 0 and repeat entry 0) */
+		const bool centerMode = m_scrollbar_scroll == byCenter && m_orientation != orGrid && !(m_lock_first_row && m_orientation == orVertical);
+		int emptySlots = 0;
+		if (centerMode)
+			emptySlots = std::max(0, -((m_orientation == orVertical) ? m_top : m_left));
 		if (m_orientation == orVertical)
-			m_content->cursorMove(m_top - m_selected);
+			m_content->cursorMove(m_top + emptySlots - m_selected);
 		else if (m_orientation == orHorizontal)
-			m_content->cursorMove(m_left - m_selected);
+			m_content->cursorMove(m_left + emptySlots - m_selected);
 		else
 			m_content->cursorMove((m_max_columns * m_top) - m_selected);
 
@@ -712,6 +737,13 @@ int eListbox::event(int event, void *data, void *data2)
 				}
 				continue;
 			}
+
+			if (i < emptySlots)
+				continue;
+
+			/* byCenter: slots behind the last entry stay empty */
+			if (centerMode && !m_content->cursorValid())
+				break;
 
 			bool sel = (m_selected == m_content->cursorGet() && m_content->size() && m_selection_enabled);
 
@@ -1433,7 +1465,8 @@ void eListbox::setSelectionZoomSize(int width, int height, int zoomContentMode)
 ePoint eListbox::getItemPostion(int index)
 {
 	int posx = 0, posy = 0;
-	ePoint indexSpacing = (index > 0) ? m_spacing : ePoint(0, 0);
+	/* same step as the paint loop, the first entry may sit behind empty center slots */
+	ePoint indexSpacing = m_spacing;
 	if (m_orientation == orGrid || m_orientation == orHorizontal)
 	{
 		posx = (m_orientation == orGrid) ? (m_itemwidth + indexSpacing.x()) * ((index - (m_top * m_max_columns)) % m_max_columns) : (m_itemwidth + indexSpacing.x()) * (index - m_left);
@@ -1829,6 +1862,15 @@ void eListbox::moveSelection(int dir)
 	/* row 0 is pinned to its own fixed slot; the scrolling area must never start at it too, or it would be painted twice */
 	if (m_lock_first_row && m_orientation == orVertical && !isGrid && m_top < 1)
 		m_top = 1;
+
+	/* byCenter: the selection stays on the middle slot, the entries scroll past it */
+	if (m_scrollbar_scroll == byCenter && !isGrid && !(m_lock_first_row && m_orientation == orVertical))
+	{
+		if (m_orientation == orHorizontal)
+			m_left = m_selected - maxItems / 2;
+		else
+			m_top = m_selected - maxItems / 2;
+	}
 
 	// if it is, then the old selection clip is irrelevant, clear it or we'll get artifacts
 	if (m_orientation == orHorizontal)
