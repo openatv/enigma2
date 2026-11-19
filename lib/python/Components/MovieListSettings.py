@@ -41,7 +41,7 @@ class MovieListSettings:
 		config.movielist.recognizeDVD = ConfigYesNo(default=True)
 		config.movielist.recognizeBluray = ConfigYesNo(default=True)
 		config.movielist.recognizeMovieFolders = ConfigYesNo(default=False)
-		config.movielist.fileListCache = ConfigSelection(default="off", choices=[("off", _("Disabled")), ("60", _("1 minute")), ("300", _("5 minutes")), ("900", _("15 minutes"))])
+		config.movielist.fileListCache = ConfigSelection(default="off", choices=[("off", _("Disabled")), ("60", _("1 minute")), ("300", _("%d minutes") % 5), ("900", _("%d minutes") % 15)])
 		config.movielist.newRecordings = ConfigSelection(default="off", choices=[("off", _("Disabled")), ("day", _("Last 24 hours")), ("visit", _("Since the previous visit"))])
 		config.movielist.lastVisit = ConfigText(default="0", fixed_size=False)
 		config.movielist.showFormat = ConfigYesNo(default=False)
