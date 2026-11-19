@@ -434,26 +434,30 @@ class OpkgComponent:
 	def parseListData(self, listData, listKeys, installed):
 		data = {}
 		if listData:
-			lines = listData.splitlines()
-			for line in lines:
+			requiredFields = 3 if "Update" in listKeys else 2
+			entry = None
+			invalidCount = 0
+			for line in listData.splitlines():
+				if line.startswith(" ") and entry is not None and "Description" in entry:
+					entry["Description"] = f"{entry['Description']} {line.strip()}"
+					continue
+				entry = None
 				if line.startswith("Not selecting "):
 					print(f"[Opkg] Warning: Not selecting '{line[14:]}'.")
-			args = []
-			for line in lines + [""]:  # Flush the last record even without a trailing blank line.
-				if args:
-					if line[:1] == " ":
-						args[-1] = f"{args[-1]} {line.strip()}"
-						continue
-					entry = {}
-					for index, arg in enumerate(args):
-						entry[listKeys[index]] = arg
-					package = args[0]
-					entry["Installed"] = installed
-					if package in data:
-						data[package].append(entry)
-					else:
-						data[package] = [entry]
-				args = [x.strip() for x in line.split(" - ", 2)] if line.strip() else []
+					continue
+				if not line.strip():
+					continue
+				args = [x.strip() for x in line.split(" - ", 2)]
+				if len(args) < requiredFields or not all(args[:requiredFields]) or len(args[0].split()) != 1:
+					if not invalidCount:
+						print(f"[Opkg] Invalid package list entry: '{line}'.")
+					invalidCount += 1
+					continue
+				entry = dict(zip(listKeys, args))
+				entry["Installed"] = installed
+				data.setdefault(args[0], []).append(entry)
+			if invalidCount:
+				print(f"[Opkg] Ignored {invalidCount} invalid package list entries.")
 		packages = []
 		for package in sorted(data.keys()):
 			select = 0
