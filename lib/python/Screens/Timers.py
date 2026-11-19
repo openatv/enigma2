@@ -1482,6 +1482,20 @@ class RecordTimerEdit(Setup):
 		if self.timer.external:
 			FallbackTimerDirs(self, self.fallbackResult)
 		Setup.__init__(self, session, "RecordTimer")
+		self.timerDatabaseClosed = False
+		self.onClose.append(self.closeRecordingDatabase)
+		self.onLayoutFinish.append(self.checkRecordingDatabase)
+
+	def checkRecordingDatabase(self):
+		def checked(available):
+			if not getattr(self, "timerDatabaseClosed", True):
+				self.timerDatabaseAvailable = bool(available)
+				self.createSetup()
+
+		self.session.nav.RecordTimer.checkRecordingDatabase(checked)
+
+	def closeRecordingDatabase(self):
+		self.timerDatabaseClosed = True
 
 	def fallbackResult(self, locations, default, tags):
 		self.fallbackInfo = (locations, default, tags)
@@ -1535,6 +1549,9 @@ class RecordTimerEdit(Setup):
 		for day in DAY_LIST:
 			self.timerDay[day] = ConfigYesNo(default=days[day])
 		self.timerRename = ConfigYesNo(default=self.timer.rename_repeat != 0)
+		self.timerAutoAdjust = ConfigYesNo(default=self.timer.autoadjust)
+		self.timerAllowDuplicate = ConfigYesNo(default=self.timer.allow_duplicate)
+		self.timerDatabaseAvailable = False
 		self.timerStartDate = ConfigDateTime(default=self.timer.eventBegin, formatstring=dateTimes.dateShortDayShortMonth, increment=86400)
 		# self.timerStartTime = ConfigClock(default=self.timer.begin)
 		self.timerStartTime = ConfigClock(default=self.timer.eventBegin)
@@ -1667,6 +1684,8 @@ class RecordTimerEdit(Setup):
 		self.timer.always_zap = self.timerType.value == "zap+record"
 		self.timer.precondition = self.timerPrecondition.value if self.timerType.value == "zap" else 0
 		self.timer.rename_repeat = 1 if self.timerRename.value else 0
+		self.timer.autoadjust = self.timerAutoAdjust.value and not self.timerFallback.value and not self.timer.justplay
+		self.timer.allow_duplicate = self.timerAllowDuplicate.value
 		if self.timerType.value == "zap" and not self.timerHasEndTime.value:
 			self.timerAfterEvent.value = "nothing"
 			self.timerMarginAfter.value = 0
@@ -1720,6 +1739,8 @@ class RecordTimerEdit(Setup):
 		self.timer.eventBegin = eventBegin
 		self.timer.eventEnd = eventEnd
 		self.timer.marginAfter = marginAfter
+		if not self.timer.repeated or (self.timer.begin, self.timer.end, self.timerServiceReference) != (self.timer.begin_prev, self.timer.end_prev, self.timer.service_ref_prev):
+			self.timer.autoAdjustBegin = self.timer.autoAdjustEnd = None
 		self.timer.hasEndTime = self.timerHasEndTime.value
 		self.timer.service_ref = self.timerServiceReference
 		self.timer.descramble = {
