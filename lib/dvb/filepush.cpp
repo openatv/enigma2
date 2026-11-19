@@ -297,6 +297,11 @@ void eFilePushThread::thread()
 				}
 
 				eofcount = 0;
+				// Count consecutive empty reads, not timeouts accumulated across
+				// successful writes at a growing timeshift buffer's live edge.
+				if (poll_timeout_count >= 20)
+					eTrace("[eFilePushThread] Source data resumed: offset=%lld, eofPolls=%d, flags=%d", (long long)m_current_position, poll_timeout_count, m_flags);
+				poll_timeout_count = 0;
 				m_current_position += buf_end;
 				bytes_read += buf_end;
 				if (m_sg)

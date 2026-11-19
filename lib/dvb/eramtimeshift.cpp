@@ -142,9 +142,10 @@ off_t eRamRingBuffer::findDelayOffset(pts_t delay) const {
 	pthread_mutex_lock(&m_mutex);
 	off_t best = -1;
 	pts_t bestAge = -1;
+	pts_t latestPts = -1;
 	const off_t minOffset = std::max<off_t>(0, m_write_offset - (off_t)m_capacity);
 	if (delay >= 0 && m_total_blocks) {
-		const pts_t latestPts = m_blocks[(m_block_write_idx + m_max_blocks - 1) % m_max_blocks].pts;
+		latestPts = m_blocks[(m_block_write_idx + m_max_blocks - 1) % m_max_blocks].pts;
 		if (latestPts >= 0) {
 			for (size_t i = 0; i < m_total_blocks; ++i) {
 				const eRamBlock &block = m_blocks[i];
@@ -158,6 +159,7 @@ off_t eRamRingBuffer::findDelayOffset(pts_t delay) const {
 			}
 		}
 	}
+	eTrace("[eRamRingBuffer] Delay seek: requested=%lld PTS, live=%lld, selectedAge=%lld, offset=%lld, retained=%lld..%lld", delay, latestPts, bestAge, (long long)best, (long long)minOffset, (long long)m_write_offset);
 	pthread_mutex_unlock(&m_mutex);
 	return best;
 }
@@ -228,6 +230,13 @@ bool eRamTsSource::getLappedOffset(off_t& out_offset) {
 	}
 	pthread_mutex_unlock(&m_offset_mutex);
 	return lapped;
+}
+
+off_t eRamTsSource::getReadOffset() const {
+	pthread_mutex_lock(&m_offset_mutex);
+	const off_t offset = m_has_read_offset ? m_read_offset : -1;
+	pthread_mutex_unlock(&m_offset_mutex);
+	return offset;
 }
 
 off_t eRamTsSource::length() {
