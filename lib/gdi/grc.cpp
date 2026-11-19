@@ -1051,10 +1051,11 @@ void gDC::exec(const gOpcode *o)
 		if (markedpos != -1 || flags & gPainter::RT_UNDERLINE)
 		{
 			int glyphs = para->size();
-			int left, width = 0;
+			int left = 0, width = 0;
 			int top = o->parm.renderText->area.top();
 			int height = fontRenderClass::getInstance()->getLineHeight(*m_current_font);
 			eRect bbox;
+			std::vector<eRect> selection;
 			if (markedpos == -2)
 			{
 				if (glyphs > 0)
@@ -1068,31 +1069,11 @@ void gDC::exec(const gOpcode *o)
 						height = bbox.height();
 				}
 			}
-			else if (markedpos >= 0 && markedpos < glyphs)
+			else if (markedpos >= 0)
 			{
-				bbox = para->getGlyphBBox(markedpos);
-				left = bbox.left();
-				width = bbox.width();
-				int btop = bbox.top();
-				while (top + height <= btop)
-					top += height;
-			}
-			else if (markedpos > 0xFFFF)
-			{
-				int markedlen = markedpos >> 16;
-				markedpos &= 0xFFFF;
-				int markedlast = markedpos + markedlen - 1;
-				if (markedlast < glyphs)
-				{
-					bbox = para->getGlyphBBox(markedpos);
-					eRect bbox1 = para->getGlyphBBox(markedlast);
-					left = bbox.left();
-					// Assume the mark is on the one line.
-					width = bbox1.right() - left;
-					int btop = bbox.top();
-					while (top + height <= btop)
-						top += height;
-				}
+				int length = markedpos > 0xFFFF ? markedpos >> 16 : 1;
+				int position = markedpos & 0xFFFF;
+				selection = para->getSelectionBoxes(position, length);
 			}
 			else if(flags & gPainter::RT_UNDERLINE)
 			{
@@ -1107,8 +1088,13 @@ void gDC::exec(const gOpcode *o)
 			}
 
 			if (width)
+				selection.push_back(eRect(left, top, width, height));
+			for (const auto &selected : selection)
 			{
-				bbox = eRect(left, top, width, height);
+				int rowTop = top;
+				while (height > 0 && rowTop + height <= selected.top())
+					rowTop += height;
+				bbox = eRect(selected.left(), rowTop, selected.width(), height);
 				bbox.moveBy(offset);
 				eRect area = o->parm.renderText->area;
 				area.moveBy(offset);

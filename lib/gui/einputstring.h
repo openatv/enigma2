@@ -21,7 +21,7 @@ public:
 	std::string getText();
 
 private:
-	void insertChar(int pos, int ch);
+	size_t byteOffset(int position) const;
 
 	std::string m_string;
 

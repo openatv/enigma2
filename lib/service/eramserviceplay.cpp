@@ -192,6 +192,7 @@ RESULT eRamServicePlay::stopTimeshift(bool swToLive) {
 		m_watchdog_timer = nullptr;
 	}
 	resetRecoveryState();
+	m_timeshift_sync_enabled = false;
 
 	if (m_record) {
 		// Stop the push thread BEFORE releasing the source to avoid a
@@ -243,6 +244,23 @@ RESULT eRamServicePlay::seekRelative(int direction, pts_t to) {
 		return -1;
 	}
 	return eDVBServicePlay::seekRelative(direction, to);
+}
+
+RESULT eRamServicePlay::seekTimeshiftDelay(int milliseconds) {
+	if (milliseconds < 0 || milliseconds > 60000 || !m_timeshift_active || !m_ram_ring
+		|| m_stream_corruption_detected)
+		return -1;
+	const off_t offset = m_ram_ring->findDelayOffset((pts_t)milliseconds * 90);
+	ePtr<iDVBPVRChannel> channel;
+	if (offset < 0 || m_service_handler_timeshift.getPVRChannel(channel) || !channel)
+		return -1;
+	eDebug("[eRamServicePlay] Synchronization seek: delay=%d ms, offset=%lld", milliseconds, (long long)offset);
+	const RESULT result = channel->seekSourcePosition(offset);
+	// An explicit synchronization seek supersedes the old recovery position.
+	// Otherwise the post-gap check can wait for a timestamp we just skipped.
+	if (!result)
+		resetRecoveryState();
+	return result;
 }
 
 RESULT eRamServicePlay::saveTimeshiftFile() {

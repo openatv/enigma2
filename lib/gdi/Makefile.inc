@@ -13,6 +13,7 @@ gdi_libenigma_gdi_a_SOURCES = \
 	gdi/fb.cpp \
 	gdi/font.cpp \
 	gdi/font_arabic.cpp \
+	gdi/font_arabic.h \
 	gdi/gfont.cpp \
 	gdi/glcddc.cpp \
 	gdi/gmaindc.cpp \

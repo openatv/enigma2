@@ -171,7 +171,9 @@ class Opkg(Screen, ProtectedScreen):
 		self.activityTimer.stop()
 
 	def opkgCallback(self, event, param):
-		if event == OpkgComponent.EVENT_DOWNLOAD:
+		if event == OpkgComponent.EVENT_PICON_STORAGE:
+			self.session.open(MessageBox, param, type=MessageBox.TYPE_ERROR)
+		elif event == OpkgComponent.EVENT_DOWNLOAD:
 			self.status.setText(_("Downloading"))
 		elif event == OpkgComponent.EVENT_UPGRADE:
 			if param in self.sliderPackages:

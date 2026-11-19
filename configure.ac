@@ -41,7 +41,17 @@ AC_ARG_WITH(gstversion,
 
 PKG_CHECK_MODULES(TUXTXT, tuxbox-tuxtxt)
 PKG_CHECK_MODULES(GSTREAMER, gstreamer-$GST_MAJORMINOR gstreamer-pbutils-$GST_MAJORMINOR gstreamer-video-$GST_MAJORMINOR)
-PKG_CHECK_MODULES(BASE, [freetype2 fribidi gstreamer-$GST_MAJORMINOR gstreamer-pbutils-$GST_MAJORMINOR gstreamer-video-$GST_MAJORMINOR gio-2.0 libdvbsi++ libpng libxml-2.0 sigc++-3.0 libssl libcrypto libcurl])
+PKG_CHECK_MODULES(BASE, [freetype2 fribidi >= 1.0.0 harfbuzz >= 0.9.38 gstreamer-$GST_MAJORMINOR gstreamer-pbutils-$GST_MAJORMINOR gstreamer-video-$GST_MAJORMINOR gio-2.0 libdvbsi++ libpng libxml-2.0 sigc++-3.0 libssl libcrypto libcurl])
+AC_MSG_CHECKING([for HarfBuzz FreeType integration])
+saved_CPPFLAGS=$CPPFLAGS
+saved_LIBS=$LIBS
+CPPFLAGS="$CPPFLAGS $BASE_CFLAGS"
+LIBS="$BASE_LIBS $LIBS"
+AC_LINK_IFELSE([AC_LANG_PROGRAM([[#include <hb-ft.h>]],
+	[[hb_face_destroy(hb_ft_face_create_referenced((FT_Face)0));]])],
+	[AC_MSG_RESULT([yes])], [AC_MSG_ERROR([HarfBuzz must be built with FreeType support])])
+CPPFLAGS=$saved_CPPFLAGS
+LIBS=$saved_LIBS
 PKG_CHECK_MODULES(LIBDDVD, libdreamdvd, HAVE_LIBDDVD="yes", HAVE_LIBDDVD="no")
 AM_CONDITIONAL(HAVE_LIBDDVD, test "$HAVE_LIBDDVD" = "yes")
 PKG_CHECK_MODULES(AVAHI, avahi-client)

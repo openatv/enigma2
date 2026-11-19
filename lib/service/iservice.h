@@ -711,6 +711,13 @@ public:
 	virtual std::string getTimeshiftServiceData() { return ""; }
 	// RAM sources have no recording file and must bypass disk PTS bookkeeping.
 	virtual bool isTimeshiftMemory() { return false; }
+	// Optional, bounded RAM-buffer repositioning for external-audio synchronization.
+	// Does not enable general seeking or change ordinary timeshift recovery.
+	virtual RESULT seekTimeshiftDelay(int /*milliseconds*/) { return -1; }
+	// Opt-in recovery for plugin-owned external-audio synchronization buffers.
+	virtual RESULT setTimeshiftSyncEnabled(bool /*enabled*/) { return -1; }
+	// Incoming and decoded timestamps in the same 90 kHz stream clock domain.
+	virtual RESULT getTimeshiftDelay(pts_t &SWIG_NAMED_OUTPUT(delay)) { delay = 0; return -1; }
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iTimeshiftService>, iTimeshiftServicePtr);
 

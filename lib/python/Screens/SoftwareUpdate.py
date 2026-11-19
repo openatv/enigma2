@@ -436,7 +436,9 @@ class RunSoftwareUpdate(Screen, ProtectedScreen):
 		def modificationCallback(answer):
 			self.opkg.write("N" if answer else "Y")
 
-		if event == OpkgComponent.EVENT_DOWNLOAD:
+		if event == OpkgComponent.EVENT_PICON_STORAGE:
+			self["update"].appendText(f"\n{parameter}\n\n")
+		elif event == OpkgComponent.EVENT_DOWNLOAD:
 			self.downloadCount += 1
 			if parameter.find("_") == -1:  # Only display the downloading of the feed packages.
 				self["update"].appendText(f"{_("Downloading")}: '{parameter}'.\n")

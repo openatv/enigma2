@@ -115,6 +115,13 @@ void eEPGTransponderDataReader::gotMessage( const Message &msg )
 				channel->second->abortEPG();
 			break;
 		}
+		case Message::restart:
+		{
+			singleLock s(known_channel_lock);
+			for (ChannelMap::const_iterator it(m_knownChannels.begin()); it != m_knownChannels.end(); ++it)
+				it->second->startEPG();
+			break;
+		}
 #ifdef ENABLE_PRIVATE_EPG
 		case Message::got_private_pid:
 		{
@@ -216,9 +223,8 @@ void eEPGTransponderDataReader::restartReader()
 {
 	singleLock l(last_channel_update_lock);
 	m_channelLastUpdated.clear();
-	singleLock k(known_channel_lock);
-	for (ChannelMap::const_iterator it(m_knownChannels.begin()); it != m_knownChannels.end(); ++it)
-		it->second->startEPG();
+	// startEPG() touches timers and readers owned by our thread
+	m_messages.send(Message(Message::restart));
 }
 
 void eEPGTransponderDataReader::DVBChannelAdded(eDVBChannel *chan)

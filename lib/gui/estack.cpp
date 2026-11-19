@@ -99,6 +99,39 @@ void eStack::recalcLayout() {
 		return;
 	m_inLayout = true;
 
+	// a child with eStackAlignFill gets the space the other children leave over
+	{
+		const bool horizontal = m_direction == Horizontal;
+		const uint8_t first = horizontal ? eStackAlignLeft : eStackAlignTop;
+		const uint8_t second = horizontal ? eStackAlignRight : eStackAlignBottom;
+		eWidget* fill = nullptr;
+		int used = 0, firstCount = 0, secondCount = 0;
+		for (auto child : m_stackchilds) {
+			if (!child->isVisible() || child->align() == 0)
+				continue;
+			if (child->align() & first)
+				firstCount++;
+			else if (child->align() & second)
+				secondCount++;
+			else
+				continue;
+			if ((child->align() & eWidget::eStackAlignFill) && !fill)
+				fill = child;
+			else
+				used += horizontal ? child->size().width() : child->size().height();
+		}
+		if (fill) {
+			// spacing is applied per side, like in the layout below
+			int spacings = std::max(firstCount - 1, 0) + std::max(secondCount - 1, 0);
+			int avail = std::max((horizontal ? stack_w : stack_h) - used - m_spacing * spacings, 0);
+			eSize fsize = fill->size();
+			if (horizontal && fsize.width() != avail)
+				fill->resize(eSize(avail, fsize.height()));
+			else if (!horizontal && fsize.height() != avail)
+				fill->resize(eSize(fsize.width(), avail));
+		}
+	}
+
 	int x = 0, y = 0;
 	int xr = stack_w;
 	int yb = stack_h;

@@ -1,4 +1,5 @@
 #include <lib/gui/einputstring.h>
+#include <algorithm>
 
 DEFINE_REF(eInputContentString);
 
@@ -48,18 +49,27 @@ void eInputContentString::moveCursor(int dir)
 
 int eInputContentString::haveKey(int code, int overwrite)
 {
-	int have_char = -1;
-
 	if (code >= 0x8020)
-		have_char = code &~ 0x8000;
-
-	if (have_char != -1)
 	{
-		if (overwrite && m_cursor < m_len)
-			m_string[m_cursor] = have_char;
+		unsigned int character = code & ~0x8000;
+		if (character > 0x10FFFF || (character >= 0xD800 && character <= 0xDFFF))
+			return 0;
+		std::string encoded;
+		if (character < 0x80)
+			encoded += char(character);
 		else
 		{
-			m_string.insert(m_cursor, 1, have_char);
+			int shift = character < 0x800 ? 6 : (character < 0x10000 ? 12 : 18);
+			encoded += char((shift == 6 ? 0xC0 : (shift == 12 ? 0xE0 : 0xF0)) | (character >> shift));
+			for (shift -= 6; shift >= 0; shift -= 6)
+				encoded += char(0x80 | ((character >> shift) & 0x3F));
+		}
+		size_t offset = byteOffset(m_cursor);
+		if (overwrite && m_cursor < m_len)
+			m_string.replace(offset, byteOffset(m_cursor + 1) - offset, encoded);
+		else
+		{
+			m_string.insert(offset, encoded);
 			++m_len;
 		}
 
@@ -91,7 +101,8 @@ void eInputContentString::deleteChar(int dir)
 	if (!m_len)
 		return;
 
-	m_string.erase(m_cursor - 1, m_cursor);
+	size_t offset = byteOffset(m_cursor - 1);
+	m_string.erase(offset, byteOffset(m_cursor) - offset);
 
 	m_len--;
 	m_cursor--;
@@ -112,7 +123,7 @@ void eInputContentString::validate()
 void eInputContentString::setText(const std::string &str)
 {
 	m_string = str;
-	m_len = m_string.size();
+	m_len = std::count_if(str.begin(), str.end(), [](unsigned char ch) { return (ch & 0xC0) != 0x80; });
 	if (m_cursor > m_len)
 		m_cursor = m_len;
 
@@ -123,4 +134,16 @@ void eInputContentString::setText(const std::string &str)
 std::string eInputContentString::getText()
 {
 	return m_string;
+}
+
+size_t eInputContentString::byteOffset(int position) const
+{
+	size_t offset = 0;
+	while (position-- > 0 && offset < m_string.size())
+	{
+		++offset;
+		while (offset < m_string.size() && (static_cast<unsigned char>(m_string[offset]) & 0xC0) == 0x80)
+			++offset;
+	}
+	return offset;
 }
