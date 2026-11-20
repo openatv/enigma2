@@ -77,9 +77,12 @@ class ServiceStopScreen:
 					self.oldAlternativeRef = self.session.nav.getCurrentlyPlayingServiceReference()
 					self.session.nav.stopService()
 			if self.pipAvailable() and self.session.pipshown:  # Try to disable PiP.
-				if hasattr(self.session, "infobar"):
-					if self.session.infobar.servicelist and self.session.infobar.servicelist.dopipzap:
-						self.session.infobar.servicelist.togglePipzap()
+				serviceList = getattr(getattr(self.session, "infobar", None), "servicelist", None)
+				if serviceList is None:
+					from Screens.InfoBar import InfoBar  # Avoid importing the main InfoBar during tuner setup initialization.
+					serviceList = getattr(InfoBar.instance, "servicelist", None)
+				if getattr(serviceList, "dopipzap", False) and getattr(self.session, "pip", None) is not None:
+					serviceList.togglePipzap()
 				if hasattr(self.session, "pip"):
 					del self.session.pip
 				self.session.pipshown = False
