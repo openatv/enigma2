@@ -242,6 +242,8 @@ class FallbackTimerClass(TimerObject):
 			self.eventEnd = end - marginAfter
 		self.hasEndTime = timerdict.get("hasEndTime", False)
 		self.rename_repeat = timerdict.get("rename_repeat", True)
+		self.autoadjust = timerdict.get("autoadjust", False)
+		self.allow_duplicate = timerdict.get("allow_duplicate", True)
 
 		vpsenabled = timerdict.get("vpsplugin_enabled", False)
 		vpsoverwrite = timerdict.get("vpsplugin_overwrite", False)

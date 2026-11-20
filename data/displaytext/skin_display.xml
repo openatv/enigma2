@@ -62,9 +62,8 @@
 
 <!-- movieplayer-->
 	<screen name="MovieSelectionSummary" position="0,0" size="132,64">
-		<widget source="parent.Service" render="Label" position="0,0" size="120,25" font="Regular;14">
-			<convert type="ServiceName">Name</convert>
-		</widget>
+		<panel name="MovieSelectionLegacyPanel" condition="config.movielist.displayStyle.value == 'legacy'" />
+		<panel name="MovieSelectionInformationPanel" condition="config.movielist.displayStyle.value != 'legacy'" />
 	</screen>
 
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="132,64">
@@ -215,5 +214,35 @@
 <!-- Shoutcast -->
 	<screen name="SHOUTcastLCDScreen" size="132,64">
 		<widget name="text2" position="0,0" size="120,20" font="Regular;18" halign="left" noWrap="1"  />
+	</screen>
+
+	<!-- Native movie selection and player displays; legacy and EMC screens remain available. -->
+	<screen name="MovieSelectionInformationPanel" position="0,0" size="132,64">
+		<widget source="name" render="Label" position="0,0" size="120,25" font="Regular;14"></widget>
+	</screen>
+
+
+	<screen name="MoviePlayerInformationPanel" position="0,0" size="132,64">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="120,25" halign="left" noWrap="1">
+			<convert type="ServicePosition">VFDPosition</convert>
+		</widget>
+	</screen>
+
+
+	<screen name="MovieDetailsSummary" position="0,0" size="132,64">
+		<panel name="MovieSelectionInformationPanel" />
+	</screen>
+	<!-- ScreenSummary resolves each parent skin name with the Summary suffix. -->
+	<screen name="MoviePlayerSummary" position="0,0" size="132,64">
+		<panel name="InfoBarMoviePlayerSummary" condition="config.movielist.displayStyle.value == 'legacy'" />
+		<panel name="MoviePlayerInformationPanel" condition="config.movielist.displayStyle.value != 'legacy'" />
+	</screen>
+	<screen name="MovieDetailsSimpleSummary" position="0,0" size="132,64">
+		<panel name="MovieDetailsSummary" />
+	</screen>
+	<screen name="MovieSelectionLegacyPanel" position="0,0" size="132,64">
+		<widget source="parent.Service" render="Label" position="0,0" size="120,25" font="Regular;14">
+			<convert type="ServiceName">Name</convert>
+		</widget>
 	</screen>
 </skin>

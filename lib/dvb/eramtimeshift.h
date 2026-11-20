@@ -101,6 +101,7 @@ public:
 	// out_offset is set to the nearest safe aligned byte to resume from.
 	// Thread-safe: uses m_offset_mutex internally.
 	bool getLappedOffset(off_t& out_offset);
+	off_t getReadOffset() const;
 
 private:
 	std::shared_ptr<eRamRingBuffer> m_buf;

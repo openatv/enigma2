@@ -1,9 +1,11 @@
 from bisect import insort
+from copy import copy
 from datetime import datetime
 from os import W_OK, access, fsync, makedirs, remove, rename, statvfs
-from os.path import exists, isdir, ismount, realpath
+from os.path import exists, isdir, isfile, ismount, join, realpath
 from threading import Thread, Timer as ThreadTimer
 from time import ctime, localtime, strftime, time
+from twisted.internet.threads import deferToThread
 
 from enigma import eActionMap, eEPGCache, eServiceEventEnums, eServiceReference, eStreamServer, eTimer, getBestPlayableServiceReference, iPlayableService, iRecordableService, pNavigation, quitMainloop, setPreferredTuner
 
@@ -11,8 +13,8 @@ import NavigationInstance
 from timer import Timer, TimerEntry
 from Components.config import config
 from Components.Harddisk import findMountPoint
-import Components.RecordingConfig
-Components.RecordingConfig.InitRecordingConfig()
+from Components.RecordingConfig import InitRecordingConfig
+InitRecordingConfig()
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.ScrambledRecordings import ScrambledRecordings
 from Components.TimerSanityCheck import TimerSanityCheck
@@ -181,6 +183,70 @@ class RecordTimer(Timer):
 		self.onTimerRemoved = []
 		self.onTimerChanged = []
 		self.fallbackTimerlist = []
+		self.databaseChecks = 0
+
+	def checkRecordingDatabase(self, callback, event=None):
+		if self.databaseChecks >= 2:
+			callback(None)
+			return
+		try:
+			# Load the optional plugin only after Enigma2 has initialized its configuration.
+			from Plugins.Extensions.e2MDB import get_database_dir
+			from Plugins.Extensions.e2MDB.E2MDBDatabase import MediaDB
+			databasePath = get_database_dir()
+		except ImportError:
+			callback(None)
+			return
+		except Exception as err:
+			print(f"[RecordTimer] E2MDB check unavailable: {err}")
+			callback(None)
+			return
+
+		def query():
+			if not isfile(join(databasePath, "media.db")):
+				return None
+			database = MediaDB()
+			database.set_path(databasePath)
+			return database.is_title_in_database(*event) if event is not None else bool(database.search(limit=1))
+
+		# Storage and SQLite waits must not block the GUI or hold up a recording.
+		self.databaseChecks += 1
+		timeout = eTimer()
+		callbacks = [callback]
+
+		def complete(result):
+			timeout.stop()
+			if callbacks:
+				callbacks.pop()(result)
+
+		def finished(result):
+			self.databaseChecks -= 1
+			complete(result)
+
+		def failed(failure):
+			print(f"[RecordTimer] E2MDB check unavailable: {failure.getErrorMessage()}")
+			finished(None)
+
+		timeout.callback.append(lambda: complete(None))
+		timeout.start(3000, True)
+		deferToThread(query).addCallbacks(finished, failed)
+
+	def processActivation(self):
+		changed = False
+		for timer in self.timer_list[:]:
+			if timer.updateEpgTimes(self.timer_list):
+				changed = True
+				for callback in getattr(self, "onTimerChanged", ()):
+					callback(timer)
+		if changed:
+			self.timer_list.sort()
+			self.saveTimers()
+		Timer.processActivation(self)
+
+	def setNextActivation(self, now, when):
+		if any(x.autoadjust and not x.disabled for x in self.timer_list):
+			when = min(when, now + 30)
+		Timer.setNextActivation(self, now, when)
 
 	def loadTimers(self):
 		if exists(TIMER_XML_FILE):
@@ -215,8 +281,13 @@ class RecordTimer(Timer):
 			timerEntry.append(f"eventEnd=\"{timer.eventEnd}\"")
 			timerEntry.append(f"marginAfter=\"{timer.marginAfter}\"")
 			timerEntry.append(f"hasEndTime=\"{timer.hasEndTime}\"")
+			timerEntry.append(f"autoadjust=\"{int(timer.autoadjust)}\"")
+			timerEntry.append(f"allow_duplicate=\"{int(timer.allow_duplicate)}\"")
+			if timer.repeated and timer.autoAdjustBegin is not None:
+				timerEntry.append(f"autoAdjustBegin=\"{timer.autoAdjustBegin}\"")
+				timerEntry.append(f"autoAdjustEnd=\"{timer.autoAdjustEnd}\"")
 			timerEntry.append(f"serviceref=\"{stringToXML(str(timer.service_ref))}\"")
-			if timer.eit:
+			if timer.eit is not None:
 				timerEntry.append(f"eit=\"{timer.eit}\"")
 			if timer.cridSeries or timer.cridEpisode or timer.cridRecommendation:
 				timerEntry.append(f"cridSeries=\"{timer.cridSeries}\"")
@@ -334,7 +405,8 @@ class RecordTimer(Timer):
 			serviceRef, begin, end, name, description, eit, disabled, justplay, afterevent,
 			dirname=location, tags=tags, descramble=descramble, record_ecm=recordEcm,
 			isAutoTimer=isAutoTimer, ice_timer_id=iceTimerId, always_zap=alwaysZap, rename_repeat=renameRepeat,
-			precondition=precondition
+			precondition=precondition, autoadjust=timerDom.get("autoadjust", "0").lower() in ("1", "true", "yes"),
+			allow_duplicate=timerDom.get("allow_duplicate", "1").lower() in ("1", "true", "yes")
 		)
 		timer.marginBefore = marginBefore
 		timer.eventBegin = eventBegin
@@ -346,6 +418,9 @@ class RecordTimer(Timer):
 		timer.cridEpisode = cridEpisode
 		timer.cridRecommendation = cridRecommendation
 		timer.repeated = int(repeated)
+		if timer.repeated and timerDom.get("autoAdjustBegin") and timerDom.get("autoAdjustEnd"):
+			timer.autoAdjustBegin = int(timerDom.get("autoAdjustBegin"))
+			timer.autoAdjustEnd = int(timerDom.get("autoAdjustEnd"))
 		timer.vpsplugin_overwrite = (vpsOverwrite and vpsOverwrite == "1")
 		timer.vpsplugin_enabled = (vpsEnabled and vpsEnabled == "1")
 		if vpsTime and vpsTime != "None":
@@ -388,7 +463,16 @@ class RecordTimer(Timer):
 			if getattr(timer, "tunerHandoff", None):
 				timer.tunerHandoff.finish(False)
 			if timer.repeated:
-				timer.processRepeated(findNextEvent=timer.failed)
+				adjusted = timer.autoAdjustBegin is not None
+				skippedDuplicate = timer.duplicateCheck and timer.duplicateCheck["duplicate"]
+				if adjusted:
+					timer.begin, timer.end = timer.autoAdjustBegin, timer.autoAdjustEnd
+					timer.autoAdjustBegin = timer.autoAdjustEnd = None
+				timer.processRepeated(findNextEvent=bool(timer.failed or adjusted or skippedDuplicate))
+				if adjusted:
+					timer.eventBegin = timer.begin + timer.marginBefore
+					timer.eventEnd = timer.end - timer.marginAfter
+				timer.duplicateCheck = None
 				timer.failed = False
 				timer.lastend = 0
 				timer.state = RecordTimerEntry.StateWaiting
@@ -717,6 +801,7 @@ def createRecordTimerEntry(timer):
 		timer.justplay, timer.afterEvent, dirname=timer.dirname, tags=timer.tags, descramble=timer.descramble,
 		record_ecm=timer.record_ecm, always_zap=timer.always_zap, rename_repeat=timer.rename_repeat,
 		isAutoTimer=timer.isAutoTimer, ice_timer_id=timer.ice_timer_id, precondition=timer.precondition,
+		autoadjust=getattr(timer, "autoadjust", False), allow_duplicate=getattr(timer, "allow_duplicate", True),
 		cridSeries=getattr(timer, "cridSeries", None), cridEpisode=getattr(timer, "cridEpisode", None), cridRecommendation=getattr(timer, "cridRecommendation", None)
 	)
 	entry.marginBefore = timer.marginBefore
@@ -727,6 +812,8 @@ def createRecordTimerEntry(timer):
 	entry.repeatedbegindate = timer.repeatedbegindate
 	entry.hasEndTime = timer.hasEndTime
 	entry.zapBack = getattr(timer, "zapBack", False)
+	entry.autoAdjustBegin = getattr(timer, "autoAdjustBegin", None)
+	entry.autoAdjustEnd = getattr(timer, "autoAdjustEnd", None)
 	entry.vpsplugin_enabled = getattr(timer, "vpsplugin_enabled", None)
 	entry.vpsplugin_overwrite = getattr(timer, "vpsplugin_overwrite", None)
 	entry.vpsplugin_time = getattr(timer, "vpsplugin_time", None)
@@ -734,7 +821,7 @@ def createRecordTimerEntry(timer):
 
 
 class RecordTimerEntry(TimerEntry):
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled=False, justplay=TIMERTYPE.JUSTPLAY, afterEvent=AFTEREVENT.DEFAULT, checkOldTimers=False, dirname=None, tags=None, descramble="notset", record_ecm="notset", rename_repeat=True, isAutoTimer=False, ice_timer_id=None, always_zap=TIMERTYPE.ALWAYS_ZAP, MountPath=None, fixDescription=False, cridSeries=None, cridEpisode=None, cridRecommendation=None, filename=None, precondition=0):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled=False, justplay=TIMERTYPE.JUSTPLAY, afterEvent=AFTEREVENT.DEFAULT, checkOldTimers=False, dirname=None, tags=None, descramble="notset", record_ecm="notset", rename_repeat=True, isAutoTimer=False, ice_timer_id=None, always_zap=TIMERTYPE.ALWAYS_ZAP, MountPath=None, fixDescription=False, cridSeries=None, cridEpisode=None, cridRecommendation=None, filename=None, precondition=0, autoadjust=False, allow_duplicate=True):
 		TimerEntry.__init__(self, int(begin), int(end))
 		# print("[RecordTimerEntry] DEBUG: Running init code.")
 		self.marginBefore = (getattr(config.recording, "zap_margin_before" if justplay == TIMERTYPE.ZAP else "margin_before").value * 60)
@@ -777,6 +864,12 @@ class RecordTimerEntry(TimerEntry):
 		self.name = name
 		self.description = description
 		self.eit = eit
+		self.autoadjust = bool(autoadjust)
+		self.allow_duplicate = bool(allow_duplicate)
+		self.autoAdjustBegin = None
+		self.autoAdjustEnd = None
+		self.autoAdjustConflict = None
+		self.duplicateCheck = None
 		self.cridSeries = cridSeries
 		self.cridEpisode = cridEpisode
 		self.cridRecommendation = cridRecommendation
@@ -880,6 +973,14 @@ class RecordTimerEntry(TimerEntry):
 			self.log(5, f"Activating state {nextState}.")
 		# print("[RecordTimer] Activate called", time(), nextState, self.first_try_prepare, " pending ", self.messageBoxAnswerPending, " justTried ", self.justTriedFreeingTuner, " show ", self.messageStringShow, self.messageString)  # DEBUG: remove.
 		if nextState == self.StatePrepared:
+			if not self.allow_duplicate and not self.justplay and not self.isPVRDescramble and not self.cancelled:
+				if not self.checkDuplicateRecording():
+					self.start_prepare = int(time()) + 1
+					return False
+				if self.duplicateCheck and self.duplicateCheck["duplicate"]:
+					self.log(0, "Recording skipped: already present in E2MDB.")
+					self.state = self.StateEnded
+					return False
 			if getattr(self, "tunerHandoff", None) and not self.tunerHandoff.isValid():
 				self.tunerHandoff.finish(False)
 			if self.messageBoxAnswerPending:
@@ -1402,16 +1503,93 @@ class RecordTimerEntry(TimerEntry):
 		return self.Filename
 
 	def getEventFromEPGId(self, id=None):
-		id = id or self.eit
+		id = self.eit if id is None else id
 		epgCache = eEPGCache.getInstance()
 		reference = self.service_ref and self.service_ref.ref
-		return id and epgCache.lookupEventId(reference, id) or None
+		return epgCache.lookupEventId(reference, id) if id is not None else None
 
 	def getEventFromEPG(self):
 		epgCache = eEPGCache.getInstance()
 		queryTime = self.begin + (self.end - self.begin) // 2
 		reference = self.service_ref and self.service_ref.ref
 		return epgCache.lookupEventTime(reference, queryTime)
+
+	def processRepeated(self, findRunningEvent=True, findNextEvent=False):
+		# On startup the last adjusted occurrence may already have ended. Advance
+		# from the saved wall-clock schedule, not from yesterday's EPG shift.
+		if self.repeated and self.autoAdjustBegin is not None and self.state == self.StateWaiting and self.end < time():
+			self.begin, self.end = self.autoAdjustBegin, self.autoAdjustEnd
+			self.autoAdjustBegin = self.autoAdjustEnd = None
+			findNextEvent = findNextEvent or self.end >= time()
+		begin = self.begin
+		TimerEntry.processRepeated(self, findRunningEvent, findNextEvent)
+		if self.autoadjust and self.repeated and self.begin != begin:
+			self.eventBegin = self.begin + self.marginBefore
+			self.eventEnd = self.end - self.marginAfter
+			self.duplicateCheck = None
+
+	def updateEpgTimes(self, timerList):
+		if not self.autoadjust or self.disabled or self.cancelled or self.failed or self.justplay or self.isPVRDescramble or self.external or self.vpsplugin_enabled or self.state >= self.StateEnded:
+			return False
+		# Repeating timers select a new event at their original time each day.
+		# Once selected, follow its EIT rather than whichever event replaces it.
+		if self.repeated and self.autoAdjustBegin is None:
+			queryTime = (self.begin + self.marginBefore + self.end - self.marginAfter) // 2
+			event = eEPGCache.getInstance().lookupEventTime(self.service_ref.ref, queryTime)
+		else:
+			event = self.getEventFromEPGId()
+		if event is None or event.getDuration() <= 0:
+			return False
+		eventBegin = event.getBeginTime()
+		eventEnd = eventBegin + event.getDuration()
+		# Discard expired/reused event IDs instead of moving a timer to another day.
+		if eventEnd <= time() or abs(eventBegin - self.eventBegin) > 12 * 3600:
+			return False
+		begin = eventBegin - self.marginBefore if self.state < self.StateRunning else self.begin
+		end = eventEnd + self.marginAfter
+		if end <= begin:
+			return False
+		anchored = self.repeated and self.autoAdjustBegin is None
+		if (begin, end) != (self.begin, self.end):
+			candidate = copy(self)
+			candidate.begin, candidate.end, candidate.repeated = begin, end, 0
+			if not TimerSanityCheck([x for x in timerList if x is not self], candidate).check():
+				if self.autoAdjustConflict != (begin, end):
+					self.log(0, "EPG time adjustment skipped because it conflicts with another timer.")
+					self.autoAdjustConflict = (begin, end)
+				return False
+			if anchored:
+				self.autoAdjustBegin, self.autoAdjustEnd = self.begin, self.end
+			self.log(0, f"EPG time adjustment: {self.begin}-{self.end} -> {begin}-{end} (margins retained).")
+			self.begin, self.end = begin, end
+			self.eventBegin, self.eventEnd = eventBegin, eventEnd
+			self.eit = event.getEventId()
+			self.autoAdjustConflict = None
+			self.timeChanged()
+			return True
+		if anchored:
+			self.autoAdjustBegin, self.autoAdjustEnd = self.begin, self.end
+			self.eventBegin, self.eventEnd = eventBegin, eventEnd
+			self.eit = event.getEventId()
+		return bool(anchored)
+
+	def checkDuplicateRecording(self):
+		event = self.getEventFromEPG() if self.repeated and self.autoAdjustBegin is None else self.getEventFromEPGId()
+		if event is None:
+			self.duplicateCheck = None
+			return True
+		metadata = (event.getEventName(), event.getShortDescription(), event.getExtendedDescription())
+		identity = (self.service_ref.ref.toString(), self.begin, self.end, metadata)
+		if not self.duplicateCheck or self.duplicateCheck["identity"] != identity:
+			check = {"identity": identity, "done": False, "duplicate": False}
+			self.duplicateCheck = check
+
+			def checked(duplicate):
+				check["duplicate"] = bool(duplicate)
+				check["done"] = True
+
+			self.Timer.checkRecordingDatabase(checked, metadata)
+		return self.duplicateCheck["done"]
 
 	def tryPrepare(self):
 		if self.justplay:

@@ -406,6 +406,8 @@ protected:
 	bool m_timeshift_sync_enabled = false;
 	pts_t m_timeshift_sync_playback_pts = -1;
 	pts_t m_timeshift_sync_live_pts = -1;
+	int64_t m_timeshift_sync_log_time = -1;
+	unsigned int m_timeshift_sync_eof_count = 0;
 	bool getTimeshiftSyncPosition(pts_t &live, pts_t &playback);
 
 	virtual void handleEofRecovery();

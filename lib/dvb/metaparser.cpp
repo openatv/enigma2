@@ -65,7 +65,7 @@ int eDVBMetaParser::parseFile(const std::string& basename) {
 int eDVBMetaParser::parseMeta(const std::string& tsname) {
 	/* if it's a PVR channel, recover service id. */
 	std::string filename = tsname + ".meta";
-	CFile f(filename.c_str(), "r");
+	std::ifstream f(filename);
 
 	if (!f)
 		return -ENOENT;
@@ -74,23 +74,14 @@ int eDVBMetaParser::parseMeta(const std::string& tsname) {
 
 	m_time_create = 0;
 
-	while (1) {
-		char line[4096];
-		if (!fgets(line, 4096, f))
-			break;
-		size_t len = strlen(line);
-		if (len && line[len - 1] == '\n') {
-			--len;
-			line[len] = 0;
-		}
-		if (len && line[len - 1] == '\r') {
-			--len;
-			line[len] = 0;
-		}
+	std::string line;
+	while (std::getline(f, line)) {
+		if (!line.empty() && line.back() == '\r')
+			line.pop_back();
 
 		switch (linecnt) {
 			case iDVBMetaFile::idServiceRef:
-				m_ref = eServiceReferenceDVB(line);
+				m_ref = eServiceReferenceDVB(line.c_str());
 				break;
 			case iDVBMetaFile::idName:
 				m_name = line;
@@ -99,7 +90,7 @@ int eDVBMetaParser::parseMeta(const std::string& tsname) {
 				m_description = line;
 				break;
 			case iDVBMetaFile::idCreated:
-				m_time_create = atoi(line);
+				m_time_create = atoi(line.c_str());
 				if (m_time_create == 0) {
 					m_time_create = getctime(tsname);
 				}
@@ -108,23 +99,23 @@ int eDVBMetaParser::parseMeta(const std::string& tsname) {
 				m_tags = line;
 				break;
 			case iDVBMetaFile::idLength:
-				m_length = atoll(line); // movielength in pts
+				m_length = atoll(line.c_str()); // movielength in pts
 				break;
 			case iDVBMetaFile::idFileSize:
-				m_filesize = atoll(line);
+				m_filesize = atoll(line.c_str());
 				break;
 			case iDVBMetaFile::idServiceData:
 				m_service_data = line;
 				break;
 			case iDVBMetaFile::idPacketSize:
-				m_packet_size = atoi(line);
+				m_packet_size = atoi(line.c_str());
 				if (m_packet_size <= 0) {
 					/* invalid value, use default */
 					m_packet_size = 188;
 				}
 				break;
 			case iDVBMetaFile::idScrambled:
-				m_scrambled = atoi(line);
+				m_scrambled = atoi(line.c_str());
 				break;
 			default:
 				break;
