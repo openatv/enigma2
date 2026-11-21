@@ -61,6 +61,16 @@ public:
 #ifdef DREAMNEXTGEN
 	void setUserPauseActive(bool b);
 #endif
+	/* A raise is working its way out and nothing comes meanwhile, so the
+	 * stall watchdog has to hold still. */
+	bool m_delay_settling{false};
+	int m_settling_ticks{0};
+	/* Longer than the largest gap a raise can cost. */
+	static const int SETTLE_MAX_TICKS = 14;
+	void holdLastFrame(bool on);
+	void afterPlaybackDelayGrown();
+	/* Ticks of 500ms without the decoder moving before the watchdog steps in. */
+	static const int STALL_RECOVERY_TICKS = 6;
 
 	// Audio Control
 	int setAudioPID(int pid, int type);
@@ -93,6 +103,9 @@ public:
 
 	// Audio track selection signal (notifies parent when SoftDecoder selects audio)
 	sigc::signal<void(int)> m_audio_pid_selected;
+	/* Carries an iPlayableService event for the descrambling state, so the
+	 * service can pass it on to the user interface. */
+	sigc::signal<void(int)> m_softcsa_notify;
 
 	// Decoder ready signal (fired after decoder PLAY, video info now queryable)
 	sigc::signal<void()> m_decoder_ready;
@@ -129,6 +142,7 @@ private:
 
 	ePtr<eTimer> m_health_timer;
 	pts_t m_last_pts;
+	bool m_pts_seen{false};
 	int m_stall_count;
 	int m_recovery_attempts;
 	bool m_stream_stalled;

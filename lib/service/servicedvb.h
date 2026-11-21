@@ -383,6 +383,7 @@ protected:
 	void onSessionActivated(bool active);
 	void onSoftDecoderReady();
 	void onSoftDecoderAudioPidSelected(int pid);
+	void onSoftCSANotify(int event);
 	void cleanupSoftwareDescrambling();
 
 	// Aggressive mode: force release of the HW-descrambler slot at service

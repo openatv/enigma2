@@ -150,6 +150,7 @@ void eDVBSoftDecoder::startDecoder()
 		CONNECT(m_health_timer->timeout, eDVBSoftDecoder::streamHealthCheck);
 	}
 	m_last_pts = 0;
+	m_pts_seen = false;
 	m_stall_count = 0;
 	m_stream_stalled = false;
 	m_paused = false;
@@ -254,6 +255,7 @@ void eDVBSoftDecoder::stop()
 	m_running = false;
 	m_decoder_started = false;
 	m_last_pts = 0;
+	m_pts_seen = false;
 	m_stall_count = 0;
 	m_stream_stalled = false;
 	m_paused = false;
@@ -339,6 +341,14 @@ int eDVBSoftDecoder::setupRecorder()
 	{
 		eDebug("[eDVBSoftDecoder] Attaching session as descrambler (active=%d)", m_session->isActive());
 		m_record->setDescrambler(ePtr<iServiceScrambled>(m_session.operator->()));
+
+		/* Playback delay: the buffer thread may block on the DVR write, which
+		 * paces it against the decoder - so nothing may be discarded there. */
+		if (int delay = eSimpleConfig::getInt("config.softcsa.playbackDelay", eDVBRecordScrambledThread::AUTO_PLAYBACK_DELAY); delay != 0)
+		{
+			m_record->setDiscardOnTimeout(false);
+			m_record->setPlaybackDelay(delay);
+		}
 	}
 	else
 		eWarning("[eDVBSoftDecoder] No session attached!");
@@ -394,6 +404,31 @@ void eDVBSoftDecoder::recordEvent(int event)
 
 	switch (event)
 	{
+	case iDVBTSRecorder::eventDelayGrowing:
+		/* The gap a raise costs is on purpose: the watchdog has to hold still,
+		 * and there is nothing to show but the last picture. */
+		m_delay_settling = true;
+		m_settling_ticks = 0;
+		holdLastFrame(true);
+		break;
+	case iDVBTSRecorder::eventDelayGrown:
+		m_delay_settling = false;
+		m_stall_count = 0;
+		m_last_pts = 0;
+		m_stream_stalled = false;
+		m_recovery_attempts = 0;
+		holdLastFrame(false);
+		m_softcsa_notify(iPlayableService::evSoftCSADelayRaised);
+		break;
+	case iDVBTSRecorder::eventDelayLimit:
+		m_softcsa_notify(iPlayableService::evSoftCSADelayLimit);
+		break;
+	case iDVBTSRecorder::eventBadKey:
+		m_softcsa_notify(iPlayableService::evSoftCSABadKey);
+		break;
+	case iDVBTSRecorder::eventPlaybackDrained:
+		afterPlaybackDelayGrown();
+		break;
 	case iDVBTSRecorder::eventWriteError:
 		// The record thread has exited, nothing reaches the decoder anymore
 		if (m_writer_restarts < MAX_WRITER_RESTARTS)
@@ -439,6 +474,17 @@ void eDVBSoftDecoder::streamHealthCheck()
 	if (m_paused)
 		return;
 
+	/* Nor while a raise works its way out: that gap is on purpose. */
+	if (m_delay_settling)
+	{
+		if (++m_settling_ticks < SETTLE_MAX_TICKS)
+			return;
+
+		eWarning("[eDVBSoftDecoder] no end to the raise after %dms, watchdog back on", SETTLE_MAX_TICKS * 500);
+		m_delay_settling = false;
+		holdLastFrame(false);
+	}
+
 	// Detect MainLoop hangs: if this timer callback comes much later than
 	// expected (>2s instead of 500ms), the MainLoop was blocked.
 	// In that case, skip the stall check - the stream kept running fine
@@ -467,9 +513,10 @@ void eDVBSoftDecoder::streamHealthCheck()
 	if (m_decoder->getPTS(0, current_pts) != 0)
 		return;
 
-	// During startup, PTS=0 is normal (waiting for CW/data)
-	// Only monitor for stalls once stream has actually started (PTS > 0)
-	if (current_pts == 0 && m_last_pts == 0)
+	/* Before the first picture a PTS of zero only means no data yet. */
+	if (current_pts > 0)
+		m_pts_seen = true;
+	else if (!m_pts_seen)
 		return;
 
 	if (current_pts == m_last_pts)
@@ -480,7 +527,7 @@ void eDVBSoftDecoder::streamHealthCheck()
 			eWarning("[eDVBSoftDecoder] Stream stalled (PTS=%lld)", current_pts);
 			m_stream_stalled = true;
 		}
-		else if (m_stall_count == 6)
+		else if (m_stall_count == STALL_RECOVERY_TICKS)
 		{
 			m_recovery_attempts++;
 			if (m_recovery_attempts >= 5)
@@ -819,6 +866,29 @@ void eDVBSoftDecoder::setUserPauseActive(bool b)
 		m_decoder->setUserPauseActive(b);
 }
 #endif
+
+/* Only the AMLogic pacer is anchored once and then runs free, so only there
+ * does it need setting again after the gap. Elsewhere the clock follows the
+ * pcr in the stream and finds its way back by itself. */
+void eDVBSoftDecoder::afterPlaybackDelayGrown()
+{
+#ifdef DREAMNEXTGEN
+	if (m_decoder)
+		m_decoder->afterPlaybackDelayGrown();
+#endif
+}
+
+/* Only the AMLogic decoders blank the screen when they run out of pictures;
+ * elsewhere the last one stays by itself and there is nothing to do. */
+void eDVBSoftDecoder::holdLastFrame(bool on)
+{
+#ifdef DREAMNEXTGEN
+	if (m_decoder)
+		m_decoder->holdLastFrame(on);
+#else
+	(void)on;
+#endif
+}
 
 int eDVBSoftDecoder::setSlowMotion(int ratio)
 {

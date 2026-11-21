@@ -468,6 +468,28 @@ bool eDVBCSASession::hasKeys() const
 	return m_engine && m_engine->hasAnyKey();
 }
 
+int eDVBCSASession::takeLateMs()
+{
+	return (m_active && m_engine) ? m_engine->takeLateMs() : 0;
+}
+
+bool eDVBCSASession::takeBadKey()
+{
+	return (m_active && m_engine) ? m_engine->takeBadKey() : false;
+}
+
+void eDVBCSASession::creditPeriods(int ms)
+{
+	if (m_engine)
+		m_engine->creditPeriods(ms);
+}
+
+void eDVBCSASession::setKeepUnopened(bool on)
+{
+	if (m_engine)
+		m_engine->setKeepUnopened(on);
+}
+
 void eDVBCSASession::descramble(unsigned char* packets, int len)
 {
 	// Not active = Passthrough (CI+, StreamRelay, FTA, or detection pending)

@@ -58,6 +58,10 @@ public:
 	// Wait for first data to be written (for SoftDecoder sync)
 	virtual bool waitForFirstData(int timeout_ms) = 0;
 
+	// Delay playback by delay_ms so that variation in CW arrival no longer
+	// reaches the decoder. 0 = off. Only recorders that descramble act on it.
+	virtual void setPlaybackDelay(int /*delay_ms*/) { /* Not every recorder descrambles. */ }
+
 	// Set write accumulation threshold (0 = continuous writing)
 	virtual void setMinWrite(size_t size) = 0;
 	// Single-service output only. Other demux implementations may leave PSI unchanged.
@@ -71,7 +75,20 @@ public:
 		eventReachedBoundary,
 				/* the programmed boundary was reached. you might set a new target fd. you can close the */
 				/* old one. */
-		eventStreamCorrupt
+		eventStreamCorrupt,
+		eventDelayGrowing,
+				/* a raise is working its way out and nothing comes meanwhile:
+				 * expected, no reason to recover. */
+		eventDelayGrown,
+				/* the first data at the grown delay is out. */
+		eventPlaybackDrained,
+				/* and the gap was longer than the decoders can bridge, so
+				 * they have played out and need setting up again. */
+		eventDelayLimit,
+				/* a word came too late and the delay could not be raised:
+				 * it is fixed, or already at the ceiling. */
+		eventBadKey
+				/* a word arrived that does not open this service. */
 	};
 	virtual RESULT connectEvent(const sigc::slot<void(int)> &event, ePtr<eConnection> &conn)=0;
 	// Append optional methods so existing recorder vtable slots stay unchanged.

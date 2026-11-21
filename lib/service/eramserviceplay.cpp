@@ -3,6 +3,7 @@
 #include <lib/base/cfile.h>
 #include <lib/base/esettings.h>
 #include <lib/base/esimpleconfig.h>
+#include <lib/dvb/demux.h>
 #include <lib/dvb/csasession.h>
 #include <unistd.h>
 
@@ -65,6 +66,10 @@ RESULT eRamServicePlay::startTimeshift() {
 		if (m_timeshift_csa_session && m_timeshift_csa_session->init()) {
 			m_timeshift_csa_session->forceActivate();
 			m_record->setDescrambler(static_cast<iServiceScrambled*>(m_timeshift_csa_session.operator->()));
+
+			/* An error would stay in the ring, same as a recording. */
+			if (int delay = eSimpleConfig::getInt("config.softcsa.playbackDelay", eDVBRecordScrambledThread::AUTO_PLAYBACK_DELAY); delay != 0)
+				m_record->setPlaybackDelay(delay);
 		}
 	}
 
