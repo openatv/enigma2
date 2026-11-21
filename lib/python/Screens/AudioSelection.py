@@ -343,7 +343,9 @@ class AudioSelection(ConfigListScreen, Screen):
 
 					try:
 						if x[4] != "und":
-							if x[4] in LanguageCodes:
+							if x[4] == "qaa":  # ISO 639-2 "reserved for local use", used by DVB for the original language
+								language = _("Original language")
+							elif x[4] in LanguageCodes:
 								language = _(LanguageCodes[x[4]][0])
 							else:
 								language = x[4]
