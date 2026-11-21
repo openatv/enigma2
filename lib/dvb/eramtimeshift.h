@@ -116,14 +116,14 @@ private:
 
 // eRamRecorder
 //
-// Subclass of eDVBRecordScrambledThread that writes into eRamRingBuffer
-// instead of a disk file. Descrambling (CI, SoftCAM, StreamRelay) and
-// I-frame detection work identically to the disk path.
+// Subclass of eDVBRecordStreamThread that writes into eRamRingBuffer
+// instead of a disk file. I-frame detection works identically to the
+// disk path.
 //
 // relies entirely on the base class eDVBRecordFileThread for PTS
 // extraction (via eMPEGStreamParserTS) to drive the seek bar and
 // the Precise Recovery System, matching the standard master branch behavior.
-class eRamRecorder : public eDVBRecordScrambledThread {
+class eRamRecorder : public eDVBRecordStreamThread {
 public:
 	explicit eRamRecorder(eRamRingBuffer* buf, int packetsize = 188);
 	~eRamRecorder() override;

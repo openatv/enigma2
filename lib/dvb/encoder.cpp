@@ -1164,7 +1164,7 @@ int eEncoder::allocateEncoder(const std::string &serviceref, int &buffersize,
 
 	// Set encoder parameters - unified for both BCM and HiSilicon encoders
 	// BCM parameters now enabled for URL parameter support via Port 8001
-	// This makes transtreamproxy obsolete and enables SoftCSA for transcoding
+	// This makes transtreamproxy obsolete
 
 	if(bcm_encoder)
 	{

@@ -10,9 +10,6 @@
 
 #include <lib/service/servicedvb.h>
 
-// Forward declaration
-class eDVBCSASession;
-
 class eDVBServiceRecord: public eDVBServiceBase,
 	public iRecordableService,
 	public iStreamableService,
@@ -74,14 +71,6 @@ private:
 	int m_target_fd;
 	int m_streaming;
 	int m_last_event_id;
-
-	// Speculative software descrambling - always attached for encrypted channels
-	// Does nothing unless algo=3 is received from CAHandler
-	ePtr<eDVBCSASession> m_csa_session;
-	bool m_use_software_descramble;
-
-	int setupSoftwareDescrambler(eDVBServicePMTHandler::program& program);
-	int startRecorderInternal();
 
 	int doPrepare();
 	int doRecord();

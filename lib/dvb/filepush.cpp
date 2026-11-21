@@ -667,7 +667,7 @@ void eFilePushThreadRecorder::thread()
 #endif
 
 	/* Some demux drivers block in read() until the whole buffer is filled,
-	 * which delays live data (SoftCSA) by several hundred ms at low bitrates.
+	 * which delays live data by several hundred ms at low bitrates.
 	 * Non-blocking reads after poll() return what is available. */
 	int flags = fcntl(m_fd_source, F_GETFL, 0);
 	flags |= O_NONBLOCK;

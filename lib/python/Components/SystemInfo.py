@@ -10,7 +10,7 @@ from re import fullmatch, search
 from sys import version as pyversion
 from time import localtime, strftime
 
-from enigma import Misc_Options, eDBoxLCD, eDVBCIInterfaces, eDVBCSAEngine, eDVBResourceManager, eGetEnigmaDebugLvl, getE2Rev, getGraphicsInfo, getOARev
+from enigma import Misc_Options, eDBoxLCD, eDVBCIInterfaces, eDVBResourceManager, eGetEnigmaDebugLvl, getE2Rev, getGraphicsInfo, getOARev
 
 from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, fileCheck, fileExists, fileHas, fileReadLine, fileReadLines, isPluginInstalled, pathExists, resolveFilename
 from Tools.MultiBoot import MultiBoot
@@ -668,7 +668,6 @@ BoxInfo.setItem("HaveCISSL", fileCheck("/etc/ssl/certs/customer.pem") and fileCh
 BoxInfo.setItem("HaveID", fileCheck("/etc/.id"))
 BoxInfo.setItem("HAVEINITCAM", hasInitCam())
 BoxInfo.setItem("HAVEINITCARDSERVER", hasInitCardServer())
-BoxInfo.setItem("HasSoftCSA", eDVBCSAEngine.isAvailable())
 BoxInfo.setItem("HaveTouchSensor", MACHINEBUILD in ("dm520", "dm525", "dm900", "dm920"))
 BoxInfo.setItem("HDMICEC", fileExists("/dev/hdmi_cec") or fileExists("/dev/cec") or fileExists("/dev/misc/hdmi_cec0"))
 BoxInfo.setItem("HDMIin", BoxInfo.getItem("hdmifhdin") or BoxInfo.getItem("hdmihdin"))

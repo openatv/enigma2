@@ -3,7 +3,6 @@
 #include <lib/base/cfile.h>
 #include <lib/base/esettings.h>
 #include <lib/base/esimpleconfig.h>
-#include <lib/dvb/csasession.h>
 #include <unistd.h>
 
 DEFINE_REF(eRamServicePlay);
@@ -58,16 +57,6 @@ RESULT eRamServicePlay::startTimeshift() {
 
 	m_record->connectEvent(sigc::mem_fun(*this, &eRamServicePlay::recordEvent), m_con_record_event);
 
-	// StreamRelay / CSA-ALT channels need per-session descrambling.
-	if (m_csa_session && m_csa_session->isActive()) {
-		eServiceReferenceDVB dvb_ref = (eServiceReferenceDVB&)m_reference;
-		m_timeshift_csa_session = new eDVBCSASession(dvb_ref);
-		if (m_timeshift_csa_session && m_timeshift_csa_session->init()) {
-			m_timeshift_csa_session->forceActivate();
-			m_record->setDescrambler(static_cast<iServiceScrambled*>(m_timeshift_csa_session.operator->()));
-		}
-	}
-
 	// Use /tmp/ram_timeshift as the base path; the empty .ap sentinel keeps
 	// streaminfo loading alive while .sc is updated by the recorder.
 	m_timeshift_file = "/tmp/ram_timeshift";
@@ -79,10 +68,6 @@ RESULT eRamServicePlay::startTimeshift() {
 	const int sret = m_record->start();
 	if (sret < 0) {
 		eWarning("[eRamServicePlay] record->start() failed: %d", sret);
-		if (m_timeshift_csa_session) {
-			m_record->setDescrambler(nullptr);
-			m_timeshift_csa_session = nullptr;
-		}
 		m_ram_recorder = nullptr;
 		m_record = 0;
 		m_ram_ring.reset();
@@ -210,10 +195,6 @@ RESULT eRamServicePlay::stopTimeshift(bool swToLive) {
 		// use-after-free: eFilePushThread holds a raw pointer to the source
 		// and may be mid-read.
 		m_record->stop();
-		if (m_timeshift_csa_session) {
-			m_record->setDescrambler(nullptr);
-			m_timeshift_csa_session = nullptr;
-		}
 		m_record = 0;
 	}
 

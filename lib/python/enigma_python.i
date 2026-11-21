@@ -111,7 +111,6 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/dvb/dvbtime.h>
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/cahandler.h>
-#include <lib/dvb/csaengine.h>
 #include <lib/hbbtv/oipfapplication.h>
 #include <lib/hbbtv/hbbtv.h>
 #include <lib/dvb/fastscan.h>
@@ -252,6 +251,12 @@ class iDVBChannelList   { protected: iDVBChannelList() {}   virtual ~iDVBChannel
 %immutable eStreamServer::ping;
 %immutable eDVBLocalTimeHandler::m_timeUpdated;
 %immutable eFCCServiceManager::m_fcc_event;
+%immutable iCryptoInfo::clientname;
+%immutable iCryptoInfo::clientinfo;
+%immutable iCryptoInfo::verboseinfo;
+%immutable iCryptoInfo::usedcaid;
+%immutable iCryptoInfo::decodetime;
+%immutable iCryptoInfo::usedcardid;
 %immutable eTuxtxtApp::appClosed;
 %immutable iDVBChannel::receivedTsidOnid;
 %immutable eStreamServer::streamStatusChanged;
@@ -311,7 +316,6 @@ class iDVBChannelList   { protected: iDVBChannelList() {}   virtual ~iDVBChannel
 %include <lib/dvb/frontend.h>
 %include <lib/dvb/pmt.h>
 %include <lib/dvb/cahandler.h>
-%include <lib/dvb/csaengine.h>
 %include <lib/dvb/fastscan.h>
 %include <lib/dvb/cablescan.h>
 %include <lib/components/scan.h>
