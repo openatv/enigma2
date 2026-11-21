@@ -141,7 +141,7 @@ TranslationHelper = [
 	["provid:", _("provid:")],
 	["using:", _("using:")],
 	["address:", _("address:")],
-	["hops:", _("hops:")],
+	["hops:", _("Hops:")],
 	["pid:", _("pid:")],
 	["share:", _("share:")],
 	["handled", _("handled")],

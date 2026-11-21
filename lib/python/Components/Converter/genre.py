@@ -477,7 +477,7 @@ class GenresGBROpenTV:
 			_("General"),  # 0x80
 			_("Classical"),  # 0x81
 			_("Folk and Country"),  # 0x82
-			_("National music"),  # 0x83
+			_("National Music"),  # 0x83
 			_("Jazz"),  # 0x84
 			_("Opera"),  # 0x85
 			_("Rock/Pop"),  # 0x86

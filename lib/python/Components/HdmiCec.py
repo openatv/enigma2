@@ -58,9 +58,9 @@ config.hdmicec.messages_repeat_slowdown = ConfigSelection(default=1000, choices=
 choicelist = []
 for i in (5, 10, 30, 60, 120, 300, 600, 900, 1800, 3600):
 	if i / 60 < 1:
-		choicelist.append((i, _("%d sec") % i))
+		choicelist.append((i, ngettext("%d Second", "%d Seconds", i) % i))
 	else:
-		choicelist.append((i, _("%d min") % (i / 60)))
+		choicelist.append((i, ngettext("%d Minute", "%d Minutes", i // 60) % (i // 60)))
 config.hdmicec.handle_tv_delaytime = ConfigSelection(default=0, choices=[(0, _("None"))] + choicelist)
 config.hdmicec.deepstandby_waitfortimesync = ConfigYesNo(default=True)
 config.hdmicec.tv_wakeup_zaptimer = ConfigYesNo(default=True)
@@ -71,7 +71,7 @@ config.hdmicec.check_tv_state = ConfigYesNo(default=False)
 config.hdmicec.workaround_activesource = ConfigYesNo(default=False)
 choicelist = []
 for i in (5, 10, 15, 30, 45, 60):
-	choicelist.append((i, _("%d sec") % i))
+	choicelist.append((i, ngettext("%d Second", "%d Seconds", i) % i))
 config.hdmicec.workaround_turnbackon = ConfigSelection(default=0, choices=[(0, _("Disabled"))] + choicelist)
 config.hdmicec.advanced_settings = ConfigYesNo(default=True)
 config.hdmicec.default_settings = NoSave(ConfigYesNo(default=False))

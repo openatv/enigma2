@@ -248,7 +248,7 @@ class AudioSelection(ConfigListScreen, Screen):
 			if n > 0:
 				self.audioChannel = service.audioChannel()
 				if self.audioChannel:
-					choicelist = [("0", _("left")), ("1", _("stereo")), ("2", _("right"))]
+					choicelist = [("0", _("Left")), ("1", _("Stereo")), ("2", _("Right"))]
 					self.settings.channelmode = ConfigSelection(choices=choicelist, default=str(self.audioChannel.getCurrentChannel()))
 					self.settings.channelmode.addNotifier(self.changeMode, initial_call=False)
 					conflist.append(getConfigListEntry(_("Audio Channel"), self.settings.channelmode, None))

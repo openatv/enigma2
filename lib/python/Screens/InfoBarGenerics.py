@@ -5483,7 +5483,7 @@ class InfoBarSleepTimer:
 	def setTimer(self, delay, previous, timer, name, showMessage):
 		minutes = delay // 60
 		if delay:
-			message = "%s\n%s %s" % (_("%s has been activated.") % name, _("Delay:"), _("%d minutes") % minutes)
+			message = "%s\n%s %s" % (_("%s has been activated.") % name, _("Delay:"), ngettext("%d Minute", "%d Minutes", minutes) % minutes)
 			timer.startLongTimer(delay)
 			delay = int(time()) + delay
 		else:

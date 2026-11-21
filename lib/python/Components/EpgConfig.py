@@ -320,21 +320,21 @@ def initEPGConfig():
 	config.epgselection.infobar.itemsperpage = ConfigSelection(default=2, choices=choices)
 
 	config.epgselection.infobar.roundto = ConfigSelection(default="15", choices=[
-		("15", _("%d minutes") % 15),
-		("30", _("%d minutes") % 30),
-		("60", _("%d minutes") % 60),
+		("15", ngettext("%d Minute", "%d Minutes", 15) % 15),
+		("30", ngettext("%d Minute", "%d Minutes", 30) % 30),
+		("60", ngettext("%d Minute", "%d Minutes", 60) % 60),
 	])
 
 	# How many minutes of past EPG to show before "now".
 	config.epgselection.infobar.histminutes = ConfigSelection(default="0", choices=[
-		(str(x), _("%d minutes") % x) for x in range(0, 121, 15)
+		(str(x), ngettext("%d Minute", "%d Minutes", x) % x) for x in range(0, 121, 15)
 	])
 
 	# Persisted start position for "previous time" navigation.
 	config.epgselection.infobar.prevtime = ConfigClock(default=time())
 
 	config.epgselection.infobar.prevtimeperiod = ConfigSelection(default="180", choices=[
-		(str(x), _("%d minutes") % x) for x in (60, 90, 120, 150, 180, 210, 240, 270, 300)
+		(str(x), ngettext("%d Minute", "%d Minutes", x) % x) for x in (60, 90, 120, 150, 180, 210, 240, 270, 300)
 	])
 
 	# The old keys infobar_primetimehour/mins are migrated to this clock (default 20:15).
@@ -433,21 +433,21 @@ def initEPGConfig():
 	], default="text")
 	# config.epgselection.grid.highlight_current_events = ConfigYesNo(default=True)  # Not implemented yet.
 	config.epgselection.grid.roundto = ConfigSelection(default="15", choices=[
-		("15", _("%d minutes") % 15),
-		("30", _("%d minutes") % 30),
-		("60", _("%d minutes") % 60),
+		("15", ngettext("%d Minute", "%d Minutes", 15) % 15),
+		("30", ngettext("%d Minute", "%d Minutes", 30) % 30),
+		("60", ngettext("%d Minute", "%d Minutes", 60) % 60),
 	])
 
 	# How many minutes of past EPG to show before "now".
 	config.epgselection.grid.histminutes = ConfigSelection(default="0", choices=[
-		(str(x), _("%d minutes") % x) for x in range(0, 121, 15)
+		(str(x), ngettext("%d Minute", "%d Minutes", x) % x) for x in range(0, 121, 15)
 	])
 
 	# Persisted start position for "previous time" navigation.
 	config.epgselection.grid.prevtime = ConfigClock(default=time())
 
 	config.epgselection.grid.prevtimeperiod = ConfigSelection(default="180", choices=[
-		(str(x), _("%d minutes") % x) for x in (60, 90, 120, 150, 180, 210, 240, 270, 300)
+		(str(x), ngettext("%d Minute", "%d Minutes", x) % x) for x in (60, 90, 120, 150, 180, 210, 240, 270, 300)
 	])
 
 	# The old keys graph_primetimehour/mins are migrated to this clock (default 20:15).

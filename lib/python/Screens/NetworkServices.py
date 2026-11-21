@@ -578,7 +578,7 @@ class NetworkNFSSetup(Setup):
 		self.nfsVers4 = NoSave(ConfigYesNo(default=True))
 		self.nfsAccessMode = NoSave(ConfigSelection(default="rw", choices=[
 			("rw", _("Read/Write")),
-			("ro", _("Read Only")),
+			("ro", _("Read-Only")),
 		]))
 		self.nfsClients = NoSave(ConfigText(default="*", fixed_size=False))
 		self.nfsRootSquash = NoSave(ConfigYesNo(default=False))

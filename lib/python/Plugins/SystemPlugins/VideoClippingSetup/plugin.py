@@ -54,7 +54,7 @@ class VideoClippingCoordinates(ConfigListScreen, Screen):
 		self.clip_top = ConfigSlider(default=top, increment=self.clip_step.value, limits=(0, 576))
 		self.clip_height = ConfigSlider(default=height, increment=self.clip_step.value, limits=(0, 576))
 		self.list.append(getConfigListEntry(_("step size"), self.clip_step))
-		self.list.append(getConfigListEntry(_("left"), self.clip_left))
+		self.list.append(getConfigListEntry(_("Left"), self.clip_left))
 		self.list.append(getConfigListEntry(_("width"), self.clip_width))
 		self.list.append(getConfigListEntry(_("Top"), self.clip_top))
 		self.list.append(getConfigListEntry(_("height"), self.clip_height))
