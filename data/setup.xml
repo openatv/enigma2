@@ -1386,6 +1386,10 @@
 	<setup key="SpecialFeatures" title="Special Features Settings">
 		<!-- This is just a placeholder, the 'specialfeatures' menu is currently disabled. -->
 	</setup>
+	<setup key="SoftCSA" title="SoftCSA Settings">
+		<item level="1" text="CW delay compensation" description="Compensates for descrambling keys (CW) that arrive too late by delaying playback. 'Automatic' starts at a tenth of a second and raises the delay when a key came too late, up to five seconds. A fixed value delays every channel switch by that much instead. Takes effect with the next channel switch.">config.softcsa.playbackDelay</item>
+		<item level="1" text="Show CW notifications" description="Shows a short message on screen when a descrambling key (CW) arrives too late or does not open the channel. The details are always written to the debug log.">config.softcsa.notifications</item>
+	</setup>
 	<setup key="StreamRelay" title="Stream Relay Settings">
 		<item level="2" text="Stream Relay URL" description="IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay.">config.misc.softcam_streamrelay_url</item>
 		<item level="2" text="Stream Relay port" description="Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay.">config.misc.softcam_streamrelay_port</item>

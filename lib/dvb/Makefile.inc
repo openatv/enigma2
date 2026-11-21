@@ -43,7 +43,8 @@ dvb_libenigma_dvb_a_SOURCES = \
 	dvb/atsc.cpp \
 	dvb/fcc.cpp \
 	dvb/fccdecoder.cpp \
-	dvb/eramtimeshift.cpp
+	dvb/eramtimeshift.cpp \
+	dvb/dmxcsastatus.cpp
 
 if DREAMNEXTGEN
 dvb_libenigma_dvb_a_SOURCES += 	\
@@ -101,7 +102,8 @@ dvbinclude_HEADERS = \
 	dvb/atsc.h \
 	dvb/fcc.h \
 	dvb/fccdecoder.h \
-	dvb/eramtimeshift.h
+	dvb/eramtimeshift.h \
+	dvb/dmxcsastatus.h
 
 if DREAMNEXTGEN
 dvbinclude_HEADERS += \

@@ -288,6 +288,12 @@ protected:
 	void switchToTimeshift();
 
 	void updateDecoder(bool sendSeekableStateChanged = false);
+
+	// The software descrambler (dmxcsa) at work on this service: shown, not steered.
+	bool m_soft_descrambled;
+	bool isSoftDescrambled();
+	void softDescramblingChanged();
+	void softDescramblingEvent(int demux, int what);
 	ePtr<eConnection> m_ci_routing_connection;
 	ePtr<eTimer> m_ci_decoder_timer;
 	int m_ci_changed_tuner = -1;

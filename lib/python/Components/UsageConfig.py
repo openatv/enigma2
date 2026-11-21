@@ -1882,6 +1882,18 @@ def InitUsageConfig():
 	config.oscaminfo.autoUpdateLog = ConfigSelection(default=0, choices=choiceList)
 	BoxInfo.setItem("OScamInstalled", False)
 
+	def setSoftCSAPlaybackDelay(configElement):
+		if BoxInfo.getItem("HasSoftCSA"):
+			fileWriteLine("/sys/module/dmxcsa/parameters/delay", str(configElement.value), source=MODULE_NAME)
+
+	config.softcsa = ConfigSubsection()
+	config.softcsa.playbackDelay = ConfigSelection(
+		default=-1,
+		choices=[(0, _("Disabled")), (-1, _("Automatic"))] + [(x, _("%d ms") % x) for x in list(range(250, 2001, 250)) + list(range(2500, 5001, 500))]
+	)
+	config.softcsa.playbackDelay.addNotifier(setSoftCSAPlaybackDelay)
+	config.softcsa.notifications = ConfigYesNo(default=True)
+
 	config.misc.softcam_streamrelay_url = ConfigIP(default=[127, 0, 0, 1], auto_jump=True)
 	config.misc.softcam_streamrelay_port = ConfigInteger(default=17999, limits=(0, 65535))
 	config.misc.softcam_streamrelay_delay = ConfigSelectionNumber(min=0, max=2000, stepwidth=50, default=0, wraparound=True)

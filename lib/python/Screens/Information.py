@@ -671,6 +671,9 @@ class InformationDistribution(InformationBase):
 		mediaService = BoxInfo.getItem("mediaservice")
 		if mediaService:
 			info.append(self.formatLine("P1", _("Media service"), mediaService.replace("enigma2-plugin-systemplugins-", "")))
+		if fileReadLine("/sys/module/dmxcsa/initstate", source=MODULE_NAME) == "live":
+			dmxcsaVersion = fileReadLine("/sys/module/dmxcsa/version", source=MODULE_NAME)
+			info.append(self.formatLine("P1", _("Software descrambling"), f"{_('Available')}, dmxcsa {dmxcsaVersion}" if dmxcsaVersion else _("Available")))
 		info.append("")
 		info.append(self.formatLine("S", _("Build information")))
 		if self.extraSpacing:

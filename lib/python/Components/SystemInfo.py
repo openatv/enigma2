@@ -629,6 +629,7 @@ BoxInfo.setItem("CanMeasureFrontendInputPower", eDVBResourceManager.getInstance(
 BoxInfo.setItem("canMultiBoot", MultiBoot.canMultiBoot())
 BoxInfo.setItem("HasNewNativeMultiboot", exists("/.newMB"))
 BoxInfo.setItem("HasKexecMultiboot", fileHas("/proc/cmdline", "kexec=1"))
+BoxInfo.setItem("HasSoftCSA", exists("/sys/module/dmxcsa"))
 BoxInfo.setItem("cankexec", BoxInfo.getItem("kexecmb") and fileExists("/usr/bin/kernel_auto.bin") and fileExists("/usr/bin/STARTUP.cpio.gz") and not BoxInfo.getItem("HasKexecMultiboot"))
 BoxInfo.setItem("HasChkrootMultiboot", (MultiBoot.isFat32("/dev/block/by-name/others") or fileExists("/dev/block/by-name/startup")) and MODEL != "dms922x")
 BoxInfo.setItem("canchkroot", (BoxInfo.getItem("hasUBIMB") or fileExists("/dev/block/by-name/others")) and not BoxInfo.getItem("HasChkrootMultiboot") and not fileExists("/etc/.disableChkroot"))
