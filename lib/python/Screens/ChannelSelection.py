@@ -3743,8 +3743,17 @@ class ChannelSelectionSetup(Setup):
 				for index, dialog in enumerate(session.dialog_stack):
 					if isinstance(dialog[0], ChannelSelection):
 						oldDialogIndex = (index, dialog[1])
+				oldServiceList = InfoBarInstance.servicelist
+				lastSettings = (config.servicelist.lastmode, config.tv.lastservice, config.tv.lastroot, config.radio.lastservice, config.radio.lastroot)
+				lastValues = [x.value for x in lastSettings]
 				ChannelSelection.instance = None
 				InfoBarInstance.servicelist = session.instantiateDialog(ChannelSelection)
+				for setting, value in zip(lastSettings, lastValues):  # Undo the startup service override, keep the running service.
+					setting.value = value
+				InfoBarInstance.servicelist.history_tv = oldServiceList.history_tv
+				InfoBarInstance.servicelist.history_radio = oldServiceList.history_radio
+				InfoBarInstance.servicelist.history = InfoBarInstance.servicelist.history_radio if oldServiceList.history is oldServiceList.history_radio else InfoBarInstance.servicelist.history_tv
+				InfoBarInstance.servicelist.history_pos = oldServiceList.history_pos
 				InfoBarInstance.connectRadioOverlays()
 				InfoBarInstance.servicelist.summaries = oldSummarys
 				InfoBarInstance.servicelist.isTmp = False
