@@ -406,6 +406,9 @@ class MovieSelectionActions:
 		if trash:
 			for operation in operations:
 				operation["action"] = "trash"
+			if not config.usage.movielistTrashcanConfirm.value:
+				self.run(operations)
+				return
 		message = (_("Move %d selected movies and their companion files to the trashcan?") if trash else _("Permanently delete %d selected movies and their companion files?")) % len(operations)
 		self.screen.session.openWithCallback(lambda confirmed: self.run(operations) if confirmed else None, MessageBox, message, type=MessageBox.TYPE_YESNO, default=False)
 

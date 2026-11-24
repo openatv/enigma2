@@ -349,6 +349,9 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		self["key_green"] = StaticText()
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
+		self["key_menu"] = StaticText(_("MENU"))
+		self["key_info"] = StaticText(_("INFO"))
+		self["key_text"] = StaticText(_("TEXT"))
 		self._updateButtonTexts()
 		self["movie_off"] = MultiPixmap()
 		self["movie_off"].hide()
@@ -361,7 +364,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 			"showRadio": (self.btn_radio, boundFunction(self.getinitUserDefinedActionsDescription, "btn_radio")),
 			"showTv": (self.btn_tv, boundFunction(self.getinitUserDefinedActionsDescription, "btn_tv"))
 		}, prio=0)
-		self["NumberActions"] = NumberActionMap(["NumberActions", "InputAsciiActions"], {
+		self["numberActions"] = NumberActionMap(["NumberActions", "InputAsciiActions"], {
 			"gotAsciiCode": self.keyAsciiCode,
 			"0": self.keyNumberGlobal,
 			"1": self.keyNumberGlobal,
@@ -390,7 +393,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 			self["SubtitleActions"] = HelpableActionMap(self, ["MovieSelectionActions"], {
 				"subtitle": (self.openSubsSupport, _("Open external subtitle management screen"))
 			}, prio=0)
-		self["ColorActions"] = HelpableActionMap(self, ["ColorActions"], {
+		self["userActions"] = HelpableActionMap(self, ["ColorActions", "FunctionKeyActions"], {
 			"red": (self.btn_red, boundFunction(self.getinitUserDefinedActionsDescription, "btn_red")),
 			"green": (self.btn_green, boundFunction(self.getinitUserDefinedActionsDescription, "btn_green")),
 			"yellow": (self.btn_yellow, boundFunction(self.getinitUserDefinedActionsDescription, "btn_yellow")),
@@ -398,9 +401,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 			"redlong": (self.btn_redlong, boundFunction(self.getinitUserDefinedActionsDescription, "btn_redlong")),
 			"greenlong": (self.btn_greenlong, boundFunction(self.getinitUserDefinedActionsDescription, "btn_greenlong")),
 			"yellowlong": (self.btn_yellowlong, boundFunction(self.getinitUserDefinedActionsDescription, "btn_yellowlong")),
-			"bluelong": (self.btn_bluelong, boundFunction(self.getinitUserDefinedActionsDescription, "btn_bluelong"))
-		}, prio=0)
-		self["FunctionKeyActions"] = HelpableActionMap(self, ["FunctionKeyActions"], {
+			"bluelong": (self.btn_bluelong, boundFunction(self.getinitUserDefinedActionsDescription, "btn_bluelong")),
 			"f1": (self.btn_F1, boundFunction(self.getinitUserDefinedActionsDescription, "btn_F1")),
 			"f2": (self.btn_F2, boundFunction(self.getinitUserDefinedActionsDescription, "btn_F2")),
 			"f3": (self.btn_F3, boundFunction(self.getinitUserDefinedActionsDescription, "btn_F3"))
@@ -409,11 +410,15 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 			"cancel": (self.abort, _("Exit Movie Selection")),
 			"ok": (self.itemSelected, _("Select movie"))
 		}, prio=0)
-		self["DirectionActions"] = HelpableActionMap(self, ["DirectionActions"], {
-			"up": (self.keyUp, _("Go up the list")),
-			"down": (self.keyDown, _("Go down the list")),
-			"left": (self.keyLeft, _("Move left")),
-			"right": (self.keyRight, _("Move right"))
+		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
+			"top": (self.keyTop, _("Move to the first line / screen")),
+			# "pageUp": (self.keyPageUp, _("Move up a screen")),
+			"up": (self.keyUp, _("Move up a line")),
+			"left": (self.keyLeft, _("Move left / Move up a screen")),
+			"right": (self.keyRight, _("Move right / Move down a screen")),
+			"down": (self.keyDown, _("Move down a line")),
+			# "pageDown": (self.keyPageDown, _("Move down a screen")),
+			"bottom": (self.keyBottom, _("Move to the last line / screen"))
 		}, prio=-2)
 		tPreview = _("Preview")
 		tFwd = f"{_("skip forward")} ({tPreview})"
@@ -646,6 +651,26 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		self.movieActions.markDirection = "down"
 		self.list.instance.moveSelection(self.list.instance.moveRight)
 
+	def keyPageUp(self):
+		self.movieActions.markDirection = "up"
+		self.list.instance.goPageUp()
+
+	def keyPageDown(self):
+		self.movieActions.markDirection = "down"
+		self.list.instance.goPageDown()
+
+	def keyTop(self):
+		if self.list.playInBackground or self.list.playInForeground:
+			return 0  # Keep the key for preview seeking.
+		self.movieActions.markDirection = "up"
+		self.list.moveToFirst()
+
+	def keyBottom(self):
+		if self.list.playInBackground or self.list.playInForeground:
+			return 0  # Keep the key for preview seeking.
+		self.movieActions.markDirection = "down"
+		self.list.moveToLast()
+
 	def moveToFirstOrFirstFile(self):
 		if self.list.getCurrentIndex() <= self.list.firstFileEntry:  # Selection above or on first movie.
 			if self.list.getCurrentIndex() < 1:
@@ -765,13 +790,15 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		self.movieInformation.updateText()
 		if self.libraryActive:
 			return
+		height = self.listHeight
 		if self.settings["description"] == MovieList.SHOW_DESCRIPTION:
 			self["DescriptionBorder"].show()
-			self["list"].instance.resize(eSize(self.listWidth, self.listHeight - self["DescriptionBorder"].instance.size().height()))
+			height -= self["DescriptionBorder"].instance.size().height()
 		else:
 			self["Service"].newService(None)
 			self["DescriptionBorder"].hide()
-			self["list"].instance.resize(eSize(self.listWidth, self.listHeight))
+		itemHeight = self.list.itemHeight
+		self["list"].instance.resize(eSize(self.listWidth, height // itemHeight * itemHeight if itemHeight > 0 else height))  # Avoid a partially visible last row.
 		if self.list.styleOverride or config.movielist.widgetStyle.value:
 			self.list.setItemsPerPage()
 
@@ -1167,7 +1194,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 			self.setMovieView(choice[1])
 
 	def updateMovieViewActions(self):
-		for name in ("InfobarActions", "NumberActions", "playbackActions", "MovieSelectionActions", "SubtitleActions", "ColorActions", "FunctionKeyActions", "OkCancelActions", "SeekActions"):
+		for name in ("InfobarActions", "numberActions", "playbackActions", "MovieSelectionActions", "SubtitleActions", "userActions", "OkCancelActions", "SeekActions"):
 			if name in self:
 				self[name].setEnabled(not self.libraryActive)
 		self["libraryActions"].setEnabled(self.libraryActive)
