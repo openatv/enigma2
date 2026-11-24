@@ -43,15 +43,21 @@ def refreshChannelSelectionStyleChoices():
 	else:
 		translateSkinString = _
 
-	screenChoiceList = [("", _("Legacy mode"))]
+	screenChoiceList = []
+	screenDefault = ""
 	styles = getcomponentTemplateNames("serviceList") or []
 	if styles:
 		for screen, (element, path) in domScreens.items():
-			if element.get("base") == "ChannelSelection":
+			noLegacy = element.get("legacy", "").lower() in ("no", "false", "0")
+			if element.get("base") == "ChannelSelection" or (noLegacy and screen == "ChannelSelection"):
 				screenChoiceList.append((screen, translateSkinString(element.get("label", screen))))
+				if noLegacy and not screenDefault:
+					screenDefault = screen
+	if not screenDefault:  # Legacy mode is only removed if the skin requests it and provides styles.
+		screenChoiceList.insert(0, ("", _("Legacy mode")))
 	widgetChoiceList = [(style, translateSkinString(style)) for style in styles]
 	for name, choices, default in (
-		("screenStyle", screenChoiceList, ""),
+		("screenStyle", screenChoiceList, screenDefault),
 		("widgetStyle", widgetChoiceList, styles[0] if styles else "")
 	):
 		setting = getattr(config.channelSelection, name, None)
