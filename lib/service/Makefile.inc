@@ -21,7 +21,6 @@ service_libenigma_service_a_SOURCES = \
 	service/servicepeer.cpp \
 	service/servicets.cpp \
 	service/servicewebts.cpp \
-	service/servicedvbsoftdecoder.cpp \
 	service/dabtsadapter.cpp \
 	service/dabdecoder.cpp \
 	service/dabpacketdecoder.cpp \
@@ -37,7 +36,6 @@ serviceinclude_HEADERS = \
 	service/cea608.h \
 	service/event.h \
 	service/iservice.h \
-	service/iservicescrambled.h \
 	service/listboxservice.h \
 	service/elistboxservicecontent.h \
 	service/service.h \
@@ -53,7 +51,6 @@ serviceinclude_HEADERS = \
 	service/servicepeer.h \
 	service/servicets.h \
 	service/servicewebts.h \
-	service/servicedvbsoftdecoder.h \
 	service/dabdebug.h \
 	service/dabaudioframe.h \
 	service/dabsdrcontrol.h \

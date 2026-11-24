@@ -9,9 +9,6 @@
 
 #include <lib/service/servicedvb.h>
 
-// Forward declaration
-class eDVBCSASession;
-
 class eDVBServiceStream: public eDVBServiceBase, public sigc::trackable
 {
 	DECLARE_REF(eDVBServiceStream);
@@ -58,12 +55,6 @@ protected:
 	void recordPids(std::set<int> pids_to_record, int timing_pid, int timing_stream_type, iDVBTSRecorder::timing_pid_type timing_pid_type);
 	bool recordCachedPids();
 	void updateServiceCache(eDVBServicePMTHandler::program &program) const;
-
-	// Speculative software descrambler - always attached for encrypted channels
-	// Does nothing unless algo=3 is received
-	ePtr<eDVBCSASession> m_csa_session;
-	void setupSpeculativeDescrambler();
-	void cleanupCSASession();
 };
 
 #endif

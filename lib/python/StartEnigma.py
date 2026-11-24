@@ -453,6 +453,8 @@ def runScreenTest():
 	CiHandler.setSession(session)
 	from Components.RTLSDR import initRTLSDR
 	initRTLSDR(session)
+	from Components.SoftCSANotify import initSoftCSANotify
+	initSoftCSANotify(session)
 	from Screens.SwapManager import SwapAutostart
 	SwapAutostart()
 	enigma.eProfileWrite("Processing Screen")

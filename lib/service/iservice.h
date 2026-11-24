@@ -1033,6 +1033,10 @@ public:
 		evStreamError, /* recoverable failure of the primary HTTP source, not normal EOF */
 		evTimeshiftError, /* recorder write failure; time shift has returned to live TV */
 
+		evDmxcsaDelayRaised, /* software descrambling: the playback delay grew for a late control word */
+		evDmxcsaDelayLimit, /* a control word came too late and the delay stays as it is */
+		evDmxcsaBadCw, /* a control word arrived that does not open this service */
+
 		evUser = 0x100
 	};
 };

@@ -270,7 +270,7 @@ void eRamTsSource::setStartOffset(off_t o) {
 // ------------------------------------------------------------------
 // eRamRecorder
 // ------------------------------------------------------------------
-eRamRecorder::eRamRecorder(eRamRingBuffer* buf, int packetsize) : eDVBRecordScrambledThread(packetsize, 188 * 256, false, false), m_ring(buf) {
+eRamRecorder::eRamRecorder(eRamRingBuffer* buf, int packetsize) : eDVBRecordStreamThread(packetsize, 188 * 256, false), m_ring(buf) {
 	// PCR scan loop in writeData() assumes 188-byte TS packets.
 	// RAM timeshift always uses packetsize=188 (see startTimeshift()),
 	// but assert here to catch any future misuse early.
@@ -282,8 +282,6 @@ eRamRecorder::~eRamRecorder() {}
 int eRamRecorder::writeData(int len) {
 	if (len <= 0 || !m_ring)
 		return 0;
-	if (m_serviceDescrambler)
-		m_serviceDescrambler->descramble(m_buffer, len);
 
 	size_t ap_before = m_ts_parser.getAccessPointCount();
 	bool is_corrupt = false;

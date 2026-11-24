@@ -15,10 +15,6 @@
 class eStaticServiceDVBInformation;
 class eStaticServiceDVBBouquetInformation;
 
-// Forward declarations for software descrambling
-class eDVBCSASession;
-class eDVBSoftDecoder;
-
 class eServiceFactoryDVB : public iServiceHandler {
 	DECLARE_REF(eServiceFactoryDVB);
 	ePtr<eStaticServiceDVBInformation> m_StaticServiceDVBInfo;
@@ -236,12 +232,6 @@ protected:
 
 	ePtr<iTSMPEGDecoder> m_decoder;
 
-	// Software descrambling
-	ePtr<eDVBCSASession> m_csa_session;
-	ePtr<eConnection> m_csa_activated_conn;
-	ePtr<eDVBSoftDecoder> m_soft_decoder;
-	bool m_soft_decoder_video_info_valid = false;  // Track if video info is available from SoftDecoder
-
 	int m_is_primary;
 	int m_decoder_index;
 	int m_have_video_pid;
@@ -290,7 +280,6 @@ protected:
 
 	/* time shift */
 	ePtr<iDVBTSRecorder> m_record;
-	ePtr<eDVBCSASession> m_timeshift_csa_session;
 	std::set<int> m_pids_active;
 
 	void updateTimeshiftPids(bool captureServiceData = false);
@@ -299,6 +288,12 @@ protected:
 	void switchToTimeshift();
 
 	void updateDecoder(bool sendSeekableStateChanged = false);
+
+	// The software descrambler (dmxcsa) at work on this service: shown, not steered.
+	bool m_soft_descrambled;
+	bool isSoftDescrambled();
+	void softDescramblingChanged();
+	void softDescramblingEvent(int demux, int what);
 	ePtr<eConnection> m_ci_routing_connection;
 	ePtr<eTimer> m_ci_decoder_timer;
 	int m_ci_changed_tuner = -1;
@@ -377,17 +372,6 @@ protected:
 
 	ePtr<eConnection> m_con_record_event;
 	virtual void recordEvent(int event);
-
-	// Software descrambling
-	virtual void setupSpeculativeDescrambling();
-	void onSessionActivated(bool active);
-	void onSoftDecoderReady();
-	void onSoftDecoderAudioPidSelected(int pid);
-	void cleanupSoftwareDescrambling();
-
-	// Aggressive mode: force release of the HW-descrambler slot at service
-	// stop. Workaround for drivers (dm900) that ignore CA_SET_PID(pid, -1).
-	void resetHwDescramblerSlot();
 
 	// Audio cache helper
 	void updateAudioCache(int apid, int apidtype);

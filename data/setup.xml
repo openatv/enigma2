@@ -1387,10 +1387,8 @@
 		<!-- This is just a placeholder, the 'specialfeatures' menu is currently disabled. -->
 	</setup>
 	<setup key="SoftCSA" title="SoftCSA Settings">
-		<item level="0" text="Decoder release strategy" description="How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs a clean shutdown first (more stable on some boxes). 'Aggressive' performs a full descrambler reset between encrypted channels." restart="gui">config.softcsa.decoderRelease</item>
-		<item level="0" text="Sync mode" description="Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)." restart="gui">config.softcsa.syncMode</item>
-		<item level="2" text="Decoder start timeout" description="Maximum time to wait for the first descrambling key (CW) before starting the decoder. 'Disabled' starts the decoder immediately without waiting." restart="gui">config.softcsa.waitForDataTimeout</item>
-		<item level="2" text="Decoder start delay" description="Select the delay to buffer descrambled data before starting playback. This can reduce AC3 audio dropouts by ensuring enough data is available when the decoder starts. Higher values are more stable but increase channel switch time." restart="gui">config.softcsa.bufferTime</item>
+		<item level="1" text="CW delay compensation" description="Compensates for descrambling keys (CW) that arrive too late by delaying playback. 'Automatic' starts at a tenth of a second and raises the delay when a key came too late, up to five seconds. A fixed value delays every channel switch by that much instead. Takes effect with the next channel switch.">config.softcsa.playbackDelay</item>
+		<item level="1" text="Show CW notifications" description="Shows a short message on screen when a descrambling key (CW) arrives too late or does not open the channel. The details are always written to the debug log.">config.softcsa.notifications</item>
 	</setup>
 	<setup key="StreamRelay" title="Stream Relay Settings">
 		<item level="2" text="Stream Relay URL" description="IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay.">config.misc.softcam_streamrelay_url</item>

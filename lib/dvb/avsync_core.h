@@ -37,10 +37,9 @@ public:
 
 	bool kernelSyncActive() const { return m_kernel_sync_active; }
 
-	/* True when last setDemuxInfo got pcrpid=0x1FFF. Set by both SW-descramble
-	 * paths (eDVBSoftDecoder = in-process CSA, m_is_stream = oscam SR relay)
-	 * because both call setSyncPCR(-1). Kernel-pacer has no real stream PCR,
-	 * demux_pcr is synthesized from first PES. */
+	/* True when last setDemuxInfo got pcrpid=0x1FFF. Set by the oscam SR relay
+	 * path (m_is_stream) because it calls setSyncPCR(-1). Kernel-pacer has no
+	 * real stream PCR, demux_pcr is synthesized from first PES. */
 	bool isPCRPidAbsent() const { return m_pcrpid_absent; }
 
 private:
