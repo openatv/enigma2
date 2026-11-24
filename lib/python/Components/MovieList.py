@@ -343,7 +343,7 @@ class MovieList(GUIComponent):
 		listHeight = self.instance.size().height() if styleName else self.listHeight
 		if listHeight > 0:
 			ext = config.movielist.useextlist.value
-			minimumHeight = max(34 if getSkinFactor() == 1.5 else 28, self.fontSize + config.movielist.fontsize.value + 8)
+			minimumHeight = self.fontSize + config.movielist.fontsize.value + 4
 			itemHeight = max(minimumHeight, listHeight // config.movielist.itemsperpage.value) * (2 if ext != "0" else 1)
 		else:
 			itemHeight = 30  # Some default (270/5).
