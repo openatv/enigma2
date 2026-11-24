@@ -18,11 +18,10 @@ from Components.SystemInfo import BoxInfo
 from Plugins.Plugin import PluginDescriptor
 from Screens.InfoBar import InfoBar, MoviePlayer
 from Screens.InfoBarGenerics import streamrelay
-from Screens.MessageBox import MessageBox
 import Screens.Standby
+from Screens.Toast import Toast
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import fileWriteLine
-from Tools.Notifications import AddPopup
 from Tools.StbHardware import getFPWasTimerWakeup
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -635,7 +634,7 @@ class Navigation:
 					nref.setAlternativeUrl(newurl)
 					break
 			if wrappererror:
-				AddPopup(text=wrappererror, type=MessageBox.TYPE_ERROR, timeout=5, id="channelzapwrapper")
+				Toast.instance.showToast(text=wrappererror, toastType=Toast.TYPE_ERROR, timeout=5, replaceId="channelzapwrapper")
 		return nref, wrappererror
 
 	def getCurrentlyPlayingServiceReference(self):
