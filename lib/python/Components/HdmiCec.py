@@ -980,7 +980,7 @@ class HdmiCec:
 			if persist:
 				self._clearVolumeForwardingState()
 			return
-		self.volumeForwardingDestination = 5 if self.audio_system_present or self.system_audio_mode else 0
+		self.volumeForwardingDestination = 5 if self.system_audio_mode else 0
 		if self.volumeForwardingDestination == 0 and self.tv_vendor == CEC_VENDOR_LG:
 			self.volumeForwardingEnabled = False
 			if persist:
@@ -1081,7 +1081,7 @@ class HdmiCec:
 				self.wait.start(config.hdmicec.minimum_send_interval.value, True)
 
 	def sendVolumeKey(self, key):
-		address = 5 if self.audio_system_present or self.system_audio_mode else 0
+		address = 5 if self.system_audio_mode else 0
 		self.volumeForwardingDestination = address
 		self.sendRawMessage(address, 0x44, (key,))
 		self.sendRawMessage(address, 0x45, ())
