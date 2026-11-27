@@ -36,6 +36,7 @@ struct csa_dlopen_api
 	dvbcsa_get_ecm_table_f   get_ecm_table;
 	dvbcsa_bs_batch_size_f   batch_size;
 	dvbcsa_bs_decrypt_f      decrypt;
+	bool disabled;
 };
 
 // Global API instance (defined in csaengine.cpp)
@@ -68,6 +69,7 @@ public:
 
 	// Static helpers
 	static bool isAvailable() { csa_load_library(); return g_csa_api.available; }
+	static bool isDisabled() { csa_load_library(); return g_csa_api.disabled; }
 	static int getBatchSize();
 	static std::string getLibraryName();
 	static std::string getLibraryPath();
