@@ -8,7 +8,7 @@ from enigma import Misc_Options, eActionMap, eBackgroundFileEraser, eDVBDB, eDVB
 
 from keyids import KEYIDS
 from skin import domScreens, getcomponentTemplateNames
-from Components.config import ConfigBoolean, ConfigDictionarySet, ConfigDirectory, ConfigFloat, ConfigIP, ConfigInteger, ConfigLocations, ConfigNumber, ConfigPassword, ConfigSelection, ConfigSelectionNumber, ConfigSequence, ConfigService, ConfigSet, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, configfile
+from Components.config import ConfigBoolean, ConfigDictionarySet, ConfigDirectory, ConfigEnableDisable, ConfigFloat, ConfigIP, ConfigInteger, ConfigLocations, ConfigNumber, ConfigPassword, ConfigSelection, ConfigSelectionNumber, ConfigSequence, ConfigService, ConfigSet, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, configfile
 from Components.DateTimes import dateTimes
 from Components.EpgConfig import initEPGConfig
 from Components.Harddisk import harddiskmanager
@@ -1888,6 +1888,7 @@ def InitUsageConfig():
 	BoxInfo.setItem("OScamInstalled", False)
 
 	config.softcsa = ConfigSubsection()
+	config.softcsa.enabled = ConfigEnableDisable(default=True)
 	config.softcsa.decoderRelease = ConfigSelection(default=0, choices=[
 			(0, _("Quick")),
 			(1, _("Normal")),

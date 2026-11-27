@@ -666,7 +666,7 @@ BoxInfo.setItem("HaveCISSL", fileCheck("/etc/ssl/certs/customer.pem") and fileCh
 BoxInfo.setItem("HaveID", fileCheck("/etc/.id"))
 BoxInfo.setItem("HAVEINITCAM", hasInitCam())
 BoxInfo.setItem("HAVEINITCARDSERVER", hasInitCardServer())
-BoxInfo.setItem("HasSoftCSA", eDVBCSAEngine.isAvailable())
+BoxInfo.setItem("HasSoftCSA", eDVBCSAEngine.isAvailable() or eDVBCSAEngine.isDisabled())
 BoxInfo.setItem("HaveTouchSensor", MACHINEBUILD in ("dm520", "dm525", "dm900", "dm920"))
 BoxInfo.setItem("HDMICEC", fileExists("/dev/hdmi_cec") or fileExists("/dev/cec") or fileExists("/dev/misc/hdmi_cec0"))
 BoxInfo.setItem("HDMIin", BoxInfo.getItem("hdmifhdin") or BoxInfo.getItem("hdmihdin"))

@@ -1,5 +1,6 @@
 #include <lib/dvb/csaengine.h>
 #include <lib/base/eerror.h>
+#include <lib/base/esimpleconfig.h>
 #include <dlfcn.h>
 
 #define CSA_DEBUG 0
@@ -18,7 +19,8 @@ csa_dlopen_api g_csa_api = {
 	0,      // handle
 	false,  // tried
 	false,  // available
-	0, 0, 0, 0, 0
+	nullptr, nullptr, nullptr, nullptr, nullptr, nullptr,
+	false   // disabled
 };
 
 bool csa_load_library()
@@ -32,6 +34,13 @@ bool csa_load_library()
 		return false;
 
 	g_csa_api.tried = true;
+
+	if (!eSimpleConfig::getBool("config.softcsa.enabled", true))
+	{
+		eDebug("[eDVBCSAEngine] software CSA is disabled in the settings");
+		g_csa_api.disabled = true;
+		return false;
+	}
 
 	const char *candidates[] = {
 		"libdvbcsa.so.1",
