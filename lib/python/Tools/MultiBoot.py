@@ -97,7 +97,10 @@ class MultiBootClass():
 				print(f"MultiBoot] Unable to interpret dual boot file '{DUAL_BOOT_FILE}' data!  ({err})")
 		else:
 			self.bootSlot, self.bootCode = self.loadCurrentSlotAndBootCodes()
-		if exists(DREAM_BOOT_FILE) and self.canMultiBoot():
+		sharedKernel = self.bootSlot and any("kernelpolicy=slot1" in x.split() for x in self.bootSlots.get(self.bootSlot, {}).get("cmdline", {}).values())
+		if exists(DREAM_BOOT_FILE) and sharedKernel:
+			self.updateDreamBootSection(self.bootSlot)
+		elif exists(DREAM_BOOT_FILE) and self.canMultiBoot():
 			runningRoot = None
 			for token in fileReadLine("/proc/cmdline", default="", source=MODULE_NAME).split():
 				if token.startswith("root="):
@@ -210,6 +213,17 @@ class MultiBootClass():
 
 	def getDreamBootSectionIndex(self, slotCode):
 		# Match by root partition (or 'recovery' for slotCode R) — section order is not fixed.
+		slot = self.bootSlots.get(slotCode, {})
+		rootSubDir = slot.get("rootsubdir")
+		commands = slot.get("cmdline", {}).values()
+		if rootSubDir and any("kernelpolicy=slot1" in x.split() for x in commands):
+			# Shared-root systems keep the same bootconfig.txt format as Dream.
+			rootArgs = {x for line in commands for x in line.split() if x.startswith("root=")}
+			for sectionIndex, command in self._iterDreamBootSections():
+				args = command[4:].split()
+				if f"rootsubdir={rootSubDir}" in args and rootArgs.intersection(args):
+					return sectionIndex
+			return None
 		isRecovery = slotCode == "R"
 		targetPart = None
 		isSdCard = False
@@ -265,7 +279,13 @@ class MultiBootClass():
 				fd.writelines(out)
 
 	def loadBootDevice(self):
-		bootDeviceList = BOOT_DEVICE_LIST_VUPLUS if fileHas("/proc/cmdline", "kexec=1") else BOOT_DEVICE_LIST
+		bootDeviceList = BOOT_DEVICE_LIST
+		if fileHas("/proc/cmdline", "kexec=1"):
+			bootDeviceList = BOOT_DEVICE_LIST_VUPLUS
+		elif fileReadLine("/proc/stb/info/model", default="", source=MODULE_NAME) == "gtxcombo":
+			# The GTX links bootoptions to the running USB or eMMC system.
+			bootOptions = "/dev/block/by-name/bootoptions"
+			bootDeviceList = (bootOptions, *(x for x in bootDeviceList if x != bootOptions))
 		for device in bootDeviceList:
 			bootDevice = None
 			startupCmdLine = None

@@ -55,6 +55,10 @@ class InputDevices:
 					"configuredName": None
 				}
 
+				if BoxInfo.getItem("machinebuild") == "gtxcombo" and self.name == "meson-ir":
+					self.devices[device].update(defaultRepeat=70, defaultDelay=300)
+					self.setDeviceDefaults(device)
+
 				# Load default remote control "delay" and "repeat" values for ETxxxx ("QuickFix Scrollspeed Menues" proposed by Xtrend Support).
 				if BoxInfo.getItem("machinebuild").startswith("et"):
 					self.setDeviceDefaults(device)
@@ -95,8 +99,9 @@ class InputDevices:
 	def setDeviceDefaults(self, device):
 		print(f"[InputDevice] setDeviceDefaults DEBUG: Device '{device}'.")
 		self.setDeviceAttribute(device, "configuredName", None)
-		eventRepeat = pack("LLHHi", 0, 0, 0x14, 0x01, 100)
-		eventDelay = pack("LLHHi", 0, 0, 0x14, 0x00, 700)
+		defaults = self.devices.get(device, {})
+		eventRepeat = pack("LLHHi", 0, 0, 0x14, 0x01, defaults.get("defaultRepeat", 100))
+		eventDelay = pack("LLHHi", 0, 0, 0x14, 0x00, defaults.get("defaultDelay", 700))
 		fd = osopen(join("/dev/input", device), O_RDWR)
 		oswrite(fd, eventRepeat)
 		oswrite(fd, eventDelay)
@@ -358,9 +363,12 @@ class InitInputDevices:
 		configItem.enabled.addNotifier(self.inputDevicesEnabledChanged)
 		configItem.name = ConfigText(default="", fixed_size=False)
 		configItem.name.addNotifier(self.inputDevicesNameChanged)
-		configItem.repeat = ConfigSlider(default=BoxInfo.getItem("RemoteRepeat", 100), increment=10, limits=(0, 500))
+		defaults = inputDevices.devices[device]
+		repeat = defaults.get("defaultRepeat", BoxInfo.getItem("RemoteRepeat", 100))
+		delay = defaults.get("defaultDelay", BoxInfo.getItem("RemoteDelay", 700))
+		configItem.repeat = ConfigSlider(default=repeat, increment=10, limits=(0, 500))
 		configItem.repeat.addNotifier(self.inputDevicesRepeatChanged)
-		configItem.delay = ConfigSlider(default=BoxInfo.getItem("RemoteDelay", 700), increment=100, limits=(0, 5000))
+		configItem.delay = ConfigSlider(default=delay, increment=100, limits=(0, 5000))
 		configItem.delay.addNotifier(self.inputDevicesDelayChanged)
 
 	def inputDevicesEnabledChanged(self, configElement):

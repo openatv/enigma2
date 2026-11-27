@@ -402,6 +402,8 @@ def getDemodVersion():
 
 
 def getNumVideoDecoders():
+	if MACHINEBUILD == "gtxcombo" and exists("/dev/amstream_vframe"):
+		return 2 if exists("/sys/class/video/axis_pip") else 1
 	numVideoDecoders = 0
 	while fileExists(f"/dev/dvb/adapter0/video{numVideoDecoders}", "f"):
 		numVideoDecoders += 1

@@ -211,7 +211,7 @@ int fbClass::SetMode(int nxRes, int nyRes, int nbpp)
 #endif
 
 	screeninfo.xres_virtual=screeninfo.xres=nxRes;
-#if defined(CONFIG_ION) || defined(DREAMNEXTGEN)
+#if defined(CONFIG_ION) || defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_FBDEV)
 	screeninfo.yres = nyRes;
 	int wanted_pages = 3;
 #if defined(DREAMNEXTGEN)
@@ -260,7 +260,7 @@ int fbClass::SetMode(int nxRes, int nyRes, int nbpp)
 		break;
 	}
 
-#if defined(CONFIG_ION) || defined(DREAMNEXTGEN)
+#if defined(CONFIG_ION) || defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_FBDEV)
 	if (ioctl(fbFd, FBIOPUT_VSCREENINFO, &screeninfo)<0)
 	{
 		screeninfo.yres_virtual = nyRes * 2;

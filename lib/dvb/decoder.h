@@ -3,7 +3,7 @@
 
 #include <lib/base/object.h>
 #include <lib/dvb/demux.h>
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 #include <lib/base/ebase.h>
 #endif
 
@@ -42,7 +42,10 @@ private:
 	bool m_fcc_enable;
 	static int m_debug;
 	static int m_close_invalidates_attributes;
-	int m_is_slow_motion, m_is_fast_forward, m_is_freezed;
+	int m_is_slow_motion, m_is_fast_forward, m_is_freezed = 0;
+#ifdef GTX_DVB_AV
+	void setFramePaused(bool paused);
+#endif
 	ePtr<eSocketNotifier> m_sn;
 	void video_event(int what);
 	sigc::signal<void(struct iTSMPEGDecoder::videoEvent)> m_event;
@@ -57,11 +60,14 @@ private:
 	void hdr_gamma_detected(int gamma);
 	void publish_gamma(int gamma);
 	int read_driver_gamma();
-#ifdef DREAMNEXTGEN
-	/* decoders beyond the first take memory input */
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 	eDVBVideoSwDemux *m_sw_demux = nullptr;
+#endif
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 	/* the PCR of the service for the clock of a mosaic decoder */
 	int m_pcrpid = -1;
+#endif
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 	ePtr<eTimer> m_sysfs_poll_timer;
 	bool m_sysfs_size_event_sent;
 	unsigned int m_sysfs_poll_attempts;
@@ -77,8 +83,10 @@ public:
 	int setSlowMotion(int repeat);
 	int setFastForward(int skip);
 	void unfreeze();
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 	void setPcrPid(int pid) { m_pcrpid = pid; }
+#endif
+#ifdef DREAMNEXTGEN
 	/* Explicit VIDEO_PLAY ioctl used by trick→play recovery dance.
 	 * Distinct from startPid() which also opens demux + sets stream type. */
 	void playRecovery();
@@ -107,7 +115,7 @@ private:
 public:
 	eDVBPCR(eDVBDemux *demux, int dev);
 	int startPid(int pid);
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 	int start();
 #endif
 	void stop();
@@ -160,7 +168,7 @@ private:
 	bool m_has_audio;
 	/* audio without a PCR of its own: the mosaic decoders of DreamNextGen */
 	bool m_mosaic_audio;
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 	bool m_user_pause_active = false;
 #endif
 	int setState();
@@ -224,6 +232,8 @@ public:
 	RESULT pause(); /* -> pause */
 #ifdef DREAMNEXTGEN
 	void setUserPauseActive(bool b) override { m_user_pause_active = b; }
+#elif defined(GTX_DVB_AV)
+	void setUserPauseActive(bool paused) override;
 #endif
 	RESULT setFastForward(int frames_to_skip); /* -> decoder fast forward */
 	RESULT setSlowMotion(int repeat); /* -> slow motion **/

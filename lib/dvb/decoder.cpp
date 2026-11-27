@@ -7,7 +7,7 @@
 #include <lib/base/wrappers.h>
 #include <lib/dvb/decoder.h>
 #include <lib/dvb/hevc_hdr_detector.h>
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 #include <lib/dvb/videoswdemux.h>
 #endif
 #include <lib/components/tuxtxtapp.h>
@@ -18,6 +18,9 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
+#ifdef GTX_DVB_AV
+#include <amvideo.h>
+#endif
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <errno.h>
@@ -26,7 +29,7 @@
 #include <vector>
 
 #include <lib/dvb/fccdecoder.h>
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 #include <lib/dvb/avsync_core.h>
 #endif
 
@@ -363,7 +366,7 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev, bool fcc_enable)
 	: m_demux(demux), m_dev(dev), m_fcc_enable(fcc_enable),
 	m_width(-1), m_height(-1), m_framerate(-1), m_aspect(-1), m_progressive(-1), m_gamma(-1), m_streamtype(-1),
 	m_hdr_detector(0), m_hdr_gamma(-1), m_driver_gamma(-1), m_hdr_gamma_authoritative(false), m_gamma_from_driver_event(false)
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 	, m_sysfs_size_event_sent(false), m_sysfs_poll_attempts(0)
 #endif
 {
@@ -373,9 +376,18 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev, bool fcc_enable)
 
 	char filename[128] = {};
 	sprintf(filename, "/dev/dvb/adapter%d/video%d", demux ? demux->adapter : 0, dev);
-	m_fd = ::open(filename, O_RDWR | O_CLOEXEC);
+#ifdef GTX_DVB_AV
+	// The GTX primary video node accepts file frames. DVB and PVR feed amstream via the demux.
+	const bool useGtxDemux = demux && dev == 0;
+#else
+	const bool useGtxDemux = false;
+#endif
+	m_fd = useGtxDemux ? -1 : ::open(filename, O_RDWR | O_CLOEXEC);
 	if (m_fd < 0)
-		eWarning("[eDVBVideo] %s: %m", filename);
+	{
+		if (!useGtxDemux)
+			eWarning("[eDVBVideo] %s: %m", filename);
+	}
 	else
 	{
 		if(eDVBVideo::m_debug)
@@ -406,7 +418,15 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev, bool fcc_enable)
 		eDebug("[eHEVCHDRDetector] attached to video decoder %d (FCC=%d)", m_dev, m_fcc_enable);
 	}
 
-#ifndef DREAMNEXTGEN
+#ifdef GTX_DVB_AV
+	if (demux && m_dev >= 2 && m_dev <= 5 && m_fd >= 0)
+	{
+		if (m_fd_demux >= 0)
+			::close(m_fd_demux);
+		m_fd_demux = -1;
+		m_sw_demux = new eDVBVideoSwDemux(demux, m_fd, DMX_PES_OTHER, true);
+	}
+#elif !defined(DREAMNEXTGEN)
 	if (m_fd >= 0)
 	{
 		::ioctl(m_fd, VIDEO_SELECT_SOURCE, demux ? VIDEO_SOURCE_DEMUX : VIDEO_SOURCE_HDMI);
@@ -445,12 +465,16 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev, bool fcc_enable)
 		m_close_invalidates_attributes = (m_width == -1) ? 1 : 0;
 	}
 
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 	// AMLogic doesn't reliably send VIDEO_EVENTs. Poll until all initial
 	// video attributes have settled, then leave the main loop alone.
 	m_sysfs_poll_timer = eTimer::create(eApp);
 	CONNECT(m_sysfs_poll_timer->timeout, eDVBVideo::sysfs_poll_timeout);
+#ifdef GTX_DVB_AV
+	if (m_dev == 0)
+#else
 	if (m_fd >= 0)
+#endif
 		m_sysfs_poll_timer->start(500, true);
 #endif
 }
@@ -483,6 +507,20 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev, bool fcc_enable)
 
 int eDVBVideo::startPid(int pid, int type)
 {
+#ifdef GTX_DVB_AV
+	if (m_demux && (m_dev == 0 || m_dev == 1) && m_fd < 0)
+	{
+		auto codec = type == MPEG4_H264 ? eDVBVideoSwDemux::H264 :
+			type == H265_HEVC ? eDVBVideoSwDemux::HEVC :
+			(type == MPEG2 || type == MPEG1) ? eDVBVideoSwDemux::MPEG2 : eDVBVideoSwDemux::OTHER;
+		if (codec == eDVBVideoSwDemux::OTHER)
+			return -ENOTSUP;
+		if (!m_sw_demux)
+			m_sw_demux = new eDVBVideoSwDemux(m_demux, m_dev == 1);
+		m_gamma = m_driver_gamma = -1;
+		return m_sw_demux->start(pid, codec);
+	}
+#endif
 	if (m_hdr_detector)
 		m_hdr_detector->stop();
 	m_gamma = -1;
@@ -644,6 +682,8 @@ int eDVBVideo::startPid(int pid, int type)
 #ifdef DREAMNEXTGEN
 	if (doubleWriteRestore >= 0)
 		CFile::writeInt(doubleWriteMode, doubleWriteRestore);
+#endif
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 	if (m_sw_demux)
 	{
 		eDVBVideoSwDemux::Codec codec = eDVBVideoSwDemux::OTHER;
@@ -664,13 +704,16 @@ int eDVBVideo::startPid(int pid, int type)
 
 void eDVBVideo::stop()
 {
+#ifdef GTX_DVB_AV
+	setFramePaused(false);
+#endif
 	if (m_hdr_detector)
 		m_hdr_detector->stop();
 
 	if (m_fcc_enable)
 		return;
 
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 	if (m_sw_demux)
 		m_sw_demux->stop();
 #endif
@@ -778,6 +821,10 @@ void eDVBVideo::clearLastFrame()
 
 void eDVBVideo::flush()
 {
+#ifdef GTX_DVB_AV
+	if (m_fd < 0 && m_dev == 0 && m_sw_demux)
+		m_sw_demux->flushFrameInput();
+#endif
 	if (m_fd >= 0)
 	{
 #ifdef DREAMNEXTGEN
@@ -799,8 +846,30 @@ void eDVBVideo::flush()
 	}
 }
 
+#ifdef GTX_DVB_AV
+void eDVBVideo::setFramePaused(bool paused)
+{
+	if (m_dev != 0 || !m_sw_demux || m_is_freezed == paused)
+		return;
+	int fd = ::open("/dev/amvideo", O_RDWR | O_CLOEXEC);
+	if (fd < 0)
+	{
+		eWarning("[eDVBVideo] open amvideo: %m");
+		return;
+	}
+	if (::ioctl(fd, AMSTREAM_IOC_VPAUSE, paused ? 1UL : 0UL) == 0)
+		m_is_freezed = paused;
+	else
+		eWarning("[eDVBVideo] AMSTREAM_IOC_VPAUSE: %m");
+	::close(fd);
+}
+#endif
+
 void eDVBVideo::freeze()
 {
+#ifdef GTX_DVB_AV
+	setFramePaused(true);
+#endif
 	if (m_fd >= 0)
 	{
 #ifdef DREAMNEXTGEN
@@ -824,6 +893,9 @@ void eDVBVideo::freeze()
 
 void eDVBVideo::unfreeze()
 {
+#ifdef GTX_DVB_AV
+	setFramePaused(false);
+#endif
 	if (m_fd >= 0)
 	{
 #ifdef DREAMNEXTGEN
@@ -932,6 +1004,10 @@ int eDVBVideo::setFastForward(int skip)
 
 int eDVBVideo::getPTS(pts_t &now)
 {
+#ifdef GTX_DVB_AV
+	if (m_sw_demux && m_dev == 0 && m_fd < 0)
+		return m_sw_demux->getFrameInputPTS(now);
+#endif
 	if (m_fd >= 0)
 	{
 		if(eDVBVideo::m_debug)
@@ -951,9 +1027,11 @@ eDVBVideo::~eDVBVideo()
 	delete m_hdr_detector;
 	m_hdr_detector = 0;
 
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 	if (m_sysfs_poll_timer)
 		m_sysfs_poll_timer->stop();
+#endif
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 	delete m_sw_demux;
 	m_sw_demux = nullptr;
 #endif
@@ -1137,16 +1215,38 @@ void eDVBVideo::video_event(int)
 	}
 }
 
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 void eDVBVideo::sysfs_poll_timeout()
 {
 	int new_width = -1, new_height = -1, new_framerate = -1, new_progressive = -1;
 	if (m_sysfs_poll_attempts < 10)
 		++m_sysfs_poll_attempts;
 	
+#ifdef GTX_DVB_AV
+	// The frame-input decoder has no DVB VIDEO_EVENT for HDR changes.
+	int gamma = -1;
+	if (!CFile::parseIntHex(&gamma, "/proc/stb/vmpeg/0/gamma") && gamma >= 0 && gamma <= 3)
+	{
+		m_driver_gamma = gamma;
+		publish_gamma(gamma);
+	}
+	int ratio = 0;
+	CFile::parseIntHex(&ratio, "/sys/class/video/frame_aspect_ratio");
+	// The SM1 amstream ABI uses these two encodings for each broadcast ratio.
+	int aspect = -1;
+	if (ratio == 0x8c || ratio == 0x90)
+		aspect = 3;  // ETSI 16:9
+	else if (ratio == 0xbb || ratio == 0xc0)
+		aspect = 2;  // ETSI 4:3
+	CFile::parseIntHex(&new_width, "/proc/stb/vmpeg/0/xres");
+	CFile::parseIntHex(&new_height, "/proc/stb/vmpeg/0/yres");
+	CFile::parseInt(&new_framerate, "/proc/stb/vmpeg/0/framerate");
+#else
+	const int aspect = m_aspect;
 	CFile::parseInt(&new_width, "/sys/class/video/frame_width");
 	CFile::parseInt(&new_height, "/sys/class/video/frame_height");
 	CFile::parseInt(&new_framerate, "/proc/stb/vmpeg/0/frame_rate");
+#endif
 	CFile::parseInt(&new_progressive, "/proc/stb/vmpeg/0/progressive");
 	
 	bool changed = false;
@@ -1155,10 +1255,11 @@ void eDVBVideo::sysfs_poll_timeout()
 	// values before listeners are connected, which otherwise suppresses the
 	// only size event on AMLogic.
 	if (new_width > 0 && new_height > 0 &&
-		(!m_sysfs_size_event_sent || new_width != m_width || new_height != m_height))
+		(!m_sysfs_size_event_sent || new_width != m_width || new_height != m_height || aspect != m_aspect))
 	{
 		m_width = new_width;
 		m_height = new_height;
+		m_aspect = aspect;
 		
 		struct iTSMPEGDecoder::videoEvent event;
 		event.type = iTSMPEGDecoder::videoEvent::eventSizeChanged;
@@ -1200,7 +1301,12 @@ void eDVBVideo::sysfs_poll_timeout()
 		(new_progressive == 0 || new_progressive == 1);
 	if (m_sysfs_size_event_sent && attributes_ready && !changed)
 	{
+		#ifdef GTX_DVB_AV
+		// The primary frame-input decoder also has no mid-program VIDEO_EVENT.
+		m_sysfs_poll_timer->start(2000, true);
+#else
 		m_sysfs_poll_timer->stop();
+#endif
 	}
 	else
 	{
@@ -1443,7 +1549,7 @@ void eDVBPCR::stop()
 		::ioctl(m_fd_demux, DMX_STOP);
 }
 
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 int eDVBPCR::start()
 {
 	if (m_fd_demux < 0)
@@ -1602,7 +1708,7 @@ int eTSMPEGDecoder::setState()
 		m_text = 0;
 	}
 
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 	/* a mosaic window ran the system clock since the main sync was set up */
 	static bool s_mosaic_clock = false;
 
@@ -1660,7 +1766,7 @@ int eTSMPEGDecoder::setState()
 
 	if (m_changed & changePCR)
 	{
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 		/* no PCR decoder for PiP, the PiP layer paces itself */
 		if ((m_pcrpid >= 0) && (m_pcrpid < 0x1FFF) && m_decoder == 0)
 #else
@@ -1670,6 +1776,10 @@ int eTSMPEGDecoder::setState()
 			m_pcr = new eDVBPCR(m_demux, m_decoder);
 			if (m_pcr->startPid(m_pcrpid))
 				res = -1;
+#ifdef GTX_DVB_AV
+			else if (m_user_pause_active)
+				m_pcr->stop();
+#endif
 		}
 		m_changed &= ~changePCR;
 	}
@@ -1677,11 +1787,15 @@ int eTSMPEGDecoder::setState()
 	{
 		if ((m_apid >= 0) && (m_apid < 0x1FFF) && !noaudio)
 		{
+#ifdef GTX_DVB_AV
+			m_audio = new eDVBAudio(m_demux, m_mosaic_audio ? 0 : m_decoder);
+#else
 			m_audio = new eDVBAudio(m_demux, m_decoder);
+#endif
 			if (m_audio->startPid(m_apid, m_atype))
 				res = -1;
 		}
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 		/* the mosaic window playing the audio runs the system clock */
 		if (m_mosaic_audio)
 		{
@@ -1699,7 +1813,7 @@ int eTSMPEGDecoder::setState()
 		{
 			m_video = new eDVBVideo(m_demux, m_decoder, m_fcc_enable);
 			m_video->connectEvent(sigc::mem_fun(*this, &eTSMPEGDecoder::video_event), m_video_event_conn);
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 			m_video->setPcrPid(m_pcrpid);
 #endif
 			if (m_video->startPid(m_vpid, m_vtype))
@@ -1828,6 +1942,22 @@ int eTSMPEGDecoder::m_pcm_delay=-1,
 	eTSMPEGDecoder::m_ac3_delay=-1,
 	eTSMPEGDecoder::m_debugTXT=-1;
 
+#ifdef GTX_DVB_AV
+void eTSMPEGDecoder::setUserPauseActive(bool paused)
+{
+	if (m_decoder || m_user_pause_active == paused)
+		return;
+	m_user_pause_active = paused;
+	if (m_pcr)
+	{
+		if (paused)
+			m_pcr->stop();
+		else if (m_pcr->start() < 0)
+			eWarning("[eTSMPEGDecoder] failed to resume recording PCR");
+	}
+}
+#endif
+
 RESULT eTSMPEGDecoder::setHwPCMDelay(int delay)
 {
 	if (delay != m_pcm_delay )
@@ -1878,7 +2008,13 @@ eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder)
 	sprintf(filename, "/dev/dvb/adapter%d/audio%d", m_demux ? m_demux->adapter : 0, m_decoder);
 	m_has_audio = !access(filename, W_OK);
 	m_mosaic_audio = false;
-#ifdef DREAMNEXTGEN
+#ifdef GTX_DVB_AV
+	if (m_decoder >= 2 && m_decoder <= 5)
+	{
+		sprintf(filename, "/dev/dvb/adapter%d/video%d", m_demux ? m_demux->adapter : 0, m_decoder);
+		m_mosaic_audio = !access(filename, W_OK);
+	}
+#elif defined(DREAMNEXTGEN)
 	if (m_decoder >= 2)
 	{
 		sprintf(filename, "/dev/dvb/adapter%d/dreamaudio%d", m_demux ? m_demux->adapter : 0, m_decoder);

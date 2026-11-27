@@ -2089,7 +2089,7 @@ void gPixmap::blit(const gPixmap& src, const eRect& _pos, const gRegion& clip, i
 						accel = (src.surface->bpp == 8);
 					else if (flag & blitAlphaBlend)
 					{
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_FBDEV)
 						accel = (src.surface->bpp == 32);
 #else
 						accel = false;

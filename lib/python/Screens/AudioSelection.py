@@ -188,7 +188,7 @@ class AudioSelection(ConfigListScreen, Screen):
 				elif BoxInfo.getItem("machinebuild") in ("gbquad4k", "gbquad4kpro", "gbue4k", "gbx34k", "vuduo4klite"):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Pass-through")), ("force_ac3", _("Convert to AC3")), ("multichannel", _("Convert to multi-channel PCM")), ("force_dts", _("Convert to DTS"))]
 					self.settings.transcodeac3plus = ConfigSelection(choices=choice_list, default=config.av.transcodeac3plus.value)
-				elif BoxInfo.getItem("machinebuild") in ("dreamone", "dreamtwo"):
+				elif BoxInfo.getItem("machinebuild") in ("dreamone", "dreamtwo", "gtxcombo"):
 					choice_list = [("hdmi_best", _("Use best / Controlled by HDMI")), ("passthrough", _("Pass-through")), ("downmix", _("Downmix")), ("force_ac3", _("Convert to AC3"))]
 				else:
 					choice_list = [("use_hdmi_caps", _("Controlled by HDMI")), ("force_ac3", _("Convert to AC3"))]
@@ -214,8 +214,8 @@ class AudioSelection(ConfigListScreen, Screen):
 			if BoxInfo.getItem("CanDTSHD"):
 				if BoxInfo.getItem("machinebuild") in ("dm7080", "dm820"):
 					choice_list = [("use_hdmi_caps", _("Controlled by HDMI")), ("force_dts", _("Convert to DTS"))]
-				elif BoxInfo.getItem("machinebuild") in ("dreamone", "dreamtwo"):
-					choice_list = [("hdmi_best", _("Use best / Controlled by HDMI")), ("passthrough", _("Pass-through")), ("downmix", _("Downmix"))]
+				elif BoxInfo.getItem("machinebuild") in ("dreamone", "dreamtwo", "gtxcombo"):
+					choice_list = config.av.dtshd.getSelectionList()
 				else:
 					choice_list = [("downmix", _("Downmix")), ("force_dts", _("Convert to DTS")), ("use_hdmi_caps", _("Controlled by HDMI")), ("multichannel", _("Convert to multi-channel PCM")), ("hdmi_best", _("Use best / Controlled by HDMI"))]
 				self.settings.dtshd = ConfigSelection(choices=choice_list, default=config.av.dtshd.value)

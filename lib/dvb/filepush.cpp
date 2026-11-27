@@ -68,6 +68,7 @@ void eFilePushThread::thread()
 	setIoPrio(prio_class, prio);
 	eDebug("[eFilePushThread] START thread");
 	bool sourceReady = !m_source->isStream();
+	int terminalEvent = -1;
 	/* Whole blocks from the start of the buffer, which holds whole blocks
 	 * of the source, so no TS packet is split between two writes. */
 	const int write_chunk = std::max<int>(1, MAX_DVR_WRITE / m_blocksize) * m_blocksize;
@@ -163,6 +164,10 @@ void eFilePushThread::thread()
 				}
 				if (errno == EINTR || errno == EBUSY || errno == EAGAIN)
 					continue;
+				if (m_flags & FLAGBIT_CI_FILE) {
+					terminalEvent = evtReadError;
+					break;
+				}
 				if (errno == EOVERFLOW)
 				{
 					eWarning("[eFilePushThread] OVERFLOW while playback?");
@@ -178,6 +183,11 @@ void eFilePushThread::thread()
 
 			if (buf_end == 0 || m_sof == 1)
 			{
+				if ((m_flags & FLAGBIT_CI_FILE) && !m_sof) {
+					// Flush the last hardware FIFO block before the recorder closes.
+					terminalEvent = fsync(m_fd_dest) < 0 ? evtWriteError : evtEOF;
+					break;
+				}
 				/* on EOF, try COMMITting once. */
 				if (m_send_pvr_commit)
 				{
@@ -262,9 +272,11 @@ void eFilePushThread::thread()
 						/* Check m_stop after interrupted syscall. */
 						if (m_stop)
 						{
+#ifndef GTX_DVB_AV
 							w = 0;
 							buf_start = 0;
 							buf_end = 0;
+#endif
 							break;
 						}
 						if (w < 0 && (errno == EINTR || errno == EAGAIN || errno == EBUSY))
@@ -289,13 +301,23 @@ void eFilePushThread::thread()
 							continue;
 						}
 						eDebug("[eFilePushThread] write: %m");
-						sendEvent(evtWriteError);
+						if (m_flags & FLAGBIT_CI_FILE)
+							terminalEvent = evtWriteError;
+						else
+							sendEvent(evtWriteError);
 						break;
 					}
 					buf_start += w;
 					nomem_count = 0;
 				}
 
+#ifdef GTX_DVB_AV
+				/* Resume at the first packet not delivered before a file pause. */
+				if (m_stop == 2)
+					buf_end = buf_start;
+#endif
+				if (terminalEvent >= 0)
+					break;
 				eofcount = 0;
 				m_current_position += buf_end;
 				bytes_read += buf_end;
@@ -303,7 +325,7 @@ void eFilePushThread::thread()
 					current_span_remaining -= buf_end;
 			}
 		}
-		sendEvent(evtStopped);
+		sendEvent(terminalEvent >= 0 ? terminalEvent : evtStopped);
 
 		{ /* mutex lock scope */
 			eSingleLocker lock(m_run_mutex);
@@ -314,11 +336,11 @@ void eFilePushThread::thread()
 				eDebug("[eFilePushThread] PAUSED");
 				m_run_cond.wait(m_run_mutex);
 			}
-			if (m_stop == 0)
+			if (m_stop == 0 && terminalEvent < 0)
 				m_run_state = 1;
 		}
 
-	} while (m_stop == 0);
+	} while (m_stop == 0 && terminalEvent < 0);
 	eDebug("[eFilePushThread] STOP");
 }
 

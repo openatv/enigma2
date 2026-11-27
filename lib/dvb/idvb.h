@@ -732,7 +732,7 @@ public:
 	eRdWrLock m_lock;
 
 			/* backend */
-	enum { evtSeek, evtSkipmode, evtSpanChanged };
+	enum { evtSeek, evtSkipmode, evtSpanChanged, evtFilePause };
 	RESULT connectEvent(const sigc::slot<void(int)> &event, ePtr<eConnection> &connection);
 
 	std::list<std::pair<pts_t,pts_t> > m_spans;	/* begin, end */
@@ -741,6 +741,17 @@ public:
 	sigc::signal<void(int)> m_event;
 	ePtr<iDVBDemux> m_decoding_demux;
 	ePtr<iTSMPEGDecoder> m_decoder;
+#ifdef GTX_DVB_AV
+	bool filePaused = false;
+	void setFilePaused(bool paused)
+	{
+		if (filePaused != paused)
+		{
+			filePaused = paused;
+			m_event(evtFilePause);
+		}
+	}
+#endif
 };
 
 class iDVBPVRChannel: public iDVBChannel
@@ -899,6 +910,9 @@ public:
 	virtual int getVideoFrameRate() = 0;
 	virtual int getVideoAspect() = 0;
 	virtual int getVideoGamma() = 0;
+#if defined(GTX_DVB_AV) && !defined(DREAMNEXTGEN)
+	virtual void setUserPauseActive(bool /*paused*/) {}
+#endif
 };
 
 #endif //SWIG

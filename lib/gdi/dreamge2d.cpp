@@ -1,6 +1,9 @@
 #include <lib/gdi/dreamge2d.h>
 
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_FBDEV)
+#ifdef HAVE_AMLOGIC_FBDEV
+#include <lib/gdi/fb.h>
+#endif
 
 #include <lib/base/eerror.h>
 #include <lib/gdi/erect.h>
@@ -932,6 +935,23 @@ namespace
 			return target.phys != 0;
 		}
 
+#ifdef HAVE_AMLOGIC_FBDEV
+		// Pixmap allocations follow the scanout pages in the same fbdev mapping.
+		// Accept only matching virtual and physical offsets inside that allocation.
+		fbClass *fb = fbClass::getInstance();
+		if (!s_fb.valid || !fb || !surface->data || surface->stride / 4 < surface->x)
+			return false;
+		const uintptr_t address = reinterpret_cast<uintptr_t>(surface->data);
+		const uintptr_t base = reinterpret_cast<uintptr_t>(s_fb.base_data);
+		if (address < base || address - base < s_fb.bytes)
+			return false;
+		const size_t offset = address - base;
+		const size_t capacity = fb->Available();
+		if (offset >= capacity || static_cast<size_t>(surface->y) > (capacity - offset) / surface->stride ||
+			static_cast<uint32_t>(surface->data_phys) != s_fb.base_phys + offset)
+			return false;
+		target.framebuffer = true;
+#else
 		if (!s_raw_phys_accel_enabled)
 		{
 			if (!s_raw_phys_warning_logged)
@@ -942,13 +962,14 @@ namespace
 			return false;
 		}
 
+		target.framebuffer = false;
+#endif
 		target.width = surface->x;
 		target.height = surface->y;
 		target.stride = surface->stride;
 		target.phys = (unsigned long)(uint32_t)surface->data_phys;
 		target.fd = -1;
 		target.managed = false;
-		target.framebuffer = false;
 		target.data = surface->data;
 		return target.phys != 0;
 	}

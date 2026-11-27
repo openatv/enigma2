@@ -61,15 +61,20 @@ class IconCheckPoller:
 
 	def jobTask(self):
 		if self.symbolNetwork and self.lcdMode:
-			linkState = "0"
-			if exists("/sys/class/net/wlan0/operstate"):
-				linkState = fileReadLine("/sys/class/net/wlan0/operstate")
-				if linkState != "down":
-					linkState = fileReadLine("/sys/class/net/wlan0/carrier")
-			elif exists("/sys/class/net/eth0/operstate"):
-				linkState = fileReadLine("/sys/class/net/eth0/operstate")
-				if linkState != "down":
-					linkState = fileReadLine("/sys/class/net/eth0/carrier")
+			if MACHINEBUILD == "gtxcombo":
+				linkState = "1" if fileReadLine("/sys/class/net/eth0/operstate", "down") == "up" else "0"
+				wifi = exists("/sys/class/net/wlan0/operstate") and fileReadLine("/sys/class/net/wlan0/operstate") == "up"
+				fileWriteLine("/sys/class/leds/gtx::wifi/brightness", "1" if wifi else "0")
+			else:
+				linkState = "0"
+				if exists("/sys/class/net/wlan0/operstate"):
+					linkState = fileReadLine("/sys/class/net/wlan0/operstate")
+					if linkState != "down":
+						linkState = fileReadLine("/sys/class/net/wlan0/carrier")
+				elif exists("/sys/class/net/eth0/operstate"):
+					linkState = fileReadLine("/sys/class/net/eth0/operstate")
+					if linkState != "down":
+						linkState = fileReadLine("/sys/class/net/eth0/carrier")
 			fileWriteLine("/proc/stb/lcd/symbol_network", linkState)
 		if self.symbolUsb:
 			USBState = 0
@@ -77,8 +82,15 @@ class IconCheckPoller:
 				for bus in busses():
 					devices = bus.devices
 					for dev in devices:
-						if dev.deviceClass != 9 and dev.deviceClass != 2 and dev.idVendor != 3034 and dev.idVendor > 0:
-							USBState = 1
+						if dev.deviceClass in (2, 9) or dev.idVendor <= 0:
+							continue
+						if MACHINEBUILD == "gtxcombo":
+							# The GTX connects its LAN, SATA bridge and CI controller via USB.
+							if (dev.idVendor, dev.idProduct) in ((0x0BDA, 0x8153), (0x2109, 0x0715), (0x1B0D, 0x2F00)):
+								continue
+						elif dev.idVendor == 0x0BDA:
+							continue
+						USBState = 1
 			except Exception as err:
 				print("[IconCheckPoller] Error get USB devices!  (%s)" % str(err))
 			fileWriteLine("/proc/stb/lcd/symbol_usb", USBState)
@@ -417,7 +429,7 @@ def InitLcd():
 		if exists("/proc/stb/fp/power4x7standby"):
 			config.usage.lcd_power4x7standby.addNotifier(setPower4x7Standby)
 
-		config.usage.lcd_power4x7suspend = ConfigOnOff(default=True)
+		config.usage.lcd_power4x7suspend = ConfigOnOff(default=MACHINEBUILD != "gtxcombo")
 		if exists("/proc/stb/fp/power4x7suspend"):
 			config.usage.lcd_power4x7suspend.addNotifier(setPower4x7Suspend)
 

@@ -2563,7 +2563,11 @@ RESULT eDVBServicePlay::pause()
 		m_pause_position = -1;
 		m_slowmotion = 0;
 		m_is_paused = 1;
-#ifdef DREAMNEXTGEN
+#ifdef GTX_DVB_AV
+		if (m_cue && (m_is_pvr || m_timeshift_active))
+			m_cue->setFilePaused(true);
+#endif
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 		m_decoder->setUserPauseActive(true);
 #endif
 		return m_decoder->pause();
@@ -2606,6 +2610,11 @@ RESULT eDVBServicePlay::unpause()
             resetRecoveryState();
         }
 
+#ifdef GTX_DVB_AV
+		m_decoder->setUserPauseActive(false);
+		if (m_cue && m_cue->filePaused)
+			m_cue->setFilePaused(false);
+#endif
 		RESULT r = m_decoder->play();
 #ifdef DREAMNEXTGEN
 		m_decoder->setUserPauseActive(false);
@@ -3260,6 +3269,9 @@ RESULT eDVBServicePlay::selectTrack(unsigned int i)
 	if (m_decoder->set())
 		return -5;
 
+#ifdef GTX_DVB_AV
+	m_event((iPlayableService*)this, evUpdatedInfo);
+#endif
 	return ret;
 }
 
@@ -4576,7 +4588,7 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 			selectAudioStream();
 		}
 
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 		/* Kernel AV-sync needs the real PCR-PID for DMX_GET_STC. 0x1FFF
 		 * works in steady state but breaks anchor convergence after seek. */
 		m_decoder->setSyncPCR(pcrpid);

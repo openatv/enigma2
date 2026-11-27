@@ -17,6 +17,9 @@
 #include <lib/dvb/specs.h>
 #include "filepush.h"
 
+#ifdef GTX_DVB_AV
+#include <time.h>
+#endif
 #include <errno.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -161,6 +164,19 @@ void eDVBResourceManager::feStateChanged()
 
 std::map<std::string, std::string> eDVBAdapterLinux::mappedFrontendName;
 
+#ifdef GTX_DVB_AV
+// Filled after USB/SAT>IP providers have created their proxy frontends.
+static std::map<int, int> gtxVirtualDemuxSources;
+
+static bool readGtxVtunerRoute(int slot, int &demux, int &frontend)
+{
+	char path[64];
+	snprintf(path, sizeof(path), "/sys/class/misc/vtuner%d/route", slot);
+	std::ifstream route(path);
+	return static_cast<bool>(route >> demux >> frontend);
+}
+#endif
+
 DEFINE_REF(eDVBAdapterLinux);
 eDVBAdapterLinux::eDVBAdapterLinux(int nr): m_nr(nr)
 {
@@ -182,7 +198,15 @@ void eDVBAdapterLinux::scanDevices()
 		 */
 		char filename[128];
 		snprintf(filename, sizeof(filename), "/sys/class/dvb/dvb%d.frontend%d", m_nr, num_fe);
-		if (::access(filename, X_OK) < 0) break;
+		if (::access(filename, X_OK) < 0)
+		{
+#ifdef GTX_DVB_AV
+			// A SAT>IP provider can release a frontend below a still active one.
+			if (!m_nr && ++num_fe < 6)
+				continue;
+#endif
+			break;
+		}
 		snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/frontend%d", m_nr, num_fe);
 		std::string name = filename;
 		std::map<std::string, std::string>::iterator it = mappedFrontendName.find(name);
@@ -201,6 +225,15 @@ void eDVBAdapterLinux::scanDevices()
 		++num_fe; // NOSONAR
 	}
 
+#ifdef GTX_DVB_AV
+	if (!m_nr)
+	{
+		gtxVirtualDemuxSources.clear();
+		for (int slot = 0, demux, frontend; readGtxVtunerRoute(slot, demux, frontend); ++slot)
+			if (demux >= 0)
+				gtxVirtualDemuxSources[demux] = frontend;
+	}
+#endif
 		// scan demux
 	int num_demux = 0;
 	while (1)
@@ -304,20 +337,27 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	int frontend = -1;
 	char filename[256] = {};
 	char name[128] = {0};
+#ifdef GTX_DVB_AV
+	struct dtv_property usbSystems = {};
+	struct dtv_properties usbQuery = {1, &usbSystems};
+	int virtualDemux = -1, virtualFrontend = -1;
+	int vtunerid = 0;
+#else
 	int vtunerid = nr - 1;
 	char buffer[4*1024];
 	char* buf_pos;
 	ssize_t rd;
 	int fd;
+	int num_fe = 0;
+#endif
 
 	pumpThread = 0;
 	rtlSDRBridge = false;
 	running = false;
 
-	int num_fe = 0;
-
 	demuxFd = vtunerFd = pipeFd[0] = pipeFd[1] = -1;
 
+#ifndef GTX_DVB_AV
 	/* we need to know exactly what frontend is internal or initialized! */
 	fd = open("/proc/bus/nim_sockets", O_RDONLY);
 	if (fd < 0)
@@ -345,6 +385,8 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 	num_fe++;
 	snprintf(filename, sizeof(filename), "/dev/dvb/adapter0/frontend%d", num_fe);
 	virtualFrontendName = filename;
+
+#endif
 
 	/* find the device name */
 	snprintf(filename, sizeof(filename), "/sys/class/dvb/dvb%d.frontend0/device/product", nr);
@@ -378,6 +420,11 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 		frontend = -1;
 		goto error;
 	}
+#ifdef GTX_DVB_AV
+	usbSystems.cmd = DTV_ENUM_DELSYS;
+	if (ioctl(frontend, FE_GET_PROPERTY, &usbQuery) < 0)
+		usbSystems.u.buffer.len = 0;
+#endif
 	::close(frontend);
 	frontend = -1;
 
@@ -459,7 +506,7 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 		goto error;
 	}
 
-#ifdef VMSG_TYPE2
+#if defined(VMSG_TYPE2) || defined(GTX_DVB_AV)
 #define VTUNER_GET_MESSAGE  11
 #define VTUNER_SET_RESPONSE 12
 #define VTUNER_SET_NAME     13
@@ -480,10 +527,23 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 #endif
 #define VTUNER_SET_DELSYS 32
 #define VTUNER_SET_ADAPTER 33
+#ifdef GTX_DVB_AV
+	if (ioctl(vtunerFd, VTUNER_SET_NAME, name) < 0 ||
+		ioctl(vtunerFd, VTUNER_SET_TYPE, type) < 0 ||
+		ioctl(vtunerFd, VTUNER_SET_FE_INFO, &fe_info) < 0 ||
+		(usbSystems.u.buffer.len && ioctl(vtunerFd, VTUNER_SET_DELSYS, usbSystems.u.buffer.data) < 0) ||
+		ioctl(vtunerFd, VTUNER_SET_ADAPTER, nr) < 0 ||
+		ioctl(vtunerFd, VTUNER_SET_HAS_OUTPUTS, "no") < 0 ||
+		!readGtxVtunerRoute(vtunerid, virtualDemux, virtualFrontend) || virtualFrontend < 0)
+		goto error;
+	snprintf(filename, sizeof(filename), "/dev/dvb/adapter0/frontend%d", virtualFrontend);
+	virtualFrontendName = filename;
+#else
 	ioctl(vtunerFd, VTUNER_SET_NAME, name);
 	ioctl(vtunerFd, VTUNER_SET_TYPE, type);
 	ioctl(vtunerFd, VTUNER_SET_HAS_OUTPUTS, "no");
 	ioctl(vtunerFd, VTUNER_SET_ADAPTER, nr);
+#endif
 	rtlSDRBridge = isRTL2832FrontendName(name) || isRTL2832FrontendName(fe_info.name);
 	if (rtlSDRBridge)
 		eDebug("[eDVBUsbAdapter] adapter%d is an RTL-SDR bridge", nr);
@@ -1262,6 +1322,13 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 	 * the first demuxes for live tv, and start with the last for pvr playback
 	 */
 
+#ifdef GTX_DVB_AV
+	int virtualDemuxId = -1;
+	if (fe && fesource >= 0)
+		for (const auto &route : gtxVirtualDemuxSources)
+			if (route.second == fesource)
+				virtualDemuxId = route.first;
+#endif
 	bool use_decode_demux = (fe || (cap & iDVBChannel::capDecode));
 
 	if (!use_decode_demux)
@@ -1272,7 +1339,13 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 
 	while (i != m_demux.end())
 	{
+#ifdef GTX_DVB_AV
+		i->m_demux->getCADemuxID(d);
+		bool matchesSource = virtualDemuxId >= 0 ? d == virtualDemuxId : !gtxVirtualDemuxSources.count(d);
+		if (i->m_adapter == adapter && matchesSource)
+#else
 		if (i->m_adapter == adapter)
+#endif
 		{
 			if (!i->m_inuse)
 			{
@@ -1954,6 +2027,9 @@ public:
 		m_parity_switch_delay(0),
 		m_parity(-1)
 	{}
+#ifdef GTX_DVB_AV
+	void enablePcrPacing() { m_pace_pcr = true; }
+#endif
 	void setIFrameSearch(int enabled) { m_iframe_search = enabled; m_iframe_state = 0; }
 
 			/* "timebase change" is for doing trickmode playback at an exact speed, even when pictures are skipped. */
@@ -1961,16 +2037,78 @@ public:
 	void setTimebaseChange(int ratio) { m_timebase_change = ratio; } /* 16bit fixpoint, 0 for disable */
 	void setParitySwitchDelay(int msdelay) { m_parity_switch_delay = msdelay; }
 protected:
-	int m_iframe_search, m_iframe_state, m_pid;
-	int m_timebase_change;
+	std::atomic<int> m_iframe_search;
+	int m_iframe_state, m_pid;
+	std::atomic<int> m_timebase_change;
 	int m_packet_size;
 	int m_parity_switch_delay;
 	int m_parity;
+#ifdef GTX_DVB_AV
+	void paceByPcr(const unsigned char *data, int len);
+	bool m_pace_pcr = false;
+	int m_clock_pid = -1;
+	int64_t m_last_pcr = -1, m_deadline_ns = 0, m_last_seen_ns = 0;
+#endif
 	void filterRecordData(const unsigned char *data, int len);
 };
 
+#ifdef GTX_DVB_AV
+// The SM1 memory frontend accepts data at memory speed. Feed a recording at
+// its original multiplex rate so neither the TS tap nor the audio queue overruns.
+void eDVBChannelFilePush::paceByPcr(const unsigned char *data, int len)
+{
+	if (m_packet_size < 188 || m_iframe_search || m_timebase_change)
+	{
+		m_last_pcr = -1;
+		return;
+	}
+	timespec ts;
+	clock_gettime(CLOCK_MONOTONIC, &ts);
+	constexpr int64_t second = 1000000000LL;
+	const int64_t now = ts.tv_sec * second + ts.tv_nsec;
+	bool found = false;
+	for (int offset = 0; offset + m_packet_size <= len; offset += m_packet_size)
+	{
+		const auto *p = data + offset + m_packet_size - 188;
+		if (p[0] != 0x47 || (p[1] & 0x80) || !(p[3] & 0x20) ||
+			p[4] < 7 || p[4] > 183 || !(p[5] & 0x10))
+			continue;
+		const int pid = ((p[1] & 0x1f) << 8) | p[2];
+		if (pid != m_clock_pid)
+		{
+			if (m_clock_pid >= 0 && now - m_last_seen_ns < second / 2)
+				continue;
+			m_clock_pid = pid;
+			m_last_pcr = -1;
+		}
+		const int64_t pcr = (int64_t(p[6]) << 25) | (p[7] << 17) |
+			(p[8] << 9) | (p[9] << 1) | (p[10] >> 7);
+		const int64_t delta = (pcr - m_last_pcr) & ((1LL << 33) - 1);
+		if (m_last_pcr < 0 || (p[5] & 0x80) || delta > 90000 ||
+			now - m_deadline_ns > second / 2)
+			m_deadline_ns = now;
+		else
+			m_deadline_ns += delta * second / 90000;
+		m_last_seen_ns = now;
+		m_last_pcr = pcr;
+		found = true;
+	}
+	if (found && m_deadline_ns > now)
+	{
+		const timespec deadline = {static_cast<time_t>(m_deadline_ns / second),
+			static_cast<long>(m_deadline_ns % second)};
+		// The filepush pause/stop signal interrupts this wait on seek or zap.
+		clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &deadline, nullptr);
+	}
+}
+#endif
+
 void eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len)
 {
+#ifdef GTX_DVB_AV
+	if (m_pace_pcr)
+		paceByPcr(_data, len);
+#endif
 	if (m_parity_switch_delay)
 	{
 		int offset;
@@ -2090,8 +2228,20 @@ void eDVBChannel::pvrEvent(int event)
 {
 	switch (event)
 	{
+#ifdef GTX_DVB_AV
+	case eFilePushThread::evtWriteError:
+		if (m_ci_pvr)
+			m_event(this, evtFailed);
+		break;
+#endif
 	case eFilePushThread::evtSourceReady:
 	case eFilePushThread::evtReadError:
+#ifdef GTX_DVB_AV
+		if (m_ci_pvr && event == eFilePushThread::evtReadError) {
+			m_event(this, evtFailed);
+			break;
+		}
+#endif
 		if (m_state == state_tuning && m_source && m_source->isStream())
 		{
 			// Start PAT/PMT timeouts only after the asynchronous connection attempt.
@@ -2121,6 +2271,14 @@ void eDVBChannel::cueSheetEvent(int event)
 		return;
 	switch (event)
 	{
+#ifdef GTX_DVB_AV
+	case eCueSheet::evtFilePause:
+		if (m_cue->filePaused)
+			m_pvr_thread->pause();
+		else
+			m_pvr_thread->resume();
+		break;
+#endif
 	case eCueSheet::evtSeek:
 		eDebug("[eDVBChannel] seek.");
 		flushPVR(m_cue->m_decoding_demux);
@@ -2311,8 +2469,14 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 			}
 			if (m_cue->m_decoder->getPTS(0, now))
 			{
+#ifdef GTX_DVB_AV
+				// Flushing the frame input invalidates its PTS before the reader
+				// resolves the seek. Use the existing index lookup below.
+				now = 0;
+#else
 				eDebug("[eDVBChannel] decoder getPTS failed, can't seek relative");
 				continue;
+#endif
 			}
 			if (m_debugSeek)
 				eDebug("[eDVBChannel] seekRelative: decoder->getPTS() succeeded, now=%lld (before getCurrentPosition/fixupPTS)", now);
@@ -2659,6 +2823,18 @@ RESULT eDVBChannel::getDemux(ePtr<iDVBDemux> &demux, int cap)
 	return 0;
 }
 
+#ifdef GTX_DVB_AV
+RESULT eDVBChannel::prepareCIFile()
+{
+	ePtr<iDVBDemux> demux;
+	if (m_frontend || m_pvr_fd_dst >= 0 || getDemux(demux, iDVBChannel::capDecode))
+		return -EBUSY;
+	m_pvr_fd_dst = m_decoder_demux->get().openCIPVR();
+	m_ci_pvr = m_pvr_fd_dst >= 0;
+	return m_pvr_fd_dst < 0 ? m_pvr_fd_dst : 0;
+}
+#endif
+
 RESULT eDVBChannel::getFrontend(ePtr<iDVBFrontend> &frontend)
 {
 	frontend = 0;
@@ -2739,8 +2915,19 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 		}
 	}
 
+#ifdef GTX_DVB_AV
+	if (m_ci_pvr)
+		flags |= FLAGBIT_CI_FILE;
+#endif
 	m_pvr_thread = new eDVBChannelFilePush(m_source->getPacketSize(), flags);
+#ifdef GTX_DVB_AV
+	if (!m_source->isStream())
+		m_pvr_thread->enablePcrPacing();
+	// The memory DVR has no read-ready commit event on a write-only fd.
+	m_pvr_thread->enablePVRCommit(0);
+#else
 	m_pvr_thread->enablePVRCommit(1);
+#endif
 	m_pvr_thread->setStreamMode(m_source->isStream());
 	m_pvr_thread->setScatterGather(this);
 
@@ -2768,6 +2955,9 @@ void eDVBChannel::stop()
 		::close(m_pvr_fd_dst);
 		m_pvr_fd_dst = -1;
 	}
+#ifdef GTX_DVB_AV
+	m_ci_pvr = false;
+#endif
 	m_source = NULL;
 	m_tstools.setSource(m_source);
 }
@@ -2843,7 +3033,10 @@ RESULT eDVBChannel::seekSourcePosition(off_t offset)
 	::ioctl(m_pvr_fd_dst, 0);
 	if (m_cue && m_cue->m_decoding_demux)
 		m_cue->m_decoding_demux->flush();
-	m_pvr_thread->resume();
+#ifdef GTX_DVB_AV
+	if (!m_cue || !m_cue->filePaused)
+#endif
+		m_pvr_thread->resume();
 	return 0;
 }
 
@@ -2870,7 +3063,10 @@ void eDVBChannel::flushPVR(iDVBDemux *decoding_demux)
 
 		/* demux will also flush all decoder.. */
 		/* resume will re-query the SG */
-	m_pvr_thread->resume();
+#ifdef GTX_DVB_AV
+	if (!m_cue || !m_cue->filePaused)
+#endif
+		m_pvr_thread->resume();
 }
 
 DEFINE_REF(eCueSheet);

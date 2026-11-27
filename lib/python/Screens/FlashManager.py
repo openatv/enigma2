@@ -862,7 +862,15 @@ class FlashImage(Screen, ProtectedScreen):
 									break
 					except OSError:
 						pass
-			if BoxInfo.getItem("HasKexecMultiboot"):
+			sharedKernel = rootSubDir and any("kernelpolicy=slot1" in x.split() for x in bootSlots[self.slotCode].get("cmdline", {}).values())
+			if sharedKernel and (not currentSlot or not currentSlot.isdecimal() or not 1 <= int(currentSlot) <= 32):
+				self.session.openWithCallback(self.keyCancel, MessageBox, _("The running image slot could not be identified. Nothing was flashed."), type=MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+				return
+			if sharedKernel:
+				cmdArgs = [f"-r{mtdRootFS}", f"-c{currentSlot}", f"-m{self.slotCode}"]
+				if self.slotCode == "1":
+					cmdArgs.append(f"-k{mtdKernel}")
+			elif BoxInfo.getItem("HasKexecMultiboot"):
 				if self.slotCode == "R":
 					cmdArgs = ["-r", "-k", "-f"]
 					Console().ePopen([UMOUNT, UMOUNT, "/proc/cmdline"])
@@ -912,7 +920,7 @@ class FlashImage(Screen, ProtectedScreen):
 		self.containerOFGWrite = None
 		if retVal == 0:
 			slotCode = getattr(self, "slotCode", None)
-			if slotCode and BoxInfo.getItem("model") in ("dreamone", "dreamtwo") and BoxInfo.getItem("HasGPT"):
+			if slotCode and ((BoxInfo.getItem("model") in ("dreamone", "dreamtwo") and BoxInfo.getItem("HasGPT")) or any("kernelpolicy=slot1" in x.split() for x in (MultiBoot.getBootSlots() or {}).get(slotCode, {}).get("cmdline", {}).values())):
 				MultiBoot.updateDreamBootSection(slotCode)
 			self["header"].setText(_("Flashing image successful"))
 			self["summary_header"].setText(self["header"].getText())

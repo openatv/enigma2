@@ -5,7 +5,7 @@
 
 #include <lib/gdi/accel.h>
 
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_FBDEV)
 #include <lib/gdi/dreamge2d.h>
 #endif
 
@@ -183,7 +183,7 @@ void gFBDC::exec(const gOpcode *o)
 	}
 	case gOpcode::flip:
 	{
-#if defined(CONFIG_ION) || defined(DREAMNEXTGEN)
+#if defined(CONFIG_ION) || defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_FBDEV)
 		fb->setOffset(getSurfaceOffset(surface));
 
 		if (surface_back.data_phys)
@@ -295,7 +295,7 @@ void gFBDC::exec(const gOpcode *o)
 #endif
 			}
 		}
-#elif defined(DREAMNEXTGEN)
+#elif defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_FBDEV)
 		if (surface_back.data_phys && surface.data)
 		{
 			fb->waitVSync();
@@ -448,7 +448,7 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 	int fb_page_size = surface.stride * surface.y;
 	int fb_size = fb_page_size;
 	
-#if defined(CONFIG_ION) || defined(DREAMNEXTGEN)
+#if defined(CONFIG_ION) || defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_FBDEV)
 	if (m_number_of_pages > 1)
 	{
 		surface_back = surface;
@@ -503,7 +503,11 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 	/* accel is already set in fb.cpp */
 	eDebug("[gFBDC] %dkB available for acceleration surfaces.", (fb->Available() - fb_size)/1024);
 	if (gAccel::getInstance())
+#ifdef HAVE_AMLOGIC_FBDEV
+		gAccel::getInstance()->setAccelMemorySpace(fb->lfb + fb_size, base_phys + fb_size, fb->Available() - fb_size);
+#else
 		gAccel::getInstance()->setAccelMemorySpace(fb->lfb + fb_size, surface.data_phys + fb_size, fb->Available() - fb_size);
+#endif
 #endif
 #ifdef HAVE_HISILICON_ACCEL
 	dinobot_accel_register(&surface,&surface_back);
@@ -518,7 +522,7 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 	surface_back.clut = surface.clut;
 	surface_third.clut = surface.clut;
 
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_FBDEV)
 	dreamGE2DRegisterFramebuffer(fb->lfb, base_phys, surface.x, surface.y, surface.stride, m_number_of_pages);
 #endif
 

@@ -53,6 +53,8 @@ public:
 	void setAspectRatio(int ratio, int flags = 0) const;
 	void setAspect(const std::string &newFormat, int flags = 0) const;
 	void setColorFormat(const std::string &newFormat, int flags = 0) const;
+	void setHDMIColorspace(const std::string &colorspace, int flags = 0);
+	void setMatchedVideoMode(const std::string &mode, bool fractional) const;
 	void setHDMIColordepth(const std::string &colordepth, int flags = 0);
 
 	void setVideoMode(const std::string &newMode, int flags = 0) const;
@@ -60,6 +62,7 @@ public:
 	void setInput(const std::string &newMode, int flags = 0);
 	void startStopHDMIIn(bool on, bool audio, int flags = 0);
 	void disableHDMIIn(int flags = 0) const;
+	void setHdmiAudioEnabled(bool enabled) const;
 	void setOSDAlpha(int alpha, int flags = 0) const;
 	void setOSDAutoHideTimeout(int seconds);
 	bool isOSDAutoHidden() const { return m_osdHidden; }
@@ -117,8 +120,13 @@ private:
 	std::string m_video_mode_60;
 	std::string m_videomode_choices;
 	std::string m_hdmi_colordepth = "auto";
-#ifdef DREAMNEXTGEN
+	std::string m_hdmi_colorspace = "auto";
+	mutable bool m_fractional_refresh = false;
+	void applyVideoMode(const std::string &mode, int flags, bool fractional) const;
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_HDMI)
 	bool m_hdmi_phy_off = false;
+#endif
+#ifdef DREAMNEXTGEN
 	int m_videoPollFd = -1;
 	ePtr<eSocketNotifier> m_videoPollNotifier;
 	ePtr<eTimer> m_frameAspectTimer;

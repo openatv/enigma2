@@ -8,6 +8,10 @@
 #include <unistd.h>
 #include <linux/dvb/dmx.h>
 #include <linux/dvb/video.h>
+#ifdef GTX_DVB_AV
+#include <amvdec_ioc.h>
+#include <lib/dvb/avsync_core.h>
+#endif
 
 #include <lib/base/cfile.h>
 #include <lib/base/eerror.h>
@@ -50,9 +54,49 @@ eDVBVideoSwDemux::~eDVBVideoSwDemux()
 	stop();
 }
 
+#ifdef GTX_DVB_AV
+eDVBVideoSwDemux::eDVBVideoSwDemux(eDVBDemux *demux, bool pip)
+	: eDVBVideoSwDemux(demux, -1, DMX_PES_OTHER)
+{
+	m_pip = pip;
+	m_native_frame = true;
+}
+
+static bool setFrameCommand(int fd, uint32_t command, uint32_t value)
+{
+	am_ioctl_parm arg = {};
+	arg.cmd = command;
+	arg.data_32 = value;
+	return ioctl(fd, AMSTREAM_IOC_SET, &arg) == 0;
+}
+#endif
+
 int eDVBVideoSwDemux::start(int pid, Codec codec, int pcr_pid)
 {
 	stop();
+#ifdef GTX_DVB_AV
+	if (m_native_frame)
+	{
+		if (!m_demux || pid <= 0 || pid >= 0x1fff)
+			return -1;
+		m_fd_video = ::open(codec == HEVC ? "/dev/amstream_hevc_frame" : "/dev/amstream_vframe",
+				    O_WRONLY | O_NONBLOCK | O_CLOEXEC);
+		if (m_fd_video < 0)
+			return -1;
+		dec_sysinfo info = {};
+		info.format = codec == HEVC ? 15 : codec == H264 ? 4 : 0;
+		if (!setFrameCommand(m_fd_video, 0x105, codec == HEVC ? VFORMAT_HEVC :
+				     codec == H264 ? VFORMAT_H264 : VFORMAT_MPEG12) ||
+		    ::ioctl(m_fd_video, AMSTREAM_IOC_SYSINFO, &info) < 0 ||
+		    !setFrameCommand(m_fd_video, 0x174, m_pip ?
+				     FRAME_BASE_PATH_PIP_TUNNEL_MODE : FRAME_BASE_PATH_TUNNEL_MODE) ||
+		    !setFrameCommand(m_fd_video, 0x111, 0))
+		{
+			stop();
+			return -1;
+		}
+	}
+#endif
 	if (!m_demux || m_fd_video < 0 || pid <= 0 || pid >= 0x1FFF)
 		return -1;
 
@@ -60,6 +104,7 @@ int eDVBVideoSwDemux::start(int pid, Codec codec, int pcr_pid)
 	if (m_fd_demux < 0)
 	{
 		eWarning("[eDVBVideoSwDemux] unable to open demux");
+		stop();
 		return -1;
 	}
 	::fcntl(m_fd_demux, F_SETFL, O_NONBLOCK);
@@ -75,8 +120,7 @@ int eDVBVideoSwDemux::start(int pid, Codec codec, int pcr_pid)
 	if (::ioctl(m_fd_demux, DMX_SET_PES_FILTER, &flt) < 0)
 	{
 		eWarning("[eDVBVideoSwDemux] unable to tap video PID %04x: %m", pid);
-		::close(m_fd_demux);
-		m_fd_demux = -1;
+		stop();
 		return -1;
 	}
 
@@ -103,6 +147,14 @@ int eDVBVideoSwDemux::start(int pid, Codec codec, int pcr_pid)
 	m_random_access = false;
 	m_partial.clear();
 	m_pes.clear();
+#ifdef GTX_DVB_AV
+	if (m_pip)
+	{
+		CFile::writeStr("/sys/class/video/pip_global_output", "1");
+		CFile::writeStr("/sys/class/video/disable_videopip", "0");
+	}
+	if (!m_native_frame)
+#endif
 	/* memory input after VIDEO_PLAY (as DreamOS) */
 	if (::ioctl(m_fd_video, VIDEO_SELECT_SOURCE, VIDEO_SOURCE_MEMORY) < 0)
 		eDebug("[eDVBVideoSwDemux] VIDEO_SELECT_SOURCE failed: %m");
@@ -112,10 +164,35 @@ int eDVBVideoSwDemux::start(int pid, Codec codec, int pcr_pid)
 	return 0;
 }
 
+#ifdef GTX_DVB_AV
+void eDVBVideoSwDemux::flushFrameInput()
+{
+	if (m_pid > 0 && start(m_pid, m_codec, m_pcr_pid) < 0)
+		eWarning("[eDVBVideoSwDemux] failed to reopen frame input on seek");
+}
+
+int eDVBVideoSwDemux::getFrameInputPTS(pts_t &now) const
+{
+	const int64_t submitted = m_submitted_pts.load();
+	if (submitted < 0)
+		return -1;
+	const int64_t shown = eAVSyncCore::getInstance()->readPtsVideo();
+	if (shown < 0)
+		return -1;
+	// Restore bit 32 of the displayed MPEG PTS from the same stream's PES.
+	const int32_t delta = static_cast<uint32_t>(shown) - static_cast<uint32_t>(submitted);
+	now = (submitted + delta) & ((1LL << 33) - 1);
+	return 0;
+}
+#endif
+
 void eDVBVideoSwDemux::stop()
 {
 	m_stop = true;
 	kill();
+#ifdef GTX_DVB_AV
+	m_submitted_pts = -1;
+#endif
 	if (m_base_reported)
 		CFile::writeStr(PIP_PTS_STREAM_BASE, "0");
 	m_base_reported = false;
@@ -125,6 +202,18 @@ void eDVBVideoSwDemux::stop()
 		::close(m_fd_demux);
 		m_fd_demux = -1;
 	}
+#ifdef GTX_DVB_AV
+	if (m_native_frame && m_fd_video >= 0)
+	{
+		if (m_pip)
+		{
+			CFile::writeStr("/sys/class/video/disable_videopip", "1");
+			CFile::writeStr("/sys/class/video/pip_global_output", "0");
+		}
+		::close(m_fd_video);
+		m_fd_video = -1;
+	}
+#endif
 	m_pid = -1;
 }
 
@@ -234,7 +323,7 @@ void eDVBVideoSwDemux::writeFrame()
 	if ((m_pes[7] & 0x80) && m_pes.size() >= 14)
 		frame.pts = ((int64_t)(m_pes[9] & 0x0e) << 29) | (m_pes[10] << 22) | ((m_pes[11] & 0xfe) << 14) | (m_pes[12] << 7) | (m_pes[13] >> 1);
 
-	if (!m_base_reported && m_random_access && frame.pts >= 0)
+	if (m_pes_type != DMX_PES_OTHER && !m_base_reported && m_random_access && frame.pts >= 0)
 		reportStreamBase(frame.pts);
 
 	/* the clock of the service now: the last PCR and the time since */
@@ -256,6 +345,30 @@ void eDVBVideoSwDemux::writeFrame()
 		else if (!m_with_pcr)
 			return;
 	}
+#ifdef GTX_DVB_AV
+	if (m_native_frame)
+	{
+		if (frame.pts >= 0 && !setFrameCommand(m_fd_video, 0x10e, static_cast<uint32_t>(frame.pts)))
+			return;
+		while (!m_stop)
+		{
+			ssize_t bytes = ::write(m_fd_video, es, left);
+			if (bytes == static_cast<ssize_t>(left))
+			{
+				if (frame.pts >= 0)
+					m_submitted_pts = frame.pts;
+				break;
+			}
+			if (bytes >= 0 || (errno != EAGAIN && errno != EINTR))
+			{
+				eWarning("[eDVBVideoSwDemux] AMstream frame write failed on PID %04x", m_pid);
+				break;
+			}
+			usleep(5000);
+		}
+		return;
+	}
+#endif
 	/* the driver takes what fits into its buffer; wait for the rest */
 	while (left && !m_stop)
 	{

@@ -8,6 +8,7 @@ from Screens import Standby
 from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigSelection, ConfigSubsection, config
 from Components.Label import Label
+from Components.SystemInfo import BoxInfo
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
 from Screens.Setup import Setup
@@ -40,10 +41,14 @@ class CpuControl:
 		self.regulators = {}
 		self.thermalZones = {self.readValue(join(x, "type")): x for x in glob("/sys/class/thermal/thermal_zone*")}
 		for policy in self.POLICIES:
+			frequencies = tuple(self.readValue(join(self.CPUFREQ_PATH, policy, "scaling_available_frequencies")).split())
+			if not frequencies and BoxInfo.getItem("machinebuild") == "gtxcombo":
+				continue
 			cpus = self.readValue(join(self.CPUFREQ_PATH, policy, "affected_cpus")).split() or [policy[-1]]
 			self.cpus[policy] = {f"cpu{x}" for x in cpus}
-			self.frequencies[policy] = tuple(self.readValue(join(self.CPUFREQ_PATH, policy, "scaling_available_frequencies")).split()) or self.FALLBACK_FREQUENCIES
+			self.frequencies[policy] = frequencies or self.FALLBACK_FREQUENCIES
 			self.regulators[policy] = next((x for x in glob("/sys/class/regulator/regulator.*") if exists(join(x, f"cpu{cpus[0]}-cpu"))), None)
+		self.policies = tuple(self.frequencies)
 
 	def readValue(self, path):
 		try:
@@ -72,10 +77,11 @@ class CpuControl:
 
 	def applySettings(self, standby=False):
 		print(f"[AmlFRQ] Apply {'standby' if standby else 'normal'} settings.")
-		for policy, minConfig, maxConfig in (("policy0", config.plugins.aml.minfrq, config.plugins.aml.maxfrq), ("policy2", config.plugins.aml.minfrq2, config.plugins.aml.maxfrq2)):
+		for policy in self.policies:
+			minConfig, maxConfig = (config.plugins.aml.minfrq, config.plugins.aml.maxfrq) if policy == "policy0" else (config.plugins.aml.minfrq2, config.plugins.aml.maxfrq2)
 			path = join(self.CPUFREQ_PATH, policy)
 			minimum = min(int(minConfig.value), int(maxConfig.value))
-			maximum = minimum if standby else int(maxConfig.value)
+			maximum = minimum if standby and len(self.policies) > 1 else int(maxConfig.value)
 			currentMaximum = int(self.readValue(join(path, "scaling_max_freq")) or 0)
 			order = ("scaling_max_freq", "scaling_min_freq") if minimum > currentMaximum else ("scaling_min_freq", "scaling_max_freq")  # The kernel rejects a minimum above the maximum.
 			for fileName in order:
@@ -146,11 +152,14 @@ class CpuControl:
 cpuControl = CpuControl()
 
 config.plugins.aml = ConfigSubsection()
-config.plugins.aml.governor = ConfigSelection(default=CpuControl.DEFAULT_GOVERNOR, choices=cpuControl.getGovernorChoices())
-config.plugins.aml.minfrq = ConfigSelection(default=cpuControl.frequencies["policy0"][0], choices=cpuControl.getFrequencyChoices("policy0"))
-config.plugins.aml.maxfrq = ConfigSelection(default=cpuControl.frequencies["policy0"][-1], choices=cpuControl.getFrequencyChoices("policy0"))
-config.plugins.aml.minfrq2 = ConfigSelection(default=cpuControl.frequencies["policy2"][0], choices=cpuControl.getFrequencyChoices("policy2"))
-config.plugins.aml.maxfrq2 = ConfigSelection(default=cpuControl.frequencies["policy2"][-1], choices=cpuControl.getFrequencyChoices("policy2"))
+if "policy0" in cpuControl.policies:
+	defaultGovernor = CpuControl.DEFAULT_GOVERNOR if "policy2" in cpuControl.policies else cpuControl.readValue(join(CpuControl.CPUFREQ_PATH, "policy0", "scaling_governor"))
+	config.plugins.aml.governor = ConfigSelection(default=defaultGovernor, choices=cpuControl.getGovernorChoices())
+	config.plugins.aml.minfrq = ConfigSelection(default=cpuControl.frequencies["policy0"][0], choices=cpuControl.getFrequencyChoices("policy0"))
+	config.plugins.aml.maxfrq = ConfigSelection(default=cpuControl.frequencies["policy0"][-1], choices=cpuControl.getFrequencyChoices("policy0"))
+if "policy2" in cpuControl.policies:
+	config.plugins.aml.minfrq2 = ConfigSelection(default=cpuControl.frequencies["policy2"][0], choices=cpuControl.getFrequencyChoices("policy2"))
+	config.plugins.aml.maxfrq2 = ConfigSelection(default=cpuControl.frequencies["policy2"][-1], choices=cpuControl.getFrequencyChoices("policy2"))
 
 
 class AmlFRQ(Setup):
@@ -203,13 +212,19 @@ class AmlFRQ(Setup):
 
 	def createSetup(self):
 		governor = config.plugins.aml.governor
-		items = (
-			(_("Set MAX CPU frequency for cores 0 and 1"), config.plugins.aml.maxfrq, _("Select the highest frequency these CPU cores may run at.")),
-			(_("Set MIN CPU frequency for cores 0 and 1"), config.plugins.aml.minfrq, _("Select the lowest frequency these CPU cores may run at. This frequency is also used in standby.")),
-			(_("Set MAX CPU frequency for cores 2, 3, 4 and 5"), config.plugins.aml.maxfrq2, _("Select the highest frequency these CPU cores may run at.")),
-			(_("Set MIN CPU frequency for cores 2, 3, 4 and 5"), config.plugins.aml.minfrq2, _("Select the lowest frequency these CPU cores may run at. This frequency is also used in standby.")),
-			(_("Set Scaling governor"), governor, cpuControl.getGovernorDescription(governor.value))
-		)
+		if "policy2" in cpuControl.policies:
+			items = [
+				(_("Set MAX CPU frequency for cores 0 and 1"), config.plugins.aml.maxfrq, _("Select the highest frequency these CPU cores may run at.")),
+				(_("Set MIN CPU frequency for cores 0 and 1"), config.plugins.aml.minfrq, _("Select the lowest frequency these CPU cores may run at. This frequency is also used in standby.")),
+				(_("Set MAX CPU frequency for cores 2, 3, 4 and 5"), config.plugins.aml.maxfrq2, _("Select the highest frequency these CPU cores may run at.")),
+				(_("Set MIN CPU frequency for cores 2, 3, 4 and 5"), config.plugins.aml.minfrq2, _("Select the lowest frequency these CPU cores may run at. This frequency is also used in standby."))
+			]
+		else:
+			items = [
+				(_("Maximum CPU frequency"), config.plugins.aml.maxfrq, _("Select the highest frequency these CPU cores may run at.")),
+				(_("Minimum CPU frequency"), config.plugins.aml.minfrq, _("Select the lowest frequency these CPU cores may run at."))
+			]
+		items.append((_("Set Scaling governor"), governor, cpuControl.getGovernorDescription(governor.value)))
 		Setup.createSetup(self, appendItems=[(x[0], x[1], self.formatItemDescription(x[1], x[2])) for x in items])
 		self.setTitle(_("CPU Control"))
 
@@ -220,8 +235,11 @@ class AmlFRQ(Setup):
 	def updateStatus(self):
 		self["tempc"].setText(_("Current Temperature (SoC): %s °C") % cpuControl.getTemperature("soc_thermal"))
 		self["ramtempc"].setText(_("Current Temperature (RAM): %s °C") % cpuControl.getTemperature("ddr_thermal"))
-		self["frqc"].setText(cpuControl.getStatus("policy0", _("Current CPU Frequency cores 0 and 1: %s MHz")))
-		self["frqc2"].setText(cpuControl.getStatus("policy2", _("Current CPU Frequency other cores: %s MHz")))
+		if "policy2" in cpuControl.policies:
+			self["frqc"].setText(cpuControl.getStatus("policy0", _("Current CPU Frequency cores 0 and 1: %s MHz")))
+			self["frqc2"].setText(cpuControl.getStatus("policy2", _("Current CPU Frequency other cores: %s MHz")))
+		else:
+			self["frqc"].setText(cpuControl.getStatus("policy0", _("Current CPU frequency: %s MHz")))
 		self["gpuc"].setText(cpuControl.getGpuStatus(_("Current GPU Frequency: %s MHz")))
 		self["ramc"].setText(cpuControl.getRamStatus(_("Current RAM Frequency: %s MHz")))
 		self.statusTimer.start(1000, True)
@@ -251,6 +269,8 @@ def sessionstart(reason, **kwargs):
 
 
 def Plugins(**kwargs):
+	if "policy0" not in cpuControl.policies:
+		return []
 	return [
 		PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, fnc=sessionstart),
 		PluginDescriptor(name=_("CPU Control"), description=_("Set the CPU frequencies and the governor"), where=PluginDescriptor.WHERE_MENU, fnc=main)

@@ -43,7 +43,9 @@ class QuadPipChannelEntry:
 	def __init__(self, name, idx, ch1, ch2, ch3, ch4):
 		self.name = name
 		self.idx = idx
-		self.channel = {"1": ch1, "2": ch2, "3": ch1, "4": ch1, }
+		if BoxInfo.getItem("model") != "gtxcombo":
+			ch3 = ch4 = ch1
+		self.channel = {"1": ch1, "2": ch2, "3": ch3, "4": ch4}
 
 	def __str__(self):
 		return "idx : %d, name : %s, ch0 : %s, ch1 : %s, ch2 : %s, ch3 : %s"\
@@ -825,8 +827,8 @@ class QuadPipScreen(Screen, FocusShowHide):
 		self.labelPositionMap["ch3"] = (w / 8, h / 4 - h / 36 + h / 2, w / 4, h18)
 		self.labelPositionMap["ch4"] = (w / 8 + w / 2, h / 4 - h / 36 + h / 2, w / 4, h18)
 
-		# DreamOne/DreamTwo: the mosaic decoders follow the main and PiP decoders
-		self.decoderIdxMap = [None, 2, 3, 4, 5] if BoxInfo.getItem("model") in ("dreamone", "dreamtwo") else [None, 0, 1, 2, 3]
+		# These Amlogic drivers expose mosaic decoders after the main and PiP devices.
+		self.decoderIdxMap = [None, 2, 3, 4, 5] if BoxInfo.getItem("model") in ("dreamone", "dreamtwo", "gtxcombo") else [None, 0, 1, 2, 3]
 
 		self.fontSize = {1080: 40, 720: 28, 576: 18}.get(h, 40)
 		# The buttons in one row at the bottom, on a bar inside the focus frame

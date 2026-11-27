@@ -12,6 +12,7 @@
 
 #define FLAGBIT_TIMESHIFT  (1 << 0)
 #define FLAGBIT_RAM_MODE   (1 << 1)
+#define FLAGBIT_CI_FILE    (1 << 2)
 
 // Data written to the DVR is split into parts of at most this size: the
 // DVR driver copies each write into one contiguous kernel buffer, which

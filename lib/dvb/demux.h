@@ -23,6 +23,9 @@ public:
 	RESULT setSourceFrontend(int fenum);
 	int getSource() { return source; }
 	RESULT setSourcePVR(int pvrnum);
+#ifdef GTX_DVB_AV
+	int openCIPVR();
+#endif
 	int getDvrId() { return m_dvr_id; }
 
 	RESULT createSectionReader(eMainloop *context, ePtr<iDVBSectionReader> &reader);

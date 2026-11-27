@@ -24,9 +24,11 @@ class VFDSymbolsUpdater:
 		self.ledConfig = self.findProcFiles()
 		self.recMode, self.recPath = self.getRecModes()
 		self.onClose = []  # This is needed for ServiceEventTracker
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
-			iPlayableService.evUpdatedInfo: self.evUpdatedInfo,
-		})
+		eventMap = {iPlayableService.evUpdatedInfo: self.evUpdatedInfo}
+		if BOX_TYPE == "gtxcombo":
+			self.tunerSymbol = None
+			eventMap[iPlayableService.evEnd] = self.setTunerSymbol
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=eventMap)
 		self.pollTime = getVFDSymbolsPoll()  # In seconds.
 		self.timer = eTimer()
 		self.timer.callback.append(self.updateSymbols)
@@ -44,7 +46,7 @@ class VFDSymbolsUpdater:
 		if exists("/proc/stb/lcd/symbol_circle"):
 			mode = 1
 			path = "/proc/stb/lcd/symbol_circle"
-		elif BOX_TYPE in ("alphatriple", "sf3038") and exists("/proc/stb/lcd/symbol_recording"):
+		elif BOX_TYPE in ("alphatriple", "gtxcombo", "sf3038") and exists("/proc/stb/lcd/symbol_recording"):
 			mode = 2
 			path = "/proc/stb/lcd/symbol_recording"
 		elif MODEL == "u41" and exists("/proc/stb/lcd/symbol_pvr2"):
@@ -76,8 +78,21 @@ class VFDSymbolsUpdater:
 			path = ""
 		return mode, path
 
+	def setTunerSymbol(self, symbol=None):
+		if self.tunerSymbol != symbol:
+			if self.tunerSymbol:
+				fileWriteLine(join("/sys/class/leds", f"gtx::{self.tunerSymbol}", "brightness"), "0", source=MODULE_NAME)
+			if symbol:
+				fileWriteLine(join("/sys/class/leds", f"gtx::{symbol}", "brightness"), "1", source=MODULE_NAME)
+			self.tunerSymbol = symbol
+
 	def evUpdatedInfo(self):
 		self.service = self.session.nav.getCurrentService()
+		if BOX_TYPE == "gtxcombo":
+			info = self.service and self.service.info()
+			transponder = info and info.getInfoObject(iServiceInformation.sTransponderData)
+			tunerType = transponder.get("tuner_type") if isinstance(transponder, dict) else None
+			self.setTunerSymbol({"ATSC": "atsc", "DVB-C": "cable", "DVB-T": "dvbt2", "ISDB-T": "isdb", "DVB-S": "dvbs2"}.get(tunerType))
 		if MODEL == "u41":
 			self.setAudio()
 			self.setCrypted()

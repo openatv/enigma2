@@ -930,6 +930,18 @@ eEncoder::eEncoder()
 			}
 		}
 
+#ifdef GTX_DVB_AV
+		if (encoder.empty() && access("/usr/bin/gtx-transcode", X_OK) == 0 &&
+			access("/dev/amvenc_avc", R_OK | W_OK) == 0)
+		{
+			for (int index = 0; index < 2; ++index)
+			{
+				encoder.emplace_back(nullptr, nullptr);
+				encoder.back().backend = EncoderContext::backend_gtx;
+			}
+		}
+#endif
+
 #ifdef DREAMNEXTGEN
 		if(encoder.empty() && access("/dev/amvenc_avc", R_OK | W_OK) == 0 && access("/dev/videograbber", R_OK | W_OK) == 0)
 		{
@@ -987,6 +999,7 @@ int eEncoder::allocateEncoder(const std::string &serviceref, int &buffersize,
 	if(encoder_index >= (int)encoder.size())
 	{
 		eWarning("[eEncoder] no encoders free");
+		errno = EBUSY;
 		return(-1);
 	}
 
@@ -1004,6 +1017,44 @@ int eEncoder::allocateEncoder(const std::string &serviceref, int &buffersize,
 		encoder[encoder_index].navigation_instance = nullptr;
 		encoder[encoder_index].state = EncoderContext::state_idle;
 	};
+
+#ifdef GTX_DVB_AV
+	EncoderContext &slot = encoder[encoder_index];
+	if (slot.backend == EncoderContext::backend_gtx)
+	{
+		if (serviceref.compare(0, 2, "1:") || (vcodec != "h264" && vcodec != "h265") ||
+			(!acodec.empty() && acodec != "aac") || width < 64 || width > 1920 ||
+			height < 64 || height > 1080 || bitrate < 64000 || bitrate > 20000000)
+			return -1;
+		if (vcodec == "h265")
+			for (const auto &active : encoder)
+				if (active.backend == EncoderContext::backend_gtx && active.state != EncoderContext::state_idle && active.vcodec == "h265") {
+					errno = EBUSY;
+					return -1;
+				}
+		if (framerate > 0 && framerate <= 60)
+			framerate *= 1000;
+		if (framerate < 1000 || framerate > 30000)
+			return -1;
+		std::string w = std::to_string(width & ~15);
+		std::string h = std::to_string(height & ~1);
+		std::string fps = std::to_string(framerate), bps = std::to_string(bitrate);
+		const char *args[] = { "/usr/bin/gtx-transcode", serviceref.c_str(), vcodec.c_str(),
+			w.c_str(), h.c_str(), fps.c_str(), bps.c_str(), nullptr };
+		GError *error = nullptr;
+		if (!g_spawn_async_with_pipes(nullptr, const_cast<char **>(args), nullptr, G_SPAWN_CLOEXEC_PIPES,
+			nullptr, nullptr, nullptr, &slot.output_fd, &slot.encoder_fd, nullptr, &error))
+		{
+			eWarning("[eEncoder] GTX transcoder: %s", error->message);
+			g_error_free(error);
+			return -1;
+		}
+		slot.vcodec = vcodec;
+		slot.state = EncoderContext::state_running;
+		buffersize = 188 * 256;
+		return slot.encoder_fd;
+	}
+#endif
 
 	if(encoder[encoder_index].backend == EncoderContext::backend_dreamsource)
 	{
@@ -1467,6 +1518,18 @@ void eEncoder::freeEncoder(int encoderfd)
 		default:
 			break;
 	}
+
+#ifdef GTX_DVB_AV
+	EncoderContext &slot = encoder[encoder_index];
+	if (slot.backend == EncoderContext::backend_gtx)
+	{
+		close(slot.output_fd); // EOF on the worker's control pipe also releases its raw 8001 tuner.
+		close(slot.encoder_fd);
+		slot.output_fd = slot.encoder_fd = -1;
+		slot.state = EncoderContext::state_idle;
+		return;
+	}
+#endif
 
 	if(encoder[encoder_index].backend == EncoderContext::backend_dreamsource)
 	{

@@ -307,6 +307,9 @@ public:
 	RESULT getCurrentFrontendParameters(ePtr<iDVBFrontendParameters> &param);
 
 		/* iDVBPVRChannel */
+#ifdef GTX_DVB_AV
+	RESULT prepareCIFile();
+#endif
 	RESULT playFile(const char *file);
 	RESULT playSource(ePtr<iTsSource>& source, const char *priv=NULL);
 	void stop();
@@ -348,6 +351,9 @@ private:
 	void pvrEvent(int event);
 
 	int m_pvr_fd_dst;
+#ifdef GTX_DVB_AV
+	bool m_ci_pvr = false;
+#endif
 	eSingleLock m_tstools_lock;
 	eDVBTSTools m_tstools;
 

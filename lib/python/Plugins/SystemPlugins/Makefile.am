@@ -19,7 +19,7 @@ if DREAMBOX
 SUBDIRS += FrontprocessorUpgrade
 endif
 
-if DREAMNEXTGEN
+if AML_SYSTEM_PLUGINS
 SUBDIRS += AmlFRQ VideoEnhancementAML
 else
 SUBDIRS += VideoEnhancement

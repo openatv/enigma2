@@ -8,6 +8,12 @@ Licensed under GPLv2.
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
+#ifdef HAVE_AMLOGIC_HDMI
+#include <alsa/asoundlib.h>
+#include <cerrno>
+#include <spawn.h>
+#include <sys/wait.h>
+#endif
 #include <string.h>
 #include <algorithm>
 #include <cctype>
@@ -36,14 +42,20 @@ const char *proc_videoaspect_r = "/sys/class/video/screen_mode"; // NOSONAR
 const char *proc_videoaspect_w = "/sys/class/video/screen_mode"; // NOSONAR
 const char *proc_osd_alpha = "/sys/class/graphics/fb0/osd_plane_alpha";	 // NOSONAR
 const char *proc_hdmi_attr = "/sys/class/amhdmitx/amhdmitx0/attr";	 // NOSONAR
-const char *proc_hdmi_phy = "/sys/class/amhdmitx/amhdmitx0/phy";	 // NOSONAR
 #else
 const char *proc_policy169 = "/proc/stb/video/policy2";		 // NOSONAR
 const char *proc_policy43 = "/proc/stb/video/policy";		 // NOSONAR
+#ifdef HAVE_AMLOGIC_HDMI
+const char *proc_videomode = "/sys/class/display/mode";
+#else
 const char *proc_videomode = "/proc/stb/video/videomode";	 // NOSONAR
+#endif
 const char *proc_videoaspect_r = "/proc/stb/vmpeg/0/aspect"; // NOSONAR
 const char *proc_videoaspect_w = "/proc/stb/video/aspect";	 // NOSONAR
 const char *proc_osd_alpha = "/proc/stb/video/alpha";	 // NOSONAR
+#endif
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_HDMI)
+const char *proc_hdmi_phy = "/sys/class/amhdmitx/amhdmitx0/phy";	 // NOSONAR
 #endif
 const char *proc_videomode_50 = "/proc/stb/video/videomode_50hz"; // NOSONAR
 const char *proc_videomode_60 = "/proc/stb/video/videomode_60hz"; // NOSONAR
@@ -62,7 +74,7 @@ std::string eAVControl::normalizeVideoMode(const std::string &mode) const
 	result.erase(std::remove(result.begin(), result.end(), '\n'), result.end());
 	result.erase(std::remove(result.begin(), result.end(), '\r'), result.end());
 
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_HDMI)
 	if (result.length() > 2 && result.compare(result.length() - 2, 2, "hz") == 0)
 		result.erase(result.length() - 2);
 
@@ -92,7 +104,7 @@ std::string eAVControl::normalizeVideoMode(const std::string &mode) const
 /// @return driver video mode
 std::string eAVControl::getDriverVideoMode(const std::string &mode) const
 {
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_HDMI)
 	if (mode.empty() || mode == "PAL" || mode == "NTSC" || mode == "pal" || mode == "pal60" || mode == "ntsc" || mode.find("hz") != std::string::npos)
 		return mode;
 	if (mode == "480i")
@@ -122,7 +134,7 @@ std::string eAVControl::getDriverVideoMode(const std::string &mode) const
 /// @return video axis
 std::string eAVControl::getVideoAxis(const std::string &mode) const
 {
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_HDMI)
 	std::string value = normalizeVideoMode(mode);
 	if (value.find("480") == 0)
 		return "0 0 719 479";
@@ -144,7 +156,7 @@ std::string eAVControl::getVideoAxis(const std::string &mode) const
 /// @return true if video axis handling is available
 bool eAVControl::hasVideoAxis() const
 {
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_HDMI)
 	return true;
 #else
 	return false;
@@ -168,12 +180,23 @@ eAVControl::eAVControl()
 	m_b_has_proc_videomode_24 = true;
 	m_b_has_proc_osd_alpha = true;
 #else
+#ifdef HAVE_AMLOGIC_HDMI
+	// Availability for a particular resolution is filtered by EDID in AVSwitch.
+	m_b_has_proc_videomode_24 = true;
+#else
 	m_b_has_proc_videomode_24 = (access(proc_videomode_24, W_OK) == 0);
+#endif
 	m_b_has_proc_osd_alpha = (access(proc_osd_alpha, W_OK) == 0);
 #endif
 
 	m_videomode_choices = readAvailableModes();
 	m_encoder_active = false;
+#ifdef HAVE_AMLOGIC_HDMI
+	// Enigma2 can restart while the transmitter is still in standby.
+	int phyEnabled;
+	if (CFile::parseInt(&phyEnabled, proc_hdmi_phy) == 0)
+		m_hdmi_phy_off = !phyEnabled;
+#endif
 
 	eModelInformation &modelinformation = eModelInformation::getInstance();
 	m_b_has_scartswitch = modelinformation.getValue("scart") == "True";
@@ -511,8 +534,19 @@ std::string eAVControl::getVideoMode(const std::string &defaultVal, int flags) c
 /// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
 void eAVControl::setVideoMode(const std::string &newMode, int flags) const
 {
+	applyVideoMode(newMode, flags, false);
+}
+
+void eAVControl::setMatchedVideoMode(const std::string &mode, bool fractional) const
+{
+	if (normalizeVideoMode(mode) != getVideoMode("") || fractional != m_fractional_refresh)
+		applyVideoMode(mode, FLAGS_DEBUG, fractional);
+}
+
+void eAVControl::applyVideoMode(const std::string &newMode, int flags, bool fractional) const
+{
 	std::string driverMode = getDriverVideoMode(newMode);
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_HDMI)
 	if (!m_encoder_active && m_hdmi_phy_off)
 	{
 		if (flags & FLAGS_DEBUG)
@@ -523,7 +557,28 @@ void eAVControl::setVideoMode(const std::string &newMode, int flags) const
 #ifdef DREAMNEXTGEN
 	writeHDMIColorFormat(driverMode, flags);
 #endif
-#ifdef VIDEO_MODE_50
+#ifdef HAVE_AMLOGIC_HDMI
+	char program[] = "/usr/sbin/gtx-hdmimode";
+	char *args[] = {program, const_cast<char *>(driverMode.c_str()),
+		const_cast<char *>(m_hdmi_colorspace.c_str()), const_cast<char *>(m_hdmi_colordepth.c_str()),
+		const_cast<char *>(fractional ? "1" : "0"), nullptr};
+	pid_t child;
+	int status = 0;
+	int result = posix_spawn(&child, program, nullptr, nullptr, args, environ);
+	if (!result)
+	{
+		pid_t waited;
+		do
+			waited = waitpid(child, &status, 0);
+		while (waited < 0 && errno == EINTR);
+		if (waited < 0 || !WIFEXITED(status) || WEXITSTATUS(status))
+			result = -1;
+	}
+	if (result)
+		eDebug("[%s] HDMI mode %s failed", __MODULE__, driverMode.c_str());
+	else
+		m_fractional_refresh = fractional;
+#elif defined(VIDEO_MODE_50)
 	// gigablue driver bug
 	CFile::writeStr(proc_videomode_50, driverMode, __MODULE__, flags);
 	CFile::writeStr(proc_videomode_60, driverMode, __MODULE__, flags);
@@ -571,7 +626,11 @@ void eAVControl::writeHDMIColorFormat(const std::string &driverMode, int flags) 
 /// @param flags bit ( 1 = DEBUG , 2 = SUPPRESS_NOT_EXISTS , 4 = SUPPRESS_READWRITE_ERROR)
 void eAVControl::applyHDMIColorFormat(int flags) const
 {
-#ifdef DREAMNEXTGEN
+#ifdef HAVE_AMLOGIC_HDMI
+	std::string mode = getVideoMode("");
+	if (!mode.empty() && mode != "null")
+		applyVideoMode(mode, flags, m_fractional_refresh);
+#elif defined(DREAMNEXTGEN)
 	if (!m_encoder_active)
 		return;
 	std::string driverMode = CFile::read(proc_videomode, __MODULE__, flags);
@@ -582,6 +641,15 @@ void eAVControl::applyHDMIColorFormat(int flags) const
 	// The driver applies a new format only with the next mode write.
 	CFile::writeStr(proc_videomode, driverMode, __MODULE__, flags);
 #endif
+}
+
+void eAVControl::setHDMIColorspace(const std::string &colorspace, int flags)
+{
+	if (colorspace != m_hdmi_colorspace)
+	{
+		m_hdmi_colorspace = colorspace;
+		applyHDMIColorFormat(flags);
+	}
 }
 
 /// @brief Set the HDMI colour depth
@@ -602,7 +670,7 @@ void eAVControl::setHDMIColordepth(const std::string &colordepth, int flags)
 /// @param flags
 void eAVControl::setVideoModeMulti(const std::string &mode50, const std::string &mode60, const std::string &mode24, int flags) const
 {
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_HDMI)
 	setVideoMode(!mode50.empty() ? mode50 : (!mode60.empty() ? mode60 : mode24), flags);
 #else
 	std::string effectiveMode50 = !mode50.empty() ? mode50 : (!mode60.empty() ? mode60 : mode24);
@@ -691,7 +759,7 @@ void eAVControl::disableHDMIIn(int flags) const
 std::string eAVControl::getPreferredModes(int flags) const
 {
 
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_HDMI)
 	const char *fileName = "/sys/class/amhdmitx/amhdmitx0/disp_cap";
 #else
 	const char *fileName = "/proc/stb/video/videomode_edid";
@@ -709,7 +777,7 @@ std::string eAVControl::getPreferredModes(int flags) const
 		}
 	}
 
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_HDMI)
 	result = std::regex_replace(result, std::regex("\\*"), "");
 	result = std::regex_replace(result, std::regex("\n+"), " ");
 	result = std::regex_replace(result, std::regex("hz"), "");
@@ -743,7 +811,10 @@ std::string eAVControl::getPreferredModes(int flags) const
 std::string eAVControl::readAvailableModes(int flags) const
 {
 
-#ifdef DREAMNEXTGEN
+#ifdef HAVE_AMLOGIC_HDMI
+	std::string modes = getPreferredModes(flags);
+	return modes.empty() ? getVideoMode("720p", flags) : modes;
+#elif defined(DREAMNEXTGEN)
 	return std::string("480i 576i 480p 576p 720p 720p50 1080i 1080i50 1080p 1080p24 1080p25 1080p30 1080p50 2160p24 2160p25 2160p30 2160p50 2160p smpte24 smpte25 smpte30 smpte50 smpte60");
 #elif USE_VIDEO_MODE_HD
 	return std::string("pal ntsc 720p 720p25 720p30 720p50 1080i 1080i50 1080p25 1080p30 1080p50 1080p 576i 576p 480i 480p");
@@ -769,7 +840,11 @@ std::string eAVControl::readAvailableModes(int flags) const
 /// @return
 std::string eAVControl::getAvailableModes() const
 {
+#ifdef HAVE_AMLOGIC_HDMI
+	return readAvailableModes();
+#else
 	return m_videomode_choices;
+#endif
 }
 
 /// @brief set the aspect ratio
@@ -866,7 +941,7 @@ void eAVControl::setAspect(const std::string &newFormat, int flags) const
 void eAVControl::setInput(const std::string &newMode, int flags)
 {
 
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_HDMI)
 	m_encoder_active = newMode == "encoder";
 	// Switch off only the HDMI transmitter. The video output keeps its vsync,
 	// a decoder running in standby (e.g. EPG refresh) would stall without it.
@@ -1017,6 +1092,28 @@ void eAVControl::setVideoSize(int top, int left, int width, int height, int flag
 
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: T:%d L:%d W:%d H:%d", __MODULE__, "setVideoSize", top, left, width, height);
+}
+
+void eAVControl::setHdmiAudioEnabled(bool enabled) const
+{
+#ifdef HAVE_AMLOGIC_HDMI
+	snd_ctl_t *control;
+	int error = snd_ctl_open(&control, "hw:0", 0);
+	if (error >= 0)
+	{
+		snd_ctl_elem_value_t *value;
+		snd_ctl_elem_value_alloca(&value);
+		snd_ctl_elem_value_set_interface(value, SND_CTL_ELEM_IFACE_MIXER);
+		snd_ctl_elem_value_set_name(value, "Audio hdmi-out mute");
+		snd_ctl_elem_value_set_boolean(value, 0, !enabled);
+		error = snd_ctl_elem_write(control, value);
+		snd_ctl_close(control);
+	}
+	if (error < 0)
+		eDebug("[eAVControl] HDMI audio output: %s", snd_strerror(error));
+#else
+	(void)enabled;
+#endif
 }
 
 void eAVControl::setOSDAlpha(int alpha, int flags) const
@@ -1178,7 +1275,7 @@ std::string eAVControl::getEDIDPath() const
 {
 	struct stat buffer = {};
 
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_HDMI)
 	const std::string proc = "/sys/class/amhdmitx/amhdmitx0/rawedid";
 #else
 	const std::string proc = "/proc/stb/hdmi/raw_edid";

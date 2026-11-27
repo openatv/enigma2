@@ -3,7 +3,7 @@
 #include <lib/base/init_num.h>
 #include <lib/gdi/accel.h>
 #include <lib/base/eerror.h>
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_FBDEV)
 #include <lib/gdi/dreamge2d.h>
 #endif
 #include <lib/gdi/esize.h>
@@ -29,7 +29,7 @@
 
 gAccel *gAccel::instance;
 
-#if not defined(HAVE_HISILICON_ACCEL)
+#if !defined(HAVE_HISILICON_ACCEL) && !defined(HAVE_AMLOGIC_FBDEV)
 #define BCM_ACCEL
 #endif
 
@@ -387,7 +387,7 @@ gAccel::~gAccel()
 #ifdef HAVE_HISILICON_ACCEL
 	dinobot_accel_close();
 #endif
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_FBDEV)
 	dreamGE2DReset();
 #endif
 	instance = 0;
@@ -398,7 +398,7 @@ void gAccel::dumpDebug()
 	if(!m_accel_debug)
 		return;
 	eDebug("[gAccel] info --");
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_FBDEV)
 	dreamGE2DReleaseAccelMemory();
 #endif
 	for (MemoryBlockList::const_iterator it = m_accel_allocation.begin();
@@ -505,7 +505,7 @@ bool gAccel::hasAlphaBlendingSupport()
 #ifdef HAVE_HISILICON_ACCEL
 	return dinobot_accel_has_alphablending();
 #else
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_FBDEV)
 	return dreamGE2DHasAlphaBlendingSupport();
 #endif
 	return false;
@@ -514,7 +514,7 @@ bool gAccel::hasAlphaBlendingSupport()
 
 int gAccel::blit(gUnmanagedSurface *dst, gUnmanagedSurface *src, const eRect &p, const eRect &area, int flags)
 {
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_FBDEV)
 	if (dreamGE2DBlit(dst, src, p, area, flags))
 		return 0;
 	if (dreamGE2DIsManagedSurface(dst) || dreamGE2DIsManagedSurface(src))
@@ -626,7 +626,7 @@ int gAccel::fill(gUnmanagedSurface *dst, const eRect &area, unsigned long col)
 		return -1;
 #endif
 
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_FBDEV)
 	if (dreamGE2DFill(dst, area, col))
 		return 0;
 	if (dreamGE2DIsManagedSurface(dst))
@@ -770,7 +770,7 @@ int gAccel::accelAlloc(gUnmanagedSurface* surface)
 
 void gAccel::accelFree(gUnmanagedSurface* surface)
 {
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_FBDEV)
 	if (dreamGE2DFreeSurface(surface))
 		return;
 #endif

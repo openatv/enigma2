@@ -100,6 +100,30 @@ int eDVBDemux::openDVR(int flags)
 	return ::open(filename, flags);
 }
 
+#ifdef GTX_DVB_AV
+int eDVBDemux::openCIPVR()
+{
+	// On the GTX the parallel CAM output enters TS1. The content-control
+	// return and recorder must belong to the same hardware demux.
+	if (adapter || demux)
+		return -EBUSY;
+	int pvr = ::open("/dev/gtx-ci-pvr0", O_WRONLY | O_CLOEXEC);
+	if (pvr < 0)
+		return -errno;
+	int fd = openDemux();
+	int selector = DMX_SOURCE_FRONT1;
+	int err = fd < 0 || ::ioctl(fd, DMX_SET_SOURCE, &selector) < 0 ? -errno : 0;
+	if (fd >= 0)
+		::close(fd);
+	if (err) {
+		::close(pvr);
+		return err;
+	}
+	// Keep the logical source as DVR0 so live allocations cannot share it.
+	return pvr;
+}
+#endif
+
 DEFINE_REF(eDVBDemux)
 
 RESULT eDVBDemux::setSourceFrontend(int fenum)

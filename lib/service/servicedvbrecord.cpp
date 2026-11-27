@@ -110,6 +110,13 @@ void eDVBServiceRecord::serviceEvent(int event)
 	case eDVBServicePMTHandler::eventTuneFailed:
 	{
 		eDebug("[eDVBServiceRecord] record failed to tune");
+#ifdef GTX_DVB_AV
+		if (m_pvr_descramble) {
+			m_error = errTuneFailed;
+			m_event((iRecordableService*)this, evRecordFailed);
+			break;
+		}
+#endif
 		m_event((iRecordableService*)this, evTuneFailed);
 		break;
 	}

@@ -18,6 +18,7 @@
 		<item level="1" text="AAC downmix" description="Select whether multichannel audio tracks should be downmixed to stereo." requires="CanDownmixAAC" indent="1">config.av.downmix_aac</item>
 		<item level="1" text="AAC plus downmix" description="Select whether multichannel audio tracks should be downmixed to stereo." requires="CanDownmixAACPlus" indent="1">config.av.downmix_aacplus</item>
 		<item level="1" text="AAC transcoding" description="Select whether AAC audio tracks should be transcoded." requires="CanAACTranscode" indent="1">config.av.transcodeaac</item>
+		<item level="1" text="HDMI audio output" description="Switch off HDMI sound when listening through an optical receiver." requires="CanSwitchHdmiAudio" indent="1">config.av.hdmiAudioEnabled</item>
 		<item level="1" text="Audio Source" description="Select whether multichannel audio tracks should be converted to PCM or SPDIF." requires="Canaudiosource" indent="1">config.av.audio_source</item>
 		<item level="1" text="Audio Synchronization" />
 		<item level="1" text="General AC3 delay" description="This option selects the general audio delay of Dolby Digital sound tracks." indent="1">config.av.generalAC3delay</item>
@@ -237,7 +238,9 @@
 			<item level="1" text="Show transponder remaining/elapsed as" description="This option allows you to choose how to display the remaining/elapsed time for live TV." indent="1">config.usage.swap_time_display_on_vfd</item>
 			<item level="1" text="Show Media playback remaining/elapsed as" description="This option allows you to choose how to display the remaining/elapsed time for media playback." indent="1">config.usage.swap_media_time_display_on_vfd</item>
 			<item level="0" text="Show time elapsed as positive" description="This option allows you to choose how to display elapsed time, as + or -." indent="1">config.usage.elapsed_time_positive_vfd</item>
-			<item level="0" text="Power On Display" description="This option allows you to Power Off the display." indent="1">config.lcd.power</item>
+		</if>
+		<item level="0" text="Power On Display" description="This option allows you to Power Off the display." conditional="BoxInfo.getItem('ConfigDisplay') or BoxInfo.getItem('machinebuild') == 'gtxcombo'" indent="1">config.lcd.power</item>
+		<if requires="ConfigDisplay">
 			<item level="0" text="Show HDMI-Output Res" description="Show HDMI Output Resolution." indent="1">config.lcd.showoutputresolution</item>
 			<item level="0" text="Show HDD progress" description="Disable the HDD Process on VFD." indent="1">config.lcd.hdd</item>
 			<item level="1" text="Software Display Scrolling" />

@@ -57,7 +57,7 @@ void eVideoWidget::setFBSize(eSize size)
 
 static inline bool aml_has_axis()
 {
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 	return access("/sys/class/video/axis", W_OK) == 0;
 #else
 	return false;

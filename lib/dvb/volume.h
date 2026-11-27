@@ -13,7 +13,7 @@ private:
 #ifdef HAVE_ALSA
 	snd_mixer_elem_t *mainVolume;
 	snd_mixer_t *alsaMixerHandle;
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 	const char *alsa_card;
 	bool  alsa_has_db;
 	long  alsa_min_raw, alsa_max_raw;   // raw range
@@ -62,7 +62,7 @@ public:
 	int getVolumeRight() { return rightVol; }
 	bool isMuted(bool force=false) { return muted || (force && mute_zero); }
 
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 	/* Fired on every setVolume (0..100, mute already applied). */
 	typedef void (*VolumeChangeCb)(int level);
 	static void registerVolumeChangeCb(VolumeChangeCb cb);

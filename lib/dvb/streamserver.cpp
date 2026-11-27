@@ -665,11 +665,12 @@ void eStreamClient::notifier(int what)
 			if (!serviceref.empty())
 			{
 				const bool dabRequest = eServiceReference(serviceref).type == eServiceReference::idServiceDAB;
-				if (!dabRequest)
-				{
+				auto sendTransportHeader = [&]() {
+					if (dabRequest)
+						return;
 					const char *reply = "HTTP/1.0 200 OK\r\nConnection: Close\r\nContent-Type: video/mpeg\r\nServer: streamserver\r\n\r\n";
 					writeAll(streamFd, reply, strlen(reply));
-				}
+				};
 				/* DAB sends its header with the first audio frame so AAC and MP2
 				 * can advertise their actual format after asynchronous tuning. */
 				/* We don't expect any incoming data, so set a tiny buffer */
@@ -718,6 +719,7 @@ void eStreamClient::notifier(int what)
 				pos = serviceref.find('?');
 				if (pos == std::string::npos)
 				{
+					sendTransportHeader();
 					parent->startStream(serviceref, m_remotehost);
 
 					eDebug("[eStreamClient] stream ref: %s", serviceref.c_str());
@@ -744,6 +746,7 @@ void eStreamClient::notifier(int what)
 					if (posdur != std::string::npos)
 					{
 
+						sendTransportHeader();
 						parent->startStream(serviceref, m_remotehost);
 
 						if ((dabRequest && startDABStream(serviceref)) ||
@@ -823,6 +826,7 @@ void eStreamClient::notifier(int what)
 							}
 						}
 						encoderFd = -1;
+						errno = 0;
 
 						if (eEncoder::getInstance())
 						{
@@ -835,8 +839,17 @@ void eStreamClient::notifier(int what)
 										vcodec, acodec);
 						}
 
+						if (encoderFd < 0 && errno == EBUSY)
+						{
+							const char *reply = "HTTP/1.0 409 Conflict\r\nConnection: Close\r\nContent-Type: text/plain\r\n\r\nEncoder busy\r\n";
+							writeAll(streamFd, reply, strlen(reply));
+							rsn->stop();
+							parent->connectionLost(this);
+							return;
+						}
 						if (encoderFd >= 0)
 						{
+							sendTransportHeader();
 							m_serviceref = serviceref;
 							m_useencoder = true;
 							m_live555Upstream = live555Upstream;

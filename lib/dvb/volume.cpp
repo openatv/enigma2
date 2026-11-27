@@ -31,7 +31,7 @@
 
 eDVBVolumecontrol *eDVBVolumecontrol::instance = NULL;
 
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 eDVBVolumecontrol::VolumeChangeCb eDVBVolumecontrol::s_volume_change_cb = nullptr;
 void eDVBVolumecontrol::registerVolumeChangeCb(VolumeChangeCb cb)
 {
@@ -52,7 +52,7 @@ eDVBVolumecontrol::eDVBVolumecontrol()
 #ifdef HAVE_ALSA
 	mainVolume = NULL;
 	alsaMixerHandle = NULL;
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 	// AMLogic-specific ALSA mixer init
 	alsa_card    = ALSA_CARD;   // default device
 	alsa_has_db  = false;
@@ -75,7 +75,7 @@ eDVBVolumecontrol::eDVBVolumecontrol()
 int eDVBVolumecontrol::openMixer()
 {
 #ifdef HAVE_ALSA
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 	// AMLogic uses the robust lazy mixer init
 	return ensureMixer() ? 0 : -1;
 #else
@@ -132,7 +132,7 @@ int eDVBVolumecontrol::openMixer()
 }
 
 #ifdef HAVE_ALSA
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 
 /* Linear-amplitude curve dB = 20·log10(level/100) on the HW Master. */
 static void da_set_master(snd_mixer_elem_t *elem, int level,
@@ -397,7 +397,7 @@ int eDVBVolumecontrol::setVolume(int left, int right)
 
 #ifdef HAVE_ALSA
 	eDebug("[eDVBVolumecontrol] Setvolume: ALSA leftVol=%d", leftVol);
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 	/* HW Master applies to all paths going through default→softvol→dmix. */
 	if (ensureMixer() && mainVolume)
 	{
@@ -486,7 +486,7 @@ void eDVBVolumecontrol::volumeMute()
 {
 #ifdef HAVE_ALSA
 	eDebug("[eDVBVolumecontrol] Set volume ALSA Mute.");
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 	muted = true;
 	if (ensureMixer() && mainVolume)
 	{
@@ -540,7 +540,7 @@ void eDVBVolumecontrol::volumeUnMute()
 {
 #ifdef HAVE_ALSA
 	eDebug("[eDVBVolumecontrol] Set volume ALSA unMute to L=%d.", leftVol);
-#ifdef DREAMNEXTGEN
+#if defined(DREAMNEXTGEN) || defined(GTX_DVB_AV)
 	muted = false;
 	if (ensureMixer() && mainVolume)
 	{

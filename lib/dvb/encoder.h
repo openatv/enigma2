@@ -35,6 +35,9 @@ class eEncoder
 					backend_bcm,
 					backend_dreamsource,
 					backend_amlogic_avc,
+#ifdef GTX_DVB_AV
+					backend_gtx,
+#endif
 				};
 
 				EncoderContext(eNavigation *navigation_instance_normal_in, eNavigation *navigation_instance_alternative_in)

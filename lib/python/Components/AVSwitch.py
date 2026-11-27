@@ -1,5 +1,5 @@
 from os import W_OK, access
-from os.path import exists
+from os.path import exists, join
 from time import sleep
 
 from enigma import eAVControl, getDesktop
@@ -322,11 +322,14 @@ def InitAVSwitch():
 	else:
 		config.av.bypass_edid_checking = ConfigNothing()
 	colorspace = fileReadLine("/proc/stb/video/hdmi_colorspace", default=None, source=MODULE_NAME)
-	colorspace = colorspace.split() if colorspace else False
+	colorspace = colorspace.split() if colorspace else MACHINEBUILD == "gtxcombo"
 	BoxInfo.setItem("havecolorspace", colorspace)
 	if colorspace:
 		def setHDMIColorspace(configElement):
-			fileWriteLine("/proc/stb/video/hdmi_colorspace", configElement.value, source=MODULE_NAME)
+			if MACHINEBUILD == "gtxcombo":
+				eAVControl.getInstance().setHDMIColorspace(configElement.value)
+			else:
+				fileWriteLine("/proc/stb/video/hdmi_colorspace", configElement.value, source=MODULE_NAME)
 
 		if MACHINEBUILD in ("vusolo4k", "vuuno4k", "vuuno4kse", "vuultimo4k", "vuduo4k", "vuduo4kse"):
 			default = "Edid(Auto)"
@@ -404,11 +407,11 @@ def InitAVSwitch():
 	else:
 		config.av.boxmode = ConfigNothing()
 	colorDepth = fileReadLine("/proc/stb/video/hdmi_colordepth", default=None, source=MODULE_NAME)
-	colorDepth = colorDepth.split() if colorDepth else MACHINEBUILD in ("dreamone", "dreamtwo")
+	colorDepth = colorDepth.split() if colorDepth else MACHINEBUILD in ("dreamone", "dreamtwo", "gtxcombo")
 	BoxInfo.setItem("havehdmicolordepth", colorDepth)
 	if colorDepth:
 		def setColorDepth(configElement):
-			if MACHINEBUILD in ("dreamone", "dreamtwo"):
+			if MACHINEBUILD in ("dreamone", "dreamtwo", "gtxcombo"):
 				eAVControl.getInstance().setHDMIColordepth(configElement.value)
 			else:
 				fileWriteLine("/proc/stb/video/hdmi_colordepth", configElement.value, source=MODULE_NAME)
@@ -622,6 +625,18 @@ def InitAVSwitch():
 		config.av.autovolume.addNotifier(setAutoVolume)
 	else:
 		config.av.autovolume = ConfigNothing()
+	def setAudioMode(mode, value):
+		path = join("/var/run", f"gtx-audio-{mode}") if MACHINEBUILD == "gtxcombo" else join("/proc/stb/audio", mode)
+		fileWriteLine(path, value, source=MODULE_NAME)
+
+	if MACHINEBUILD == "gtxcombo":
+		def setHdmiAudioEnabled(configElement):
+			eAVControl.getInstance().setHdmiAudioEnabled(configElement.value)
+
+		BoxInfo.setItem("CanSwitchHdmiAudio", True)
+		config.av.hdmiAudioEnabled = ConfigYesNo(default=True)
+		config.av.hdmiAudioEnabled.addNotifier(setHdmiAudioEnabled)
+
 	multiChannel = access("/proc/stb/audio/multichannel_pcm", W_OK)
 	BoxInfo.setItem("supportPcmMultichannel", multiChannel)
 	if multiChannel:
@@ -644,7 +659,9 @@ def InitAVSwitch():
 	BoxInfo.setItem("CanDownmixAC3", downmixAC3)
 	if downmixAC3:
 		def setAC3Downmix(configElement):
-			if AMLOGIC:
+			if MACHINEBUILD == "gtxcombo":
+				setAudioMode("ac3", "downmix" if configElement.value else "passthrough")
+			elif AMLOGIC:
 				fileWriteLine("/sys/class/audiodsp/digital_raw", configElement.value, source=MODULE_NAME)
 			else:
 				value = configElement.value and "downmix" or "passthrough"
@@ -679,12 +696,12 @@ def InitAVSwitch():
 		config.av.downmix_ac3 = ConfigNothing()
 	AC3plusTranscode = fileReadLine("/proc/stb/audio/ac3plus_choices", default=None, source=MODULE_NAME)
 	AC3plusTranscode = AC3plusTranscode.split() if AC3plusTranscode else False
-	if not AC3plusTranscode and MACHINEBUILD in ("dreamone", "dreamtwo"):
+	if not AC3plusTranscode and MACHINEBUILD in ("dreamone", "dreamtwo", "gtxcombo"):
 		AC3plusTranscode = ["downmix", "passthrough", "hdmi_best", "force_ac3"]
 	BoxInfo.setItem("CanAC3plusTranscode", AC3plusTranscode)
 	if AC3plusTranscode:
 		def setAC3plusTranscode(configElement):
-			fileWriteLine("/proc/stb/audio/ac3plus", configElement.value, source=MODULE_NAME)
+			setAudioMode("ac3plus", configElement.value)
 
 		if MACHINEBUILD in ("dm900", "dm920", "dm7080", "dm820", "dm520"):
 			choiceList = [
@@ -702,7 +719,7 @@ def InitAVSwitch():
 					("multichannel", _("Convert to multi-channel PCM")),
 					("force_dts", _("Convert to DTS"))
 				]
-		elif MACHINEBUILD in ("dreamone", "dreamtwo"):
+		elif MACHINEBUILD in ("dreamone", "dreamtwo", "gtxcombo"):
 			choiceList = [
 					("hdmi_best", _("Use best / Controlled by HDMI")),
 					("passthrough", _("Pass-through")),
@@ -716,11 +733,11 @@ def InitAVSwitch():
 				]
 		config.av.transcodeac3plus = ConfigSelection(default="force_ac3", choices=choiceList)
 		config.av.transcodeac3plus.addNotifier(setAC3plusTranscode)
-	AC4 = MACHINEBUILD in ("dreamone", "dreamtwo")
+	AC4 = MACHINEBUILD in ("dreamone", "dreamtwo", "gtxcombo")
 	BoxInfo.setItem("CanAC4", AC4)
 	if AC4:
 		def setAC4(configElement):
-			fileWriteLine("/proc/stb/audio/ac4", configElement.value, source=MODULE_NAME)
+			setAudioMode("ac4", configElement.value)
 
 		config.av.ac4 = ConfigSelection(default="hdmi_best", choices=[
 			("hdmi_best", _("Use best / Controlled by HDMI")),
@@ -732,12 +749,14 @@ def InitAVSwitch():
 		config.av.ac4 = ConfigNothing()
 	dtsHD = fileReadLine("/proc/stb/audio/dtshd_choices", default=None, source=MODULE_NAME)
 	dtsHD = dtsHD.split() if dtsHD else False
-	if not dtsHD and MACHINEBUILD in ("dreamone", "dreamtwo"):
+	if not dtsHD and MACHINEBUILD in ("dreamone", "dreamtwo", "gtxcombo"):
 		dtsHD = ["downmix", "passthrough", "hdmi_best"]
+	if MACHINEBUILD == "gtxcombo" and "dts_core" not in dtsHD:
+		dtsHD.append("dts_core")
 	BoxInfo.setItem("CanDTSHD", dtsHD)
 	if dtsHD:
 		def setDTSHD(configElement):
-			fileWriteLine("/proc/stb/audio/dtshd", configElement.value, source=MODULE_NAME)
+			setAudioMode("dtshd", configElement.value)
 
 		if MACHINEBUILD in ("dm7080", "dm820"):
 			default = "use_hdmi_caps"
@@ -745,7 +764,7 @@ def InitAVSwitch():
 				("use_hdmi_caps", _("Controlled by HDMI")),
 				("force_dts", _("Convert to DTS"))
 			]
-		elif MACHINEBUILD in ("dreamone", "dreamtwo"):
+		elif MACHINEBUILD in ("dreamone", "dreamtwo", "gtxcombo"):
 			default = "downmix"
 			choiceList = [
 				("hdmi_best", _("Use best / Controlled by HDMI")),
@@ -761,11 +780,13 @@ def InitAVSwitch():
 				("multichannel", _("Convert to multi-channel PCM")),
 				("hdmi_best", _("Use best / Controlled by HDMI"))
 			]
+		if MACHINEBUILD == "gtxcombo":
+			choiceList.insert(2, ("dts_core", _("DTS Digital Surround (DTS Core)")))
 		config.av.dtshd = ConfigSelection(default=default, choices=choiceList)
 		config.av.dtshd.addNotifier(setDTSHD)
-	if MACHINEBUILD in ("dreamone", "dreamtwo"):
+	if MACHINEBUILD in ("dreamone", "dreamtwo", "gtxcombo"):
 		def setTrueHD(configElement):
-			fileWriteLine("/proc/stb/audio/truehd", configElement.value, source=MODULE_NAME)
+			setAudioMode("truehd", configElement.value)
 
 		BoxInfo.setItem("CanTrueHD", ["downmix", "passthrough", "hdmi_best"])
 		config.av.truehd = ConfigSelection(default="downmix", choices=[
@@ -856,13 +877,13 @@ def InitAVSwitch():
 		print(f"[AVSwitch] aactranscodeChoices choices={aactranscodeChoices}, default={default}.")
 	else:
 		aacTranscode = False
-	if not aacTranscode and MACHINEBUILD in ("dreamone", "dreamtwo"):
+	if not aacTranscode and MACHINEBUILD in ("dreamone", "dreamtwo", "gtxcombo"):
 		aacTranscode = [("off", _("Off")), ("force_ac3", _("Convert to AC3"))]
 		default = "off"
 	BoxInfo.setItem("CanAACTranscode", aacTranscode)
 	if aacTranscode:
 		def setAACTranscode(configElement):
-			fileWriteLine("/proc/stb/audio/aac_transcode", configElement.value, source=MODULE_NAME)
+			setAudioMode("aac_transcode", configElement.value)
 
 		config.av.transcodeaac = ConfigSelection(default=default, choices=aacTranscode)
 		config.av.transcodeaac.addNotifier(setAACTranscode)
@@ -1234,6 +1255,23 @@ class AVSwitchBase:
 	def setVideoModeDirect(self, mode):
 		eAVControl.getInstance().setVideoMode(mode)
 
+	def matchFrameRate(self, port, mode, rate, frameRate):
+		if port != "HDMI" or rate not in ("auto", "multi"):
+			return False
+		if frameRate in (23976, 24000):
+			refresh = 24 if rate == "auto" else 60
+		elif frameRate in (25000, 50000):
+			refresh = 50
+		elif frameRate in (29970, 30000, 59940, 60000):
+			refresh = 60
+		else:
+			return False
+		target = self.rates.get(mode, {}).get(rate, {}).get(refresh)
+		if target and target in self.modes_preferred:
+			eAVControl.getInstance().setMatchedVideoMode(target, frameRate in (23976, 29970, 59940))
+			return True
+		return False
+
 	def setMode(self, port, mode, rate, force=None):
 		print(f"[AVSwitch] Setting mode for port '{port}', mode '{mode}', rate '{rate}'.")
 		modes = self.rates[mode][rate]
@@ -1249,7 +1287,8 @@ class AVSwitchBase:
 			mode24 = mode60
 			if force == 50:
 				mode24 = mode50
-		eAVControl.getInstance().setVideoModeMulti(mode50, mode60, mode24, 1)
+		if not (MACHINEBUILD == "gtxcombo" and force is None and config.av.autores.value == "disabled" and self.matchFrameRate(port, mode, rate, eAVControl.getInstance().getFrameRate(0))):
+			eAVControl.getInstance().setVideoModeMulti(mode50, mode60, mode24, 1)
 		if eAVControl.getInstance().hasVideoAxis():
 			limits = [int(x) for x in eAVControl.getInstance().getVideoAxis(mode).split()]
 			config.osd.dst_left.setChoices(default=limits[0], first=limits[0] - 255, last=limits[0] + 255)

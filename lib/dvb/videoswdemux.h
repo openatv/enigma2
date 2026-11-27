@@ -28,6 +28,11 @@ public:
 
 	int start(int pid, Codec codec, int pcr_pid = -1);
 	void stop();
+#ifdef GTX_DVB_AV
+	eDVBVideoSwDemux(eDVBDemux *demux, bool pip);
+	void flushFrameInput();
+	int getFrameInputPTS(pts_t &now) const;
+#endif
 
 private:
 	enum
@@ -62,6 +67,11 @@ private:
 	bool m_base_reported = false;
 	bool m_random_access = false;
 	std::atomic<bool> m_stop{false};
+#ifdef GTX_DVB_AV
+	bool m_pip = false;
+	bool m_native_frame = false;
+	std::atomic<int64_t> m_submitted_pts{-1};
+#endif
 	std::vector<uint8_t> m_partial;
 	std::vector<uint8_t> m_pes;
 };

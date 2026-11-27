@@ -160,6 +160,12 @@ void eDVBServicePMTHandler::channelEvent(iDVBChannel *channel, int event)
 {
 	switch (event)
 	{
+#ifdef GTX_DVB_AV
+	case iDVBChannel::evtFailed:
+		if (m_service_type == pvrDescramble)
+			serviceEvent(eventTuneFailed);
+		break;
+#endif
 	case iDVBChannel::evtPreStart:
 		serviceEvent(eventPreStart);
 		break;
@@ -1288,6 +1294,20 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, ePtr<iTsSource> &s
 		res = m_resourceManager->allocatePVRChannel(chid, m_pvr_channel);
 		if (res)
 			eDebug("[eDVBServicePMTHandler] allocatePVRChannel failed!\n");
+#ifdef GTX_DVB_AV
+		if (!res && descramble && m_service_type == pvrDescramble) {
+			if (!source || !source->valid() || source->getPacketSize() != 188) {
+				m_pvr_channel = nullptr;
+				return -EINVAL;
+			}
+			res = static_cast<eDVBChannel *>(m_pvr_channel.operator->())->prepareCIFile();
+			if (res) {
+				eWarning("[eDVBServicePMTHandler] CI recording input unavailable (%d)", res);
+				m_pvr_channel = nullptr;
+				return res;
+			}
+		}
+#endif
 		m_channel = m_pvr_channel;
 		if (!res && descramble)
 			eDVBCIInterfaces::getInstance()->addPMTHandler(this);

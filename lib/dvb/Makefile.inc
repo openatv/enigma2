@@ -48,7 +48,7 @@ dvb_libenigma_dvb_a_SOURCES = \
 	dvb/fccdecoder.cpp \
 	dvb/eramtimeshift.cpp
 
-if DREAMNEXTGEN
+if AML_DVB_AV
 dvb_libenigma_dvb_a_SOURCES += 	\
 	dvb/avsync_core.cpp \
 	dvb/videoswdemux.cpp
@@ -109,7 +109,7 @@ dvbinclude_HEADERS = \
 	dvb/fccdecoder.h \
 	dvb/eramtimeshift.h
 
-if DREAMNEXTGEN
+if AML_DVB_AV
 dvbinclude_HEADERS += \
 	dvb/avsync_core.h \
 	dvb/videoswdemux.h

@@ -365,6 +365,11 @@ class AutoVideoMode(Screen):
 				# iPlayableService.evStopped: self.BufferInfoStop,  # Sometimes not called or called before evBuffering -> if bufferfull = False (when evBuffering permanently called and buffer < 98%) will auto resolution not longer working.
 				# iPlayableService.evEnd: self.BufferInfoStop  # Alternative for 'evStopped'.
 			})
+		if session is not None and BoxInfo.getItem("machinebuild") == "gtxcombo":
+			self.refreshTimer = eTimer()
+			self.refreshTimer.callback.append(self.matchRefresh)
+			self.externalRate = 0
+			self.refreshChecks = 0
 		self.firstrun = True
 		self.delay = False
 		self.bufferfull = True
@@ -388,6 +393,9 @@ class AutoVideoMode(Screen):
 		return info and info.getInfo(iServiceInformation.sIsDedicated3D) == 1 and "sidebyside"
 
 	def __evStart(self):
+		if hasattr(self, "refreshTimer"):
+			self.externalRate = 0
+			self.scheduleRefresh()
 		self.gammaChanged(reset=True)  # Not every service sends a gamma event, so don't keep the HDR type of the previous one.
 		if config.osd.threeDmode.value == "auto":
 			global isDedicated3D
@@ -434,9 +442,40 @@ class AutoVideoMode(Screen):
 		service = self.session and self.session.nav.getCurrentService()
 		info = service and service.info()
 		if not info or info.getInfo(iServiceInformation.sVideoWidth) <= 0:  # A service with video sends its own events.
+			if hasattr(self, "refreshTimer"):
+				self.externalRate = framerate if width > 0 and height > 0 else 0
 			self.VideoChanged()
 
+	def scheduleRefresh(self):
+		self.refreshTimer.stop()
+		if config.av.autores.value == "disabled" and not getAutoresPluginEnabled() and config.av.videoport.value == "HDMI":
+			mode = config.av.videomode["HDMI"].value
+			if config.av.videorate[mode].value in ("auto", "multi"):
+				# Decoder metadata can still belong to the previous service at evStart.
+				self.refreshChecks = 4
+				self.refreshTimer.start(600, True)
+
+	def matchRefresh(self):
+		if config.av.autores.value != "disabled" or getAutoresPluginEnabled():
+			return
+		service = self.session.nav.getCurrentService()
+		info = service and service.info()
+		frameRate = self.externalRate
+		if info and info.getInfo(iServiceInformation.sVideoWidth) > 0:
+			frameRate = info.getInfo(iServiceInformation.sFrameRate)
+			if frameRate <= 0:
+				frameRate = eAVControl.getInstance().getFrameRate(0)
+		if frameRate > 0:
+			port = config.av.videoport.value
+			mode = config.av.videomode[port].value
+			avSwitch.matchFrameRate(port, mode, config.av.videorate[mode].value, frameRate)
+		self.refreshChecks -= 1
+		if self.refreshChecks:
+			self.refreshTimer.start(900, True)
+
 	def VideoChanged(self):
+		if hasattr(self, "refreshTimer"):
+			self.scheduleRefresh()
 		if config.av.autores.value == "disabled" or getAutoresPluginEnabled():
 			# print("[VideoMode] Auto resolution is disabled - resolution not changed.")
 			return

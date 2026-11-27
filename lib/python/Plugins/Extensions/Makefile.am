@@ -42,7 +42,7 @@ if S8100
 SUBDIRS += MiniTV
 endif
 
-if DREAMNEXTGEN
+if AML_DVB_AV
 SUBDIRS += QuadPip
 endif
 
