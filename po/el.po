@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-03 13:20+0100\n"
-"PO-Revision-Date: 2026-11-16 15:23+0000\n"
+"POT-Creation-Date: 2026-11-19 21:27+0000\n"
+"PO-Revision-Date: 2026-11-26 08:09+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
 "Language: el\n"
@@ -102,6 +102,10 @@ msgstr "!! Αναβάθμιση bootloader !!"
 
 msgid "# = Reboot required if this item is changed."
 msgstr "# = Απαιτείται επανεκκίνηση αν αυτό το στοιχείο αλλάξει."
+
+#, python-format
+msgid "%(title)s (%(count)d)"
+msgstr "%(title)s (%(count)d)"
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -313,8 +317,20 @@ msgid "%d min"
 msgstr "%d λεπτά"
 
 #, python-format
+msgid "%d min recorded"
+msgstr "έχουν εγγραφεί %d λεπτα"
+
+#, python-format
 msgid "%d minutes"
 msgstr "%d λεπτά"
+
+#, python-format
+msgid "%d movies"
+msgstr "%d ταινίες"
+
+#, python-format
+msgid "%d movies selected"
+msgstr "επιλέχτηκαν %d ταινίες"
 
 #, python-format
 msgid "%d ms"
@@ -325,6 +341,10 @@ msgid "%d network found."
 msgid_plural "%d networks found."
 msgstr[0] "βρέθηκε %d δίκτυο."
 msgstr[1] "βρέθηκαν %d δίκτυα."
+
+#, python-format
+msgid "%d new"
+msgstr "%d νέα"
 
 #, python-format
 msgid "%d obsolete manufacturer STARTUP files will be replaced or removed."
@@ -777,6 +797,9 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
+msgid "1 minute"
+msgstr "1 λεπτό"
+
 msgid "1. (Highest)"
 msgstr "1. (Υψηλότερο όλων)"
 
@@ -800,6 +823,9 @@ msgstr "Έξοδος 12V."
 
 msgid "12bit"
 msgstr "12bit"
+
+msgid "15 minutes"
+msgstr "15 λεπτά"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 μπάρες πάνω - κάτω"
@@ -900,6 +926,9 @@ msgstr "4x"
 msgid "5"
 msgstr "5"
 
+msgid "5 minutes"
+msgstr "5 λεπτά"
+
 msgid "50-200 Mbps"
 msgstr "50-200 Mbps"
 
@@ -978,6 +1007,9 @@ msgstr "Μία ολοκληρωμένη εργασία θέλει να τερμ�
 msgid "A crash log was %s created in '%s'"
 msgstr "Ένα αρχείο καταγραφής %s δημιουργήθηκε στο '%s'"
 
+msgid "A destination file already exists. No files were overwritten."
+msgstr "Ένα αρχείο προορισμού υπάρχει ήδη. Δεν έγινε αντικατάσταση αρχείων."
+
 #, python-format
 msgid ""
 "A finished record timer wants to set your\n"
@@ -1011,6 +1043,18 @@ msgstr "Ένας ολοκληρωμένος χρονοδιακόπτης λει�
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Η επισήμανση στην εικόνα του τηλεχειριστηρίου δείχνει σε ποιο κουμπί αναφέρεται η βοήθεια. Αν περισσότερα από ένα πλήκτρα εκτελούν τη συγκεκριμένη λειτουργία, θα εμφανιστούν περισσότερες από μία επισημάνσεις. Το κείμενο κάτω από τη λίστα παραθέτει τα ενεργά πλήκτρα και αν η λειτουργία απαιτεί παρατεταμένο πάτημα ή SHIFT του πλήκτρου(ων)."
+
+msgid "A mount point or a folder containing mounted filesystems cannot be moved to the trashcan."
+msgstr "Ένα σημείο προσάρτησης ή ένας φάκελος που περιέχει προσαρτημένα συστήματα αρχείων δεν γίνεται να μετακινηθεί στον κάδο αχρήστων."
+
+msgid "A movie companion file is a symbolic link."
+msgstr "Ένα συνοδευτικό αρχείο ταινίας είναι συμβολικός σύνδεσμος."
+
+msgid "A movie filename cannot be represented in M3U format."
+msgstr "Ένα όνομα αρχείου ταινίας δεν γίνεται να βρίσκεται σε μορφή M3U."
+
+msgid "A movie maintenance scan is already running. Its progress is shown in Tasks."
+msgstr "Υπάρχει ήδη ανίχνευση συντήρηση ταινιών σε εξέλιξη. Η πρόοδός της φαίνεται στις Εργασίες."
 
 msgid "A new storage device has been connected:"
 msgstr "Έχει συνδεθεί μία νέα συσκευή αποθήκευσης:"
@@ -1281,6 +1325,9 @@ msgstr "Ενεργοί πελάτες"
 msgid "Active only"
 msgstr "Μόνο τα ενεργά"
 
+msgid "Actor"
+msgstr "Ηθοποιός"
+
 msgid "Adapter"
 msgstr "Προσαρμογέας"
 
@@ -1463,6 +1510,12 @@ msgstr "Εγγραφή χωρίς όριο χρόνου (24 ώρες)"
 msgid "Add recording (Stop after current event)"
 msgstr "Εγγραφή ως το τέλος του τρέχοντος προγράμματος"
 
+msgid "Add selected movies"
+msgstr "Προσθήκη επιλεγμένων ταινιών"
+
+msgid "Add selected movies to the play queue"
+msgstr "Προσθήκη επιλεγμένων ταινιών στην ουρά αναπαραγωγής"
+
 msgid "Add service"
 msgstr "Προσθήκη υπηρεσίας"
 
@@ -1542,6 +1595,9 @@ msgstr "Ρυθμίστε την ολίσθηση του tuner για να βελ
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Προσαρμογή της κάθετης θέσης των γραμμάτων που χρησιμοποιούνται για το τηλεκείμενο."
 
+msgid "Adjust times to EPG"
+msgstr "Προσθήκη ωρών στο EPG"
+
 msgid "Adult"
 msgstr "Για ενήλικες"
 
@@ -1553,6 +1609,9 @@ msgstr "Επιτυχίες ενηλίκων"
 
 msgid "Adult movie/Drama"
 msgstr "ταινία ενηλίκων/δράμα"
+
+msgid "Advance Movie List"
+msgstr "Εξελιγμένη λίστα ταινιών"
 
 msgid "Advanced"
 msgstr "Προχωρημένο"
@@ -1611,6 +1670,9 @@ msgstr "Μετά την εγγραφή"
 msgid "After zap"
 msgstr "Μετά το ζάπινγκ"
 
+msgid "Age rating"
+msgstr "Ηλικιακό όριο"
+
 msgid "Aggregate data only"
 msgstr "Συγκέντρωση δεδομένων μόνο"
 
@@ -1663,6 +1725,12 @@ msgstr "Όλες οι ηλικίες"
 msgid "All data on the selected device will be erased. Create one shared data partition with %d additional MultiBoot slots, a 512 MiB swap partition and the internal slot 1 kernel?"
 msgstr "Όλα τα δεδομένα στην επιλεγμένη συσκευή θα διαγραφούν. Να δημιουργηθεί ένα κοινόχρηστο διαμέρισμα δεδομένων με %d πρόσθετες θέσεις πολλαπλής εκκίνησης, ένα διαμέρισμα swap 512 MiB και η εσωτερική θέση 1 για kernel;"
 
+msgid "All dates"
+msgstr "Όλες οι ημερομηνίες"
+
+msgid "All episodes"
+msgstr "Όλα τα επεισόδια"
+
 msgid "All events down"
 msgstr "Όλα τα προγράμματα κάτω"
 
@@ -1671,6 +1739,15 @@ msgstr "Όλα τα προγράμματα επάνω"
 
 msgid "All files"
 msgstr "Όλα τα αρχεία"
+
+msgid "All media"
+msgstr "Όλα τα μέσα"
+
+msgid "All movie files"
+msgstr "Όλα τα αρχεία ταινιών"
+
+msgid "All movie folders"
+msgstr "Όλοι οι φάκελοι ταινιών"
 
 msgid "All packages"
 msgstr "Όλα τα πακέτα"
@@ -1710,6 +1787,9 @@ msgstr "Κατανομή ενός αριθμού στο φυσικό LNB που 
 
 msgid "Allow %s-bit"
 msgstr "Να επιτρέπονται τα %s-bit"
+
+msgid "Allow duplicate recordings"
+msgstr "Να επιτρέπονται οι διπλότυπες εγγραφές"
 
 msgid "Allow guest access"
 msgstr "Να επιτραπεί η πρόσβαση σε επισκέπτες"
@@ -1840,6 +1920,9 @@ msgstr "Πάντα εμφάνιση των μπουκέτων"
 msgid "Always use smart1080p mode"
 msgstr "Χρήση πάντα της έξυπνης λειτουργίας 1080p"
 
+msgid "Ambiguous companion file names."
+msgstr "Συγκεχυμένα ονόματα αρχείων συνοδείας."
+
 msgid "American Samoa"
 msgstr "Αμερικανική Σαμόα"
 
@@ -1930,6 +2013,10 @@ msgstr "Οποιεσδήποτε εγγραφές"
 
 msgid "Aperture F number"
 msgstr "Αριθμός διαφράγματος F"
+
+#, python-format
+msgid "Apply '%(action)s' to %(count)d selected movies?"
+msgstr "Εφαρμογή '%(action)s' σε %(count)d επιλεγμένες ταινίες;"
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "Εφαρμογή αλλαγών στην ενεργή γλώσσα/διάλεκτο και έξοδος"
@@ -2086,6 +2173,9 @@ msgstr "Αύξουσα"
 msgid "Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged."
 msgstr "Να ζητείται επιβεβαίωση πριν τη μετακίνηση αρχείων στον κάδο αχρήστων. Οι επιβεβαιώσεις διαγραφής φακέλων και μόνιμης βάσης παραμένουν ανεπηρεάστες."
 
+msgid "Ask to switch to the recording channel"
+msgstr "Ερώτηση για μετάβαση στο κανάλι εγγραφής"
+
 msgid "Ask user"
 msgstr "Ερώτηση χρήστη"
 
@@ -2148,6 +2238,9 @@ msgstr "Στο τέλος του τρέχοντος προγράμματος"
 msgid "At end: %s"
 msgstr "Στο τέλος: %s"
 
+msgid "At the end of a running recording"
+msgstr "Στο τέλος μιας εγγραφής σε εξέλιξη"
+
 msgid "Athletics"
 msgstr "Αθλητικά"
 
@@ -2191,8 +2284,14 @@ msgstr "Συγχρονισμός ήχου"
 msgid "Audio bit rate"
 msgstr "Ρυθμός δεδομένων ήχου"
 
+msgid "Audio channels"
+msgstr "Κανάλια ήχου"
+
 msgid "Audio decoding"
 msgstr "Αποκωδικοποίηση ήχου"
+
+msgid "Audio description"
+msgstr "Ηχητική περιγραφή"
 
 msgid "Audio language selection 1"
 msgstr "Επιλογή γλώσσας ήχου 1"
@@ -2308,6 +2407,9 @@ msgstr "Αυτόματη ανίχνευση υπηρεσιών"
 msgid "Automatic gain"
 msgstr "Αυτόματη ενίσχυση"
 
+msgid "Automatic preview delay (ms)"
+msgstr "Αυτόματη καθυστέρηση προεπισκόπησης (ms)"
+
 msgid "Automatic resolution"
 msgstr "Αυτόματη ανάλυση"
 
@@ -2407,6 +2509,9 @@ msgstr "Εναλλαγή Μπλε: Μπλε σύντομο/Μπλε παρατε
 
 msgid "BSSID"
 msgstr "BSSID"
+
+msgid "Back"
+msgstr "Πίσω"
 
 msgid "Back USB"
 msgstr "Πίσω USB"
@@ -2569,6 +2674,9 @@ msgstr "Πριν αλλάξετε αυτές τις ρυθμίσεις, προσ
 msgid "Begin time"
 msgstr "Ώρα έναρξης"
 
+msgid "Beginning"
+msgstr "Αρχή"
+
 msgid "Behave like STOP button"
 msgstr "Συμπεριφορά όπως το πλήκτρο stop"
 
@@ -2704,6 +2812,10 @@ msgstr "Ο σελιδοδείκτης προστέθηκε."
 msgid "Bookmark removed."
 msgstr "Ο σελιδοδείκτης αφαιρέθηκε."
 
+#, python-format
+msgid "Bookmark: %s"
+msgstr "Σελιδοδείκτης: %s"
+
 msgid "Bookmarks"
 msgstr "Σελιδοδείκτες"
 
@@ -2834,6 +2946,9 @@ msgstr "Broadcom προεπιλογή"
 
 msgid "Browse"
 msgstr "Περιήγηση"
+
+msgid "Browse grouped movies and series or all indexed movie files without reading movie storage."
+msgstr "Αναζήτηση σε ομαδοποιημένες ταινίες και σειρές ή σε όλα τα αρχεία ευρετηρίου ταινιών χωρίς ανάγνωση του χώρου αποθήκευσης."
 
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Περιήγηση, εγκατάσταση ή αφαίρεση προσθέτων ένα προς ένα."
@@ -3103,11 +3218,17 @@ msgstr "Καλώδιο αποσυνδεδεμένο"
 msgid "Cable input"
 msgstr "Είσοδος καλωδίου"
 
+msgid "Cache file lists"
+msgstr "Προφόρτωση λιστών αρχείων"
+
 msgid "Cache thumbnails"
 msgstr "Αποθήκευση μικρογραφιών"
 
 msgid "Cached"
 msgstr "Σε προσωρινή μνήμη"
+
+msgid "Cached folder · refresh from the menu"
+msgstr "Προφορτωμένος φάκελος · ανανέωση από το μενού"
 
 msgid "Calculate"
 msgstr "Υπολογισμός"
@@ -3230,9 +3351,6 @@ msgstr ""
 "Αδυναμία μετάβασης σε ζωντανή TV!\n"
 "Αλλαγή σε ζωντανή TV και επανεκκίνηση χρονομετατόπισης ;"
 
-msgid "Can't move to trashcan!"
-msgstr "Αδυναμία μετακίνησης στον κάδο αχρήστων!"
-
 msgid ""
 "Can't play the next time shift buffer file!\n"
 "Switch to live TV and restart time shift?"
@@ -3348,6 +3466,9 @@ msgstr "Ακύρωση της ενημέρωσης"
 msgid "Cancelled upon user request"
 msgstr "Ακύρωση με εντολή χρήστη"
 
+msgid "Cannot create a trashcan on this mounted filesystem. No files were deleted."
+msgstr "Αδυναμία δημιουργίας κάδου αχρήστων για αυτό το προσαρτημένο σύστημα αρχείων. Δεν έγινε διαγραφή αρχείων."
+
 msgid "Cannot delete file"
 msgstr "Αδυναμία διαγραφής αρχείου"
 
@@ -3358,6 +3479,12 @@ msgstr "Αδυναμία καθορισμού του ορίου του %s ..., �
 
 msgid "Cannot find any signal ..., aborting!"
 msgstr "Αδυναμία εύρεσης σήματος ..., ματαίωση !"
+
+msgid "Capacity unit range"
+msgstr "Εύρος μονάδων χωρητικότητας"
+
+msgid "Capacity units (CU)"
+msgstr "Μονάδες χωρητικότητας (CU)"
 
 msgid "Cape Verde"
 msgstr "Πράσινο Ακρωτήρι"
@@ -3395,6 +3522,9 @@ msgstr "Χωρίς διάκριση πεζών-κεφαλαίων"
 
 msgid "Case sensitive"
 msgstr "Με διάκριση πεζών-κεφαλαίων"
+
+msgid "Cast"
+msgstr "Επιτελείο"
 
 msgid "Catalan / Valencian"
 msgstr "Καταλανικά / Βαλενσιακά"
@@ -3561,6 +3691,9 @@ msgstr "Αντιστροφή των πλήκτρων καναλιών"
 msgid "Channel down"
 msgstr "Μετάβαση προς τα κάτω"
 
+msgid "Channel layout"
+msgstr "Διάταξη καναλιού"
+
 msgid "Channel list cursor behavior"
 msgstr "Συμπεριφορά κέρσορα λίστας καναλιών"
 
@@ -3614,6 +3747,9 @@ msgstr "Κεφ."
 
 msgid "Chapter"
 msgstr "Κεφάλαιο"
+
+msgid "Chapter markers and playback position"
+msgstr "Σημειωτές κεφαλαίων και θέση αναπαραγωγής"
 
 msgid "Character device"
 msgstr "Χαρακτήρας συσκευής"
@@ -3741,11 +3877,20 @@ msgstr "Επιλέξτε τον συνδυασμό χωρών για την απ
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Επιλέξτε μία ετικέτα αναγνώρισης αυτής της συσκευής εντός των υπηρεσιών IceTV."
 
+msgid "Choose all indexed or scanned folders, the default movie location, or the current folder including subfolders. Hidden folders are excluded."
+msgstr ""
+
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Επιλέξτε πόσο συχνά θα γίνεται σύνδεση στον διακομιστή IceTV για έλεγχο ενημερώσεων."
 
+msgid "Choose season and episode order, title, recording date, release year or rating."
+msgstr ""
+
 msgid "Choose the amount of additional slots."
 msgstr "Επιλογή αριθμού πρόσθετων θέσεων."
+
+msgid "Choose the default sorting for this collection. The temporary view menu can override it."
+msgstr ""
 
 msgid "Choose the fallback font."
 msgstr "Επιλογή εφεδρικής γραμματοσειράς."
@@ -3822,6 +3967,12 @@ msgstr "Πόλη"
 msgid "Classic Rock"
 msgstr "Κλασικό ροκ"
 
+msgid "Classic movie list (EMC)"
+msgstr "Κλασική λίστα ταινιών (EMC)"
+
+msgid "Classic movie list with description (EMC)"
+msgstr "Κλασική λίστα ταινιών με περιγραφή (EMC)"
+
 msgid "Classical"
 msgstr "Κλασικά"
 
@@ -3858,11 +4009,20 @@ msgstr "Καθαρισμός αποθηκευμένων διαπιστευτηρ
 msgid "Clear before scan"
 msgstr "Εκκαθάριση πριν την ανίχνευση"
 
+msgid "Clear filters"
+msgstr "Εκκαθάριση φίλτρων"
+
 msgid "Clear fixed"
 msgstr "Εκκαθάριση σταθερών"
 
+msgid "Clear movie selection"
+msgstr "Εκκαθάριση επιλογής ταινιών"
+
 msgid "Clear play list"
 msgstr "Εκκαθάριση λίστας αναπαραγωγής"
+
+msgid "Clear play queue"
+msgstr "Εκκαθάριση ουράς αναπαραγωγής"
 
 msgid "Clear search"
 msgstr "Εκκαθάριση αναζήτησης"
@@ -4019,6 +4179,9 @@ msgstr "Χρωματισμένο κείμενο"
 msgid "Colorimetry for HDR content"
 msgstr "Χρωματομετρία για περιεχόμενο HDR"
 
+msgid "Combine series or matching recording titles in the view. Movie files stay in their original locations. Grouping can be disabled for individual folders from the context menu."
+msgstr ""
+
 msgid "Combined"
 msgstr "Σε συνδυασμό"
 
@@ -4094,6 +4257,12 @@ msgstr "Κοινές ρυθμίσεις"
 msgid "Comoros"
 msgstr "Κομόρες"
 
+msgid "Compact list"
+msgstr "Συμπαγής λίστα"
+
+msgid "Companion files are shared by multiple media files. Rename or move the variants separately after resolving their companion files."
+msgstr ""
+
 msgid "Compatibility And Emulation"
 msgstr "Συμβατότητα και προσομοίωση"
 
@@ -4105,6 +4274,10 @@ msgstr "Πλήρης"
 
 msgid "Complete Backup"
 msgstr "Πλήρης εφεδρεία"
+
+#, python-format
+msgid "Completed: %(done)d of %(total)d movies"
+msgstr "Ολοκληρώθηκαν: %(done)d από %(total)d ταινίες"
 
 msgid "Complex (allows mixing audio tracks and aspects)"
 msgstr "Σύνθετη (επιτρέπει τη μίξη ροών ήχου και λόγου πλευρών)"
@@ -4297,6 +4470,12 @@ msgstr "Ρύθμιση της τελευταίας συντεταγμένης x 
 
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Ρύθμιση της τελευταίας συντεταγμένης y της περιοχής προβολής του τηλεκειμένου."
+
+msgid "Configure the existing movie player resume behavior."
+msgstr "Ρύθμιση της συμπεριφοράς συνέχισης του υπάρχοντος αναπαραγωγού ταινιών."
+
+msgid "Configure the existing movie player stop action."
+msgstr "Ρύθμιση της ενέργειας διακοπής του υπάρχοντος αναπαραγωγού ταινιών."
 
 msgid "Configure the first audio language (highest priority)."
 msgstr "Ρύθμιση της πρώτης γλώσσας του ήχου (ύψιστη προτεραιότητα)."
@@ -4617,6 +4796,9 @@ msgstr "Συμβουλευτείτε τον πίνακα χαρακτηριστ�
 msgid "Contacting IceTV server and setting up your %s %s."
 msgstr "Επικοινωνία με τον διακομιστή IceTV και ρύθμιση του %s %s σας."
 
+msgid "Container"
+msgstr "Περιέκτης"
+
 msgid "Content"
 msgstr "Περιεχόμενο"
 
@@ -4632,6 +4814,9 @@ msgstr "Συνέχιση"
 msgid "Continue in background"
 msgstr "Συνέχεια στο παρασκήνιο"
 
+msgid "Continue in the last direction"
+msgstr "Συνέχεια στην τελευταία κατεύθυνση"
+
 msgid "Continue playback"
 msgstr "Συνέχιση αναπαραγωγής"
 
@@ -4640,6 +4825,9 @@ msgstr "Συνέχιση αναπαραγωγής"
 
 msgid "Continue to run the task in the background"
 msgstr "Συνέχεια εκτέλεσης στο παρασκήνιο"
+
+msgid "Continue watching"
+msgstr "Συνέχεια παρακολούθησης"
 
 msgid "Continue with package download and installation"
 msgstr "Συνέχιση με τη λήψη πακέτων και εγκατάσταση"
@@ -4823,6 +5011,9 @@ msgstr ""
 "\n"
 "Θέλετε να αλλάξετε τις ρυθμίσεις ξανά;"
 
+msgid "Countries"
+msgstr "Χώρες"
+
 msgid "Country"
 msgstr "Χώρα"
 
@@ -4905,6 +5096,12 @@ msgstr "Δημιουργία δεδομένων μεταφοράς πληροφ�
 msgid "Create kernel dump."
 msgstr "Δημιουργία δεδομένων μεταφοράς πυρήνα kernel."
 
+msgid "Create missing EIT file"
+msgstr "Δημιουργία αρχείου ΕΙΤ που λείπει"
+
+msgid "Create missing EIT files"
+msgstr "Δημιουργία αρχείων EIT που λείπουν"
+
 msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
 msgstr "Δημιουργία ή αφαίρεση του μπλοκαρίσματος του αρθρώματος DVB RTL2832. Απαιτείται επανεκκίνηση του δέκτη: όταν είναι ενεργό, αυτό το USB tuner θα είναι διαθέσιμο για DAB+ αλλά όχι για DVB-T/T2."
 
@@ -4944,6 +5141,9 @@ msgstr "Δημιουργία πρόσθετων θέσεων στην επιλε
 
 msgid "Create the flash expander in the selected device"
 msgstr "Δημιουργία επέκτασης flash στην επιλεγμένη συσκευή"
+
+msgid "Create virtual collection"
+msgstr "Δημιουργία εικονικής συλλογής"
 
 msgid "Create working directories."
 msgstr "Δημιουργία φακέλων εργασίας."
@@ -4987,6 +5187,9 @@ msgstr "Διαπιστευτήρια για το '%s'"
 
 msgid "Cree"
 msgstr "Κρι"
+
+msgid "Crew"
+msgstr "Επιτελείο"
 
 msgid "Cricket"
 msgstr "Κρίκετ"
@@ -5082,6 +5285,9 @@ msgstr "Τρέχον φάκελος"
 msgid "Current directory (%s)"
 msgstr "Τρέχον φάκελος (%s)"
 
+msgid "Current folder and subfolders"
+msgstr "Τρέχον φάκελος και υποφάκελοι"
+
 msgid "Current installed"
 msgstr "Τρέχον εγκατεστημένο"
 
@@ -5131,6 +5337,9 @@ msgstr "Τρέχουσες προρυθμίσεις ολίσθησης χρόν�
 msgid "Currently Remembered Volume Levels:"
 msgstr "Τρέχοντα αποθηκευμένα επίπεδα έντασης ήχου:"
 
+msgid "Cursor after marking a movie"
+msgstr "Κέρσορας μετά το μαρκάρισμα μιας ταινίας"
+
 msgid "Custom"
 msgstr "Προσαρμογή"
 
@@ -5163,6 +5372,10 @@ msgstr "Παραμετροποίηση των προσωπικών ρυθμίσ�
 
 msgid "Cut"
 msgstr "Αποκοπή"
+
+#, python-format
+msgid "Cut %s"
+msgstr "Αποκοπή %s"
 
 msgid "CutList Skipping"
 msgstr "Υπερπήδηση λίστας αποκοπών"
@@ -5368,6 +5581,12 @@ msgstr "Ντάρι"
 msgid "Darts"
 msgstr "Βελάκια"
 
+msgid "Database sort order"
+msgstr "Σειρά ταξινόμησης βάσης δεδομένων"
+
+msgid "Database view"
+msgstr "Προβολή βάσης δεδομένων"
+
 msgid "Date"
 msgstr "Ημερομηνία"
 
@@ -5514,9 +5733,15 @@ msgstr "Προεπιλεγμένη πύλη"
 msgid "Default left column directory"
 msgstr "Προεπιλεγμένος φάκελος αριστερής στήλης"
 
+msgid "Default movie location"
+msgstr "Προεπιλεγμένη θέση ταινιών"
+
 #, python-format
 msgid "Default movie location (%s)"
 msgstr "Προεπιλεγμένη τοποθεσία ταινιών (%s)"
+
+msgid "Default movie location after standby"
+msgstr "Προεπιλεγμένη θέση ταινιών μετά την αναμονή"
 
 msgid "Default movie selection location"
 msgstr "Προεπιλεγμένη τοποθεσία ταινιών"
@@ -5526,6 +5751,9 @@ msgstr "Προεπιλεγμένος τύπος εγγραφής"
 
 msgid "Default right column directory"
 msgstr "Προεπιλεγμένος φάκελος δεξιάς στήλης"
+
+msgid "Default skin layout"
+msgstr "Προεπιλεγμένη διάταξη θέματος"
 
 msgid "Default sort order for directories in the left column."
 msgstr "Προεπιλεγμένη ταξινόμηση για τους φακέλους της αριστερής στήλης."
@@ -5736,6 +5964,9 @@ msgstr "Διαγραφή χαρακτήρα αριστερά του κέρσορ
 
 msgid "Delete character under cursor or select PM times"
 msgstr "Διαγραφή χαρακτήρα αριστερά του κέρσορα ή επιλογή ωρών MΜ"
+
+msgid "Delete collection (keep movie files)"
+msgstr "Διαγραφή συλλογής (διατήρηση αρχείων ταινιών)"
 
 msgid "Delete current line"
 msgstr "Διαγραφή τρέχουσας γραμμής"
@@ -6111,6 +6342,9 @@ msgstr "Απενεργοποίηση οθόνης υποδοχής"
 msgid "Disable operator profiles"
 msgstr "Απενεργοποίηση προφίλ παρόχου"
 
+msgid "Disable previews, start them manually, or start after resting on a movie. Automatic previews access movie storage and do not interrupt timeshift or an already playing movie."
+msgstr ""
+
 msgid "Disable saved Wi-Fi network"
 msgstr "Απενεργοποίηση αποθηκευμένου δικτύου Wi-Fi"
 
@@ -6220,6 +6454,9 @@ msgstr "Εμφάνιση του εικονικού πληκτρολογίου γ
 
 msgid "Display type"
 msgstr "Τύπος εμφάνισης"
+
+msgid "Displayed movie title"
+msgstr "Εμφανιζόμενος τίτλος ταινίας"
 
 msgid "Distance"
 msgstr "Απόσταση"
@@ -6604,6 +6841,9 @@ msgstr "Διπλότυπο"
 msgid "Duplicate the current line"
 msgstr "Αντιγραφή της τρέχουσας γραμμής"
 
+msgid "Duration"
+msgstr "Διάρκεια"
+
 msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn't ready in time, this time can be increased."
 msgstr "Κατά το χρονικό αυτό διάστημα, θα γίνεται έλεγχος του αναμεταδότη και της διαδρομής εγγραφής. Αν η διαδρομή (π.χ. NAS) δεν είναι έτοιμη για εγγραφή, αυτό το χρονικό διάστημα μπορεί να αυξηθεί."
 
@@ -6798,6 +7038,19 @@ msgstr "Επεξεργασία κεφαλαίων του τρέχοντα τίτ
 msgid "Edit current line"
 msgstr "Επεξεργασία τρέχουσας γραμμής"
 
+msgid "Edit movie"
+msgstr "Επεξεργασία ταινίας"
+
+msgid "Edit play queue"
+msgstr "Επεξεργασία ουράς αναπαραγωγής"
+
+#, python-format
+msgid "Edit play queue (%d movies)"
+msgstr "Επεξεργασία ουράς αναπαραγωγής (%d ταινίες)"
+
+msgid "Edit recording information"
+msgstr "Επεξεργασία πληροφοριών εγγραφής"
+
 msgid "Edit settings"
 msgstr "Επεξεργασία ρυθμίσεων"
 
@@ -6842,6 +7095,9 @@ msgstr "Επεξεργασία διεύθυνσης πηγής αναβαθμί�
 
 msgid "Edit the username."
 msgstr "Επεξεργασία ονόματος χρήστη."
+
+msgid "Edit title and description"
+msgstr "Επεξεργασία τίτλου και περιγραφής"
 
 msgid "Education"
 msgstr "Εκπαίδευση"
@@ -6987,6 +7243,12 @@ msgstr "Ενεργοποίηση του επιλεγμένου δέκτη RTL-SD
 
 msgid "Enable adapter"
 msgstr "Ενεργοποίηση προσαρμογέα"
+
+msgid "Enable an installed movie database in Movie Selection settings to open the library."
+msgstr "Ενεργοποίηση μίας εγκατεστημένης βάσης δεδομένων ταινιών στις ρυθμίσεις επιλογής ταινιών για άνοιγμα της βιβλιοθήκης."
+
+msgid "Enable an installed movie library provider for metadata, artwork and the Advance Movie List. Local folders remain available if the provider is unavailable."
+msgstr ""
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
 msgstr "Ενεργοποίηση και ορισμός της διάρκειας της δεύτερης μπάρας πληροφοριών (πιέστε 'ΟΚ' δύο φορές) που μπορεί να περιλαμβάνει πρόσθετες πληροφορίες για την τρέχουσα υπηρεσία."
@@ -7307,6 +7569,9 @@ msgstr "Εισαγωγή περιγραφής για αυτόν τον χρον�
 
 msgid "Enter a directory or process a file (play/view/edit/install/extract/run)"
 msgstr "Εισαγωγή φακέλου ή επεξεργασία αρχείου (αναπαραγωγή/προβολή/επεξεργασία/εγκατάσταση/εξαγωγή/εκτέλεση)"
+
+msgid "Enter a movie title."
+msgstr "Εισαγωγή τίτλου ταινίας."
 
 msgid "Enter a name for this timer."
 msgstr "Εισαγωγή ονόματος για αυτόν τον χρονοδιακόπτη."
@@ -7662,10 +7927,6 @@ msgstr "Σφάλμα: αδυναμία εύρεσης της κατάλληλη�
 #, python-format
 msgid "Error: Creating directory '%s' failed!"
 msgstr "Σφάλμα: Η δημιουργία του φακέλου '%s' απέτυχε!"
-
-#, python-format
-msgid "Error: Creating picon target directory: (%s)"
-msgstr "Σφάλμα στη δημιουργία φακέλου λογότυπων: (%s)"
 
 #, python-format
 msgid "Error: Directory '%s' does not exist!"
@@ -8403,6 +8664,15 @@ msgstr "Το αρχείο φαίνεται να είναι απασχολημέ�
 msgid "File compression"
 msgstr "Συμπίεση αρχείου"
 
+msgid "File information"
+msgstr "Πληροφορίες αρχείου"
+
+msgid "File name"
+msgstr "Όνομα αρχείου"
+
+msgid "File operations require a regular movie file."
+msgstr "Οι ενέργειες αρχείων απαιτούν ένα κανονικό αρχείο ταινίας."
+
 msgid "File sorting mode"
 msgstr "Λειτουργία ταξινόμησης αρχείων"
 
@@ -8421,6 +8691,12 @@ msgstr "Όνομα αρχείου"
 msgid "Files And Directories"
 msgstr "Αρχεία και φάκελοι"
 
+msgid "Files and folders"
+msgstr "Αρχεία και φάκελοι"
+
+msgid "Files or database"
+msgstr "Αρχεία ή βάση δεδομένων"
+
 msgid "Files/folders to exclude from backup"
 msgstr "Αρχεία/φάκελοι προς εξαίρεση από την εφεδρεία"
 
@@ -8432,6 +8708,9 @@ msgstr "Φιλμ νουάρ"
 
 msgid "Film/Cinema"
 msgstr "φιλμ/κινηματογράφος"
+
+msgid "Filter"
+msgstr "Φίλτρο"
 
 msgid "Filter extensions"
 msgstr "Φιλτράρισμα επεκτάσεων"
@@ -8459,6 +8738,12 @@ msgstr "Εύρεση της τρέχουσας αναπαραγόμενης υπ
 
 msgid "Find connected events"
 msgstr "Αναζήτηση συνδεδεμένων προγραμμάτων"
+
+msgid "Find old watched movies"
+msgstr "Εύρεση ταινιών παλαιάς παρακολούθησης"
+
+msgid "Find orphaned movie companion files"
+msgstr "Εύρεση ορφανών αρχείων συνοδείας ταινιών"
 
 #, python-format
 msgid "Find out more at %s"
@@ -8490,6 +8775,9 @@ msgstr "Φινλανδία"
 
 msgid "Finnish"
 msgstr "Φιvλανδικά"
+
+msgid "First chapter marker"
+msgstr "Πρώτος σημειωτής κεφαλαίου"
 
 msgid "First playable time shift file!"
 msgstr "Πρώτο αρχείο χρονομετατόπισης για αναπαραγωγή!"
@@ -8590,6 +8878,21 @@ msgstr "Επιπεδοποίηση μέσω θέσης στο τηλεχειρι
 msgid "Flush Cache and Rescan"
 msgstr "Εκκαθάριση προφόρτωσης και επανανίχνευση"
 
+msgid "Folder movie counts and sizes updated."
+msgstr "Οι μετρήσεις αριθμού φακέλων ταινιών και τα μεγέθη ενημερώθηκαν."
+
+msgid "Folder movie information"
+msgstr "Πληροφορίες φακέλου ταινιών"
+
+msgid "Folder sorting"
+msgstr "Ταξινόμηση φακέλων"
+
+msgid "Folders"
+msgstr "Φάκελοι"
+
+msgid "Folders first"
+msgstr "Φάκελοι πρώτα"
+
 msgid "Folk Music"
 msgstr "Παραδοσιακή μουσική"
 
@@ -8598,6 +8901,15 @@ msgstr "Παραδοσιακή και Κάντρι"
 
 msgid "Folk/Traditional music"
 msgstr "λαϊκή/παραδοσιακή μουσική"
+
+msgid "Follow changes to the EPG start and end times, keeping the recording margins. Missing EPG data or timer conflicts leave the times unchanged."
+msgstr ""
+
+msgid "Follow linked folders in snapshots"
+msgstr "Ακολούθηση συνδεδεμένων φακέλων στα στιγμιότυπα"
+
+msgid "Follow symbolic links during the read-only movie snapshot task. Loops and duplicate directory targets are skipped. Cleanup tasks never follow symbolic links."
+msgstr ""
 
 msgid "Font size"
 msgstr "Μέγεθος γραμματοσειράς"
@@ -8649,6 +8961,9 @@ msgstr "Αναγκαστική ενεργοποίηση"
 
 msgid "Force progressive for streams and files"
 msgstr "Εξαναγκασμός προοδευτικής σάρωσης για ροές και αρχεία"
+
+msgid "Forced"
+msgstr "Αναγκαστικά"
 
 msgid "Foreign Language"
 msgstr "Ξένη γλώσσα"
@@ -8746,6 +9061,9 @@ msgstr "Παρασκευή"
 
 msgid "From :"
 msgstr "Από :"
+
+msgid "From the context menu"
+msgstr "Από το μενού περιεχομένων"
 
 msgid "Front"
 msgstr "Εμπρόσθιο"
@@ -9081,6 +9399,9 @@ msgstr "Γκρι"
 msgid "Group"
 msgstr "Ομάδα"
 
+msgid "Group recordings into virtual folders"
+msgstr "Ομαδοποίηση εγγραφών μέσα σε εικονικούς φακέλους"
+
 msgid "Grow drop"
 msgstr "Αύξηση πτώσης"
 
@@ -9246,6 +9567,9 @@ msgstr "Χαβανέζικα"
 msgid "Heard Island and McDonald Islands"
 msgstr "Νήσοι Χερντ και Μακντόναλντ"
 
+msgid "Hearing impaired"
+msgstr "Για άτομα με προβλήματα ακοής"
+
 msgid "Hebrew"
 msgstr "Εβραϊκά"
 
@@ -9312,6 +9636,9 @@ msgstr "Πληροφορίες για το HiSilicon"
 msgid "HiSilicon specific information not found."
 msgstr "Δεν βρέθηκαν συσχετισμένες πληροφορίες για το HiSilicon."
 
+msgid "Hidden folders"
+msgstr "Κρυφοί φάκελοι"
+
 msgid "Hidden network"
 msgstr "Κρυφό δίκτυο"
 
@@ -9365,6 +9692,9 @@ msgstr "Απόκρυψης της μπάρας πληροφοριών"
 
 msgid "Hide the OSD after a period without key presses. Screens and background jobs keep running. The first key press only restores the OSD, and newly opened dialogs make it visible again. Hold 0 to pause until the next GUI restart, or hold 0 again to resume."
 msgstr "Απόκρυψη του OSD μετά από μια περίοδο χωρίς πίεση πλήκτρων. Οι οθόνες και οι εργασίες παρασκηνίου συνεχίζουν να εκτελούνται. Το πρώτο πλήκτρο επαναφέρει μόνο το OSD, και οι πρόσφατα ανοιχτοί διάλογοι το καθιστούν ορατό και πάλι. Κρατήστε πατημένο το 0 για παύση μέχρι την επόμενη επανεκκίνηση του GUI ή κρατήστε το 0 ξανά για συνέχιση."
+
+msgid "Hide this folder"
+msgstr "Απόκρυψη αυτού του φακέλου"
 
 msgid "Hide zap errors"
 msgstr "Απόκρυψη σφαλμάτων του ζάπινγκ"
@@ -9785,6 +10115,9 @@ msgstr "Αγνόηση κατάστασης αναμονής"
 msgid "Ignore services on satellites that are not configured in the tuner settings."
 msgstr "Αγνόηση υπηρεσιών σε δορυφόρους που δεν έχουν ρυθμιστεί στο tuner."
 
+msgid "Ignore the resume position when the configured watched percentage has been reached."
+msgstr ""
+
 msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "Αγνόηση της ξαφνικής αφύπνισης και παραμονή σε αναμονή"
 
@@ -9861,6 +10194,9 @@ msgstr "Για να εκτελεστεί μια εγγραφή, ο δέκτης 
 
 msgid "In progress"
 msgstr "Σε εξέλιξη"
+
+msgid "In progress from (%)"
+msgstr ""
 
 msgid "In use by DAB+"
 msgstr "Σε χρήση από το DAB+"
@@ -10029,6 +10365,9 @@ msgstr "Διαδρομή λογότυπων μπάρας πληροφοριών"
 
 msgid "Information"
 msgstr "Πληροφορίες"
+
+msgid "Information list"
+msgstr "Λίστα πληροφοριών"
 
 msgid "Informational/Educational/School programs"
 msgstr "ειδήσεις/εκπαίδευση/σχολικό πρόγραμμα"
@@ -10202,6 +10541,9 @@ msgstr "Εσωτερικός δίσκος μόνο"
 msgid "Internal flash"
 msgstr "Εσωτερική flash"
 
+msgid "Internal flash only allows small picon packages."
+msgstr ""
+
 #, python-format
 msgid "Internal flash:  %s %s "
 msgstr "Εσωτερική flash:  %s %s "
@@ -10228,8 +10570,14 @@ msgstr "Μη έγκυρο"
 msgid "Invalid Help Page"
 msgstr "Μη έγκυρη σελίδα βοήθειας"
 
+msgid "Invalid filename."
+msgstr ""
+
 msgid "Invalid location!"
 msgstr "Μη έγκυρη τοποθεσία!"
+
+msgid "Invalid original movie location."
+msgstr ""
 
 msgid "Invalid swap file size."
 msgstr "Μη έγκυρο μέγεθος αρχείου swap."
@@ -10411,8 +10759,17 @@ msgstr "Καζακικά"
 msgid "Kazakhstan"
 msgstr "Καζακστάν"
 
+msgid "Keep previous playback position as chapter marker"
+msgstr "Διατήρηση της προηγούμενης θέσης αναπαραγωγής ως σημειωτής κεφαλαίου"
+
 msgid "Keep service"
 msgstr "Διατήρηση υπηρεσίας"
+
+msgid "Keep the newest recordings up to this limit before applying the selected display order."
+msgstr ""
+
+msgid "Keep the play queue across GUI restarts. The queue is stored in the receiver configuration without accessing movie storage."
+msgstr ""
 
 msgid "Keep warning"
 msgid_plural "Keep warnings"
@@ -10653,11 +11010,32 @@ msgstr "Λάο (Εθνική Δημοκρατία)"
 msgid "Large"
 msgstr "Μεγάλο"
 
+msgid "Large tiles"
+msgstr ""
+
+msgid "Last 24 hours"
+msgstr ""
+
+msgid "Last 30 days"
+msgstr ""
+
+msgid "Last 7 days"
+msgstr ""
+
+msgid "Last 90 days"
+msgstr ""
+
 msgid "Last config"
 msgstr "Τελευταία ρύθμιση"
 
 msgid "Last flash"
 msgstr "Τελευταίο φλασάρισμα"
+
+msgid "Last folder"
+msgstr ""
+
+msgid "Last playback position"
+msgstr ""
 
 msgid "Last speed"
 msgstr "Τελευταία ταχύτητα"
@@ -10677,6 +11055,24 @@ msgstr "Τελευταία ένταση ήχου σε χρήση/ορισμέν�
 msgctxt "third event: 'third' event label"
 msgid "Later"
 msgstr "Αργότερα"
+
+msgid "Latest recordings"
+msgstr ""
+
+msgid "Latest recordings collection"
+msgstr ""
+
+msgid "Latest recordings folders"
+msgstr ""
+
+msgid "Latest recordings maximum"
+msgstr "Μέγιστο πιο πρόσφατων εγγραφών"
+
+msgid "Latest recordings period"
+msgstr "Περίοδος πιο πρόσφατων εγγραφών"
+
+msgid "Latest recordings sorting"
+msgstr "Ταξινόμηση πιο πρόσφατων εγγραφών"
 
 msgid "Latin"
 msgstr "Λατινικά"
@@ -10879,6 +11275,12 @@ msgstr "Λίστα συσκευών αποθήκευσης"
 msgid "List of storage devices"
 msgstr "Λίστα μέσων αποθήκευσης"
 
+msgid "List or grid style"
+msgstr "Στυλ λίστας ή πλέγματος"
+
+msgid "List style"
+msgstr "Στυλ λίστας"
+
 msgid "Lists reloaded!"
 msgstr "Οι λίστες επαναφορτώθηκαν!"
 
@@ -10906,6 +11308,9 @@ msgstr "Φόρτωση"
 msgid "Load EPG Cache"
 msgstr "Φόρτωση αποθηκευμένου EPG"
 
+msgid "Load M3U playlist"
+msgstr "Φόρτωση λίστας M3U"
+
 msgid "Load play list"
 msgstr "Φόρτωση λίστας αναπαραγωγής"
 
@@ -10921,6 +11326,9 @@ msgstr "Φόρτος: %s %%"
 
 msgid "Loading information, please wait..."
 msgstr "Φόρτωση πληροφοριών, περιμένετε..."
+
+msgid "Loading movie library..."
+msgstr "Φόρτωση βιβλιοθήκης ταινιών..."
 
 msgid "Loading skin..."
 msgstr "Φόρτωση θέματος..."
@@ -11179,6 +11587,10 @@ msgstr "Κύριο μενού"
 msgid "Maintain your multi boot device."
 msgstr "Διατήρηση της συσκευής πολλαπλής εκκίνησης."
 
+#, python-format
+msgid "Maintenance scan finished: %d candidates. Review them from Movie maintenance in the context menu."
+msgstr ""
+
 msgid "Make"
 msgstr "Κατασκευή"
 
@@ -11308,8 +11720,29 @@ msgstr "Περιθώριο πριν την εγγραφή"
 msgid "Margin before zap"
 msgstr "Περιθώριο πριν το ζάπινγκ"
 
+msgid "Mark / unmark movie"
+msgstr ""
+
 msgid "Mark As Dedicated 3D Service"
 msgstr "Μαρκάρισμα υπηρεσίας ως σταθερή υπηρεσία 3D"
+
+msgid "Mark as unwatched"
+msgstr ""
+
+msgid "Mark as watched"
+msgstr ""
+
+msgid "Mark new recordings"
+msgstr ""
+
+msgid "Mark selected movies as unwatched"
+msgstr ""
+
+msgid "Mark selected movies as watched"
+msgstr ""
+
+msgid "Mark unwatched recordings from the last 24 hours or since the previous visit. Returning from playback keeps the same visit."
+msgstr ""
 
 msgid "Marker Actions"
 msgstr "Ενέργειες σημειωτή"
@@ -11389,6 +11822,9 @@ msgstr "Ρυθμίσεις αναπαραγωγού πολυμέσων"
 
 msgid "Media Stream"
 msgstr "Ροή πολυμέσων"
+
+msgid "Media information is currently unavailable."
+msgstr ""
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Αναπαραγωγή πολυμέσων εναπομείναντα/παρελθόντα ως"
@@ -11530,8 +11966,20 @@ msgstr "MiniTV με OSD"
 msgid "Minimum age %d years"
 msgstr "Ελάχιστη ηλικία %d"
 
+msgid "Minimum age for watched movie maintenance (days)"
+msgstr ""
+
 msgid "Minimum difference between idle and moving current."
 msgstr "Ελάχιστη διαφορά μεταξύ αδρανούς και τρέχοντος ρεύματος."
+
+msgid "Minimum playback percentage for the in-progress status. A movie without a playback position remains unwatched."
+msgstr ""
+
+msgid "Minimum playback percentage for the watched status, watched-movie restart and manual maintenance."
+msgstr ""
+
+msgid "Minimum recordings per virtual folder"
+msgstr ""
 
 msgid "Minimum send interval"
 msgstr "Ελάχιστο διάστημα αποστολής"
@@ -11704,6 +12152,18 @@ msgstr "Σημεία προσάρτησης"
 msgid "Move"
 msgstr "Μετακίνηση"
 
+#, python-format
+msgid "Move %d selected movies and their companion files to the trashcan?"
+msgstr ""
+
+#, python-format
+msgid "Move %d selected watched movies and their companion files to the trashcan?"
+msgstr ""
+
+#, python-format
+msgid "Move '%s' and its companion files to the trashcan?"
+msgstr ""
+
 msgid "Move Down"
 msgstr "Μετακίνηση κάτω"
 
@@ -11736,6 +12196,9 @@ msgstr "Μετακίνηση όλων των συναφών αρχείων"
 
 msgid "Move directory/file to target directory"
 msgstr "Αντιγραφή φακέλου/αρχείου στον φάκελο προορισμού"
+
+msgid "Move down"
+msgstr ""
 
 msgid "Move down a line"
 msgstr "Μετακίνηση μία γραμμή κάτω"
@@ -11794,11 +12257,17 @@ msgstr "Η μετακίνηση απέτυχε!"
 msgid "Move job queued."
 msgstr "Εργασία μετακίνησης στην ουρά."
 
+msgid "Move left"
+msgstr ""
+
 msgid "Move left a item"
 msgstr "Μετακίνηση αντικειμένου αριστερά"
 
 msgid "Move only highlighted file"
 msgstr "Μετακίνηση μόνο του επισημασμένου αρχείου"
+
+msgid "Move right"
+msgstr ""
 
 msgid "Move right a item"
 msgstr "Μετακίνηση αντικειμένου δεξιά"
@@ -11924,6 +12393,9 @@ msgstr "Μετακίνηση στο προηγούμενο στοιχείο"
 msgid "Move to the previous item in list"
 msgstr "Μετάβαση στο προηγούμενο στοιχείο της λίστας"
 
+msgid "Move up"
+msgstr ""
+
 msgid "Move up a line"
 msgstr "Μετακίνηση μία γραμμή επάνω"
 
@@ -11999,8 +12471,62 @@ msgstr "Ενέργειες λίστας ταινιών"
 msgid "Movie Selection Settings"
 msgstr "Ρυθμίσεις λίστας ταινιών"
 
+msgid "Movie artwork"
+msgstr ""
+
+msgid "Movie count"
+msgstr ""
+
+msgid "Movie count and size"
+msgstr ""
+
+msgid "Movie count, size and new movies"
+msgstr ""
+
+msgid "Movie database"
+msgstr ""
+
+msgid "Movie database unavailable"
+msgstr ""
+
+msgid "Movie database unavailable. Select files and folders from View in the menu."
+msgstr ""
+
+msgid "Movie date format"
+msgstr ""
+
+msgid "Movie file operations"
+msgstr ""
+
+msgid "Movie front display"
+msgstr "Εμπρόσθια ένδειξη ταινίας"
+
+msgid "Movie information"
+msgstr "Πληροφορίες ταινίας"
+
+msgid "Movie library"
+msgstr "Βιβλιοθήκη ταινιών"
+
+msgid "Movie maintenance"
+msgstr "Συντήρηση ταινιών"
+
+msgid "Movie play queue"
+msgstr "Ουρά αναπαραγωγής ταινιών"
+
 msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr "Η αναπαραγωγή ταινιών μπορεί να μην κάνει χρήση ενός μη έγκυρου/ακατάλληλου φακέλου."
+
+msgid "Movie player style"
+msgstr ""
+
+msgid "Movie playlists support local files and mounted storage only."
+msgstr ""
+
+msgid "Movie preview"
+msgstr ""
+
+msgid "Movie size"
+msgstr ""
 
 msgid "Movie/Drama"
 msgstr "Ταινία/Δράμα"
@@ -12010,6 +12536,9 @@ msgstr "Αναπαραγωγή ταινιών"
 
 msgid "Movies"
 msgstr "Ταινίες"
+
+msgid "Movies and series"
+msgstr ""
 
 msgid "Moving"
 msgstr "Μετακίνηση"
@@ -12460,6 +12989,15 @@ msgstr "Νέες πληροφορίες προγράμματος"
 msgid "New media"
 msgstr "νέα πολυμέσα"
 
+msgid "New movie filename (without extension)"
+msgstr ""
+
+msgid "New movies"
+msgstr ""
+
+msgid "New movies: update folder statistics"
+msgstr ""
+
 msgid "New password"
 msgstr "Νέος κωδικός"
 
@@ -12480,6 +13018,9 @@ msgstr "Κλειδί NewCamd DES"
 
 msgid "NewDirectory"
 msgstr "Νέος κατάλογος"
+
+msgid "Newest recordings first"
+msgstr ""
 
 msgid "News"
 msgstr "Ειδήσεις"
@@ -12517,6 +13058,12 @@ msgstr "Επόμενη σελίδα καναλιών"
 
 msgid "Next higher resolution"
 msgstr "Επόμενη υψηλότερη ανάλυση"
+
+msgid "Next movie"
+msgstr ""
+
+msgid "Next page"
+msgstr ""
 
 msgid "Next quad PiP channel"
 msgstr "Επόμενο κανάλι τετραπλού PiP"
@@ -12633,6 +13180,9 @@ msgstr "Χωρίς καθυστέρηση"
 msgid "No demux available"
 msgstr "Μη διαθέσιμη απόπλεξη"
 
+msgid "No description available."
+msgstr ""
+
 msgid "No displayable files on this medium found!"
 msgstr "Δεν υπάρχουν αρχεία προς εμφάνιση σε αυτό το μέσο!"
 
@@ -12660,6 +13210,9 @@ msgstr "Χωρίς πύλη δικτύου"
 msgid "No hard disks detected."
 msgstr "Δεν εντοπίστηκαν σκληροί δίσκοι."
 
+msgid "No hidden folders"
+msgstr ""
+
 msgid "No hosts found yet - still scanning..."
 msgstr "Δεν βρέθηκαν διακομιστές ακόμα - συνέχιση ανίχνευσης..."
 
@@ -12669,8 +13222,17 @@ msgstr "Δεν βρέθηκαν τοπικά images."
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Δεν βρέθηκαν αρχεία αποσφαλμάτωσης και έτσι οι καταγραφές δεν είναι διαθέσιμες!"
 
+msgid "No maintenance candidates found."
+msgstr ""
+
 msgid "No matching place names found"
 msgstr "Δεν βρέθηκαν συσχετισμένα ονόματα θέσεων"
+
+msgid "No movie description is available to create an EIT file."
+msgstr ""
+
+msgid "No movies found. Select files and folders from View to see unscanned recordings."
+msgstr ""
 
 msgid "No network adapters enabled/available!"
 msgstr "Μη ενεργοί/διαθέσιμοι προσαρμογείς δικτύου!"
@@ -12701,6 +13263,9 @@ msgstr "Χωρίς διαχείριση πόρων"
 
 msgid "No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."
 msgstr "Μη ρυθμισμένο δορυφορικό, επίγειο ή καλωδιακό tuner. Ελέγξτε τις ρυθμίσεις tuner."
+
+msgid "No saved playback position is available."
+msgstr "Καμία διαθέσιμη αποθηκευμένη θέση αναπαραγωγής."
 
 msgid "No service"
 msgstr "Καμία υπηρεσία"
@@ -12776,6 +13341,9 @@ msgstr ""
 
 msgid "No tuners are currently streaming."
 msgstr "Δεν γίνεται καμία ροή από τα tuners προς το παρόν."
+
+msgid "No unambiguous series filenames are available. A series name, season and episode are required."
+msgstr ""
 
 msgid "No unused swap file name is available."
 msgstr "Μη διαθέσιμο αχρησιμοποίητο όνομα αρχείου swap."
@@ -13137,6 +13705,9 @@ msgstr "Ολίσθηση και κλείσιμο συσκευής CA"
 msgid "Ojibwa"
 msgstr "Οτζίμπουα"
 
+msgid "Oldest recordings first"
+msgstr ""
+
 msgid "Oldies"
 msgstr "Παλαιές επιτυχίες"
 
@@ -13203,11 +13774,17 @@ msgstr "Φλασάρισμα μόνο του image εφεδρείας"
 msgid "Only HD"
 msgstr "Μόνο HD"
 
+msgid "Only create a group when at least this many matching recordings are present."
+msgstr ""
+
 msgid "Only free scan"
 msgstr "Ανίχνευση μόνο των ελεύθερων"
 
 msgid "Only in Standby"
 msgstr "Μόνο στην αναμονή"
+
+msgid "Only include recordings made during this period."
+msgstr ""
 
 msgid "Only log debug information of GStreamer category. * means all categories."
 msgstr "Καταγραφή μόνο των πληροφοριών αποσφαλμάτωσης στην κατηγορία GStreamer. Το * σημαίνει όλες τις κατηγορίες."
@@ -13251,6 +13828,9 @@ msgstr "Άνοιγμα αυτόματου χρονοδιακόπτη"
 msgid "Open AutoTimer Overview"
 msgstr "Άνοιγμα λίστας αυτόματων χρονοδιακοπτών"
 
+msgid "Open BDMV and BRD folder structures with the native Blu-ray service."
+msgstr ""
+
 msgid "Open Bouquet selection"
 msgstr "Άνοιγμα λίστας μπουκέτων"
 
@@ -13259,6 +13839,12 @@ msgstr "Εμφάνιση portal δέκτη"
 
 msgid "Open Capability"
 msgstr "Άνοιγμα δυνατότητας"
+
+msgid "Open DVD images individually with the DVD player."
+msgstr ""
+
+msgid "Open DVD images individually with the DVD player. Play queues support video and audio files."
+msgstr ""
 
 msgid "Open EPG"
 msgstr "Άνοιγμα EPG"
@@ -13356,8 +13942,17 @@ msgstr "Εμφάνιση της TV"
 msgid "Open Usage and GUI Settings"
 msgstr "Άνοιγμα ρυθμίσεων χρήσης και διεπαφής χρήστη"
 
+msgid "Open VIDEO_TS and DVD folder structures directly with the DVD player."
+msgstr ""
+
 msgid "Open VideoMode"
 msgstr "Εμφάνιση ρυθμίσεων διαμόρφωσης"
+
+msgid "Open a movie directly when its filename matches its containing folder. File operations still treat the containing folder as a folder."
+msgstr ""
+
+msgid "Open collection"
+msgstr ""
 
 msgid "Open context menu"
 msgstr "Μενού περιεχομένων μενού"
@@ -13373,6 +13968,9 @@ msgstr "Άνοιγμα οθόνης διαχείρισης εξωτερικών 
 
 msgid "Open file sort menu"
 msgstr "Άνοιγμα του μενού ταξινόμησης αρχείων"
+
+msgid "Open selected movie or series"
+msgstr ""
 
 msgid "Open service list and select next service"
 msgstr "Άνοιγμα λίστας υπηρεσιών και επιλογή του επόμενου καναλιού"
@@ -13425,6 +14023,9 @@ msgstr "Άνοιγμα επιπρόσθετων οθονών"
 msgid "Open the context menu"
 msgstr "Άνοιγμα μενού περιεχομένων"
 
+msgid "Open the last folder, the default movie location, or return to the default location after standby. Returning from playback keeps the selected movie."
+msgstr ""
+
 msgid "Open the multi service EPG view"
 msgstr "Άνοιγμα της επισκόπησης πολλαπλών υπηρεσιών EPG"
 
@@ -13452,6 +14053,9 @@ msgstr "Σύνδεση OpenWebif"
 msgid "OpenWebif picon path"
 msgstr "OpenWebif διαδρομή λογότυπων"
 
+msgid "Opening movie folder"
+msgstr ""
+
 msgid "Opening network adapter configuration..."
 msgstr "Άνοιγμα των ρυθμίσεων προσαρμογέα δικτύου..."
 
@@ -13466,6 +14070,9 @@ msgstr "Κατάσταση λειτουργίας LED κατά την αναμο
 
 msgid "Operating LED status while running"
 msgstr "Κατάσταση λειτουργίας LED κατά την εκτέλεση"
+
+msgid "Operation cancelled."
+msgstr "Η λειτουργία ακυρώθηκε."
 
 msgid "Opkg Actions"
 msgstr "Ενέργειες opkg"
@@ -13512,11 +14119,17 @@ msgstr "Αναγνωριστικό δικτύου (ONID)"
 msgid "Original language"
 msgstr "Πρωτότυπη γλώσσα"
 
+msgid "Original title"
+msgstr "Πρωτότυπος τίτλος"
+
 msgid "Oriya"
 msgstr "Ορίγια"
 
 msgid "Oromo"
 msgstr "Ορόμο"
+
+msgid "Orphaned companion files removed."
+msgstr ""
 
 msgid "Oscam Information"
 msgstr "Πληροφορίες Oscam"
@@ -13690,6 +14303,10 @@ msgstr "Πακέτα"
 msgid "Packages and associated locales"
 msgstr "Πακέτα και σχετιζόμενες διάλεκτοι"
 
+#, python-format
+msgid "Page %(page)d · %(count)d entries"
+msgstr ""
+
 msgid "Page down"
 msgstr "Σελίδα κάτω"
 
@@ -13856,6 +14473,18 @@ msgstr "Τελεία '.'"
 msgid "Period and space '. '"
 msgstr "Τελεία και κενό '. '"
 
+#, python-format
+msgid "Permanently delete %d selected movies and their companion files?"
+msgstr ""
+
+#, python-format
+msgid "Permanently delete %d selected orphaned companion files?"
+msgstr ""
+
+#, python-format
+msgid "Permanently delete '%s' and its companion files?"
+msgstr ""
+
 msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Οριστική διαγραφή όλων των εγγραφών από τον κάδο;"
 
@@ -14001,6 +14630,9 @@ msgstr "Πίτκαιρν"
 msgid "Pixel Test"
 msgstr "Δοκιμή pixel"
 
+msgid "Pixel format"
+msgstr ""
+
 msgid "Pixels\n"
 msgstr "Πίξελ\n"
 
@@ -14049,6 +14681,9 @@ msgstr "Αναπαραγωγή αρχείου υπηρεσίας συνέχισ�
 msgid "Play entry"
 msgstr "Αναπαραγωγή στοιχείου"
 
+msgid "Play from here"
+msgstr ""
+
 msgid "Play from next mark or play list entry"
 msgstr "Αναπαραγωγή από επόμενο σημείο ή στοιχείο στη λίστα"
 
@@ -14075,6 +14710,22 @@ msgstr "Αναπαραγωγή επόμενου (επιστροφή στην π�
 
 msgid "Play previous"
 msgstr "Απαναραγωγή προγηγούμενου"
+
+msgid "Play queue"
+msgstr ""
+
+msgid "Play queue / playlists"
+msgstr ""
+
+msgid "Play queue cleared"
+msgstr ""
+
+#, python-format
+msgid "Play queue: %d movies (maximum 1024)"
+msgstr ""
+
+msgid "Play selected movies"
+msgstr ""
 
 msgid "Play selected service in a PiP window"
 msgstr "Αναπαραγωγή της επιλεγμένης υπηρεσίας σε παράθυρο PiP"
@@ -14106,11 +14757,26 @@ msgstr "Ρυθμίσεις αναπαραγωγής"
 msgid "Playback Time:"
 msgstr "Χρόνος αναπαραγωγής:"
 
+msgid "Playback changed. Select the movie again before deleting it."
+msgstr ""
+
 msgid "Playback, Recording & Time Shift"
 msgstr "Αναπαραγωγή, εγγραφή & χρονομετατόπιση"
 
+msgid "Playing"
+msgstr ""
+
 msgid "Playlist"
 msgstr "Λίστα αναπαραγωγής"
+
+msgid "Playlist filename (.m3u or .m3u8)"
+msgstr ""
+
+msgid "Playlist loaded"
+msgstr "Η λίστα αναπαραγωγής φορτώθηκε"
+
+msgid "Playlist saved"
+msgstr ""
 
 msgid "Playpause"
 msgstr "Αναπαραγωγή-παύση"
@@ -14202,6 +14868,9 @@ msgstr "Επιλέξτε λίστα αναπαραγωγής..."
 
 msgid "Please select a resolution..."
 msgstr "Παρακαλώ επιλέξτε μία ανάλυση..."
+
+msgid "Please select a target directory."
+msgstr ""
 
 msgid "Please select an aspect ratio..."
 msgstr "Παρακαλώ επιλέξτε έναν λόγο πλευρών..."
@@ -14483,6 +15152,12 @@ msgstr "Ρύθμιση μοτέρ"
 msgid "Possible causes could be:"
 msgstr "Πιθανές αιτίες θα μπορούσαν να είναι:"
 
+msgid "Poster grid"
+msgstr "Πλέγμα αφισών"
+
+msgid "Poster list"
+msgstr "Λίστα αφισών"
+
 msgid "Power"
 msgstr "Power"
 
@@ -14579,8 +15254,20 @@ msgstr "Προτιμώμενα tuners για εγγραφές, επιτρέπε�
 msgid "Preparation time for recording"
 msgstr "Χρόνος προετοιμασίας για εγγραφή"
 
+msgid "Preparing latest recordings. Progress is shown in Tasks."
+msgstr ""
+
+msgid "Preparing picon storage. Existing picons will be preserved. Please wait..."
+msgstr ""
+
+msgid "Preparing picon storage. Please wait..."
+msgstr ""
+
 msgid "Preparing recording, please wait..."
 msgstr "Προετοιμασία εγγραφής, περιμένετε..."
+
+msgid "Preparing series filenames..."
+msgstr ""
 
 msgid "Preparing... Please wait"
 msgstr "Γίνεται προετοιμασία... Παρακαλώ περιμένετε"
@@ -14713,6 +15400,15 @@ msgstr "Προεπισκόπηση"
 msgid "Preview menu"
 msgstr "Μενού προεπισκόπησης"
 
+msgid "Preview offset (seconds)"
+msgstr ""
+
+msgid "Preview series filenames from the movie database"
+msgstr ""
+
+msgid "Preview starting point"
+msgstr ""
+
 msgid "Previous"
 msgstr "Προηγούμενο"
 
@@ -14724,6 +15420,9 @@ msgstr "Προηγούμενη σελίδα"
 
 msgid "Previous channel page"
 msgstr "Προηγούμενη σελίδα καναλιών"
+
+msgid "Previous page"
+msgstr ""
 
 msgid "Previous/Next page"
 msgstr "Προηγούμενη/επόμενη σελίδα"
@@ -14785,6 +15484,10 @@ msgstr "Χειρισμός εισόδου από την TV"
 
 msgid "Processing"
 msgstr "Επεξεργασία"
+
+#, python-format
+msgid "Processing %d movies in the background"
+msgstr ""
 
 msgid "Processor information"
 msgstr "Πληροφορίες επεξεργαστή"
@@ -15150,12 +15853,19 @@ msgstr "Τυχαίος"
 msgid "Random Password"
 msgstr "Τυχαίος κωδικός"
 
+msgid "Rating"
+msgstr ""
+
 #, python-format
 msgid "Rating defined by broadcaster - %d"
 msgstr "Βαθμολογία καθορισμένη από τον πάροχο - %d"
 
 msgid "Rating undefined"
 msgstr "Μη καθορισμένη βαθμολογία"
+
+#, python-format
+msgid "Rating: %s"
+msgstr ""
 
 msgid "Re-enter new PIN"
 msgstr "Επανεισαγωγή του νέου PIN"
@@ -15172,6 +15882,9 @@ msgstr "Ανάγνωση δεδομένων χρήστη από το oscam.conf"
 msgid "Read block size"
 msgstr "Μέγεθος μπλοκ ανάγνωσης"
 
+msgid "Read movie folders"
+msgstr "Ανάγνωση φακέλων ταινιών"
+
 msgid "Read-Only"
 msgstr "Μόνο για ανάγνωση"
 
@@ -15180,6 +15893,12 @@ msgstr "Ανάγνωση/εγγραφή"
 
 msgid "Reader"
 msgstr "Αναγνώστης"
+
+msgid "Reading media information timed out."
+msgstr ""
+
+msgid "Reading media information..."
+msgstr ""
 
 msgid "Ready"
 msgstr "Έτοιμο"
@@ -15292,6 +16011,15 @@ msgstr "Πηγή λήψης"
 msgid "Reception sources to scan"
 msgstr "Πηγές λήψης προς ανίχνευση"
 
+msgid "Recognize Blu-ray folders"
+msgstr ""
+
+msgid "Recognize DVD folders"
+msgstr ""
+
+msgid "Recognize movie folders"
+msgstr "Αναγνώριση φακέλων ταινιών"
+
 msgid "Record"
 msgstr "Εγγραφή"
 
@@ -15325,6 +16053,9 @@ msgstr "Χρονοδιακόπτες εγγραφής"
 msgid "Recordable media toolbox"
 msgstr "Εργαλειοθήκη εγγράψιμων μέσων"
 
+msgid "Recorded"
+msgstr "Εγγεγραμμένα"
+
 msgid "Recording"
 msgstr "Εγγραφή"
 
@@ -15352,6 +16083,12 @@ msgstr "Ματαίωση εγγραφής"
 msgid "Recording failed"
 msgstr "Αποτυχία εγγραφής"
 
+#, python-format
+msgid ""
+"Recording failed because the channel's programme information could not be received.\n"
+"%s"
+msgstr ""
+
 msgid "Recording finished"
 msgstr "Η εγγραφή τελείωσε"
 
@@ -15372,6 +16109,15 @@ msgstr "Η εγγραφή ξεκίνησε! Διακοπή της χρονομε
 
 msgid "Recording stopped"
 msgstr "Η εγγραφή σταμάτησε"
+
+msgid "Recording title"
+msgstr ""
+
+msgid "Recording title and separator"
+msgstr ""
+
+msgid "Recording title separator"
+msgstr ""
 
 msgid "Recording tuning failed"
 msgstr "Αποτυχία συντονισμού για εγγραφή"
@@ -15453,8 +16199,14 @@ msgstr "Ανανέωση των πληροφοριών κατάστασης το
 msgid "Refresh every"
 msgstr "Ανανέωση κάθε (σε ώρες)"
 
+msgid "Refresh library"
+msgstr ""
+
 msgid "Refresh list of RTL-SDR USB tuners"
 msgstr "Ανανέωση της λίστας των RTL-SDR USB tuners"
+
+msgid "Refresh movie folder"
+msgstr ""
 
 msgid "Refresh rate"
 msgstr "Συχνότητα ανανέωσης"
@@ -15486,8 +16238,17 @@ msgstr "Τυπικό αρχείο"
 msgid "Relative"
 msgstr "Σχετικό"
 
+msgid "Relative date"
+msgstr ""
+
 msgid "Release Notes"
 msgstr "Σημειώσεις έκδοσης"
+
+msgid "Release date"
+msgstr ""
+
+msgid "Release year"
+msgstr ""
 
 msgid "Relevant PIDs Routing"
 msgstr "Δρομολόγηση σχετιζόμενων PIDs"
@@ -15551,6 +16312,9 @@ msgstr "σημαίνοντα πρόσωπα"
 
 msgid "Remember last service in PiP"
 msgstr "Υπενθύμιση τελευταίας υπηρεσίας στο PiP"
+
+msgid "Remember play queue"
+msgstr ""
 
 msgid "Remember service PIN"
 msgstr "Αποθήκευση PIN υπηρεσίας"
@@ -15676,6 +16440,9 @@ msgstr "Διαγραφή όλων των δεδομένων χρονοδιακό
 msgid "Remove all user interface data"
 msgstr "Διαγραφή όλων των δεδομένων χρήστη"
 
+msgid "Remove chapter markers (keep cuts and resume position)"
+msgstr ""
+
 msgid "Remove completed timers after"
 msgstr "Διαγραφή ολοκληρωμένων χρονοδιακοπτών μετά από"
 
@@ -15685,11 +16452,20 @@ msgstr "Αφαίρεση του επιλεγμένου φακέλου από τ�
 msgid "Remove currently selected title"
 msgstr "Διαγραφή επιλεγμένου τίτλου"
 
+msgid "Remove from queue"
+msgstr ""
+
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Αφαίρεση του επιλεγμένου φακέλου από τους σελιδοδείκτες"
 
+msgid "Remove orphaned movie companion files"
+msgstr ""
+
 msgid "Remove previously stored services from scanned DAB+ multiplexes. Disable this option to retain services when a multiplex is temporarily unavailable."
 msgstr "Αφαίρεση των προηγουμένως αποθηκευμένων υπηρεσιών από ανιχνευμένους πολυπλέκτες DAB +. Απενεργοποιήστε αυτή την επιλογή για τη διατήρηση των υπηρεσιών όταν ένας πολυπλέκτης είναι προσωρινά μη διαθέσιμος."
+
+msgid "Remove selected movies from collection"
+msgstr ""
 
 msgid "Remove service from AutoCam"
 msgstr "Αφαίρεση υπηρεσίας από το αυτόματο cam"
@@ -15730,6 +16506,10 @@ msgstr "Αφαίρεση πίνακα διαμερισμάτων"
 msgid "Rename"
 msgstr "Μετονομασία"
 
+#, python-format
+msgid "Rename %(count)d movies with their companion files? %(skipped)d unchanged or incomplete entries were skipped."
+msgstr ""
+
 msgid "Rename Directory"
 msgstr "Μετονομασία φακέλου"
 
@@ -15739,11 +16519,17 @@ msgstr "Μετονομασία στοιχείου"
 msgid "Rename all related files"
 msgstr "Μετονομασία όλων των σχετικών αρχείων"
 
+msgid "Rename collection"
+msgstr "Μετονομασία συλλογής"
+
 msgid "Rename directory/file"
 msgstr "Μετονομασία φακέλου/αρχείου"
 
 msgid "Rename failed!"
 msgstr "Αποτυχία μετονομασίας!"
+
+msgid "Rename movie file and companion files"
+msgstr "Μετονομασία αρχείου ταινίας και αρχείων συνοδείας"
 
 msgid "Rename name and description for new events"
 msgstr "Αλλαγή ονόματος και περιγραφής για νέα προγράμματα"
@@ -16036,6 +16822,9 @@ msgstr "Επαναφορά ρυθμίσεων συστήματος"
 msgid "Restore backups"
 msgstr "Επαναφορά αντιγράφων ασφαλείας"
 
+msgid "Restore previous playback position"
+msgstr "Επαναφορά προηγούμενης θέσης αναπαραγωγής"
+
 msgid "Restore settings from a backup"
 msgstr "Επαναφορά ρυθμίσεων από αντίγραφο ασφαλείας"
 
@@ -16044,6 +16833,9 @@ msgstr "Επαναφορά των ρυθμίσεων τώρα"
 
 msgid "Restore the highlighted slot"
 msgstr "Επαναφορά της επιλεγμένης θύρας"
+
+msgid "Restore to original location"
+msgstr "Επαναφορά στην αρχική θέση"
 
 msgid "Restore your %s %s settings."
 msgstr "Επαναφορά των ρυθμίσεων του %s %s σας."
@@ -16124,6 +16916,9 @@ msgstr "Επιστροφή στο προηγούμενο κανάλι"
 msgid "Return to previous service"
 msgstr "Επιστροφή στην προηγούμενη υπηρεσία"
 
+msgid "Reuse recently read folders for this duration. The cache is limited to 32 folders and 10000 entries. Refresh from the context menu to see external changes immediately."
+msgstr ""
+
 msgid "Reverse bouquet buttons"
 msgstr "Αντιμετάθεση πλήκτρων μπουκέτου"
 
@@ -16132,6 +16927,9 @@ msgstr "Ανεστραμμένη λίστα"
 
 msgid "Review"
 msgstr "Κριτική"
+
+msgid "Review last maintenance scan"
+msgstr ""
 
 msgid "Rewind"
 msgstr "Προώθηση προς τα πίσω"
@@ -16277,6 +17075,9 @@ msgstr "Εκτέλεση εντολής %d: '%s'."
 msgid "Running only"
 msgstr "Μόνο όσα εκτελούνται"
 
+msgid "Runtime"
+msgstr ""
+
 msgid "Russian"
 msgstr "Ρωσικά"
 
@@ -16398,6 +17199,9 @@ msgstr "Σαμόα"
 msgid "Samoan"
 msgstr "Σαμόα"
 
+msgid "Sample rate"
+msgstr ""
+
 msgid "San Marino"
 msgstr "Σαν Μαρίνο"
 
@@ -16488,6 +17292,9 @@ msgstr "Αποθήκευση και εγγραφή"
 msgid "Save and stop"
 msgstr "Αποθήκευση και διακοπή"
 
+msgid "Save available movie information beside video files, including MKV. Existing EIT files are kept. Automatic creation applies to selected files in the folder view; database browsing does not write to sleeping storage."
+msgstr ""
+
 msgid "Save directory on EXIT"
 msgstr "Αποθήκευση τελευταίου φακέλου κατά την έξοδο"
 
@@ -16507,6 +17314,9 @@ msgstr "Αποθήκευση λίστας αναπαραγωγής"
 msgid "Save play list on EXIT"
 msgstr "Αποθήκευση λίστας αναπαραγωγής στην έξοδο"
 
+msgid "Save queue as M3U playlist"
+msgstr ""
+
 msgid "Save right directory on exit"
 msgstr "Αποθήκευση δεξιού φακέλου κατά την έξοδο"
 
@@ -16524,6 +17334,9 @@ msgstr "Αποθήκευση όλων των αλλαγών καταγραφής
 
 msgid "Save the log of the console messages to a file"
 msgstr "Αποθήκευση καταγραφής μηνυμάτων κονσόλας σε αρχείο"
+
+msgid "Save the previous playback position and movie duration in the standard .cuts file."
+msgstr ""
 
 msgid "Save the right column directory location on exit."
 msgstr "Αποθήκευση τοποθεσίας φακέλου δεξιάς στήλης κατά την έξοδο."
@@ -16599,6 +17412,9 @@ msgstr "Ανίχνευση δικτύων Wi-Fi"
 msgid "Scan additional SR"
 msgstr "Ανίχνευση πρόσθετου SR"
 
+msgid "Scan cancelled or folder limit reached."
+msgstr ""
+
 msgid "Scan files..."
 msgstr "Αναζήτηση αρχείων..."
 
@@ -16610,6 +17426,9 @@ msgstr "Αναζήτηση και εγκατάσταση επεκτάσεων τ
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "Ανίχνευση για επίγεια LCNs και δημιουργία μπουκέτων LCN"
+
+msgid "Scan movie folders"
+msgstr ""
 
 msgid "Scan region"
 msgstr "Ανίχνευση περιοχής"
@@ -16651,6 +17470,9 @@ msgstr[1] "Η ανίχνευση ολοκληρώθηκε, βρέθηκαν %d �
 
 msgid "Scanning for shares..."
 msgstr "Ανίχνευση για κοινόχρηστα στοιχεία..."
+
+msgid "Scanning movie folders in the background"
+msgstr ""
 
 msgid "Scanning swap devices..."
 msgstr "Ανίχνευση συσκευών swap..."
@@ -16717,17 +17539,29 @@ msgstr "επιστημονικής φαντασίας/τρόμου"
 msgid "Scope"
 msgstr "Εύρος"
 
+msgid "Screen layout"
+msgstr ""
+
 msgid "Screen saver mode"
 msgstr "Λειτουργία προφύλαξης οθόνης"
 
 msgid "Screen saver movement"
 msgstr "Κίνηση προστασίας οθόνης"
 
+msgid "Screen style"
+msgstr ""
+
 msgid "Script Manager"
 msgstr "Διαχείριση σεναρίων ενεργειών"
 
 msgid "ScriptRunner"
 msgstr "Εκτέλεση σεναρίου ενεργειών"
+
+msgid "Scroll down"
+msgstr ""
+
+msgid "Scroll up"
+msgstr ""
 
 msgid "Scrolling Speed"
 msgstr "Ταχύτητα κύλισης"
@@ -16759,6 +17593,9 @@ msgstr "Ανίχνευση κοινόχρηστων στοιχείων δικτ�
 msgid "Search in the current view"
 msgstr "Αναζήτηση στην τρέχουσα προβολή"
 
+msgid "Search movie library"
+msgstr ""
+
 msgid "Search packages by name or description"
 msgstr "Αναζήτηση πακέτων βάσει ονόματος ή περιγραφής"
 
@@ -16776,6 +17613,20 @@ msgstr "Αναζήτηση για τοπικά images, περιμένετε..."
 
 msgid "Searching west ..."
 msgstr "Αναζήτηση δυτικά..."
+
+#, python-format
+msgid "Season %(season)s · Episode %(episode)s"
+msgstr ""
+
+#, python-format
+msgid "Season %d"
+msgstr ""
+
+msgid "Season and episode"
+msgstr ""
+
+msgid "Season unknown"
+msgstr ""
 
 msgid "Second cable of motorized LNB"
 msgstr "Δεύτερο καλώδιο από LNB σε μοτέρ"
@@ -17104,9 +17955,6 @@ msgstr "Επιλέξτε 'ναι' για να λογίζονται οι πεπλ
 msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr "Αν επιλεγεί το 'ναι', θα γίνει ενεργοποίηση του VPS στις άμεσες εγγραφές (σταμάτημα μετά από το τρέχον πρόγραμμα), αν το κανάλι υποστηρίζει VPS."
 
-msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
-msgstr "Επιλέξτε 'ναι' για χρήση των εναλλακτικών διευθύνσεων IP της πηγής GitHub. Αυτό μπορεί να βοηθήσει αν χρησιμοποιείτε ένα VPN και δεν είναι δυνατή η πρόσβαση στις κανονικές πηγές μέσω των δημοσιευμένων ονομάτων DNS."
-
 msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
 msgstr "Επιλέξτε 'ναι' για χρήση πλοήγησης παλιού τύπου, όπου τα CH+/- μεταθέτουν την ενεργή στήλη. Επιλέξτε 'όχι' για χρήση της νεότερης ενοποιημένης πλοήγησης, όπου τα ΑΡΙΣΤΕΡΑ/ΔΕΞΙΑ μεταθέτουν την ενεργή στήλη και τα CH+/- μετακινούν τη λίστα μία σελίδα επάνω και κάτω."
 
@@ -17206,6 +18054,9 @@ msgstr "Επιλογή ενός softcam από τη λίστα διαθέσιμ�
 msgid "Select a bouquet"
 msgstr "Επιλογή μπουκέτου"
 
+msgid "Select a connected HDD or USB device for the picons."
+msgstr ""
+
 msgid "Select a debug log file to view:"
 msgstr "Επιλογή ενός αρχείου καταγραφής αποσφαλμάτωσης για προβολή:"
 
@@ -17233,6 +18084,12 @@ msgstr "Ρύθμιση αντιστάθμισης για την καθυστέρ
 msgid "Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "Εισάγετε τη διάρκεια που θα προστεθεί στην προσωρινή αποθήκευση της ροής μετά από σφάλμα της. Αυτή η πρόσθετη αποθήκευση μπορεί να βοηθήσει στην αποφυγή περαιτέρω λαθών ροής λόγω έλλειψης αποθηκευτικού χώρου."
 
+msgid "Select a folder to show again. This does not change database scan paths."
+msgstr ""
+
+msgid "Select a list or grid style. Text styles also work without a movie database. Poster styles require an installed metadata provider. Select legacy mode to use the existing list settings."
+msgstr ""
+
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr "Επιλογή τοποθεσίας για εξαγωγή του '%s':"
@@ -17245,6 +18102,12 @@ msgstr "Επιλογή του ελάχιστου ελεύθερου χώρου �
 
 msgid "Select a movie"
 msgstr "Επιλογή ταινίας"
+
+msgid "Select a movie folder outside the trashcan."
+msgstr ""
+
+msgid "Select a movie information bar supplied by the skin."
+msgstr ""
 
 msgid "Select a network adapter"
 msgstr "Επιλογή προσαρμογέα δικτύου"
@@ -17307,8 +18170,17 @@ msgstr "Επιλογή όλων"
 msgid "Select all lines"
 msgstr "Επιλογή όλων των γραμμών"
 
+msgid "Select all movies in this list"
+msgstr ""
+
+msgid "Select all movies on this page"
+msgstr ""
+
 msgid "Select all related files"
 msgstr "Επιλογή όλων των σχετικών αρχείων"
+
+msgid "Select an absolute playlist path."
+msgstr ""
 
 msgid "Select an action for the current device"
 msgstr "Επιλογή ενέργειας για την τρέχουσα συσκευή"
@@ -17342,6 +18214,10 @@ msgstr "Επιλογή του προεπιλεγμένο τύπου EPG:"
 
 msgid "Select default File Commander directory:"
 msgstr "Επιλογή προεπιλεγμένου φακέλου του File Commander:"
+
+#, python-format
+msgid "Select destination for %d movies"
+msgstr ""
 
 msgid "Select destination for:"
 msgstr "Επιλογή προορισμού για το:"
@@ -17472,8 +18348,23 @@ msgstr "Επιλογή συσκευής εισόδου."
 msgid "Select last browsed service"
 msgstr "Επιλογή της τελευταίας υπηρεσίας πλοήγησης"
 
+msgid "Select maintenance candidates"
+msgstr ""
+
 msgid "Select movie"
 msgstr "Επιλογή ταινίας"
+
+msgid "Select movie information or artwork for the receiver display. Small displays fall back to a text layout."
+msgstr ""
+
+msgid "Select movies inside or outside the trashcan separately."
+msgstr "Επιλογή ταινιών εντός ή εκτός του κάδου αχρήστων χωριστά."
+
+msgid "Select one movie to edit its information."
+msgstr "Επιλέξτε μία ταινία για επεξεργασία των πληροφοριών της."
+
+msgid "Select one movie to rename its file."
+msgstr ""
 
 msgid "Select only highlighted file"
 msgstr "Επιλογή μόνο του επισημασμένου αρχείου"
@@ -17757,6 +18648,9 @@ msgstr "Ρύθμιση της διάρκειας σε λεπτά πριν την
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "Επιλογή του χρόνου λήξης πριν από τον οποίο θα ενεργοποιείται αυτός ο χρονοδιακόπτης. Μετά το πέρας αυτού του χρόνου, ο χρονοδιακόπτης δεν θα ενεργοποιείται, ακόμα και αν συντρέχουν διαφορετικές συνθήκες."
 
+msgid "Select the existing movie player behavior for the EXIT button."
+msgstr ""
+
 msgid "Select the fast scan provider and press BLUE to start the scan."
 msgstr "Επιλέξτε τον πάροχο γρήγορης ανίχνευσης και πιέστε το ΜΠΛΕ για εκκίνηση της ανίχνευσης."
 
@@ -17788,6 +18682,9 @@ msgstr "Επιλογή της επισημασμένης θέσης και επ�
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
 msgstr "Επιλογή της αρχικής θέσης του δείκτη γραμμής χρόνου. Ο δείκτης είναι η κάθετη γραμμή που εμφανίζεται στο EPG και δείχνει την τρέχουσα ώρα. Όσο πιο μεγάλη είναι η τιμή, τόσο περισσότερο θα μετακινείται ο δείκτης, δείχνοντας περισσότερο το ιστορικό και λιγότερο τα επερχόμενα προγράμματα."
+
+msgid "Select the initial view when a movie database is enabled. The View action switches between local folders and the movie library."
+msgstr ""
 
 msgid "Select the input connector you want to use."
 msgstr "Επιλέξτε την υποδοχή εισόδου που θέλετε να χρησιμοποιήσετε."
@@ -17846,8 +18743,14 @@ msgstr "Επιλογή σημείων προσάρτησης"
 msgid "Select the mountpoint for the device."
 msgstr "Επιλογή σημείου προσάρτησης για τη συσκευή."
 
+msgid "Select the movie folder to scan, including subfolders"
+msgstr ""
+
 msgid "Select the movie path"
 msgstr "Επιλογή διαδρομής ταινίας"
+
+msgid "Select the movie selection screen layout supplied by the skin."
+msgstr ""
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr "Επιλέξτε τον ρυθμό δεδομένων δικτύου κάτω από τον οποίο θα ενεργοποιείται ο χρονοδιακόπτης όπως ορίστηκε. Η κίνηση πάνω από αυτό το όριο θα απενεργοποιεί τον χρονοδιακόπτη."
@@ -18066,6 +18969,9 @@ msgstr "Επιλογή λειτουργίας εικόνας"
 msgid "Select video output port with UP/DOWN buttons"
 msgstr "Επιλέξτε τη θύρα εξόδου βίντεο με τα πλήκτρα πάνω/κάτω"
 
+msgid "Select view and sorting for this movie list"
+msgstr ""
+
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Επιλογή ενέργειας όταν ένα αρχείο πολυμέσων φτάνει στο τέλος της αναπαραγωγής του."
 
@@ -18270,6 +19176,15 @@ msgstr "Σειριακός αριθμός"
 
 msgid "Serial number"
 msgstr "Σειριακός αριθμός"
+
+msgid "Series"
+msgstr ""
+
+msgid "Series episode sort order"
+msgstr ""
+
+msgid "Series information and episode numbers"
+msgstr ""
 
 msgid "Serious Classical"
 msgstr "Σοβαρή κλασσική"
@@ -19149,6 +20064,9 @@ msgstr "Εμφάνιση των υπο-υπηρεσιών της ενεργής 
 msgid "Show System Plugin packages"
 msgstr "Εμφάνιση πακέτων ρυθμίσεων συστήματος"
 
+msgid "Show TS, MKV and other formats in the file information field. Classic layouts append this information to the title."
+msgstr ""
+
 msgid "Show Timer List"
 msgstr "Εμφάνιση λίστας χρονοδιακοπτών"
 
@@ -19169,6 +20087,9 @@ msgstr "Εμφάνιση κάθετου EPG"
 
 msgid "Show Web Link packages"
 msgstr "Εμφάνιση πακέτων διαδικτυακών συνδέσμων"
+
+msgid "Show a dynamic collection across movie folders. With a movie database it uses indexed files; otherwise a read-only background task creates a snapshot."
+msgstr ""
 
 msgid "Show a spinning logo when the system is busy."
 msgstr "Εμφάνιση περιστρεφόμενου λογότυπου όταν το σύστημα είναι απασχολημένο."
@@ -19203,11 +20124,17 @@ msgstr "Εμφάνιση φόντου στη λειτουργία ραδιοφώ
 msgid "Show background when tuned to a radio channel."
 msgstr "Εμφάνιση φόντου κατά τον συντονισμό σε ραδιοφωνικό κανάλι."
 
+msgid "Show bookmarks in the movie list"
+msgstr ""
+
 msgid "Show bouquet on launch"
 msgstr "Εμφάνιση μπουκέτου κατά την εκκίνηση"
 
 msgid "Show build information"
 msgstr "Εμφάνιση πληροφοριών χτισίματος"
+
+msgid "Show cached movie counts and sizes. Update the cache explicitly from Movie maintenance in the context menu. Browsing does not scan subfolders."
+msgstr ""
 
 #, python-format
 msgid "Show cards with uphop %s"
@@ -19242,6 +20169,12 @@ msgstr "Εμφάνιση πληροφοριών κρυπτοποίησης στ�
 
 msgid "Show current directory"
 msgstr "Εμφάνιση τρέχοντος φακέλου"
+
+msgid "Show current recording length"
+msgstr ""
+
+msgid "Show cut copy number"
+msgstr ""
 
 msgid "Show debug log information"
 msgstr "Εμφάνιση πληροφοριών καταγραφής αποσφαλμάτωσης"
@@ -19285,6 +20218,9 @@ msgstr "Εμφάνιση μπάρας προόδου στην επιλογή κ�
 msgid "Show eventinfo plugins"
 msgstr "Εμφάνιση προσθέτων πληροφοριών προγραμμάτων"
 
+msgid "Show existing movie bookmarks as virtual folder entries. Their targets are accessed only when opened."
+msgstr ""
+
 msgid "Show extended description"
 msgstr "Εμφάνιση εκτεταμένης περιγραφής"
 
@@ -19302,6 +20238,9 @@ msgstr "Εμφάνιση αρχείων εφεδρείας από προεπιλ
 
 msgid "Show first picture"
 msgstr "Εμφάνιση της πρώτης εικόνας"
+
+msgid "Show folders"
+msgstr ""
 
 msgid "Show free space in timer view"
 msgstr "Εμφάνιση ελεύθερου χώρου στην προβολή χρονοδιακοπτών"
@@ -19340,6 +20279,9 @@ msgstr "Εμφάνιση εργασιών στις προεκτάσεις"
 msgid "Show last picture"
 msgstr "Εμφάνιση της τελευταίας εικόνας"
 
+msgid "Show links to files and folders. Broken links are omitted when the directory is refreshed."
+msgstr ""
+
 msgid "Show list of bouquets"
 msgstr "Εμφάνιση λίστας μπουκέτων"
 
@@ -19363,6 +20305,12 @@ msgstr "Εμφάνιση μενού"
 
 msgid "Show message when recording starts"
 msgstr "Εμφάνιση μηνύματος κατά την έναρξη της εγγραφής"
+
+msgid "Show movie format"
+msgstr "Εμφάνιση φορμά ταινίας"
+
+msgid "Show movie information"
+msgstr ""
 
 msgid "Show movie lengths in movie list"
 msgstr "Εμφάνιση διάρκειας στη λίστα ταινιών"
@@ -19423,6 +20371,9 @@ msgstr "Εμφάνιση γραμμών διαχωρισμού ανάμεσα σ
 
 msgid "Show persistent InfoBar while paused"
 msgstr "Μόνιμη εμφάνιση της μπάρας πληροφοριών κατά την παύση"
+
+msgid "Show physical folders. Parent navigation, the trashcan, bookmarks, virtual collections and recognized movie structures remain accessible."
+msgstr ""
 
 msgid "Show picon background color"
 msgstr "Εμφάνιση χρώματος φόντου στα λογότυπα"
@@ -19547,6 +20498,9 @@ msgstr "Εμφάνιση γρήγορου μενού υποτίτλου"
 msgid "Show subtitle selection"
 msgstr "Εμφάνιση επιλογής υποτίτλων"
 
+msgid "Show symbolic links"
+msgstr ""
+
 msgid "Show system information"
 msgstr "Εμφάνιση πληροφοριών συστήματος"
 
@@ -19577,8 +20531,14 @@ msgstr "Εμφάνιση της οθόνης πληροφοριών OSCam"
 msgid "Show the about screen"
 msgstr "Εμφάνιση της οθόνης 'Περί'"
 
+msgid "Show the cut copy suffix, such as _001, even when the recording title comes from metadata. This is not the number of chapter markers."
+msgstr ""
+
 msgid "Show the last opkg command's output"
 msgstr "Εμφάνιση της τελευταίας εξόδου εντολής opkg"
+
+msgid "Show the measured length of active recordings in the file information field, updated once a minute in the file view. Database views use cached metadata."
+msgstr ""
 
 msgid "Show the task list"
 msgstr "Εμφάνιση λίστας εργασιών"
@@ -19615,6 +20575,9 @@ msgstr "Εμφάνιση άγνωστου φορμά βίντεο ως"
 
 msgid "Show vertical Program Guide"
 msgstr "Εμφάνιση κάθετου οδηγού προγράμματος"
+
+msgid "Show virtual folders first, or sort them among movies by the current title or recording date order."
+msgstr ""
 
 msgid "Show warning before restart"
 msgstr "Προειδοποίηση πριν την επανεκκίνηση"
@@ -19721,6 +20684,9 @@ msgstr "Απλή αποπροσάρτηση"
 
 msgid "Simplified Chinese"
 msgstr "Απλοποιημένα Κινεζικά"
+
+msgid "Since the previous visit"
+msgstr ""
 
 msgid "Sindhi"
 msgstr "Σίντι"
@@ -19838,6 +20804,9 @@ msgstr "Παράβλεψη εγκατάστασης πακέτων, θα είν�
 
 msgid "Skip sensibility for '%s' button"
 msgstr "Παράκαμψη ευαισθησίας για το πλήκτρο '%s'"
+
+msgid "Skip this many seconds after the chosen preview starting point."
+msgstr ""
 
 msgid "Skip time for '%s' button"
 msgstr "Χρόνος παράκαμψης για το πλήκτρο '%s'"
@@ -20227,6 +21196,9 @@ msgstr "Ταξινόμηση βάσει ονόματος"
 msgid "Sort by default"
 msgstr "Ταξινόμηση από προεπιλογή"
 
+msgid "Sort folders with movies"
+msgstr ""
+
 msgid "Sort list by"
 msgstr "Ταξινόμηση λίστας ανά"
 
@@ -20238,6 +21210,12 @@ msgstr "Σειρά ταξινόμησης λίστας γλωσσών."
 
 msgid "Sort playlists"
 msgstr "Ταξινόμηση λιστών αναπαραγωγής"
+
+msgid "Sort the whole catalogue before pagination. Long PVR/File temporarily selects another order."
+msgstr ""
+
+msgid "Sort this movie list"
+msgstr ""
 
 #, python-format
 msgid "Sort: Directories by %s %s; Files by %s %s."
@@ -20260,6 +21238,9 @@ msgstr "Φέρουσα ήχου"
 
 msgid "Source Packages"
 msgstr "Πακέτα πηγής"
+
+msgid "Source and destination are identical."
+msgstr ""
 
 msgid "Source request"
 msgstr "Αίτηση πηγής"
@@ -20407,6 +21388,12 @@ msgstr "Έναρξη όλων των διαθέσιμων αρχείων και 
 msgid "Start an instant recording"
 msgstr "Εκκίνηση άμεσης εγγραφής"
 
+msgid "Start at the first early chapter marker"
+msgstr "Έναρξη στον πρώτο πρώιμο σημειωτή κεφαλαίου"
+
+msgid "Start at the resume position, the beginning or the first early chapter marker. Preview does not save playback positions or change watch status."
+msgstr ""
+
 msgid "Start date"
 msgstr "Ημερομηνία εκκίνησης"
 
@@ -20472,6 +21459,12 @@ msgstr "Ώρα έναρξης"
 
 msgid "Start time shift"
 msgstr "Εκκίνηση χρονομετατόπισης"
+
+msgid "Start view"
+msgstr "Προβολή έναρξης"
+
+msgid "Start watched movies from the beginning"
+msgstr ""
 
 msgid "Start/stop slide show"
 msgstr "Εκκίνηση/σταμάτημα προβολής διαφανειών"
@@ -20550,6 +21543,12 @@ msgstr "Κατάσταση μη διαθέσιμη!"
 msgid "Stay in time shift at buffer end (for plugins)"
 msgstr "Παραμονή σε χρονοματετόπιση κατά το τέλος της προφόρτωσης (για πρόσθετα)"
 
+msgid "Stay on the marked movie, move to the next movie, or continue in the last navigation direction."
+msgstr ""
+
+msgid "Stay on the movie"
+msgstr ""
+
 msgid "Step"
 msgstr "Βήμα"
 
@@ -20591,6 +21590,9 @@ msgstr "Διακοπή επεξεργασίας"
 
 msgid "Stop entry"
 msgstr "Σταμάτημα στοιχείου"
+
+msgid "Stop playback or preview before changing this movie."
+msgstr ""
 
 msgid "Stop playing this movie?"
 msgstr "Διακοπή αναπαραγωγής της ταινίας;"
@@ -20765,6 +21767,9 @@ msgstr "Ρίγες"
 
 msgid "Style:"
 msgstr "Στυλ:"
+
+msgid "Subchannel ID"
+msgstr ""
 
 msgid "Subnet mask"
 msgstr "Μάσκα υποδικτύου"
@@ -20970,6 +21975,9 @@ msgstr "Αλλαγή μεταξύ λίστας αρχείων/αναπαραγω
 msgid "Switch config"
 msgstr "Αλλαγή αρχείου ρυθμίσεων"
 
+msgid "Switch movie and file information"
+msgstr ""
+
 msgid "Switch off the TV to correct input"
 msgstr "Αλλαγή της TV στη σωστή είσοδο"
 
@@ -21020,6 +22028,9 @@ msgstr "Μετάβαση στην αριστερή στήλη"
 
 msgid "Switch to the other column"
 msgstr "Μετάβαση στην άλλη στήλη"
+
+msgid "Switch to the recording channel"
+msgstr ""
 
 msgid "Switch to the right column"
 msgstr "Μετάβαση στη δεξιά στήλη"
@@ -21080,6 +22091,12 @@ msgstr "Πακέτα προσθέτων συστήματος"
 
 msgid "System Setup"
 msgstr "Ρυθμίσεις συστήματος"
+
+msgid "System date and time"
+msgstr ""
+
+msgid "System date format"
+msgstr ""
 
 msgid "System information"
 msgstr "Πληροφορίες συστήματος"
@@ -21155,6 +22172,9 @@ msgstr "Ενέργειες επεξεργασία ετικετών"
 
 msgid "Tagalog"
 msgstr "Τάγκαλογκ"
+
+msgid "Tagline"
+msgstr ""
 
 msgid "Tags"
 msgstr "Ετικέτες"
@@ -21295,6 +22315,9 @@ msgstr "Προσωρινή προσάρτηση ως %s"
 
 msgid "Temporary directory"
 msgstr "Προσωρινός φάκελος"
+
+msgid "Temporary layout and sorting"
+msgstr ""
 
 msgid "Tennis"
 msgstr "Τένις"
@@ -21537,6 +22560,9 @@ msgstr ""
 msgid "The backup can take up to about 15 minutes to complete."
 msgstr "Η εφεδρεία μπορεί να χρειαστεί περίπου 15 λεπτά μέχρι να ολοκληρωθεί."
 
+msgid "The bookmarked folder is not available."
+msgstr ""
+
 msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
@@ -21546,6 +22572,12 @@ msgstr ""
 
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "Η εντολή επαναφοράς από την αναμονή θα σταλεί πολλές φορές."
+
+msgid "The companion file changed or belongs to a movie again."
+msgstr ""
+
+msgid "The complete movie is at the destination, but some source files could not be removed."
+msgstr ""
 
 msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
 msgstr "Δεν ήταν δυνατή η ασφαλής αναγνώριση της συνεχιζόμενης εγγραφής. Και οι δύο εγγραφές έχουν διατηρηθεί και δεν θα γίνει συγχώνευσή τους."
@@ -21557,6 +22589,9 @@ msgstr "Το τρέχον αρχείο προφόρτωσης της χρονο�
 msgid "The custom mount point for '%s' is empty!"
 msgstr "Η προσάρτηση χρήστη '%s' είναι άδεια!"
 
+msgid "The cut list is damaged; it was left unchanged."
+msgstr ""
+
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -21566,6 +22601,13 @@ msgstr ""
 
 msgid "The default settings are wake up time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wake up time. So can be detected a wake up by a timer even at very early starting receivers."
 msgstr "Η προεπιλεγμένες ρυθμίσεις είναι: χρόνος αφύπνισης - 5 λεπτά και χρόνος έναρξης χρονοδιακόπτη + 5 λεπτά. Αυτή η ρύθμιση άλλαξε το παράθυρο χρόνου πριν την ώρα αφύπνισης. Έτσι μπορεί να ανιχνευθεί μία αφύπνιση από έναν χρονοδιακόπτη ακόμα και κατά την πολύ πρόωρη εκκίνηση των δεκτών."
+
+#, python-format
+msgid "The destination '%s' already exists. Choose an empty destination or move the picons manually."
+msgstr ""
+
+msgid "The destination changed during the operation."
+msgstr ""
 
 msgid "The detailed information is intended for developers only."
 msgstr "Οι λεπτομερείς πληροφορίες απευθύνονται μόνο σε προγραμματιστές."
@@ -21625,6 +22667,9 @@ msgstr "Το όνομα τοπικού κοινόχρηστου στοιχείο
 msgid "The loopthrough setting is wrong."
 msgstr "Λανθασμένη ρύθμιση loopthrough."
 
+msgid "The manual maintenance scan offers watched movies only when neither the movie nor its playback position has changed within this many days. Review and select candidates in the context menu before moving them to the trashcan."
+msgstr ""
+
 msgid "The manufacturer STARTUP device cannot be mounted for inspection."
 msgstr "Η συσκευή κατασκευαστή STARTUP δεν δύναται να προσαρτηθεί για επισκόπηση."
 
@@ -21646,14 +22691,61 @@ msgstr "Το όνομα αρχείου κατασκευαστή STARTUP '%s' δ�
 msgid "The mount point '%s' is used by more than one share."
 msgstr "Το σημείο προσάρτησης '%s' χρησιμοποιείται από περισσότερα του ενός κοινόχρηστα στοιχεία."
 
+msgid "The movie duration is unknown."
+msgstr ""
+
+msgid "The movie file is still being written. Try again later."
+msgstr ""
+
+msgid "The movie folder or companion file changed."
+msgstr ""
+
+msgid "The movie is currently being recorded."
+msgstr ""
+
+msgid "The movie or its playback position changed since the maintenance scan. Scan again."
+msgstr ""
+
+#, python-format
+msgid "The operation failed. Some files remain at the destination: %s"
+msgstr ""
+
+msgid "The original location is unknown. Use Move to select a destination."
+msgstr ""
+
 msgid "The panic channel was not found. Please select it again in Channel Selection Settings."
 msgstr "Δεν βρέθηκε κανάλι πανικού. Παρακαλώ επιλέξτε το πάλι στις ρυθμίσεις επιλογής καναλιών."
 
-msgid "The picon directory already exists and must be removed. Do you want to proceed?"
-msgstr "Ο φάκελος λογότυπων υπάρχει ήδη και πρέπει να αφαιρεθεί. Θέλετε να συνεχίσετε;"
+msgid "The picon destination must be outside the existing picon directory."
+msgstr ""
+
+msgid ""
+"The picon package could not be installed. Connect an HDD or USB device and select it as the picon install location in Plugin Browser settings. Check that the device is mounted and writable.\n"
+"\n"
+"Internal flash only allows small packages with up to 1,000 files and 10 MiB, with enough free space and file entries remaining."
+msgstr ""
+
+#, python-format
+msgid "The picon path '%s' is not a directory."
+msgstr ""
+
+msgid "The picon storage device is read-only or full."
+msgstr ""
+
+msgid "The play queue is empty"
+msgstr ""
+
+msgid "The playlist contains too many movies."
+msgstr "Η λίστα αναπαραγωγής περιέχει πάρα πολλές ταινίες."
+
+msgid "The playlist is too large."
+msgstr "Η λίστα αναπαραγωγής είναι πολύ μεγάλη."
 
 msgid "The positioner tuner is currently unavailable. Stop recordings or other services using this tuner and try again."
 msgstr "Το tuner σε μοτέρ είναι προς το παρόν μη διαθέσιμο. Διακόψτε τις εγγραφές ή άλλες υπηρεσίες που χρησιμοποιούν αυτό το tuner και δοκιμάστε ξανά."
+
+msgid "The preview shows the first 20 filenames."
+msgstr ""
 
 msgid "The previous mount point is already in use."
 msgstr "Το προηγούμενο σημείο προσάρτησης χρησιμοποιείται ήδη."
@@ -21662,8 +22754,17 @@ msgstr "Το προηγούμενο σημείο προσάρτησης χρησ
 msgid "The process will take approximately %d minutes to complete."
 msgstr "Η διαδικασία θα διαρκέσει περίπου %d λεπτά μέχρι να ολοκληρωθεί."
 
+msgid "The recording changed while the operation was running."
+msgstr ""
+
 msgid "The recording end time has already passed."
 msgstr "Ο χρόνος λήξης της εγγραφής έχει ήδη παρέλθει."
+
+msgid "The recording is still running. Switch to its live channel?"
+msgstr ""
+
+msgid "The recording metadata is too large; it was left unchanged."
+msgstr ""
 
 msgid "The requested recording conflicts with other timers. What do you want to do?"
 msgstr "Η ζητούμενη εγγραφή βρίσκεται σε διένεξη με άλλους χρονοδιακόπτες. Τι θέλετε να γίνει;"
@@ -21765,6 +22866,21 @@ msgstr "Ο χρονοδιακόπτης βρίσκεται σε διένεξη �
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr "Το αρχείο χρονομετατόπισης '%s' είναι κατεστραμμένο και είναι αδύνατη η φόρτωσή του."
+
+msgid "The trash index is damaged."
+msgstr ""
+
+msgid "The trash index is too large."
+msgstr ""
+
+msgid "The trash index must not be a symbolic link."
+msgstr ""
+
+msgid "The trashcan and the movie must be on the same mounted filesystem. No files were copied."
+msgstr ""
+
+msgid "The trashcan must be a directory on the movie's filesystem."
+msgstr ""
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -21872,6 +22988,9 @@ msgstr "Αυτό το κανάλι απαιτεί το πρόσθετο HbbTV. �
 msgid "This device has multiple mount points. Unmount them before checking the file system."
 msgstr "Αυτή η συσκευή έχει πολλαπλά σημεία προσάρτησης. Πρέπει να γίνει αποπροσάρτησή τους πριν τον έλεγχο του συστήματος αρχείων."
 
+msgid "This directory is locked for movie file changes."
+msgstr ""
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Αυτό το πεδίο επιτρέπει την αναζήτηση ενός πρόσθετου ρυθμού συμβόλων έως %s."
@@ -21907,6 +23026,9 @@ msgstr "Αυτό το μενού περιέχει επιλογές εμφάνι�
 
 msgid "This menu offers options related managing the software on the %s %s."
 msgstr "Αυτό το μενού παρέχει επιλογές που σχετίζονται με τη διαχείριση λογισμικού του %s %s σας."
+
+msgid "This movie is currently unavailable. Check its storage device or network mount."
+msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Αυτή η ολίσθηση ήχου θα χρησιμοποιηθεί μόνο αν το κανάλι δεν έχει δική του."
@@ -22079,8 +23201,17 @@ msgstr "Αυτή η επιλογή ρυθμίζει τη συμπίεση των
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Αυτή η επιλογή ρυθμίζει την οξύτητα της εικόνας, όταν γίνεται upscale."
 
+msgid "This playlist contains unsupported files. Play queues support video and audio files; open DVD images individually."
+msgstr ""
+
+msgid "This provider supplies movie information but no browsable library."
+msgstr ""
+
 msgid "This recording has already ended."
 msgstr "Αυτή η εγγραφή έχει ήδη ολοκληρωθεί."
+
+msgid "This service is not a local movie file."
+msgstr ""
 
 msgid "This service is protected by a parental control PIN!"
 msgstr "Αυτή η υπηρεσία προστατεύεται με γονικό pin!"
@@ -22137,6 +23268,9 @@ msgstr "Θιβετιανά"
 
 msgid "Tigrinya"
 msgstr "Τιγκρινιακά"
+
+msgid "Tiles"
+msgstr "Πλακίδια"
 
 msgid "Time"
 msgstr "Ώρα"
@@ -22339,6 +23473,12 @@ msgstr "Ανατολικό Τιμόρ"
 msgid "Title"
 msgstr "Τίτλος"
 
+msgid "Title (A–Z)"
+msgstr ""
+
+msgid "Title (Z–A)"
+msgstr "Τίτλος (Z–A)"
+
 msgid "Title properties"
 msgstr "Ιδιότητες τίτλου"
 
@@ -22439,6 +23579,9 @@ msgstr "Εναλλαγή επιλογής τρέχουσας ετικέτας"
 msgid "Toggle selections"
 msgstr "Εναλλαγή επιλογών"
 
+msgid "Toggle series grouping for this folder"
+msgstr ""
+
 msgid "Toggle service name display"
 msgstr "Εναλλαγή εμφάνισης ονόματος υπηρεσίας"
 
@@ -22468,6 +23611,18 @@ msgstr "Τύπος τόνου"
 
 msgid "Tonga"
 msgstr "Τόγκα"
+
+msgid "Too many candidates. Scan a smaller movie folder."
+msgstr ""
+
+msgid "Too many entries. Scan a smaller movie folder."
+msgstr ""
+
+msgid "Too many movies. Scan a smaller movie folder."
+msgstr ""
+
+msgid "Too many pending movie database changes. Reconnect the database first."
+msgstr ""
 
 msgid "Top"
 msgstr "Φόρτος συστήματος"
@@ -22512,6 +23667,9 @@ msgstr "τουρισμός/ταξίδια"
 msgid "Track"
 msgstr "Κομμάτι"
 
+msgid "Track language"
+msgstr ""
+
 msgid "Traditional"
 msgstr "Παραδοσιακό"
 
@@ -22526,6 +23684,9 @@ msgstr "Διακωδικοποίηση"
 
 msgid "Transcoding"
 msgstr "Διακωδικοποίηση"
+
+msgid "Transfer characteristics"
+msgstr ""
 
 msgid "Translate Subs On This Service"
 msgstr "Μετάφραση υποτίτλων σε αυτή την υπηρεσία"
@@ -22912,6 +24073,9 @@ msgstr "Ουκρανία"
 msgid "Ukrainian"
 msgstr "Ουκρανικά"
 
+msgid "Unable to access the script directory."
+msgstr ""
+
 #, python-format
 msgid ""
 "Unable to change swap state for '%s'.\n"
@@ -22919,6 +24083,10 @@ msgid ""
 msgstr ""
 "Αδυναμία αλλαγής κατάστασης swap για το '%s'.\n"
 "%s"
+
+#, python-format
+msgid "Unable to change the picon storage location: %s"
+msgstr ""
 
 #, python-format
 msgid "Unable to check HDD replacement: %s"
@@ -22941,9 +24109,16 @@ msgstr "Αδυναμία αρχικοποίησης της πολλαπλής ε
 msgid "Unable to load package information!"
 msgstr "Αδυναμία φόρτωσης πληροφοριών του πακέτου!"
 
+msgid "Unable to move the movie without overwriting existing files."
+msgstr ""
+
 #, python-format
 msgid "Unable to open tuner (%d)"
 msgstr "Αδυναμία ανοίγματος tuner (%d)"
+
+#, python-format
+msgid "Unable to prepare picon storage: %s"
+msgstr ""
 
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr "Αδύνατη η προετοιμασία ενημέρωσης μπουκέτου. Η ανίχνευση θα συνεχιστεί χωρίς την ενημέρωση μπουκέτων."
@@ -22999,11 +24174,18 @@ msgstr "Αδυναμία επικύρωσης της θέσης Unicable για 
 msgid "Unable to write the time shift event information."
 msgstr "Αδυναμία εγγραφής των πληροφοριών συμβάντος της χρονομετατόπισης."
 
+msgid "Unassigned / pending recordings"
+msgstr ""
+
 msgid "Unattended upgrade without GUI"
 msgstr "Ανεπιτήρητη αναβάθμιση χωρίς γραφικό περιβάλλον"
 
 msgid "Unavailable"
 msgstr "Μη διαθέσιμο"
+
+#, python-format
+msgid "Unavailable: %s"
+msgstr ""
 
 msgid "Undefined"
 msgstr "Απροσδιόριστο"
@@ -23105,6 +24287,9 @@ msgstr "Άγνωστο!"
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr "Εκτός και αν ρυθμιστεί στο 'ανενεργό', θα γίνεται προεπισκόπηση των καναλιών στη λίστα EPG."
 
+msgid "Unlimited"
+msgstr ""
+
 msgid "Unmark As Dedicated 3D Service"
 msgstr "Αποσημείωση της υπηρεσίας ως σταθερή υπηρεσία 3D"
 
@@ -23139,6 +24324,9 @@ msgstr "Μέχρι την αναμονή/επανεκκίνηση"
 msgid "Unused %s"
 msgstr "%s σε μη χρήση"
 
+msgid "Unwatched"
+msgstr "Χωρίς παρακολούθηση"
+
 msgid "Unzipping Image"
 msgstr "Αποσυμπίεση Image"
 
@@ -23147,6 +24335,9 @@ msgstr "Επάνω"
 
 msgid "Up / Active"
 msgstr "Σε σύνδεση / Ενεργό"
+
+msgid "Up to 256 folders can be hidden."
+msgstr ""
 
 msgid "Up to 50 Mbps"
 msgstr "Έως 50 Mbps"
@@ -23174,6 +24365,15 @@ msgstr "Η ενημέρωση απέτυχε!"
 
 msgid "Update finished!"
 msgstr "Η ενημέρωση ολοκληρώθηκε!"
+
+msgid "Update folder movie counts and sizes"
+msgstr "Ενημέρωση πλήθους και μεγεθών φακέλου ταινιών"
+
+msgid "Update movie folder snapshot"
+msgstr "Ενημέρωση στιγμιότυπου φακέλου ταινιών"
+
+msgid "Update movie folder snapshot / latest recordings"
+msgstr ""
 
 msgid "Update outdated bouquet entries"
 msgstr "Ενημέρωση παλαιών καταχωρήσεων μπουκέτων"
@@ -23205,6 +24405,12 @@ msgstr "Διαθέσιμες ενημερώσεις:"
 
 msgid "Updating"
 msgstr "Εκτελείται ενημέρωση"
+
+msgid "Updating library index..."
+msgstr "Ενημέρωση ευρετηρίου βιβλιοθήκης..."
+
+msgid "Updating movie folder snapshot in Tasks"
+msgstr ""
 
 msgid "Updating package list."
 msgstr "Ενημέρωση της λίστας πακέτων."
@@ -23360,8 +24566,8 @@ msgstr "Χρήση χρόνων λήξης χρονοδιακόπτη μετάβ
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
 msgstr "Χρήση προσωρινής μνήμης DNS για τοπική αποθήκευση των πρόσφατων αναζητήσεων DNS για βελτίωση της απόδοσης, μείωση της καθυστέρησης και εξερχόμενη κίνηση."
 
-msgid "Use alternate GitHub DNS"
-msgstr "Χρήση εναλλακτικού DNS GitHub"
+msgid "Use an absolute filename ending in .m3u or .m3u8."
+msgstr ""
 
 msgid "Use an alternative smaller screen."
 msgstr "Χρήση εναλλακτικής μικρότερης οθόνης."
@@ -23389,6 +24595,9 @@ msgstr "Χρήση βέλτιστου/έλεγχος από το HDMI"
 
 msgid "Use circular LNB"
 msgstr "Χρήση LNB κυκλικής πόλωσης"
+
+msgid "Use configured defaults"
+msgstr "Χρήση προρυθμίσεων"
 
 msgid "Use defaults"
 msgstr "Χρήση προεπιλογών"
@@ -23429,6 +24638,9 @@ msgstr "Χρήση διάταξης πληκτρολογίου *"
 msgid "Use legacy navigation"
 msgstr "Χρήση πλοήγησης παλαιού τύπου"
 
+msgid "Use normal end-of-movie action"
+msgstr ""
+
 msgid "Use official channel numbering"
 msgstr "Χρήση της επίσημης αρίθμησης των καναλιών"
 
@@ -23452,6 +24664,12 @@ msgstr "Χρήση ρυθμίσεων ανά φάκελο"
 
 msgid "Use power measurement"
 msgstr "Χρήση μέτρησης ισχύος"
+
+msgid "Use relative dates or the configured system date format, with or without the time."
+msgstr ""
+
+msgid "Use selected sorting"
+msgstr "Χρήση επιλεγμένης ταξινόμησης"
 
 msgid "Use skin default"
 msgstr "Χρήση προεπιλογής θέματος"
@@ -23510,8 +24728,23 @@ msgstr "Χρήση της αρίθμησης καναλιών που παρέχ�
 msgid "Use the current selection and exit"
 msgstr "Χρήση της τρέχουσας επιλογής και έξοδος"
 
+msgid "Use the database title when available, the original recording title, or the filename. Title cleanup applies after this choice. Grouped series keep their series title."
+msgstr ""
+
+msgid "Use the existing default playback location. Press OK to select a folder."
+msgstr ""
+
 msgid "Use the extended List"
 msgstr "Χρήση της εκτεταμένης λίστας"
+
+msgid "Use the normal end action, ask, or switch to the recording channel when playback catches up with a local recording that is still running."
+msgstr ""
+
+msgid "Use the selected sort order, keep folders first, or sort folders together with movie files."
+msgstr ""
+
+msgid "Use the title before this separator as the virtual folder name. An empty separator groups identical titles."
+msgstr ""
 
 msgid "Use the wizard to set up basic features"
 msgstr "Χρήση οδηγού για τις απλές ρυθμίσεις"
@@ -23893,6 +25126,9 @@ msgstr "Προβολή ως πλέγμα"
 msgid "View as list"
 msgstr "Προβολή ως λίστα"
 
+msgid "View for this movie list only"
+msgstr "Προβολή για αυτή τη λίστα ταινιών μόνο"
+
 msgid "View mode"
 msgstr "Λειτουργία επισκόπησης"
 
@@ -23942,6 +25178,15 @@ msgstr "Ενέργειες εικονικού πληκτρολογίου"
 msgid "Virtual Keyboard Text:"
 msgstr "Κείμενο εικονικού πληκτρολογίου:"
 
+msgid "Virtual collections"
+msgstr "Εικονικές συλλογές"
+
+msgid "Virtual folder — movie files stay in their original locations."
+msgstr "Εικονικός φάκελος - τα αρχεία ταινιών παραμένουν στις αρχικές τους θέσεις."
+
+msgid "Virtual folders before movies"
+msgstr "Εικονικοί φάκελοι πριν τις ταινίες"
+
 msgid "Visual impaired commentary"
 msgstr "Σχολιασμός για άτομα με προβλήματα όρασης"
 
@@ -23990,6 +25235,9 @@ msgstr "Αύξηση έντασης ήχου"
 msgid "Volume/Mute display timer"
 msgstr "Χρονοδιακόπτης εμφάνισης ήχου/σίγασης"
 
+msgid "Votes"
+msgstr "Ψήφοι"
+
 msgid "Vu+ MultiBoot"
 msgstr "Vu+ πολλαπλή εκκίνηση"
 
@@ -24019,6 +25267,9 @@ msgstr "WSS σε 4:3"
 
 msgid "Wait for timesync at startup"
 msgstr "Αναμονή για συγχρονισμό στην εκκίνηση"
+
+msgid "Wait this long after moving the selection before starting a preview."
+msgstr ""
 
 msgid "Waiting"
 msgstr "Αναμονή"
@@ -24102,6 +25353,12 @@ msgstr "Προσοχή: δεν υπάρχει LNB, χρήση των εργοσ�
 
 msgid "Watch movies..."
 msgstr "Παρακολούθηση ταινιών..."
+
+msgid "Watched"
+msgstr "Έγινε παρακολούθηση"
+
+msgid "Watched from (%)"
+msgstr "Έγινε παρακολούθηση από (%)"
 
 msgid "Water sport"
 msgstr "θαλάσσια σπορ"
@@ -24233,6 +25490,9 @@ msgstr "Τι θέλετε να κάνετε;"
 
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr "Όταν είναι ενεργό, θα εμφανίζεται ο ελεύθερος χώρος της συσκευής προορισμού στην προβολή χρονοδιακοπτών. Αυτό θα αφυπνίζει τη συσκευή από την κατάσταση ύπνου."
+
+msgid "When disabled, skip recordings already indexed by E2MDB with the same title and descriptions. If the database is unavailable or the match is uncertain, record normally."
+msgstr ""
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "Όταν είναι ενεργό, τα AIT δεδομένα θα περιλαμβάνονται στις ροές http. Αυτό επιτρέπει σε έναν δέκτη - πελάτη να χρησιμοποιήσει το HbbTV."
@@ -24453,6 +25713,9 @@ msgstr "Όταν είναι ενεργό, μπορείτε να παραμετρ
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Όταν είναι ενεργό, ο δέκτης θα εντοπίζει δραστηριότητα στην είσοδο του VCR SCART."
 
+msgid "When movie information is displayed"
+msgstr "Όταν εμφανίζονται οι πληροφορίες της ταινίας"
+
 msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Όταν δεν είναι μηδέν, μία εγγραφή θα ξεκινά νωρίτερα από την ώρα που αναγράφεται στο EPG."
 
@@ -24473,6 +25736,12 @@ msgstr "Όταν οριστεί, η PIG θα επιστρέφει σε ζωντ�
 
 msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
 msgstr "Αν επιλεγεί το 'ναι', ένα συγκεκριμένο softcam θα οριστεί για κάθε κωδικοποιημένη υπηρεσία."
+
+msgid "When starting a movie, keep its previous playback position as a chapter marker. Existing chapter markers remain available."
+msgstr ""
+
+msgid "When starting from the beginning, skip the recording lead-in using an early chapter marker. Resume positions and cut boundaries are respected."
+msgstr "Όταν ξεκινάει από την αρχή, να γίνεται παράκαμψη της εισαγωγής της εγγραφής με χρήση ενός πρώιμου σημειωτή κεφαλαίου. Οι θέσεις συνέχισης και τα όρια αποκοπών συνεχίζουν να ισχύουν."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Όταν το περιεχόμενο έχει λόγο πλευρών 16:9, επιλέξτε αν θα γίνεται κλιμάκωση/άπλωμα της εικόνας."
@@ -25665,6 +26934,22 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Can't move to trashcan!"
+#~ msgstr "Αδυναμία μετακίνησης στον κάδο αχρήστων!"
+
+#, python-format
+#~ msgid "Error: Creating picon target directory: (%s)"
+#~ msgstr "Σφάλμα στη δημιουργία φακέλου λογότυπων: (%s)"
+
+#~ msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
+#~ msgstr "Επιλέξτε 'ναι' για χρήση των εναλλακτικών διευθύνσεων IP της πηγής GitHub. Αυτό μπορεί να βοηθήσει αν χρησιμοποιείτε ένα VPN και δεν είναι δυνατή η πρόσβαση στις κανονικές πηγές μέσω των δημοσιευμένων ονομάτων DNS."
+
+#~ msgid "The picon directory already exists and must be removed. Do you want to proceed?"
+#~ msgstr "Ο φάκελος λογότυπων υπάρχει ήδη και πρέπει να αφαιρεθεί. Θέλετε να συνεχίσετε;"
+
+#~ msgid "Use alternate GitHub DNS"
+#~ msgstr "Χρήση εναλλακτικού DNS GitHub"
 
 #~ msgid "%-H:%M:%S"
 #~ msgstr "%-H:%M:%S"
@@ -27301,9 +28586,6 @@ msgstr "®"
 
 #~ msgid "Are you sure you want to restart your network interfaces?"
 #~ msgstr "Θέλετε σίγουρα να γίνει επανεκκίνηση των διεπαφών δικτύου;"
-
-#~ msgid "Back"
-#~ msgstr "Πίσω"
 
 #~ msgid "Configure DNS (name servers)"
 #~ msgstr "Ρύθμιση διακομιστών ονομάτων (DNS)"
@@ -29900,9 +31182,6 @@ msgstr "®"
 #~ msgid "128 Mb"
 #~ msgstr "128 Mb"
 
-#~ msgid "15 minutes"
-#~ msgstr "15 λεπτά"
-
 #~ msgid "1536 Mb"
 #~ msgstr "1536 Mb"
 
@@ -29944,9 +31223,6 @@ msgstr "®"
 
 #~ msgid "5 hours"
 #~ msgstr "5 ώρες"
-
-#~ msgid "5 minutes"
-#~ msgstr "5 λεπτά"
 
 #~ msgid "512 Mb"
 #~ msgstr "512 Mb"

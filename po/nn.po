@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-03 13:20+0100\n"
+"POT-Creation-Date: 2026-11-19 21:27+0000\n"
 "PO-Revision-Date: 2026-08-16 16:05+0000\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -99,6 +99,10 @@ msgid "!! Boot loader Upgrade !!"
 msgstr ""
 
 msgid "# = Reboot required if this item is changed."
+msgstr ""
+
+#, python-format
+msgid "%(title)s (%(count)d)"
 msgstr ""
 
 #
@@ -319,8 +323,20 @@ msgid "%d min"
 msgstr "%d min"
 
 #, python-format
+msgid "%d min recorded"
+msgstr ""
+
+#, python-format
 msgid "%d minutes"
 msgstr "%d minutter"
+
+#, python-format
+msgid "%d movies"
+msgstr ""
+
+#, python-format
+msgid "%d movies selected"
+msgstr ""
 
 #
 #, fuzzy, python-format
@@ -332,6 +348,10 @@ msgid "%d network found."
 msgid_plural "%d networks found."
 msgstr[0] ""
 msgstr[1] ""
+
+#, python-format
+msgid "%d new"
+msgstr ""
 
 #, python-format
 msgid "%d obsolete manufacturer STARTUP files will be replaced or removed."
@@ -792,6 +812,9 @@ msgstr ""
 msgid "1"
 msgstr ""
 
+msgid "1 minute"
+msgstr ""
+
 msgid "1. (Highest)"
 msgstr ""
 
@@ -819,6 +842,11 @@ msgstr "12V utgang."
 
 msgid "12bit"
 msgstr ""
+
+#
+#, fuzzy
+msgid "15 minutes"
+msgstr "minutter"
 
 #
 msgid "16:10 Letterbox"
@@ -928,6 +956,9 @@ msgstr ""
 msgid "5"
 msgstr ""
 
+msgid "5 minutes"
+msgstr ""
+
 msgid "50-200 Mbps"
 msgstr ""
 
@@ -1014,6 +1045,9 @@ msgstr ""
 msgid "A crash log was %s created in '%s'"
 msgstr ""
 
+msgid "A destination file already exists. No files were overwritten."
+msgstr ""
+
 #
 #, python-format
 msgid ""
@@ -1060,6 +1094,18 @@ msgstr ""
 "Skal den slås av nå ?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
+msgstr ""
+
+msgid "A mount point or a folder containing mounted filesystems cannot be moved to the trashcan."
+msgstr ""
+
+msgid "A movie companion file is a symbolic link."
+msgstr ""
+
+msgid "A movie filename cannot be represented in M3U format."
+msgstr ""
+
+msgid "A movie maintenance scan is already running. Its progress is shown in Tasks."
 msgstr ""
 
 msgid "A new storage device has been connected:"
@@ -1340,6 +1386,9 @@ msgstr "Aktive klienter"
 msgid "Active only"
 msgstr ""
 
+msgid "Actor"
+msgstr ""
+
 msgid "Adapter"
 msgstr ""
 
@@ -1545,6 +1594,12 @@ msgstr "Legg til opptak (uendelig)"
 msgid "Add recording (Stop after current event)"
 msgstr "Legg til opptak (stopp etter nåværende program)"
 
+msgid "Add selected movies"
+msgstr ""
+
+msgid "Add selected movies to the play queue"
+msgstr ""
+
 #
 msgid "Add service"
 msgstr "Legg til kanal"
@@ -1628,6 +1683,9 @@ msgstr ""
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Konfigurer den vertikale plasseringen av undertekster, målt fra bunnen av skjermen."
 
+msgid "Adjust times to EPG"
+msgstr ""
+
 msgid "Adult"
 msgstr ""
 
@@ -1639,6 +1697,9 @@ msgstr ""
 
 msgid "Adult movie/Drama"
 msgstr "voksen film/drama"
+
+msgid "Advance Movie List"
+msgstr ""
 
 #
 msgid "Advanced"
@@ -1704,6 +1765,9 @@ msgstr "Spiller inn"
 msgid "After zap"
 msgstr ""
 
+msgid "Age rating"
+msgstr ""
+
 msgid "Aggregate data only"
 msgstr ""
 
@@ -1764,6 +1828,12 @@ msgstr "Alle aldre"
 msgid "All data on the selected device will be erased. Create one shared data partition with %d additional MultiBoot slots, a 512 MiB swap partition and the internal slot 1 kernel?"
 msgstr ""
 
+msgid "All dates"
+msgstr ""
+
+msgid "All episodes"
+msgstr ""
+
 #, fuzzy
 msgid "All events down"
 msgstr "spesielle program"
@@ -1773,6 +1843,15 @@ msgid "All events up"
 msgstr "spesielle program"
 
 msgid "All files"
+msgstr ""
+
+msgid "All media"
+msgstr ""
+
+msgid "All movie files"
+msgstr ""
+
+msgid "All movie folders"
 msgstr ""
 
 msgid "All packages"
@@ -1816,6 +1895,9 @@ msgid "Allocate a number to the physical LNB you are configuring. You will be ab
 msgstr ""
 
 msgid "Allow %s-bit"
+msgstr ""
+
+msgid "Allow duplicate recordings"
 msgstr ""
 
 msgid "Allow guest access"
@@ -1956,6 +2038,9 @@ msgstr "Vis alltid favoritter"
 msgid "Always use smart1080p mode"
 msgstr ""
 
+msgid "Ambiguous companion file names."
+msgstr ""
+
 msgid "American Samoa"
 msgstr ""
 
@@ -2047,6 +2132,10 @@ msgid "Any recordings"
 msgstr ""
 
 msgid "Aperture F number"
+msgstr ""
+
+#, python-format
+msgid "Apply '%(action)s' to %(count)d selected movies?"
 msgstr ""
 
 msgid "Apply any changes to the active locale/language and exit"
@@ -2209,6 +2298,9 @@ msgstr ""
 msgid "Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged."
 msgstr ""
 
+msgid "Ask to switch to the recording channel"
+msgstr ""
+
 #
 msgid "Ask user"
 msgstr "Spør bruker"
@@ -2273,6 +2365,9 @@ msgstr ""
 msgid "At end: %s"
 msgstr ""
 
+msgid "At the end of a running recording"
+msgstr ""
+
 #, fuzzy
 msgid "Athletics"
 msgstr "friidrett"
@@ -2320,7 +2415,13 @@ msgstr ""
 msgid "Audio bit rate"
 msgstr ""
 
+msgid "Audio channels"
+msgstr ""
+
 msgid "Audio decoding"
+msgstr ""
+
+msgid "Audio description"
 msgstr ""
 
 msgid "Audio language selection 1"
@@ -2455,6 +2556,9 @@ msgstr "Kanalsøk"
 msgid "Automatic gain"
 msgstr ""
 
+msgid "Automatic preview delay (ms)"
+msgstr ""
+
 #
 msgid "Automatic resolution"
 msgstr "Automatisk oppløsning"
@@ -2560,6 +2664,10 @@ msgstr ""
 
 msgid "BSSID"
 msgstr ""
+
+#
+msgid "Back"
+msgstr "Tilbake"
 
 #
 #, fuzzy
@@ -2733,6 +2841,9 @@ msgstr ""
 msgid "Begin time"
 msgstr "Starttid"
 
+msgid "Beginning"
+msgstr ""
+
 msgid "Behave like STOP button"
 msgstr ""
 
@@ -2880,6 +2991,10 @@ msgstr ""
 msgid "Bookmark removed."
 msgstr ""
 
+#, python-format
+msgid "Bookmark: %s"
+msgstr ""
+
 #
 msgid "Bookmarks"
 msgstr "Bokmerker"
@@ -3014,6 +3129,9 @@ msgid "Broadcom default"
 msgstr ""
 
 msgid "Browse"
+msgstr ""
+
+msgid "Browse grouped movies and series or all indexed movie files without reading movie storage."
 msgstr ""
 
 msgid "Browse, install or remove plugins on a one by one basis."
@@ -3287,11 +3405,17 @@ msgstr ""
 msgid "Cable input"
 msgstr ""
 
+msgid "Cache file lists"
+msgstr ""
+
 #
 msgid "Cache thumbnails"
 msgstr "Cache thumbnails"
 
 msgid "Cached"
+msgstr ""
+
+msgid "Cached folder · refresh from the menu"
 msgstr ""
 
 msgid "Calculate"
@@ -3405,9 +3529,6 @@ msgid ""
 "Can't go to live TV!\n"
 "Switch to live TV and restart time shift?"
 msgstr ""
-
-msgid "Can't move to trashcan!"
-msgstr "Kan ikke flytte til søppelbøtta"
 
 msgid ""
 "Can't play the next time shift buffer file!\n"
@@ -3537,6 +3658,9 @@ msgstr ""
 msgid "Cancelled upon user request"
 msgstr ""
 
+msgid "Cannot create a trashcan on this mounted filesystem. No files were deleted."
+msgstr ""
+
 msgid "Cannot delete file"
 msgstr "Kan ikke slette fil"
 
@@ -3547,6 +3671,12 @@ msgstr ""
 
 msgid "Cannot find any signal ..., aborting!"
 msgstr "Kan ikke finne noe signal..., avbryter!"
+
+msgid "Capacity unit range"
+msgstr ""
+
+msgid "Capacity units (CU)"
+msgstr ""
 
 msgid "Cape Verde"
 msgstr ""
@@ -3583,6 +3713,9 @@ msgid "Case insensitive"
 msgstr ""
 
 msgid "Case sensitive"
+msgstr ""
+
+msgid "Cast"
 msgstr ""
 
 msgid "Catalan / Valencian"
@@ -3766,6 +3899,9 @@ msgstr "Kanal +/- knappe modus"
 msgid "Channel down"
 msgstr ""
 
+msgid "Channel layout"
+msgstr ""
+
 msgid "Channel list cursor behavior"
 msgstr "Oppførselen til markøren i kanallisten"
 
@@ -3826,6 +3962,9 @@ msgstr "Kap."
 #
 msgid "Chapter"
 msgstr "Kapittel"
+
+msgid "Chapter markers and playback position"
+msgstr ""
 
 #
 #, fuzzy
@@ -3960,10 +4099,19 @@ msgstr ""
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr ""
 
+msgid "Choose all indexed or scanned folders, the default movie location, or the current folder including subfolders. Hidden folders are excluded."
+msgstr ""
+
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr ""
 
+msgid "Choose season and episode order, title, recording date, release year or rating."
+msgstr ""
+
 msgid "Choose the amount of additional slots."
+msgstr ""
+
+msgid "Choose the default sorting for this collection. The temporary view menu can override it."
 msgstr ""
 
 msgid "Choose the fallback font."
@@ -4043,6 +4191,12 @@ msgstr ""
 msgid "Classic Rock"
 msgstr ""
 
+msgid "Classic movie list (EMC)"
+msgstr ""
+
+msgid "Classic movie list with description (EMC)"
+msgstr ""
+
 msgid "Classical"
 msgstr ""
 
@@ -4084,12 +4238,21 @@ msgstr ""
 msgid "Clear before scan"
 msgstr "Slett før søking"
 
+msgid "Clear filters"
+msgstr ""
+
 msgid "Clear fixed"
 msgstr "Slette fikset"
+
+msgid "Clear movie selection"
+msgstr ""
 
 #
 msgid "Clear play list"
 msgstr "Tøm spilliste"
+
+msgid "Clear play queue"
+msgstr ""
 
 msgid "Clear search"
 msgstr ""
@@ -4258,6 +4421,9 @@ msgstr ""
 msgid "Colorimetry for HDR content"
 msgstr ""
 
+msgid "Combine series or matching recording titles in the view. Movie files stay in their original locations. Grouping can be disabled for individual folders from the context menu."
+msgstr ""
+
 msgid "Combined"
 msgstr ""
 
@@ -4340,6 +4506,12 @@ msgstr ""
 msgid "Comoros"
 msgstr ""
 
+msgid "Compact list"
+msgstr ""
+
+msgid "Companion files are shared by multiple media files. Rename or move the variants separately after resolving their companion files."
+msgstr ""
+
 msgid "Compatibility And Emulation"
 msgstr ""
 
@@ -4351,6 +4523,10 @@ msgid "Complete"
 msgstr "Komplett"
 
 msgid "Complete Backup"
+msgstr ""
+
+#, python-format
+msgid "Completed: %(done)d of %(total)d movies"
 msgstr ""
 
 #
@@ -4553,6 +4729,12 @@ msgstr "Konfigurer fargen på tekst-TV undertekster."
 #, fuzzy
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Konfigurer fargen på tekst-TV undertekster."
+
+msgid "Configure the existing movie player resume behavior."
+msgstr ""
+
+msgid "Configure the existing movie player stop action."
+msgstr ""
 
 msgid "Configure the first audio language (highest priority)."
 msgstr "Konfigurer første lydspråk (høyeste prioritet)."
@@ -4880,6 +5062,9 @@ msgstr ""
 msgid "Contacting IceTV server and setting up your %s %s."
 msgstr ""
 
+msgid "Container"
+msgstr ""
+
 msgid "Content"
 msgstr "Innhold"
 
@@ -4896,6 +5081,9 @@ msgstr ""
 msgid "Continue in background"
 msgstr ""
 
+msgid "Continue in the last direction"
+msgstr ""
+
 msgid "Continue playback"
 msgstr "Fortsett avspilling"
 
@@ -4904,6 +5092,9 @@ msgid "Continue playing"
 msgstr "Fortsett avspilling"
 
 msgid "Continue to run the task in the background"
+msgstr ""
+
+msgid "Continue watching"
 msgstr ""
 
 msgid "Continue with package download and installation"
@@ -5089,6 +5280,9 @@ msgid ""
 "Do you want to change the settings again?"
 msgstr ""
 
+msgid "Countries"
+msgstr ""
+
 #, fuzzy
 msgid "Country"
 msgstr "Mount"
@@ -5174,6 +5368,12 @@ msgstr ""
 msgid "Create kernel dump."
 msgstr ""
 
+msgid "Create missing EIT file"
+msgstr ""
+
+msgid "Create missing EIT files"
+msgstr ""
+
 msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
 msgstr ""
 
@@ -5214,6 +5414,9 @@ msgstr ""
 msgid "Create the flash expander in the selected device"
 msgstr ""
 
+msgid "Create virtual collection"
+msgstr ""
+
 msgid "Create working directories."
 msgstr ""
 
@@ -5251,6 +5454,9 @@ msgid "Credentials for '%s'"
 msgstr ""
 
 msgid "Cree"
+msgstr ""
+
+msgid "Crew"
 msgstr ""
 
 #
@@ -5353,6 +5559,9 @@ msgstr ""
 msgid "Current directory (%s)"
 msgstr ""
 
+msgid "Current folder and subfolders"
+msgstr ""
+
 #, fuzzy
 msgid "Current installed"
 msgstr "Installert image"
@@ -5404,6 +5613,9 @@ msgstr ""
 msgid "Currently Remembered Volume Levels:"
 msgstr ""
 
+msgid "Cursor after marking a movie"
+msgstr ""
+
 #
 msgid "Custom"
 msgstr "Tilpass"
@@ -5441,6 +5653,10 @@ msgstr ""
 #
 msgid "Cut"
 msgstr "Klipp ut"
+
+#, python-format
+msgid "Cut %s"
+msgstr ""
 
 msgid "CutList Skipping"
 msgstr ""
@@ -5662,6 +5878,12 @@ msgstr ""
 msgid "Darts"
 msgstr ""
 
+msgid "Database sort order"
+msgstr ""
+
+msgid "Database view"
+msgstr ""
+
 #
 msgid "Date"
 msgstr "Dato"
@@ -5819,8 +6041,14 @@ msgstr ""
 msgid "Default left column directory"
 msgstr ""
 
+msgid "Default movie location"
+msgstr ""
+
 #, python-format
 msgid "Default movie location (%s)"
+msgstr ""
+
+msgid "Default movie location after standby"
 msgstr ""
 
 #
@@ -5832,6 +6060,9 @@ msgid "Default recording type"
 msgstr "Standard opptakstype"
 
 msgid "Default right column directory"
+msgstr ""
+
+msgid "Default skin layout"
 msgstr ""
 
 msgid "Default sort order for directories in the left column."
@@ -6045,6 +6276,9 @@ msgid "Delete character to left of cursor or select AM times"
 msgstr ""
 
 msgid "Delete character under cursor or select PM times"
+msgstr ""
+
+msgid "Delete collection (keep movie files)"
 msgstr ""
 
 #
@@ -6448,6 +6682,9 @@ msgstr ""
 msgid "Disable operator profiles"
 msgstr ""
 
+msgid "Disable previews, start them manually, or start after resting on a movie. Automatic previews access movie storage and do not interrupt timeshift or an already playing movie."
+msgstr ""
+
 msgid "Disable saved Wi-Fi network"
 msgstr ""
 
@@ -6562,6 +6799,9 @@ msgid "Display the virtual keyboard for data entry"
 msgstr ""
 
 msgid "Display type"
+msgstr ""
+
+msgid "Displayed movie title"
 msgstr ""
 
 msgid "Distance"
@@ -6970,6 +7210,9 @@ msgstr ""
 msgid "Duplicate the current line"
 msgstr ""
 
+msgid "Duration"
+msgstr ""
+
 msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn't ready in time, this time can be increased."
 msgstr ""
 
@@ -7171,6 +7414,19 @@ msgstr "Endre kapittel i denne tittel"
 msgid "Edit current line"
 msgstr "Gå til nåværende tidspunkt"
 
+msgid "Edit movie"
+msgstr ""
+
+msgid "Edit play queue"
+msgstr ""
+
+#, python-format
+msgid "Edit play queue (%d movies)"
+msgstr ""
+
+msgid "Edit recording information"
+msgstr ""
+
 #
 msgid "Edit settings"
 msgstr "Endre innstillinger"
@@ -7216,6 +7472,9 @@ msgid "Edit the upgrade source address."
 msgstr "Endre oppgraderingskilde."
 
 msgid "Edit the username."
+msgstr ""
+
+msgid "Edit title and description"
 msgstr ""
 
 #
@@ -7379,6 +7638,12 @@ msgid "Enable a selected RTL-SDR USB receiver for DAB+ reception. DVB-T and DAB+
 msgstr ""
 
 msgid "Enable adapter"
+msgstr ""
+
+msgid "Enable an installed movie database in Movie Selection settings to open the library."
+msgstr ""
+
+msgid "Enable an installed movie library provider for metadata, artwork and the Advance Movie List. Local folders remain available if the provider is unavailable."
 msgstr ""
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
@@ -7711,6 +7976,9 @@ msgid "Enter a description for this timer."
 msgstr ""
 
 msgid "Enter a directory or process a file (play/view/edit/install/extract/run)"
+msgstr ""
+
+msgid "Enter a movie title."
 msgstr ""
 
 msgid "Enter a name for this timer."
@@ -8076,10 +8344,6 @@ msgstr ""
 #, python-format
 msgid "Error: Creating directory '%s' failed!"
 msgstr "Laging av katalog %s feilet."
-
-#, python-format
-msgid "Error: Creating picon target directory: (%s)"
-msgstr ""
 
 #, python-format
 msgid "Error: Directory '%s' does not exist!"
@@ -8854,6 +9118,15 @@ msgstr "Filen ser ut til å være opptatt.\n"
 msgid "File compression"
 msgstr ""
 
+msgid "File information"
+msgstr ""
+
+msgid "File name"
+msgstr ""
+
+msgid "File operations require a regular movie file."
+msgstr ""
+
 msgid "File sorting mode"
 msgstr ""
 
@@ -8874,6 +9147,12 @@ msgstr "filnavn"
 msgid "Files And Directories"
 msgstr ""
 
+msgid "Files and folders"
+msgstr ""
+
+msgid "Files or database"
+msgstr ""
+
 msgid "Files/folders to exclude from backup"
 msgstr ""
 
@@ -8885,6 +9164,9 @@ msgstr ""
 
 msgid "Film/Cinema"
 msgstr "film/kino"
+
+msgid "Filter"
+msgstr ""
 
 msgid "Filter extensions"
 msgstr ""
@@ -8913,6 +9195,12 @@ msgid "Find Currently Playing Service"
 msgstr ""
 
 msgid "Find connected events"
+msgstr ""
+
+msgid "Find old watched movies"
+msgstr ""
+
+msgid "Find orphaned movie companion files"
 msgstr ""
 
 #, python-format
@@ -8949,6 +9237,9 @@ msgstr ""
 #
 msgid "Finnish"
 msgstr "Finsk"
+
+msgid "First chapter marker"
+msgstr ""
 
 msgid "First playable time shift file!"
 msgstr ""
@@ -9056,6 +9347,21 @@ msgstr "Endelig posisjon til"
 msgid "Flush Cache and Rescan"
 msgstr ""
 
+msgid "Folder movie counts and sizes updated."
+msgstr ""
+
+msgid "Folder movie information"
+msgstr ""
+
+msgid "Folder sorting"
+msgstr ""
+
+msgid "Folders"
+msgstr ""
+
+msgid "Folders first"
+msgstr ""
+
 msgid "Folk Music"
 msgstr ""
 
@@ -9064,6 +9370,15 @@ msgstr ""
 
 msgid "Folk/Traditional music"
 msgstr "folkemusikk/tradisjonsmusikk"
+
+msgid "Follow changes to the EPG start and end times, keeping the recording margins. Missing EPG data or timer conflicts leave the times unchanged."
+msgstr ""
+
+msgid "Follow linked folders in snapshots"
+msgstr ""
+
+msgid "Follow symbolic links during the read-only movie snapshot task. Loops and duplicate directory targets are skipped. Cleanup tasks never follow symbolic links."
+msgstr ""
 
 #, fuzzy
 msgid "Font size"
@@ -9126,6 +9441,9 @@ msgid "Force enabled"
 msgstr "aktivert"
 
 msgid "Force progressive for streams and files"
+msgstr ""
+
+msgid "Forced"
 msgstr ""
 
 msgid "Foreign Language"
@@ -9239,6 +9557,9 @@ msgstr "Fredag"
 
 msgid "From :"
 msgstr "Fra :"
+
+msgid "From the context menu"
+msgstr ""
 
 msgid "Front"
 msgstr ""
@@ -9606,6 +9927,9 @@ msgstr "Grå"
 msgid "Group"
 msgstr ""
 
+msgid "Group recordings into virtual folders"
+msgstr ""
+
 msgid "Grow drop"
 msgstr ""
 
@@ -9780,6 +10104,9 @@ msgstr ""
 msgid "Heard Island and McDonald Islands"
 msgstr ""
 
+msgid "Hearing impaired"
+msgstr ""
+
 msgid "Hebrew"
 msgstr "Hebraisk"
 
@@ -9847,6 +10174,9 @@ msgstr ""
 msgid "HiSilicon specific information not found."
 msgstr ""
 
+msgid "Hidden folders"
+msgstr ""
+
 msgid "Hidden network"
 msgstr "Skjult nettverk"
 
@@ -9904,6 +10234,9 @@ msgid "Hide the InfoBar"
 msgstr ""
 
 msgid "Hide the OSD after a period without key presses. Screens and background jobs keep running. The first key press only restores the OSD, and newly opened dialogs make it visible again. Hold 0 to pause until the next GUI restart, or hold 0 again to resume."
+msgstr ""
+
+msgid "Hide this folder"
 msgstr ""
 
 msgid "Hide zap errors"
@@ -10356,6 +10689,9 @@ msgstr ""
 msgid "Ignore services on satellites that are not configured in the tuner settings."
 msgstr ""
 
+msgid "Ignore the resume position when the configured watched percentage has been reached."
+msgstr ""
+
 msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr ""
 
@@ -10430,6 +10766,9 @@ msgstr ""
 #
 msgid "In progress"
 msgstr "Pågår"
+
+msgid "In progress from (%)"
+msgstr ""
 
 msgid "In use by DAB+"
 msgstr ""
@@ -10606,6 +10945,9 @@ msgstr ""
 #
 msgid "Information"
 msgstr "Informasjon"
+
+msgid "Information list"
+msgstr ""
 
 msgid "Informational/Educational/School programs"
 msgstr "informasjon/opplæring/skoleprogram"
@@ -10804,6 +11146,9 @@ msgstr "Kun intern hdd "
 msgid "Internal flash"
 msgstr "Intern Flash"
 
+msgid "Internal flash only allows small picon packages."
+msgstr ""
+
 #, python-format
 msgid "Internal flash:  %s %s "
 msgstr ""
@@ -10831,9 +11176,15 @@ msgstr "ugyldig type"
 msgid "Invalid Help Page"
 msgstr ""
 
+msgid "Invalid filename."
+msgstr ""
+
 #
 msgid "Invalid location!"
 msgstr "Ugyldig plassering"
+
+msgid "Invalid original movie location."
+msgstr ""
 
 msgid "Invalid swap file size."
 msgstr ""
@@ -11025,9 +11376,18 @@ msgstr ""
 msgid "Kazakhstan"
 msgstr ""
 
+msgid "Keep previous playback position as chapter marker"
+msgstr ""
+
 #
 msgid "Keep service"
 msgstr "Beholde kanal"
+
+msgid "Keep the newest recordings up to this limit before applying the selected display order."
+msgstr ""
+
+msgid "Keep the play queue across GUI restarts. The queue is stored in the receiver configuration without accessing movie storage."
+msgstr ""
 
 msgid "Keep warning"
 msgid_plural "Keep warnings"
@@ -11280,11 +11640,32 @@ msgstr ""
 msgid "Large"
 msgstr ""
 
+msgid "Large tiles"
+msgstr ""
+
+msgid "Last 24 hours"
+msgstr ""
+
+msgid "Last 30 days"
+msgstr ""
+
+msgid "Last 7 days"
+msgstr ""
+
+msgid "Last 90 days"
+msgstr ""
+
 #
 msgid "Last config"
 msgstr "Siste konfig"
 
 msgid "Last flash"
+msgstr ""
+
+msgid "Last folder"
+msgstr ""
+
+msgid "Last playback position"
 msgstr ""
 
 #
@@ -11306,6 +11687,24 @@ msgstr ""
 msgctxt "third event: 'third' event label"
 msgid "Later"
 msgstr "Senere"
+
+msgid "Latest recordings"
+msgstr ""
+
+msgid "Latest recordings collection"
+msgstr ""
+
+msgid "Latest recordings folders"
+msgstr ""
+
+msgid "Latest recordings maximum"
+msgstr ""
+
+msgid "Latest recordings period"
+msgstr ""
+
+msgid "Latest recordings sorting"
+msgstr ""
 
 #
 #, fuzzy
@@ -11531,6 +11930,12 @@ msgstr ""
 msgid "List of storage devices"
 msgstr "Liste over lagringsenheter"
 
+msgid "List or grid style"
+msgstr ""
+
+msgid "List style"
+msgstr ""
+
 msgid "Lists reloaded!"
 msgstr ""
 
@@ -11563,6 +11968,9 @@ msgstr "Last"
 msgid "Load EPG Cache"
 msgstr ""
 
+msgid "Load M3U playlist"
+msgstr ""
+
 #
 msgid "Load play list"
 msgstr "Hent spilliste"
@@ -11578,6 +11986,9 @@ msgid "Load: %s %%"
 msgstr ""
 
 msgid "Loading information, please wait..."
+msgstr ""
+
+msgid "Loading movie library..."
 msgstr ""
 
 msgid "Loading skin..."
@@ -11857,6 +12268,10 @@ msgstr "Hovedmeny"
 msgid "Maintain your multi boot device."
 msgstr ""
 
+#, python-format
+msgid "Maintenance scan finished: %d candidates. Review them from Movie maintenance in the context menu."
+msgstr ""
+
 msgid "Make"
 msgstr ""
 
@@ -11998,7 +12413,28 @@ msgstr "Margin før opptak (i minutter)"
 msgid "Margin before zap"
 msgstr ""
 
+msgid "Mark / unmark movie"
+msgstr ""
+
 msgid "Mark As Dedicated 3D Service"
+msgstr ""
+
+msgid "Mark as unwatched"
+msgstr ""
+
+msgid "Mark as watched"
+msgstr ""
+
+msgid "Mark new recordings"
+msgstr ""
+
+msgid "Mark selected movies as unwatched"
+msgstr ""
+
+msgid "Mark selected movies as watched"
+msgstr ""
+
+msgid "Mark unwatched recordings from the last 24 hours or since the previous visit. Returning from playback keeps the same visit."
 msgstr ""
 
 #, fuzzy
@@ -12088,6 +12524,9 @@ msgid "Media Player Settings"
 msgstr ""
 
 msgid "Media Stream"
+msgstr ""
+
+msgid "Media information is currently unavailable."
 msgstr ""
 
 msgid "Media playback Remaining/Elapsed as"
@@ -12239,7 +12678,19 @@ msgstr ""
 msgid "Minimum age %d years"
 msgstr "Minimum alder %d år"
 
+msgid "Minimum age for watched movie maintenance (days)"
+msgstr ""
+
 msgid "Minimum difference between idle and moving current."
+msgstr ""
+
+msgid "Minimum playback percentage for the in-progress status. A movie without a playback position remains unwatched."
+msgstr ""
+
+msgid "Minimum playback percentage for the watched status, watched-movie restart and manual maintenance."
+msgstr ""
+
+msgid "Minimum recordings per virtual folder"
 msgstr ""
 
 msgid "Minimum send interval"
@@ -12423,6 +12874,18 @@ msgstr ""
 msgid "Move"
 msgstr "Flytt"
 
+#, python-format
+msgid "Move %d selected movies and their companion files to the trashcan?"
+msgstr ""
+
+#, python-format
+msgid "Move %d selected watched movies and their companion files to the trashcan?"
+msgstr ""
+
+#, python-format
+msgid "Move '%s' and its companion files to the trashcan?"
+msgstr ""
+
 msgid "Move Down"
 msgstr ""
 
@@ -12460,6 +12923,9 @@ msgid "Move all related files"
 msgstr ""
 
 msgid "Move directory/file to target directory"
+msgstr ""
+
+msgid "Move down"
 msgstr ""
 
 #, fuzzy
@@ -12527,10 +12993,16 @@ msgstr ""
 msgid "Move job queued."
 msgstr ""
 
+msgid "Move left"
+msgstr ""
+
 msgid "Move left a item"
 msgstr ""
 
 msgid "Move only highlighted file"
+msgstr ""
+
+msgid "Move right"
 msgstr ""
 
 msgid "Move right a item"
@@ -12657,6 +13129,9 @@ msgstr ""
 msgid "Move to the previous item in list"
 msgstr ""
 
+msgid "Move up"
+msgstr ""
+
 #, fuzzy
 msgid "Move up a line"
 msgstr "Flytt opp en side"
@@ -12749,7 +13224,61 @@ msgstr "Film utvalg"
 msgid "Movie Selection Settings"
 msgstr "Filmliste Oppsett"
 
+msgid "Movie artwork"
+msgstr ""
+
+msgid "Movie count"
+msgstr ""
+
+msgid "Movie count and size"
+msgstr ""
+
+msgid "Movie count, size and new movies"
+msgstr ""
+
+msgid "Movie database"
+msgstr ""
+
+msgid "Movie database unavailable"
+msgstr ""
+
+msgid "Movie database unavailable. Select files and folders from View in the menu."
+msgstr ""
+
+msgid "Movie date format"
+msgstr ""
+
+msgid "Movie file operations"
+msgstr ""
+
+msgid "Movie front display"
+msgstr ""
+
+msgid "Movie information"
+msgstr ""
+
+msgid "Movie library"
+msgstr ""
+
+msgid "Movie maintenance"
+msgstr ""
+
+msgid "Movie play queue"
+msgstr ""
+
 msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
+
+msgid "Movie player style"
+msgstr ""
+
+msgid "Movie playlists support local files and mounted storage only."
+msgstr ""
+
+msgid "Movie preview"
+msgstr ""
+
+msgid "Movie size"
 msgstr ""
 
 msgid "Movie/Drama"
@@ -12761,6 +13290,9 @@ msgid "Movieplayer"
 msgstr "Skjul spiller"
 
 msgid "Movies"
+msgstr ""
+
+msgid "Movies and series"
 msgstr ""
 
 msgid "Moving"
@@ -13236,6 +13768,15 @@ msgstr "Program info"
 msgid "New media"
 msgstr "nye medier"
 
+msgid "New movie filename (without extension)"
+msgstr ""
+
+msgid "New movies"
+msgstr ""
+
+msgid "New movies: update folder statistics"
+msgstr ""
+
 #
 #, fuzzy
 msgid "New password"
@@ -13259,6 +13800,9 @@ msgid "NewCamd DES Key"
 msgstr ""
 
 msgid "NewDirectory"
+msgstr ""
+
+msgid "Newest recordings first"
 msgstr ""
 
 msgid "News"
@@ -13303,6 +13847,12 @@ msgstr "Gå til neste kanal"
 #, fuzzy
 msgid "Next higher resolution"
 msgstr "Oppløsning"
+
+msgid "Next movie"
+msgstr ""
+
+msgid "Next page"
+msgstr ""
 
 msgid "Next quad PiP channel"
 msgstr ""
@@ -13423,6 +13973,9 @@ msgstr "ingen forsinkelse"
 msgid "No demux available"
 msgstr "Ingen gratis indekser tilgjengelig"
 
+msgid "No description available."
+msgstr ""
+
 #
 msgid "No displayable files on this medium found!"
 msgstr "Ingen visbare filer på dette medie funnet!"
@@ -13456,6 +14009,9 @@ msgstr ""
 msgid "No hard disks detected."
 msgstr ""
 
+msgid "No hidden folders"
+msgstr ""
+
 msgid "No hosts found yet - still scanning..."
 msgstr ""
 
@@ -13465,9 +14021,18 @@ msgstr ""
 msgid "No log files found so debug logs are unavailable!"
 msgstr ""
 
+msgid "No maintenance candidates found."
+msgstr ""
+
 #, fuzzy
 msgid "No matching place names found"
 msgstr "Ingen nye plugins funnet"
+
+msgid "No movie description is available to create an EIT file."
+msgstr ""
+
+msgid "No movies found. Select files and folders from View to see unscanned recordings."
+msgstr ""
 
 msgid "No network adapters enabled/available!"
 msgstr ""
@@ -13498,6 +14063,9 @@ msgid "No resource manager"
 msgstr ""
 
 msgid "No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."
+msgstr ""
+
+msgid "No saved playback position is available."
 msgstr ""
 
 #
@@ -13576,6 +14144,9 @@ msgstr ""
 "Vennligst utfør Tuner innstilling før du starter en kanal søking."
 
 msgid "No tuners are currently streaming."
+msgstr ""
+
+msgid "No unambiguous series filenames are available. A series name, season and episode are required."
 msgstr ""
 
 msgid "No unused swap file name is available."
@@ -13966,6 +14537,9 @@ msgstr ""
 msgid "Ojibwa"
 msgstr ""
 
+msgid "Oldest recordings first"
+msgstr ""
+
 msgid "Oldies"
 msgstr ""
 
@@ -14034,11 +14608,17 @@ msgstr ""
 msgid "Only HD"
 msgstr "bare HD"
 
+msgid "Only create a group when at least this many matching recordings are present."
+msgstr ""
+
 #
 msgid "Only free scan"
 msgstr "Bare gratiskanaler"
 
 msgid "Only in Standby"
+msgstr ""
+
+msgid "Only include recordings made during this period."
 msgstr ""
 
 msgid "Only log debug information of GStreamer category. * means all categories."
@@ -14084,6 +14664,9 @@ msgstr ""
 msgid "Open AutoTimer Overview"
 msgstr "Vis AutoTimer Listen"
 
+msgid "Open BDMV and BRD folder structures with the native Blu-ray service."
+msgstr ""
+
 #
 #, fuzzy
 msgid "Open Bouquet selection"
@@ -14093,6 +14676,12 @@ msgid "Open Box Portal"
 msgstr ""
 
 msgid "Open Capability"
+msgstr ""
+
+msgid "Open DVD images individually with the DVD player."
+msgstr ""
+
+msgid "Open DVD images individually with the DVD player. Play queues support video and audio files."
 msgstr ""
 
 msgid "Open EPG"
@@ -14211,9 +14800,18 @@ msgstr "Vis TV spilleren"
 msgid "Open Usage and GUI Settings"
 msgstr ""
 
+msgid "Open VIDEO_TS and DVD folder structures directly with the DVD player."
+msgstr ""
+
 #, fuzzy
 msgid "Open VideoMode"
 msgstr "Vis RFmod oppsett..."
+
+msgid "Open a movie directly when its filename matches its containing folder. File operations still treat the containing folder as a folder."
+msgstr ""
+
+msgid "Open collection"
+msgstr ""
 
 msgid "Open context menu"
 msgstr ""
@@ -14229,6 +14827,9 @@ msgid "Open external subtitle management screen"
 msgstr ""
 
 msgid "Open file sort menu"
+msgstr ""
+
+msgid "Open selected movie or series"
 msgstr ""
 
 msgid "Open service list and select next service"
@@ -14282,6 +14883,9 @@ msgstr ""
 msgid "Open the context menu"
 msgstr ""
 
+msgid "Open the last folder, the default movie location, or return to the default location after standby. Returning from playback keeps the selected movie."
+msgstr ""
+
 msgid "Open the multi service EPG view"
 msgstr ""
 
@@ -14309,6 +14913,9 @@ msgstr ""
 msgid "OpenWebif picon path"
 msgstr ""
 
+msgid "Opening movie folder"
+msgstr ""
+
 msgid "Opening network adapter configuration..."
 msgstr ""
 
@@ -14324,6 +14931,9 @@ msgid "Operating LED status in Standby"
 msgstr "LED lysstyrke under dvalemodus."
 
 msgid "Operating LED status while running"
+msgstr ""
+
+msgid "Operation cancelled."
 msgstr ""
 
 msgid "Opkg Actions"
@@ -14371,10 +14981,16 @@ msgstr ""
 msgid "Original language"
 msgstr ""
 
+msgid "Original title"
+msgstr ""
+
 msgid "Oriya"
 msgstr ""
 
 msgid "Oromo"
+msgstr ""
+
+msgid "Orphaned companion files removed."
 msgstr ""
 
 msgid "Oscam Information"
@@ -14561,6 +15177,10 @@ msgstr ""
 msgid "Packages and associated locales"
 msgstr ""
 
+#, python-format
+msgid "Page %(page)d · %(count)d entries"
+msgstr ""
+
 msgid "Page down"
 msgstr "Side ned"
 
@@ -14741,6 +15361,18 @@ msgstr ""
 msgid "Period and space '. '"
 msgstr ""
 
+#, python-format
+msgid "Permanently delete %d selected movies and their companion files?"
+msgstr ""
+
+#, python-format
+msgid "Permanently delete %d selected orphaned companion files?"
+msgstr ""
+
+#, python-format
+msgid "Permanently delete '%s' and its companion files?"
+msgstr ""
+
 msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Permanent slette alle opptak i søppelbøtta?"
 
@@ -14895,6 +15527,9 @@ msgstr ""
 msgid "Pixel Test"
 msgstr ""
 
+msgid "Pixel format"
+msgstr ""
+
 msgid "Pixels\n"
 msgstr ""
 
@@ -14948,6 +15583,9 @@ msgstr ""
 msgid "Play entry"
 msgstr "Spill denne"
 
+msgid "Play from here"
+msgstr ""
+
 #
 msgid "Play from next mark or play list entry"
 msgstr "Spill av fra neste markering eller oppføring i spilllisten"
@@ -14976,6 +15614,22 @@ msgstr "Spill neste (gå til forrige kanal)"
 
 msgid "Play previous"
 msgstr "Spil forrige"
+
+msgid "Play queue"
+msgstr ""
+
+msgid "Play queue / playlists"
+msgstr ""
+
+msgid "Play queue cleared"
+msgstr ""
+
+#, python-format
+msgid "Play queue: %d movies (maximum 1024)"
+msgstr ""
+
+msgid "Play selected movies"
+msgstr ""
 
 msgid "Play selected service in a PiP window"
 msgstr ""
@@ -15007,10 +15661,25 @@ msgstr ""
 msgid "Playback Time:"
 msgstr ""
 
+msgid "Playback changed. Select the movie again before deleting it."
+msgstr ""
+
 msgid "Playback, Recording & Time Shift"
 msgstr ""
 
+msgid "Playing"
+msgstr ""
+
 msgid "Playlist"
+msgstr ""
+
+msgid "Playlist filename (.m3u or .m3u8)"
+msgstr ""
+
+msgid "Playlist loaded"
+msgstr ""
+
+msgid "Playlist saved"
 msgstr ""
 
 msgid "Playpause"
@@ -15113,6 +15782,9 @@ msgid "Please select a play list..."
 msgstr "Vennligst velg en spilleliste"
 
 msgid "Please select a resolution..."
+msgstr ""
+
+msgid "Please select a target directory."
 msgstr ""
 
 msgid "Please select an aspect ratio..."
@@ -15423,6 +16095,12 @@ msgstr "Motor oppsett"
 msgid "Possible causes could be:"
 msgstr ""
 
+msgid "Poster grid"
+msgstr ""
+
+msgid "Poster list"
+msgstr ""
+
 msgid "Power"
 msgstr ""
 
@@ -15529,7 +16207,19 @@ msgstr "Foretrukne tuner for opptak"
 msgid "Preparation time for recording"
 msgstr "Margin før opptak (i minutter)"
 
+msgid "Preparing latest recordings. Progress is shown in Tasks."
+msgstr ""
+
+msgid "Preparing picon storage. Existing picons will be preserved. Please wait..."
+msgstr ""
+
+msgid "Preparing picon storage. Please wait..."
+msgstr ""
+
 msgid "Preparing recording, please wait..."
+msgstr ""
+
+msgid "Preparing series filenames..."
 msgstr ""
 
 #
@@ -15676,6 +16366,15 @@ msgstr "Forhåndsvisning"
 msgid "Preview menu"
 msgstr "Forhåndsvis meny"
 
+msgid "Preview offset (seconds)"
+msgstr ""
+
+msgid "Preview series filenames from the movie database"
+msgstr ""
+
+msgid "Preview starting point"
+msgstr ""
+
 msgid "Previous"
 msgstr ""
 
@@ -15690,6 +16389,9 @@ msgstr "Gå til forrige kanal"
 #, fuzzy
 msgid "Previous channel page"
 msgstr "Gå til forrige kanal"
+
+msgid "Previous page"
+msgstr ""
 
 msgid "Previous/Next page"
 msgstr ""
@@ -15753,6 +16455,10 @@ msgid "Process action from TV"
 msgstr "Håndter oppvåkning fra TV"
 
 msgid "Processing"
+msgstr ""
+
+#, python-format
+msgid "Processing %d movies in the background"
 msgstr ""
 
 msgid "Processor information"
@@ -16147,12 +16853,19 @@ msgstr "Tilfeldig"
 msgid "Random Password"
 msgstr ""
 
+msgid "Rating"
+msgstr ""
+
 #, python-format
 msgid "Rating defined by broadcaster - %d"
 msgstr "Vurdering definert av kringkasteren - %d"
 
 msgid "Rating undefined"
 msgstr "Vurdering udefinert"
+
+#, python-format
+msgid "Rating: %s"
+msgstr ""
 
 msgid "Re-enter new PIN"
 msgstr ""
@@ -16169,6 +16882,9 @@ msgstr "Les brukerdata fra oscam.conf"
 msgid "Read block size"
 msgstr ""
 
+msgid "Read movie folders"
+msgstr ""
+
 msgid "Read-Only"
 msgstr ""
 
@@ -16177,6 +16893,12 @@ msgstr ""
 
 msgid "Reader"
 msgstr "Leser"
+
+msgid "Reading media information timed out."
+msgstr ""
+
+msgid "Reading media information..."
+msgstr ""
 
 msgid "Ready"
 msgstr ""
@@ -16299,6 +17021,15 @@ msgstr ""
 msgid "Reception sources to scan"
 msgstr ""
 
+msgid "Recognize Blu-ray folders"
+msgstr ""
+
+msgid "Recognize DVD folders"
+msgstr ""
+
+msgid "Recognize movie folders"
+msgstr ""
+
 #
 msgid "Record"
 msgstr "Spille inn"
@@ -16335,6 +17066,9 @@ msgstr ""
 msgid "Recordable media toolbox"
 msgstr ""
 
+msgid "Recorded"
+msgstr ""
+
 #
 msgid "Recording"
 msgstr "Spiller inn"
@@ -16365,6 +17099,12 @@ msgstr "Opptakstype"
 msgid "Recording failed"
 msgstr "Opptakstype"
 
+#, python-format
+msgid ""
+"Recording failed because the channel's programme information could not be received.\n"
+"%s"
+msgstr ""
+
 #, fuzzy
 msgid "Recording finished"
 msgstr "Opptaksinnstillinger"
@@ -16389,6 +17129,15 @@ msgstr "Opptak startet! Stoppe timeshift nå..."
 #, fuzzy
 msgid "Recording stopped"
 msgstr "Opptakstype"
+
+msgid "Recording title"
+msgstr ""
+
+msgid "Recording title and separator"
+msgstr ""
+
+msgid "Recording title separator"
+msgstr ""
 
 #, fuzzy
 msgid "Recording tuning failed"
@@ -16474,7 +17223,13 @@ msgstr ""
 msgid "Refresh every"
 msgstr "Oppdateres hvert (i timer)"
 
+msgid "Refresh library"
+msgstr ""
+
 msgid "Refresh list of RTL-SDR USB tuners"
+msgstr ""
+
+msgid "Refresh movie folder"
 msgstr ""
 
 msgid "Refresh rate"
@@ -16512,7 +17267,16 @@ msgstr "mal fil"
 msgid "Relative"
 msgstr "Relativ"
 
+msgid "Relative date"
+msgstr ""
+
 msgid "Release Notes"
+msgstr ""
+
+msgid "Release date"
+msgstr ""
+
+msgid "Release year"
 msgstr ""
 
 msgid "Relevant PIDs Routing"
@@ -16580,6 +17344,9 @@ msgid "Remarkable people"
 msgstr "bemerkelsesverdige mennesker"
 
 msgid "Remember last service in PiP"
+msgstr ""
+
+msgid "Remember play queue"
 msgstr ""
 
 msgid "Remember service PIN"
@@ -16719,6 +17486,9 @@ msgstr ""
 msgid "Remove all user interface data"
 msgstr ""
 
+msgid "Remove chapter markers (keep cuts and resume position)"
+msgstr ""
+
 msgid "Remove completed timers after"
 msgstr "Fjerne ferdige timere etter (dager)"
 
@@ -16729,10 +17499,19 @@ msgstr ""
 msgid "Remove currently selected title"
 msgstr "Fjern valgte tittel"
 
+msgid "Remove from queue"
+msgstr ""
+
 msgid "Remove highlighted directory from bookmarks"
 msgstr ""
 
+msgid "Remove orphaned movie companion files"
+msgstr ""
+
 msgid "Remove previously stored services from scanned DAB+ multiplexes. Disable this option to retain services when a multiplex is temporarily unavailable."
+msgstr ""
+
+msgid "Remove selected movies from collection"
 msgstr ""
 
 msgid "Remove service from AutoCam"
@@ -16778,6 +17557,10 @@ msgstr "Fjerne partisjonstabellen"
 msgid "Rename"
 msgstr "Gi nytt navn"
 
+#, python-format
+msgid "Rename %(count)d movies with their companion files? %(skipped)d unchanged or incomplete entries were skipped."
+msgstr ""
+
 msgid "Rename Directory"
 msgstr ""
 
@@ -16788,11 +17571,17 @@ msgstr "Endre navn på oppføring"
 msgid "Rename all related files"
 msgstr ""
 
+msgid "Rename collection"
+msgstr ""
+
 msgid "Rename directory/file"
 msgstr ""
 
 msgid "Rename failed!"
 msgstr "Endre navn mislyktes!"
+
+msgid "Rename movie file and companion files"
+msgstr ""
 
 msgid "Rename name and description for new events"
 msgstr ""
@@ -17106,6 +17895,9 @@ msgstr "Gjenopprette system oppsett"
 msgid "Restore backups"
 msgstr "Gjenopprett Sikkerhetskopier"
 
+msgid "Restore previous playback position"
+msgstr ""
+
 msgid "Restore settings from a backup"
 msgstr ""
 
@@ -17113,6 +17905,9 @@ msgid "Restore settings now"
 msgstr ""
 
 msgid "Restore the highlighted slot"
+msgstr ""
+
+msgid "Restore to original location"
 msgstr ""
 
 #
@@ -17205,6 +18000,9 @@ msgstr ""
 msgid "Return to previous service"
 msgstr "Gå tilbake til forrige kanal"
 
+msgid "Reuse recently read folders for this duration. The cache is limited to 32 folders and 10000 entries. Refresh from the context menu to see external changes immediately."
+msgstr ""
+
 msgid "Reverse bouquet buttons"
 msgstr "Omvendt bouquet knapper"
 
@@ -17212,6 +18010,9 @@ msgid "Reverse list"
 msgstr ""
 
 msgid "Review"
+msgstr ""
+
+msgid "Review last maintenance scan"
 msgstr ""
 
 msgid "Rewind"
@@ -17366,6 +18167,9 @@ msgstr ""
 msgid "Running only"
 msgstr ""
 
+msgid "Runtime"
+msgstr ""
+
 #
 msgid "Russian"
 msgstr "Russisk"
@@ -17493,6 +18297,9 @@ msgstr ""
 msgid "Samoan"
 msgstr ""
 
+msgid "Sample rate"
+msgstr ""
+
 msgid "San Marino"
 msgstr ""
 
@@ -17598,6 +18405,9 @@ msgstr "Lagre og spille inn"
 msgid "Save and stop"
 msgstr "Lagre og stopp"
 
+msgid "Save available movie information beside video files, including MKV. Existing EIT files are kept. Automatic creation applies to selected files in the folder view; database browsing does not write to sleeping storage."
+msgstr ""
+
 #
 msgid "Save directory on EXIT"
 msgstr "lagre siste katalog ved avslutt"
@@ -17620,6 +18430,9 @@ msgstr "Lagre spilliste"
 msgid "Save play list on EXIT"
 msgstr "lagre spilleliste ved avslutt"
 
+msgid "Save queue as M3U playlist"
+msgstr ""
+
 msgid "Save right directory on exit"
 msgstr ""
 
@@ -17636,6 +18449,9 @@ msgid "Save the log changes and exit"
 msgstr ""
 
 msgid "Save the log of the console messages to a file"
+msgstr ""
+
+msgid "Save the previous playback position and movie duration in the standard .cuts file."
 msgstr ""
 
 msgid "Save the right column directory location on exit."
@@ -17716,6 +18532,9 @@ msgstr ""
 msgid "Scan additional SR"
 msgstr "Søke ytterlige SR"
 
+msgid "Scan cancelled or folder limit reached."
+msgstr ""
+
 msgid "Scan files..."
 msgstr "Søk filer..."
 
@@ -17727,6 +18546,9 @@ msgid "Scan for local extensions and install them."
 msgstr "Søk etter lokale utvidelser og installer disse. "
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
+
+msgid "Scan movie folders"
 msgstr ""
 
 msgid "Scan region"
@@ -17768,6 +18590,9 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Scanning for shares..."
+msgstr ""
+
+msgid "Scanning movie folders in the background"
 msgstr ""
 
 msgid "Scanning swap devices..."
@@ -17836,16 +18661,28 @@ msgstr "science fiction/fantasi/grøsser"
 msgid "Scope"
 msgstr ""
 
+msgid "Screen layout"
+msgstr ""
+
 msgid "Screen saver mode"
 msgstr ""
 
 msgid "Screen saver movement"
 msgstr ""
 
+msgid "Screen style"
+msgstr ""
+
 msgid "Script Manager"
 msgstr ""
 
 msgid "ScriptRunner"
+msgstr ""
+
+msgid "Scroll down"
+msgstr ""
+
+msgid "Scroll up"
 msgstr ""
 
 msgid "Scrolling Speed"
@@ -17879,6 +18716,9 @@ msgstr ""
 msgid "Search in the current view"
 msgstr ""
 
+msgid "Search movie library"
+msgstr ""
+
 msgid "Search packages by name or description"
 msgstr ""
 
@@ -17900,6 +18740,20 @@ msgstr ""
 #
 msgid "Searching west ..."
 msgstr "Søking vest..."
+
+#, python-format
+msgid "Season %(season)s · Episode %(episode)s"
+msgstr ""
+
+#, python-format
+msgid "Season %d"
+msgstr ""
+
+msgid "Season and episode"
+msgstr ""
+
+msgid "Season unknown"
+msgstr ""
 
 #
 msgid "Second cable of motorized LNB"
@@ -18235,9 +19089,6 @@ msgstr ""
 msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr ""
 
-msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
-msgstr ""
-
 msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
 msgstr ""
 
@@ -18340,6 +19191,9 @@ msgstr ""
 msgid "Select a bouquet"
 msgstr ""
 
+msgid "Select a connected HDD or USB device for the picons."
+msgstr ""
+
 msgid "Select a debug log file to view:"
 msgstr ""
 
@@ -18367,6 +19221,12 @@ msgstr ""
 msgid "Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr ""
 
+msgid "Select a folder to show again. This does not change database scan paths."
+msgstr ""
+
+msgid "Select a list or grid style. Text styles also work without a movie database. Poster styles require an installed metadata provider. Select legacy mode to use the existing list settings."
+msgstr ""
+
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr ""
@@ -18378,6 +19238,12 @@ msgid "Select a minimum amount of free space. When the free space falls below th
 msgstr ""
 
 msgid "Select a movie"
+msgstr ""
+
+msgid "Select a movie folder outside the trashcan."
+msgstr ""
+
+msgid "Select a movie information bar supplied by the skin."
 msgstr ""
 
 msgid "Select a network adapter"
@@ -18443,7 +19309,16 @@ msgstr ""
 msgid "Select all lines"
 msgstr ""
 
+msgid "Select all movies in this list"
+msgstr ""
+
+msgid "Select all movies on this page"
+msgstr ""
+
 msgid "Select all related files"
+msgstr ""
+
+msgid "Select an absolute playlist path."
 msgstr ""
 
 msgid "Select an action for the current device"
@@ -18480,6 +19355,10 @@ msgid "Select default EPG type:"
 msgstr "Vennligst velg en standard EPG type..."
 
 msgid "Select default File Commander directory:"
+msgstr ""
+
+#, python-format
+msgid "Select destination for %d movies"
 msgstr ""
 
 msgid "Select destination for:"
@@ -18612,9 +19491,24 @@ msgstr "Velg inn enhet."
 msgid "Select last browsed service"
 msgstr ""
 
+msgid "Select maintenance candidates"
+msgstr ""
+
 #
 msgid "Select movie"
 msgstr "Velg film"
+
+msgid "Select movie information or artwork for the receiver display. Small displays fall back to a text layout."
+msgstr ""
+
+msgid "Select movies inside or outside the trashcan separately."
+msgstr ""
+
+msgid "Select one movie to edit its information."
+msgstr ""
+
+msgid "Select one movie to rename its file."
+msgstr ""
 
 msgid "Select only highlighted file"
 msgstr ""
@@ -18901,6 +19795,9 @@ msgstr ""
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
+msgid "Select the existing movie player behavior for the EXIT button."
+msgstr ""
+
 msgid "Select the fast scan provider and press BLUE to start the scan."
 msgstr ""
 
@@ -18931,6 +19828,9 @@ msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
+msgstr ""
+
+msgid "Select the initial view when a movie database is enabled. The View action switches between local folders and the movie library."
 msgstr ""
 
 msgid "Select the input connector you want to use."
@@ -18992,9 +19892,15 @@ msgstr ""
 msgid "Select the mountpoint for the device."
 msgstr ""
 
+msgid "Select the movie folder to scan, including subfolders"
+msgstr ""
+
 #
 msgid "Select the movie path"
 msgstr "Velg sti for lagring av film"
+
+msgid "Select the movie selection screen layout supplied by the skin."
+msgstr ""
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr ""
@@ -19217,6 +20123,9 @@ msgstr "Velg videotype"
 msgid "Select video output port with UP/DOWN buttons"
 msgstr ""
 
+msgid "Select view and sorting for this movie list"
+msgstr ""
+
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Når man er kommet til slutten av en fil under avspilling, kan du velge den boksen handling."
 
@@ -19422,6 +20331,15 @@ msgid "Serial No"
 msgstr "Serial No"
 
 msgid "Serial number"
+msgstr ""
+
+msgid "Series"
+msgstr ""
+
+msgid "Series episode sort order"
+msgstr ""
+
+msgid "Series information and episode numbers"
 msgstr ""
 
 msgid "Serious Classical"
@@ -20345,6 +21263,9 @@ msgstr ""
 msgid "Show System Plugin packages"
 msgstr ""
 
+msgid "Show TS, MKV and other formats in the file information field. Classic layouts append this information to the title."
+msgstr ""
+
 msgid "Show Timer List"
 msgstr "Vis Timer Listen"
 
@@ -20367,6 +21288,9 @@ msgid "Show Vertical EPG"
 msgstr "Vertikal"
 
 msgid "Show Web Link packages"
+msgstr ""
+
+msgid "Show a dynamic collection across movie folders. With a movie database it uses indexed files; otherwise a read-only background task creates a snapshot."
 msgstr ""
 
 msgid "Show a spinning logo when the system is busy."
@@ -20403,10 +21327,16 @@ msgstr ""
 msgid "Show background when tuned to a radio channel."
 msgstr "Vis bakgrunnen når innstilt til en radiokanal."
 
+msgid "Show bookmarks in the movie list"
+msgstr ""
+
 msgid "Show bouquet on launch"
 msgstr "Vis favorittliste ved oppstart"
 
 msgid "Show build information"
+msgstr ""
+
+msgid "Show cached movie counts and sizes. Update the cache explicitly from Movie maintenance in the context menu. Browsing does not scan subfolders."
 msgstr ""
 
 #, python-format
@@ -20445,6 +21375,12 @@ msgid "Show crypto info in InfoBar"
 msgstr "Vis crypto info i Infovindu"
 
 msgid "Show current directory"
+msgstr ""
+
+msgid "Show current recording length"
+msgstr ""
+
+msgid "Show cut copy number"
 msgstr ""
 
 msgid "Show debug log information"
@@ -20498,6 +21434,9 @@ msgstr "Vis program framgang i kanalvalget"
 msgid "Show eventinfo plugins"
 msgstr ""
 
+msgid "Show existing movie bookmarks as virtual folder entries. Their targets are accessed only when opened."
+msgstr ""
+
 #
 msgid "Show extended description"
 msgstr "Vis utvidet beskrivelse"
@@ -20515,6 +21454,9 @@ msgid "Show files backed up by default"
 msgstr ""
 
 msgid "Show first picture"
+msgstr ""
+
+msgid "Show folders"
 msgstr ""
 
 msgid "Show free space in timer view"
@@ -20557,6 +21499,9 @@ msgstr "Vis arbeidsoppgaver i utvidelser"
 msgid "Show last picture"
 msgstr ""
 
+msgid "Show links to files and folders. Broken links are omitted when the directory is refreshed."
+msgstr ""
+
 msgid "Show list of bouquets"
 msgstr ""
 
@@ -20583,6 +21528,12 @@ msgstr "Vis meny"
 
 msgid "Show message when recording starts"
 msgstr "Vis melding når opptaket starter"
+
+msgid "Show movie format"
+msgstr ""
+
+msgid "Show movie information"
+msgstr ""
 
 msgid "Show movie lengths in movie list"
 msgstr "Vis opptakslengde i opptakslisten"
@@ -20647,6 +21598,9 @@ msgstr ""
 #, fuzzy
 msgid "Show persistent InfoBar while paused"
 msgstr "Vis infobar ved programbytte"
+
+msgid "Show physical folders. Parent navigation, the trashcan, bookmarks, virtual collections and recognized movie structures remain accessible."
+msgstr ""
 
 msgid "Show picon background color"
 msgstr ""
@@ -20783,6 +21737,9 @@ msgstr "Undertekst Hurtigmeny"
 msgid "Show subtitle selection"
 msgstr ""
 
+msgid "Show symbolic links"
+msgstr ""
+
 msgid "Show system information"
 msgstr ""
 
@@ -20814,7 +21771,13 @@ msgstr ""
 msgid "Show the about screen"
 msgstr ""
 
+msgid "Show the cut copy suffix, such as _001, even when the recording title comes from metadata. This is not the number of chapter markers."
+msgstr ""
+
 msgid "Show the last opkg command's output"
+msgstr ""
+
+msgid "Show the measured length of active recordings in the file information field, updated once a minute in the file view. Database views use cached metadata."
 msgstr ""
 
 msgid "Show the task list"
@@ -20854,6 +21817,9 @@ msgstr ""
 #, fuzzy
 msgid "Show vertical Program Guide"
 msgstr "Elektronisk Program Guide"
+
+msgid "Show virtual folders first, or sort them among movies by the current title or recording date order."
+msgstr ""
 
 msgid "Show warning before restart"
 msgstr ""
@@ -20970,6 +21936,9 @@ msgid "SimpleUmount"
 msgstr "Enkel"
 
 msgid "Simplified Chinese"
+msgstr ""
+
+msgid "Since the previous visit"
 msgstr ""
 
 msgid "Sindhi"
@@ -21097,6 +22066,9 @@ msgid "Skip package installation, only core packages will be available"
 msgstr ""
 
 msgid "Skip sensibility for '%s' button"
+msgstr ""
+
+msgid "Skip this many seconds after the chosen preview starting point."
 msgstr ""
 
 msgid "Skip time for '%s' button"
@@ -21500,6 +22472,9 @@ msgstr ""
 msgid "Sort by default"
 msgstr "Sorter etter standard"
 
+msgid "Sort folders with movies"
+msgstr ""
+
 msgid "Sort list by"
 msgstr "Sorter listen etter"
 
@@ -21511,6 +22486,12 @@ msgstr ""
 
 msgid "Sort playlists"
 msgstr "sortering av spillelister"
+
+msgid "Sort the whole catalogue before pagination. Long PVR/File temporarily selects another order."
+msgstr ""
+
+msgid "Sort this movie list"
+msgstr ""
 
 #, python-format
 msgid "Sort: Directories by %s %s; Files by %s %s."
@@ -21536,6 +22517,9 @@ msgid "Sound carrier"
 msgstr "Lydoperatør"
 
 msgid "Source Packages"
+msgstr ""
+
+msgid "Source and destination are identical."
 msgstr ""
 
 msgid "Source request"
@@ -21697,6 +22681,12 @@ msgstr ""
 msgid "Start an instant recording"
 msgstr ""
 
+msgid "Start at the first early chapter marker"
+msgstr ""
+
+msgid "Start at the resume position, the beginning or the first early chapter marker. Preview does not save playback positions or change watch status."
+msgstr ""
+
 msgid "Start date"
 msgstr ""
 
@@ -21766,6 +22756,12 @@ msgstr "Start tid"
 
 msgid "Start time shift"
 msgstr "Start time shift"
+
+msgid "Start view"
+msgstr ""
+
+msgid "Start watched movies from the beginning"
+msgstr ""
 
 msgid "Start/stop slide show"
 msgstr ""
@@ -21846,6 +22842,12 @@ msgstr ""
 msgid "Stay in time shift at buffer end (for plugins)"
 msgstr ""
 
+msgid "Stay on the marked movie, move to the next movie, or continue in the last navigation direction."
+msgstr ""
+
+msgid "Stay on the movie"
+msgstr ""
+
 msgid "Step"
 msgstr ""
 
@@ -21898,6 +22900,9 @@ msgstr ""
 #
 msgid "Stop entry"
 msgstr "Stopp oppføring"
+
+msgid "Stop playback or preview before changing this movie."
+msgstr ""
 
 #
 msgid "Stop playing this movie?"
@@ -22085,6 +23090,9 @@ msgid "Stripes"
 msgstr ""
 
 msgid "Style:"
+msgstr ""
+
+msgid "Subchannel ID"
 msgstr ""
 
 msgid "Subnet mask"
@@ -22309,6 +23317,9 @@ msgstr "Bytt mellom fileliste/spilleliste"
 msgid "Switch config"
 msgstr "Bytt konfig"
 
+msgid "Switch movie and file information"
+msgstr ""
+
 #, fuzzy
 msgid "Switch off the TV to correct input"
 msgstr "Bytt TV til riktig inngang"
@@ -22366,6 +23377,9 @@ msgid "Switch to the left column"
 msgstr ""
 
 msgid "Switch to the other column"
+msgstr ""
+
+msgid "Switch to the recording channel"
 msgstr ""
 
 msgid "Switch to the right column"
@@ -22429,6 +23443,12 @@ msgid "System Plugin Packages"
 msgstr ""
 
 msgid "System Setup"
+msgstr ""
+
+msgid "System date and time"
+msgstr ""
+
+msgid "System date format"
 msgstr ""
 
 msgid "System information"
@@ -22511,6 +23531,9 @@ msgid "Tag Editor Actions"
 msgstr ""
 
 msgid "Tagalog"
+msgstr ""
+
+msgid "Tagline"
 msgstr ""
 
 #
@@ -22658,6 +23681,9 @@ msgid "Temporarily mount as %s"
 msgstr ""
 
 msgid "Temporary directory"
+msgstr ""
+
+msgid "Temporary layout and sorting"
 msgstr ""
 
 #
@@ -22885,12 +23911,21 @@ msgstr ""
 msgid "The backup can take up to about 15 minutes to complete."
 msgstr ""
 
+msgid "The bookmarked folder is not available."
+msgstr ""
+
 msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
 msgstr ""
 
 msgid "The command to wake from Standby will be sent multiple times."
+msgstr ""
+
+msgid "The companion file changed or belongs to a movie again."
+msgstr ""
+
+msgid "The complete movie is at the destination, but some source files could not be removed."
 msgstr ""
 
 msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
@@ -22903,12 +23938,22 @@ msgstr ""
 msgid "The custom mount point for '%s' is empty!"
 msgstr ""
 
+msgid "The cut list is damaged; it was left unchanged."
+msgstr ""
+
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
 msgstr ""
 
 msgid "The default settings are wake up time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wake up time. So can be detected a wake up by a timer even at very early starting receivers."
+msgstr ""
+
+#, python-format
+msgid "The destination '%s' already exists. Choose an empty destination or move the picons manually."
+msgstr ""
+
+msgid "The destination changed during the operation."
 msgstr ""
 
 msgid "The detailed information is intended for developers only."
@@ -22967,6 +24012,9 @@ msgstr ""
 msgid "The loopthrough setting is wrong."
 msgstr "Loopthrough innstillingene er feil."
 
+msgid "The manual maintenance scan offers watched movies only when neither the movie nor its playback position has changed within this many days. Review and select candidates in the context menu before moving them to the trashcan."
+msgstr ""
+
 msgid "The manufacturer STARTUP device cannot be mounted for inspection."
 msgstr ""
 
@@ -22988,13 +24036,60 @@ msgstr ""
 msgid "The mount point '%s' is used by more than one share."
 msgstr ""
 
+msgid "The movie duration is unknown."
+msgstr ""
+
+msgid "The movie file is still being written. Try again later."
+msgstr ""
+
+msgid "The movie folder or companion file changed."
+msgstr ""
+
+msgid "The movie is currently being recorded."
+msgstr ""
+
+msgid "The movie or its playback position changed since the maintenance scan. Scan again."
+msgstr ""
+
+#, python-format
+msgid "The operation failed. Some files remain at the destination: %s"
+msgstr ""
+
+msgid "The original location is unknown. Use Move to select a destination."
+msgstr ""
+
 msgid "The panic channel was not found. Please select it again in Channel Selection Settings."
 msgstr ""
 
-msgid "The picon directory already exists and must be removed. Do you want to proceed?"
+msgid "The picon destination must be outside the existing picon directory."
+msgstr ""
+
+msgid ""
+"The picon package could not be installed. Connect an HDD or USB device and select it as the picon install location in Plugin Browser settings. Check that the device is mounted and writable.\n"
+"\n"
+"Internal flash only allows small packages with up to 1,000 files and 10 MiB, with enough free space and file entries remaining."
+msgstr ""
+
+#, python-format
+msgid "The picon path '%s' is not a directory."
+msgstr ""
+
+msgid "The picon storage device is read-only or full."
+msgstr ""
+
+msgid "The play queue is empty"
+msgstr ""
+
+msgid "The playlist contains too many movies."
+msgstr ""
+
+msgid "The playlist is too large."
 msgstr ""
 
 msgid "The positioner tuner is currently unavailable. Stop recordings or other services using this tuner and try again."
+msgstr ""
+
+msgid "The preview shows the first 20 filenames."
 msgstr ""
 
 msgid "The previous mount point is already in use."
@@ -23004,7 +24099,16 @@ msgstr ""
 msgid "The process will take approximately %d minutes to complete."
 msgstr ""
 
+msgid "The recording changed while the operation was running."
+msgstr ""
+
 msgid "The recording end time has already passed."
+msgstr ""
+
+msgid "The recording is still running. Switch to its live channel?"
+msgstr ""
+
+msgid "The recording metadata is too large; it was left unchanged."
 msgstr ""
 
 msgid "The requested recording conflicts with other timers. What do you want to do?"
@@ -23097,6 +24201,21 @@ msgstr ""
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
+msgstr ""
+
+msgid "The trash index is damaged."
+msgstr ""
+
+msgid "The trash index is too large."
+msgstr ""
+
+msgid "The trash index must not be a symbolic link."
+msgstr ""
+
+msgid "The trashcan and the movie must be on the same mounted filesystem. No files were copied."
+msgstr ""
+
+msgid "The trashcan must be a directory on the movie's filesystem."
 msgstr ""
 
 msgid ""
@@ -23208,6 +24327,9 @@ msgstr ""
 msgid "This device has multiple mount points. Unmount them before checking the file system."
 msgstr ""
 
+msgid "This directory is locked for movie file changes."
+msgstr ""
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr ""
@@ -23242,6 +24364,9 @@ msgid "This menu contains selections to display information about the receiver."
 msgstr ""
 
 msgid "This menu offers options related managing the software on the %s %s."
+msgstr ""
+
+msgid "This movie is currently unavailable. Check its storage device or network mount."
 msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
@@ -23424,7 +24549,16 @@ msgstr "Dette alternativet suppression av falske digitale konturer, som er et re
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Dette alternativet setter opp bildets skarphet, brukes når bildet blir oppskalert."
 
+msgid "This playlist contains unsupported files. Play queues support video and audio files; open DVD images individually."
+msgstr ""
+
+msgid "This provider supplies movie information but no browsable library."
+msgstr ""
+
 msgid "This recording has already ended."
+msgstr ""
+
+msgid "This service is not a local movie file."
 msgstr ""
 
 #
@@ -23486,6 +24620,9 @@ msgid "Tibetan"
 msgstr ""
 
 msgid "Tigrinya"
+msgstr ""
+
+msgid "Tiles"
 msgstr ""
 
 #
@@ -23706,6 +24843,12 @@ msgstr ""
 msgid "Title"
 msgstr "Tittel"
 
+msgid "Title (A–Z)"
+msgstr ""
+
+msgid "Title (Z–A)"
+msgstr ""
+
 #
 msgid "Title properties"
 msgstr "Tittel egenskaper"
@@ -23809,6 +24952,9 @@ msgstr ""
 msgid "Toggle selections"
 msgstr ""
 
+msgid "Toggle series grouping for this folder"
+msgstr ""
+
 #, fuzzy
 msgid "Toggle service name display"
 msgstr "Rett fra kanalnavn"
@@ -23841,6 +24987,18 @@ msgid "Tone mode"
 msgstr "Tone modus"
 
 msgid "Tonga"
+msgstr ""
+
+msgid "Too many candidates. Scan a smaller movie folder."
+msgstr ""
+
+msgid "Too many entries. Scan a smaller movie folder."
+msgstr ""
+
+msgid "Too many movies. Scan a smaller movie folder."
+msgstr ""
+
+msgid "Too many pending movie database changes. Reconnect the database first."
 msgstr ""
 
 msgid "Top"
@@ -23887,6 +25045,9 @@ msgstr "turisme/reise"
 msgid "Track"
 msgstr "Spor"
 
+msgid "Track language"
+msgstr ""
+
 msgid "Traditional"
 msgstr ""
 
@@ -23902,6 +25063,9 @@ msgid "Transcode"
 msgstr "Transponder"
 
 msgid "Transcoding"
+msgstr ""
+
+msgid "Transfer characteristics"
 msgstr ""
 
 msgid "Translate Subs On This Service"
@@ -24332,10 +25496,17 @@ msgstr ""
 msgid "Ukrainian"
 msgstr ""
 
+msgid "Unable to access the script directory."
+msgstr ""
+
 #, python-format
 msgid ""
 "Unable to change swap state for '%s'.\n"
 "%s"
+msgstr ""
+
+#, python-format
+msgid "Unable to change the picon storage location: %s"
 msgstr ""
 
 #, python-format
@@ -24359,8 +25530,15 @@ msgstr ""
 msgid "Unable to load package information!"
 msgstr ""
 
+msgid "Unable to move the movie without overwriting existing files."
+msgstr ""
+
 #, python-format
 msgid "Unable to open tuner (%d)"
+msgstr ""
+
+#, python-format
+msgid "Unable to prepare picon storage: %s"
 msgstr ""
 
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
@@ -24417,10 +25595,17 @@ msgstr ""
 msgid "Unable to write the time shift event information."
 msgstr ""
 
+msgid "Unassigned / pending recordings"
+msgstr ""
+
 msgid "Unattended upgrade without GUI"
 msgstr ""
 
 msgid "Unavailable"
+msgstr ""
+
+#, python-format
+msgid "Unavailable: %s"
 msgstr ""
 
 #
@@ -24536,6 +25721,9 @@ msgstr ""
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr "Hvis satt til 'ja' kan du forhåndsvise kanalene i EPG-listen."
 
+msgid "Unlimited"
+msgstr ""
+
 msgid "Unmark As Dedicated 3D Service"
 msgstr ""
 
@@ -24572,6 +25760,9 @@ msgstr "til dvalemodus/restart"
 msgid "Unused %s"
 msgstr ""
 
+msgid "Unwatched"
+msgstr ""
+
 msgid "Unzipping Image"
 msgstr ""
 
@@ -24579,6 +25770,9 @@ msgid "Up"
 msgstr ""
 
 msgid "Up / Active"
+msgstr ""
+
+msgid "Up to 256 folders can be hidden."
 msgstr ""
 
 msgid "Up to 50 Mbps"
@@ -24613,6 +25807,15 @@ msgstr "Skriving feilet!"
 msgid "Update finished!"
 msgstr "Oppdatering ferdig."
 
+msgid "Update folder movie counts and sizes"
+msgstr ""
+
+msgid "Update movie folder snapshot"
+msgstr ""
+
+msgid "Update movie folder snapshot / latest recordings"
+msgstr ""
+
 msgid "Update outdated bouquet entries"
 msgstr ""
 
@@ -24642,6 +25845,12 @@ msgstr ""
 #
 msgid "Updating"
 msgstr "Oppgraderer"
+
+msgid "Updating library index..."
+msgstr ""
+
+msgid "Updating movie folder snapshot in Tasks"
+msgstr ""
 
 msgid "Updating package list."
 msgstr ""
@@ -24801,7 +26010,7 @@ msgstr ""
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
 msgstr ""
 
-msgid "Use alternate GitHub DNS"
+msgid "Use an absolute filename ending in .m3u or .m3u8."
 msgstr ""
 
 msgid "Use an alternative smaller screen."
@@ -24826,6 +26035,9 @@ msgid "Use best / Controlled by HDMI"
 msgstr ""
 
 msgid "Use circular LNB"
+msgstr ""
+
+msgid "Use configured defaults"
 msgstr ""
 
 msgid "Use defaults"
@@ -24867,6 +26079,9 @@ msgstr ""
 msgid "Use legacy navigation"
 msgstr ""
 
+msgid "Use normal end-of-movie action"
+msgstr ""
+
 msgid "Use official channel numbering"
 msgstr "Bruk offisielle kanalnummereringen"
 
@@ -24891,6 +26106,12 @@ msgstr "Bruk individuelle innstillinger for hver katalog"
 #
 msgid "Use power measurement"
 msgstr "Bruk strøm måling"
+
+msgid "Use relative dates or the configured system date format, with or without the time."
+msgstr ""
+
+msgid "Use selected sorting"
+msgstr ""
 
 msgid "Use skin default"
 msgstr ""
@@ -24949,7 +26170,22 @@ msgstr ""
 msgid "Use the current selection and exit"
 msgstr ""
 
+msgid "Use the database title when available, the original recording title, or the filename. Title cleanup applies after this choice. Grouped series keep their series title."
+msgstr ""
+
+msgid "Use the existing default playback location. Press OK to select a folder."
+msgstr ""
+
 msgid "Use the extended List"
+msgstr ""
+
+msgid "Use the normal end action, ask, or switch to the recording channel when playback catches up with a local recording that is still running."
+msgstr ""
+
+msgid "Use the selected sort order, keep folders first, or sort folders together with movie files."
+msgstr ""
+
+msgid "Use the title before this separator as the virtual folder name. An empty separator groups identical titles."
 msgstr ""
 
 msgid "Use the wizard to set up basic features"
@@ -25339,6 +26575,9 @@ msgstr ""
 msgid "View as list"
 msgstr ""
 
+msgid "View for this movie list only"
+msgstr ""
+
 msgid "View mode"
 msgstr "Vis modus"
 
@@ -25390,6 +26629,15 @@ msgstr ""
 msgid "Virtual Keyboard Text:"
 msgstr ""
 
+msgid "Virtual collections"
+msgstr ""
+
+msgid "Virtual folder — movie files stay in their original locations."
+msgstr ""
+
+msgid "Virtual folders before movies"
+msgstr ""
+
 msgid "Visual impaired commentary"
 msgstr ""
 
@@ -25439,6 +26687,9 @@ msgstr ""
 msgid "Volume/Mute display timer"
 msgstr ""
 
+msgid "Votes"
+msgstr ""
+
 msgid "Vu+ MultiBoot"
 msgstr ""
 
@@ -25470,6 +26721,9 @@ msgid "WSS on 4:3"
 msgstr "WSS på 4:3"
 
 msgid "Wait for timesync at startup"
+msgstr ""
+
+msgid "Wait this long after moving the selection before starting a preview."
 msgstr ""
 
 #
@@ -25557,6 +26811,12 @@ msgstr "Advarsel: ingen LNB; bruker fabrikkinnstillingene."
 #
 msgid "Watch movies..."
 msgstr "Se på film..."
+
+msgid "Watched"
+msgstr ""
+
+msgid "Watched from (%)"
+msgstr ""
 
 msgid "Water sport"
 msgstr "vann sport"
@@ -25689,6 +26949,9 @@ msgid "What would you like to do?"
 msgstr ""
 
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
+msgstr ""
+
+msgid "When disabled, skip recordings already indexed by E2MDB with the same title and descriptions. If the database is unavailable or the match is uncertain, record normally."
 msgstr ""
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
@@ -25910,6 +27173,9 @@ msgstr ""
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Når funksjonen er aktivert, vil mottakeren oppdage aktiviteten på VCR SCART-inngangen."
 
+msgid "When movie information is displayed"
+msgstr ""
+
 msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Når nonzero, vil et opptak starte tidligere enn starttidspunktet angitt av EPG."
 
@@ -25929,6 +27195,12 @@ msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Når satt, vil PIG vende tilbake og starte etter en film har sluttet å spille."
 
 msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
+msgstr ""
+
+msgid "When starting a movie, keep its previous playback position as a chapter marker. Existing chapter markers remain available."
+msgstr ""
+
+msgid "When starting from the beginning, skip the recording lead-in using an early chapter marker. Resume positions and cut boundaries are respected."
 msgstr ""
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
@@ -27251,6 +28523,9 @@ msgstr "ja (behold feeds)"
 msgid "®"
 msgstr ""
 
+#~ msgid "Can't move to trashcan!"
+#~ msgstr "Kan ikke flytte til søppelbøtta"
+
 #
 #, fuzzy
 #~ msgid "%-H:%M:%S"
@@ -28100,10 +29375,6 @@ msgstr ""
 #
 #~ msgid "Are you sure you want to restart your network interfaces?"
 #~ msgstr "Er du sikker på at du vil restarte ditt nettverkskort?"
-
-#
-#~ msgid "Back"
-#~ msgstr "Tilbake"
 
 #
 #~ msgid "Configure interface"
@@ -29713,11 +30984,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "12 hours"
 #~ msgstr "Time"
-
-#
-#, fuzzy
-#~ msgid "15 minutes"
-#~ msgstr "minutter"
 
 #, fuzzy
 #~ msgid "2 hours"

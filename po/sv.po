@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-03 13:20+0100\n"
+"POT-Creation-Date: 2026-11-19 21:27+0000\n"
 "PO-Revision-Date: 2026-10-31 21:19+0000\n"
 "Last-Translator: Snoete <snoete@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -107,6 +107,10 @@ msgstr "!! Uppgradering av startladdare !!!"
 
 msgid "# = Reboot required if this item is changed."
 msgstr "# = Omstart krävs om detta objekt ändras."
+
+#, python-format
+msgid "%(title)s (%(count)d)"
+msgstr ""
 
 #
 msgid "%-H:%M"
@@ -321,8 +325,20 @@ msgid "%d min"
 msgstr "%d min"
 
 #, python-format
+msgid "%d min recorded"
+msgstr ""
+
+#, python-format
 msgid "%d minutes"
 msgstr "%d minuter"
+
+#, python-format
+msgid "%d movies"
+msgstr ""
+
+#, python-format
+msgid "%d movies selected"
+msgstr ""
 
 #, python-format
 msgid "%d ms"
@@ -333,6 +349,10 @@ msgid "%d network found."
 msgid_plural "%d networks found."
 msgstr[0] "%d nätverk hittades."
 msgstr[1] "%d nätverk hittades."
+
+#, python-format
+msgid "%d new"
+msgstr ""
 
 #, python-format
 msgid "%d obsolete manufacturer STARTUP files will be replaced or removed."
@@ -793,6 +813,9 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
+msgid "1 minute"
+msgstr ""
+
 msgid "1. (Highest)"
 msgstr "1. (Högst)"
 
@@ -818,6 +841,11 @@ msgstr "12V utgång."
 
 msgid "12bit"
 msgstr "12 bitar"
+
+#
+#, fuzzy
+msgid "15 minutes"
+msgstr "minuter"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
@@ -923,6 +951,9 @@ msgstr "4x"
 msgid "5"
 msgstr "5"
 
+msgid "5 minutes"
+msgstr ""
+
 msgid "50-200 Mbps"
 msgstr "50-200 Mbps"
 
@@ -1006,6 +1037,9 @@ msgstr "En slutförd uppgift vill stänga av din %s %s. Stänga av nu?"
 msgid "A crash log was %s created in '%s'"
 msgstr "En kraschlogg skapades %s i '%s'"
 
+msgid "A destination file already exists. No files were overwritten."
+msgstr ""
+
 #
 #, python-format
 msgid ""
@@ -1045,6 +1079,18 @@ msgstr "En färdig schemalagd timer vill stänga av din %s %s. Gör du det nu?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "En markering på fjärrkontrollens bild visar vilken knapp som hjälpen avser. Om mer än en knapp utför den angivna funktionen visas mer än en markering. Texten under listan visar vilka knappar som är aktiva och om funktionen kräver en lång tryckning eller SHIFT på knappen/knapparna."
+
+msgid "A mount point or a folder containing mounted filesystems cannot be moved to the trashcan."
+msgstr ""
+
+msgid "A movie companion file is a symbolic link."
+msgstr ""
+
+msgid "A movie filename cannot be represented in M3U format."
+msgstr ""
+
+msgid "A movie maintenance scan is already running. Its progress is shown in Tasks."
+msgstr ""
 
 msgid "A new storage device has been connected:"
 msgstr "En ny lagringsenhet har anslutits:"
@@ -1331,6 +1377,9 @@ msgstr "Aktiva kunder"
 msgid "Active only"
 msgstr "Endast aktiv"
 
+msgid "Actor"
+msgstr ""
+
 msgid "Adapter"
 msgstr "Adapter"
 
@@ -1530,6 +1579,12 @@ msgstr "Lägg till inspelning (obegränsad tid - 24 timmar)"
 msgid "Add recording (Stop after current event)"
 msgstr "Lägg till inspelning (Stopp efter aktuell händelse)"
 
+msgid "Add selected movies"
+msgstr ""
+
+msgid "Add selected movies to the play queue"
+msgstr ""
+
 #
 msgid "Add service"
 msgstr "Lägg till tjänst"
@@ -1612,6 +1667,9 @@ msgstr ""
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Justera den vertikala positionen för de bokstäver som används för text-tv."
 
+msgid "Adjust times to EPG"
+msgstr ""
+
 msgid "Adult"
 msgstr "Vuxen"
 
@@ -1623,6 +1681,9 @@ msgstr ""
 
 msgid "Adult movie/Drama"
 msgstr "vuxenfilm/drama"
+
+msgid "Advance Movie List"
+msgstr ""
 
 #
 msgid "Advanced"
@@ -1688,6 +1749,9 @@ msgstr "Efter inspelning"
 msgid "After zap"
 msgstr "Efter zapp"
 
+msgid "Age rating"
+msgstr ""
+
 msgid "Aggregate data only"
 msgstr "Endast aggregerade data"
 
@@ -1743,6 +1807,12 @@ msgstr "Alla åldrar"
 msgid "All data on the selected device will be erased. Create one shared data partition with %d additional MultiBoot slots, a 512 MiB swap partition and the internal slot 1 kernel?"
 msgstr ""
 
+msgid "All dates"
+msgstr ""
+
+msgid "All episodes"
+msgstr ""
+
 msgid "All events down"
 msgstr "Alla händelser nedlagda"
 
@@ -1751,6 +1821,15 @@ msgstr "Alla händelser upp"
 
 msgid "All files"
 msgstr "Alla filer"
+
+msgid "All media"
+msgstr ""
+
+msgid "All movie files"
+msgstr ""
+
+msgid "All movie folders"
+msgstr ""
 
 msgid "All packages"
 msgstr ""
@@ -1791,6 +1870,9 @@ msgid "Allocate a number to the physical LNB you are configuring. You will be ab
 msgstr "Tilldela ett nummer till den fysiska LNB som du konfigurerar. Du kommer att kunna välja den här LNB:n igen för andra satelliter (t.ex. motoriserade parabolantenner) för att slippa konfigurera samma LNB flera gånger."
 
 msgid "Allow %s-bit"
+msgstr ""
+
+msgid "Allow duplicate recordings"
 msgstr ""
 
 msgid "Allow guest access"
@@ -1928,6 +2010,9 @@ msgstr "Visa alltid buketter"
 msgid "Always use smart1080p mode"
 msgstr "Använd alltid smart1080p-läge"
 
+msgid "Ambiguous companion file names."
+msgstr ""
+
 msgid "American Samoa"
 msgstr "Amerikanska Samoa"
 
@@ -2020,6 +2105,10 @@ msgstr "Alla inspelningar"
 
 msgid "Aperture F number"
 msgstr "Bländare F-nummer"
+
+#, python-format
+msgid "Apply '%(action)s' to %(count)d selected movies?"
+msgstr ""
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "Tillämpa eventuella ändringar i den aktiva locale/language och avsluta"
@@ -2184,6 +2273,9 @@ msgstr "Stigande"
 msgid "Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged."
 msgstr ""
 
+msgid "Ask to switch to the recording channel"
+msgstr ""
+
 #
 msgid "Ask user"
 msgstr "Fråga användaren"
@@ -2248,6 +2340,9 @@ msgstr "Vid slutet av pågående program"
 msgid "At end: %s"
 msgstr "I slutet: %s"
 
+msgid "At the end of a running recording"
+msgstr ""
+
 msgid "Athletics"
 msgstr "Friidrott"
 
@@ -2292,7 +2387,13 @@ msgstr "Ljudsynkronisering"
 msgid "Audio bit rate"
 msgstr ""
 
+msgid "Audio channels"
+msgstr ""
+
 msgid "Audio decoding"
+msgstr ""
+
+msgid "Audio description"
 msgstr ""
 
 msgid "Audio language selection 1"
@@ -2422,6 +2523,9 @@ msgstr "Automatisk sökning av tjänster"
 msgid "Automatic gain"
 msgstr ""
 
+msgid "Automatic preview delay (ms)"
+msgstr ""
+
 msgid "Automatic resolution"
 msgstr "Automatisk upplösning"
 
@@ -2523,6 +2627,10 @@ msgstr "BLUE-omkopplare: BLÅ/BLÅ lång"
 
 msgid "BSSID"
 msgstr "BSSID"
+
+#
+msgid "Back"
+msgstr "Tillbaka"
 
 #
 msgid "Back USB"
@@ -2696,6 +2804,9 @@ msgstr "Innan du ändrar dessa inställningar, försök att inaktivera eventuell
 msgid "Begin time"
 msgstr "Starttid"
 
+msgid "Beginning"
+msgstr ""
+
 msgid "Behave like STOP button"
 msgstr "Beteende som STOP-knapp"
 
@@ -2838,6 +2949,10 @@ msgstr "Bokmärke har lagts till."
 msgid "Bookmark removed."
 msgstr "Bokmärke borttaget."
 
+#, python-format
+msgid "Bookmark: %s"
+msgstr ""
+
 #
 msgid "Bookmarks"
 msgstr "Bokmärken"
@@ -2972,6 +3087,9 @@ msgstr "Broadcom-standard"
 
 msgid "Browse"
 msgstr "Bläddra"
+
+msgid "Browse grouped movies and series or all indexed movie files without reading movie storage."
+msgstr ""
 
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Bläddra, installera eller ta bort plugins på en och samma basis."
@@ -3245,12 +3363,18 @@ msgstr "Kabeln är frånkopplad"
 msgid "Cable input"
 msgstr "Kabelingång"
 
+msgid "Cache file lists"
+msgstr ""
+
 #
 msgid "Cache thumbnails"
 msgstr "Cache-miniatyrbilder"
 
 msgid "Cached"
 msgstr "Cachad"
+
+msgid "Cached folder · refresh from the menu"
+msgstr ""
 
 msgid "Calculate"
 msgstr "Beräkna"
@@ -3372,9 +3496,6 @@ msgid ""
 msgstr ""
 "Kan inte gå till direktsänd TV!\n"
 "Växla till live-TV och starta om tidsomställningen?"
-
-msgid "Can't move to trashcan!"
-msgstr "Kan inte flytta till soptunnan!"
 
 msgid ""
 "Can't play the next time shift buffer file!\n"
@@ -3499,6 +3620,9 @@ msgstr "Avbryt uppdateringen"
 msgid "Cancelled upon user request"
 msgstr "Avbokas på begäran av användaren"
 
+msgid "Cannot create a trashcan on this mounted filesystem. No files were deleted."
+msgstr ""
+
 msgid "Cannot delete file"
 msgstr "Det går inte att radera filen"
 
@@ -3509,6 +3633,12 @@ msgstr "Kan inte bestämma %s-gränsen ..., avbryter!"
 
 msgid "Cannot find any signal ..., aborting!"
 msgstr "Kan inte hitta någon signal ..., avbryter!"
+
+msgid "Capacity unit range"
+msgstr ""
+
+msgid "Capacity units (CU)"
+msgstr ""
 
 msgid "Cape Verde"
 msgstr "Cap Verde"
@@ -3546,6 +3676,9 @@ msgstr "Skiftlägesokänslig"
 
 msgid "Case sensitive"
 msgstr "Skiftlägeskänslig"
+
+msgid "Cast"
+msgstr ""
 
 msgid "Catalan / Valencian"
 msgstr "Katalanska / Valencianska"
@@ -3721,6 +3854,9 @@ msgstr "Kanalernas knappar inverteras"
 msgid "Channel down"
 msgstr "Kanal ned"
 
+msgid "Channel layout"
+msgstr ""
+
 msgid "Channel list cursor behavior"
 msgstr "Markörens beteende i kanallistan"
 
@@ -3779,6 +3915,9 @@ msgstr "Kap."
 #
 msgid "Chapter"
 msgstr "Kapitel"
+
+msgid "Chapter markers and playback position"
+msgstr ""
 
 #
 msgid "Character device"
@@ -3909,11 +4048,20 @@ msgstr "Välj ett landssystem för avkodning av klassificeringsinformation i EPG
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Välj en etikett som identifierar den här enheten inom IceTV-tjänsterna."
 
+msgid "Choose all indexed or scanned folders, the default movie location, or the current folder including subfolders. Hidden folders are excluded."
+msgstr ""
+
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Välj hur ofta du vill ansluta till IceTV-servern för att söka efter uppdateringar."
 
+msgid "Choose season and episode order, title, recording date, release year or rating."
+msgstr ""
+
 msgid "Choose the amount of additional slots."
 msgstr "Välj antalet extra slots."
+
+msgid "Choose the default sorting for this collection. The temporary view menu can override it."
+msgstr ""
 
 msgid "Choose the fallback font."
 msgstr "Välj reservteckensnitt."
@@ -3993,6 +4141,12 @@ msgstr "Stad"
 msgid "Classic Rock"
 msgstr ""
 
+msgid "Classic movie list (EMC)"
+msgstr ""
+
+msgid "Classic movie list with description (EMC)"
+msgstr ""
+
 msgid "Classical"
 msgstr "Klassiskt"
 
@@ -4033,12 +4187,21 @@ msgstr "Rensa lagrade autentiseringsuppgifter"
 msgid "Clear before scan"
 msgstr "Klar före skanning"
 
+msgid "Clear filters"
+msgstr ""
+
 msgid "Clear fixed"
 msgstr "Klar fast"
+
+msgid "Clear movie selection"
+msgstr ""
 
 #
 msgid "Clear play list"
 msgstr "Radera spellista"
+
+msgid "Clear play queue"
+msgstr ""
 
 msgid "Clear search"
 msgstr ""
@@ -4203,6 +4366,9 @@ msgstr "Färgad text"
 msgid "Colorimetry for HDR content"
 msgstr ""
 
+msgid "Combine series or matching recording titles in the view. Movie files stay in their original locations. Grouping can be disabled for individual folders from the context menu."
+msgstr ""
+
 msgid "Combined"
 msgstr "Kombinerad"
 
@@ -4283,6 +4449,12 @@ msgstr ""
 msgid "Comoros"
 msgstr "Komorerna"
 
+msgid "Compact list"
+msgstr ""
+
+msgid "Companion files are shared by multiple media files. Rename or move the variants separately after resolving their companion files."
+msgstr ""
+
 msgid "Compatibility And Emulation"
 msgstr "Kompatibilitet och emulering"
 
@@ -4295,6 +4467,10 @@ msgstr "Genomförd"
 
 msgid "Complete Backup"
 msgstr "Komplett säkerhetskopiering"
+
+#, python-format
+msgid "Completed: %(done)d of %(total)d movies"
+msgstr ""
 
 #
 msgid "Complex (allows mixing audio tracks and aspects)"
@@ -4490,6 +4666,12 @@ msgstr "Konfigurera slutkoordinaten i x-led för text-tv-ytan."
 
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Konfigurera slutkoordinaten i y-led för text-tv-ytan."
+
+msgid "Configure the existing movie player resume behavior."
+msgstr ""
+
+msgid "Configure the existing movie player stop action."
+msgstr ""
 
 msgid "Configure the first audio language (highest priority)."
 msgstr "Konfigurera det första ljudspråket (högsta prioritet)."
@@ -4816,6 +4998,9 @@ msgstr "Se motorns specifikationer för denna information, eller lämna standard
 msgid "Contacting IceTV server and setting up your %s %s."
 msgstr "Kontakta IceTV-servern och konfigurera din %s %s."
 
+msgid "Container"
+msgstr ""
+
 msgid "Content"
 msgstr "Innehåll"
 
@@ -4832,6 +5017,9 @@ msgstr "Fortsätt"
 msgid "Continue in background"
 msgstr "Fortsätt i bakgrunden"
 
+msgid "Continue in the last direction"
+msgstr ""
+
 msgid "Continue playback"
 msgstr "Fortsätt uppspelning"
 
@@ -4841,6 +5029,9 @@ msgstr "Fortsätt spela"
 
 msgid "Continue to run the task in the background"
 msgstr "Fortsätt att köra uppgiften i bakgrunden"
+
+msgid "Continue watching"
+msgstr ""
 
 msgid "Continue with package download and installation"
 msgstr "Fortsätt med nedladdning och installation av paket"
@@ -5029,6 +5220,9 @@ msgstr ""
 "\n"
 "Vill du ändra inställningarna igen?"
 
+msgid "Countries"
+msgstr ""
+
 msgid "Country"
 msgstr "Land"
 
@@ -5112,6 +5306,12 @@ msgstr "Skapa dumpning av enhetsinformation."
 msgid "Create kernel dump."
 msgstr "Skapa kerneldump."
 
+msgid "Create missing EIT file"
+msgstr ""
+
+msgid "Create missing EIT files"
+msgstr ""
+
 msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
 msgstr ""
 
@@ -5151,6 +5351,9 @@ msgstr "Skapa ytterligare slots på den valda enheten"
 
 msgid "Create the flash expander in the selected device"
 msgstr "Skapa flashexpandern i den valda enheten"
+
+msgid "Create virtual collection"
+msgstr ""
 
 msgid "Create working directories."
 msgstr "Skapa arbetskataloger."
@@ -5193,6 +5396,9 @@ msgstr "Autentiseringsuppgifter för ”%s”"
 
 msgid "Cree"
 msgstr "Cree"
+
+msgid "Crew"
+msgstr ""
 
 #
 msgid "Cricket"
@@ -5291,6 +5497,9 @@ msgstr "Aktuell katalog"
 msgid "Current directory (%s)"
 msgstr "Aktuell katalog (%s)"
 
+msgid "Current folder and subfolders"
+msgstr ""
+
 msgid "Current installed"
 msgstr "Nuvarande installerad"
 
@@ -5343,6 +5552,9 @@ msgstr "För närvarande definierade volymförskjutningar:"
 msgid "Currently Remembered Volume Levels:"
 msgstr "För närvarande ihågkommen Volymnivåer:"
 
+msgid "Cursor after marking a movie"
+msgstr ""
+
 #
 msgid "Custom"
 msgstr "Anpassad"
@@ -5380,6 +5592,10 @@ msgstr "Anpassa enigma2 personliga inställningar"
 #
 msgid "Cut"
 msgstr "Klipp ut"
+
+#, python-format
+msgid "Cut %s"
+msgstr ""
 
 msgid "CutList Skipping"
 msgstr "Hopp i klipplista"
@@ -5596,6 +5812,12 @@ msgstr ""
 msgid "Darts"
 msgstr "Dart"
 
+msgid "Database sort order"
+msgstr ""
+
+msgid "Database view"
+msgstr ""
+
 #
 msgid "Date"
 msgstr "Datum"
@@ -5748,9 +5970,15 @@ msgstr "Standardgateway"
 msgid "Default left column directory"
 msgstr "Standardkatalog för vänster kolumn"
 
+msgid "Default movie location"
+msgstr ""
+
 #, python-format
 msgid "Default movie location (%s)"
 msgstr "Standardplats för film (%s)"
+
+msgid "Default movie location after standby"
+msgstr ""
 
 #
 msgid "Default movie selection location"
@@ -5761,6 +5989,9 @@ msgstr "Standard inspelningstyp"
 
 msgid "Default right column directory"
 msgstr "Standardkatalog för höger kolumn"
+
+msgid "Default skin layout"
+msgstr ""
 
 msgid "Default sort order for directories in the left column."
 msgstr "Standard sorteringsordning för kataloger i den vänstra kolumnen."
@@ -5975,6 +6206,9 @@ msgstr "Radera tecken till vänster om markören eller välj AM gånger"
 
 msgid "Delete character under cursor or select PM times"
 msgstr "Radera tecken under markören eller välj PM-tider"
+
+msgid "Delete collection (keep movie files)"
+msgstr ""
 
 #
 msgid "Delete current line"
@@ -6374,6 +6608,9 @@ msgstr "Inaktivera introskärm"
 msgid "Disable operator profiles"
 msgstr "Inaktivera operatörsprofiler"
 
+msgid "Disable previews, start them manually, or start after resting on a movie. Automatic previews access movie storage and do not interrupt timeshift or an already playing movie."
+msgstr ""
+
 msgid "Disable saved Wi-Fi network"
 msgstr "Inaktivera sparat Wi-Fi-nätverk"
 
@@ -6488,6 +6725,9 @@ msgstr "Visa det virtuella tangentbordet för inmatning av data"
 
 msgid "Display type"
 msgstr "Typ av display"
+
+msgid "Displayed movie title"
+msgstr ""
 
 msgid "Distance"
 msgstr "Avstånd"
@@ -6899,6 +7139,9 @@ msgstr "Duplex"
 msgid "Duplicate the current line"
 msgstr "Duplicera den aktuella raden"
 
+msgid "Duration"
+msgstr ""
+
 msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn't ready in time, this time can be increased."
 msgstr "Under denna tid kontrolleras sändaren och inspelningsdestinationen. Om inspelningsdestinationen (t.ex. NAS) inte är klar i tid för inspelning kan denna tid förlängas."
 
@@ -7106,6 +7349,19 @@ msgstr "Redigera kapitel i aktuell titel"
 msgid "Edit current line"
 msgstr "Redigera aktuell rad"
 
+msgid "Edit movie"
+msgstr ""
+
+msgid "Edit play queue"
+msgstr ""
+
+#, python-format
+msgid "Edit play queue (%d movies)"
+msgstr ""
+
+msgid "Edit recording information"
+msgstr ""
+
 #
 msgid "Edit settings"
 msgstr "Ändra inställningar"
@@ -7152,6 +7408,9 @@ msgstr "Redigera källadressen för uppgraderingen."
 
 msgid "Edit the username."
 msgstr "Redigera användarnamnet."
+
+msgid "Edit title and description"
+msgstr ""
 
 #
 msgid "Education"
@@ -7307,6 +7566,12 @@ msgstr ""
 
 msgid "Enable adapter"
 msgstr "Aktivera adapter"
+
+msgid "Enable an installed movie database in Movie Selection settings to open the library."
+msgstr ""
+
+msgid "Enable an installed movie library provider for metadata, artwork and the Advance Movie List. Local folders remain available if the provider is unavailable."
+msgstr ""
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
 msgstr "Aktivera och ställ in varaktigheten för den andra InfoBar (tryck på \"OK\" två gånger) som kan innehålla ytterligare information."
@@ -7636,6 +7901,9 @@ msgstr "Ange en beskrivning för denna timer."
 
 msgid "Enter a directory or process a file (play/view/edit/install/extract/run)"
 msgstr "Öppna en katalog eller bearbeta en fil (play/view/edit/install/extract/run)"
+
+msgid "Enter a movie title."
+msgstr ""
 
 msgid "Enter a name for this timer."
 msgstr "Ange ett namn för denna timer."
@@ -8000,10 +8268,6 @@ msgstr "Felmeddelande: Det gick inte att hitta en lämplig enhet! Ta bort några
 #, python-format
 msgid "Error: Creating directory '%s' failed!"
 msgstr "Fel vid skapande av katalog Skapandet av katalogen '%s' misslyckades!"
-
-#, python-format
-msgid "Error: Creating picon target directory: (%s)"
-msgstr "Fel vid skapande av Skapar målkatalog för picon: (%s)"
 
 #
 #, python-format
@@ -8771,6 +9035,15 @@ msgstr "File ser ut att vara upptagen!\n"
 msgid "File compression"
 msgstr "Komprimering av filer"
 
+msgid "File information"
+msgstr ""
+
+msgid "File name"
+msgstr ""
+
+msgid "File operations require a regular movie file."
+msgstr ""
+
 msgid "File sorting mode"
 msgstr "Filsorteringsläge"
 
@@ -8790,6 +9063,12 @@ msgstr "Filnamn"
 msgid "Files And Directories"
 msgstr "Filer och kataloger"
 
+msgid "Files and folders"
+msgstr ""
+
+msgid "Files or database"
+msgstr ""
+
 msgid "Files/folders to exclude from backup"
 msgstr "Filer/mappar som ska uteslutas från säkerhetskopiering"
 
@@ -8801,6 +9080,9 @@ msgstr "Film-noir"
 
 msgid "Film/Cinema"
 msgstr "film/bio"
+
+msgid "Filter"
+msgstr ""
 
 msgid "Filter extensions"
 msgstr "Filtertillägg"
@@ -8828,6 +9110,12 @@ msgstr "Hitta tjänst som spelas för närvarande"
 
 msgid "Find connected events"
 msgstr "Söker anslutna evenemang"
+
+msgid "Find old watched movies"
+msgstr ""
+
+msgid "Find orphaned movie companion files"
+msgstr ""
 
 #, python-format
 msgid "Find out more at %s"
@@ -8862,6 +9150,9 @@ msgstr "Finland"
 #
 msgid "Finnish"
 msgstr "Finska"
+
+msgid "First chapter marker"
+msgstr ""
 
 msgid "First playable time shift file!"
 msgstr "Första spelbara tidsskiftfilen!"
@@ -8963,6 +9254,21 @@ msgstr "Platt efter position på fjärrkontrollen"
 msgid "Flush Cache and Rescan"
 msgstr "Töm cache och sök igen"
 
+msgid "Folder movie counts and sizes updated."
+msgstr ""
+
+msgid "Folder movie information"
+msgstr ""
+
+msgid "Folder sorting"
+msgstr ""
+
+msgid "Folders"
+msgstr ""
+
+msgid "Folders first"
+msgstr ""
+
 msgid "Folk Music"
 msgstr ""
 
@@ -8971,6 +9277,15 @@ msgstr "Folkmusik och country"
 
 msgid "Folk/Traditional music"
 msgstr "folkmusik/traditionell musik"
+
+msgid "Follow changes to the EPG start and end times, keeping the recording margins. Missing EPG data or timer conflicts leave the times unchanged."
+msgstr ""
+
+msgid "Follow linked folders in snapshots"
+msgstr ""
+
+msgid "Follow symbolic links during the read-only movie snapshot task. Loops and duplicate directory targets are skipped. Cleanup tasks never follow symbolic links."
+msgstr ""
 
 msgid "Font size"
 msgstr "Teckenstorlek"
@@ -9026,6 +9341,9 @@ msgid "Force enabled"
 msgstr "Kraft aktiverad"
 
 msgid "Force progressive for streams and files"
+msgstr ""
+
+msgid "Forced"
 msgstr ""
 
 msgid "Foreign Language"
@@ -9135,6 +9453,9 @@ msgstr "Fredag"
 
 msgid "From :"
 msgstr "Från :"
+
+msgid "From the context menu"
+msgstr ""
 
 msgid "Front"
 msgstr "Framsida"
@@ -9487,6 +9808,9 @@ msgstr "Grå"
 msgid "Group"
 msgstr "Grupp"
 
+msgid "Group recordings into virtual folders"
+msgstr ""
+
 msgid "Grow drop"
 msgstr "Växa droppe"
 
@@ -9657,6 +9981,9 @@ msgstr "Hawaiian"
 msgid "Heard Island and McDonald Islands"
 msgstr "Heard Island och McDonald Islands"
 
+msgid "Hearing impaired"
+msgstr ""
+
 msgid "Hebrew"
 msgstr "Hebreiska"
 
@@ -9723,6 +10050,9 @@ msgstr "Specifik information om HiSilicon"
 msgid "HiSilicon specific information not found."
 msgstr "HiSilicon specifik information hittades inte."
 
+msgid "Hidden folders"
+msgstr ""
+
 msgid "Hidden network"
 msgstr "Dolda nätverk"
 
@@ -9779,6 +10109,9 @@ msgid "Hide the InfoBar"
 msgstr "Dölj infofältet"
 
 msgid "Hide the OSD after a period without key presses. Screens and background jobs keep running. The first key press only restores the OSD, and newly opened dialogs make it visible again. Hold 0 to pause until the next GUI restart, or hold 0 again to resume."
+msgstr ""
+
+msgid "Hide this folder"
 msgstr ""
 
 msgid "Hide zap errors"
@@ -10218,6 +10551,9 @@ msgstr "Ignorera standby"
 msgid "Ignore services on satellites that are not configured in the tuner settings."
 msgstr ""
 
+msgid "Ignore the resume position when the configured watched percentage has been reached."
+msgstr ""
+
 msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "Ignorera oväntat uppvaknande och förbli i standby"
 
@@ -10296,6 +10632,9 @@ msgstr "För att spela in en timer kopplades TV:n om till inspelningstjänsten!\
 #
 msgid "In progress"
 msgstr "Påbörjad"
+
+msgid "In progress from (%)"
+msgstr ""
 
 msgid "In use by DAB+"
 msgstr ""
@@ -10469,6 +10808,9 @@ msgstr "Picon-sökväg för informationsfält"
 #
 msgid "Information"
 msgstr "Information"
+
+msgid "Information list"
+msgstr ""
 
 msgid "Informational/Educational/School programs"
 msgstr "information/utbildning/skolprogram"
@@ -10661,6 +11003,9 @@ msgstr "Endast intern disk"
 msgid "Internal flash"
 msgstr "Intern blixt"
 
+msgid "Internal flash only allows small picon packages."
+msgstr ""
+
 #, python-format
 msgid "Internal flash:  %s %s "
 msgstr "Intern flash:  %s %s "
@@ -10688,9 +11033,15 @@ msgstr "Ogiltig"
 msgid "Invalid Help Page"
 msgstr "Ogiltig hjälpsida"
 
+msgid "Invalid filename."
+msgstr ""
+
 #
 msgid "Invalid location!"
 msgstr "Ogiltig plats!"
+
+msgid "Invalid original movie location."
+msgstr ""
 
 msgid "Invalid swap file size."
 msgstr ""
@@ -10879,9 +11230,18 @@ msgstr "Kazakiskt"
 msgid "Kazakhstan"
 msgstr "Kazakstan"
 
+msgid "Keep previous playback position as chapter marker"
+msgstr ""
+
 #
 msgid "Keep service"
 msgstr "Behåll tjänsten"
+
+msgid "Keep the newest recordings up to this limit before applying the selected display order."
+msgstr ""
+
+msgid "Keep the play queue across GUI restarts. The queue is stored in the receiver configuration without accessing movie storage."
+msgstr ""
 
 msgid "Keep warning"
 msgid_plural "Keep warnings"
@@ -11129,12 +11489,33 @@ msgstr "Demokratiska folkrepubliken Laos"
 msgid "Large"
 msgstr "Stor"
 
+msgid "Large tiles"
+msgstr ""
+
+msgid "Last 24 hours"
+msgstr ""
+
+msgid "Last 30 days"
+msgstr ""
+
+msgid "Last 7 days"
+msgstr ""
+
+msgid "Last 90 days"
+msgstr ""
+
 #
 msgid "Last config"
 msgstr "Senaste konfiguration"
 
 msgid "Last flash"
 msgstr "Sista blixten"
+
+msgid "Last folder"
+msgstr ""
+
+msgid "Last playback position"
+msgstr ""
 
 #
 msgid "Last speed"
@@ -11155,6 +11536,24 @@ msgstr "Senast använda/inställda volym"
 msgctxt "third event: 'third' event label"
 msgid "Later"
 msgstr "Senare"
+
+msgid "Latest recordings"
+msgstr ""
+
+msgid "Latest recordings collection"
+msgstr ""
+
+msgid "Latest recordings folders"
+msgstr ""
+
+msgid "Latest recordings maximum"
+msgstr ""
+
+msgid "Latest recordings period"
+msgstr ""
+
+msgid "Latest recordings sorting"
+msgstr ""
 
 #
 msgid "Latin"
@@ -11376,6 +11775,12 @@ msgstr "Lista över lagringsenheter"
 msgid "List of storage devices"
 msgstr "Lista över lagringsenheter"
 
+msgid "List or grid style"
+msgstr ""
+
+msgid "List style"
+msgstr ""
+
 msgid "Lists reloaded!"
 msgstr "Listorna laddas om!"
 
@@ -11406,6 +11811,9 @@ msgstr "Ladda"
 msgid "Load EPG Cache"
 msgstr "Ladda EPG-cache"
 
+msgid "Load M3U playlist"
+msgstr ""
+
 #
 msgid "Load play list"
 msgstr "Ladda spellista"
@@ -11422,6 +11830,9 @@ msgstr ""
 
 msgid "Loading information, please wait..."
 msgstr "Laddar information, vänta..."
+
+msgid "Loading movie library..."
+msgstr ""
 
 msgid "Loading skin..."
 msgstr "Läser in skal …"
@@ -11690,6 +12101,10 @@ msgstr "Huvudmeny"
 msgid "Maintain your multi boot device."
 msgstr "Underhåll din multi boot-enhet."
 
+#, python-format
+msgid "Maintenance scan finished: %d candidates. Review them from Movie maintenance in the context menu."
+msgstr ""
+
 msgid "Make"
 msgstr "Märke"
 
@@ -11827,8 +12242,29 @@ msgstr "Marginal före inspelning"
 msgid "Margin before zap"
 msgstr "Marginal före zap"
 
+msgid "Mark / unmark movie"
+msgstr ""
+
 msgid "Mark As Dedicated 3D Service"
 msgstr "Markera som dedikerad 3D-tjänst"
+
+msgid "Mark as unwatched"
+msgstr ""
+
+msgid "Mark as watched"
+msgstr ""
+
+msgid "Mark new recordings"
+msgstr ""
+
+msgid "Mark selected movies as unwatched"
+msgstr ""
+
+msgid "Mark selected movies as watched"
+msgstr ""
+
+msgid "Mark unwatched recordings from the last 24 hours or since the previous visit. Returning from playback keeps the same visit."
+msgstr ""
 
 #
 msgid "Marker Actions"
@@ -11913,6 +12349,9 @@ msgstr "Inställningar för mediaspelare"
 
 msgid "Media Stream"
 msgstr "Media Stream"
+
+msgid "Media information is currently unavailable."
+msgstr ""
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Mediauppspelning Kvarstår/förfaller som"
@@ -12060,8 +12499,20 @@ msgstr "MiniTV med OSD"
 msgid "Minimum age %d years"
 msgstr "Minimiålder %d år"
 
+msgid "Minimum age for watched movie maintenance (days)"
+msgstr ""
+
 msgid "Minimum difference between idle and moving current."
 msgstr "Minsta skillnad mellan viloström och ström under rörelse."
+
+msgid "Minimum playback percentage for the in-progress status. A movie without a playback position remains unwatched."
+msgstr ""
+
+msgid "Minimum playback percentage for the watched status, watched-movie restart and manual maintenance."
+msgstr ""
+
+msgid "Minimum recordings per virtual folder"
+msgstr ""
 
 msgid "Minimum send interval"
 msgstr "Minsta sändningsintervall"
@@ -12245,6 +12696,18 @@ msgstr "Fästen"
 msgid "Move"
 msgstr "Flytta"
 
+#, python-format
+msgid "Move %d selected movies and their companion files to the trashcan?"
+msgstr ""
+
+#, python-format
+msgid "Move %d selected watched movies and their companion files to the trashcan?"
+msgstr ""
+
+#, python-format
+msgid "Move '%s' and its companion files to the trashcan?"
+msgstr ""
+
 msgid "Move Down"
 msgstr "Flytta ned"
 
@@ -12281,6 +12744,9 @@ msgstr "Flytta alla relaterade filer"
 
 msgid "Move directory/file to target directory"
 msgstr "Flytta katalog/fil till målkatalog"
+
+msgid "Move down"
+msgstr ""
 
 msgid "Move down a line"
 msgstr "Flytta ner en rad"
@@ -12342,11 +12808,17 @@ msgstr "Flyttjobbet misslyckades!"
 msgid "Move job queued."
 msgstr "Flyttjobb i kö."
 
+msgid "Move left"
+msgstr ""
+
 msgid "Move left a item"
 msgstr "Flytta ett objekt åt vänster"
 
 msgid "Move only highlighted file"
 msgstr "Flytta endast markerad fil"
+
+msgid "Move right"
+msgstr ""
 
 msgid "Move right a item"
 msgstr "Flytta ett objekt åt höger"
@@ -12472,6 +12944,9 @@ msgstr "Flytta till föregående objekt"
 msgid "Move to the previous item in list"
 msgstr "Flytta till föregående objekt i listan"
 
+msgid "Move up"
+msgstr ""
+
 msgid "Move up a line"
 msgstr "Flytta upp en rad"
 
@@ -12557,8 +13032,62 @@ msgstr "Åtgärder för val av film"
 msgid "Movie Selection Settings"
 msgstr "Inställningar för filmval"
 
+msgid "Movie artwork"
+msgstr ""
+
+msgid "Movie count"
+msgstr ""
+
+msgid "Movie count and size"
+msgstr ""
+
+msgid "Movie count, size and new movies"
+msgstr ""
+
+msgid "Movie database"
+msgstr ""
+
+msgid "Movie database unavailable"
+msgstr ""
+
+msgid "Movie database unavailable. Select files and folders from View in the menu."
+msgstr ""
+
+msgid "Movie date format"
+msgstr ""
+
+msgid "Movie file operations"
+msgstr ""
+
+msgid "Movie front display"
+msgstr ""
+
+msgid "Movie information"
+msgstr ""
+
+msgid "Movie library"
+msgstr ""
+
+msgid "Movie maintenance"
+msgstr ""
+
+msgid "Movie play queue"
+msgstr ""
+
 msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr "Filmuppspelning får inte använda en ogiltig/olämplig katalog."
+
+msgid "Movie player style"
+msgstr ""
+
+msgid "Movie playlists support local files and mounted storage only."
+msgstr ""
+
+msgid "Movie preview"
+msgstr ""
+
+msgid "Movie size"
+msgstr ""
 
 msgid "Movie/Drama"
 msgstr "Film/Drama"
@@ -12569,6 +13098,9 @@ msgstr "Filmspelare"
 
 msgid "Movies"
 msgstr "Filmer"
+
+msgid "Movies and series"
+msgstr ""
 
 #
 msgid "Moving"
@@ -13040,6 +13572,15 @@ msgstr "Ny information om evenemang"
 msgid "New media"
 msgstr "nya medier"
 
+msgid "New movie filename (without extension)"
+msgstr ""
+
+msgid "New movies"
+msgstr ""
+
+msgid "New movies: update folder statistics"
+msgstr ""
+
 #
 msgid "New password"
 msgstr "Nytt lösenord"
@@ -13062,6 +13603,9 @@ msgstr "NewCamd DES-nyckel"
 
 msgid "NewDirectory"
 msgstr "NyDirectory"
+
+msgid "Newest recordings first"
+msgstr ""
 
 msgid "News"
 msgstr "Nyheter"
@@ -13100,6 +13644,12 @@ msgstr "Nästa kanalsida"
 #
 msgid "Next higher resolution"
 msgstr "Nästa högre upplösning"
+
+msgid "Next movie"
+msgstr ""
+
+msgid "Next page"
+msgstr ""
 
 msgid "Next quad PiP channel"
 msgstr "Nästa quad PiP-kanal"
@@ -13223,6 +13773,9 @@ msgstr "Ingen fördröjning"
 msgid "No demux available"
 msgstr "Ingen demux tillgänglig"
 
+msgid "No description available."
+msgstr ""
+
 #
 msgid "No displayable files on this medium found!"
 msgstr "Inga filer som kan visas på detta medium hittades!"
@@ -13255,6 +13808,9 @@ msgstr "Ingen gateway"
 msgid "No hard disks detected."
 msgstr "Inga hårddiskar upptäckta."
 
+msgid "No hidden folders"
+msgstr ""
+
 msgid "No hosts found yet - still scanning..."
 msgstr "Inga värdar hittades ännu – söker fortfarande …"
 
@@ -13264,9 +13820,18 @@ msgstr ""
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Inga loggfiler hittades så debug-loggar är inte tillgängliga!"
 
+msgid "No maintenance candidates found."
+msgstr ""
+
 #
 msgid "No matching place names found"
 msgstr "Inga matchande ortnamn hittades"
+
+msgid "No movie description is available to create an EIT file."
+msgstr ""
+
+msgid "No movies found. Select files and folders from View to see unscanned recordings."
+msgstr ""
 
 msgid "No network adapters enabled/available!"
 msgstr "Inga nätverksadaptrar aktiverade/tillgängliga!"
@@ -13298,6 +13863,9 @@ msgstr "Ingen resursansvarig"
 
 msgid "No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."
 msgstr "Ingen satellit-, markbunden eller kabel-tuner är konfigurerad. Kontrollera inställningarna för din tuner."
+
+msgid "No saved playback position is available."
+msgstr ""
 
 #
 msgid "No service"
@@ -13381,6 +13949,9 @@ msgstr ""
 
 msgid "No tuners are currently streaming."
 msgstr "Inga tuners streamar för närvarande."
+
+msgid "No unambiguous series filenames are available. A series name, season and episode are required."
+msgstr ""
 
 msgid "No unused swap file name is available."
 msgstr ""
@@ -13759,6 +14330,9 @@ msgstr "Avräkning och stängning av CA-enhet"
 msgid "Ojibwa"
 msgstr "Ojibwa"
 
+msgid "Oldest recordings first"
+msgstr ""
+
 msgid "Oldies"
 msgstr ""
 
@@ -13828,12 +14402,18 @@ msgstr "Endast Flash Backup Image"
 msgid "Only HD"
 msgstr "Endast HD"
 
+msgid "Only create a group when at least this many matching recordings are present."
+msgstr ""
+
 #
 msgid "Only free scan"
 msgstr "Endast gratis skanning"
 
 msgid "Only in Standby"
 msgstr "Endast i standby"
+
+msgid "Only include recordings made during this period."
+msgstr ""
 
 msgid "Only log debug information of GStreamer category. * means all categories."
 msgstr "Logga endast felsökningsinformation för kategorin GStreamer. * innebär alla kategorier."
@@ -13877,6 +14457,9 @@ msgstr "Öppna AutoTimer"
 msgid "Open AutoTimer Overview"
 msgstr "Öppna AutoTimer Översikt"
 
+msgid "Open BDMV and BRD folder structures with the native Blu-ray service."
+msgstr ""
+
 #
 msgid "Open Bouquet selection"
 msgstr "Öppet val av bukett"
@@ -13886,6 +14469,12 @@ msgstr "Open Box-portalen"
 
 msgid "Open Capability"
 msgstr "Öppna förmåga"
+
+msgid "Open DVD images individually with the DVD player."
+msgstr ""
+
+msgid "Open DVD images individually with the DVD player. Play queues support video and audio files."
+msgstr ""
 
 msgid "Open EPG"
 msgstr "Öppna EPG"
@@ -13990,8 +14579,17 @@ msgstr "Öppet val av TV-bukett"
 msgid "Open Usage and GUI Settings"
 msgstr "Inställningar för öppen användning och GUI"
 
+msgid "Open VIDEO_TS and DVD folder structures directly with the DVD player."
+msgstr ""
+
 msgid "Open VideoMode"
 msgstr "Öppna VideoMode"
+
+msgid "Open a movie directly when its filename matches its containing folder. File operations still treat the containing folder as a folder."
+msgstr ""
+
+msgid "Open collection"
+msgstr ""
 
 msgid "Open context menu"
 msgstr "Öppna snabbmenyn"
@@ -14007,6 +14605,9 @@ msgstr "Öppna skärmen för hantering av externa undertexter"
 
 msgid "Open file sort menu"
 msgstr "Öppna menyn för sortering av filer"
+
+msgid "Open selected movie or series"
+msgstr ""
 
 msgid "Open service list and select next service"
 msgstr "Öppna servicelistan och välj nästa tjänst"
@@ -14059,6 +14660,9 @@ msgstr ""
 msgid "Open the context menu"
 msgstr "Öppna snabbmenyn"
 
+msgid "Open the last folder, the default movie location, or return to the default location after standby. Returning from playback keeps the selected movie."
+msgstr ""
+
 msgid "Open the multi service EPG view"
 msgstr "Öppna EPG-vyn för flera tjänster"
 
@@ -14086,6 +14690,9 @@ msgstr "OpenWebif-anslutning"
 msgid "OpenWebif picon path"
 msgstr "Picon-sökväg för OpenWebif"
 
+msgid "Opening movie folder"
+msgstr ""
+
 msgid "Opening network adapter configuration..."
 msgstr "Öppnar nätverksadapterkonfiguration …"
 
@@ -14100,6 +14707,9 @@ msgstr "Status för drift-LED i standby-läge"
 
 msgid "Operating LED status while running"
 msgstr "Status för drift-LED under körning"
+
+msgid "Operation cancelled."
+msgstr ""
 
 msgid "Opkg Actions"
 msgstr "Opkg-åtgärder"
@@ -14146,11 +14756,17 @@ msgstr "Ursprungligt nätverks-ID (ONID)"
 msgid "Original language"
 msgstr "Originalspråk"
 
+msgid "Original title"
+msgstr ""
+
 msgid "Oriya"
 msgstr "Oriya"
 
 msgid "Oromo"
 msgstr "Oromo"
+
+msgid "Orphaned companion files removed."
+msgstr ""
 
 msgid "Oscam Information"
 msgstr "Oscam Information"
@@ -14330,6 +14946,10 @@ msgstr "Paket"
 msgid "Packages and associated locales"
 msgstr "Paket och tillhörande lokala språk"
 
+#, python-format
+msgid "Page %(page)d · %(count)d entries"
+msgstr ""
+
 msgid "Page down"
 msgstr "Sida ner"
 
@@ -14504,6 +15124,18 @@ msgstr ""
 msgid "Period and space '. '"
 msgstr ""
 
+#, python-format
+msgid "Permanently delete %d selected movies and their companion files?"
+msgstr ""
+
+#, python-format
+msgid "Permanently delete %d selected orphaned companion files?"
+msgstr ""
+
+#, python-format
+msgid "Permanently delete '%s' and its companion files?"
+msgstr ""
+
 msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Permanent radera alla inspelningar i papperskorgen?"
 
@@ -14656,6 +15288,9 @@ msgstr "Pitcairn"
 msgid "Pixel Test"
 msgstr "Pixel-test"
 
+msgid "Pixel format"
+msgstr ""
+
 msgid "Pixels\n"
 msgstr "Pixlar\n"
 
@@ -14709,6 +15344,9 @@ msgstr "Spela ikapp servicearkiv"
 msgid "Play entry"
 msgstr "Spela in post"
 
+msgid "Play from here"
+msgstr ""
+
 msgid "Play from next mark or play list entry"
 msgstr "Spela från nästa markering eller spellistepost"
 
@@ -14736,6 +15374,22 @@ msgstr "Spela nästa (återgå till föregående tjänst)"
 
 msgid "Play previous"
 msgstr "Spela tidigare"
+
+msgid "Play queue"
+msgstr ""
+
+msgid "Play queue / playlists"
+msgstr ""
+
+msgid "Play queue cleared"
+msgstr ""
+
+#, python-format
+msgid "Play queue: %d movies (maximum 1024)"
+msgstr ""
+
+msgid "Play selected movies"
+msgstr ""
 
 msgid "Play selected service in a PiP window"
 msgstr "Spela upp vald tjänst i ett PiP-fönster"
@@ -14767,12 +15421,27 @@ msgstr "Inställningar för uppspelning"
 msgid "Playback Time:"
 msgstr "Uppspelningstid:"
 
+msgid "Playback changed. Select the movie again before deleting it."
+msgstr ""
+
 msgid "Playback, Recording & Time Shift"
 msgstr "Uppspelning, inspelning och tidsförskjutning"
+
+msgid "Playing"
+msgstr ""
 
 #
 msgid "Playlist"
 msgstr "Spellist"
+
+msgid "Playlist filename (.m3u or .m3u8)"
+msgstr ""
+
+msgid "Playlist loaded"
+msgstr ""
+
+msgid "Playlist saved"
+msgstr ""
 
 #
 msgid "Playpause"
@@ -14877,6 +15546,9 @@ msgstr "Vänligen välj en spellista..."
 
 msgid "Please select a resolution..."
 msgstr "Vänligen välj en upplösning..."
+
+msgid "Please select a target directory."
+msgstr ""
 
 msgid "Please select an aspect ratio..."
 msgstr "Vänligen välj ett bildförhållande..."
@@ -15183,6 +15855,12 @@ msgstr "Inställning av positionerare"
 msgid "Possible causes could be:"
 msgstr "Möjliga orsaker kan vara:"
 
+msgid "Poster grid"
+msgstr ""
+
+msgid "Poster list"
+msgstr ""
+
 msgid "Power"
 msgstr "Power"
 
@@ -15283,7 +15961,19 @@ msgstr "Företrädesvis tuners för inspelningar, flera val tillåtna"
 msgid "Preparation time for recording"
 msgstr "Förberedelsetid för inspelning"
 
+msgid "Preparing latest recordings. Progress is shown in Tasks."
+msgstr ""
+
+msgid "Preparing picon storage. Existing picons will be preserved. Please wait..."
+msgstr ""
+
+msgid "Preparing picon storage. Please wait..."
+msgstr ""
+
 msgid "Preparing recording, please wait..."
+msgstr ""
+
+msgid "Preparing series filenames..."
 msgstr ""
 
 #
@@ -15432,6 +16122,15 @@ msgstr "Förhandsvisa"
 msgid "Preview menu"
 msgstr "Meny för förhandsgranskning"
 
+msgid "Preview offset (seconds)"
+msgstr ""
+
+msgid "Preview series filenames from the movie database"
+msgstr ""
+
+msgid "Preview starting point"
+msgstr ""
+
 msgid "Previous"
 msgstr "Föregående"
 
@@ -15443,6 +16142,9 @@ msgstr "Förgående sida"
 
 msgid "Previous channel page"
 msgstr "Föregående kanal sida"
+
+msgid "Previous page"
+msgstr ""
 
 msgid "Previous/Next page"
 msgstr "Föregående/Nästa sida"
@@ -15505,6 +16207,10 @@ msgstr "Hantera ingång från TV"
 
 msgid "Processing"
 msgstr "Bearbetas"
+
+#, python-format
+msgid "Processing %d movies in the background"
+msgstr ""
 
 msgid "Processor information"
 msgstr "Information om processorn"
@@ -15885,12 +16591,19 @@ msgstr "Slumpmässig"
 msgid "Random Password"
 msgstr "Slumpmässigt lösenord"
 
+msgid "Rating"
+msgstr ""
+
 #, python-format
 msgid "Rating defined by broadcaster - %d"
 msgstr "Rating definieras av programföretag - %d"
 
 msgid "Rating undefined"
 msgstr "Betyg odefinierat"
+
+#, python-format
+msgid "Rating: %s"
+msgstr ""
 
 msgid "Re-enter new PIN"
 msgstr "Ange ny PIN-kod igen"
@@ -15907,6 +16620,9 @@ msgstr "Läs användardata från oscam.conf"
 msgid "Read block size"
 msgstr "Läsblockstorlek"
 
+msgid "Read movie folders"
+msgstr ""
+
 msgid "Read-Only"
 msgstr "Skrivskyddad"
 
@@ -15915,6 +16631,12 @@ msgstr "Läsa/Skriva"
 
 msgid "Reader"
 msgstr "Läsare"
+
+msgid "Reading media information timed out."
+msgstr ""
+
+msgid "Reading media information..."
+msgstr ""
 
 msgid "Ready"
 msgstr ""
@@ -16035,6 +16757,15 @@ msgstr ""
 msgid "Reception sources to scan"
 msgstr ""
 
+msgid "Recognize Blu-ray folders"
+msgstr ""
+
+msgid "Recognize DVD folders"
+msgstr ""
+
+msgid "Recognize movie folders"
+msgstr ""
+
 #
 msgid "Record"
 msgstr "Spela in"
@@ -16071,6 +16802,9 @@ msgstr "Rekordtidtagare"
 msgid "Recordable media toolbox"
 msgstr "Verktygslåda för inspelningsbar media"
 
+msgid "Recorded"
+msgstr ""
+
 #
 msgid "Recording"
 msgstr "Spelar in"
@@ -16099,6 +16833,12 @@ msgstr "Inspelning avbruten"
 msgid "Recording failed"
 msgstr "Inspelningen misslyckades"
 
+#, python-format
+msgid ""
+"Recording failed because the channel's programme information could not be received.\n"
+"%s"
+msgstr ""
+
 #
 msgid "Recording finished"
 msgstr "Inspelningen avslutad"
@@ -16121,6 +16861,15 @@ msgstr "Inspelning påbörjad, stopptid förskjuten nu."
 
 msgid "Recording stopped"
 msgstr "Inspelningen slutade"
+
+msgid "Recording title"
+msgstr ""
+
+msgid "Recording title and separator"
+msgstr ""
+
+msgid "Recording title separator"
+msgstr ""
 
 msgid "Recording tuning failed"
 msgstr "Inspelningsjustering misslyckades"
@@ -16206,7 +16955,13 @@ msgstr "Uppdatera ZeroTier-statusinformation"
 msgid "Refresh every"
 msgstr "Uppdatera varje (i timmar)"
 
+msgid "Refresh library"
+msgstr ""
+
 msgid "Refresh list of RTL-SDR USB tuners"
+msgstr ""
+
+msgid "Refresh movie folder"
 msgstr ""
 
 msgid "Refresh rate"
@@ -16241,8 +16996,17 @@ msgstr "Vanlig fil"
 msgid "Relative"
 msgstr "Relativ"
 
+msgid "Relative date"
+msgstr ""
+
 msgid "Release Notes"
 msgstr "Anteckningar för release"
+
+msgid "Release date"
+msgstr ""
+
+msgid "Release year"
+msgstr ""
 
 msgid "Relevant PIDs Routing"
 msgstr "Relevanta PID:ar Routning"
@@ -16306,6 +17070,9 @@ msgstr "anmärkningsvärda människor"
 
 msgid "Remember last service in PiP"
 msgstr "Kom ihåg sista tjänsten i PiP"
+
+msgid "Remember play queue"
+msgstr ""
 
 msgid "Remember service PIN"
 msgstr "Kom ihåg PIN-koden för tjänsten"
@@ -16444,6 +17211,9 @@ msgstr "Ta bort alla timerdata"
 msgid "Remove all user interface data"
 msgstr "Ta bort all data från användargränssnittet"
 
+msgid "Remove chapter markers (keep cuts and resume position)"
+msgstr ""
+
 msgid "Remove completed timers after"
 msgstr "Ta bort avslutade timers efter"
 
@@ -16454,10 +17224,19 @@ msgstr "Ta bort aktuell katalog från bokmärken"
 msgid "Remove currently selected title"
 msgstr "Ta bort aktuell vald titel"
 
+msgid "Remove from queue"
+msgstr ""
+
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Ta bort markerad katalog från bokmärken"
 
+msgid "Remove orphaned movie companion files"
+msgstr ""
+
 msgid "Remove previously stored services from scanned DAB+ multiplexes. Disable this option to retain services when a multiplex is temporarily unavailable."
+msgstr ""
+
+msgid "Remove selected movies from collection"
 msgstr ""
 
 msgid "Remove service from AutoCam"
@@ -16504,6 +17283,10 @@ msgstr "Ta bort partitionstabell"
 msgid "Rename"
 msgstr "Byt namn"
 
+#, python-format
+msgid "Rename %(count)d movies with their companion files? %(skipped)d unchanged or incomplete entries were skipped."
+msgstr ""
+
 msgid "Rename Directory"
 msgstr "Byt namn på katalog"
 
@@ -16514,11 +17297,17 @@ msgstr "Byt postnamn"
 msgid "Rename all related files"
 msgstr "Byt namn på alla relaterade filer"
 
+msgid "Rename collection"
+msgstr ""
+
 msgid "Rename directory/file"
 msgstr "Byt namn på katalog/fil"
 
 msgid "Rename failed!"
 msgstr "Omdöpning misslyckades!"
+
+msgid "Rename movie file and companion files"
+msgstr ""
 
 msgid "Rename name and description for new events"
 msgstr "Byt namn och beskrivning för nya evenemang"
@@ -16832,6 +17621,9 @@ msgstr "Återställ systeminställningar"
 msgid "Restore backups"
 msgstr "Återställ säkerhetskopior"
 
+msgid "Restore previous playback position"
+msgstr ""
+
 msgid "Restore settings from a backup"
 msgstr "Återställ inställningar från en säkerhetskopia"
 
@@ -16840,6 +17632,9 @@ msgstr "Återställ inställningarna nu"
 
 msgid "Restore the highlighted slot"
 msgstr "Återställ den markerade platsen"
+
+msgid "Restore to original location"
+msgstr ""
 
 #
 msgid "Restore your %s %s settings."
@@ -16929,6 +17724,9 @@ msgstr ""
 msgid "Return to previous service"
 msgstr "Återgå till tidigare tjänst"
 
+msgid "Reuse recently read folders for this duration. The cache is limited to 32 folders and 10000 entries. Refresh from the context menu to see external changes immediately."
+msgstr ""
+
 msgid "Reverse bouquet buttons"
 msgstr "Omvända bukettknappar"
 
@@ -16937,6 +17735,9 @@ msgstr "Omvänd lista"
 
 msgid "Review"
 msgstr "Recension"
+
+msgid "Review last maintenance scan"
+msgstr ""
 
 #
 msgid "Rewind"
@@ -17087,6 +17888,9 @@ msgstr "Kör kommandot %d: '%s'."
 msgid "Running only"
 msgstr "Endast igång"
 
+msgid "Runtime"
+msgstr ""
+
 #
 msgid "Russian"
 msgstr "Ryska"
@@ -17212,6 +18016,9 @@ msgstr "Samoa"
 msgid "Samoan"
 msgstr "Samoan"
 
+msgid "Sample rate"
+msgstr ""
+
 msgid "San Marino"
 msgstr "San Marino"
 
@@ -17314,6 +18121,9 @@ msgstr "Spara och spela in"
 msgid "Save and stop"
 msgstr "Spara och stoppa"
 
+msgid "Save available movie information beside video files, including MKV. Existing EIT files are kept. Automatic creation applies to selected files in the folder view; database browsing does not write to sleeping storage."
+msgstr ""
+
 #
 msgid "Save directory on EXIT"
 msgstr "Spara katalog vid EXIT"
@@ -17336,6 +18146,9 @@ msgstr "Spara spellista"
 msgid "Save play list on EXIT"
 msgstr "Spara spellista på EXIT"
 
+msgid "Save queue as M3U playlist"
+msgstr ""
+
 msgid "Save right directory on exit"
 msgstr "Spara rätt katalog vid avslutning"
 
@@ -17353,6 +18166,9 @@ msgstr "Spara loggändringarna och avsluta"
 
 msgid "Save the log of the console messages to a file"
 msgstr "Spara loggen över konsolmeddelanden i en fil"
+
+msgid "Save the previous playback position and movie duration in the standard .cuts file."
+msgstr ""
 
 msgid "Save the right column directory location on exit."
 msgstr "Spara den högra kolumnens katalogplats vid utmatning."
@@ -17432,6 +18248,9 @@ msgstr "Sök Wi-Fi-nätverk"
 msgid "Scan additional SR"
 msgstr "Skanna ytterligare SR"
 
+msgid "Scan cancelled or folder limit reached."
+msgstr ""
+
 #
 msgid "Scan files..."
 msgstr "Skanna filer..."
@@ -17445,6 +18264,9 @@ msgstr "Sök efter lokala tillägg och installera dem."
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "Skanna efter terrestra LCN och skapa LCN-buketter"
+
+msgid "Scan movie folders"
+msgstr ""
 
 msgid "Scan region"
 msgstr ""
@@ -17486,6 +18308,9 @@ msgstr[1] "Avsökning slutförd, %d tjänster hittade."
 
 msgid "Scanning for shares..."
 msgstr "Söker efter resurser …"
+
+msgid "Scanning movie folders in the background"
+msgstr ""
 
 msgid "Scanning swap devices..."
 msgstr ""
@@ -17552,17 +18377,29 @@ msgstr "science fiction/fantasy/skräck"
 msgid "Scope"
 msgstr "Omfång"
 
+msgid "Screen layout"
+msgstr ""
+
 msgid "Screen saver mode"
 msgstr "Skärmsläckarläge"
 
 msgid "Screen saver movement"
 msgstr "Rörelse i skärmsläckaren"
 
+msgid "Screen style"
+msgstr ""
+
 msgid "Script Manager"
 msgstr "Script Manager"
 
 msgid "ScriptRunner"
 msgstr "ScriptRunner"
+
+msgid "Scroll down"
+msgstr ""
+
+msgid "Scroll up"
+msgstr ""
 
 msgid "Scrolling Speed"
 msgstr "Rullningshastighet"
@@ -17595,6 +18432,9 @@ msgstr "Sök efter nätverksresurser"
 msgid "Search in the current view"
 msgstr ""
 
+msgid "Search movie library"
+msgstr ""
+
 msgid "Search packages by name or description"
 msgstr ""
 
@@ -17615,6 +18455,20 @@ msgstr ""
 #
 msgid "Searching west ..."
 msgstr "Söker västerut..."
+
+#, python-format
+msgid "Season %(season)s · Episode %(episode)s"
+msgstr ""
+
+#, python-format
+msgid "Season %d"
+msgstr ""
+
+msgid "Season and episode"
+msgstr ""
+
+msgid "Season unknown"
+msgstr ""
 
 #
 msgid "Second cable of motorized LNB"
@@ -17948,9 +18802,6 @@ msgstr ""
 msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr "När ja, kommer VPS att aktiveras på omedelbara poster (stopp efter aktuell händelse), om kanalen stöder VPS."
 
-msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
-msgstr "Välj \"Ja\" för att använda alternativa IP-adresser för GitHub-flöden. Detta kan vara till hjälp om du använder ett VPN och de normala flödena inte kan nås via de publicerade DNS-namnen."
-
 msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
 msgstr "Välj \"Ja\" för att använda äldre navigering där CH+/- byter den aktiva kolumnen. Välj \"Nej\" för att använda det nyare enhetliga navigeringsalternativet för konsekvent navigering med andra skärmar där VÄNSTER/RIGHT byter aktiv kolumn och CH+/- bläddrar upp och ner i listan."
 
@@ -18055,6 +18906,9 @@ msgstr "Välj en Softcam från den tillgängliga listan."
 msgid "Select a bouquet"
 msgstr "Välj en bukett"
 
+msgid "Select a connected HDD or USB device for the picons."
+msgstr ""
+
 msgid "Select a debug log file to view:"
 msgstr "Välj en debugloggfil som ska visas:"
 
@@ -18082,6 +18936,12 @@ msgstr "Justerar kompensationen för maskinvarubuffertens latens för DM9x0."
 msgid "Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "Ange den tid som ska läggas till i streamingbufferten efter ett streamingfel. Denna extra buffert kan bidra till att undvika ytterligare streamingproblem på grund av brist på buffertutrymme."
 
+msgid "Select a folder to show again. This does not change database scan paths."
+msgstr ""
+
+msgid "Select a list or grid style. Text styles also work without a movie database. Poster styles require an installed metadata provider. Select legacy mode to use the existing list settings."
+msgstr ""
+
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr "Välj en plats som du vill extrahera '%s' till:"
@@ -18094,6 +18954,12 @@ msgstr ""
 
 msgid "Select a movie"
 msgstr "Välj en film"
+
+msgid "Select a movie folder outside the trashcan."
+msgstr ""
+
+msgid "Select a movie information bar supplied by the skin."
+msgstr ""
 
 msgid "Select a network adapter"
 msgstr "Välj ett nätverksadapter"
@@ -18157,8 +19023,17 @@ msgstr "Välj alla"
 msgid "Select all lines"
 msgstr "Välj alla linjer"
 
+msgid "Select all movies in this list"
+msgstr ""
+
+msgid "Select all movies on this page"
+msgstr ""
+
 msgid "Select all related files"
 msgstr "Välj alla relaterade filer"
+
+msgid "Select an absolute playlist path."
+msgstr ""
 
 msgid "Select an action for the current device"
 msgstr "Välj en åtgärd för den aktuella enheten"
@@ -18194,6 +19069,10 @@ msgstr "Välj EPG-typ som standard:"
 
 msgid "Select default File Commander directory:"
 msgstr "Välj standardkatalog för File Commander:"
+
+#, python-format
+msgid "Select destination for %d movies"
+msgstr ""
 
 msgid "Select destination for:"
 msgstr "Välj destination för:"
@@ -18325,9 +19204,24 @@ msgstr "Välj inmatningsenhet."
 msgid "Select last browsed service"
 msgstr ""
 
+msgid "Select maintenance candidates"
+msgstr ""
+
 #
 msgid "Select movie"
 msgstr "Välj film"
+
+msgid "Select movie information or artwork for the receiver display. Small displays fall back to a text layout."
+msgstr ""
+
+msgid "Select movies inside or outside the trashcan separately."
+msgstr ""
+
+msgid "Select one movie to edit its information."
+msgstr ""
+
+msgid "Select one movie to rename its file."
+msgstr ""
 
 msgid "Select only highlighted file"
 msgstr "Välj endast markerad fil"
@@ -18615,6 +19509,9 @@ msgstr "Välj hur lång tid inaktiviteten ska vara innan skärmsläckaren visas.
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "Välj den sluttid före vilken denna timer kan aktiveras. Efter denna tid aktiveras inte timern även om övriga villkor uppfylls."
 
+msgid "Select the existing movie player behavior for the EXIT button."
+msgstr ""
+
 msgid "Select the fast scan provider and press BLUE to start the scan."
 msgstr ""
 
@@ -18646,6 +19543,9 @@ msgstr "Välj den markerade platsen och starta om"
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
 msgstr "Välj startposition för tidslinjemarkören. Markören är den vertikala linje som ritas på EPG:n och som visar aktuell tid. Ju större värde desto mer flyttas markören åt höger och visar mer historik och mindre av kommande händelser."
+
+msgid "Select the initial view when a movie database is enabled. The View action switches between local folders and the movie library."
+msgstr ""
 
 msgid "Select the input connector you want to use."
 msgstr "Välj den ingångskontakt som du vill använda."
@@ -18705,9 +19605,15 @@ msgstr "Välj monteringspunkter"
 msgid "Select the mountpoint for the device."
 msgstr "Välj monteringspunkt för enheten."
 
+msgid "Select the movie folder to scan, including subfolders"
+msgstr ""
+
 #
 msgid "Select the movie path"
 msgstr "Välj filmväg"
+
+msgid "Select the movie selection screen layout supplied by the skin."
+msgstr ""
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr "Välj den nätverksdatahastighet under vilken timern ska aktiveras enligt specifikation. Trafik över denna hastighet avaktiverar timern."
@@ -18928,6 +19834,9 @@ msgstr "Välj videoläge"
 msgid "Select video output port with UP/DOWN buttons"
 msgstr "Välj videoutgångsport med UP/DOWN-knapparna"
 
+msgid "Select view and sorting for this movie list"
+msgstr ""
+
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Välj vilken åtgärd som ska vidtas när du når slutet av en mediefil under uppspelning."
 
@@ -19141,6 +20050,15 @@ msgid "Serial No"
 msgstr "Serienummer"
 
 msgid "Serial number"
+msgstr ""
+
+msgid "Series"
+msgstr ""
+
+msgid "Series episode sort order"
+msgstr ""
+
+msgid "Series information and episode numbers"
 msgstr ""
 
 msgid "Serious Classical"
@@ -20050,6 +20968,9 @@ msgstr "Visa underavdelningar av aktiv tjänst"
 msgid "Show System Plugin packages"
 msgstr "Visa System Plugin-paket"
 
+msgid "Show TS, MKV and other formats in the file information field. Classic layouts append this information to the title."
+msgstr ""
+
 msgid "Show Timer List"
 msgstr "Visa timerlista"
 
@@ -20071,6 +20992,9 @@ msgstr "Visa vertikal EPG"
 
 msgid "Show Web Link packages"
 msgstr "Visa paket med webblänkar"
+
+msgid "Show a dynamic collection across movie folders. With a movie database it uses indexed files; otherwise a read-only background task creates a snapshot."
+msgstr ""
 
 msgid "Show a spinning logo when the system is busy."
 msgstr "Visa en snurrande logotyp när systemet är upptaget."
@@ -20105,11 +21029,17 @@ msgstr "Visa bakgrund i radioläge"
 msgid "Show background when tuned to a radio channel."
 msgstr "Visa bakgrund när du är inställd på en radiokanal."
 
+msgid "Show bookmarks in the movie list"
+msgstr ""
+
 msgid "Show bouquet on launch"
 msgstr "Visa buketten vid lanseringen"
 
 msgid "Show build information"
 msgstr "Visa bygginformation"
+
+msgid "Show cached movie counts and sizes. Update the cache explicitly from Movie maintenance in the context menu. Browsing does not scan subfolders."
+msgstr ""
 
 #, python-format
 msgid "Show cards with uphop %s"
@@ -20146,6 +21076,12 @@ msgstr "Visa kryptoinformation i InfoBar"
 
 msgid "Show current directory"
 msgstr "Visa aktuell katalog"
+
+msgid "Show current recording length"
+msgstr ""
+
+msgid "Show cut copy number"
+msgstr ""
 
 msgid "Show debug log information"
 msgstr "Visa information om debuggloggen"
@@ -20195,6 +21131,9 @@ msgstr "Visa händelseförloppet i kanalvalet"
 msgid "Show eventinfo plugins"
 msgstr "Visa plugins för händelseinformation"
 
+msgid "Show existing movie bookmarks as virtual folder entries. Their targets are accessed only when opened."
+msgstr ""
+
 #
 msgid "Show extended description"
 msgstr "Visa utökad beskrivning"
@@ -20214,6 +21153,9 @@ msgstr "Visa filer som säkerhetskopieras som standard"
 
 msgid "Show first picture"
 msgstr "Visa första bilden"
+
+msgid "Show folders"
+msgstr ""
 
 msgid "Show free space in timer view"
 msgstr "Visa ledigt utrymme i timervyn"
@@ -20254,6 +21196,9 @@ msgstr "Visa arbetsuppgifter i tilläggsmenyn"
 msgid "Show last picture"
 msgstr "Visa sista bilden"
 
+msgid "Show links to files and folders. Broken links are omitted when the directory is refreshed."
+msgstr ""
+
 msgid "Show list of bouquets"
 msgstr "Visa lista över buketter"
 
@@ -20278,6 +21223,12 @@ msgstr "Visa menyn"
 
 msgid "Show message when recording starts"
 msgstr "Visa meddelande när inspelningen startar"
+
+msgid "Show movie format"
+msgstr ""
+
+msgid "Show movie information"
+msgstr ""
 
 msgid "Show movie lengths in movie list"
 msgstr "Visa filmlängder i filmlistan"
@@ -20341,6 +21292,9 @@ msgstr "Visa avskedsrepliker mellan händelserna."
 #
 msgid "Show persistent InfoBar while paused"
 msgstr "Visa InfoBar när du är pausad"
+
+msgid "Show physical folders. Parent navigation, the trashcan, bookmarks, virtual collections and recognized movie structures remain accessible."
+msgstr ""
 
 msgid "Show picon background color"
 msgstr "Visa bakgrundsfärg för picon"
@@ -20472,6 +21426,9 @@ msgstr "Visa snabbmeny för undertexter"
 msgid "Show subtitle selection"
 msgstr "Visa val av undertexter"
 
+msgid "Show symbolic links"
+msgstr ""
+
 msgid "Show system information"
 msgstr "Visa systeminformation"
 
@@ -20502,8 +21459,14 @@ msgstr "Visa skärmen för OSCam-information"
 msgid "Show the about screen"
 msgstr ""
 
+msgid "Show the cut copy suffix, such as _001, even when the recording title comes from metadata. This is not the number of chapter markers."
+msgstr ""
+
 msgid "Show the last opkg command's output"
 msgstr "Visa det senaste opkg-kommandots utdata"
+
+msgid "Show the measured length of active recordings in the file information field, updated once a minute in the file view. Database views use cached metadata."
+msgstr ""
 
 msgid "Show the task list"
 msgstr "Visa uppgiftslistan"
@@ -20541,6 +21504,9 @@ msgstr "Visa okänt videoformat som"
 #
 msgid "Show vertical Program Guide"
 msgstr "Visa vertikal programguide"
+
+msgid "Show virtual folders first, or sort them among movies by the current title or recording date order."
+msgstr ""
 
 msgid "Show warning before restart"
 msgstr "Visa varning före omstart"
@@ -20655,6 +21621,9 @@ msgstr "EnkelUmount"
 
 msgid "Simplified Chinese"
 msgstr "Förenklad kinesiska"
+
+msgid "Since the previous visit"
+msgstr ""
 
 msgid "Sindhi"
 msgstr "Sindhi"
@@ -20782,6 +21751,9 @@ msgstr "Hoppa över paketinstallation, endast kärnpaket kommer att vara tillgä
 
 msgid "Skip sensibility for '%s' button"
 msgstr "Hoppkänslighet för knappen ”%s”"
+
+msgid "Skip this many seconds after the chosen preview starting point."
+msgstr ""
 
 msgid "Skip time for '%s' button"
 msgstr "Hoppa över tid för '%s'-knappen"
@@ -21182,6 +22154,9 @@ msgstr "Sortera efter namn"
 msgid "Sort by default"
 msgstr "Sortera enligt standard"
 
+msgid "Sort folders with movies"
+msgstr ""
+
 msgid "Sort list by"
 msgstr "Sortera lista efter"
 
@@ -21193,6 +22168,12 @@ msgstr "Sorteringsordning för språkförteckningen."
 
 msgid "Sort playlists"
 msgstr "Sortera spellistor"
+
+msgid "Sort the whole catalogue before pagination. Long PVR/File temporarily selects another order."
+msgstr ""
+
+msgid "Sort this movie list"
+msgstr ""
 
 #, python-format
 msgid "Sort: Directories by %s %s; Files by %s %s."
@@ -21218,6 +22199,9 @@ msgstr "Ljudbärare"
 
 msgid "Source Packages"
 msgstr "Källförpackningar"
+
+msgid "Source and destination are identical."
+msgstr ""
 
 msgid "Source request"
 msgstr "Källa begäran"
@@ -21373,6 +22357,12 @@ msgstr ""
 msgid "Start an instant recording"
 msgstr "Starta en omedelbar inspelning"
 
+msgid "Start at the first early chapter marker"
+msgstr ""
+
+msgid "Start at the resume position, the beginning or the first early chapter marker. Preview does not save playback positions or change watch status."
+msgstr ""
+
 msgid "Start date"
 msgstr "Startdatum"
 
@@ -21443,6 +22433,12 @@ msgstr "Starttid"
 
 msgid "Start time shift"
 msgstr "Starttid skift"
+
+msgid "Start view"
+msgstr ""
+
+msgid "Start watched movies from the beginning"
+msgstr ""
 
 msgid "Start/stop slide show"
 msgstr "Starta/stoppa bildspelet"
@@ -21522,6 +22518,12 @@ msgstr "Status ej tillgänglig!"
 msgid "Stay in time shift at buffer end (for plugins)"
 msgstr ""
 
+msgid "Stay on the marked movie, move to the next movie, or continue in the last navigation direction."
+msgstr ""
+
+msgid "Stay on the movie"
+msgstr ""
+
 msgid "Step"
 msgstr "Steg"
 
@@ -21573,6 +22575,9 @@ msgstr "Stoppa redigeringsläget"
 #
 msgid "Stop entry"
 msgstr "Stoppa inmatning"
+
+msgid "Stop playback or preview before changing this movie."
+msgstr ""
 
 #
 msgid "Stop playing this movie?"
@@ -21756,6 +22761,9 @@ msgstr "Ränder"
 
 msgid "Style:"
 msgstr "Stil:"
+
+msgid "Subchannel ID"
+msgstr ""
 
 msgid "Subnet mask"
 msgstr "Subnätmask"
@@ -21973,6 +22981,9 @@ msgstr "Växla mellan fillista/spellista"
 msgid "Switch config"
 msgstr "Konfigurera omkopplaren"
 
+msgid "Switch movie and file information"
+msgstr ""
+
 msgid "Switch off the TV to correct input"
 msgstr "Stäng av TV:n för att korrigera ingången"
 
@@ -22029,6 +23040,9 @@ msgstr "Växla till vänster kolumn"
 
 msgid "Switch to the other column"
 msgstr "Byt till den andra kolumnen"
+
+msgid "Switch to the recording channel"
+msgstr ""
 
 msgid "Switch to the right column"
 msgstr "Växla till höger kolumn"
@@ -22091,6 +23105,12 @@ msgstr "Plugin-paket för system"
 
 msgid "System Setup"
 msgstr "Systeminställning"
+
+msgid "System date and time"
+msgstr ""
+
+msgid "System date format"
+msgstr ""
 
 msgid "System information"
 msgstr "Information om systemet"
@@ -22167,6 +23187,9 @@ msgstr "Åtgärder i Tag Editor"
 
 msgid "Tagalog"
 msgstr "Tagalog"
+
+msgid "Tagline"
+msgstr ""
 
 #
 msgid "Tags"
@@ -22311,6 +23334,9 @@ msgstr "Temporärt monterad som %s"
 
 msgid "Temporary directory"
 msgstr "Temporär katalog"
+
+msgid "Temporary layout and sorting"
+msgstr ""
 
 #
 msgid "Tennis"
@@ -22557,6 +23583,9 @@ msgstr ""
 msgid "The backup can take up to about 15 minutes to complete."
 msgstr "Säkerhetskopieringen kan ta upp till cirka 15 minuter att slutföra."
 
+msgid "The bookmarked folder is not available."
+msgstr ""
+
 msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
@@ -22566,6 +23595,12 @@ msgstr ""
 
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "Kommandot att väcka från standby kommer att skickas flera gånger."
+
+msgid "The companion file changed or belongs to a movie again."
+msgstr ""
+
+msgid "The complete movie is at the destination, but some source files could not be removed."
+msgstr ""
 
 msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
 msgstr ""
@@ -22577,6 +23612,9 @@ msgstr ""
 msgid "The custom mount point for '%s' is empty!"
 msgstr ""
 
+msgid "The cut list is damaged; it was left unchanged."
+msgstr ""
+
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -22586,6 +23624,13 @@ msgstr ""
 
 msgid "The default settings are wake up time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wake up time. So can be detected a wake up by a timer even at very early starting receivers."
 msgstr "Standardinställningarna är väckningstid - 5 minuter och timerns starttid + 5 minuter. Den här inställningen ändrade tidsfönstret före väckningstiden. På så sätt kan en timer upptäcka en väckning även vid mycket tidiga startmottagare."
+
+#, python-format
+msgid "The destination '%s' already exists. Choose an empty destination or move the picons manually."
+msgstr ""
+
+msgid "The destination changed during the operation."
+msgstr ""
 
 msgid "The detailed information is intended for developers only."
 msgstr "Den detaljerade informationen är endast avsedd för utvecklare."
@@ -22646,6 +23691,9 @@ msgstr ""
 msgid "The loopthrough setting is wrong."
 msgstr "Inställningen för loopthrough är fel."
 
+msgid "The manual maintenance scan offers watched movies only when neither the movie nor its playback position has changed within this many days. Review and select candidates in the context menu before moving them to the trashcan."
+msgstr ""
+
 msgid "The manufacturer STARTUP device cannot be mounted for inspection."
 msgstr ""
 
@@ -22667,14 +23715,61 @@ msgstr ""
 msgid "The mount point '%s' is used by more than one share."
 msgstr ""
 
+msgid "The movie duration is unknown."
+msgstr ""
+
+msgid "The movie file is still being written. Try again later."
+msgstr ""
+
+msgid "The movie folder or companion file changed."
+msgstr ""
+
+msgid "The movie is currently being recorded."
+msgstr ""
+
+msgid "The movie or its playback position changed since the maintenance scan. Scan again."
+msgstr ""
+
+#, python-format
+msgid "The operation failed. Some files remain at the destination: %s"
+msgstr ""
+
+msgid "The original location is unknown. Use Move to select a destination."
+msgstr ""
+
 msgid "The panic channel was not found. Please select it again in Channel Selection Settings."
 msgstr ""
 
-msgid "The picon directory already exists and must be removed. Do you want to proceed?"
-msgstr "Katalogen picon finns redan och måste tas bort. Vill du fortsätta?"
+msgid "The picon destination must be outside the existing picon directory."
+msgstr ""
+
+msgid ""
+"The picon package could not be installed. Connect an HDD or USB device and select it as the picon install location in Plugin Browser settings. Check that the device is mounted and writable.\n"
+"\n"
+"Internal flash only allows small packages with up to 1,000 files and 10 MiB, with enough free space and file entries remaining."
+msgstr ""
+
+#, python-format
+msgid "The picon path '%s' is not a directory."
+msgstr ""
+
+msgid "The picon storage device is read-only or full."
+msgstr ""
+
+msgid "The play queue is empty"
+msgstr ""
+
+msgid "The playlist contains too many movies."
+msgstr ""
+
+msgid "The playlist is too large."
+msgstr ""
 
 msgid "The positioner tuner is currently unavailable. Stop recordings or other services using this tuner and try again."
 msgstr "Positionerarmottagaren är inte tillgänglig just nu. Stoppa inspelningar eller andra tjänster som använder mottagaren och försök igen."
+
+msgid "The preview shows the first 20 filenames."
+msgstr ""
 
 msgid "The previous mount point is already in use."
 msgstr ""
@@ -22683,7 +23778,16 @@ msgstr ""
 msgid "The process will take approximately %d minutes to complete."
 msgstr "Processen kommer att ta cirka %d minuter att slutföra."
 
+msgid "The recording changed while the operation was running."
+msgstr ""
+
 msgid "The recording end time has already passed."
+msgstr ""
+
+msgid "The recording is still running. Switch to its live channel?"
+msgstr ""
+
+msgid "The recording metadata is too large; it was left unchanged."
 msgstr ""
 
 msgid "The requested recording conflicts with other timers. What do you want to do?"
@@ -22784,6 +23888,21 @@ msgstr ""
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr "Timerfilen '%s' är korrupt och kunde inte läsas in."
+
+msgid "The trash index is damaged."
+msgstr ""
+
+msgid "The trash index is too large."
+msgstr ""
+
+msgid "The trash index must not be a symbolic link."
+msgstr ""
+
+msgid "The trashcan and the movie must be on the same mounted filesystem. No files were copied."
+msgstr ""
+
+msgid "The trashcan must be a directory on the movie's filesystem."
+msgstr ""
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -22897,6 +24016,9 @@ msgstr ""
 msgid "This device has multiple mount points. Unmount them before checking the file system."
 msgstr ""
 
+msgid "This directory is locked for movie file changes."
+msgstr ""
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "I det här fältet kan du söka efter ytterligare en symbolfrekvens upp till %s."
@@ -22932,6 +24054,9 @@ msgstr "Den här menyn innehåller val för att visa information om mottagaren."
 
 msgid "This menu offers options related managing the software on the %s %s."
 msgstr "Den här menyn innehåller alternativ för hantering av programvaran på %s %s."
+
+msgid "This movie is currently unavailable. Check its storage device or network mount."
+msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Denna offset används endast om kanalen inte har någon egen volymoffset."
@@ -23104,7 +24229,16 @@ msgstr "Det här alternativet anger hur falska digitala konturer, som är result
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Detta alternativ ställer in bildskärpan, som används när bilden skalas upp."
 
+msgid "This playlist contains unsupported files. Play queues support video and audio files; open DVD images individually."
+msgstr ""
+
+msgid "This provider supplies movie information but no browsable library."
+msgstr ""
+
 msgid "This recording has already ended."
+msgstr ""
+
+msgid "This service is not a local movie file."
 msgstr ""
 
 #
@@ -23167,6 +24301,9 @@ msgstr "Tibetanska"
 
 msgid "Tigrinya"
 msgstr "Tigrinja"
+
+msgid "Tiles"
+msgstr ""
 
 #
 msgid "Time"
@@ -23382,6 +24519,12 @@ msgstr "Östtimor"
 msgid "Title"
 msgstr "Titel"
 
+msgid "Title (A–Z)"
+msgstr ""
+
+msgid "Title (Z–A)"
+msgstr ""
+
 #
 msgid "Title properties"
 msgstr "Titel egenskaper"
@@ -23485,6 +24628,9 @@ msgstr "Växla val av aktuell tagg"
 msgid "Toggle selections"
 msgstr "Växla mellan olika val"
 
+msgid "Toggle series grouping for this folder"
+msgstr ""
+
 msgid "Toggle service name display"
 msgstr "Växla visning av tjänstenamn"
 
@@ -23517,6 +24663,18 @@ msgstr "Tonläge"
 
 msgid "Tonga"
 msgstr "Tonga"
+
+msgid "Too many candidates. Scan a smaller movie folder."
+msgstr ""
+
+msgid "Too many entries. Scan a smaller movie folder."
+msgstr ""
+
+msgid "Too many movies. Scan a smaller movie folder."
+msgstr ""
+
+msgid "Too many pending movie database changes. Reconnect the database first."
+msgstr ""
 
 msgid "Top"
 msgstr "Topp"
@@ -23562,6 +24720,9 @@ msgstr "turism/resande"
 msgid "Track"
 msgstr "Spåra"
 
+msgid "Track language"
+msgstr ""
+
 msgid "Traditional"
 msgstr "Traditionell"
 
@@ -23577,6 +24738,9 @@ msgstr "Omkoda"
 
 msgid "Transcoding"
 msgstr "Omkodning"
+
+msgid "Transfer characteristics"
+msgstr ""
 
 msgid "Translate Subs On This Service"
 msgstr "Översätt undertexter på denna tjänst"
@@ -23992,10 +25156,17 @@ msgstr "Ukraina"
 msgid "Ukrainian"
 msgstr "Ukrainska"
 
+msgid "Unable to access the script directory."
+msgstr ""
+
 #, python-format
 msgid ""
 "Unable to change swap state for '%s'.\n"
 "%s"
+msgstr ""
+
+#, python-format
+msgid "Unable to change the picon storage location: %s"
 msgstr ""
 
 #, python-format
@@ -24019,8 +25190,15 @@ msgstr "Det gick inte att initiera Kexec MultiBoot!"
 msgid "Unable to load package information!"
 msgstr ""
 
+msgid "Unable to move the movie without overwriting existing files."
+msgstr ""
+
 #, python-format
 msgid "Unable to open tuner (%d)"
+msgstr ""
+
+#, python-format
+msgid "Unable to prepare picon storage: %s"
 msgstr ""
 
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
@@ -24077,11 +25255,18 @@ msgstr "Det gick inte att validera Unicable-positionen för LNB %d: %s."
 msgid "Unable to write the time shift event information."
 msgstr ""
 
+msgid "Unassigned / pending recordings"
+msgstr ""
+
 msgid "Unattended upgrade without GUI"
 msgstr "Obevakad uppgradering utan GUI"
 
 msgid "Unavailable"
 msgstr "Otillgänglig"
+
+#, python-format
+msgid "Unavailable: %s"
+msgstr ""
 
 #
 msgid "Undefined"
@@ -24190,6 +25375,9 @@ msgstr "Okänd!"
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr "Om den inte är inställd på \"disabled\" får du en förhandsgranskning av kanalerna i EPG-listan."
 
+msgid "Unlimited"
+msgstr ""
+
 msgid "Unmark As Dedicated 3D Service"
 msgstr "Avmarkera som dedikerad 3D-tjänst"
 
@@ -24225,6 +25413,9 @@ msgstr "Fram till standby/omstart"
 msgid "Unused %s"
 msgstr "Oanvänd %s"
 
+msgid "Unwatched"
+msgstr ""
+
 msgid "Unzipping Image"
 msgstr "Unzippa bild"
 
@@ -24233,6 +25424,9 @@ msgstr "Upp"
 
 msgid "Up / Active"
 msgstr "Upp / Aktiv"
+
+msgid "Up to 256 folders can be hidden."
+msgstr ""
 
 msgid "Up to 50 Mbps"
 msgstr "Upp till 50 Mbps"
@@ -24263,6 +25457,15 @@ msgstr "Uppdateringen misslyckades!"
 #
 msgid "Update finished!"
 msgstr "Uppdatering klar!"
+
+msgid "Update folder movie counts and sizes"
+msgstr ""
+
+msgid "Update movie folder snapshot"
+msgstr ""
+
+msgid "Update movie folder snapshot / latest recordings"
+msgstr ""
 
 msgid "Update outdated bouquet entries"
 msgstr ""
@@ -24295,6 +25498,12 @@ msgstr "Uppdateringar tillgängliga:"
 #
 msgid "Updating"
 msgstr "Uppdaterar"
+
+msgid "Updating library index..."
+msgstr ""
+
+msgid "Updating movie folder snapshot in Tasks"
+msgstr ""
 
 msgid "Updating package list."
 msgstr "Uppdatering av paketlistan."
@@ -24453,8 +25662,8 @@ msgstr "Använd Zappa timer sluttider"
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
 msgstr "Använd en DNS-cache för att lagra senaste DNS-uppslagningar lokalt och förbättra prestandan samt minska fördröjning och utgående trafik."
 
-msgid "Use alternate GitHub DNS"
-msgstr "Använd alternativ GitHub DNS"
+msgid "Use an absolute filename ending in .m3u or .m3u8."
+msgstr ""
 
 msgid "Use an alternative smaller screen."
 msgstr "Använd en alternativ mindre skärm."
@@ -24483,6 +25692,9 @@ msgstr "Används bäst / Styrs av HDMI"
 #
 msgid "Use circular LNB"
 msgstr "Använd cirkulär LNB"
+
+msgid "Use configured defaults"
+msgstr ""
 
 msgid "Use defaults"
 msgstr "Använd standard"
@@ -24523,6 +25735,9 @@ msgstr "Använd nyckelkarta *"
 msgid "Use legacy navigation"
 msgstr "Använd äldre navigering"
 
+msgid "Use normal end-of-movie action"
+msgstr ""
+
 msgid "Use official channel numbering"
 msgstr "Använd officiell kanalnumrering"
 
@@ -24547,6 +25762,12 @@ msgstr "Använd per kataloginställningar"
 #
 msgid "Use power measurement"
 msgstr "Använd effektmätning"
+
+msgid "Use relative dates or the configured system date format, with or without the time."
+msgstr ""
+
+msgid "Use selected sorting"
+msgstr ""
 
 msgid "Use skin default"
 msgstr ""
@@ -24605,8 +25826,23 @@ msgstr ""
 msgid "Use the current selection and exit"
 msgstr "Använd det aktuella valet och avsluta"
 
+msgid "Use the database title when available, the original recording title, or the filename. Title cleanup applies after this choice. Grouped series keep their series title."
+msgstr ""
+
+msgid "Use the existing default playback location. Press OK to select a folder."
+msgstr ""
+
 msgid "Use the extended List"
 msgstr "Använd den utökade listan"
+
+msgid "Use the normal end action, ask, or switch to the recording channel when playback catches up with a local recording that is still running."
+msgstr ""
+
+msgid "Use the selected sort order, keep folders first, or sort folders together with movie files."
+msgstr ""
+
+msgid "Use the title before this separator as the virtual folder name. An empty separator groups identical titles."
+msgstr ""
 
 msgid "Use the wizard to set up basic features"
 msgstr "Använd guiden för att konfigurera grundläggande funktioner"
@@ -25005,6 +26241,9 @@ msgstr "Visa som rutnät"
 msgid "View as list"
 msgstr "Visa som lista"
 
+msgid "View for this movie list only"
+msgstr ""
+
 msgid "View mode"
 msgstr "Visa läge"
 
@@ -25057,6 +26296,15 @@ msgstr "Åtgärder på virtuellt tangentbord"
 msgid "Virtual Keyboard Text:"
 msgstr "Virtuellt tangentbord Text:"
 
+msgid "Virtual collections"
+msgstr ""
+
+msgid "Virtual folder — movie files stay in their original locations."
+msgstr ""
+
+msgid "Virtual folders before movies"
+msgstr ""
+
 msgid "Visual impaired commentary"
 msgstr "Kommentar för synskadade"
 
@@ -25106,6 +26354,9 @@ msgstr "Volym upp"
 msgid "Volume/Mute display timer"
 msgstr "Timer för volym/tyst display"
 
+msgid "Votes"
+msgstr ""
+
 msgid "Vu+ MultiBoot"
 msgstr "Vu+ MultiBoot"
 
@@ -25137,6 +26388,9 @@ msgstr "WSS på 4:3"
 
 msgid "Wait for timesync at startup"
 msgstr "Vänta på timesync vid uppstart"
+
+msgid "Wait this long after moving the selection before starting a preview."
+msgstr ""
 
 #
 msgid "Waiting"
@@ -25223,6 +26477,12 @@ msgstr "Varning: ingen LNB; använder fabriksinställningar."
 #
 msgid "Watch movies..."
 msgstr "Titta på film..."
+
+msgid "Watched"
+msgstr ""
+
+msgid "Watched from (%)"
+msgstr ""
 
 msgid "Water sport"
 msgstr "vattensport"
@@ -25362,6 +26622,9 @@ msgstr "Vad skulle du vilja göra?"
 
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr "När \"Enabled\" visas, kommer timervyn att visa det lediga utrymmet på målenheten. Detta kommer att väcka enheten från viloläge."
+
+msgid "When disabled, skip recordings already indexed by E2MDB with the same title and descriptions. If the database is unavailable or the match is uncertain, record normally."
+msgstr ""
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "När den är aktiverad kommer AIT-data att inkluderas i http-strömmar. Detta gör att en klientmottagare kan använda HbbTV."
@@ -25582,6 +26845,9 @@ msgstr "När den är aktiverad kan du anpassa OpenWebIf-inställningarna för re
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "När den är aktiverad kommer mottagaren att upptäcka aktivitet på videobandspelarens SCART-ingång."
 
+msgid "When movie information is displayed"
+msgstr ""
+
 msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Om värdet är icke-noll startar inspelningen den angivna perioden före den starttid som anges i EPG."
 
@@ -25602,6 +26868,12 @@ msgstr "När den är inställd kommer PIG att återgå till live efter att en fi
 
 msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
 msgstr "När inställningen är \"Yes\" kan en specifik softcam tilldelas till varje krypterad tjänst."
+
+msgid "When starting a movie, keep its previous playback position as a chapter marker. Existing chapter markers remain available."
+msgstr ""
+
+msgid "When starting from the beginning, skip the recording lead-in using an early chapter marker. Resume positions and cut boundaries are respected."
+msgstr ""
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "När innehållet har ett bildförhållande på 16:9 väljer du om du vill skala/sträcka ut bilden."
@@ -26903,6 +28175,22 @@ msgstr "ja (behåller flöden)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Can't move to trashcan!"
+#~ msgstr "Kan inte flytta till soptunnan!"
+
+#, python-format
+#~ msgid "Error: Creating picon target directory: (%s)"
+#~ msgstr "Fel vid skapande av Skapar målkatalog för picon: (%s)"
+
+#~ msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
+#~ msgstr "Välj \"Ja\" för att använda alternativa IP-adresser för GitHub-flöden. Detta kan vara till hjälp om du använder ett VPN och de normala flödena inte kan nås via de publicerade DNS-namnen."
+
+#~ msgid "The picon directory already exists and must be removed. Do you want to proceed?"
+#~ msgstr "Katalogen picon finns redan och måste tas bort. Vill du fortsätta?"
+
+#~ msgid "Use alternate GitHub DNS"
+#~ msgstr "Använd alternativ GitHub DNS"
 
 #
 #~ msgid "%-H:%M:%S"
@@ -28559,10 +29847,6 @@ msgstr "®"
 #
 #~ msgid "Are you sure you want to restart your network interfaces?"
 #~ msgstr "Är du säker på att du vill starta om dina nätverksgränssnitt?"
-
-#
-#~ msgid "Back"
-#~ msgstr "Tillbaka"
 
 #~ msgid "Configure DNS (name servers)"
 #~ msgstr "Konfigurera DNS (namnservrar)"
@@ -30587,11 +31871,6 @@ msgstr "®"
 #, fuzzy
 #~ msgid "12 hours"
 #~ msgstr "Timme"
-
-#
-#, fuzzy
-#~ msgid "15 minutes"
-#~ msgstr "minuter"
 
 #, fuzzy
 #~ msgid "2 hours"

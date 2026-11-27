@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-03 13:20+0100\n"
+"POT-Creation-Date: 2026-11-19 21:27+0000\n"
 "PO-Revision-Date: 2026-08-17 05:21+0000\n"
 "Last-Translator: தமிழ்நேரம் <tamilneram247@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ta/>\n"
@@ -100,6 +100,10 @@ msgstr "!! துவக்க ஏற்றி மேம்படுத்தல�
 
 msgid "# = Reboot required if this item is changed."
 msgstr "# = மறுதொடக்கம் தேவை"
+
+#, python-format
+msgid "%(title)s (%(count)d)"
+msgstr ""
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -311,8 +315,20 @@ msgid "%d min"
 msgstr "%d மணித்துளி"
 
 #, python-format
+msgid "%d min recorded"
+msgstr ""
+
+#, python-format
 msgid "%d minutes"
 msgstr "%d நிமிடங்கள்"
+
+#, python-format
+msgid "%d movies"
+msgstr ""
+
+#, python-format
+msgid "%d movies selected"
+msgstr ""
 
 #, python-format
 msgid "%d ms"
@@ -323,6 +339,10 @@ msgid "%d network found."
 msgid_plural "%d networks found."
 msgstr[0] ""
 msgstr[1] ""
+
+#, python-format
+msgid "%d new"
+msgstr ""
 
 #, python-format
 msgid "%d obsolete manufacturer STARTUP files will be replaced or removed."
@@ -772,6 +792,9 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
+msgid "1 minute"
+msgstr ""
+
 msgid "1. (Highest)"
 msgstr ""
 
@@ -795,6 +818,9 @@ msgstr "12 வி வெளியீடு."
 
 msgid "12bit"
 msgstr "12 பிட்"
+
+msgid "15 minutes"
+msgstr ""
 
 msgid "16:10 Letterbox"
 msgstr "16:10 லெட்டர்பாக்ச்"
@@ -895,6 +921,9 @@ msgstr "hch"
 msgid "5"
 msgstr "5"
 
+msgid "5 minutes"
+msgstr ""
+
 msgid "50-200 Mbps"
 msgstr "50-200 எம்.பி.பி.எச்"
 
@@ -973,6 +1002,9 @@ msgstr "ஒரு நிறைவு செய்யப்பட்ட பணி
 msgid "A crash log was %s created in '%s'"
 msgstr "ஒரு செயலிழப்பு பதிவு ' %s' இல் %s உருவாக்கப்பட்டது"
 
+msgid "A destination file already exists. No files were overwritten."
+msgstr ""
+
 #, python-format
 msgid ""
 "A finished record timer wants to set your\n"
@@ -1006,6 +1038,18 @@ msgstr "ஒரு முடிக்கப்பட்ட திட்டமி�
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "ரிமோட் கண்ட்ரோல் படத்தின் சிறப்பியல்பு உதவி குறிப்பிடும் பொத்தானைக் காட்டுகிறது. ஒன்றுக்கு மேற்பட்ட பொத்தான்கள் சுட்டிக்காட்டப்பட்ட செயல்பாட்டைச் செய்தால், ஒன்றுக்கு மேற்பட்ட சிறப்பம்சங்கள் காண்பிக்கப்படும். பட்டியலின் கீழே உள்ள உரை செயலில் உள்ள பொத்தான்களை பட்டியலிடுகிறது மற்றும் செயல்பாட்டிற்கு நீண்ட அழுத்தமா அல்லது பொத்தானை (கள்) மாற்ற வேண்டுமா."
+
+msgid "A mount point or a folder containing mounted filesystems cannot be moved to the trashcan."
+msgstr ""
+
+msgid "A movie companion file is a symbolic link."
+msgstr ""
+
+msgid "A movie filename cannot be represented in M3U format."
+msgstr ""
+
+msgid "A movie maintenance scan is already running. Its progress is shown in Tasks."
+msgstr ""
 
 msgid "A new storage device has been connected:"
 msgstr "புதிய சேமிப்பக சாதனம் இணைக்கப்பட்டுள்ளது:"
@@ -1272,6 +1316,9 @@ msgstr "செயலில் உள்ள வாடிக்கையாளர�
 msgid "Active only"
 msgstr "செயலில் மட்டும்"
 
+msgid "Actor"
+msgstr ""
+
 msgid "Adapter"
 msgstr ""
 
@@ -1454,6 +1501,12 @@ msgstr "பதிவைச் சேர்க்கவும் (காலவர
 msgid "Add recording (Stop after current event)"
 msgstr "பதிவைச் சேர்க்கவும் (தற்போதைய நிகழ்வுக்குப் பிறகு நிறுத்துங்கள்)"
 
+msgid "Add selected movies"
+msgstr ""
+
+msgid "Add selected movies to the play queue"
+msgstr ""
+
 msgid "Add service"
 msgstr "சேவையைச் சேர்க்கவும்"
 
@@ -1533,6 +1586,9 @@ msgstr ""
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "டெலிடெக்ச்டுக்கு பயன்படுத்தப்படும் கடிதங்களின் செங்குத்து நிலையை சரிசெய்யவும்."
 
+msgid "Adjust times to EPG"
+msgstr ""
+
 msgid "Adult"
 msgstr "அகவை வந்தோர்"
 
@@ -1544,6 +1600,9 @@ msgstr ""
 
 msgid "Adult movie/Drama"
 msgstr "வயதுவந்த திரைப்படம்/நாடகம்"
+
+msgid "Advance Movie List"
+msgstr ""
 
 msgid "Advanced"
 msgstr "மேம்பட்ட"
@@ -1602,6 +1661,9 @@ msgstr "பதிவு செய்த பிறகு"
 msgid "After zap"
 msgstr "சாப் பிறகு"
 
+msgid "Age rating"
+msgstr ""
+
 msgid "Aggregate data only"
 msgstr "மொத்த தரவு மட்டும்"
 
@@ -1654,6 +1716,12 @@ msgstr "எல்லா வயதினரும்"
 msgid "All data on the selected device will be erased. Create one shared data partition with %d additional MultiBoot slots, a 512 MiB swap partition and the internal slot 1 kernel?"
 msgstr ""
 
+msgid "All dates"
+msgstr ""
+
+msgid "All episodes"
+msgstr ""
+
 msgid "All events down"
 msgstr "அனைத்து நிகழ்வுகளும் கீழே"
 
@@ -1662,6 +1730,15 @@ msgstr "அனைத்து நிகழ்வுகளும்"
 
 msgid "All files"
 msgstr "அனைத்து கோப்புகள்"
+
+msgid "All media"
+msgstr ""
+
+msgid "All movie files"
+msgstr ""
+
+msgid "All movie folders"
+msgstr ""
 
 msgid "All packages"
 msgstr ""
@@ -1700,6 +1777,9 @@ msgid "Allocate a number to the physical LNB you are configuring. You will be ab
 msgstr "நீங்கள் உள்ளமைக்கும் உடல் எல்.என்.பி.க்கு ஒரு எண்ணை ஒதுக்கவும். அதே எல்.என்.பி அமைப்பை பல முறை சேமிக்க மற்ற செயற்கைக்கோள்களுக்கு (எ.கா. மின்னோடி பொருத்தப்பட்ட உணவுகள்) இந்த எல்.என்.பி."
 
 msgid "Allow %s-bit"
+msgstr ""
+
+msgid "Allow duplicate recordings"
 msgstr ""
 
 msgid "Allow guest access"
@@ -1831,6 +1911,9 @@ msgstr "எப்போதும் பூங்கொத்துகளைக�
 msgid "Always use smart1080p mode"
 msgstr "எப்போதும் அறிவுள்ள 1080p பயன்முறையைப் பயன்படுத்துங்கள்"
 
+msgid "Ambiguous companion file names."
+msgstr ""
+
 msgid "American Samoa"
 msgstr "அமெரிக்க சமோவா"
 
@@ -1921,6 +2004,10 @@ msgstr "எந்த பதிவுகளும்"
 
 msgid "Aperture F number"
 msgstr "துளை எஃப் எண்"
+
+#, python-format
+msgid "Apply '%(action)s' to %(count)d selected movies?"
+msgstr ""
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "செயலில் உள்ள இடம்/மொழியில் ஏதேனும் மாற்றங்களைப் பயன்படுத்துங்கள்"
@@ -2077,6 +2164,9 @@ msgstr "ஏறுதல்"
 msgid "Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged."
 msgstr ""
 
+msgid "Ask to switch to the recording channel"
+msgstr ""
+
 msgid "Ask user"
 msgstr "பயனரிடம் கேளுங்கள்"
 
@@ -2139,6 +2229,9 @@ msgstr "தற்போதைய திட்டத்தின் முடி�
 msgid "At end: %s"
 msgstr "இறுதியில்: %s"
 
+msgid "At the end of a running recording"
+msgstr ""
+
 msgid "Athletics"
 msgstr "தடகள"
 
@@ -2182,7 +2275,13 @@ msgstr ""
 msgid "Audio bit rate"
 msgstr ""
 
+msgid "Audio channels"
+msgstr ""
+
 msgid "Audio decoding"
+msgstr ""
+
+msgid "Audio description"
 msgstr ""
 
 msgid "Audio language selection 1"
@@ -2299,6 +2398,9 @@ msgstr "தானியங்கி பணி தேடல்"
 msgid "Automatic gain"
 msgstr ""
 
+msgid "Automatic preview delay (ms)"
+msgstr ""
+
 msgid "Automatic resolution"
 msgstr "தானியங்கி தீர்மானம்"
 
@@ -2398,6 +2500,9 @@ msgstr "நீல சுவிட்ச்: நீலம்/நீல நீள�
 
 msgid "BSSID"
 msgstr ""
+
+msgid "Back"
+msgstr "பின்"
 
 msgid "Back USB"
 msgstr "மீண்டும் யூஎச்பி"
@@ -2560,6 +2665,9 @@ msgstr "இந்த அமைப்புகளை மாற்றுவதற�
 msgid "Begin time"
 msgstr "நேரம் தொடங்கவும்"
 
+msgid "Beginning"
+msgstr ""
+
 msgid "Behave like STOP button"
 msgstr "நிறுத்த பொத்தானைப் போல நடந்து கொள்ளுங்கள்"
 
@@ -2695,6 +2803,10 @@ msgstr "புக்மார்க்கு சேர்க்கப்பட�
 msgid "Bookmark removed."
 msgstr "புக்மார்க்கு நீக்கப்பட்டது."
 
+#, python-format
+msgid "Bookmark: %s"
+msgstr ""
+
 msgid "Bookmarks"
 msgstr "புக்மார்க்குகள்"
 
@@ -2824,6 +2936,9 @@ msgid "Broadcom default"
 msgstr ""
 
 msgid "Browse"
+msgstr ""
+
+msgid "Browse grouped movies and series or all indexed movie files without reading movie storage."
 msgstr ""
 
 msgid "Browse, install or remove plugins on a one by one basis."
@@ -3094,11 +3209,17 @@ msgstr ""
 msgid "Cable input"
 msgstr ""
 
+msgid "Cache file lists"
+msgstr ""
+
 msgid "Cache thumbnails"
 msgstr "கேச் சிறு உருவங்கள்"
 
 msgid "Cached"
 msgstr "தற்காலிகமாக"
+
+msgid "Cached folder · refresh from the menu"
+msgstr ""
 
 msgid "Calculate"
 msgstr "கணக்கிடுங்கள்"
@@ -3221,9 +3342,6 @@ msgstr ""
 "டிவி லைவ் செய்ய முடியாது!\n"
 " நேரடி டிவிக்கு மாறவும், நேர மாற்றத்தை மறுதொடக்கம் செய்யவும்?"
 
-msgid "Can't move to trashcan!"
-msgstr "குப்பைத்தொட்டிக்கு செல்ல முடியாது!"
-
 msgid ""
 "Can't play the next time shift buffer file!\n"
 "Switch to live TV and restart time shift?"
@@ -3339,6 +3457,9 @@ msgstr "புதுப்பிப்பை ரத்துசெய்"
 msgid "Cancelled upon user request"
 msgstr "பயனர் கோரிக்கையின் பேரில் ரத்து செய்யப்பட்டது"
 
+msgid "Cannot create a trashcan on this mounted filesystem. No files were deleted."
+msgstr ""
+
 msgid "Cannot delete file"
 msgstr "கோப்பை நீக்க முடியாது"
 
@@ -3349,6 +3470,12 @@ msgstr "%s வரம்பை தீர்மானிக்க முடிய�
 
 msgid "Cannot find any signal ..., aborting!"
 msgstr "எந்த சமிக்ஞையையும் கண்டுபிடிக்க முடியவில்லை ..., கருக்கலைப்பு!"
+
+msgid "Capacity unit range"
+msgstr ""
+
+msgid "Capacity units (CU)"
+msgstr ""
 
 msgid "Cape Verde"
 msgstr "பச்சை கேப்"
@@ -3385,6 +3512,9 @@ msgid "Case insensitive"
 msgstr ""
 
 msgid "Case sensitive"
+msgstr ""
+
+msgid "Cast"
 msgstr ""
 
 msgid "Catalan / Valencian"
@@ -3552,6 +3682,9 @@ msgstr "சேனல் பொத்தான்கள் தலைகீழ்"
 msgid "Channel down"
 msgstr "சேனல் கீழே"
 
+msgid "Channel layout"
+msgstr ""
+
 msgid "Channel list cursor behavior"
 msgstr "சேனல் பட்டியல் கர்சர் நடத்தை"
 
@@ -3605,6 +3738,9 @@ msgstr "அத்தியாயம்."
 
 msgid "Chapter"
 msgstr "பாடங்கள்"
+
+msgid "Chapter markers and playback position"
+msgstr ""
 
 msgid "Character device"
 msgstr "எழுத்து சாதனம்"
@@ -3732,11 +3868,20 @@ msgstr "ஈபிசி நிகழ்வுகளில் மதிப்ப�
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "ICETV சேவைகளில் இந்த சாதனத்தை அடையாளம் காணும் லேபிளைத் தேர்வுசெய்க."
 
+msgid "Choose all indexed or scanned folders, the default movie location, or the current folder including subfolders. Hidden folders are excluded."
+msgstr ""
+
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "புதுப்பிப்புகளைச் சரிபார்க்க ICETV சேவையகத்துடன் எத்தனை முறை இணைக்க வேண்டும் என்பதைத் தேர்வுசெய்க."
 
+msgid "Choose season and episode order, title, recording date, release year or rating."
+msgstr ""
+
 msgid "Choose the amount of additional slots."
 msgstr "கூடுதல் இடங்களின் அளவைத் தேர்வுசெய்க."
+
+msgid "Choose the default sorting for this collection. The temporary view menu can override it."
+msgstr ""
 
 msgid "Choose the fallback font."
 msgstr "குறைவடையும் எழுத்துருவைத் தேர்வுசெய்க."
@@ -3813,6 +3958,12 @@ msgstr "நகரம்"
 msgid "Classic Rock"
 msgstr ""
 
+msgid "Classic movie list (EMC)"
+msgstr ""
+
+msgid "Classic movie list with description (EMC)"
+msgstr ""
+
 msgid "Classical"
 msgstr "செம்மொழி"
 
@@ -3849,11 +4000,20 @@ msgstr ""
 msgid "Clear before scan"
 msgstr "ச்கேன் முன் அழிக்கவும்"
 
+msgid "Clear filters"
+msgstr ""
+
 msgid "Clear fixed"
 msgstr "தெளிவான நிலையான"
 
+msgid "Clear movie selection"
+msgstr ""
+
 msgid "Clear play list"
 msgstr "தெளிவான விளையாட்டு பட்டியல்"
+
+msgid "Clear play queue"
+msgstr ""
 
 msgid "Clear search"
 msgstr ""
@@ -4010,6 +4170,9 @@ msgstr "வண்ண உரை"
 msgid "Colorimetry for HDR content"
 msgstr ""
 
+msgid "Combine series or matching recording titles in the view. Movie files stay in their original locations. Grouping can be disabled for individual folders from the context menu."
+msgstr ""
+
 msgid "Combined"
 msgstr "இணைக்கப்பட்டது"
 
@@ -4085,6 +4248,12 @@ msgstr ""
 msgid "Comoros"
 msgstr "கோமரோச்"
 
+msgid "Compact list"
+msgstr ""
+
+msgid "Companion files are shared by multiple media files. Rename or move the variants separately after resolving their companion files."
+msgstr ""
+
 msgid "Compatibility And Emulation"
 msgstr ""
 
@@ -4096,6 +4265,10 @@ msgstr "முழுமையானது"
 
 msgid "Complete Backup"
 msgstr "முழுமையான காப்புப்பிரதி"
+
+#, python-format
+msgid "Completed: %(done)d of %(total)d movies"
+msgstr ""
 
 msgid "Complex (allows mixing audio tracks and aspects)"
 msgstr "சிக்கலானது (ஆடியோ தடங்கள் மற்றும் அம்சங்களை கலக்க அனுமதிக்கிறது)"
@@ -4285,6 +4458,12 @@ msgstr "டெலிடெக்ச்ட் காட்சி பகுதி�
 
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "டெலிடெக்ச்ட் காட்சி பகுதியின் ஒய் இல் இறுதி ஒருங்கிணைப்பை உள்ளமைக்கவும்."
+
+msgid "Configure the existing movie player resume behavior."
+msgstr ""
+
+msgid "Configure the existing movie player stop action."
+msgstr ""
 
 msgid "Configure the first audio language (highest priority)."
 msgstr "முதல் ஆடியோ மொழியை உள்ளமைக்கவும் (அதிக முன்னுரிமை)."
@@ -4601,6 +4780,9 @@ msgstr "இந்த தகவலுக்கு உங்கள் மோட்
 msgid "Contacting IceTV server and setting up your %s %s."
 msgstr "ICETV சேவையகத்தைத் தொடர்புகொண்டு உங்கள் %s %s ஐ அமைக்கவும்."
 
+msgid "Container"
+msgstr ""
+
 msgid "Content"
 msgstr "உள்ளடக்கம்"
 
@@ -4616,6 +4798,9 @@ msgstr ""
 msgid "Continue in background"
 msgstr "பின்னணியில் தொடரவும்"
 
+msgid "Continue in the last direction"
+msgstr ""
+
 msgid "Continue playback"
 msgstr "பிளேபேக்கைத் தொடரவும்"
 
@@ -4624,6 +4809,9 @@ msgstr "தொடர்ந்து விளையாடுங்கள்"
 
 msgid "Continue to run the task in the background"
 msgstr "பணியை பின்னணியில் தொடர்ந்து இயக்கவும்"
+
+msgid "Continue watching"
+msgstr ""
 
 msgid "Continue with package download and installation"
 msgstr "தொகுப்பு பதிவிறக்கம் மற்றும் நிறுவலுடன் தொடரவும்"
@@ -4800,6 +4988,9 @@ msgid ""
 "Do you want to change the settings again?"
 msgstr ""
 
+msgid "Countries"
+msgstr ""
+
 msgid "Country"
 msgstr "நாடு"
 
@@ -4882,6 +5073,12 @@ msgstr "சாதன செய்தி டம்பை உருவாக்க
 msgid "Create kernel dump."
 msgstr "கர்னல் டம்பை உருவாக்கவும்."
 
+msgid "Create missing EIT file"
+msgstr ""
+
+msgid "Create missing EIT files"
+msgstr ""
+
 msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
 msgstr ""
 
@@ -4922,6 +5119,9 @@ msgstr "தேர்ந்தெடுக்கப்பட்ட சாதன�
 msgid "Create the flash expander in the selected device"
 msgstr "தேர்ந்தெடுக்கப்பட்ட சாதனத்தில் ஃபிளாச் விரிவாக்கியை உருவாக்கவும்"
 
+msgid "Create virtual collection"
+msgstr ""
+
 msgid "Create working directories."
 msgstr "வேலை கோப்பகங்களை உருவாக்குங்கள்."
 
@@ -4959,6 +5159,9 @@ msgstr ""
 
 msgid "Cree"
 msgstr "க்ரீ"
+
+msgid "Crew"
+msgstr ""
 
 msgid "Cricket"
 msgstr "கிரிக்கெட்"
@@ -5054,6 +5257,9 @@ msgstr "தற்போதைய அடைவு"
 msgid "Current directory (%s)"
 msgstr "தற்போதைய அடைவு (%s)"
 
+msgid "Current folder and subfolders"
+msgstr ""
+
 msgid "Current installed"
 msgstr "நடப்பு நிறுவப்பட்டது"
 
@@ -5103,6 +5309,9 @@ msgstr "தற்போது வரையறுக்கப்பட்ட த�
 msgid "Currently Remembered Volume Levels:"
 msgstr "தற்போது தொகுதி நிலைகள் நினைவில் உள்ளன:"
 
+msgid "Cursor after marking a movie"
+msgstr ""
+
 msgid "Custom"
 msgstr "தனிப்பயன்"
 
@@ -5135,6 +5344,10 @@ msgstr "Enigma2 தனிப்பட்ட அமைப்புகளைத்
 
 msgid "Cut"
 msgstr "வெட்டு"
+
+#, python-format
+msgid "Cut %s"
+msgstr ""
 
 msgid "CutList Skipping"
 msgstr ""
@@ -5340,6 +5553,12 @@ msgstr ""
 msgid "Darts"
 msgstr "ஈட்டிகள்"
 
+msgid "Database sort order"
+msgstr ""
+
+msgid "Database view"
+msgstr ""
+
 msgid "Date"
 msgstr "திகதி"
 
@@ -5486,9 +5705,15 @@ msgstr ""
 msgid "Default left column directory"
 msgstr "இயல்புநிலை இடது நெடுவரிசை அடைவு"
 
+msgid "Default movie location"
+msgstr ""
+
 #, python-format
 msgid "Default movie location (%s)"
 msgstr "இயல்புநிலை திரைப்பட இருப்பிடம் (%s)"
+
+msgid "Default movie location after standby"
+msgstr ""
 
 msgid "Default movie selection location"
 msgstr "இயல்புநிலை திரைப்படத் தேர்வு இடம்"
@@ -5498,6 +5723,9 @@ msgstr "இயல்புநிலை பதிவு வகை"
 
 msgid "Default right column directory"
 msgstr "இயல்புநிலை வலது நெடுவரிசை அடைவு"
+
+msgid "Default skin layout"
+msgstr ""
 
 msgid "Default sort order for directories in the left column."
 msgstr "இடது நெடுவரிசையில் உள்ள கோப்பகங்களுக்கான இயல்புநிலை வரிசை வரிசை"
@@ -5708,6 +5936,9 @@ msgstr "கர்சரின் இடதுபுறத்தில் எழ�
 
 msgid "Delete character under cursor or select PM times"
 msgstr "கர்சரின் கீழ் எழுத்தை நீக்கவும் அல்லது PM நேரங்களைத் தேர்ந்தெடுக்கவும்"
+
+msgid "Delete collection (keep movie files)"
+msgstr ""
 
 msgid "Delete current line"
 msgstr "தற்போதைய வரியை நீக்கு"
@@ -6081,6 +6312,9 @@ msgstr "அறிமுக திரையை முடக்கு"
 msgid "Disable operator profiles"
 msgstr "ஆபரேட்டர் சுயவிவரங்களை முடக்கு"
 
+msgid "Disable previews, start them manually, or start after resting on a movie. Automatic previews access movie storage and do not interrupt timeshift or an already playing movie."
+msgstr ""
+
 msgid "Disable saved Wi-Fi network"
 msgstr ""
 
@@ -6190,6 +6424,9 @@ msgstr "தரவு உள்ளீட்டிற்கு மெய்நி�
 
 msgid "Display type"
 msgstr "காட்சி வகை"
+
+msgid "Displayed movie title"
+msgstr ""
 
 msgid "Distance"
 msgstr "தூரம்"
@@ -6571,6 +6808,9 @@ msgstr "டூப்ளக்ச்"
 msgid "Duplicate the current line"
 msgstr "தற்போதைய வரியை நகலெடுக்கவும்"
 
+msgid "Duration"
+msgstr ""
+
 msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn't ready in time, this time can be increased."
 msgstr "இந்த நேரத்தில், டிரான்ச்மிட்டர் மற்றும் ரெக்கார்டிங் இலக்கு சரிபார்க்கப்படுகிறது. ரெக்கார்டிங் இலக்கு (எ.கா. நாச்) பதிவு செய்வதற்கான நேரத்தில் தயாராக இல்லை என்றால், இந்த நேரத்தை அதிகரிக்க முடியும்."
 
@@ -6765,6 +7005,19 @@ msgstr "தற்போதைய தலைப்பின் அத்திய�
 msgid "Edit current line"
 msgstr "தற்போதைய வரியைத் திருத்தவும்"
 
+msgid "Edit movie"
+msgstr ""
+
+msgid "Edit play queue"
+msgstr ""
+
+#, python-format
+msgid "Edit play queue (%d movies)"
+msgstr ""
+
+msgid "Edit recording information"
+msgstr ""
+
 msgid "Edit settings"
 msgstr "அமைப்புகளைத் திருத்தவும்"
 
@@ -6809,6 +7062,9 @@ msgstr "மேம்படுத்தல் மூல முகவரியை�
 
 msgid "Edit the username."
 msgstr "பயனர்பெயரைத் திருத்தவும்."
+
+msgid "Edit title and description"
+msgstr ""
 
 msgid "Education"
 msgstr "கல்வி"
@@ -6953,6 +7209,12 @@ msgid "Enable a selected RTL-SDR USB receiver for DAB+ reception. DVB-T and DAB+
 msgstr ""
 
 msgid "Enable adapter"
+msgstr ""
+
+msgid "Enable an installed movie database in Movie Selection settings to open the library."
+msgstr ""
+
+msgid "Enable an installed movie library provider for metadata, artwork and the Advance Movie List. Local folders remain available if the provider is unavailable."
 msgstr ""
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
@@ -7274,6 +7536,9 @@ msgstr "இந்த டைமருக்கு ஒரு விளக்கத
 
 msgid "Enter a directory or process a file (play/view/edit/install/extract/run)"
 msgstr "ஒரு கோப்பகத்தை உள்ளிடவும் அல்லது ஒரு கோப்பை செயலாக்கவும் (ப்ளே/பார்க்க/திருத்து/நிறுவ/பிரித்தெடுக்க/ரன்)"
+
+msgid "Enter a movie title."
+msgstr ""
 
 msgid "Enter a name for this timer."
 msgstr "இந்த டைமருக்கு ஒரு பெயரை உள்ளிடவும்."
@@ -7629,10 +7894,6 @@ msgstr "பிழை: பொருத்தமான சாதனத்தைக
 #, python-format
 msgid "Error: Creating directory '%s' failed!"
 msgstr "பிழை: கோப்பகத்தை உருவாக்குவது '%s' தோல்வியுற்றது!"
-
-#, python-format
-msgid "Error: Creating picon target directory: (%s)"
-msgstr "பிழை: பிகான் இலக்கு கோப்பகத்தை உருவாக்குதல்: (%s)"
 
 #, python-format
 msgid "Error: Directory '%s' does not exist!"
@@ -8370,6 +8631,15 @@ msgstr "கோப்பு பிசியாக இருப்பதாகத�
 msgid "File compression"
 msgstr "கோப்பு சுருக்க"
 
+msgid "File information"
+msgstr ""
+
+msgid "File name"
+msgstr ""
+
+msgid "File operations require a regular movie file."
+msgstr ""
+
 msgid "File sorting mode"
 msgstr ""
 
@@ -8388,6 +8658,12 @@ msgstr "கோப்புப்பெயர்"
 msgid "Files And Directories"
 msgstr ""
 
+msgid "Files and folders"
+msgstr ""
+
+msgid "Files or database"
+msgstr ""
+
 msgid "Files/folders to exclude from backup"
 msgstr "காப்புப்பிரதியிலிருந்து விலக்க கோப்புகள்/கோப்புறைகள்"
 
@@ -8399,6 +8675,9 @@ msgstr "நிர்வாண படம்"
 
 msgid "Film/Cinema"
 msgstr "படம்/சினிமா"
+
+msgid "Filter"
+msgstr ""
 
 msgid "Filter extensions"
 msgstr "நீட்டிப்புகளை வடிகட்டவும்"
@@ -8426,6 +8705,12 @@ msgstr "தற்போது விளையாடும் சேவையை�
 
 msgid "Find connected events"
 msgstr "இணைக்கப்பட்ட நிகழ்வுகளைத் தேடுகிறது"
+
+msgid "Find old watched movies"
+msgstr ""
+
+msgid "Find orphaned movie companion files"
+msgstr ""
 
 #, python-format
 msgid "Find out more at %s"
@@ -8457,6 +8742,9 @@ msgstr "பின்லாந்து"
 
 msgid "Finnish"
 msgstr "பின்னிச்"
+
+msgid "First chapter marker"
+msgstr ""
 
 msgid "First playable time shift file!"
 msgstr "முதல் விளையாடக்கூடிய நேர சிப்ட் கோப்பு!"
@@ -8557,6 +8845,21 @@ msgstr "தொலைதூரத்தில் தட்டையானது"
 msgid "Flush Cache and Rescan"
 msgstr ""
 
+msgid "Folder movie counts and sizes updated."
+msgstr ""
+
+msgid "Folder movie information"
+msgstr ""
+
+msgid "Folder sorting"
+msgstr ""
+
+msgid "Folders"
+msgstr ""
+
+msgid "Folders first"
+msgstr ""
+
 msgid "Folk Music"
 msgstr ""
 
@@ -8565,6 +8868,15 @@ msgstr "நாட்டுப்புற மற்றும் நாடு"
 
 msgid "Folk/Traditional music"
 msgstr "நாட்டுப்புற/பாரம்பரிய இசை"
+
+msgid "Follow changes to the EPG start and end times, keeping the recording margins. Missing EPG data or timer conflicts leave the times unchanged."
+msgstr ""
+
+msgid "Follow linked folders in snapshots"
+msgstr ""
+
+msgid "Follow symbolic links during the read-only movie snapshot task. Loops and duplicate directory targets are skipped. Cleanup tasks never follow symbolic links."
+msgstr ""
 
 msgid "Font size"
 msgstr "எழுத்துரு அளவு"
@@ -8615,6 +8927,9 @@ msgid "Force enabled"
 msgstr "படை இயக்கப்பட்டது"
 
 msgid "Force progressive for streams and files"
+msgstr ""
+
+msgid "Forced"
 msgstr ""
 
 msgid "Foreign Language"
@@ -8713,6 +9028,9 @@ msgstr "வெள்ளிக்கிழமை"
 
 msgid "From :"
 msgstr "இருந்து:"
+
+msgid "From the context menu"
+msgstr ""
 
 msgid "Front"
 msgstr "முன்"
@@ -9048,6 +9366,9 @@ msgstr "சாம்பல்"
 msgid "Group"
 msgstr "குழு"
 
+msgid "Group recordings into virtual folders"
+msgstr ""
+
 msgid "Grow drop"
 msgstr "துளி வளர"
 
@@ -9213,6 +9534,9 @@ msgstr "அவாயியன்"
 msgid "Heard Island and McDonald Islands"
 msgstr "எர்ட் தீவு மற்றும் மெக் டொனால்ட் தீவுகள்"
 
+msgid "Hearing impaired"
+msgstr ""
+
 msgid "Hebrew"
 msgstr "எபிரேய"
 
@@ -9279,6 +9603,9 @@ msgstr "இசிலிகான் குறிப்பிட்ட செய�
 msgid "HiSilicon specific information not found."
 msgstr "இசிலிகான் குறிப்பிட்ட தகவல்கள் காணப்படவில்லை."
 
+msgid "Hidden folders"
+msgstr ""
+
 msgid "Hidden network"
 msgstr "மறைக்கப்பட்ட பிணையம்"
 
@@ -9331,6 +9658,9 @@ msgid "Hide the InfoBar"
 msgstr "இன்போபரை மறைக்கவும்"
 
 msgid "Hide the OSD after a period without key presses. Screens and background jobs keep running. The first key press only restores the OSD, and newly opened dialogs make it visible again. Hold 0 to pause until the next GUI restart, or hold 0 again to resume."
+msgstr ""
+
+msgid "Hide this folder"
 msgstr ""
 
 msgid "Hide zap errors"
@@ -9752,6 +10082,9 @@ msgstr "காத்திருப்பைப் புறக்கணிக�
 msgid "Ignore services on satellites that are not configured in the tuner settings."
 msgstr ""
 
+msgid "Ignore the resume position when the configured watched percentage has been reached."
+msgstr ""
+
 msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "எதிர்பாராத விதமாக எழுந்து காத்திருப்புடன் இருங்கள்"
 
@@ -9828,6 +10161,9 @@ msgstr "ஒரு டைமரை பதிவு செய்வதற்கா
 
 msgid "In progress"
 msgstr "முன்னேற்றத்தில் உள்ளது"
+
+msgid "In progress from (%)"
+msgstr ""
 
 msgid "In use by DAB+"
 msgstr ""
@@ -9996,6 +10332,9 @@ msgstr ""
 
 msgid "Information"
 msgstr "தகவல்"
+
+msgid "Information list"
+msgstr ""
 
 msgid "Informational/Educational/School programs"
 msgstr "தகவல்/கல்வி/பள்ளி திட்டம்"
@@ -10169,6 +10508,9 @@ msgstr "உள் எச்டிடி மட்டும்"
 msgid "Internal flash"
 msgstr "உள் ஃபிளாச்"
 
+msgid "Internal flash only allows small picon packages."
+msgstr ""
+
 #, python-format
 msgid "Internal flash:  %s %s "
 msgstr "உள் ஃபிளாச்: %s %s"
@@ -10195,8 +10537,14 @@ msgstr "செல்லுபடியாகாத"
 msgid "Invalid Help Page"
 msgstr "தவறான உதவிப் பக்கம்"
 
+msgid "Invalid filename."
+msgstr ""
+
 msgid "Invalid location!"
 msgstr "தவறான இடம்!"
+
+msgid "Invalid original movie location."
+msgstr ""
 
 msgid "Invalid swap file size."
 msgstr ""
@@ -10378,8 +10726,17 @@ msgstr "கசாக்"
 msgid "Kazakhstan"
 msgstr "கசகிச்தான்"
 
+msgid "Keep previous playback position as chapter marker"
+msgstr ""
+
 msgid "Keep service"
 msgstr "சேவையை வைத்திருங்கள்"
+
+msgid "Keep the newest recordings up to this limit before applying the selected display order."
+msgstr ""
+
+msgid "Keep the play queue across GUI restarts. The queue is stored in the receiver configuration without accessing movie storage."
+msgstr ""
 
 msgid "Keep warning"
 msgid_plural "Keep warnings"
@@ -10620,11 +10977,32 @@ msgstr "லவொ மக்கள் சுதந்திர குடியர
 msgid "Large"
 msgstr "பெரிய"
 
+msgid "Large tiles"
+msgstr ""
+
+msgid "Last 24 hours"
+msgstr ""
+
+msgid "Last 30 days"
+msgstr ""
+
+msgid "Last 7 days"
+msgstr ""
+
+msgid "Last 90 days"
+msgstr ""
+
 msgid "Last config"
 msgstr "கடைசி கட்டமைப்பு"
 
 msgid "Last flash"
 msgstr "கடைசி ஃபிளாச்"
+
+msgid "Last folder"
+msgstr ""
+
+msgid "Last playback position"
+msgstr ""
 
 msgid "Last speed"
 msgstr "கடைசி விரைவு"
@@ -10644,6 +11022,24 @@ msgstr "கடைசியாக பயன்படுத்தப்பட்�
 msgctxt "third event: 'third' event label"
 msgid "Later"
 msgstr "பின்னர்"
+
+msgid "Latest recordings"
+msgstr ""
+
+msgid "Latest recordings collection"
+msgstr ""
+
+msgid "Latest recordings folders"
+msgstr ""
+
+msgid "Latest recordings maximum"
+msgstr ""
+
+msgid "Latest recordings period"
+msgstr ""
+
+msgid "Latest recordings sorting"
+msgstr ""
 
 msgid "Latin"
 msgstr "லத்தீன்"
@@ -10846,6 +11242,12 @@ msgstr "சேமிப்பக சாதனங்களின் பட்ட�
 msgid "List of storage devices"
 msgstr "சேமிப்பக சாதனங்களின் பட்டியல்"
 
+msgid "List or grid style"
+msgstr ""
+
+msgid "List style"
+msgstr ""
+
 msgid "Lists reloaded!"
 msgstr "மீண்டும் ஏற்றப்பட்ட பட்டியல்கள்!"
 
@@ -10873,6 +11275,9 @@ msgstr "சுமை"
 msgid "Load EPG Cache"
 msgstr "ஈபிசி தற்காலிக சேமிப்பை ஏற்றவும்"
 
+msgid "Load M3U playlist"
+msgstr ""
+
 msgid "Load play list"
 msgstr "பிளே பட்டியலை ஏற்றவும்"
 
@@ -10888,6 +11293,9 @@ msgstr ""
 
 msgid "Loading information, please wait..."
 msgstr "தகவலை ஏற்றுகிறது, தயவுசெய்து காத்திருங்கள் ..."
+
+msgid "Loading movie library..."
+msgstr ""
 
 msgid "Loading skin..."
 msgstr ""
@@ -11146,6 +11554,10 @@ msgstr "பட்டியல் விளையாடுங்கள்"
 msgid "Maintain your multi boot device."
 msgstr "உங்கள் மல்டி துவக்க சாதனத்தை பராமரிக்கவும்."
 
+#, python-format
+msgid "Maintenance scan finished: %d candidates. Review them from Movie maintenance in the context menu."
+msgstr ""
+
 msgid "Make"
 msgstr "உருவாக்கு"
 
@@ -11275,8 +11687,29 @@ msgstr "பதிவு செய்வதற்கு முன் விளி
 msgid "Margin before zap"
 msgstr "சாப் முன் விளிம்பு"
 
+msgid "Mark / unmark movie"
+msgstr ""
+
 msgid "Mark As Dedicated 3D Service"
 msgstr "அர்ப்பணிப்பு 3D சேவையாக குறிக்கவும்"
+
+msgid "Mark as unwatched"
+msgstr ""
+
+msgid "Mark as watched"
+msgstr ""
+
+msgid "Mark new recordings"
+msgstr ""
+
+msgid "Mark selected movies as unwatched"
+msgstr ""
+
+msgid "Mark selected movies as watched"
+msgstr ""
+
+msgid "Mark unwatched recordings from the last 24 hours or since the previous visit. Returning from playback keeps the same visit."
+msgstr ""
 
 msgid "Marker Actions"
 msgstr "மார்க்கர் செயல்கள்"
@@ -11356,6 +11789,9 @@ msgstr "மீடியா பிளேயர் அமைப்புகள்"
 
 msgid "Media Stream"
 msgstr "மீடியா ச்ட்ரீம்"
+
+msgid "Media information is currently unavailable."
+msgstr ""
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "மீடியா பிளேபேக் மீதமுள்ள/கழிந்தது"
@@ -11497,7 +11933,19 @@ msgstr "OSD உடன் MINITV"
 msgid "Minimum age %d years"
 msgstr "குறைந்தபட்ச அகவை %d ஆண்டுகள்"
 
+msgid "Minimum age for watched movie maintenance (days)"
+msgstr ""
+
 msgid "Minimum difference between idle and moving current."
+msgstr ""
+
+msgid "Minimum playback percentage for the in-progress status. A movie without a playback position remains unwatched."
+msgstr ""
+
+msgid "Minimum playback percentage for the watched status, watched-movie restart and manual maintenance."
+msgstr ""
+
+msgid "Minimum recordings per virtual folder"
 msgstr ""
 
 msgid "Minimum send interval"
@@ -11671,6 +12119,18 @@ msgstr "ஏற்றங்கள்"
 msgid "Move"
 msgstr "நகர்த்தவும்"
 
+#, python-format
+msgid "Move %d selected movies and their companion files to the trashcan?"
+msgstr ""
+
+#, python-format
+msgid "Move %d selected watched movies and their companion files to the trashcan?"
+msgstr ""
+
+#, python-format
+msgid "Move '%s' and its companion files to the trashcan?"
+msgstr ""
+
 msgid "Move Down"
 msgstr ""
 
@@ -11703,6 +12163,9 @@ msgstr "தொடர்புடைய அனைத்து கோப்பு�
 
 msgid "Move directory/file to target directory"
 msgstr "அடைவு/கோப்பை இலக்கு கோப்பகத்திற்கு நகர்த்தவும்"
+
+msgid "Move down"
+msgstr ""
 
 msgid "Move down a line"
 msgstr "ஒரு வரியில் கீழே நகர்த்தவும்"
@@ -11761,11 +12224,17 @@ msgstr "நகரும் வேலை தோல்வியடைந்தத�
 msgid "Move job queued."
 msgstr "வேலை வரிசையில் நகர்த்தவும்."
 
+msgid "Move left"
+msgstr ""
+
 msgid "Move left a item"
 msgstr ""
 
 msgid "Move only highlighted file"
 msgstr "சிறப்பிக்கப்பட்ட கோப்பை மட்டும் நகர்த்தவும்"
+
+msgid "Move right"
+msgstr ""
 
 msgid "Move right a item"
 msgstr ""
@@ -11891,6 +12360,9 @@ msgstr "முந்தைய உருப்படிக்கு நகர்�
 msgid "Move to the previous item in list"
 msgstr "பட்டியலில் முந்தைய உருப்படிக்கு நகர்த்தவும்"
 
+msgid "Move up"
+msgstr ""
+
 msgid "Move up a line"
 msgstr "ஒரு வரியை நகர்த்தவும்"
 
@@ -11966,8 +12438,62 @@ msgstr "திரைப்பட பட்டியல் செயல்கள�
 msgid "Movie Selection Settings"
 msgstr "திரைப்பட பட்டியல் அமைப்புகள்"
 
+msgid "Movie artwork"
+msgstr ""
+
+msgid "Movie count"
+msgstr ""
+
+msgid "Movie count and size"
+msgstr ""
+
+msgid "Movie count, size and new movies"
+msgstr ""
+
+msgid "Movie database"
+msgstr ""
+
+msgid "Movie database unavailable"
+msgstr ""
+
+msgid "Movie database unavailable. Select files and folders from View in the menu."
+msgstr ""
+
+msgid "Movie date format"
+msgstr ""
+
+msgid "Movie file operations"
+msgstr ""
+
+msgid "Movie front display"
+msgstr ""
+
+msgid "Movie information"
+msgstr ""
+
+msgid "Movie library"
+msgstr ""
+
+msgid "Movie maintenance"
+msgstr ""
+
+msgid "Movie play queue"
+msgstr ""
+
 msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr "மூவி பிளேபேக் தவறான/பொருத்தமற்ற கோப்பகத்தைப் பயன்படுத்தக்கூடாது."
+
+msgid "Movie player style"
+msgstr ""
+
+msgid "Movie playlists support local files and mounted storage only."
+msgstr ""
+
+msgid "Movie preview"
+msgstr ""
+
+msgid "Movie size"
+msgstr ""
 
 msgid "Movie/Drama"
 msgstr "திரைப்படம்/நாடகம்"
@@ -11977,6 +12503,9 @@ msgstr "மூவி பிளேயர்"
 
 msgid "Movies"
 msgstr "திரைப்படங்கள்"
+
+msgid "Movies and series"
+msgstr ""
 
 msgid "Moving"
 msgstr "நகரும்"
@@ -12423,6 +12952,15 @@ msgstr "புதிய நிகழ்வு செய்தி"
 msgid "New media"
 msgstr "புதிய ஊடகங்கள்"
 
+msgid "New movie filename (without extension)"
+msgstr ""
+
+msgid "New movies"
+msgstr ""
+
+msgid "New movies: update folder statistics"
+msgstr ""
+
 msgid "New password"
 msgstr "புதிய கடவுச்சொல்"
 
@@ -12443,6 +12981,9 @@ msgstr "NewCamd Des Key"
 
 msgid "NewDirectory"
 msgstr "புதிய அடைவு"
+
+msgid "Newest recordings first"
+msgstr ""
 
 msgid "News"
 msgstr "செய்தி"
@@ -12480,6 +13021,12 @@ msgstr "அடுத்த சேனல் பக்கம்"
 
 msgid "Next higher resolution"
 msgstr "அடுத்த உயர் தெளிவுத்திறன்"
+
+msgid "Next movie"
+msgstr ""
+
+msgid "Next page"
+msgstr ""
 
 msgid "Next quad PiP channel"
 msgstr "அடுத்த குவாட் பிப் சேனல்"
@@ -12593,6 +13140,9 @@ msgstr "நேரந்தவறுகை இல்லை"
 msgid "No demux available"
 msgstr "டெமக்ச் கிடைக்கவில்லை"
 
+msgid "No description available."
+msgstr ""
+
 msgid "No displayable files on this medium found!"
 msgstr "இந்த ஊடகத்தில் காட்சிப்படுத்தக்கூடிய கோப்புகள் எதுவும் இல்லை!"
 
@@ -12620,6 +13170,9 @@ msgstr ""
 msgid "No hard disks detected."
 msgstr "கடினமான வட்டுகள் கண்டறியப்படவில்லை."
 
+msgid "No hidden folders"
+msgstr ""
+
 msgid "No hosts found yet - still scanning..."
 msgstr ""
 
@@ -12629,8 +13182,17 @@ msgstr ""
 msgid "No log files found so debug logs are unavailable!"
 msgstr "பதிவு கோப்புகள் எதுவும் காணப்படவில்லை, எனவே பிழைத்திருத்த பதிவுகள் கிடைக்கவில்லை!"
 
+msgid "No maintenance candidates found."
+msgstr ""
+
 msgid "No matching place names found"
 msgstr "பொருந்தக்கூடிய இடப் பெயர்கள் இல்லை"
+
+msgid "No movie description is available to create an EIT file."
+msgstr ""
+
+msgid "No movies found. Select files and folders from View to see unscanned recordings."
+msgstr ""
 
 msgid "No network adapters enabled/available!"
 msgstr "பிணையம் அடாப்டர்கள் எதுவும் இயக்கப்படவில்லை/கிடைக்கவில்லை!"
@@ -12661,6 +13223,9 @@ msgstr "வள மேலாளர் இல்லை"
 
 msgid "No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."
 msgstr "செயற்கைக்கோள், நிலப்பரப்பு அல்லது கேபிள் ட்யூனர் கட்டமைக்கப்படவில்லை. உங்கள் ட்யூனர் அமைப்பை சரிபார்க்கவும்."
+
+msgid "No saved playback position is available."
+msgstr ""
 
 msgid "No service"
 msgstr "பணி இல்லை"
@@ -12736,6 +13301,9 @@ msgstr ""
 
 msgid "No tuners are currently streaming."
 msgstr "எந்த ட்யூனர்களும் தற்போது ச்ட்ரீமிங் செய்யவில்லை."
+
+msgid "No unambiguous series filenames are available. A series name, season and episode are required."
+msgstr ""
 
 msgid "No unused swap file name is available."
 msgstr ""
@@ -13097,6 +13665,9 @@ msgstr "ஆஃப்செட் மற்றும் CA சாதனத்த�
 msgid "Ojibwa"
 msgstr "ஒசிப்வா"
 
+msgid "Oldest recordings first"
+msgstr ""
+
 msgid "Oldies"
 msgstr ""
 
@@ -13163,11 +13734,17 @@ msgstr "ஃபிளாச் காப்பு படம் மட்டும
 msgid "Only HD"
 msgstr "HD மட்டுமே"
 
+msgid "Only create a group when at least this many matching recordings are present."
+msgstr ""
+
 msgid "Only free scan"
 msgstr "இலவச ச்கேன் மட்டுமே"
 
 msgid "Only in Standby"
 msgstr "காத்திருப்பு மட்டுமே"
+
+msgid "Only include recordings made during this period."
+msgstr ""
 
 msgid "Only log debug information of GStreamer category. * means all categories."
 msgstr "சிச்ட்ரீமர் வகையின் பிழைத்திருத்த தகவல்களை மட்டுமே பதிவுசெய்க. * அனைத்து வகைகளும் என்று பொருள்."
@@ -13211,6 +13788,9 @@ msgstr "திறந்த ஆட்டோடிமர்"
 msgid "Open AutoTimer Overview"
 msgstr "ஆட்டோடிமெர்லிச்ட் திறந்த"
 
+msgid "Open BDMV and BRD folder structures with the native Blu-ray service."
+msgstr ""
+
 msgid "Open Bouquet selection"
 msgstr "பூச்செண்டு பட்டியல்"
 
@@ -13219,6 +13799,12 @@ msgstr "பெட்டி போர்ட்டலைக் காட்டு"
 
 msgid "Open Capability"
 msgstr "திறந்த திறன்"
+
+msgid "Open DVD images individually with the DVD player."
+msgstr ""
+
+msgid "Open DVD images individually with the DVD player. Play queues support video and audio files."
+msgstr ""
 
 msgid "Open EPG"
 msgstr "EPG ஐக் காட்டு ..."
@@ -13316,8 +13902,17 @@ msgstr "டிவி பிளேயரைக் காட்டு"
 msgid "Open Usage and GUI Settings"
 msgstr "பயன்பாடு மற்றும் GUI மெனுவைக் காட்டு ..."
 
+msgid "Open VIDEO_TS and DVD folder structures directly with the DVD player."
+msgstr ""
+
 msgid "Open VideoMode"
 msgstr "வடிவமைப்பு அமைப்பைக் காட்டு"
+
+msgid "Open a movie directly when its filename matches its containing folder. File operations still treat the containing folder as a folder."
+msgstr ""
+
+msgid "Open collection"
+msgstr ""
 
 msgid "Open context menu"
 msgstr "சூழல் மெனுவைத் திறக்கவும்"
@@ -13333,6 +13928,9 @@ msgstr "வெளிப்புற வசன மேலாண்மைத் த
 
 msgid "Open file sort menu"
 msgstr "கோப்பு வரிசை மெனுவைத் திறக்கவும்"
+
+msgid "Open selected movie or series"
+msgstr ""
 
 msgid "Open service list and select next service"
 msgstr "பணி பட்டியலைத் திறந்து அடுத்த சேனலைத் தேர்ந்தெடுக்கவும்"
@@ -13385,6 +13983,9 @@ msgstr ""
 msgid "Open the context menu"
 msgstr "சூழல் மெனுவைத் திறக்கவும்"
 
+msgid "Open the last folder, the default movie location, or return to the default location after standby. Returning from playback keeps the selected movie."
+msgstr ""
+
 msgid "Open the multi service EPG view"
 msgstr "பல பணி ஈபிசி பார்வையைத் திறக்கவும்"
 
@@ -13412,6 +14013,9 @@ msgstr ""
 msgid "OpenWebif picon path"
 msgstr ""
 
+msgid "Opening movie folder"
+msgstr ""
+
 msgid "Opening network adapter configuration..."
 msgstr ""
 
@@ -13426,6 +14030,9 @@ msgstr "காத்திருப்பு பயன்முறையில�
 
 msgid "Operating LED status while running"
 msgstr "இயங்கும் போது எல்.ஈ.டி நிலையை இயக்குகிறது"
+
+msgid "Operation cancelled."
+msgstr ""
 
 msgid "Opkg Actions"
 msgstr "OBKG செயல்கள்"
@@ -13472,11 +14079,17 @@ msgstr "அசல் பிணையம் ஐடி (ONID)"
 msgid "Original language"
 msgstr "அசல் மொழி"
 
+msgid "Original title"
+msgstr ""
+
 msgid "Oriya"
 msgstr "ஓரியா"
 
 msgid "Oromo"
 msgstr "ஒரோமோ"
+
+msgid "Orphaned companion files removed."
+msgstr ""
 
 msgid "Oscam Information"
 msgstr "ஆச்காம் செய்தி"
@@ -13650,6 +14263,10 @@ msgstr "தொகுப்பு"
 msgid "Packages and associated locales"
 msgstr "தொகுப்புகள் மற்றும் தொடர்புடைய இடங்கள்"
 
+#, python-format
+msgid "Page %(page)d · %(count)d entries"
+msgstr ""
+
 msgid "Page down"
 msgstr "பக்கம் கீழே"
 
@@ -13816,6 +14433,18 @@ msgstr ""
 msgid "Period and space '. '"
 msgstr ""
 
+#, python-format
+msgid "Permanently delete %d selected movies and their companion files?"
+msgstr ""
+
+#, python-format
+msgid "Permanently delete %d selected orphaned companion files?"
+msgstr ""
+
+#, python-format
+msgid "Permanently delete '%s' and its companion files?"
+msgstr ""
+
 msgid "Permanently delete all recordings in the trashcan?"
 msgstr "குப்பைத்தொட்டியில் உள்ள அனைத்து பதிவுகளையும் நிரந்தரமாக நீக்கவா?"
 
@@ -13961,6 +14590,9 @@ msgstr "பிட்கேரின்"
 msgid "Pixel Test"
 msgstr "படப்புள்ளி சோதனை"
 
+msgid "Pixel format"
+msgstr ""
+
 msgid "Pixels\n"
 msgstr "படப்புள்ளிகள்\n"
 
@@ -14009,6 +14641,9 @@ msgstr "பணி காப்பகத்தைப் பிடிக்கவ�
 msgid "Play entry"
 msgstr "நுழைவு விளையாடுங்கள்"
 
+msgid "Play from here"
+msgstr ""
+
 msgid "Play from next mark or play list entry"
 msgstr "அடுத்த குறி அல்லது பிளே பட்டியல் உள்ளீட்டிலிருந்து விளையாடுங்கள்"
 
@@ -14035,6 +14670,22 @@ msgstr "அடுத்து விளையாடுங்கள் (முந
 
 msgid "Play previous"
 msgstr "முன்பு விளையாடுங்கள்"
+
+msgid "Play queue"
+msgstr ""
+
+msgid "Play queue / playlists"
+msgstr ""
+
+msgid "Play queue cleared"
+msgstr ""
+
+#, python-format
+msgid "Play queue: %d movies (maximum 1024)"
+msgstr ""
+
+msgid "Play selected movies"
+msgstr ""
 
 msgid "Play selected service in a PiP window"
 msgstr "பிஐபி சாளரத்தில் தேர்ந்தெடுக்கப்பட்ட சேவையை விளையாடுங்கள்"
@@ -14066,11 +14717,26 @@ msgstr "பின்னணி அமைப்புகள்"
 msgid "Playback Time:"
 msgstr "பின்னணி நேரம்:"
 
+msgid "Playback changed. Select the movie again before deleting it."
+msgstr ""
+
 msgid "Playback, Recording & Time Shift"
 msgstr "பிளேபேக், ரெக்கார்டிங் & டைம் சிப்ட்"
 
+msgid "Playing"
+msgstr ""
+
 msgid "Playlist"
 msgstr "பிளேலிச்ட்"
+
+msgid "Playlist filename (.m3u or .m3u8)"
+msgstr ""
+
+msgid "Playlist loaded"
+msgstr ""
+
+msgid "Playlist saved"
+msgstr ""
 
 msgid "Playpause"
 msgstr "பிளேப்பாச்"
@@ -14162,6 +14828,9 @@ msgstr "தயவுசெய்து ஒரு நாடக பட்டிய
 
 msgid "Please select a resolution..."
 msgstr "தயவுசெய்து ஒரு தீர்மானத்தைத் தேர்ந்தெடுக்கவும் ..."
+
+msgid "Please select a target directory."
+msgstr ""
 
 msgid "Please select an aspect ratio..."
 msgstr "ஒரு விகித விகிதத்தைத் தேர்ந்தெடுக்கவும் ..."
@@ -14443,6 +15112,12 @@ msgstr "நிலைப்படுத்தி அமைப்பு"
 msgid "Possible causes could be:"
 msgstr "சாத்தியமான காரணங்கள் இருக்கக்கூடும்:"
 
+msgid "Poster grid"
+msgstr ""
+
+msgid "Poster list"
+msgstr ""
+
 msgid "Power"
 msgstr "விசை"
 
@@ -14539,7 +15214,19 @@ msgstr "பதிவுகளுக்கான விருப்பமான �
 msgid "Preparation time for recording"
 msgstr "பதிவு செய்வதற்கான தயாரிப்பு நேரம்"
 
+msgid "Preparing latest recordings. Progress is shown in Tasks."
+msgstr ""
+
+msgid "Preparing picon storage. Existing picons will be preserved. Please wait..."
+msgstr ""
+
+msgid "Preparing picon storage. Please wait..."
+msgstr ""
+
 msgid "Preparing recording, please wait..."
+msgstr ""
+
+msgid "Preparing series filenames..."
 msgstr ""
 
 msgid "Preparing... Please wait"
@@ -14673,6 +15360,15 @@ msgstr "முன்னோட்டம்"
 msgid "Preview menu"
 msgstr "முன்னோட்டம் பட்டியல்"
 
+msgid "Preview offset (seconds)"
+msgstr ""
+
+msgid "Preview series filenames from the movie database"
+msgstr ""
+
+msgid "Preview starting point"
+msgstr ""
+
 msgid "Previous"
 msgstr "முந்தைய"
 
@@ -14684,6 +15380,9 @@ msgstr "முந்தைய பக்கம்"
 
 msgid "Previous channel page"
 msgstr "முந்தைய சேனல் பக்கம்"
+
+msgid "Previous page"
+msgstr ""
 
 msgid "Previous/Next page"
 msgstr "முந்தைய/அடுத்த பக்கம்"
@@ -14745,6 +15444,10 @@ msgstr "டிவியில் இருந்து உள்ளீட்ட�
 
 msgid "Processing"
 msgstr "செயலாக்கம்"
+
+#, python-format
+msgid "Processing %d movies in the background"
+msgstr ""
 
 msgid "Processor information"
 msgstr "செயலி செய்தி"
@@ -15110,12 +15813,19 @@ msgstr "சீரற்ற"
 msgid "Random Password"
 msgstr "சீரற்ற கடவுச்சொல்"
 
+msgid "Rating"
+msgstr ""
+
 #, python-format
 msgid "Rating defined by broadcaster - %d"
 msgstr "விகிதம் ஒளிபரப்பாளரால் வரையறுக்கப்படுகிறது - %d"
 
 msgid "Rating undefined"
 msgstr "மதிப்பீடு வரையறுக்கப்படவில்லை"
+
+#, python-format
+msgid "Rating: %s"
+msgstr ""
 
 msgid "Re-enter new PIN"
 msgstr "புதிய முள் மீண்டும் உள்ளிடவும்"
@@ -15132,6 +15842,9 @@ msgstr "Oscam.conf இலிருந்து USERDATA ஐப் படிய�
 msgid "Read block size"
 msgstr ""
 
+msgid "Read movie folders"
+msgstr ""
+
 msgid "Read-Only"
 msgstr "படிக்கவும்"
 
@@ -15140,6 +15853,12 @@ msgstr "படிக்க/எழுத"
 
 msgid "Reader"
 msgstr "வாசகர்"
+
+msgid "Reading media information timed out."
+msgstr ""
+
+msgid "Reading media information..."
+msgstr ""
 
 msgid "Ready"
 msgstr ""
@@ -15252,6 +15971,15 @@ msgstr ""
 msgid "Reception sources to scan"
 msgstr ""
 
+msgid "Recognize Blu-ray folders"
+msgstr ""
+
+msgid "Recognize DVD folders"
+msgstr ""
+
+msgid "Recognize movie folders"
+msgstr ""
+
 msgid "Record"
 msgstr "பதிவு"
 
@@ -15285,6 +16013,9 @@ msgstr "ரெக்கார்டிமர்ச்"
 msgid "Recordable media toolbox"
 msgstr "பதிவு செய்யக்கூடிய மீடியா கருவிப்பெட்டி"
 
+msgid "Recorded"
+msgstr ""
+
 msgid "Recording"
 msgstr "பதிவு"
 
@@ -15312,6 +16043,12 @@ msgstr "பதிவுசெய்தது"
 msgid "Recording failed"
 msgstr "பதிவு தோல்வியடைந்தது"
 
+#, python-format
+msgid ""
+"Recording failed because the channel's programme information could not be received.\n"
+"%s"
+msgstr ""
+
 msgid "Recording finished"
 msgstr "பதிவு முடிந்தது"
 
@@ -15332,6 +16069,15 @@ msgstr "பதிவு தொடங்கியது! இப்போது �
 
 msgid "Recording stopped"
 msgstr "பதிவு நிறுத்தப்பட்டது"
+
+msgid "Recording title"
+msgstr ""
+
+msgid "Recording title and separator"
+msgstr ""
+
+msgid "Recording title separator"
+msgstr ""
 
 msgid "Recording tuning failed"
 msgstr "பதிவுசெய்தல் டியூனிங் தோல்வியடைந்தது"
@@ -15413,7 +16159,13 @@ msgstr "ZeroTier நிலை தகவலைப் புதுப்பிக�
 msgid "Refresh every"
 msgstr "ஒவ்வொரு (மணிநேரத்திலும்) புதுப்பிக்கவும்"
 
+msgid "Refresh library"
+msgstr ""
+
 msgid "Refresh list of RTL-SDR USB tuners"
+msgstr ""
+
+msgid "Refresh movie folder"
 msgstr ""
 
 msgid "Refresh rate"
@@ -15446,8 +16198,17 @@ msgstr "வழக்கமான கோப்பு"
 msgid "Relative"
 msgstr "உறவினர்"
 
+msgid "Relative date"
+msgstr ""
+
 msgid "Release Notes"
 msgstr "வெளியீட்டு குறிப்புகள்"
+
+msgid "Release date"
+msgstr ""
+
+msgid "Release year"
+msgstr ""
 
 msgid "Relevant PIDs Routing"
 msgstr "தொடர்புடைய PIDS ரூட்டிங்"
@@ -15511,6 +16272,9 @@ msgstr "குறிப்பிடத்தக்க மக்கள்"
 
 msgid "Remember last service in PiP"
 msgstr "PIP இல் கடைசி சேவையை நினைவில் கொள்க"
+
+msgid "Remember play queue"
+msgstr ""
 
 msgid "Remember service PIN"
 msgstr "பணி முள் நினைவில் கொள்க"
@@ -15636,6 +16400,9 @@ msgstr "அனைத்து நேரங்குறிகருவி தர�
 msgid "Remove all user interface data"
 msgstr "அனைத்து பயனர் இடைமுக தரவையும் அகற்று"
 
+msgid "Remove chapter markers (keep cuts and resume position)"
+msgstr ""
+
 msgid "Remove completed timers after"
 msgstr "முடிக்கப்பட்ட டைமர்களை அகற்றவும்"
 
@@ -15645,10 +16412,19 @@ msgstr "புக்மார்க்குகளிலிருந்து �
 msgid "Remove currently selected title"
 msgstr "தற்போது தேர்ந்தெடுக்கப்பட்ட தலைப்பை அகற்று"
 
+msgid "Remove from queue"
+msgstr ""
+
 msgid "Remove highlighted directory from bookmarks"
 msgstr "புக்மார்க்குகளிலிருந்து சிறப்பிக்கப்பட்ட கோப்பகத்தை அகற்று"
 
+msgid "Remove orphaned movie companion files"
+msgstr ""
+
 msgid "Remove previously stored services from scanned DAB+ multiplexes. Disable this option to retain services when a multiplex is temporarily unavailable."
+msgstr ""
+
+msgid "Remove selected movies from collection"
 msgstr ""
 
 msgid "Remove service from AutoCam"
@@ -15690,6 +16466,10 @@ msgstr "பகிர்வு அட்டவணையை நீக்குத�
 msgid "Rename"
 msgstr "மறுபெயரிடுங்கள்"
 
+#, python-format
+msgid "Rename %(count)d movies with their companion files? %(skipped)d unchanged or incomplete entries were skipped."
+msgstr ""
+
 msgid "Rename Directory"
 msgstr "கோப்பகத்தை மறுபெயரிடுங்கள்"
 
@@ -15699,11 +16479,17 @@ msgstr "நுழைவு மறுபெயரிடுங்கள்"
 msgid "Rename all related files"
 msgstr "தொடர்புடைய அனைத்து கோப்புகளையும் மறுபெயரிடுங்கள்"
 
+msgid "Rename collection"
+msgstr ""
+
 msgid "Rename directory/file"
 msgstr "அடைவு/கோப்பை மறுபெயரிடுங்கள்"
 
 msgid "Rename failed!"
 msgstr "மறுபெயரிட்டது தோல்வியுற்றது!"
+
+msgid "Rename movie file and companion files"
+msgstr ""
 
 msgid "Rename name and description for new events"
 msgstr "புதிய நிகழ்வுகளுக்கு பெயர் மற்றும் விளக்கத்தை மறுபெயரிடுங்கள்"
@@ -15996,6 +16782,9 @@ msgstr "கணினி அமைப்புகளை மீட்டெடு�
 msgid "Restore backups"
 msgstr "காப்புப்பிரதிகளை மீட்டமைக்கவும்"
 
+msgid "Restore previous playback position"
+msgstr ""
+
 msgid "Restore settings from a backup"
 msgstr "காப்புப்பிரதியிலிருந்து அமைப்புகளை மீட்டெடுக்கவும்"
 
@@ -16004,6 +16793,9 @@ msgstr "அமைப்புகளை இப்போது மீட்டெ�
 
 msgid "Restore the highlighted slot"
 msgstr "சிறப்பம்சமாக ச்லாட்டை மீட்டெடுக்கவும்"
+
+msgid "Restore to original location"
+msgstr ""
 
 msgid "Restore your %s %s settings."
 msgstr "உங்கள் %s %s அமைப்புகளை மீட்டெடுக்கவும்."
@@ -16084,6 +16876,9 @@ msgstr ""
 msgid "Return to previous service"
 msgstr "முந்தைய சேவைக்குத் திரும்பு"
 
+msgid "Reuse recently read folders for this duration. The cache is limited to 32 folders and 10000 entries. Refresh from the context menu to see external changes immediately."
+msgstr ""
+
 msgid "Reverse bouquet buttons"
 msgstr "பூச்செண்டு பொத்தான்களை மாற்றியமைக்கவும்"
 
@@ -16092,6 +16887,9 @@ msgstr "தலைகீழ் பட்டியல்"
 
 msgid "Review"
 msgstr "சீராய்வு"
+
+msgid "Review last maintenance scan"
+msgstr ""
 
 msgid "Rewind"
 msgstr "முன்னாடி"
@@ -16237,6 +17035,9 @@ msgstr "கட்டளை %d: ' %s'."
 msgid "Running only"
 msgstr ""
 
+msgid "Runtime"
+msgstr ""
+
 msgid "Russian"
 msgstr "ரச்ய"
 
@@ -16358,6 +17159,9 @@ msgstr "சமோவா"
 msgid "Samoan"
 msgstr "சமோவான்"
 
+msgid "Sample rate"
+msgstr ""
+
 msgid "San Marino"
 msgstr "சான் மரீனோ"
 
@@ -16448,6 +17252,9 @@ msgstr "சேமித்து பதிவு செய்யுங்கள�
 msgid "Save and stop"
 msgstr "சேமித்து நிறுத்துங்கள்"
 
+msgid "Save available movie information beside video files, including MKV. Existing EIT files are kept. Automatic creation applies to selected files in the folder view; database browsing does not write to sleeping storage."
+msgstr ""
+
 msgid "Save directory on EXIT"
 msgstr "வெளியேறும்போது கோப்பகத்தை சேமிக்கவும்"
 
@@ -16467,6 +17274,9 @@ msgstr "விளையாட்டு பட்டியலை சேமிக�
 msgid "Save play list on EXIT"
 msgstr "வெளியேறும்போது பிளே பட்டியலை சேமிக்கவும்"
 
+msgid "Save queue as M3U playlist"
+msgstr ""
+
 msgid "Save right directory on exit"
 msgstr "வெளியேறும்போது சரியான கோப்பகத்தை சேமிக்கவும்"
 
@@ -16484,6 +17294,9 @@ msgstr "பதிவு மாற்றங்களைச் சேமித்�
 
 msgid "Save the log of the console messages to a file"
 msgstr "கன்சோல் செய்திகளின் பதிவை ஒரு கோப்பில் சேமிக்கவும்"
+
+msgid "Save the previous playback position and movie duration in the standard .cuts file."
+msgstr ""
 
 msgid "Save the right column directory location on exit."
 msgstr "வெளியேறும்போது வலது நெடுவரிசை அடைவு இருப்பிடத்தை சேமிக்கவும்."
@@ -16559,6 +17372,9 @@ msgstr ""
 msgid "Scan additional SR"
 msgstr "கூடுதல் எச்.ஆர்"
 
+msgid "Scan cancelled or folder limit reached."
+msgstr ""
+
 msgid "Scan files..."
 msgstr "கோப்புகளை ச்கேன் செய்யுங்கள் ..."
 
@@ -16570,6 +17386,9 @@ msgstr "உள்ளக நீட்டிப்புகளுக்கு ச�
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "நிலப்பரப்பு எல்.சி.என் -க்கு ச்கேன் செய்து எல்.சி.என் பூங்கொத்துகளை உருவாக்கவும்"
+
+msgid "Scan movie folders"
+msgstr ""
 
 msgid "Scan region"
 msgstr ""
@@ -16610,6 +17429,9 @@ msgstr[0] "ச்கேனிங் முடிந்தது, %d பணி �
 msgstr[1] "ச்கேனிங் முடிந்தது, %d சேவைகள் காணப்பட்டன."
 
 msgid "Scanning for shares..."
+msgstr ""
+
+msgid "Scanning movie folders in the background"
 msgstr ""
 
 msgid "Scanning swap devices..."
@@ -16677,17 +17499,29 @@ msgstr "அறிவியல் புனைகதை/கற்பனை/தி
 msgid "Scope"
 msgstr "நோக்கம்"
 
+msgid "Screen layout"
+msgstr ""
+
 msgid "Screen saver mode"
 msgstr "திரை சேவர் பயன்முறை"
 
 msgid "Screen saver movement"
 msgstr "திரை சேவர் இயக்கம்"
 
+msgid "Screen style"
+msgstr ""
+
 msgid "Script Manager"
 msgstr "ச்கிரிப்ட் மேலாளர்"
 
 msgid "ScriptRunner"
 msgstr "ச்கிரிப்ட்ரன்னர்"
+
+msgid "Scroll down"
+msgstr ""
+
+msgid "Scroll up"
+msgstr ""
 
 msgid "Scrolling Speed"
 msgstr "ச்க்ரோலிங் விரைவு"
@@ -16719,6 +17553,9 @@ msgstr "பிணைய பங்குகளைத் தேடுங்கள�
 msgid "Search in the current view"
 msgstr ""
 
+msgid "Search movie library"
+msgstr ""
+
 msgid "Search packages by name or description"
 msgstr ""
 
@@ -16736,6 +17573,20 @@ msgstr ""
 
 msgid "Searching west ..."
 msgstr "மேற்கு தேடுகிறது ..."
+
+#, python-format
+msgid "Season %(season)s · Episode %(episode)s"
+msgstr ""
+
+#, python-format
+msgid "Season %d"
+msgstr ""
+
+msgid "Season and episode"
+msgstr ""
+
+msgid "Season unknown"
+msgstr ""
 
 msgid "Second cable of motorized LNB"
 msgstr "மின்னோடி பொருத்தப்பட்ட எல்.என்.பியின் இரண்டாவது கேபிள்"
@@ -17064,9 +17915,6 @@ msgstr ""
 msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr "ஆம் போது, வி.பி."
 
-msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
-msgstr "மாற்று அறிவிலிமையம் ஊட்ட ஐபி முகவரிகளைப் பயன்படுத்த 'ஆம்' என்பதைத் தேர்ந்தெடுக்கவும். நீங்கள் ஒரு VPN ஐப் பயன்படுத்தினால் இது உதவியாக இருக்கும், மேலும் வெளியிடப்பட்ட DNS பெயர்கள் வழியாக சாதாரண ஊட்டங்களை அணுக முடியாது."
-
 msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
 msgstr "CH +/- செயலில் உள்ள நெடுவரிசையை மாற்றும் மரபு வழிசெலுத்தலைப் பயன்படுத்த 'ஆம்' என்பதைத் தேர்ந்தெடுக்கவும். தேர்ந்தெடு 'No' பெறுநர் use the newer unified வானோடல் சூதம் க்கு consistent வானோடல் with மற்றொன்று screens where LEFT/RIGHT swaps the செயலில் நெடுவரிசை and CH+/- பக்கங்கள் மேலே and down the list."
 
@@ -17166,6 +18014,9 @@ msgstr "கிடைக்கக்கூடிய பட்டியலில�
 msgid "Select a bouquet"
 msgstr "ஒரு பூச்செண்டு என்பதைத் தேர்ந்தெடுக்கவும்"
 
+msgid "Select a connected HDD or USB device for the picons."
+msgstr ""
+
 msgid "Select a debug log file to view:"
 msgstr "பார்க்க பிழைத்திருத்த பதிவு கோப்பைத் தேர்ந்தெடுக்கவும்:"
 
@@ -17193,6 +18044,12 @@ msgstr "DM9x0 க்கான வன்பொருள் இடையக தா
 msgid "Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "ச்ட்ரீமிங் பிழைக்குப் பிறகு ச்ட்ரீமிங் பஃபரில் சேர்க்க வேண்டிய கால அளவை உள்ளிடவும். இந்த கூடுதல் இடையகமானது இடையக இடம் இல்லாததால் மேலும் ச்ட்ரீமிங் சிக்கல்களைத் தவிர்க்க உதவும்."
 
+msgid "Select a folder to show again. This does not change database scan paths."
+msgstr ""
+
+msgid "Select a list or grid style. Text styles also work without a movie database. Poster styles require an installed metadata provider. Select legacy mode to use the existing list settings."
+msgstr ""
+
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr "'%s' பிரித்தெடுக்க ஒரு இடத்தைத் தேர்ந்தெடுக்கவும்:"
@@ -17205,6 +18062,12 @@ msgstr ""
 
 msgid "Select a movie"
 msgstr "ஒரு திரைப்படத்தைத் தேர்ந்தெடுக்கவும்"
+
+msgid "Select a movie folder outside the trashcan."
+msgstr ""
+
+msgid "Select a movie information bar supplied by the skin."
+msgstr ""
 
 msgid "Select a network adapter"
 msgstr "பிணைய அடாப்டரைத் தேர்ந்தெடுக்கவும்"
@@ -17267,8 +18130,17 @@ msgstr "அனைத்தையும் தெரிவுசெய்"
 msgid "Select all lines"
 msgstr "எல்லா வரிகளையும் தேர்ந்தெடுக்கவும்"
 
+msgid "Select all movies in this list"
+msgstr ""
+
+msgid "Select all movies on this page"
+msgstr ""
+
 msgid "Select all related files"
 msgstr "தொடர்புடைய அனைத்து கோப்புகளையும் தேர்ந்தெடுக்கவும்"
+
+msgid "Select an absolute playlist path."
+msgstr ""
 
 msgid "Select an action for the current device"
 msgstr "தற்போதைய சாதனத்திற்கான செயலைத் தேர்ந்தெடுக்கவும்"
@@ -17302,6 +18174,10 @@ msgstr "இயல்புநிலை EPG வகையைத் தேர்ந
 
 msgid "Select default File Commander directory:"
 msgstr "இயல்புநிலை கோப்பு தளபதி கோப்பகத்தைத் தேர்ந்தெடுக்கவும்:"
+
+#, python-format
+msgid "Select destination for %d movies"
+msgstr ""
 
 msgid "Select destination for:"
 msgstr "இதற்கான இலக்கைத் தேர்ந்தெடுக்கவும்:"
@@ -17432,8 +18308,23 @@ msgstr "உள்ளீட்டு சாதனத்தைத் தேர்�
 msgid "Select last browsed service"
 msgstr ""
 
+msgid "Select maintenance candidates"
+msgstr ""
+
 msgid "Select movie"
 msgstr "திரைப்படத்தைத் தேர்ந்தெடுக்கவும்"
+
+msgid "Select movie information or artwork for the receiver display. Small displays fall back to a text layout."
+msgstr ""
+
+msgid "Select movies inside or outside the trashcan separately."
+msgstr ""
+
+msgid "Select one movie to edit its information."
+msgstr ""
+
+msgid "Select one movie to rename its file."
+msgstr ""
 
 msgid "Select only highlighted file"
 msgstr "சிறப்பம்சமான கோப்பை மட்டும் தேர்ந்தெடுக்கவும்"
@@ -17717,6 +18608,9 @@ msgstr "திரை சேவர் காண்பிக்கப்படு�
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "இந்த டைமரைச் செயல்படுத்தக்கூடிய இறுதி நேரத்தைத் தேர்ந்தெடுக்கவும். இந்த நேரத்திற்குப் பிறகு மற்ற நிபந்தனைகள் நிறைவு செய்யப்பட்டாலும் நேரங்குறிகருவி இயக்கப்படாது."
 
+msgid "Select the existing movie player behavior for the EXIT button."
+msgstr ""
+
 msgid "Select the fast scan provider and press BLUE to start the scan."
 msgstr ""
 
@@ -17748,6 +18642,9 @@ msgstr "சிறப்பம்சமாக ச்லாட் என்பத�
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
 msgstr "காலவரிசை குறிப்பானின் ஆரம்ப நிலையைத் தேர்ந்தெடுக்கவும். மார்க்கர் என்பது தற்போதைய நேரத்தைக் காட்டும் ஈபிசியில் வரையப்பட்ட செங்குத்து கோடு. பெரிய மதிப்பு அதிக மதிப்பைக் காட்டும் மார்க்கர் வலதுபுறமாக நகரும்."
+
+msgid "Select the initial view when a movie database is enabled. The View action switches between local folders and the movie library."
+msgstr ""
 
 msgid "Select the input connector you want to use."
 msgstr "நீங்கள் பயன்படுத்த விரும்பும் உள்ளீட்டு இணைப்பியைத் தேர்ந்தெடுக்கவும்."
@@ -17806,8 +18703,14 @@ msgstr "மவுண்ட் புள்ளிகளைத் தேர்ந�
 msgid "Select the mountpoint for the device."
 msgstr "சாதனத்திற்கான மவுண்ட் பாயிண்டைத் தேர்ந்தெடுக்கவும்."
 
+msgid "Select the movie folder to scan, including subfolders"
+msgstr ""
+
 msgid "Select the movie path"
 msgstr "மூவி பாதையைத் தேர்ந்தெடுக்கவும்"
+
+msgid "Select the movie selection screen layout supplied by the skin."
+msgstr ""
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr "குறிப்பிட்டபடி நேரங்குறிகருவி செயல்படுத்த வேண்டிய கீழே உள்ள பிணைய தரவு வீதத்தைத் தேர்ந்தெடுக்கவும். இந்த விகிதத்திற்கு மேலே போக்குவரத்து டைமரை செயலிழக்கச் செய்யுங்கள்."
@@ -18026,6 +18929,9 @@ msgstr "வீடியோ பயன்முறையைத் தேர்ந�
 msgid "Select video output port with UP/DOWN buttons"
 msgstr "மேல்/கீழ் பொத்தான்களுடன் வீடியோ வெளியீட்டு துறைமுகத்தைத் தேர்ந்தெடுக்கவும்"
 
+msgid "Select view and sorting for this movie list"
+msgstr ""
+
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "பிளேபேக்கின் போது மீடியா கோப்பின் முடிவை எட்டும்போது என்ன நடவடிக்கை எடுக்க வேண்டும் என்பதைத் தேர்ந்தெடுக்கவும்."
 
@@ -18229,6 +19135,15 @@ msgid "Serial No"
 msgstr "சீரியல் எண்"
 
 msgid "Serial number"
+msgstr ""
+
+msgid "Series"
+msgstr ""
+
+msgid "Series episode sort order"
+msgstr ""
+
+msgid "Series information and episode numbers"
 msgstr ""
 
 msgid "Serious Classical"
@@ -19106,6 +20021,9 @@ msgstr "செயலில் உள்ள சேவையின் உட்ப
 msgid "Show System Plugin packages"
 msgstr "கணினி சொருகி தொகுப்புகளைக் காட்டு"
 
+msgid "Show TS, MKV and other formats in the file information field. Classic layouts append this information to the title."
+msgstr ""
+
 msgid "Show Timer List"
 msgstr "நேரங்குறிகருவி பட்டியலைக் காட்டு"
 
@@ -19126,6 +20044,9 @@ msgstr "செங்குத்து ஈ.பி.சி."
 
 msgid "Show Web Link packages"
 msgstr "வலை இணைப்பு தொகுப்புகளைக் காட்டு"
+
+msgid "Show a dynamic collection across movie folders. With a movie database it uses indexed files; otherwise a read-only background task creates a snapshot."
+msgstr ""
 
 msgid "Show a spinning logo when the system is busy."
 msgstr "கணினி பிசியாக இருக்கும்போது ஒரு நூற்பு லோகோவைக் காட்டு."
@@ -19160,11 +20081,17 @@ msgstr "ரேடியோ பயன்முறையில் பின்ன�
 msgid "Show background when tuned to a radio channel."
 msgstr "ரேடியோ சேனலுடன் இணைந்தால் பின்னணியைக் காட்டு."
 
+msgid "Show bookmarks in the movie list"
+msgstr ""
+
 msgid "Show bouquet on launch"
 msgstr "துவக்கத்தில் பூச்செண்டைக் காட்டு"
 
 msgid "Show build information"
 msgstr "உருவாக்கு தகவலைக் காட்டு"
+
+msgid "Show cached movie counts and sizes. Update the cache explicitly from Movie maintenance in the context menu. Browsing does not scan subfolders."
+msgstr ""
 
 #, python-format
 msgid "Show cards with uphop %s"
@@ -19199,6 +20126,12 @@ msgstr "இன்போபாரில் மறையீட்டு தகவ�
 
 msgid "Show current directory"
 msgstr "தற்போதைய கோப்பகத்தைக் காட்டு"
+
+msgid "Show current recording length"
+msgstr ""
+
+msgid "Show cut copy number"
+msgstr ""
 
 msgid "Show debug log information"
 msgstr "பிழைத்திருத்த பதிவு தகவலைக் காட்டு"
@@ -19242,6 +20175,9 @@ msgstr "சேனல் தேர்வில் நிகழ்வு முன
 msgid "Show eventinfo plugins"
 msgstr "EventInfo செருகுநிரல்களைக் காட்டு"
 
+msgid "Show existing movie bookmarks as virtual folder entries. Their targets are accessed only when opened."
+msgstr ""
+
 msgid "Show extended description"
 msgstr "நீட்டிக்கப்பட்ட விளக்கத்தைக் காட்டு"
 
@@ -19259,6 +20195,9 @@ msgstr "இயல்புநிலையாக காப்புப் பி�
 
 msgid "Show first picture"
 msgstr "முதல் படத்தைக் காட்டு"
+
+msgid "Show folders"
+msgstr ""
 
 msgid "Show free space in timer view"
 msgstr "நேரங்குறிகருவி பார்வையில் இலவச இடத்தைக் காட்டு"
@@ -19297,6 +20236,9 @@ msgstr "நீட்டிப்பு பட்டியலில் வேல�
 msgid "Show last picture"
 msgstr "கடைசி படத்தைக் காட்டு"
 
+msgid "Show links to files and folders. Broken links are omitted when the directory is refreshed."
+msgstr ""
+
 msgid "Show list of bouquets"
 msgstr "பூங்கொத்துகளின் பட்டியலைக் காட்டு"
 
@@ -19320,6 +20262,12 @@ msgstr "மெனுவைக் காட்டு"
 
 msgid "Show message when recording starts"
 msgstr "பதிவு தொடங்கும் போது செய்தியைக் காட்டு"
+
+msgid "Show movie format"
+msgstr ""
+
+msgid "Show movie information"
+msgstr ""
 
 msgid "Show movie lengths in movie list"
 msgstr "திரைப்பட பட்டியலில் திரைப்பட நீளத்தைக் காட்டு"
@@ -19380,6 +20328,9 @@ msgstr "நிகழ்வுகளுக்கு இடையில் பி�
 
 msgid "Show persistent InfoBar while paused"
 msgstr "இடைநிறுத்தப்படும்போது தொடர்ச்சியான இன்போபரைக் காட்டு"
+
+msgid "Show physical folders. Parent navigation, the trashcan, bookmarks, virtual collections and recognized movie structures remain accessible."
+msgstr ""
 
 msgid "Show picon background color"
 msgstr "பிகான் பின்னணி நிறத்தைக் காட்டு"
@@ -19504,6 +20455,9 @@ msgstr "வசன விரைவான மெனுவைக் காட்ட
 msgid "Show subtitle selection"
 msgstr "வசனத் தேர்வைக் காட்டு"
 
+msgid "Show symbolic links"
+msgstr ""
+
 msgid "Show system information"
 msgstr "கணினி தகவலைக் காட்டு"
 
@@ -19534,8 +20488,14 @@ msgstr "OSCAM செய்தி திரையைக் காட்டு"
 msgid "Show the about screen"
 msgstr ""
 
+msgid "Show the cut copy suffix, such as _001, even when the recording title comes from metadata. This is not the number of chapter markers."
+msgstr ""
+
 msgid "Show the last opkg command's output"
 msgstr "கடைசி OPKG கட்டளையின் வெளியீட்டைக் காட்டு"
+
+msgid "Show the measured length of active recordings in the file information field, updated once a minute in the file view. Database views use cached metadata."
+msgstr ""
 
 msgid "Show the task list"
 msgstr "பணி பட்டியலைக் காட்டு"
@@ -19572,6 +20532,9 @@ msgstr "அறியப்படாத வீடியோ வடிவமைப�
 
 msgid "Show vertical Program Guide"
 msgstr "செங்குத்து நிரல் வழிகாட்டியைக் காட்டு"
+
+msgid "Show virtual folders first, or sort them among movies by the current title or recording date order."
+msgstr ""
 
 msgid "Show warning before restart"
 msgstr "மறுதொடக்கம் செய்வதற்கு முன் எச்சரிக்கையைக் காட்டு"
@@ -19678,6 +20641,9 @@ msgstr "எளிமையான"
 
 msgid "Simplified Chinese"
 msgstr "எளிமைப்படுத்தப்பட்ட சீன"
+
+msgid "Since the previous visit"
+msgstr ""
 
 msgid "Sindhi"
 msgstr "சிந்தி"
@@ -19794,6 +20760,9 @@ msgid "Skip package installation, only core packages will be available"
 msgstr "தொகுப்பு நிறுவலைத் தவிர்க்கவும், முக்கிய தொகுப்புகள் மட்டுமே கிடைக்கும்"
 
 msgid "Skip sensibility for '%s' button"
+msgstr ""
+
+msgid "Skip this many seconds after the chosen preview starting point."
 msgstr ""
 
 msgid "Skip time for '%s' button"
@@ -20184,6 +21153,9 @@ msgstr ""
 msgid "Sort by default"
 msgstr "இயல்பாக வரிசைப்படுத்தவும்"
 
+msgid "Sort folders with movies"
+msgstr ""
+
 msgid "Sort list by"
 msgstr "மூலம் வரிசை"
 
@@ -20195,6 +21167,12 @@ msgstr "மொழி பட்டியலுக்கான வரிசைய�
 
 msgid "Sort playlists"
 msgstr "பிளேலிச்ட்களை வரிசைப்படுத்துங்கள்"
+
+msgid "Sort the whole catalogue before pagination. Long PVR/File temporarily selects another order."
+msgstr ""
+
+msgid "Sort this movie list"
+msgstr ""
 
 #, python-format
 msgid "Sort: Directories by %s %s; Files by %s %s."
@@ -20217,6 +21195,9 @@ msgstr "ஒலி கேரியர்"
 
 msgid "Source Packages"
 msgstr "மூல தொகுப்புகள்"
+
+msgid "Source and destination are identical."
+msgstr ""
 
 msgid "Source request"
 msgstr "மூல கோரிக்கை"
@@ -20364,6 +21345,12 @@ msgstr ""
 msgid "Start an instant recording"
 msgstr "உடனடி பதிவைத் தொடங்கவும்"
 
+msgid "Start at the first early chapter marker"
+msgstr ""
+
+msgid "Start at the resume position, the beginning or the first early chapter marker. Preview does not save playback positions or change watch status."
+msgstr ""
+
 msgid "Start date"
 msgstr "தொடக்க தேதி"
 
@@ -20429,6 +21416,12 @@ msgstr "தொடக்க நேரம்"
 
 msgid "Start time shift"
 msgstr "தொடக்க நேர சிப்ட்"
+
+msgid "Start view"
+msgstr ""
+
+msgid "Start watched movies from the beginning"
+msgstr ""
 
 msgid "Start/stop slide show"
 msgstr "ச்லைடு சோவைத் தொடங்குங்கள்"
@@ -20507,6 +21500,12 @@ msgstr "நிலை கிடைக்கவில்லை!"
 msgid "Stay in time shift at buffer end (for plugins)"
 msgstr ""
 
+msgid "Stay on the marked movie, move to the next movie, or continue in the last navigation direction."
+msgstr ""
+
+msgid "Stay on the movie"
+msgstr ""
+
 msgid "Step"
 msgstr "படி"
 
@@ -20548,6 +21547,9 @@ msgstr "திருத்து பயன்முறையை நிறுத�
 
 msgid "Stop entry"
 msgstr "நுழைவு நிறுத்து"
+
+msgid "Stop playback or preview before changing this movie."
+msgstr ""
 
 msgid "Stop playing this movie?"
 msgstr "இந்த படம் விளையாடுவதை நிறுத்தவா?"
@@ -20722,6 +21724,9 @@ msgstr "கோடுகள்"
 
 msgid "Style:"
 msgstr "ச்டைல்:"
+
+msgid "Subchannel ID"
+msgstr ""
 
 msgid "Subnet mask"
 msgstr ""
@@ -20927,6 +21932,9 @@ msgstr "கோப்பு பட்டியல்/பிளே பட்டி
 msgid "Switch config"
 msgstr "கட்டமைப்பு சுவிட்ச்"
 
+msgid "Switch movie and file information"
+msgstr ""
+
 msgid "Switch off the TV to correct input"
 msgstr "உள்ளீட்டை சரிசெய்ய டிவியை அணைக்கவும்"
 
@@ -20977,6 +21985,9 @@ msgstr "இடது நெடுவரிசைக்கு மாறவும�
 
 msgid "Switch to the other column"
 msgstr "மற்ற நெடுவரிசைக்கு மாறவும்"
+
+msgid "Switch to the recording channel"
+msgstr ""
 
 msgid "Switch to the right column"
 msgstr "வலது நெடுவரிசைக்கு மாறவும்"
@@ -21037,6 +22048,12 @@ msgstr "கணினி சொருகி தொகுப்புகள்"
 
 msgid "System Setup"
 msgstr "கணினி அமைப்பு"
+
+msgid "System date and time"
+msgstr ""
+
+msgid "System date format"
+msgstr ""
 
 msgid "System information"
 msgstr "கணினி செய்தி"
@@ -21112,6 +22129,9 @@ msgstr "குறிச்சொல் எடிட்டர் செயல்�
 
 msgid "Tagalog"
 msgstr "டாக்லாக்"
+
+msgid "Tagline"
+msgstr ""
 
 msgid "Tags"
 msgstr "குறிச்சொற்கள்"
@@ -21252,6 +22272,9 @@ msgstr "தற்காலிகமாக %s ஆக ஏற்றவும்"
 
 msgid "Temporary directory"
 msgstr "தற்காலிக அடைவு"
+
+msgid "Temporary layout and sorting"
+msgstr ""
 
 msgid "Tennis"
 msgstr "டென்னிச்"
@@ -21492,6 +22515,9 @@ msgstr ""
 msgid "The backup can take up to about 15 minutes to complete."
 msgstr "காப்புப்பிரதி முடிக்க சுமார் 15 நிமிடங்கள் வரை ஆகலாம்."
 
+msgid "The bookmarked folder is not available."
+msgstr ""
+
 msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
@@ -21501,6 +22527,12 @@ msgstr ""
 
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "காத்திருப்பிலிருந்து எழுந்திருக்க கட்டளை பல முறை அனுப்பப்படும்."
+
+msgid "The companion file changed or belongs to a movie again."
+msgstr ""
+
+msgid "The complete movie is at the destination, but some source files could not be removed."
+msgstr ""
 
 msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
 msgstr ""
@@ -21512,6 +22544,9 @@ msgstr ""
 msgid "The custom mount point for '%s' is empty!"
 msgstr ""
 
+msgid "The cut list is damaged; it was left unchanged."
+msgstr ""
+
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -21521,6 +22556,13 @@ msgstr ""
 
 msgid "The default settings are wake up time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wake up time. So can be detected a wake up by a timer even at very early starting receivers."
 msgstr "இயல்புநிலை அமைப்புகள் எழுந்திருக்கும் நேரம் - 5 நிமிடங்கள் மற்றும் நேரங்குறிகருவி தொடக்க நேரம் + 5 நிமிடங்கள். இந்த அமைப்பு எழுந்திருக்கும் நேரத்திற்கு முன் நேர சாளரத்தை மாற்றியது. எனவே ஆரம்பகால தொடக்க பெறுநர்களில் கூட ஒரு டைமரால் விழித்திருப்பதைக் கண்டறிய முடியும்."
+
+#, python-format
+msgid "The destination '%s' already exists. Choose an empty destination or move the picons manually."
+msgstr ""
+
+msgid "The destination changed during the operation."
+msgstr ""
 
 msgid "The detailed information is intended for developers only."
 msgstr "விரிவான தகவல்கள் டெவலப்பர்களுக்கு மட்டுமே."
@@ -21580,6 +22622,9 @@ msgstr ""
 msgid "The loopthrough setting is wrong."
 msgstr "லூப் த்ரோ அமைப்பு தவறு."
 
+msgid "The manual maintenance scan offers watched movies only when neither the movie nor its playback position has changed within this many days. Review and select candidates in the context menu before moving them to the trashcan."
+msgstr ""
+
 msgid "The manufacturer STARTUP device cannot be mounted for inspection."
 msgstr ""
 
@@ -21601,13 +22646,60 @@ msgstr ""
 msgid "The mount point '%s' is used by more than one share."
 msgstr ""
 
+msgid "The movie duration is unknown."
+msgstr ""
+
+msgid "The movie file is still being written. Try again later."
+msgstr ""
+
+msgid "The movie folder or companion file changed."
+msgstr ""
+
+msgid "The movie is currently being recorded."
+msgstr ""
+
+msgid "The movie or its playback position changed since the maintenance scan. Scan again."
+msgstr ""
+
+#, python-format
+msgid "The operation failed. Some files remain at the destination: %s"
+msgstr ""
+
+msgid "The original location is unknown. Use Move to select a destination."
+msgstr ""
+
 msgid "The panic channel was not found. Please select it again in Channel Selection Settings."
 msgstr ""
 
-msgid "The picon directory already exists and must be removed. Do you want to proceed?"
-msgstr "பிகான் அடைவு ஏற்கனவே உள்ளது மற்றும் அகற்றப்பட வேண்டும். நீங்கள் தொடர விரும்புகிறீர்களா?"
+msgid "The picon destination must be outside the existing picon directory."
+msgstr ""
+
+msgid ""
+"The picon package could not be installed. Connect an HDD or USB device and select it as the picon install location in Plugin Browser settings. Check that the device is mounted and writable.\n"
+"\n"
+"Internal flash only allows small packages with up to 1,000 files and 10 MiB, with enough free space and file entries remaining."
+msgstr ""
+
+#, python-format
+msgid "The picon path '%s' is not a directory."
+msgstr ""
+
+msgid "The picon storage device is read-only or full."
+msgstr ""
+
+msgid "The play queue is empty"
+msgstr ""
+
+msgid "The playlist contains too many movies."
+msgstr ""
+
+msgid "The playlist is too large."
+msgstr ""
 
 msgid "The positioner tuner is currently unavailable. Stop recordings or other services using this tuner and try again."
+msgstr ""
+
+msgid "The preview shows the first 20 filenames."
 msgstr ""
 
 msgid "The previous mount point is already in use."
@@ -21617,7 +22709,16 @@ msgstr ""
 msgid "The process will take approximately %d minutes to complete."
 msgstr "செயல்முறை முடிக்க சுமார் %d நிமிடங்கள் ஆகும்."
 
+msgid "The recording changed while the operation was running."
+msgstr ""
+
 msgid "The recording end time has already passed."
+msgstr ""
+
+msgid "The recording is still running. Switch to its live channel?"
+msgstr ""
+
+msgid "The recording metadata is too large; it was left unchanged."
 msgstr ""
 
 msgid "The requested recording conflicts with other timers. What do you want to do?"
@@ -21717,6 +22818,21 @@ msgstr ""
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr "நேரங்குறிகருவி கோப்பு '%s' ஊழல் மற்றும் ஏற்ற முடியவில்லை."
+
+msgid "The trash index is damaged."
+msgstr ""
+
+msgid "The trash index is too large."
+msgstr ""
+
+msgid "The trash index must not be a symbolic link."
+msgstr ""
+
+msgid "The trashcan and the movie must be on the same mounted filesystem. No files were copied."
+msgstr ""
+
+msgid "The trashcan must be a directory on the movie's filesystem."
+msgstr ""
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -21824,6 +22940,9 @@ msgstr ""
 msgid "This device has multiple mount points. Unmount them before checking the file system."
 msgstr ""
 
+msgid "This directory is locked for movie file changes."
+msgstr ""
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "இந்த புலம் %s வரை கூடுதல் குறியீட்டு விகிதத்தைத் தேட உங்களை அனுமதிக்கிறது."
@@ -21859,6 +22978,9 @@ msgstr "இந்த பட்டியலில் ரிசீவர் பற
 
 msgid "This menu offers options related managing the software on the %s %s."
 msgstr "இந்த பட்டியல் %s %s இல் மென்பொருளை நிர்வகித்தல் தொடர்பான விருப்பங்களை வழங்குகிறது."
+
+msgid "This movie is currently unavailable. Check its storage device or network mount."
+msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "சேனலுக்கு அதன் சொந்த தொகுதி ஆஃப்செட் இல்லையென்றால் மட்டுமே இந்த ஆஃப்செட் பயன்படுத்தப்படும்."
@@ -22031,7 +23153,16 @@ msgstr "இந்த விருப்பம் தவறான டிசிட
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "இந்த விருப்பம் படக் கூர்மையை அமைக்கிறது, இது படம் உயர்த்தப்படும்போது பயன்படுத்தப்படுகிறது."
 
+msgid "This playlist contains unsupported files. Play queues support video and audio files; open DVD images individually."
+msgstr ""
+
+msgid "This provider supplies movie information but no browsable library."
+msgstr ""
+
 msgid "This recording has already ended."
+msgstr ""
+
+msgid "This service is not a local movie file."
 msgstr ""
 
 msgid "This service is protected by a parental control PIN!"
@@ -22089,6 +23220,9 @@ msgstr "திபெத்திய"
 
 msgid "Tigrinya"
 msgstr "டிக்ரின்யா"
+
+msgid "Tiles"
+msgstr ""
 
 msgid "Time"
 msgstr "நேரம்"
@@ -22291,6 +23425,12 @@ msgstr "திமோர்-ரீட் / கிழக்கு திமோர�
 msgid "Title"
 msgstr "தலைப்பு"
 
+msgid "Title (A–Z)"
+msgstr ""
+
+msgid "Title (Z–A)"
+msgstr ""
+
 msgid "Title properties"
 msgstr "தலைப்பு பண்புகள்"
 
@@ -22391,6 +23531,9 @@ msgstr "தற்போதைய குறிச்சொல்லின் த�
 msgid "Toggle selections"
 msgstr "தேர்வுகளை மாற்றவும்"
 
+msgid "Toggle series grouping for this folder"
+msgstr ""
+
 msgid "Toggle service name display"
 msgstr "பணி பெயர் காட்சியை மாற்றவும்"
 
@@ -22420,6 +23563,18 @@ msgstr "தொனி பயன்முறை"
 
 msgid "Tonga"
 msgstr "டொங்கா"
+
+msgid "Too many candidates. Scan a smaller movie folder."
+msgstr ""
+
+msgid "Too many entries. Scan a smaller movie folder."
+msgstr ""
+
+msgid "Too many movies. Scan a smaller movie folder."
+msgstr ""
+
+msgid "Too many pending movie database changes. Reconnect the database first."
+msgstr ""
 
 msgid "Top"
 msgstr "மேலே"
@@ -22464,6 +23619,9 @@ msgstr "சுற்றுலா/பயணம்"
 msgid "Track"
 msgstr "மின்தடம்"
 
+msgid "Track language"
+msgstr ""
+
 msgid "Traditional"
 msgstr "பாரம்பரிய"
 
@@ -22478,6 +23636,9 @@ msgstr "டிரான்ச்கோட்"
 
 msgid "Transcoding"
 msgstr "டிரான்ச்கோடிங்"
+
+msgid "Transfer characteristics"
+msgstr ""
 
 msgid "Translate Subs On This Service"
 msgstr "இந்த சேவையில் துணை மொழிபெயர்க்கவும்"
@@ -22864,10 +24025,17 @@ msgstr "உக்ரெயின்"
 msgid "Ukrainian"
 msgstr "உக்ரேனிய"
 
+msgid "Unable to access the script directory."
+msgstr ""
+
 #, python-format
 msgid ""
 "Unable to change swap state for '%s'.\n"
 "%s"
+msgstr ""
+
+#, python-format
+msgid "Unable to change the picon storage location: %s"
 msgstr ""
 
 #, python-format
@@ -22891,8 +24059,15 @@ msgstr "KEXEC மல்டிபூட்டை துவக்க முடி�
 msgid "Unable to load package information!"
 msgstr ""
 
+msgid "Unable to move the movie without overwriting existing files."
+msgstr ""
+
 #, python-format
 msgid "Unable to open tuner (%d)"
+msgstr ""
+
+#, python-format
+msgid "Unable to prepare picon storage: %s"
 msgstr ""
 
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
@@ -22949,10 +24124,17 @@ msgstr ""
 msgid "Unable to write the time shift event information."
 msgstr ""
 
+msgid "Unassigned / pending recordings"
+msgstr ""
+
 msgid "Unattended upgrade without GUI"
 msgstr "GUI இல்லாமல் கவனிக்கப்படாத மேம்படுத்தல்"
 
 msgid "Unavailable"
+msgstr ""
+
+#, python-format
+msgid "Unavailable: %s"
 msgstr ""
 
 msgid "Undefined"
@@ -23055,6 +24237,9 @@ msgstr "தெரியவில்லை!"
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr "'முடக்கப்பட்டதாக' அமைக்கப்படாவிட்டால், ஈபிசி பட்டியலில் சேனல்களின் முன்னோட்டத்தைப் பெறுவீர்கள்."
 
+msgid "Unlimited"
+msgstr ""
+
 msgid "Unmark As Dedicated 3D Service"
 msgstr "அர்ப்பணிப்புள்ள 3D சேவையாக குறிக்கப்பட்டுள்ளது"
 
@@ -23089,6 +24274,9 @@ msgstr "காத்திருப்பு/மறுதொடக்கம் �
 msgid "Unused %s"
 msgstr "பயன்படுத்தப்படாத %s"
 
+msgid "Unwatched"
+msgstr ""
+
 msgid "Unzipping Image"
 msgstr "படம்"
 
@@ -23097,6 +24285,9 @@ msgstr "மேலே"
 
 msgid "Up / Active"
 msgstr "மேலே / செயலில்"
+
+msgid "Up to 256 folders can be hidden."
+msgstr ""
 
 msgid "Up to 50 Mbps"
 msgstr "50 எம்.பி.பி.எச் வரை"
@@ -23124,6 +24315,15 @@ msgstr "புதுப்பிப்பு தோல்வியடைந்�
 
 msgid "Update finished!"
 msgstr "புதுப்பிப்பு முடிந்தது!"
+
+msgid "Update folder movie counts and sizes"
+msgstr ""
+
+msgid "Update movie folder snapshot"
+msgstr ""
+
+msgid "Update movie folder snapshot / latest recordings"
+msgstr ""
 
 msgid "Update outdated bouquet entries"
 msgstr ""
@@ -23155,6 +24355,12 @@ msgstr "புதுப்பிப்புகள் கிடைக்கி�
 
 msgid "Updating"
 msgstr "புதுப்பித்தல்"
+
+msgid "Updating library index..."
+msgstr ""
+
+msgid "Updating movie folder snapshot in Tasks"
+msgstr ""
 
 msgid "Updating package list."
 msgstr "தொகுப்பு பட்டியலைப் புதுப்பித்தல்."
@@ -23310,8 +24516,8 @@ msgstr "சாப் நேரங்குறிகருவி எண்ட் 
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
 msgstr "செயல்திறனை மேம்படுத்த, நேரந்தவறுகை மற்றும் வெளிச்செல்லும் ட்ராஃபிக்கைக் குறைக்க அண்மைக் கால டிஎன்எச் தேடல்களை உள்நாட்டில் சேமிக்க DNS தற்காலிக சேமிப்பைப் பயன்படுத்தவும்."
 
-msgid "Use alternate GitHub DNS"
-msgstr "மாற்று அறிவிலிமையம் டி.என்.எச்"
+msgid "Use an absolute filename ending in .m3u or .m3u8."
+msgstr ""
 
 msgid "Use an alternative smaller screen."
 msgstr "மாற்று சிறிய திரையைப் பயன்படுத்தவும்."
@@ -23339,6 +24545,9 @@ msgstr "HDMI ஆல் சிறந்த / கட்டுப்படுத்
 
 msgid "Use circular LNB"
 msgstr "வட்ட LNB ஐப் பயன்படுத்தவும்"
+
+msgid "Use configured defaults"
+msgstr ""
 
 msgid "Use defaults"
 msgstr "இயல்புநிலைகளைப் பயன்படுத்தவும்"
@@ -23379,6 +24588,9 @@ msgstr "முக்கிய வரைபடத்தைப் பயன்ப�
 msgid "Use legacy navigation"
 msgstr "மரபு வழிசெலுத்தலைப் பயன்படுத்தவும்"
 
+msgid "Use normal end-of-movie action"
+msgstr ""
+
 msgid "Use official channel numbering"
 msgstr "அதிகாரப்பூர்வ சேனல் எண்ணைப் பயன்படுத்தவும்"
 
@@ -23402,6 +24614,12 @@ msgstr "ஒரு அடைவு அமைப்புகளுக்கு ப
 
 msgid "Use power measurement"
 msgstr "ஆற்றல் அளவீட்டைப் பயன்படுத்துங்கள்"
+
+msgid "Use relative dates or the configured system date format, with or without the time."
+msgstr ""
+
+msgid "Use selected sorting"
+msgstr ""
 
 msgid "Use skin default"
 msgstr ""
@@ -23460,8 +24678,23 @@ msgstr ""
 msgid "Use the current selection and exit"
 msgstr "தற்போதைய தேர்வு மற்றும் வெளியேறுதல் பயன்படுத்தவும்"
 
+msgid "Use the database title when available, the original recording title, or the filename. Title cleanup applies after this choice. Grouped series keep their series title."
+msgstr ""
+
+msgid "Use the existing default playback location. Press OK to select a folder."
+msgstr ""
+
 msgid "Use the extended List"
 msgstr "நீட்டிக்கப்பட்ட பட்டியலைப் பயன்படுத்தவும்"
+
+msgid "Use the normal end action, ask, or switch to the recording channel when playback catches up with a local recording that is still running."
+msgstr ""
+
+msgid "Use the selected sort order, keep folders first, or sort folders together with movie files."
+msgstr ""
+
+msgid "Use the title before this separator as the virtual folder name. An empty separator groups identical titles."
+msgstr ""
 
 msgid "Use the wizard to set up basic features"
 msgstr "அடிப்படை அம்சங்களை அமைக்க வழிகாட்டி பயன்படுத்தவும்"
@@ -23843,6 +25076,9 @@ msgstr "கட்டமாக பார்க்கவும்"
 msgid "View as list"
 msgstr "பட்டியலாக காண்க"
 
+msgid "View for this movie list only"
+msgstr ""
+
 msgid "View mode"
 msgstr "பார்வை பயன்முறையை"
 
@@ -23892,6 +25128,15 @@ msgstr "மெய்நிகர் விசைப்பலகை செயல�
 msgid "Virtual Keyboard Text:"
 msgstr "மெய்நிகர் விசைப்பலகை உரை:"
 
+msgid "Virtual collections"
+msgstr ""
+
+msgid "Virtual folder — movie files stay in their original locations."
+msgstr ""
+
+msgid "Virtual folders before movies"
+msgstr ""
+
 msgid "Visual impaired commentary"
 msgstr "காட்சி பலவீனமான வர்ணனை"
 
@@ -23940,6 +25185,9 @@ msgstr "தொகுதி"
 msgid "Volume/Mute display timer"
 msgstr "தொகுதி/முடக்கு காட்சி நேரங்குறிகருவி"
 
+msgid "Votes"
+msgstr ""
+
 msgid "Vu+ MultiBoot"
 msgstr "Vu+ மல்டிபூட்"
 
@@ -23969,6 +25217,9 @@ msgstr "4: 3 இல் WSS"
 
 msgid "Wait for timesync at startup"
 msgstr "தொடக்கத்தில் Timesync க்காக காத்திருங்கள்"
+
+msgid "Wait this long after moving the selection before starting a preview."
+msgstr ""
 
 msgid "Waiting"
 msgstr "காத்திருக்கிறது"
@@ -24052,6 +25303,12 @@ msgstr "எச்சரிக்கை: எல்.என்.பி இல்ல�
 
 msgid "Watch movies..."
 msgstr "திரைப்படங்களைப் பாருங்கள் ..."
+
+msgid "Watched"
+msgstr ""
+
+msgid "Watched from (%)"
+msgstr ""
 
 msgid "Water sport"
 msgstr "நீர் விளையாட்டு"
@@ -24183,6 +25440,9 @@ msgstr "நீங்கள் என்ன செய்ய விரும்ப
 
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr "'இயக்கப்பட்ட' போது, டைமர் பார்வை இலக்கு சாதனத்தில் இலவச இடத்தைக் காண்பிக்கும். இது தூக்க பயன்முறையிலிருந்து சாதனத்தை எழுப்பும்."
+
+msgid "When disabled, skip recordings already indexed by E2MDB with the same title and descriptions. If the database is unavailable or the match is uncertain, record normally."
+msgstr ""
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "இயக்கப்பட்டால், AIT தரவு HTTP ச்ட்ரீம்களில் சேர்க்கப்படும். இது கிளையன்ட் பெறுநரை HBBTV ஐப் பயன்படுத்த அனுமதிக்கிறது."
@@ -24403,6 +25663,9 @@ msgstr "இயக்கப்பட்டால், குறைவடைக்�
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "இயக்கப்பட்டால், உங்கள் ரிசீவர் வி.சி.ஆர் ச்கார்ட் உள்ளீட்டில் செயல்பாட்டைக் கண்டறியும்."
 
+msgid "When movie information is displayed"
+msgstr ""
+
 msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Nonzero போது, EPG இல் சுட்டிக்காட்டப்பட்ட தொடக்க நேரத்திற்கு முன்னர் பரிந்துரைக்கப்பட்ட காலத்தை ஒரு பதிவு தொடங்கும்."
 
@@ -24423,6 +25686,12 @@ msgstr "செட் செய்யும் போது ஒரு படம�
 
 msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
 msgstr "'ஆம்' என்று அமைக்கப்பட்டால், ஒவ்வொரு மறைகுறியாக்கப்பட்ட சேவைக்கும் ஒரு குறிப்பிட்ட சாஃப்ட்கேம் ஒதுக்கப்படலாம்."
+
+msgid "When starting a movie, keep its previous playback position as a chapter marker. Existing chapter markers remain available."
+msgstr ""
+
+msgid "When starting from the beginning, skip the recording lead-in using an early chapter marker. Resume positions and cut boundaries are respected."
+msgstr ""
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "உள்ளடக்கம் 16: 9 என்ற விகித விகிதத்தைக் கொண்டிருக்கும்போது, படத்தை அளவிட/நீட்ட வேண்டுமா என்பதைத் தேர்வுசெய்க."
@@ -25615,6 +26884,22 @@ msgstr "ஆம் (ஊட்டங்களை வைத்திருங்க
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Can't move to trashcan!"
+#~ msgstr "குப்பைத்தொட்டிக்கு செல்ல முடியாது!"
+
+#, python-format
+#~ msgid "Error: Creating picon target directory: (%s)"
+#~ msgstr "பிழை: பிகான் இலக்கு கோப்பகத்தை உருவாக்குதல்: (%s)"
+
+#~ msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
+#~ msgstr "மாற்று அறிவிலிமையம் ஊட்ட ஐபி முகவரிகளைப் பயன்படுத்த 'ஆம்' என்பதைத் தேர்ந்தெடுக்கவும். நீங்கள் ஒரு VPN ஐப் பயன்படுத்தினால் இது உதவியாக இருக்கும், மேலும் வெளியிடப்பட்ட DNS பெயர்கள் வழியாக சாதாரண ஊட்டங்களை அணுக முடியாது."
+
+#~ msgid "The picon directory already exists and must be removed. Do you want to proceed?"
+#~ msgstr "பிகான் அடைவு ஏற்கனவே உள்ளது மற்றும் அகற்றப்பட வேண்டும். நீங்கள் தொடர விரும்புகிறீர்களா?"
+
+#~ msgid "Use alternate GitHub DNS"
+#~ msgstr "மாற்று அறிவிலிமையம் டி.என்.எச்"
 
 #~ msgid "%-H:%M:%S"
 #~ msgstr "%-H:%M:%S"
@@ -27192,9 +28477,6 @@ msgstr "®"
 
 #~ msgid "Are you sure you want to restart your network interfaces?"
 #~ msgstr "உங்கள் பிணைய இடைமுகங்களை மறுதொடக்கம் செய்ய விரும்புகிறீர்களா?"
-
-#~ msgid "Back"
-#~ msgstr "பின்"
 
 #~ msgid "Configure DNS (name servers)"
 #~ msgstr "DNS ஐ உள்ளமைக்கவும் (பெயர் சேவையகங்கள்)"

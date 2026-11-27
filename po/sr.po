@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-03 13:20+0100\n"
-"PO-Revision-Date: 2026-11-03 17:33+0000\n"
+"POT-Creation-Date: 2026-11-19 21:27+0000\n"
+"PO-Revision-Date: 2026-11-20 16:21+0000\n"
 "Last-Translator: Milan Koljanin <milan58@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sr/>\n"
 "Language: sr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 2026.11.1.dev0\n"
+"X-Generator: Weblate 2026.12.dev0\n"
 
 msgid ""
 "\n"
@@ -101,6 +101,10 @@ msgstr "!! Bootloader Nadogradnja !!"
 
 msgid "# = Reboot required if this item is changed."
 msgstr "# = Potrebno je ponovno pokretanje ako se ova stavka promeni."
+
+#, python-format
+msgid "%(title)s (%(count)d)"
+msgstr "%(title)s (%(count)d)"
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -329,8 +333,20 @@ msgid "%d min"
 msgstr "%d min"
 
 #, python-format
+msgid "%d min recorded"
+msgstr "%d min snimljeno"
+
+#, python-format
 msgid "%d minutes"
 msgstr "%d minute"
+
+#, python-format
+msgid "%d movies"
+msgstr "%d filmova"
+
+#, python-format
+msgid "%d movies selected"
+msgstr "%d odabrano filmova"
 
 #, python-format
 msgid "%d ms"
@@ -342,6 +358,10 @@ msgid_plural "%d networks found."
 msgstr[0] "Pronađena je %d mreža."
 msgstr[1] "Pronađeno je %d mreža."
 msgstr[2] "Pronađeno je %d mreža."
+
+#, python-format
+msgid "%d new"
+msgstr "%d novo"
 
 #, python-format
 msgid "%d obsolete manufacturer STARTUP files will be replaced or removed."
@@ -811,6 +831,9 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
+msgid "1 minute"
+msgstr "1 minuta"
+
 msgid "1. (Highest)"
 msgstr "1. (Najviši)"
 
@@ -834,6 +857,9 @@ msgstr "12V izlaz."
 
 msgid "12bit"
 msgstr "12bita"
+
+msgid "15 minutes"
+msgstr "15 minuta"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
@@ -934,6 +960,9 @@ msgstr "4x"
 msgid "5"
 msgstr "5"
 
+msgid "5 minutes"
+msgstr "5 minuta"
+
 msgid "50-200 Mbps"
 msgstr "50-200 Mbps"
 
@@ -1012,6 +1041,9 @@ msgstr "Završen zadatak želi da isključi vaš %s %s. Isključivanje sada?"
 msgid "A crash log was %s created in '%s'"
 msgstr "Dnevnik sudara je %s kreiran u '%s'"
 
+msgid "A destination file already exists. No files were overwritten."
+msgstr "Ciljna datoteka već postoji. Nijedna datoteka nije prepisana."
+
 #, python-format
 msgid ""
 "A finished record timer wants to set your\n"
@@ -1045,6 +1077,18 @@ msgstr "Gotov zakazani tajmer želi da isključi vaš %s %s. Da li to sada?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Istaknuto mesto na slici DU prikazuje na koje dugme se odnosi pomoć. Ako više dugmadi izvrši naznačenu funkciju, biće prikazano više od jednog isticanja. Tekst ispod liste navodi aktivnu dugmad i funkcija zahteva dugo pritiskanje ili SHIFT dugme."
+
+msgid "A mount point or a folder containing mounted filesystems cannot be moved to the trashcan."
+msgstr "Tačka montiranja ili fascikla koja sadrži montirane datoteke sistema ne mogu da se prebace u kantu za otpatke."
+
+msgid "A movie companion file is a symbolic link."
+msgstr "Datoteka koja prati film je simbolički link."
+
+msgid "A movie filename cannot be represented in M3U format."
+msgstr "Naziv filmske datoteke ne može da se prikaže u M3U formatu."
+
+msgid "A movie maintenance scan is already running. Its progress is shown in Tasks."
+msgstr "Skeniranje održavanja filma je već u toku. Napredak možeš videti u Zadacima."
 
 msgid "A new storage device has been connected:"
 msgstr "Povezan je novi uređaj za skladištenje:"
@@ -1315,6 +1359,9 @@ msgstr "Aktivni klijent"
 msgid "Active only"
 msgstr "Samo aktivni"
 
+msgid "Actor"
+msgstr "Glumac"
+
 msgid "Adapter"
 msgstr "Adapter"
 
@@ -1497,6 +1544,12 @@ msgstr "Dodaj snimak (Neodređeno - 24 sata)"
 msgid "Add recording (Stop after current event)"
 msgstr "Dodaj snimak (Zaustavi posle ovog događaja)"
 
+msgid "Add selected movies"
+msgstr "Dodaj odabrane filmove"
+
+msgid "Add selected movies to the play queue"
+msgstr "Dodaj izabrane filmove u listu za reprodukciju"
+
 msgid "Add service"
 msgstr "Dodaj kanal"
 
@@ -1576,6 +1629,9 @@ msgstr "Podesi pomak oscilatora tjunera da poboljšaš prijem DAB+ signala."
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Podesite vertikalni položaj slova koja se koriste za teletekst."
 
+msgid "Adjust times to EPG"
+msgstr "Podesi vreme u EPG-u"
+
 msgid "Adult"
 msgstr "Odrasli"
 
@@ -1587,6 +1643,9 @@ msgstr "Hitovi za odrasle"
 
 msgid "Adult movie/Drama"
 msgstr "Film za odrasle/Drama"
+
+msgid "Advance Movie List"
+msgstr "Napredna Lista Filmova"
 
 msgid "Advanced"
 msgstr "Napredno"
@@ -1645,6 +1704,9 @@ msgstr "Nakon snimanja"
 msgid "After zap"
 msgstr "Posle zap"
 
+msgid "Age rating"
+msgstr "Starosna granica"
+
 msgid "Aggregate data only"
 msgstr "Samo zbirni podaci"
 
@@ -1697,6 +1759,12 @@ msgstr "Sav uzrast"
 msgid "All data on the selected device will be erased. Create one shared data partition with %d additional MultiBoot slots, a 512 MiB swap partition and the internal slot 1 kernel?"
 msgstr "Svi podaci na izabranom uređaju biće obrisani. Napraviti jednu zajedničku particiju za podatke sa %d dodatna MultiBoot mesta, 512 MiB swap particijom i internim slotom 1 za kernel?"
 
+msgid "All dates"
+msgstr "Svi datumi"
+
+msgid "All episodes"
+msgstr "Sve epizode"
+
 msgid "All events down"
 msgstr "Svi događaji nadole"
 
@@ -1705,6 +1773,15 @@ msgstr "Svi događaji gore"
 
 msgid "All files"
 msgstr "Svi fajlovi"
+
+msgid "All media"
+msgstr "Svi mediji"
+
+msgid "All movie files"
+msgstr "Sve filmske datoteke"
+
+msgid "All movie folders"
+msgstr "Sve filmske fascikle"
 
 msgid "All packages"
 msgstr "Svi paketi"
@@ -1744,6 +1821,9 @@ msgstr "Dodeli broj fizičkom LNB koji konfigurišete. Ovaj LNB možete ponovo i
 
 msgid "Allow %s-bit"
 msgstr "Dozvoli %s-bit"
+
+msgid "Allow duplicate recordings"
+msgstr "Dozvoli duplikate snimanja"
 
 msgid "Allow guest access"
 msgstr "Dozvoli pristup gostima"
@@ -1874,6 +1954,9 @@ msgstr "Uvek pokaži bukete"
 msgid "Always use smart1080p mode"
 msgstr "Uvek koristi smart1080p režim"
 
+msgid "Ambiguous companion file names."
+msgstr "Nejasna imena pratećih datoteka."
+
 msgid "American Samoa"
 msgstr "American Samoa"
 
@@ -1964,6 +2047,10 @@ msgstr "Bilo koji snimak"
 
 msgid "Aperture F number"
 msgstr "Broj F otvara"
+
+#, python-format
+msgid "Apply '%(action)s' to %(count)d selected movies?"
+msgstr "Primeni '%(action)s' na %(count)d odabranih filmova?"
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "Primeni sve promene na aktivni lokalni/jezik i izađi sa exit"
@@ -2120,6 +2207,9 @@ msgstr "Rastući"
 msgid "Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged."
 msgstr "Traži potvrdu pre nego što pomeriš pojedinačne fajlove u kantu za smeće. Potvrde za foldere i trajno brisanje ostaju nepromenjene."
 
+msgid "Ask to switch to the recording channel"
+msgstr "Zameni se za kanal za snimanje"
+
 msgid "Ask user"
 msgstr "Pitaj korisnika"
 
@@ -2182,6 +2272,9 @@ msgstr "Na kraju trenutnog programa"
 msgid "At end: %s"
 msgstr "Na kraju: %s"
 
+msgid "At the end of a running recording"
+msgstr "Na kraju toka snimanja"
+
 msgid "Athletics"
 msgstr "Atletika"
 
@@ -2225,8 +2318,14 @@ msgstr "Sinhronizacija Zvuka"
 msgid "Audio bit rate"
 msgstr "Bitrejt zvuka"
 
+msgid "Audio channels"
+msgstr "Audio kanali"
+
 msgid "Audio decoding"
 msgstr "Audio dekodiranje"
+
+msgid "Audio description"
+msgstr "Audio opis"
 
 msgid "Audio language selection 1"
 msgstr "Izbor audio jezika 1"
@@ -2342,6 +2441,9 @@ msgstr "Automatska Pretraga Kanala"
 msgid "Automatic gain"
 msgstr "Automatsko pojačanje"
 
+msgid "Automatic preview delay (ms)"
+msgstr "Automatsko kašnjenje pregleda (ms)"
+
 msgid "Automatic resolution"
 msgstr "Automatska rezolucija"
 
@@ -2441,6 +2543,9 @@ msgstr "PLAVI prekidač: PLAVI/PLAVI(dugo)"
 
 msgid "BSSID"
 msgstr "BSSID"
+
+msgid "Back"
+msgstr "Nazad"
 
 msgid "Back USB"
 msgstr "Zadnji USB"
@@ -2603,6 +2708,9 @@ msgstr "Pre nego što promenite ove postavke, pokušajte da onemogućite bilo ka
 msgid "Begin time"
 msgstr "Vreme početka"
 
+msgid "Beginning"
+msgstr "Početak"
+
 msgid "Behave like STOP button"
 msgstr "Ponašaj se kao STOP dugme"
 
@@ -2738,6 +2846,10 @@ msgstr "Obeleživač dodan."
 msgid "Bookmark removed."
 msgstr "Obeleživač uklonjen."
 
+#, python-format
+msgid "Bookmark: %s"
+msgstr "Oznaka: %s"
+
 msgid "Bookmarks"
 msgstr "Obeleživač"
 
@@ -2868,6 +2980,9 @@ msgstr "Podrazumevano Broadcom"
 
 msgid "Browse"
 msgstr "Pregledaj"
+
+msgid "Browse grouped movies and series or all indexed movie files without reading movie storage."
+msgstr "Pregledaj grupisane filmove i serije ili sve indeksirane filmske datoteke bez čitanja skladišta filmova."
 
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Pregledaj, instaliraj ili ukloni plugin jedan po jedan."
@@ -3137,11 +3252,17 @@ msgstr "Kabl je isključen"
 msgid "Cable input"
 msgstr "Kabel ulaz"
 
+msgid "Cache file lists"
+msgstr "Liste keš datoteka"
+
 msgid "Cache thumbnails"
 msgstr "Keš sličice"
 
 msgid "Cached"
 msgstr "Keširano"
+
+msgid "Cached folder · refresh from the menu"
+msgstr "Keširana fascikla · osveži iz menija"
 
 msgid "Calculate"
 msgstr "Izračunavanje"
@@ -3264,9 +3385,6 @@ msgstr ""
 "Ne mogu da idem na TV uživo!\n"
 "Prebacite se na TV uživo i ponovo pokrenete vremensku smenu?"
 
-msgid "Can't move to trashcan!"
-msgstr "Ne mogu premestiti u smeće!"
-
 msgid ""
 "Can't play the next time shift buffer file!\n"
 "Switch to live TV and restart time shift?"
@@ -3382,6 +3500,9 @@ msgstr "Otkaži ažuriranja"
 msgid "Cancelled upon user request"
 msgstr "Otkazano na zahtev korisnika"
 
+msgid "Cannot create a trashcan on this mounted filesystem. No files were deleted."
+msgstr "Ne mogu da napravim korpu za otpatke na ovom montiranom datotečnom sistemu. Nije obrisana nijedna datoteka."
+
 msgid "Cannot delete file"
 msgstr "Nije moguće izbrisati datoteku"
 
@@ -3392,6 +3513,12 @@ msgstr "Nije moguće odrediti %s ograničenje ..., prekidam!"
 
 msgid "Cannot find any signal ..., aborting!"
 msgstr "Nije pronađen signal ..., prekidam!"
+
+msgid "Capacity unit range"
+msgstr "Opseg jedinica kapaciteta"
+
+msgid "Capacity units (CU)"
+msgstr "Jedinice kapaciteta (CU)"
 
 msgid "Cape Verde"
 msgstr "Cape Verde"
@@ -3429,6 +3556,9 @@ msgstr "Nezavisno od velikih i malih slova"
 
 msgid "Case sensitive"
 msgstr "Osetljivo na velika i mala slova"
+
+msgid "Cast"
+msgstr "Glumačka ekipa"
 
 msgid "Catalan / Valencian"
 msgstr "Catalan / Valencian"
@@ -3595,6 +3725,9 @@ msgstr "Tasteri Kanala inverzno"
 msgid "Channel down"
 msgstr "Kanal nadole"
 
+msgid "Channel layout"
+msgstr "Raspored kanala"
+
 msgid "Channel list cursor behavior"
 msgstr "Ponašanje kursora liste kanala"
 
@@ -3648,6 +3781,9 @@ msgstr "Pogl."
 
 msgid "Chapter"
 msgstr "Poglavlje"
+
+msgid "Chapter markers and playback position"
+msgstr "Oznake poglavlja i pozicija reprodukcije"
 
 msgid "Character device"
 msgstr "Karakter uređaja"
@@ -3775,11 +3911,20 @@ msgstr "Izaberi šemu zemlje za dekodiranje info o oceni EPG sadržaja."
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Izaberi oznaku koja će identifikovati ovaj uređaj u okviru IceTV servisa."
 
+msgid "Choose all indexed or scanned folders, the default movie location, or the current folder including subfolders. Hidden folders are excluded."
+msgstr "Izaberi sve indeksirane ili skenirane fascikle, podrazumevanu lokaciju za filmove ili trenutnu fasciklu uključujući podfascikle. Sakrivene fascikle su isključene."
+
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Izaberi koliko često se treba povezati IceTV server za proveru ažuriranja."
 
+msgid "Choose season and episode order, title, recording date, release year or rating."
+msgstr "Izaberi sezonu i redosled epizoda, naslov, datum snimanja, godinu izlaska ili ocenu."
+
 msgid "Choose the amount of additional slots."
 msgstr "Izaberi količinu dodatnih slotova."
+
+msgid "Choose the default sorting for this collection. The temporary view menu can override it."
+msgstr "Izaberi podrazumevano sortiranje za ovu kolekciju. Privremeni meni prikaza može ga promeniti."
 
 msgid "Choose the fallback font."
 msgstr "Izaberite rezervni font."
@@ -3856,6 +4001,12 @@ msgstr "Grad"
 msgid "Classic Rock"
 msgstr "Klasični Rok"
 
+msgid "Classic movie list (EMC)"
+msgstr "Lista klasičnih filmova (EMC)"
+
+msgid "Classic movie list with description (EMC)"
+msgstr "Lista klasičnih filmova sa opisom (EMC)"
+
 msgid "Classical"
 msgstr "Klasika"
 
@@ -3892,11 +4043,20 @@ msgstr "Obriši Sačuvane Naloge"
 msgid "Clear before scan"
 msgstr "Obriši pre skeniranja"
 
+msgid "Clear filters"
+msgstr "Očisti filtere"
+
 msgid "Clear fixed"
 msgstr "Brisanje fiksirano"
 
+msgid "Clear movie selection"
+msgstr "Očisti izbor filmova"
+
 msgid "Clear play list"
 msgstr "Obriši plej listu"
+
+msgid "Clear play queue"
+msgstr "Očisti redosled reprodukcije"
 
 msgid "Clear search"
 msgstr "Očisti pretragu"
@@ -4054,6 +4214,9 @@ msgstr "Obojeni tekst"
 msgid "Colorimetry for HDR content"
 msgstr "Kolorimetrija za HDR sadržaj"
 
+msgid "Combine series or matching recording titles in the view. Movie files stay in their original locations. Grouping can be disabled for individual folders from the context menu."
+msgstr "U prikazu kombinuju se serije ili podudarajući naslovi snimaka. Filmovi ostaju na svojim originalnim lokacijama. Grupisanje se može isključiti za pojedinačne fascikle iz kontekstnog menija."
+
 msgid "Combined"
 msgstr "Kombinirano"
 
@@ -4130,6 +4293,12 @@ msgstr "Uobičajena podešavanja"
 msgid "Comoros"
 msgstr "Comoros"
 
+msgid "Compact list"
+msgstr "Kompaktna lista"
+
+msgid "Companion files are shared by multiple media files. Rename or move the variants separately after resolving their companion files."
+msgstr "Pomoćne datoteke se dele između više medijskih datoteka. Preimenuj ili premesti varijante posebno nakon što rešiš njihove pomoćne datoteke."
+
 msgid "Compatibility And Emulation"
 msgstr "Kompatibilnost i Emulacija"
 
@@ -4141,6 +4310,10 @@ msgstr "Kompletno"
 
 msgid "Complete Backup"
 msgstr "Kompletna Rezervna Kopija"
+
+#, python-format
+msgid "Completed: %(done)d of %(total)d movies"
+msgstr "Završeno: %(done)d od %(total)d filmova"
 
 msgid "Complex (allows mixing audio tracks and aspects)"
 msgstr "Kompleks (omogućava mešanje audio zvuka i aspekt videa)"
@@ -4333,6 +4506,12 @@ msgstr "Podesite kraj koordinate u X oblasti prikaza teleteksta."
 
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Podesite kraj koordinate u Y oblasti prikaza teleteksta."
+
+msgid "Configure the existing movie player resume behavior."
+msgstr "Podesi trenutno ponašanje plejera prilikom nastavka filma."
+
+msgid "Configure the existing movie player stop action."
+msgstr "Podesi postojeću akciju za zaustavljanje plejera filmova."
 
 msgid "Configure the first audio language (highest priority)."
 msgstr "Podesite prvi audio jezik (najviši prioritet)."
@@ -4653,6 +4832,9 @@ msgstr "Za ovaj info pogledajte specifikaciju važeg rotora ili ostavite zadanu 
 msgid "Contacting IceTV server and setting up your %s %s."
 msgstr "Kontaktirajte IceTV server i podešavanje %s %s."
 
+msgid "Container"
+msgstr "Spremište"
+
 msgid "Content"
 msgstr "Sadržaj"
 
@@ -4668,6 +4850,9 @@ msgstr "Nastavi"
 msgid "Continue in background"
 msgstr "Nastavi u pozadini"
 
+msgid "Continue in the last direction"
+msgstr "Nastavi u prethodnom smeru"
+
 msgid "Continue playback"
 msgstr "Nastavi reprodukciju"
 
@@ -4676,6 +4861,9 @@ msgstr "Nastavi reprodukovanje"
 
 msgid "Continue to run the task in the background"
 msgstr "Nastavi pokretanje zadatka u pozadini"
+
+msgid "Continue watching"
+msgstr "Nastavi gledanje"
 
 msgid "Continue with package download and installation"
 msgstr "Nastavi preuzimanje paketa i instaliraj"
@@ -4859,6 +5047,9 @@ msgstr ""
 "\n"
 "Hoćeš li ponovo da menjaš podešavanja?"
 
+msgid "Countries"
+msgstr "Zemlje"
+
 msgid "Country"
 msgstr "Zemlja"
 
@@ -4941,6 +5132,12 @@ msgstr "Kreirajte deponiju informacija o uređaju."
 msgid "Create kernel dump."
 msgstr "Kreirajte deponiju jezgra."
 
+msgid "Create missing EIT file"
+msgstr "Kreiraj nedostajući EIT datoteku"
+
+msgid "Create missing EIT files"
+msgstr "Kreiraj nedostajuće EIT datoteke"
+
 msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
 msgstr "Kreiraj ili ukloni crnu listu RTL2832 DVB modula. Potreban je potpuni restart prijemnika; dok je omogućeno, ovaj USB tuner je dostupan za DAB+, ali ne i za DVB-T/T2."
 
@@ -4980,6 +5177,9 @@ msgstr "Kreiraj dodatne slotove na izabranom uređaju"
 
 msgid "Create the flash expander in the selected device"
 msgstr "Kreiraj flash proširenja na izabranom uređaju"
+
+msgid "Create virtual collection"
+msgstr "Kreiraj virtuelnu kolekciju"
 
 msgid "Create working directories."
 msgstr "Kreirajte radne direktoarije."
@@ -5023,6 +5223,9 @@ msgstr "Akreditivi za '%s'"
 
 msgid "Cree"
 msgstr "Cree"
+
+msgid "Crew"
+msgstr "Ekipa"
 
 msgid "Cricket"
 msgstr "Kriket"
@@ -5118,6 +5321,9 @@ msgstr "Trenutni direktorij"
 msgid "Current directory (%s)"
 msgstr "Trenutni direktorij (%s)"
 
+msgid "Current folder and subfolders"
+msgstr "Trenutne fascikle i podfascikle"
+
 msgid "Current installed"
 msgstr "Trenutno instalirano"
 
@@ -5167,6 +5373,9 @@ msgstr "Trenutno Zadan pomak Zvuka:"
 msgid "Currently Remembered Volume Levels:"
 msgstr "Trenutno Zapamćeni Nivoi Zvuka:"
 
+msgid "Cursor after marking a movie"
+msgstr "Kursor posle označavanja filma"
+
 msgid "Custom"
 msgstr "Prilagođeno"
 
@@ -5199,6 +5408,10 @@ msgstr "Prilagođavanje Enigma2 ličnih postavki"
 
 msgid "Cut"
 msgstr "Iseci"
+
+#, python-format
+msgid "Cut %s"
+msgstr "Iseci %s"
 
 msgid "CutList Skipping"
 msgstr "Preskakanje Liste Rezanja"
@@ -5404,6 +5617,12 @@ msgstr "Dari"
 msgid "Darts"
 msgstr "Pikado"
 
+msgid "Database sort order"
+msgstr "Redosled baze podataka"
+
+msgid "Database view"
+msgstr "Pregled baze podataka"
+
 msgid "Date"
 msgstr "Datum"
 
@@ -5550,9 +5769,15 @@ msgstr "Podrazumevani prolaz"
 msgid "Default left column directory"
 msgstr "Podrazumevani direktorijum leve kolone"
 
+msgid "Default movie location"
+msgstr "Podrazumevana lokacija filma"
+
 #, python-format
 msgid "Default movie location (%s)"
 msgstr "Podrazumevana lokacija filma (%s)"
+
+msgid "Default movie location after standby"
+msgstr "Podrazumevana lokacija filmova nakon režima mirovanja"
 
 msgid "Default movie selection location"
 msgstr "Podrazumevana lokacija za izbor filma"
@@ -5562,6 +5787,9 @@ msgstr "Zadani tip snimanja"
 
 msgid "Default right column directory"
 msgstr "Podrazumevani direktorijum desne kolone"
+
+msgid "Default skin layout"
+msgstr "Podrazumevani raspored skina"
 
 msgid "Default sort order for directories in the left column."
 msgstr "Podrazumevani redosled sortiranja za direktorijume u levoj koloni."
@@ -5772,6 +6000,9 @@ msgstr "Izbriši znak levo od kursora ili izaberi AM vreme"
 
 msgid "Delete character under cursor or select PM times"
 msgstr "Izbriši znak ispod kursora ili izaberi PM vreme"
+
+msgid "Delete collection (keep movie files)"
+msgstr "Obriši kolekciju (zadrži filmske datoteke)"
 
 msgid "Delete current line"
 msgstr "Izbriši trenutni red"
@@ -6147,6 +6378,9 @@ msgstr "Isključi uvodni ekran"
 msgid "Disable operator profiles"
 msgstr "Onemogući profile operatera"
 
+msgid "Disable previews, start them manually, or start after resting on a movie. Automatic previews access movie storage and do not interrupt timeshift or an already playing movie."
+msgstr "Isključi prikaze, pokreni ih ručno ili pokreni nakon pauze na filmu. Automatski prikazi pristupaju memoriji filma i ne prekidaju timeshift ili već pušten film."
+
 msgid "Disable saved Wi-Fi network"
 msgstr "Isključi sačuvanu Wi-Fi mrežu"
 
@@ -6256,6 +6490,9 @@ msgstr "Prikaži virtuelnu tastaturu za unos podataka"
 
 msgid "Display type"
 msgstr "Tip prikaza"
+
+msgid "Displayed movie title"
+msgstr "Prikazani naziv filma"
 
 msgid "Distance"
 msgstr "Udaljenost"
@@ -6641,6 +6878,9 @@ msgstr "Dupli"
 msgid "Duplicate the current line"
 msgstr "Dupliranje trenutnog reda"
 
+msgid "Duration"
+msgstr "Trajanje"
+
 msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn't ready in time, this time can be increased."
 msgstr "Tokom ovog vremena, proveravaju se predajnik i odredište za snimanje. Ako odredište (npr. NAS) nije spremno na vreme, ovo vreme se može produžiti."
 
@@ -6835,6 +7075,19 @@ msgstr "Uređivanje poglavlja trenutnog naslova"
 msgid "Edit current line"
 msgstr "Uredi trenutni red"
 
+msgid "Edit movie"
+msgstr "Uredi film"
+
+msgid "Edit play queue"
+msgstr "Izmeni red za reprodukciju"
+
+#, python-format
+msgid "Edit play queue (%d movies)"
+msgstr "Uredi redosled reprodukcije (%d filmova)"
+
+msgid "Edit recording information"
+msgstr "Izmeni informacije o snimku"
+
 msgid "Edit settings"
 msgstr "Uređivanje postavki"
 
@@ -6879,6 +7132,9 @@ msgstr "Uredite izvornu adresu nadogradnje."
 
 msgid "Edit the username."
 msgstr "Uredite korisničko ime."
+
+msgid "Edit title and description"
+msgstr "Izmeni naslov i opis"
 
 msgid "Education"
 msgstr "Obrazovanje"
@@ -7024,6 +7280,12 @@ msgstr "Omogući odabrani RTL-SDR USB prijemnik za DAB+ prijem. DVB-T i DAB+ ne 
 
 msgid "Enable adapter"
 msgstr "Otvori adapter"
+
+msgid "Enable an installed movie database in Movie Selection settings to open the library."
+msgstr "Omogući instaliranu bazu filmova u podešavanjima izbora filmova da bi se otvorila biblioteka."
+
+msgid "Enable an installed movie library provider for metadata, artwork and the Advance Movie List. Local folders remain available if the provider is unavailable."
+msgstr "Omogući instaliranog provajdera filmske biblioteke za metapodatke, umetničke radove i Naprednu listu filmova. Lokalne fascikle ostaju dostupne ako provajder nije dostupan."
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
 msgstr "Omogući drugu info traku sa drugim info (pritisni 'OK' dvaput) za dodatnu drugu info traku)."
@@ -7346,6 +7608,9 @@ msgstr "Unesite opis za ovaj tajmer."
 
 msgid "Enter a directory or process a file (play/view/edit/install/extract/run)"
 msgstr "Unesite direktorijum ili obradite fajl (reprodukcija/prikaz/uređivanje/instaliranje/izdvajanje/pokretanje)"
+
+msgid "Enter a movie title."
+msgstr "Unesi naziv filma."
 
 msgid "Enter a name for this timer."
 msgstr "Unesite ime za ovaj tajmer."
@@ -7701,10 +7966,6 @@ msgstr "Greška: Nemoguće pronaći odgovarajući uređaj! Uklonite preuzeti imi
 #, python-format
 msgid "Error: Creating directory '%s' failed!"
 msgstr "Greška: Pravljenje direktorijuma '%s' nije uspelo!"
-
-#, python-format
-msgid "Error: Creating picon target directory: (%s)"
-msgstr "Greška: Kreiranje pikona ciljni direktorijum: (%s)"
 
 #, python-format
 msgid "Error: Directory '%s' does not exist!"
@@ -8443,6 +8704,15 @@ msgstr "Izgleda da je fajl zauzet.\n"
 msgid "File compression"
 msgstr "Fajl kompresija"
 
+msgid "File information"
+msgstr "Informacije o datoteci"
+
+msgid "File name"
+msgstr "Ime datoteke"
+
+msgid "File operations require a regular movie file."
+msgstr "Operacije sa datotekama zahtevaju običnu filmsku datoteku."
+
 msgid "File sorting mode"
 msgstr "Režim sortiranja datoteka"
 
@@ -8461,6 +8731,12 @@ msgstr "Ime fajla"
 msgid "Files And Directories"
 msgstr "Datoteke i Direktoriji"
 
+msgid "Files and folders"
+msgstr "Datoteke i fascikle"
+
+msgid "Files or database"
+msgstr "Datoteke ili baze podataka"
+
 msgid "Files/folders to exclude from backup"
 msgstr "Fajl/Fascikla koje treba isključiti iz rezervne kopije"
 
@@ -8472,6 +8748,9 @@ msgstr "Film-noir"
 
 msgid "Film/Cinema"
 msgstr "Film/Bioskop"
+
+msgid "Filter"
+msgstr "Filter"
 
 msgid "Filter extensions"
 msgstr "Filter Proširenja"
@@ -8499,6 +8778,12 @@ msgstr "Pronađi servis koji se Trenutno Reprodukuje"
 
 msgid "Find connected events"
 msgstr "Traženje povezanih događaja"
+
+msgid "Find old watched movies"
+msgstr "Pronađi stare odgledane filmove"
+
+msgid "Find orphaned movie companion files"
+msgstr "Pronađi izgubljene prateće datoteke za film"
 
 #, python-format
 msgid "Find out more at %s"
@@ -8530,6 +8815,9 @@ msgstr "Finland"
 
 msgid "Finnish"
 msgstr "Finski"
+
+msgid "First chapter marker"
+msgstr "Oznaka prvog poglavlja"
 
 msgid "First playable time shift file!"
 msgstr "Prva reprodukcija tajmšifta fajla!"
@@ -8630,6 +8918,21 @@ msgstr "Po lokaciji na daljinu"
 msgid "Flush Cache and Rescan"
 msgstr "Očisti Keš i ponovo Skeniraj"
 
+msgid "Folder movie counts and sizes updated."
+msgstr "Broj filmova u fascikli i veličine su ažurirani."
+
+msgid "Folder movie information"
+msgstr "Informacije o filmskoj fascikli"
+
+msgid "Folder sorting"
+msgstr "Sortiranje fascikli"
+
+msgid "Folders"
+msgstr "Fascikla"
+
+msgid "Folders first"
+msgstr "Prva fascikla"
+
 msgid "Folk Music"
 msgstr "Folk Muzika"
 
@@ -8638,6 +8941,15 @@ msgstr "Folk i Kantri"
 
 msgid "Folk/Traditional music"
 msgstr "Narodna/tradicionalna muzika"
+
+msgid "Follow changes to the EPG start and end times, keeping the recording margins. Missing EPG data or timer conflicts leave the times unchanged."
+msgstr "Prati promene u početku i kraju EPG-a, zadržavajući margine snimanja. Ako nedostaju podaci iz EPG-a ili postoje sukobi tajmera, vreme ostaje nepromenjeno."
+
+msgid "Follow linked folders in snapshots"
+msgstr "Prati povezane fascikle u snimcima"
+
+msgid "Follow symbolic links during the read-only movie snapshot task. Loops and duplicate directory targets are skipped. Cleanup tasks never follow symbolic links."
+msgstr "Prati simboličke linkove tokom zadatka pravljenja samo za čitanje snimka filma. Petlje i duplirani direktorijumi se preskaču. Zadaci čišćenja nikada ne prate simboličke linkove."
 
 msgid "Font size"
 msgstr "Veličina fonta"
@@ -8689,6 +9001,9 @@ msgstr "Forsiranje omogućeno"
 
 msgid "Force progressive for streams and files"
 msgstr "Primeni progresivno za strimove i fajldatotekeove"
+
+msgid "Forced"
+msgstr "Prinudno"
 
 msgid "Foreign Language"
 msgstr "Strani Jezik"
@@ -8786,6 +9101,9 @@ msgstr "Petak"
 
 msgid "From :"
 msgstr "Iz :"
+
+msgid "From the context menu"
+msgstr "Iz kontekstualnog menija"
 
 msgid "Front"
 msgstr "Prednji"
@@ -9121,6 +9439,9 @@ msgstr "Siva"
 msgid "Group"
 msgstr "Grupa"
 
+msgid "Group recordings into virtual folders"
+msgstr "Grupiraj snimke u virtuelne fascikle"
+
 msgid "Grow drop"
 msgstr "Povećanje svrha"
 
@@ -9286,6 +9607,9 @@ msgstr "Hawaiian"
 msgid "Heard Island and McDonald Islands"
 msgstr "Heard Island and McDonald Islands"
 
+msgid "Hearing impaired"
+msgstr "Osoba sa oštećenim sluhom"
+
 msgid "Hebrew"
 msgstr "Hebrew"
 
@@ -9352,6 +9676,9 @@ msgstr "HiSilicon specifični info"
 msgid "HiSilicon specific information not found."
 msgstr "HiSilicon specifični info nije pronađen."
 
+msgid "Hidden folders"
+msgstr "Skrivene fascikle"
+
 msgid "Hidden network"
 msgstr "Skrivena mreža"
 
@@ -9405,6 +9732,9 @@ msgstr "Sakrij Info traku"
 
 msgid "Hide the OSD after a period without key presses. Screens and background jobs keep running. The first key press only restores the OSD, and newly opened dialogs make it visible again. Hold 0 to pause until the next GUI restart, or hold 0 again to resume."
 msgstr "Sakrij OSD nakon perioda bez pritiska tastera. Ekrani i pozadinski zadaci nastavljaju da rade. Prvi pritisak tastera samo vraća OSD, a novootvoreni dijalozi ga ponovo čine vidljivim. Drži 0 da pauziraš dok se GUI ponovo ne pokrene, ili ponovo drži 0 da nastaviš."
+
+msgid "Hide this folder"
+msgstr "Sakrij ovu fasciklu"
 
 msgid "Hide zap errors"
 msgstr "Sakrij zap greške"
@@ -9825,6 +10155,9 @@ msgstr "Ignoriši stanje pripravnosti"
 msgid "Ignore services on satellites that are not configured in the tuner settings."
 msgstr "Zanemari servise na satelitima koji nisu podešeni u podešavanjima tunera."
 
+msgid "Ignore the resume position when the configured watched percentage has been reached."
+msgstr "Zanemari poziciju nastavka kada dostigneš podešeni procenat gledanja."
+
 msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "Ignoriši neočekivano buđenje i ostani u režimu čekanja"
 
@@ -9901,6 +10234,9 @@ msgstr "Da bi snimio po tajmeru, Tv je prebačen na kanal za snimanje!\n"
 
 msgid "In progress"
 msgstr "U toku"
+
+msgid "In progress from (%)"
+msgstr "U toku od (%)"
 
 msgid "In use by DAB+"
 msgstr "Koristi se za DAB+"
@@ -10069,6 +10405,9 @@ msgstr "Postavke info trake pikona"
 
 msgid "Information"
 msgstr "Informacije"
+
+msgid "Information list"
+msgstr "Lista informacija"
 
 msgid "Informational/Educational/School programs"
 msgstr "Informativni/Obrazovni/Školski programi"
@@ -10242,6 +10581,9 @@ msgstr "Samo unutrašnji disk"
 msgid "Internal flash"
 msgstr "Unutrašnji fleš"
 
+msgid "Internal flash only allows small picon packages."
+msgstr "Interna fleš memorija dozvoljava samo male pikon pakete."
+
 #, python-format
 msgid "Internal flash:  %s %s "
 msgstr "Unutrašnji fleš:  %s %s "
@@ -10268,8 +10610,14 @@ msgstr "Nevažeći"
 msgid "Invalid Help Page"
 msgstr "Nevažeća stranica pomoći"
 
+msgid "Invalid filename."
+msgstr "Neispravno ime datoteke."
+
 msgid "Invalid location!"
 msgstr "Nevažeća lokacija!"
+
+msgid "Invalid original movie location."
+msgstr "Nevažeća originalna lokacija filma."
 
 msgid "Invalid swap file size."
 msgstr "Nevažeća veličina zamene datoteke."
@@ -10451,8 +10799,17 @@ msgstr "Kazakh"
 msgid "Kazakhstan"
 msgstr "Kazakhstan"
 
+msgid "Keep previous playback position as chapter marker"
+msgstr "Zadrži prethodnu poziciju reprodukcije kao oznaku poglavlja"
+
 msgid "Keep service"
 msgstr "Dodaj kanal"
+
+msgid "Keep the newest recordings up to this limit before applying the selected display order."
+msgstr "Drži najnovija snimanja do ovog limita pre nego što primeniš izabrani redosled prikaza."
+
+msgid "Keep the play queue across GUI restarts. The queue is stored in the receiver configuration without accessing movie storage."
+msgstr "Zadrži red za reprodukciju čak i kad se GUI ponovo pokrene. Red se čuva u podešavanjima prijemnika bez pristupa skladištu filmova."
 
 msgid "Keep warning"
 msgid_plural "Keep warnings"
@@ -10694,11 +11051,32 @@ msgstr "Lao People's Democratic Republic"
 msgid "Large"
 msgstr "Veliko"
 
+msgid "Large tiles"
+msgstr "Veliki naslov"
+
+msgid "Last 24 hours"
+msgstr "Poslednjih 24 sata"
+
+msgid "Last 30 days"
+msgstr "Poslednjih 30 dana"
+
+msgid "Last 7 days"
+msgstr "Poslednjih 7 dana"
+
+msgid "Last 90 days"
+msgstr "Poslednjih 90 dana"
+
 msgid "Last config"
 msgstr "Poslednji konfig"
 
 msgid "Last flash"
 msgstr "Poslednji fleš"
+
+msgid "Last folder"
+msgstr "Poslednja fascikla"
+
+msgid "Last playback position"
+msgstr "Poslednja pozicija reprodukcije"
 
 msgid "Last speed"
 msgstr "Poslednja brzina"
@@ -10718,6 +11096,24 @@ msgstr "Poslednji korišćeni/podešeni nivo zvuka"
 msgctxt "third event: 'third' event label"
 msgid "Later"
 msgstr "Kasnije"
+
+msgid "Latest recordings"
+msgstr "Najnovija snimanja"
+
+msgid "Latest recordings collection"
+msgstr "Najnovija kolekcija snimaka"
+
+msgid "Latest recordings folders"
+msgstr "Najnovije fascikle sa snimcima"
+
+msgid "Latest recordings maximum"
+msgstr "Najnovija snimanja maksimalno"
+
+msgid "Latest recordings period"
+msgstr "Najnovija snimanja period"
+
+msgid "Latest recordings sorting"
+msgstr "Sortiranje najnovijih snimaka"
 
 msgid "Latin"
 msgstr "Latinski"
@@ -10920,6 +11316,12 @@ msgstr "Lista Uređaja za Skladištenje"
 msgid "List of storage devices"
 msgstr "Lista uređaja za skladištenje"
 
+msgid "List or grid style"
+msgstr "Lista ili mrežni stil"
+
+msgid "List style"
+msgstr "Stil liste"
+
 msgid "Lists reloaded!"
 msgstr "Liste ponovo učitane!"
 
@@ -10947,6 +11349,9 @@ msgstr "Učitavanje"
 msgid "Load EPG Cache"
 msgstr "Učitavanje EPG keša"
 
+msgid "Load M3U playlist"
+msgstr "Otvori M3U plejlistu"
+
 msgid "Load play list"
 msgstr "Učitavanje liste reprodukcije"
 
@@ -10962,6 +11367,9 @@ msgstr "Učitano: %s %%"
 
 msgid "Loading information, please wait..."
 msgstr "Učitavanje informacija, sačekajte..."
+
+msgid "Loading movie library..."
+msgstr "Učitavanje filmske biblioteke..."
 
 msgid "Loading skin..."
 msgstr "Učitavanje skina..."
@@ -11220,6 +11628,10 @@ msgstr "Glavni Meni"
 msgid "Maintain your multi boot device."
 msgstr "Podržava vaš multi boot uređaj."
 
+#, python-format
+msgid "Maintenance scan finished: %d candidates. Review them from Movie maintenance in the context menu."
+msgstr "Skeniranje održavanja završeno: %d kandidata. Pogledaj ih u Održavanju filmova u kontekstualnom meniju."
+
 msgid "Make"
 msgstr "Napravi"
 
@@ -11349,8 +11761,29 @@ msgstr "Margina pre snimanja"
 msgid "Margin before zap"
 msgstr "Margina pre zap"
 
+msgid "Mark / unmark movie"
+msgstr "Označi / ukloni oznaku filma"
+
 msgid "Mark As Dedicated 3D Service"
 msgstr "Označi kao namenski 3D Servis"
+
+msgid "Mark as unwatched"
+msgstr "Označi kao nepregledano"
+
+msgid "Mark as watched"
+msgstr "Označi kao pregledano"
+
+msgid "Mark new recordings"
+msgstr "Označi nove snimke"
+
+msgid "Mark selected movies as unwatched"
+msgstr "Označeni izabrani filmovi kao ne pregledani"
+
+msgid "Mark selected movies as watched"
+msgstr "Odabrani je označio filmove kao pregledane"
+
+msgid "Mark unwatched recordings from the last 24 hours or since the previous visit. Returning from playback keeps the same visit."
+msgstr "Označi nepročitane snimke iz poslednja 24 sata ili od poslednje posete. Vraćanje sa reprodukcije zadržava istu posetu."
 
 msgid "Marker Actions"
 msgstr "Radnja Označivača"
@@ -11430,6 +11863,9 @@ msgstr "Postavke Medija Plejera"
 
 msgid "Media Stream"
 msgstr "Medija Strim"
+
+msgid "Media information is currently unavailable."
+msgstr "Informacije o medijima trenutno nisu dostupne."
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Reprodukcija medija Preostalo/Proteklo kao"
@@ -11571,8 +12007,20 @@ msgstr "MiniTV sa OSD"
 msgid "Minimum age %d years"
 msgstr "Minimalna starost %d godina"
 
+msgid "Minimum age for watched movie maintenance (days)"
+msgstr "Minimalno vreme čuvanja odgledanog filma (dani)"
+
 msgid "Minimum difference between idle and moving current."
 msgstr "Minimalna razlika između praznog hoda i struje u pokretu."
+
+msgid "Minimum playback percentage for the in-progress status. A movie without a playback position remains unwatched."
+msgstr "Minimalni procenat odgledanog za status u toku. Film bez pozicije reprodukcije se smatra da nije odgledan."
+
+msgid "Minimum playback percentage for the watched status, watched-movie restart and manual maintenance."
+msgstr "Minimalni procenat reprodukcije za status gledano, restart gledanog filma i ručno održavanje."
+
+msgid "Minimum recordings per virtual folder"
+msgstr "Minimalan broj snimaka po virtuelnoj fascikli"
 
 msgid "Minimum send interval"
 msgstr "Minimalni interval slanja"
@@ -11745,6 +12193,18 @@ msgstr "Montaže"
 msgid "Move"
 msgstr "Premesti"
 
+#, python-format
+msgid "Move %d selected movies and their companion files to the trashcan?"
+msgstr "Hoćeš li da prebaciš %d izabrane filmove i njihove prateće datoteke u korpu za otpatke?"
+
+#, python-format
+msgid "Move %d selected watched movies and their companion files to the trashcan?"
+msgstr "Da li želiš da prebaciš %d izabrane odgledane filmove i njihove prateće datoteke u kantu za otpatke?"
+
+#, python-format
+msgid "Move '%s' and its companion files to the trashcan?"
+msgstr "Da li da premestiš '%s' i njegove prateće datoteke u kantu za otpatke?"
+
 msgid "Move Down"
 msgstr "Pomeri Dole"
 
@@ -11777,6 +12237,9 @@ msgstr "Premesti sve srodne fajlove"
 
 msgid "Move directory/file to target directory"
 msgstr "Premesti direktorijum/fajl u ciljni direktorijum"
+
+msgid "Move down"
+msgstr "Pomeri dole"
 
 msgid "Move down a line"
 msgstr "Pomeri nadole red"
@@ -11835,11 +12298,17 @@ msgstr "Posao premeštanja nije uspeo!"
 msgid "Move job queued."
 msgstr "Premeštanje posla u redu čekanja."
 
+msgid "Move left"
+msgstr "Pomeri levo"
+
 msgid "Move left a item"
 msgstr "Pomeri stavku levo"
 
 msgid "Move only highlighted file"
 msgstr "Premesti samo istaknuti fajl"
+
+msgid "Move right"
+msgstr "Pomeri desno"
 
 msgid "Move right a item"
 msgstr "Pomeri stavku desno"
@@ -11965,6 +12434,9 @@ msgstr "Premeštanje na predhodnu stavku"
 msgid "Move to the previous item in list"
 msgstr "Premeštanje na predhodnu stavku na listi"
 
+msgid "Move up"
+msgstr "Pomeri gore"
+
 msgid "Move up a line"
 msgstr "Premeštanje nagore za red"
 
@@ -12040,8 +12512,62 @@ msgstr "Izbor filma Radnja"
 msgid "Movie Selection Settings"
 msgstr "Izbor filma Postavke"
 
+msgid "Movie artwork"
+msgstr "Filmska umetnost"
+
+msgid "Movie count"
+msgstr "Broj filmova"
+
+msgid "Movie count and size"
+msgstr "Broj filmova i veličina"
+
+msgid "Movie count, size and new movies"
+msgstr "Broj filmova, veličina i novi filmovi"
+
+msgid "Movie database"
+msgstr "Baza podataka filmova"
+
+msgid "Movie database unavailable"
+msgstr "Baza podataka filmova nije dostupna"
+
+msgid "Movie database unavailable. Select files and folders from View in the menu."
+msgstr "Baza filmova nije dostupna. Izaberi datoteke i fascikle iz Prikaza u meniju."
+
+msgid "Movie date format"
+msgstr "Format datuma za film"
+
+msgid "Movie file operations"
+msgstr "Rad sa filmskim datotekama"
+
+msgid "Movie front display"
+msgstr "Prednja strana filma"
+
+msgid "Movie information"
+msgstr "Informacije o filmu"
+
+msgid "Movie library"
+msgstr "Biblioteka filmova"
+
+msgid "Movie maintenance"
+msgstr "Održavanje filma"
+
+msgid "Movie play queue"
+msgstr "Red za puštanje filmova"
+
 msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr "Reprodukcija filma možda neće koristiti nevažeći/neprikladan direktorijum."
+
+msgid "Movie player style"
+msgstr "Stil plejera za filmove"
+
+msgid "Movie playlists support local files and mounted storage only."
+msgstr "Playliste za filmove rade samo sa lokalnim datotekama i montiranim uređajima."
+
+msgid "Movie preview"
+msgstr "Filmski pregled"
+
+msgid "Movie size"
+msgstr "Veličina filma"
 
 msgid "Movie/Drama"
 msgstr "Film/Drama"
@@ -12051,6 +12577,9 @@ msgstr "Filmskiplejer"
 
 msgid "Movies"
 msgstr "Filmovi"
+
+msgid "Movies and series"
+msgstr "Filmovi i serije"
 
 msgid "Moving"
 msgstr "Premeštanje"
@@ -12501,6 +13030,15 @@ msgstr "Novi info događaj"
 msgid "New media"
 msgstr "Novi mediji"
 
+msgid "New movie filename (without extension)"
+msgstr "Novo ime datoteke filma (bez ekstenzije)"
+
+msgid "New movies"
+msgstr "Novi filmovi"
+
+msgid "New movies: update folder statistics"
+msgstr "Novi filmovi: ažuriraj statistiku fascikli"
+
 msgid "New password"
 msgstr "Nova lozinka"
 
@@ -12521,6 +13059,9 @@ msgstr "NewCamd DES ključ"
 
 msgid "NewDirectory"
 msgstr "Novi direktorijum"
+
+msgid "Newest recordings first"
+msgstr "Najnovija snimanja prvo"
 
 msgid "News"
 msgstr "Novosti"
@@ -12558,6 +13099,12 @@ msgstr "Sledeća stranica kanala"
 
 msgid "Next higher resolution"
 msgstr "Sledeća viša Rezolucija"
+
+msgid "Next movie"
+msgstr "Sledeći film"
+
+msgid "Next page"
+msgstr "Sledeća stranica"
 
 msgid "Next quad PiP channel"
 msgstr "Sledeći kanal 4X PiP"
@@ -12674,6 +13221,9 @@ msgstr "Bez odlaganja"
 msgid "No demux available"
 msgstr "Nema dostupnog demux"
 
+msgid "No description available."
+msgstr "Nema dostupnog opisa."
+
 msgid "No displayable files on this medium found!"
 msgstr "Nisu pronađeni vidljivi fajlovi na ovom mediju!"
 
@@ -12701,6 +13251,9 @@ msgstr "Nema prolaza"
 msgid "No hard disks detected."
 msgstr "Nije otkriven hard disk."
 
+msgid "No hidden folders"
+msgstr "Nema skrivenih fascikli"
+
 msgid "No hosts found yet - still scanning..."
 msgstr "Još nisu pronađeni domaćini - još se skenira..."
 
@@ -12710,8 +13263,17 @@ msgstr "Nema lokalnih slika."
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Nije pronađen fajl evidencije tako da otklanjanje greške nije dostupno!"
 
+msgid "No maintenance candidates found."
+msgstr "Nema kandidata za održavanje."
+
 msgid "No matching place names found"
 msgstr "Imena mesta koja se podudaraju nisu pronađena"
+
+msgid "No movie description is available to create an EIT file."
+msgstr "Nema opisa filma koji bi se koristio za kreiranje EIT datoteke."
+
+msgid "No movies found. Select files and folders from View to see unscanned recordings."
+msgstr "Nema pronađenih filmova. Odaberi datoteke i fascikle iz Pregleda da vidiš neskeniranje snimke."
 
 msgid "No network adapters enabled/available!"
 msgstr "Mrežna veza nije dostupna!"
@@ -12742,6 +13304,9 @@ msgstr "Nema resursa upravljača"
 
 msgid "No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."
 msgstr "Nije konfigurisan satelitski, zemaljski ili kablovski tjuner. Proverite podešavanje tjunera."
+
+msgid "No saved playback position is available."
+msgstr "Nema sačuvane pozicije za reprodukciju."
 
 msgid "No service"
 msgstr "Nema kanala"
@@ -12817,6 +13382,9 @@ msgstr ""
 
 msgid "No tuners are currently streaming."
 msgstr "Trenutno nema tjunera za striming."
+
+msgid "No unambiguous series filenames are available. A series name, season and episode are required."
+msgstr "Nema dostupnih jasnih imena serija. Potrebno je ime serije, sezona i epizoda."
 
 msgid "No unused swap file name is available."
 msgstr "Nema dostupnog imena za neiskorišćenu zamenu datoteka."
@@ -13178,6 +13746,9 @@ msgstr "Pomeri i zatvori CA uređaj"
 msgid "Ojibwa"
 msgstr "Ojibwa"
 
+msgid "Oldest recordings first"
+msgstr "Najstariji snimci prvi"
+
 msgid "Oldies"
 msgstr "Staro"
 
@@ -13244,11 +13815,17 @@ msgstr "Samo Fleš Imidž Rezervne Kopije"
 msgid "Only HD"
 msgstr "Samo HD"
 
+msgid "Only create a group when at least this many matching recordings are present."
+msgstr "Pravi grupu samo kada postoji bar ovoliko podudarnih snimaka."
+
 msgid "Only free scan"
 msgstr "Samo slobodno skeniranje"
 
 msgid "Only in Standby"
 msgstr "Samo u stanju pripravnosti"
+
+msgid "Only include recordings made during this period."
+msgstr "Uključi samo snimke napravljene u ovom periodu."
 
 msgid "Only log debug information of GStreamer category. * means all categories."
 msgstr "Samo info evidencije o otklanjanju grešaka u kategoriji GStreamer. * znači sve kategorije."
@@ -13292,6 +13869,9 @@ msgstr "Otvori AutoTajmer"
 msgid "Open AutoTimer Overview"
 msgstr "Otvori AutoTajmer pregled"
 
+msgid "Open BDMV and BRD folder structures with the native Blu-ray service."
+msgstr "Otvori BDMV i BRD fascikle sa ugrađenom Blu-ray servisom."
+
 msgid "Open Bouquet selection"
 msgstr "Otvori Buket izbor"
 
@@ -13300,6 +13880,12 @@ msgstr "Otvori Box Portal"
 
 msgid "Open Capability"
 msgstr "Otvori Mogućnosti"
+
+msgid "Open DVD images individually with the DVD player."
+msgstr "Otvorite DVD slike pojedinačno pomoću DVD plejera."
+
+msgid "Open DVD images individually with the DVD player. Play queues support video and audio files."
+msgstr "Otvaraj DVD slike pojedinačno pomoću DVD plejera. Redovi za reprodukciju podržavaju video i audio datoteke."
 
 msgid "Open EPG"
 msgstr "Otvori EPG"
@@ -13397,8 +13983,17 @@ msgstr "Otvorite izbor TV buketa"
 msgid "Open Usage and GUI Settings"
 msgstr "Otvori podešavanja Korisnika i GUI"
 
+msgid "Open VIDEO_TS and DVD folder structures directly with the DVD player."
+msgstr "Otvori VIDEO_TS i DVD strukture foldera direktno sa DVD plejerom."
+
 msgid "Open VideoMode"
 msgstr "Otvorite režim video"
+
+msgid "Open a movie directly when its filename matches its containing folder. File operations still treat the containing folder as a folder."
+msgstr "Otvori film direktno kada njegovo ime fajla odgovara imenu foldera u kojem se nalazi. Operacije sa fajlovima i dalje tretiraju taj folder kao folder."
+
+msgid "Open collection"
+msgstr "Otvori kolekciju"
 
 msgid "Open context menu"
 msgstr "Otvori kontekstualni meni"
@@ -13414,6 +14009,9 @@ msgstr "Otvorite ekran za upravljanje spoljnim titlovima"
 
 msgid "Open file sort menu"
 msgstr "Otvorite meni za sortiranje datoteka"
+
+msgid "Open selected movie or series"
+msgstr "Otvori izabrani film ili seriju"
 
 msgid "Open service list and select next service"
 msgstr "Otvorite listu servisa i izaberite sledeći servis"
@@ -13466,6 +14064,9 @@ msgstr "Otvori dodatne ekrane"
 msgid "Open the context menu"
 msgstr "Otvorite kontekstualni meni"
 
+msgid "Open the last folder, the default movie location, or return to the default location after standby. Returning from playback keeps the selected movie."
+msgstr "Otvori poslednji folder, podrazumevanu lokaciju filmova, ili se vrati na podrazumevanu lokaciju nakon stanja pripravnosti. Povratak sa reprodukcije čuva odabrani film."
+
 msgid "Open the multi service EPG view"
 msgstr "Otvori EPG prikaz za više kanala"
 
@@ -13493,6 +14094,9 @@ msgstr "OpenWebif Veza"
 msgid "OpenWebif picon path"
 msgstr "OpenWebif postavke pikona"
 
+msgid "Opening movie folder"
+msgstr "Otvaranje fascikle sa filmovima"
+
 msgid "Opening network adapter configuration..."
 msgstr "Otvaranje konfiguracije mrežnog adaptera..."
 
@@ -13507,6 +14111,9 @@ msgstr "LED indikator rada u stanju pripravnosti"
 
 msgid "Operating LED status while running"
 msgstr "Operativni LED status tokom rada"
+
+msgid "Operation cancelled."
+msgstr "Operacija otkazana."
 
 msgid "Opkg Actions"
 msgstr "Radnje opkg"
@@ -13553,11 +14160,17 @@ msgstr "Originalni Network ID (ONID)"
 msgid "Original language"
 msgstr "Originalni jezik"
 
+msgid "Original title"
+msgstr "Originalni naslov"
+
 msgid "Oriya"
 msgstr "Oriya"
 
 msgid "Oromo"
 msgstr "Oromo"
+
+msgid "Orphaned companion files removed."
+msgstr "Nepovezane pomoćne datoteke uklonjene."
 
 msgid "Oscam Information"
 msgstr "Oscam Informacija"
@@ -13731,6 +14344,10 @@ msgstr "Paketi"
 msgid "Packages and associated locales"
 msgstr "Paketi i povezani lokalni"
 
+#, python-format
+msgid "Page %(page)d · %(count)d entries"
+msgstr "Stranica %(page)d · %(count)d unosa"
+
 msgid "Page down"
 msgstr "Stranica dole"
 
@@ -13897,6 +14514,18 @@ msgstr "Tačka '.'"
 msgid "Period and space '. '"
 msgstr "Tačka i razmak '. '"
 
+#, python-format
+msgid "Permanently delete %d selected movies and their companion files?"
+msgstr "Trajno obrisati %d izabranih filmova i njihove prateće fajlove?"
+
+#, python-format
+msgid "Permanently delete %d selected orphaned companion files?"
+msgstr "Da li želiš trajno da izbrišeš %d izabrane napuštene prateće fajlove?"
+
+#, python-format
+msgid "Permanently delete '%s' and its companion files?"
+msgstr "Trajno obrisati '%s' i njegove prateće fajlove?"
+
 msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Trajno izbrisati sve snimke u korpi za otpatke?"
 
@@ -14042,6 +14671,9 @@ msgstr "Pitcairn"
 msgid "Pixel Test"
 msgstr "Piksel Test"
 
+msgid "Pixel format"
+msgstr "Piksel format"
+
 msgid "Pixels\n"
 msgstr "Pikseli\n"
 
@@ -14090,6 +14722,9 @@ msgstr "Reprodukuj servis arhive za praćenje"
 msgid "Play entry"
 msgstr "Reprodukuj izabrano"
 
+msgid "Play from here"
+msgstr "Reprodukuj odavde"
+
 msgid "Play from next mark or play list entry"
 msgstr "Reprodukuj od sledeće oznake ili stavke liste reprodukcije"
 
@@ -14116,6 +14751,22 @@ msgstr "Reprodukuj sledeće (povratak na predhodni kanal)"
 
 msgid "Play previous"
 msgstr "Reprodukuj predhodno"
+
+msgid "Play queue"
+msgstr "Red za reprodukciju"
+
+msgid "Play queue / playlists"
+msgstr "Red za reprodukciju / plejliste"
+
+msgid "Play queue cleared"
+msgstr "Red za reprodukciju očišćen"
+
+#, python-format
+msgid "Play queue: %d movies (maximum 1024)"
+msgstr "Red za reprodukciju: %d filmova (maksimum 1024)"
+
+msgid "Play selected movies"
+msgstr "Pusti odabrane filmove"
 
 msgid "Play selected service in a PiP window"
 msgstr "Reprodukuj izabrani kanal u PiP prozoru"
@@ -14147,11 +14798,26 @@ msgstr "Reprodukcija Postavke"
 msgid "Playback Time:"
 msgstr "Vreme Reprodukcije:"
 
+msgid "Playback changed. Select the movie again before deleting it."
+msgstr "Reprodukcija se promenila. Ponovo izaberi film pre nego što ga obrišeš."
+
 msgid "Playback, Recording & Time Shift"
 msgstr "Reprodukuj, Snimanje & Tajm Šift"
 
+msgid "Playing"
+msgstr "Reprodukcija"
+
 msgid "Playlist"
 msgstr "Plejlista"
+
+msgid "Playlist filename (.m3u or .m3u8)"
+msgstr "Naziv fajla plejliste (.m3u ili .m3u8)"
+
+msgid "Playlist loaded"
+msgstr "Lista za reprodukciju učitana"
+
+msgid "Playlist saved"
+msgstr "Plejliste sačuvane"
 
 msgid "Playpause"
 msgstr "Pauziranje reprodukcije"
@@ -14243,6 +14909,9 @@ msgstr "Izaberite listu reprodukcije..."
 
 msgid "Please select a resolution..."
 msgstr "Izaberite rezoluciju..."
+
+msgid "Please select a target directory."
+msgstr "Molim te, izaberi ciljnu fasciklu."
 
 msgid "Please select an aspect ratio..."
 msgstr "Izaberite odnos širina/visina..."
@@ -14526,6 +15195,12 @@ msgstr "Pozicioner podešavanje"
 msgid "Possible causes could be:"
 msgstr "Mogući uzroci bi mogli biti:"
 
+msgid "Poster grid"
+msgstr "Mreža postera"
+
+msgid "Poster list"
+msgstr "Spisak postera"
+
 msgid "Power"
 msgstr "Napajanje"
 
@@ -14622,8 +15297,20 @@ msgstr "Preferiraj tjuner za snimanje, više dozvoljenih selekcija"
 msgid "Preparation time for recording"
 msgstr "Vreme pripreme za snimanje"
 
+msgid "Preparing latest recordings. Progress is shown in Tasks."
+msgstr "Pripremam najnovije snimke. Napredak je prikazan u Zadacima."
+
+msgid "Preparing picon storage. Existing picons will be preserved. Please wait..."
+msgstr "Priprema skladišta pikon-a. Postojeći pikoni će biti sačuvani. Molimo sačekajte..."
+
+msgid "Preparing picon storage. Please wait..."
+msgstr "Priprema pikon memorije. Molim te, sačekaj..."
+
 msgid "Preparing recording, please wait..."
 msgstr "Priprema snimka, molim te sačekaj..."
+
+msgid "Preparing series filenames..."
+msgstr "Priprema imena fajlova serije..."
 
 msgid "Preparing... Please wait"
 msgstr "Priprema... Molim sačekajte"
@@ -14756,6 +15443,15 @@ msgstr "Pregled"
 msgid "Preview menu"
 msgstr "Pregled menija"
 
+msgid "Preview offset (seconds)"
+msgstr "Pomak pregleda (sekunde)"
+
+msgid "Preview series filenames from the movie database"
+msgstr "Pregledaj imena fajlova serija iz baze podataka filmova"
+
+msgid "Preview starting point"
+msgstr "Pregled početne tačke"
+
 msgid "Previous"
 msgstr "Predhodni"
 
@@ -14767,6 +15463,9 @@ msgstr "Predhodna stranica"
 
 msgid "Previous channel page"
 msgstr "Predhodna stranica kanala"
+
+msgid "Previous page"
+msgstr "Prethodna stranica"
 
 msgid "Previous/Next page"
 msgstr "Predhodna/Sledeća stranica"
@@ -14828,6 +15527,10 @@ msgstr "Rukovanje ulaza sa TV"
 
 msgid "Processing"
 msgstr "Obrada"
+
+#, python-format
+msgid "Processing %d movies in the background"
+msgstr "Obrađujem %d filmova u pozadini"
 
 msgid "Processor information"
 msgstr "Procesor info"
@@ -15193,12 +15896,19 @@ msgstr "Nasumično"
 msgid "Random Password"
 msgstr "Nasumična Lozinka"
 
+msgid "Rating"
+msgstr "Ocena"
+
 #, python-format
 msgid "Rating defined by broadcaster - %d"
 msgstr "Ocena definisana emiterom - %d"
 
 msgid "Rating undefined"
 msgstr "Ocena nedefinisana"
+
+#, python-format
+msgid "Rating: %s"
+msgstr "Ocena: %s"
 
 msgid "Re-enter new PIN"
 msgstr "Ponovo unesite novi PIN"
@@ -15215,6 +15925,9 @@ msgstr "Čitanje korisničkih podataka iz 'oscam.conf'"
 msgid "Read block size"
 msgstr "Veličina bloka za čitanje"
 
+msgid "Read movie folders"
+msgstr "Pročitaj filmske foldere"
+
 msgid "Read-Only"
 msgstr "Samo za čitanje"
 
@@ -15223,6 +15936,12 @@ msgstr "Čitanje/Pisanje"
 
 msgid "Reader"
 msgstr "Čitač"
+
+msgid "Reading media information timed out."
+msgstr "Čitanje informacija sa medija je isteklo."
+
+msgid "Reading media information..."
+msgstr "Učitavanje informacija sa medija..."
 
 msgid "Ready"
 msgstr "Spreman"
@@ -15335,6 +16054,15 @@ msgstr "Izvor prijema"
 msgid "Reception sources to scan"
 msgstr "Izvori prijema za skeniranje"
 
+msgid "Recognize Blu-ray folders"
+msgstr "Prepoznaj Blu-ray foldere"
+
+msgid "Recognize DVD folders"
+msgstr "Prepoznaj DVD foldere"
+
+msgid "Recognize movie folders"
+msgstr "Prepoznaj foldere sa filmovima"
+
 msgid "Record"
 msgstr "Snimanje"
 
@@ -15368,6 +16096,9 @@ msgstr "Tajmer Snimanja"
 msgid "Recordable media toolbox"
 msgstr "Zapisivi medij za snimanje"
 
+msgid "Recorded"
+msgstr "Snimljeno"
+
 msgid "Recording"
 msgstr "Snimanje"
 
@@ -15395,6 +16126,14 @@ msgstr "Snimanje je prekinuto"
 msgid "Recording failed"
 msgstr "Snimanje nije uspelo"
 
+#, python-format
+msgid ""
+"Recording failed because the channel's programme information could not be received.\n"
+"%s"
+msgstr ""
+"Snimanje nije uspelo jer informacije o programu kanala nisu mogle da budu primljene.\n"
+"%s"
+
 msgid "Recording finished"
 msgstr "Snimanje je završeno"
 
@@ -15415,6 +16154,15 @@ msgstr "Započelo je snimanje, sada zaustavljam vremensku promenu."
 
 msgid "Recording stopped"
 msgstr "Snimanje je zaustavljeno"
+
+msgid "Recording title"
+msgstr "Naslov snimka"
+
+msgid "Recording title and separator"
+msgstr "Naziv snimka i separator"
+
+msgid "Recording title separator"
+msgstr "Separator naslova snimka"
 
 msgid "Recording tuning failed"
 msgstr "Podešavanje snimanja nije uspelo"
@@ -15496,8 +16244,14 @@ msgstr "Osveži informacije o statusu ZeroTier-a"
 msgid "Refresh every"
 msgstr "Osveži svakih"
 
+msgid "Refresh library"
+msgstr "Osveži biblioteku"
+
 msgid "Refresh list of RTL-SDR USB tuners"
 msgstr "Osveži listu RTL-SDR USB tunera"
+
+msgid "Refresh movie folder"
+msgstr "Osveži filmski folder"
 
 msgid "Refresh rate"
 msgstr "Učestalost osveževanja"
@@ -15529,8 +16283,17 @@ msgstr "Običan fajl"
 msgid "Relative"
 msgstr "Relativno"
 
+msgid "Relative date"
+msgstr "Približan datum"
+
 msgid "Release Notes"
 msgstr "Napomena uz Izdanje"
+
+msgid "Release date"
+msgstr "Datum izlaska"
+
+msgid "Release year"
+msgstr "Godina izlaska"
 
 msgid "Relevant PIDs Routing"
 msgstr "Relativno Usmeravanje PID"
@@ -15594,6 +16357,9 @@ msgstr "Izvanredni ljudi"
 
 msgid "Remember last service in PiP"
 msgstr "Zapamti poslednji kanal u PiP"
+
+msgid "Remember play queue"
+msgstr "Zapamti redosled pesama"
 
 msgid "Remember service PIN"
 msgstr "Zapamti PIN za kanal"
@@ -15719,6 +16485,9 @@ msgstr "Uklanjanje svih podataka tajmera"
 msgid "Remove all user interface data"
 msgstr "Uklanjanje svih podataka korisničkog interfejsa"
 
+msgid "Remove chapter markers (keep cuts and resume position)"
+msgstr "Ukloni oznake poglavlja (ostavi preseke i mesto gde si stao)"
+
 msgid "Remove completed timers after"
 msgstr "Ukloni dovršene tajmere posle"
 
@@ -15728,11 +16497,20 @@ msgstr "Ukloni trenutni direktorijum iz obeleživača"
 msgid "Remove currently selected title"
 msgstr "Ukloni trenutno izabrani naslov"
 
+msgid "Remove from queue"
+msgstr "Ukloni iz reda"
+
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Uklanjanje istaknutog direktorijuma iz obeleživača"
 
+msgid "Remove orphaned movie companion files"
+msgstr "Ukloni napuštene pomoćne fajlove za filmove"
+
 msgid "Remove previously stored services from scanned DAB+ multiplexes. Disable this option to retain services when a multiplex is temporarily unavailable."
 msgstr "Ukloni prethodno sačuvane servise iz skeniranih DAB+ multipleksa. Isključi ovu opciju da zadržiš servise kada multiplex privremeno nije dostupan."
+
+msgid "Remove selected movies from collection"
+msgstr "Ukloni odabrane filmove iz kolekcije"
 
 msgid "Remove service from AutoCam"
 msgstr "Ukloni servis iz AutoCam"
@@ -15773,6 +16551,10 @@ msgstr "Uklanjanje tabele particija"
 msgid "Rename"
 msgstr "Preimenovati"
 
+#, python-format
+msgid "Rename %(count)d movies with their companion files? %(skipped)d unchanged or incomplete entries were skipped."
+msgstr "Preimenuj %(count)d filmove zajedno sa njihovim pratećim fajlovima? %(skipped)d nepromenjenih ili nepotpunih unosa je preskočeno."
+
 msgid "Rename Directory"
 msgstr "Preimenuj Direktorij"
 
@@ -15782,11 +16564,17 @@ msgstr "Preimenuj stavku"
 msgid "Rename all related files"
 msgstr "Preimenuj sve srodne fajlove"
 
+msgid "Rename collection"
+msgstr "Preimenuj kolekciju"
+
 msgid "Rename directory/file"
 msgstr "Preimenuj direktorij/fajl"
 
 msgid "Rename failed!"
 msgstr "Preimenovanje nije uspelo!"
+
+msgid "Rename movie file and companion files"
+msgstr "Preimenuj fajl filma i povezane fajlove"
 
 msgid "Rename name and description for new events"
 msgstr "Preimenovanje imena i opisa za nove događaje"
@@ -16079,6 +16867,9 @@ msgstr "Vrati Postavke Sistema"
 msgid "Restore backups"
 msgstr "Vrati rezervne kopije"
 
+msgid "Restore previous playback position"
+msgstr "Vrati prethodnu poziciju reprodukcije"
+
 msgid "Restore settings from a backup"
 msgstr "Vraćanje postavki u predhodno stanje iz rezervne kopije"
 
@@ -16087,6 +16878,9 @@ msgstr "Vraćanje postavki sada"
 
 msgid "Restore the highlighted slot"
 msgstr "Vraćanje istaknutog slota u predhodno stanje"
+
+msgid "Restore to original location"
+msgstr "Vrati na originalnu lokaciju"
 
 msgid "Restore your %s %s settings."
 msgstr "Vratiti vaše %s %s postavke."
@@ -16167,6 +16961,9 @@ msgstr "Vrati se na prethodni kanal"
 msgid "Return to previous service"
 msgstr "Povratak na predhodni kanal"
 
+msgid "Reuse recently read folders for this duration. The cache is limited to 32 folders and 10000 entries. Refresh from the context menu to see external changes immediately."
+msgstr "Ponovo koristi nedavno pročitane foldere tokom ovog perioda. Keš je ograničen na 32 foldera i 10000 unosa. Osveži iz kontekstualnog menija da odmah vidiš spoljašnje promene."
+
 msgid "Reverse bouquet buttons"
 msgstr "Dugmad u obrnutom buketu"
 
@@ -16175,6 +16972,9 @@ msgstr "Obrnuta lista"
 
 msgid "Review"
 msgstr "Pregled"
+
+msgid "Review last maintenance scan"
+msgstr "Pregledaj poslednje održavanje skeniranja"
 
 msgid "Rewind"
 msgstr "Premotati nazad"
@@ -16320,6 +17120,9 @@ msgstr "Pokretanje komande %d: '%s'."
 msgid "Running only"
 msgstr "Samo pokretanje"
 
+msgid "Runtime"
+msgstr "Vreme izvršavanja"
+
 msgid "Russian"
 msgstr "Ruski"
 
@@ -16441,6 +17244,9 @@ msgstr "Samoa"
 msgid "Samoan"
 msgstr "Samoan"
 
+msgid "Sample rate"
+msgstr "Uzorak po sekundi"
+
 msgid "San Marino"
 msgstr "San Marino"
 
@@ -16531,6 +17337,9 @@ msgstr "Sačuvaj i snimi"
 msgid "Save and stop"
 msgstr "Sačuvaj i stani"
 
+msgid "Save available movie information beside video files, including MKV. Existing EIT files are kept. Automatic creation applies to selected files in the folder view; database browsing does not write to sleeping storage."
+msgstr "Sačuvaj dostupne informacije o filmu pored video fajlova, uključujući MKV. Postojeći EIT fajlovi se čuvaju. Automatsko pravljenje važi za odabrane fajlove u prikazu foldera; pregled baze ne upisuje u uspavanu memoriju."
+
 msgid "Save directory on EXIT"
 msgstr "Sačuvaj direktorij na izlasku"
 
@@ -16550,6 +17359,9 @@ msgstr "Sačuvaj listu reprodukcije"
 msgid "Save play list on EXIT"
 msgstr "Sačuvaj listu reprodukcije pri izlasku"
 
+msgid "Save queue as M3U playlist"
+msgstr "Sačuvaj red čekanja kao M3U plejlistu"
+
 msgid "Save right directory on exit"
 msgstr "Sačuvaj desno direktorijum pri izlasku"
 
@@ -16567,6 +17379,9 @@ msgstr "Sačuvati promenu log i izlaz"
 
 msgid "Save the log of the console messages to a file"
 msgstr "Sačuvaj log poruka iz konzole u fajl"
+
+msgid "Save the previous playback position and movie duration in the standard .cuts file."
+msgstr "Sačuvaj prethodnu poziciju reprodukcije i trajanje filma u standardnoj .cuts datoteci."
 
 msgid "Save the right column directory location on exit."
 msgstr "Sačuvati lokaciju direktorijuma desne kolone pri izlasku."
@@ -16642,6 +17457,9 @@ msgstr "Pretraži Wi-Fi Mreže"
 msgid "Scan additional SR"
 msgstr "Skan dodatni SR"
 
+msgid "Scan cancelled or folder limit reached."
+msgstr "Skeniranje otkazano ili je dostignut limit fascikli."
+
 msgid "Scan files..."
 msgstr "Skan fajl..."
 
@@ -16653,6 +17471,9 @@ msgstr "Skan lokalnih proširenja i instalirajte ih."
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "Skeniraj za zemaljske LCN i kreiraj LCN bukete"
+
+msgid "Scan movie folders"
+msgstr "Skeniraj foldere sa filmovima"
 
 msgid "Scan region"
 msgstr "Skeniraj područje"
@@ -16696,6 +17517,9 @@ msgstr[2] "Skeniranje završeno, pronađeno je %d usluga."
 
 msgid "Scanning for shares..."
 msgstr "Pretraživanje za delenje..."
+
+msgid "Scanning movie folders in the background"
+msgstr "Skeniram filmske foldere u pozadini"
 
 msgid "Scanning swap devices..."
 msgstr "Skeniranje zamene uređaja..."
@@ -16763,17 +17587,29 @@ msgstr "Znanstvena fantastika/Fantazija/Horor"
 msgid "Scope"
 msgstr "Opseg"
 
+msgid "Screen layout"
+msgstr "Raspored ekrana"
+
 msgid "Screen saver mode"
 msgstr "Režim čuvara ekrana"
 
 msgid "Screen saver movement"
 msgstr "Pokreni čuvara ekrana"
 
+msgid "Screen style"
+msgstr "Stil ekrana"
+
 msgid "Script Manager"
 msgstr "Menadžer Skriptama"
 
 msgid "ScriptRunner"
 msgstr "Pokretač Skripti"
+
+msgid "Scroll down"
+msgstr "Pomeri na dole"
+
+msgid "Scroll up"
+msgstr "Pomeri na gore"
 
 msgid "Scrolling Speed"
 msgstr "Brzina Pomeranja"
@@ -16805,6 +17641,9 @@ msgstr "Traženje mrežnih resursa"
 msgid "Search in the current view"
 msgstr "Pretraži u trenutnom prikazu"
 
+msgid "Search movie library"
+msgstr "Pretraži filmsku biblioteku"
+
 msgid "Search packages by name or description"
 msgstr "Pretraži pakete po imenu ili opisu"
 
@@ -16822,6 +17661,20 @@ msgstr "Tražim lokalne slike, molim sačekaj..."
 
 msgid "Searching west ..."
 msgstr "Pretraživanje zapada ..."
+
+#, python-format
+msgid "Season %(season)s · Episode %(episode)s"
+msgstr "Sezona %(season)s · Epizoda %(episode)s"
+
+#, python-format
+msgid "Season %d"
+msgstr "Sezona %d"
+
+msgid "Season and episode"
+msgstr "Sezona i epizode"
+
+msgid "Season unknown"
+msgstr "Sezona nepoznata"
 
 msgid "Second cable of motorized LNB"
 msgstr "Drugi kabl od pozicionera LNB"
@@ -17150,9 +18003,6 @@ msgstr "Izaberi 'Da' da tretiraš interlaced tokove i medijske datoteke kao prog
 msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr "Kada je da, VPS će biti omogućen u trenutnim zapisima (zaustavi se posle aktuelnog događaja), ako kanal podržava VPS."
 
-msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
-msgstr "Izaberite 'Da' da biste koristili alternativne IP adrese GitHub feed-a. Ovo može biti korisno ako koristite VPN i obični feed-ovi nisu dostupni preko objavljenih DNS imena."
-
 msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
 msgstr "Izaberite 'Da' da koristite legatnu navigaciju gde CH+/- menja aktivnu kolonu. Izaberite 'Ne' da koristite novu ujedinjenu navigacionu opciju za doslednu navigaciju sa drugim ekranima gde LEVO/DEVO menja aktivnu kolonu i CH+/- pomera nagore i nagore na listi."
 
@@ -17252,6 +18102,9 @@ msgstr "Izaberi softcam sa dostupne liste."
 msgid "Select a bouquet"
 msgstr "Izaberi buket"
 
+msgid "Select a connected HDD or USB device for the picons."
+msgstr "Izaberi povezan HDD ili USB uređaj za pikon-e."
+
 msgid "Select a debug log file to view:"
 msgstr "Izaberi fajl log otklanjanja grešaka za gledanje:"
 
@@ -17279,6 +18132,12 @@ msgstr "Podešava kompenzaciju za kašnjenje hardverskog bafera za DM9x0."
 msgid "Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "Unesite trajanje koje treba dodati u bafer za strimovanje nakon greške u strimovanju. Ovaj dodatni bafer može pomoći da se izbegnu dalji problemi sa strimovanjem zbog nedostatka prostora u baferu."
 
+msgid "Select a folder to show again. This does not change database scan paths."
+msgstr "Izaberi folder da se ponovo prikaže. Ovo ne menja putanje skeniranja baze podataka."
+
+msgid "Select a list or grid style. Text styles also work without a movie database. Poster styles require an installed metadata provider. Select legacy mode to use the existing list settings."
+msgstr "Izaberi stil liste ili mreže. Stilske opcije za tekst rade i bez filmske baze podataka. Poster stilovi zahtevaju instaliran provajder metapodataka. Izaberi nasleđeni režim da bi koristio postojeća podešavanja liste."
+
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr "Izaberi lokaciju na koju želite izdvojiti '%s':"
@@ -17291,6 +18150,12 @@ msgstr "Izaberi minimalnu količinu slobodnog prostora. Kada slobodni prostor pa
 
 msgid "Select a movie"
 msgstr "Izaberi film"
+
+msgid "Select a movie folder outside the trashcan."
+msgstr "Izaberi folder sa filmovima koji nije u korpi za otpatke."
+
+msgid "Select a movie information bar supplied by the skin."
+msgstr "Izaberi traku za informacije o filmu koju obezbeđuje skin."
 
 msgid "Select a network adapter"
 msgstr "Izaberi mrežni adapter"
@@ -17353,8 +18218,17 @@ msgstr "Izaberi sve"
 msgid "Select all lines"
 msgstr "Izaberi sve redove"
 
+msgid "Select all movies in this list"
+msgstr "Označi sve filmove na ovoj listi"
+
+msgid "Select all movies on this page"
+msgstr "Označi sve filmove na ovoj stranici"
+
 msgid "Select all related files"
 msgstr "Izaberi sve srodne fajlove"
+
+msgid "Select an absolute playlist path."
+msgstr "Izaberi apsolutnu putanju plejliste."
 
 msgid "Select an action for the current device"
 msgstr "Izaberite akciju za trenutni uređaj"
@@ -17388,6 +18262,10 @@ msgstr "Izaberi default EPG tip:"
 
 msgid "Select default File Commander directory:"
 msgstr "Izaberi default Fajl Menadžer direktorijum:"
+
+#, python-format
+msgid "Select destination for %d movies"
+msgstr "Izaberi destinaciju za %d filmove"
 
 msgid "Select destination for:"
 msgstr "Izaberi odredište za:"
@@ -17518,8 +18396,23 @@ msgstr "Izaberi ulazni uređaj."
 msgid "Select last browsed service"
 msgstr "Izaberi poslednji pregledani servis"
 
+msgid "Select maintenance candidates"
+msgstr "Izaberi kandidate za održavanje"
+
 msgid "Select movie"
 msgstr "Izaberi film"
+
+msgid "Select movie information or artwork for the receiver display. Small displays fall back to a text layout."
+msgstr "Izaberi informacije o filmu ili umetnički rad za prikaz na uređaju. Mali ekrani prelaze na tekstualni raspored."
+
+msgid "Select movies inside or outside the trashcan separately."
+msgstr "Odaberi filmove posebno unutar ili izvan kante za đubre."
+
+msgid "Select one movie to edit its information."
+msgstr "Izaberi jedan film da izmeniš njegove informacije."
+
+msgid "Select one movie to rename its file."
+msgstr "Izaberi jedan film da preimenuješ njegovu datoteku."
 
 msgid "Select only highlighted file"
 msgstr "Izaberi samo istaknuti fajl"
@@ -17803,6 +18696,9 @@ msgstr "Izaberite trajanje neaktivnosti pre nego što će se prikazati čuvar ek
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "Izaberite krajnje vreme pre kojeg ovaj tajmer može biti aktiviran. Nakon tog vremena tajmer neće biti aktiviran čak i ako su ispunjeni drugi uslovi."
 
+msgid "Select the existing movie player behavior for the EXIT button."
+msgstr "Izaberi postojeće ponašanje plejera za film za dugme IZLAZ."
+
 msgid "Select the fast scan provider and press BLUE to start the scan."
 msgstr "Izaberi provajdera za brzi sken i pritisni PLAVO da započneš skeniranje."
 
@@ -17834,6 +18730,9 @@ msgstr "Izaberi istaknuti slot i ponovo pokreni sistem"
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
 msgstr "Izaberi početnu poziciju označivača vremenske ose. Označavač je vertikalna linija nacrtana na EPG koja prikazuje trenutno vreme. Što je veća vrednost označivač će se više pomerati nadesno prikazujući više istorije a manje nadolazećih događaja."
+
+msgid "Select the initial view when a movie database is enabled. The View action switches between local folders and the movie library."
+msgstr "Odaberi početni prikaz kada je baza podataka filmova uključena. Akcija Prikaz menja između lokalnih foldera i biblioteke filmova."
 
 msgid "Select the input connector you want to use."
 msgstr "Izaberite ulazni konektor koji želite da koristite."
@@ -17892,8 +18791,14 @@ msgstr "Izaberite tačke montiranja"
 msgid "Select the mountpoint for the device."
 msgstr "Izaberite tačku montiranja za uređaj."
 
+msgid "Select the movie folder to scan, including subfolders"
+msgstr "Izaberi folder sa filmovima za skeniranje, uključujući podfoldere"
+
 msgid "Select the movie path"
 msgstr "Izaberi putanju filma"
+
+msgid "Select the movie selection screen layout supplied by the skin."
+msgstr "Izaberi izgled ekrana za izbor filma koji pruža skin."
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr "Izaberi brzinu mrežnih podataka ispod koje bi tajmer trebao da se aktivira kao što je navedeno. Saobraćaj iznad ove tarife se deaktivira tajmerom."
@@ -18112,6 +19017,9 @@ msgstr "Izaberi video režim"
 msgid "Select video output port with UP/DOWN buttons"
 msgstr "Izaberite video izlazni port pomoću dugmadi GORE/DOLE"
 
+msgid "Select view and sorting for this movie list"
+msgstr "Izaberi prikaz i sortiranje za ovu listu filmova"
+
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Izaberi radnju koju ćete preuzeti kada dođe do kraja medijskog fajla tokom reprodukcije."
 
@@ -18316,6 +19224,15 @@ msgstr "Serijski broj"
 
 msgid "Serial number"
 msgstr "Serijski broj"
+
+msgid "Series"
+msgstr "Serije"
+
+msgid "Series episode sort order"
+msgstr "Redosled epizoda serije"
+
+msgid "Series information and episode numbers"
+msgstr "Informacije o seriji i brojevi epizoda"
 
 msgid "Serious Classical"
 msgstr "Ozbiljna Klasika"
@@ -19195,6 +20112,9 @@ msgstr "Prikaži Podservise za aktivne Servise"
 msgid "Show System Plugin packages"
 msgstr "Pokaži Sistem Plugin pakete"
 
+msgid "Show TS, MKV and other formats in the file information field. Classic layouts append this information to the title."
+msgstr "Prikaži TS, MKV i druge formate u polju za informacije o fajlu. Klasični rasporedi dodaju ove informacije u naslov."
+
 msgid "Show Timer List"
 msgstr "Pokaži Listu Tajmera"
 
@@ -19215,6 +20135,9 @@ msgstr "Pokaži Vertikalni EPG"
 
 msgid "Show Web Link packages"
 msgstr "Pokaži Web Link pakete"
+
+msgid "Show a dynamic collection across movie folders. With a movie database it uses indexed files; otherwise a read-only background task creates a snapshot."
+msgstr "Prikaži dinamičku kolekciju kroz foldere sa filmovima. Ako postoji baza podataka filmova, koristi indeksirane fajlove; inače, zadatak u pozadini samo za čitanje pravi snimak."
 
 msgid "Show a spinning logo when the system is busy."
 msgstr "Pokaži logotip koji se okreće kada je sistem zauzet."
@@ -19249,11 +20172,17 @@ msgstr "Pokaži pozadinu u radio režimu"
 msgid "Show background when tuned to a radio channel."
 msgstr "Pokaži pozadinu kada je podešen radio kanal."
 
+msgid "Show bookmarks in the movie list"
+msgstr "Prikaži obeleživače u listi filmova"
+
 msgid "Show bouquet on launch"
 msgstr "Pokaži buket pri pokretanju"
 
 msgid "Show build information"
 msgstr "Pokaži info o izradi"
+
+msgid "Show cached movie counts and sizes. Update the cache explicitly from Movie maintenance in the context menu. Browsing does not scan subfolders."
+msgstr "Prikaži broj i veličinu keširanih filmova. Ažuriraj keš eksplicitno iz održavanja filmova u kontekstualnom meniju. Pregledanje ne skenira podfoldere."
 
 #, python-format
 msgid "Show cards with uphop %s"
@@ -19288,6 +20217,12 @@ msgstr "Pokaži kodirani info na Info Traci"
 
 msgid "Show current directory"
 msgstr "Pokaži trenutni direktorijum"
+
+msgid "Show current recording length"
+msgstr "Prikaži trenutnu dužinu snimka"
+
+msgid "Show cut copy number"
+msgstr "Prikaži broj isečenog i kopiranog"
 
 msgid "Show debug log information"
 msgstr "Pokaži info loga otklanjanja grešaka"
@@ -19331,6 +20266,9 @@ msgstr "Pokaži tok događaja u izboru kanala"
 msgid "Show eventinfo plugins"
 msgstr "Pokaži plugin za info događaj"
 
+msgid "Show existing movie bookmarks as virtual folder entries. Their targets are accessed only when opened."
+msgstr "Prikaži postojeće oznake filmova kao unose u virtuelnoj fascikli. Njihovi ciljevi se pristupaju samo kada se otvore."
+
 msgid "Show extended description"
 msgstr "Pokaži prošireni opis"
 
@@ -19348,6 +20286,9 @@ msgstr "Pokaži default fajlove rezervne kopije"
 
 msgid "Show first picture"
 msgstr "Pokaži prvi imidž"
+
+msgid "Show folders"
+msgstr "Prikaži foldere"
 
 msgid "Show free space in timer view"
 msgstr "Pokaži slobodno mesto u tajmer pregledu"
@@ -19386,6 +20327,9 @@ msgstr "Pokaži zadatke posla u Meniju Proširenja"
 msgid "Show last picture"
 msgstr "Pokaži poslednji imidž"
 
+msgid "Show links to files and folders. Broken links are omitted when the directory is refreshed."
+msgstr "Prikaži linkove ka fajlovima i fasciklama. Pokvareni linkovi se izostavljaju kada se direktorijum osveži."
+
 msgid "Show list of bouquets"
 msgstr "Pokaži listu buketa"
 
@@ -19409,6 +20353,12 @@ msgstr "Pokaži meni"
 
 msgid "Show message when recording starts"
 msgstr "Pokaži poruku kada počne snimanje"
+
+msgid "Show movie format"
+msgstr "Prikaži format filma"
+
+msgid "Show movie information"
+msgstr "Pokaži informacije o filmu"
 
 msgid "Show movie lengths in movie list"
 msgstr "Pokaži dužinu filma na listi filmova"
@@ -19469,6 +20419,9 @@ msgstr "Pokaži redove razdeljene između događaja."
 
 msgid "Show persistent InfoBar while paused"
 msgstr "Pokaži trajno Info Traku dok je pauzirano"
+
+msgid "Show physical folders. Parent navigation, the trashcan, bookmarks, virtual collections and recognized movie structures remain accessible."
+msgstr "Prikaži fizičke fascikle. Navigacija ka roditeljskoj fascikli, korpa za otpatke, oznake, virtuelne kolekcije i prepoznate strukture filmova ostaju dostupni."
 
 msgid "Show picon background color"
 msgstr "Pokaži boju pikonske pozadine"
@@ -19593,6 +20546,9 @@ msgstr "Pokaži brzi meni subtitlova"
 msgid "Show subtitle selection"
 msgstr "Pokaži izbor subtitlova"
 
+msgid "Show symbolic links"
+msgstr "Prikaži simboličke linkove"
+
 msgid "Show system information"
 msgstr "Pokaži info o sistemu"
 
@@ -19623,8 +20579,14 @@ msgstr "Pokaži OSCam info na ekranu"
 msgid "Show the about screen"
 msgstr "Prikaži ekran o aplikaciji"
 
+msgid "Show the cut copy suffix, such as _001, even when the recording title comes from metadata. This is not the number of chapter markers."
+msgstr "Prikaži sufiks za isečenu kopiju, kao što je _001, čak i kada naslov snimka dolazi iz metapodataka. Ovo nije broj markera poglavlja."
+
 msgid "Show the last opkg command's output"
 msgstr "Pokaži izlaz poslednje opkg komande"
+
+msgid "Show the measured length of active recordings in the file information field, updated once a minute in the file view. Database views use cached metadata."
+msgstr "Prikaži izmerenu dužinu aktivnih snimaka u polju za informacije o fajlu, ažuriranu jednom u minuti u pregledu fajla. Pregledi baze koriste keširane metapodatke."
 
 msgid "Show the task list"
 msgstr "Pokaži liste zadataka"
@@ -19661,6 +20623,9 @@ msgstr "Pokaži nepoznati video format kao"
 
 msgid "Show vertical Program Guide"
 msgstr "Pokaži vertikalni Programski Vodič"
+
+msgid "Show virtual folders first, or sort them among movies by the current title or recording date order."
+msgstr "Prikaži virtualne fascikle prvo, ili ih sortiraj među filmovima po trenutnom naslovu ili datumu snimanja."
 
 msgid "Show warning before restart"
 msgstr "Pokaži upozorenje pre ponovnog pokretanja"
@@ -19767,6 +20732,9 @@ msgstr "Jednostavno Montiranje"
 
 msgid "Simplified Chinese"
 msgstr "Simplified Chinese"
+
+msgid "Since the previous visit"
+msgstr "Od prethodne posete"
 
 msgid "Sindhi"
 msgstr "Sindhi"
@@ -19886,6 +20854,9 @@ msgstr "Preskoči instalaciju paketa, samo osnovni paketi će biti dostupni"
 
 msgid "Skip sensibility for '%s' button"
 msgstr "Preskoči osetljivost za dugme '%s'"
+
+msgid "Skip this many seconds after the chosen preview starting point."
+msgstr "Preskoči ovoliko sekundi nakon izabrane tačke početka pregleda."
 
 msgid "Skip time for '%s' button"
 msgstr "Lista sečenja preskoči vreme za '%s' dugme"
@@ -20277,6 +21248,9 @@ msgstr "Sortiraj po Nazivu"
 msgid "Sort by default"
 msgstr "Sortiraj po defaultu"
 
+msgid "Sort folders with movies"
+msgstr "Sortiraj foldere sa filmovima"
+
 msgid "Sort list by"
 msgstr "Sortiraj listu po"
 
@@ -20288,6 +21262,12 @@ msgstr "Sortiraj redosled za listu jezika."
 
 msgid "Sort playlists"
 msgstr "Sortiraj plej listu"
+
+msgid "Sort the whole catalogue before pagination. Long PVR/File temporarily selects another order."
+msgstr "Sortiraj ceo katalog pre numerisanje stranica. Dugo PVR/Fajl privremeno bira drugi redosled."
+
+msgid "Sort this movie list"
+msgstr "Sortiraj ovu listu filmova"
 
 #, python-format
 msgid "Sort: Directories by %s %s; Files by %s %s."
@@ -20310,6 +21290,9 @@ msgstr "Nosač zvuka"
 
 msgid "Source Packages"
 msgstr "Pokaži izvorne pakete"
+
+msgid "Source and destination are identical."
+msgstr "Izvor i destinacija su isti."
 
 msgid "Source request"
 msgstr "Izvorni zahtev"
@@ -20457,6 +21440,12 @@ msgstr "Pokreni sve dostupne zamene datoteka i particije kada Enigma2 startuje. 
 msgid "Start an instant recording"
 msgstr "Pokreni trenutno snimanje"
 
+msgid "Start at the first early chapter marker"
+msgstr "Počni od prvog markera ranog poglavlja"
+
+msgid "Start at the resume position, the beginning or the first early chapter marker. Preview does not save playback positions or change watch status."
+msgstr "Počni sa mesta gde si stao, na početku ili na prvom markeru ranog poglavlja. Pregledanje ne pamti mesto gde si stao niti menja status gledanja."
+
 msgid "Start date"
 msgstr "Datum početka"
 
@@ -20522,6 +21511,12 @@ msgstr "Vreme početka"
 
 msgid "Start time shift"
 msgstr "Pokreni tajmšift"
+
+msgid "Start view"
+msgstr "Počni pregled"
+
+msgid "Start watched movies from the beginning"
+msgstr "Počni da gledaš filmove od početka"
 
 msgid "Start/stop slide show"
 msgstr "Pokreni/Zaustavi projekciju slajdova"
@@ -20600,6 +21595,12 @@ msgstr "Status nije dostupan!"
 msgid "Stay in time shift at buffer end (for plugins)"
 msgstr "Ostani u vremenskom pomaku na kraju bafera (za dodatke)"
 
+msgid "Stay on the marked movie, move to the next movie, or continue in the last navigation direction."
+msgstr "Ostani na označenom filmu, pređi na sledeći film ili nastavi u poslednjem smeru navigacije."
+
+msgid "Stay on the movie"
+msgstr "Ostani na filmu"
+
 msgid "Step"
 msgstr "Korak"
 
@@ -20641,6 +21642,9 @@ msgstr "Zaustavi režim uređivanja"
 
 msgid "Stop entry"
 msgstr "Zaustavi unos"
+
+msgid "Stop playback or preview before changing this movie."
+msgstr "Zaustavi reprodukciju ili pregled pre nego što promeniš ovaj film."
 
 msgid "Stop playing this movie?"
 msgstr "Da zaustavim ovaj film?"
@@ -20815,6 +21819,9 @@ msgstr "Pruge"
 
 msgid "Style:"
 msgstr "Stil:"
+
+msgid "Subchannel ID"
+msgstr "ID Podkanala"
 
 msgid "Subnet mask"
 msgstr "Maska podmreže"
@@ -21020,6 +22027,9 @@ msgstr "Prebaci između liste fajlova/liste reprodukcije"
 msgid "Switch config"
 msgstr "Konfig zamena"
 
+msgid "Switch movie and file information"
+msgstr "Prebaci informacije o filmu i fajlu"
+
 msgid "Switch off the TV to correct input"
 msgstr "Isključi TV radi ispravljanja ulaza"
 
@@ -21070,6 +22080,9 @@ msgstr "Prebaci na levu kolonu"
 
 msgid "Switch to the other column"
 msgstr "Pređi na drugu kolonu"
+
+msgid "Switch to the recording channel"
+msgstr "Prebaci se na kanal za snimanje"
 
 msgid "Switch to the right column"
 msgstr "Prebaci na desnu kolonu"
@@ -21130,6 +22143,12 @@ msgstr "Sistem Plugin Paket"
 
 msgid "System Setup"
 msgstr "Podešavanje Sistema"
+
+msgid "System date and time"
+msgstr "Datum i vreme sistema"
+
+msgid "System date format"
+msgstr "Format datuma sistema"
 
 msgid "System information"
 msgstr "Sistem informacija"
@@ -21205,6 +22224,9 @@ msgstr "Radnja Uređivača Oznaka"
 
 msgid "Tagalog"
 msgstr "Tagalog"
+
+msgid "Tagline"
+msgstr "Oznaka linije"
 
 msgid "Tags"
 msgstr "Oznake"
@@ -21345,6 +22367,9 @@ msgstr "Privremeno montiraj kao %s"
 
 msgid "Temporary directory"
 msgstr "Privremeni direktorij"
+
+msgid "Temporary layout and sorting"
+msgstr "Privremeni raspored i sortiranje"
 
 msgid "Tennis"
 msgstr "Tenis"
@@ -21587,6 +22612,9 @@ msgstr ""
 msgid "The backup can take up to about 15 minutes to complete."
 msgstr "Pravljenje rezervne kopije može potrajati do otprilike 15 minuta da se završi."
 
+msgid "The bookmarked folder is not available."
+msgstr "Označena fascikla nije dostupna."
+
 msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
@@ -21596,6 +22624,12 @@ msgstr ""
 
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "Komanda za buđenje iz režima čekanja biće poslana više puta."
+
+msgid "The companion file changed or belongs to a movie again."
+msgstr "Pomoćna datoteka se promenila ili opet pripada filmu."
+
+msgid "The complete movie is at the destination, but some source files could not be removed."
+msgstr "Ceo film je na odredištu, ali neki izvorni fajlovi nisu mogli da budu obrisani."
 
 msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
 msgstr "Nastavak snimka nije mogao biti sigurno identifikovan. Oba snimka su sačuvana i neće biti spojena."
@@ -21607,6 +22641,9 @@ msgstr "Trenutni bafer za vremensko pomeranje više nije dostupan."
 msgid "The custom mount point for '%s' is empty!"
 msgstr "Prilagođena tačka montiranja za '%s' je prazna!"
 
+msgid "The cut list is damaged; it was left unchanged."
+msgstr "Lista za sečenje je oštećena; ostavljena je nepromenjena."
+
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -21616,6 +22653,13 @@ msgstr ""
 
 msgid "The default settings are wake up time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wake up time. So can be detected a wake up by a timer even at very early starting receivers."
 msgstr "Default postavke vreme buđenja - 5 minuta i vreme početka tajmera + 5 minuta. Ova postavka je promenila vremenski prozor pre vremena buđenja. Tako da se može otkriti buđenje od strane tajmera čak i na veoma ranom uključenju resivera."
+
+#, python-format
+msgid "The destination '%s' already exists. Choose an empty destination or move the picons manually."
+msgstr "Destinacija '%s' već postoji. Izaberi praznu destinaciju ili premesti pikon-e ručno."
+
+msgid "The destination changed during the operation."
+msgstr "Destinacija se promenila tokom operacije."
 
 msgid "The detailed information is intended for developers only."
 msgstr "Detaljni info je namenjen samo projektantima."
@@ -21675,6 +22719,9 @@ msgstr "Ime lokalnog dela ne sme da sadrži razmake, kosu crtu ili '#' i ne sme 
 msgid "The loopthrough setting is wrong."
 msgstr "Postavka petlje je pogrešna."
 
+msgid "The manual maintenance scan offers watched movies only when neither the movie nor its playback position has changed within this many days. Review and select candidates in the context menu before moving them to the trashcan."
+msgstr "Ručni pregled održavanja nudi snimljene filmove samo kada se ni film ni mesto u kojem je stao nisu promenili tokom ovog broja dana. Pregledaj i izaberi kandidate u kontekstualnom meniju pre nego što ih prebaciš u kantu za smeće."
+
 msgid "The manufacturer STARTUP device cannot be mounted for inspection."
 msgstr "Proizvođač STARTUP uređaj se ne može montirati za inspekciju."
 
@@ -21696,14 +22743,64 @@ msgstr "Fajl proizvođača STARTUP '%s' ne može se bezbedno produžiti."
 msgid "The mount point '%s' is used by more than one share."
 msgstr "Ta tačka montiranja '%s' se koristi za više deljenja."
 
+msgid "The movie duration is unknown."
+msgstr "Trajanje filma je nepoznato."
+
+msgid "The movie file is still being written. Try again later."
+msgstr "Fajl filma se još uvek piše. Pokušaj ponovo kasnije."
+
+msgid "The movie folder or companion file changed."
+msgstr "Folder sa filmom ili prateća datoteka su se promenili."
+
+msgid "The movie is currently being recorded."
+msgstr "Film se trenutno snima."
+
+msgid "The movie or its playback position changed since the maintenance scan. Scan again."
+msgstr "Film ili njegova pozicija reprodukcije su se promenili od poslednjeg skeniranja. Skeniraj ponovo."
+
+#, python-format
+msgid "The operation failed. Some files remain at the destination: %s"
+msgstr "Operacija nije uspela. Neki fajlovi su ostali na destinaciji: %s"
+
+msgid "The original location is unknown. Use Move to select a destination."
+msgstr "Originalna lokacija je nepoznata. Koristi Opciju Premesti da izabereš odredište."
+
 msgid "The panic channel was not found. Please select it again in Channel Selection Settings."
 msgstr "Panik kanal nije pronađen. Molimo izaberite ga ponovo u podešavanjima za izbor kanala."
 
-msgid "The picon directory already exists and must be removed. Do you want to proceed?"
-msgstr "Direktorijum pikon već postoji i mora biti uklonjen. Da li želite da nastavite?"
+msgid "The picon destination must be outside the existing picon directory."
+msgstr "Odredište pikon fajla mora biti van postojeće pikon fascikle."
+
+msgid ""
+"The picon package could not be installed. Connect an HDD or USB device and select it as the picon install location in Plugin Browser settings. Check that the device is mounted and writable.\n"
+"\n"
+"Internal flash only allows small packages with up to 1,000 files and 10 MiB, with enough free space and file entries remaining."
+msgstr ""
+"Picon paket nije mogao da se instalira. Poveži HDD ili USB uređaj i izaberi ga kao lokaciju za instalaciju pikon-a u podešavanjima Plugin Browser-a. Proveri da li je uređaj montiran i da li ima dozvolu za upis.\n"
+"\n"
+"Interna flash memorija omogućava instalaciju samo malih paketa sa do 1.000 fajlova i 10 MiB, sa dovoljno slobodnog prostora i preostalih fajl ulaza."
+
+#, python-format
+msgid "The picon path '%s' is not a directory."
+msgstr "Putanja pikon '%s' nije direktorijum."
+
+msgid "The picon storage device is read-only or full."
+msgstr "Pikon uređaj za skladištenje je samo za čitanje ili je pun."
+
+msgid "The play queue is empty"
+msgstr "Red za reprodukciju je prazan"
+
+msgid "The playlist contains too many movies."
+msgstr "Plejliste imaju previše filmova."
+
+msgid "The playlist is too large."
+msgstr "Plejlista je prevelika."
 
 msgid "The positioner tuner is currently unavailable. Stop recordings or other services using this tuner and try again."
 msgstr "Taj pozicioner tjuner trenutno nije dostupan. Zaustavite snimanja ili druge usluge koje koriste ovaj tuner i pokušajte ponovo."
+
+msgid "The preview shows the first 20 filenames."
+msgstr "Pregled prikazuje prvih 20 imena fajlova."
 
 msgid "The previous mount point is already in use."
 msgstr "Prethodna tačka montiranja je već u upotrebi."
@@ -21712,8 +22809,17 @@ msgstr "Prethodna tačka montiranja je već u upotrebi."
 msgid "The process will take approximately %d minutes to complete."
 msgstr "Proces će trajati otprilike %d minuta da se završi."
 
+msgid "The recording changed while the operation was running."
+msgstr "Snimak se promenio dok je operacija trajala."
+
 msgid "The recording end time has already passed."
 msgstr "Vreme završetka snimanja je već prošlo."
+
+msgid "The recording is still running. Switch to its live channel?"
+msgstr "Snimanje još traje. Da li želiš da pređeš na njegov uživo kanal?"
+
+msgid "The recording metadata is too large; it was left unchanged."
+msgstr "Metapodaci snimka su preveliki; ostali su nepromenjeni."
 
 msgid "The requested recording conflicts with other timers. What do you want to do?"
 msgstr "Zatraženi snimak se poklapa sa drugim tajmerima. Šta želiš da uradiš?"
@@ -21815,6 +22921,21 @@ msgstr "Tajmer se poklapa sa lokalnim tajmerom i nije premješten sa rezervnog t
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr "Fajl tajmera '%s' je oštećen i nije mogao biti preuzet."
+
+msgid "The trash index is damaged."
+msgstr "Indeks smeća je oštećen."
+
+msgid "The trash index is too large."
+msgstr "Indeks smeća je prevelik."
+
+msgid "The trash index must not be a symbolic link."
+msgstr "Indeks smeća ne sme biti simbolička veza."
+
+msgid "The trashcan and the movie must be on the same mounted filesystem. No files were copied."
+msgstr "Kanta za đubre i film moraju biti na istom montiranom fajl sistemu. Nema kopiranih fajlova."
+
+msgid "The trashcan must be a directory on the movie's filesystem."
+msgstr "Kanta za smeće mora biti direktorijum na fajl sistemu filma."
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -21923,6 +23044,9 @@ msgstr "Ovom kanalu je potreban HbbTV dodatak. Molimo instalirajte kompatibilan 
 msgid "This device has multiple mount points. Unmount them before checking the file system."
 msgstr "Ovaj uređaj ima više tačaka montaže. Otkači ih pre nego što proveriš datoteku sistema."
 
+msgid "This directory is locked for movie file changes."
+msgstr "Ovaj direktorijum je zaključan za promene filmova."
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Ovo polje vam omogućava da pretražite dodatni simbol rate do %s."
@@ -21958,6 +23082,9 @@ msgstr "Ovaj meni sadrži izbore za prikazivanje info o resiveru."
 
 msgid "This menu offers options related managing the software on the %s %s."
 msgstr "Ovaj meni nudi opcije povezane sa upravljanjem softverom na %s %s."
+
+msgid "This movie is currently unavailable. Check its storage device or network mount."
+msgstr "Ovaj film trenutno nije dostupan. Proveri uređaj za skladištenje ili mrežni priključak."
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Ovaj pomak će se koristiti samo ako kanal nema sopstveni pomak jačine zvuka."
@@ -22130,8 +23257,17 @@ msgstr "Оva opcija postavlja suzbijanje lažnih digitalnih kontura, koje su rez
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Оva opcija podešava oštrinu slike koja se koristi prilikom upscaled slike."
 
+msgid "This playlist contains unsupported files. Play queues support video and audio files; open DVD images individually."
+msgstr "Ova plejlista sadrži fajlove koji nisu podržani. Redovi za reprodukciju podržavaju video i audio fajlove; otvori DVD slike pojedinačno."
+
+msgid "This provider supplies movie information but no browsable library."
+msgstr "Ovaj provajder daje informacije o filmovima, ali nema preglednu biblioteku."
+
 msgid "This recording has already ended."
 msgstr "Ovaj snimak je već završen."
+
+msgid "This service is not a local movie file."
+msgstr "Ova usluga nije lokalni filmski fajl."
 
 msgid "This service is protected by a parental control PIN!"
 msgstr "Ovaj kanal je zaštićen pinom roditeljske kontrole!"
@@ -22188,6 +23324,9 @@ msgstr "Tibetan"
 
 msgid "Tigrinya"
 msgstr "Tigrinya"
+
+msgid "Tiles"
+msgstr "Pločice"
 
 msgid "Time"
 msgstr "Vreme"
@@ -22390,6 +23529,12 @@ msgstr "Timor-Leste / East Timor"
 msgid "Title"
 msgstr "Titl"
 
+msgid "Title (A–Z)"
+msgstr "Naslov (A–Z)"
+
+msgid "Title (Z–A)"
+msgstr "Naslov (Z–A)"
+
 msgid "Title properties"
 msgstr "Svojstva titla"
 
@@ -22490,6 +23635,9 @@ msgstr "Prebacivanje selekcije trenutne oznake"
 msgid "Toggle selections"
 msgstr "Prebaci selekcije"
 
+msgid "Toggle series grouping for this folder"
+msgstr "Prebaci grupisanje serija za ovaj folder"
+
 msgid "Toggle service name display"
 msgstr "Prikaz imena kanala na displeju"
 
@@ -22519,6 +23667,18 @@ msgstr "Ton režim"
 
 msgid "Tonga"
 msgstr "Tonga"
+
+msgid "Too many candidates. Scan a smaller movie folder."
+msgstr "Previše kandidata. Skeniraj manji folder sa filmovima."
+
+msgid "Too many entries. Scan a smaller movie folder."
+msgstr "Previše stavki. Skeniraj manji folder sa filmovima."
+
+msgid "Too many movies. Scan a smaller movie folder."
+msgstr "Previše filmova. Skeniraj manji folder sa filmovima."
+
+msgid "Too many pending movie database changes. Reconnect the database first."
+msgstr "Previše nesređenih promena u bazi filmova. Prvo se ponovo poveži na bazu."
 
 msgid "Top"
 msgstr "Vrh"
@@ -22563,6 +23723,9 @@ msgstr "Turizam/Putovanja"
 msgid "Track"
 msgstr "Trag"
 
+msgid "Track language"
+msgstr "Prati jezik"
+
 msgid "Traditional"
 msgstr "Tradicionalni"
 
@@ -22577,6 +23740,9 @@ msgstr "Transkodiranje"
 
 msgid "Transcoding"
 msgstr "Transšifrovanje"
+
+msgid "Transfer characteristics"
+msgstr "Karakteristike prenosa"
 
 msgid "Translate Subs On This Service"
 msgstr "Prevodi titlove na ovoj usluzi"
@@ -22963,6 +24129,9 @@ msgstr "Ukraine"
 msgid "Ukrainian"
 msgstr "Ukrainian"
 
+msgid "Unable to access the script directory."
+msgstr "Ne mogu da pristupim direktorijumu skripti."
+
 #, python-format
 msgid ""
 "Unable to change swap state for '%s'.\n"
@@ -22970,6 +24139,10 @@ msgid ""
 msgstr ""
 "Nije moguće promeniti stanjezamene za '%s'.\n"
 "%s"
+
+#, python-format
+msgid "Unable to change the picon storage location: %s"
+msgstr "Ne mogu da promenim lokaciju za čuvanje pikon-a: %s"
 
 #, python-format
 msgid "Unable to check HDD replacement: %s"
@@ -22992,9 +24165,16 @@ msgstr "Nije moguće pokrenuti Kexec MultiBoot!"
 msgid "Unable to load package information!"
 msgstr "Ne mogu da učitam informacije o paketu!"
 
+msgid "Unable to move the movie without overwriting existing files."
+msgstr "Ne mogu da premestim film bez brisanja postojećih fajlova."
+
 #, python-format
 msgid "Unable to open tuner (%d)"
 msgstr "Ne mogu da otvorim tjuner (%d)"
+
+#, python-format
+msgid "Unable to prepare picon storage: %s"
+msgstr "Ne mogu da pripremim pikon skladište: %s"
 
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
 msgstr "Nije moguće pripremiti ažuriranje buketa. Skener će nastaviti bez ažuriranja buketa."
@@ -23050,11 +24230,18 @@ msgstr "Ne mogu da potvrdim Unicable poziciju za LNB %d: %s!"
 msgid "Unable to write the time shift event information."
 msgstr "Ne mogu da zapišem informacije o vremenskom pomaku."
 
+msgid "Unassigned / pending recordings"
+msgstr "Ne dodeljeni / na čekanju snimci"
+
 msgid "Unattended upgrade without GUI"
 msgstr "Nenadzirana nadogradnja bez GUI"
 
 msgid "Unavailable"
 msgstr "Nedostupno"
+
+#, python-format
+msgid "Unavailable: %s"
+msgstr "Nedostupno: %s"
 
 msgid "Undefined"
 msgstr "Nedefinisan"
@@ -23156,6 +24343,9 @@ msgstr "Nepoznat!"
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr "Ukoliko nije podešeno na 'onemogućeno' dobijete pregled kanala unutar EPG liste."
 
+msgid "Unlimited"
+msgstr "Neograničeno"
+
 msgid "Unmark As Dedicated 3D Service"
 msgstr "Ukloni oznaku kao posvećenu 3D Servisu"
 
@@ -23190,6 +24380,9 @@ msgstr "Do pripravnosti/ponovnog pokretanja"
 msgid "Unused %s"
 msgstr "Neiskorišćeno %s"
 
+msgid "Unwatched"
+msgstr "Neprovereno"
+
 msgid "Unzipping Image"
 msgstr "Raspakivanje Imidža"
 
@@ -23198,6 +24391,9 @@ msgstr "Gore"
 
 msgid "Up / Active"
 msgstr "Gore / Aktivno"
+
+msgid "Up to 256 folders can be hidden."
+msgstr "Može se sakriti do 256 foldera."
 
 msgid "Up to 50 Mbps"
 msgstr "Do 50 Mbps"
@@ -23225,6 +24421,15 @@ msgstr "Ažuriranje nije uspelo!"
 
 msgid "Update finished!"
 msgstr "Ažuriranje je završeno!"
+
+msgid "Update folder movie counts and sizes"
+msgstr "Ažuriraj broj filmova i veličine foldera"
+
+msgid "Update movie folder snapshot"
+msgstr "Ažuriraj snimak foldera za filmove"
+
+msgid "Update movie folder snapshot / latest recordings"
+msgstr "Ažuriraj snimak fascikle sa filmovima / najnovija snimanja"
 
 msgid "Update outdated bouquet entries"
 msgstr "Ažuriraj zastarele stavke u buketu"
@@ -23256,6 +24461,12 @@ msgstr "Dostupne ispravke:"
 
 msgid "Updating"
 msgstr "Ažuriranje"
+
+msgid "Updating library index..."
+msgstr "Ažuriranje indeksa biblioteke..."
+
+msgid "Updating movie folder snapshot in Tasks"
+msgstr "Ažuriranje snimka fascikle sa filmovima u Zadacima"
 
 msgid "Updating package list."
 msgstr "Ažuriranje liste paketa."
@@ -23411,8 +24622,8 @@ msgstr "Koristite Zap tajmer za završno vreme"
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
 msgstr "Koristite DNS keš za lokalno čuvanje nedavnih DNS pretraga kako biste poboljšali performanse, smanjili latenciju i odlazni promet."
 
-msgid "Use alternate GitHub DNS"
-msgstr "Koristite alternativni GitHub DNS"
+msgid "Use an absolute filename ending in .m3u or .m3u8."
+msgstr "Koristi apsolutno ime fajla koje se završava sa .m3u ili .m3u8."
 
 msgid "Use an alternative smaller screen."
 msgstr "Koristi alternativni manji ekran."
@@ -23440,6 +24651,9 @@ msgstr "Koristi najbolje / kontrolisano od HDMI"
 
 msgid "Use circular LNB"
 msgstr "Koristi kružni LNB"
+
+msgid "Use configured defaults"
+msgstr "Koristi podešene podrazumevane vrednosti"
 
 msgid "Use defaults"
 msgstr "Koristi default"
@@ -23480,6 +24694,9 @@ msgstr "Koristi key map *"
 msgid "Use legacy navigation"
 msgstr "Koristite nasleđenu navigaciju"
 
+msgid "Use normal end-of-movie action"
+msgstr "Koristi običnu akciju na kraju filma"
+
 msgid "Use official channel numbering"
 msgstr "Korišćenje zvaničnog numerisanja kanala"
 
@@ -23503,6 +24720,12 @@ msgstr "Koristi postavke po direktorijumu"
 
 msgid "Use power measurement"
 msgstr "Koristi merenje napajanja"
+
+msgid "Use relative dates or the configured system date format, with or without the time."
+msgstr "Koristi relativne datume ili podešen sistemski format datuma, sa vremenom ili bez njega."
+
+msgid "Use selected sorting"
+msgstr "Koristi odabrano sortiranje"
 
 msgid "Use skin default"
 msgstr "Koristi zadani skin"
@@ -23561,8 +24784,23 @@ msgstr "Koristi numerisanje kanala koje daje brzo skeniranje, uključujući praz
 msgid "Use the current selection and exit"
 msgstr "Koristi trenutnu selekciju i izađi"
 
+msgid "Use the database title when available, the original recording title, or the filename. Title cleanup applies after this choice. Grouped series keep their series title."
+msgstr "Koristi naslov iz baze podataka kad je dostupan, originalni naslov snimka ili ime fajla. Čišćenje naslova se primenjuje nakon ovog izbora. Grupisane serije zadržavaju svoj naslov serije."
+
+msgid "Use the existing default playback location. Press OK to select a folder."
+msgstr "Koristi postojeću podrazumevanu lokaciju za reprodukciju. Pritisni OK da izabereš folder."
+
 msgid "Use the extended List"
 msgstr "Koristi proširene liste"
+
+msgid "Use the normal end action, ask, or switch to the recording channel when playback catches up with a local recording that is still running."
+msgstr "Koristi uobičajenu krajnju akciju, pitaj, ili prebaci se na kanal za snimanje kada reprodukcija stigne do lokalnog snimka koji je još uvek u toku."
+
+msgid "Use the selected sort order, keep folders first, or sort folders together with movie files."
+msgstr "Koristi izabrani redosled sortiranja, drži foldere na početku, ili sortiraj foldere zajedno sa fajlovima filmova."
+
+msgid "Use the title before this separator as the virtual folder name. An empty separator groups identical titles."
+msgstr "Koristi naslov pre ovog razdvajača kao ime virtuelne fascikle. Prazan razdvajač grupiše identične naslove."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Koristi Čarobnjaka za podešavanje osnovnih funkcija"
@@ -23944,6 +25182,9 @@ msgstr "Prikaz kao Rešetka"
 msgid "View as list"
 msgstr "Prikaz kao lista"
 
+msgid "View for this movie list only"
+msgstr "Prikaži samo za ovu listu filmova"
+
 msgid "View mode"
 msgstr "Režim prikaza"
 
@@ -23993,6 +25234,15 @@ msgstr "Radnje Virtuelne Tastature"
 msgid "Virtual Keyboard Text:"
 msgstr "Tekst Virtuelne Tastature:"
 
+msgid "Virtual collections"
+msgstr "Virtuelne kolekcije"
+
+msgid "Virtual folder — movie files stay in their original locations."
+msgstr "Virtuelni folder — filmske datoteke ostaju na svojim originalnim lokacijama."
+
+msgid "Virtual folders before movies"
+msgstr "Virtuelni folderi pre filmova"
+
 msgid "Visual impaired commentary"
 msgstr "Komentar oštećenog vida"
 
@@ -24041,6 +25291,9 @@ msgstr "Povečaj jačinu zvuka"
 msgid "Volume/Mute display timer"
 msgstr "Tajmer za prikazivanje jačine Zvuka/Utišavanje"
 
+msgid "Votes"
+msgstr "Glasovi"
+
 msgid "Vu+ MultiBoot"
 msgstr "Octagon MultiBoot"
 
@@ -24070,6 +25323,9 @@ msgstr "WSS na 4:3"
 
 msgid "Wait for timesync at startup"
 msgstr "Sačekajte sinhronizaciju vremena pri pokretanju"
+
+msgid "Wait this long after moving the selection before starting a preview."
+msgstr "Sačekaj ovako dugo nakon što pomeriš selekciju pre nego što počneš pregled."
 
 msgid "Waiting"
 msgstr "Čekanje"
@@ -24153,6 +25409,12 @@ msgstr "Upozorenje: nema LNB; korišćenje default fabričkih postavki."
 
 msgid "Watch movies..."
 msgstr "Gledajte filmove..."
+
+msgid "Watched"
+msgstr "Gledano"
+
+msgid "Watched from (%)"
+msgstr "Gledano od (%)"
 
 msgid "Water sport"
 msgstr "Vodeni sport"
@@ -24284,6 +25546,9 @@ msgstr "Šta bi voleo da uradiš?"
 
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr "Kada je 'Omogućeno', prikaz tajmera će prikazati slobodan prostor na ciljnom uređaju. Ovo će probuditi uređaj iz spavanja."
+
+msgid "When disabled, skip recordings already indexed by E2MDB with the same title and descriptions. If the database is unavailable or the match is uncertain, record normally."
+msgstr "Kada je isključeno, preskoči snimke koje je E2MDB već indeksirao sa istim naslovom i opisima. Ako baza podataka nije dostupna ili poklapanje nije sigurno, snimaj normalno."
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "Kada budu omogućeni, AIT podaci će biti uključeni u http strim. Ovo omogućava resiveru klijenta da koristi HbbTV."
@@ -24504,6 +25769,9 @@ msgstr "Kada je omogućeno, možete prilagoditi OpenWebIf podešavanja za rezerv
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Kada je omogućeno, resiver će otkriti aktivnost na VCR SCART ulazu."
 
+msgid "When movie information is displayed"
+msgstr "Kada se prikazuju informacije o filmu"
+
 msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Kada je nula, snimanje će započeti nominovani period pre vremena početka naznačenog u EPG."
 
@@ -24524,6 +25792,12 @@ msgstr "Kada se postavi PIG će se vratiti uživo nakon što film prestane da se
 
 msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
 msgstr "Kada je postavljeno na 'Da', određeni Softcam može biti dodeljen svakoj enkriptovanoj usluzi."
+
+msgid "When starting a movie, keep its previous playback position as a chapter marker. Existing chapter markers remain available."
+msgstr "Kada pokrećeš film, zadrži njegovu prethodnu poziciju reprodukcije kao oznaku poglavlja. Postojeće oznake poglavlja ostaju dostupne."
+
+msgid "When starting from the beginning, skip the recording lead-in using an early chapter marker. Resume positions and cut boundaries are respected."
+msgstr "Kad počneš od početka, preskoči uvod snimka koristeći raniji marker poglavlja. Pozicije nastavka i granice preseka se poštuju."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Kada sadržaj ima odnos širina/visina 16:9, odaberite da li želite da razmerite/razvučete sliku."
@@ -25717,6 +26991,22 @@ msgstr "da (zadrži fidove)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Can't move to trashcan!"
+#~ msgstr "Ne mogu premestiti u smeće!"
+
+#, python-format
+#~ msgid "Error: Creating picon target directory: (%s)"
+#~ msgstr "Greška: Kreiranje pikona ciljni direktorijum: (%s)"
+
+#~ msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
+#~ msgstr "Izaberite 'Da' da biste koristili alternativne IP adrese GitHub feed-a. Ovo može biti korisno ako koristite VPN i obični feed-ovi nisu dostupni preko objavljenih DNS imena."
+
+#~ msgid "The picon directory already exists and must be removed. Do you want to proceed?"
+#~ msgstr "Direktorijum pikon već postoji i mora biti uklonjen. Da li želite da nastavite?"
+
+#~ msgid "Use alternate GitHub DNS"
+#~ msgstr "Koristite alternativni GitHub DNS"
 
 #~ msgid "%-H:%M:%S"
 #~ msgstr "%-H:%M:%S"
@@ -27450,9 +28740,6 @@ msgstr "®"
 
 #~ msgid "Are you sure you want to restart your network interfaces?"
 #~ msgstr "Da li želite restartati mrežni interfejs?"
-
-#~ msgid "Back"
-#~ msgstr "Nazad"
 
 #~ msgid "Configure DNS (name servers)"
 #~ msgstr "Podesi DNS (ime servera)"

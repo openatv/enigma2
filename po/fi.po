@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-03 13:20+0100\n"
+"POT-Creation-Date: 2026-11-19 21:27+0000\n"
 "PO-Revision-Date: 2026-11-16 15:23+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -96,6 +96,10 @@ msgstr "!! Bootloaderi Päivitys !!"
 
 msgid "# = Reboot required if this item is changed."
 msgstr "# Uudelleen käynnistys tarvitaan."
+
+#, python-format
+msgid "%(title)s (%(count)d)"
+msgstr ""
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -307,8 +311,20 @@ msgid "%d min"
 msgstr "%d minuutti"
 
 #, python-format
+msgid "%d min recorded"
+msgstr ""
+
+#, python-format
 msgid "%d minutes"
 msgstr "%d minuuttia"
+
+#, python-format
+msgid "%d movies"
+msgstr ""
+
+#, python-format
+msgid "%d movies selected"
+msgstr ""
 
 #, python-format
 msgid "%d ms"
@@ -319,6 +335,10 @@ msgid "%d network found."
 msgid_plural "%d networks found."
 msgstr[0] "%d verkko löytyi."
 msgstr[1] "%d verkkoa löytyi."
+
+#, python-format
+msgid "%d new"
+msgstr ""
 
 #, python-format
 msgid "%d obsolete manufacturer STARTUP files will be replaced or removed."
@@ -771,6 +791,9 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
+msgid "1 minute"
+msgstr ""
+
 msgid "1. (Highest)"
 msgstr "1. (korkein)"
 
@@ -794,6 +817,9 @@ msgstr "12V ulostulo."
 
 msgid "12bit"
 msgstr "12bit"
+
+msgid "15 minutes"
+msgstr "15 minuuttia"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
@@ -894,6 +920,9 @@ msgstr "4x"
 msgid "5"
 msgstr "5"
 
+msgid "5 minutes"
+msgstr "5 minuuttia"
+
 msgid "50-200 Mbps"
 msgstr "50-200 Mbps"
 
@@ -972,6 +1001,9 @@ msgstr "Suoritettu tehtävä haluaa sammuttaa %s %s. Sammutetaanko nyt?"
 msgid "A crash log was %s created in '%s'"
 msgstr "Kaatumisloki luotiin\" %s '%s'"
 
+msgid "A destination file already exists. No files were overwritten."
+msgstr ""
+
 #, python-format
 msgid ""
 "A finished record timer wants to set your\n"
@@ -1011,6 +1043,18 @@ msgstr ""
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Kaukosäätimen kuvan korostus osoittaa, mihin painikkeisiin ohje liittyy. Jos useampi kuin yksi näppäin suorittaa määritetyn toiminnon, näytössä näkyy useampi kuin yksi merkki. Luettelon alapuolella oleva teksti luettelee aktiiviset näppäimet ja osoittaa, edellyttääkö toiminto näppäimen painamista pitkään tai painikkeen painamista."
+
+msgid "A mount point or a folder containing mounted filesystems cannot be moved to the trashcan."
+msgstr ""
+
+msgid "A movie companion file is a symbolic link."
+msgstr ""
+
+msgid "A movie filename cannot be represented in M3U format."
+msgstr ""
+
+msgid "A movie maintenance scan is already running. Its progress is shown in Tasks."
+msgstr ""
 
 msgid "A new storage device has been connected:"
 msgstr "Uusi tallennuslaite on yhdistetty:"
@@ -1283,6 +1327,9 @@ msgstr "Aktiiviset asiakkaat"
 msgid "Active only"
 msgstr "Vain aktiivinen"
 
+msgid "Actor"
+msgstr ""
+
 msgid "Adapter"
 msgstr "Sovitin"
 
@@ -1465,6 +1512,12 @@ msgstr "Tallenna (Jatkuva tallennus)"
 msgid "Add recording (Stop after current event)"
 msgstr "Tallenna (Lopeta nykyisen ohjelman jälkeen)"
 
+msgid "Add selected movies"
+msgstr ""
+
+msgid "Add selected movies to the play queue"
+msgstr ""
+
 msgid "Add service"
 msgstr "Lisää kanava"
 
@@ -1548,6 +1601,9 @@ msgstr ""
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Säädä teksti-TV:ssä käytettävien kirjainten pystysuuntaista sijaintia."
 
+msgid "Adjust times to EPG"
+msgstr ""
+
 msgid "Adult"
 msgstr "Aikuisviihde"
 
@@ -1559,6 +1615,9 @@ msgstr ""
 
 msgid "Adult movie/Drama"
 msgstr "aikuisviihde"
+
+msgid "Advance Movie List"
+msgstr ""
 
 msgid "Advanced"
 msgstr "Laaja"
@@ -1617,6 +1676,9 @@ msgstr "Tallennuksen Jälkeen"
 msgid "After zap"
 msgstr "Vaihdoin jälkeen"
 
+msgid "Age rating"
+msgstr ""
+
 msgid "Aggregate data only"
 msgstr "Aggregoituja tietoja vain"
 
@@ -1669,6 +1731,12 @@ msgstr "Kaikenikäisille"
 msgid "All data on the selected device will be erased. Create one shared data partition with %d additional MultiBoot slots, a 512 MiB swap partition and the internal slot 1 kernel?"
 msgstr ""
 
+msgid "All dates"
+msgstr ""
+
+msgid "All episodes"
+msgstr ""
+
 msgid "All events down"
 msgstr "Kaikki tapahtumat alas"
 
@@ -1677,6 +1745,15 @@ msgstr "Kaikki tapahtumat ylös"
 
 msgid "All files"
 msgstr "Kaikki tiedostot"
+
+msgid "All media"
+msgstr ""
+
+msgid "All movie files"
+msgstr ""
+
+msgid "All movie folders"
+msgstr ""
 
 msgid "All packages"
 msgstr ""
@@ -1715,6 +1792,9 @@ msgid "Allocate a number to the physical LNB you are configuring. You will be ab
 msgstr "Määritä numero LNB:lle, jota olet määrittelemässä. Voit valita t LNB:n uudelleen muille satelliiteille (esim. Moottoroiduille lautanen), tallentaa saman LNB:n asetukset useita kertoja."
 
 msgid "Allow %s-bit"
+msgstr ""
+
+msgid "Allow duplicate recordings"
 msgstr ""
 
 msgid "Allow guest access"
@@ -1846,6 +1926,9 @@ msgstr "Näytä suosikkilistat aina"
 msgid "Always use smart1080p mode"
 msgstr "Käytä älykästä 1080p tilaa"
 
+msgid "Ambiguous companion file names."
+msgstr ""
+
 msgid "American Samoa"
 msgstr "Amerikan Samoa"
 
@@ -1936,6 +2019,10 @@ msgstr "Kaikentyyppiset tallennukset"
 
 msgid "Aperture F number"
 msgstr "Aukon F numero"
+
+#, python-format
+msgid "Apply '%(action)s' to %(count)d selected movies?"
+msgstr ""
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "Hyväksy mikä tahansa muutos ja aktivoi kieli ja poistu"
@@ -2092,6 +2179,9 @@ msgstr "Nouseva"
 msgid "Ask for confirmation before moving individual files to the trashcan. Folder and permanent deletion confirmations remain unchanged."
 msgstr ""
 
+msgid "Ask to switch to the recording channel"
+msgstr ""
+
 msgid "Ask user"
 msgstr "Kysy käyttäjältä"
 
@@ -2154,6 +2244,9 @@ msgstr "Nykyisen ohjelman lopussa"
 msgid "At end: %s"
 msgstr "Lopussa: %s"
 
+msgid "At the end of a running recording"
+msgstr ""
+
 msgid "Athletics"
 msgstr "Yleisurheilu"
 
@@ -2197,7 +2290,13 @@ msgstr "Audio synkronointi"
 msgid "Audio bit rate"
 msgstr ""
 
+msgid "Audio channels"
+msgstr ""
+
 msgid "Audio decoding"
+msgstr ""
+
+msgid "Audio description"
 msgstr ""
 
 msgid "Audio language selection 1"
@@ -2314,6 +2413,9 @@ msgstr "Automaattinen kanavahaku"
 msgid "Automatic gain"
 msgstr ""
 
+msgid "Automatic preview delay (ms)"
+msgstr ""
+
 msgid "Automatic resolution"
 msgstr "Automaattinen resoluutio"
 
@@ -2413,6 +2515,9 @@ msgstr "Näppäimen Sininen Lyhyt/Pitkä"
 
 msgid "BSSID"
 msgstr "BSSID"
+
+msgid "Back"
+msgstr "Takaisin"
 
 msgid "Back USB"
 msgstr "Taka usb"
@@ -2575,6 +2680,9 @@ msgstr "Ennen näiden asetusten muuttamista yritä poistaa käytöstä kaikki zo
 msgid "Begin time"
 msgstr "Aloitusaika"
 
+msgid "Beginning"
+msgstr ""
+
 msgid "Behave like STOP button"
 msgstr "Kohtele kuin stop näppäin"
 
@@ -2710,6 +2818,10 @@ msgstr "Kirjanmerkki lisätty."
 msgid "Bookmark removed."
 msgstr "Kirjanmerkki poistettu."
 
+#, python-format
+msgid "Bookmark: %s"
+msgstr ""
+
 msgid "Bookmarks"
 msgstr "Kirjanmerkit"
 
@@ -2840,6 +2952,9 @@ msgstr "Broadcom oletus"
 
 msgid "Browse"
 msgstr "Selaa"
+
+msgid "Browse grouped movies and series or all indexed movie files without reading movie storage."
+msgstr ""
 
 msgid "Browse, install or remove plugins on a one by one basis."
 msgstr "Selaa, asenna tai poista laajennuksia yksitellen."
@@ -3109,11 +3224,17 @@ msgstr "Kaapeli Irroitettu"
 msgid "Cable input"
 msgstr "Kaapelitulo"
 
+msgid "Cache file lists"
+msgstr ""
+
 msgid "Cache thumbnails"
 msgstr "Tallenna esikatselukuvat välimuistiin"
 
 msgid "Cached"
 msgstr "Välimuistissa"
+
+msgid "Cached folder · refresh from the menu"
+msgstr ""
 
 msgid "Calculate"
 msgstr "Laske"
@@ -3237,9 +3358,6 @@ msgstr ""
 "Et voi suora toistaa televisiota!\n"
 "Vaihdetaan live televisioon ja käynnistetään ajansiirto uudelleen?"
 
-msgid "Can't move to trashcan!"
-msgstr "Ei voida siirtää roskakoriin!"
-
 msgid ""
 "Can't play the next time shift buffer file!\n"
 "Switch to live TV and restart time shift?"
@@ -3355,6 +3473,9 @@ msgstr "Peruuta päivitys"
 msgid "Cancelled upon user request"
 msgstr "Käyttäjä peruutti tehtävän"
 
+msgid "Cannot create a trashcan on this mounted filesystem. No files were deleted."
+msgstr ""
+
 msgid "Cannot delete file"
 msgstr "Tiedostoa ei voi poistaa"
 
@@ -3365,6 +3486,12 @@ msgstr "Ei voida määrittää %s rajaa ..., keskeytys !"
 
 msgid "Cannot find any signal ..., aborting!"
 msgstr "Signaalia ei löydy... keskeytetään!"
+
+msgid "Capacity unit range"
+msgstr ""
+
+msgid "Capacity units (CU)"
+msgstr ""
 
 msgid "Cape Verde"
 msgstr "Cape Verde"
@@ -3402,6 +3529,9 @@ msgstr "Haun tarkkuus"
 
 msgid "Case sensitive"
 msgstr "Haun tarkkuus"
+
+msgid "Cast"
+msgstr ""
 
 msgid "Catalan / Valencian"
 msgstr "Catalan / Valencian"
@@ -3568,6 +3698,9 @@ msgstr "Kanavanäppäimien (+/-) toiminto"
 msgid "Channel down"
 msgstr "Kanava alas"
 
+msgid "Channel layout"
+msgstr ""
+
 msgid "Channel list cursor behavior"
 msgstr "Kursorin toiminta kanavalistassa"
 
@@ -3621,6 +3754,9 @@ msgstr "Osa."
 
 msgid "Chapter"
 msgstr "Kappale"
+
+msgid "Chapter markers and playback position"
+msgstr ""
 
 msgid "Character device"
 msgstr "Tallennusvälineet"
@@ -3748,11 +3884,20 @@ msgstr "Valitse maa asetus ohjelmaoppaan arvostelutietojen purkuun."
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Valitse etiketti, joka tunnistaa tämän laitteen IceTV palveluista."
 
+msgid "Choose all indexed or scanned folders, the default movie location, or the current folder including subfolders. Hidden folders are excluded."
+msgstr ""
+
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Valitse, kuinka usein yhteys muodostetaan IceTV palvelimeen päivitysten tarkistamiseksi."
 
+msgid "Choose season and episode order, title, recording date, release year or rating."
+msgstr ""
+
 msgid "Choose the amount of additional slots."
 msgstr "Valitse lisä paikkojen määrä."
+
+msgid "Choose the default sorting for this collection. The temporary view menu can override it."
+msgstr ""
 
 msgid "Choose the fallback font."
 msgstr "Valitse toissijainen fontti."
@@ -3829,6 +3974,12 @@ msgstr "Kaupunki"
 msgid "Classic Rock"
 msgstr ""
 
+msgid "Classic movie list (EMC)"
+msgstr ""
+
+msgid "Classic movie list with description (EMC)"
+msgstr ""
+
 msgid "Classical"
 msgstr "Klassinen"
 
@@ -3865,11 +4016,20 @@ msgstr "Tyhjennä tallennetut kirjautumis tiedot"
 msgid "Clear before scan"
 msgstr "Tyhjennä kanavalista"
 
+msgid "Clear filters"
+msgstr ""
+
 msgid "Clear fixed"
 msgstr "Tyhjennä kiinteä"
 
+msgid "Clear movie selection"
+msgstr ""
+
 msgid "Clear play list"
 msgstr "Tyhjennä soittolista"
+
+msgid "Clear play queue"
+msgstr ""
 
 msgid "Clear search"
 msgstr ""
@@ -4026,6 +4186,9 @@ msgstr "Värillinen teksti"
 msgid "Colorimetry for HDR content"
 msgstr ""
 
+msgid "Combine series or matching recording titles in the view. Movie files stay in their original locations. Grouping can be disabled for individual folders from the context menu."
+msgstr ""
+
 msgid "Combined"
 msgstr "Yhdistetty"
 
@@ -4101,6 +4264,12 @@ msgstr ""
 msgid "Comoros"
 msgstr "Comoros"
 
+msgid "Compact list"
+msgstr ""
+
+msgid "Companion files are shared by multiple media files. Rename or move the variants separately after resolving their companion files."
+msgstr ""
+
 msgid "Compatibility And Emulation"
 msgstr "Yhteensopivuus ja Emulaatio"
 
@@ -4112,6 +4281,10 @@ msgstr "Täysi"
 
 msgid "Complete Backup"
 msgstr "Täydellinen varmuuskopio"
+
+#, python-format
+msgid "Completed: %(done)d of %(total)d movies"
+msgstr ""
 
 msgid "Complex (allows mixing audio tracks and aspects)"
 msgstr "Laajennettu (useita ääniraitoja ja kuvasuhteita)"
@@ -4304,6 +4477,12 @@ msgstr "Määritä loppukoordinaatti tekstitv:een X leveys."
 
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Määritä loppukoordinaatti tekstitv:een Y korkeus."
+
+msgid "Configure the existing movie player resume behavior."
+msgstr ""
+
+msgid "Configure the existing movie player stop action."
+msgstr ""
 
 msgid "Configure the first audio language (highest priority)."
 msgstr "Määrittää ensisijaisen äänen kielen (korkein prioriteetti)."
@@ -4624,6 +4803,9 @@ msgstr "Ota yhteyttä moottorin valmistajaan saadaksesi tekniset tiedot, tai jä
 msgid "Contacting IceTV server and setting up your %s %s."
 msgstr "Ota yhteyttä IceTV palvelimeen ja määritä %s %s."
 
+msgid "Container"
+msgstr ""
+
 msgid "Content"
 msgstr "Sisältö"
 
@@ -4639,6 +4821,9 @@ msgstr "Jatka"
 msgid "Continue in background"
 msgstr "Jatka taustalla"
 
+msgid "Continue in the last direction"
+msgstr ""
+
 msgid "Continue playback"
 msgstr "Jatka toistoa"
 
@@ -4647,6 +4832,9 @@ msgstr "Jatka toistoa"
 
 msgid "Continue to run the task in the background"
 msgstr "Jatka tehtävän suorittamista taustalla"
+
+msgid "Continue watching"
+msgstr ""
 
 msgid "Continue with package download and installation"
 msgstr "Jatka paketin lataamista ja asentamista"
@@ -4830,6 +5018,9 @@ msgstr ""
 "\n"
 "Haluatko muuttaa asetuksia uudelleen?"
 
+msgid "Countries"
+msgstr ""
+
 msgid "Country"
 msgstr "Maa"
 
@@ -4912,6 +5103,12 @@ msgstr "Luo laite tiedot vedos."
 msgid "Create kernel dump."
 msgstr "Luo kernel vedos."
 
+msgid "Create missing EIT file"
+msgstr ""
+
+msgid "Create missing EIT files"
+msgstr ""
+
 msgid "Create or remove the RTL2832 DVB module blacklist. A full receiver reboot is required; while enabled, this USB tuner is available for DAB+ but not for DVB-T/T2."
 msgstr ""
 
@@ -4951,6 +5148,9 @@ msgstr "Lisää lisäpaikat valittuun laitteeseen"
 
 msgid "Create the flash expander in the selected device"
 msgstr "Luo muistin laajennus valittuun laitteeseen"
+
+msgid "Create virtual collection"
+msgstr ""
 
 msgid "Create working directories."
 msgstr "Luo työhakemistoja."
@@ -4992,6 +5192,9 @@ msgstr "Tunnistetiedot '%s'"
 
 msgid "Cree"
 msgstr "Cree"
+
+msgid "Crew"
+msgstr ""
 
 msgid "Cricket"
 msgstr "Cricketti"
@@ -5087,6 +5290,9 @@ msgstr "Nykyinen hakemisto"
 msgid "Current directory (%s)"
 msgstr "Nykyinen hakemisto (%s)"
 
+msgid "Current folder and subfolders"
+msgstr ""
+
 msgid "Current installed"
 msgstr "Asennettu ohjelmisto"
 
@@ -5136,6 +5342,9 @@ msgstr "Tällä hetkellä määritellyt Äänen voimakkuuden poikkeamat"
 msgid "Currently Remembered Volume Levels:"
 msgstr "Nykyinen muistissa oleva äänenvoimakkuus tasot:"
 
+msgid "Cursor after marking a movie"
+msgstr ""
+
 msgid "Custom"
 msgstr "Muokattu"
 
@@ -5168,6 +5377,10 @@ msgstr "Mukauta käyttöliittymän asetuksia"
 
 msgid "Cut"
 msgstr "Leikkaa"
+
+#, python-format
+msgid "Cut %s"
+msgstr ""
 
 msgid "CutList Skipping"
 msgstr "Leikkauslistan ohitus"
@@ -5373,6 +5586,12 @@ msgstr ""
 msgid "Darts"
 msgstr "Darts"
 
+msgid "Database sort order"
+msgstr ""
+
+msgid "Database view"
+msgstr ""
+
 msgid "Date"
 msgstr "Päivämäärä"
 
@@ -5519,9 +5738,15 @@ msgstr "Oletusyhdyskäytävä"
 msgid "Default left column directory"
 msgstr "Vasemman sarakkeen oletus hakemisto"
 
+msgid "Default movie location"
+msgstr ""
+
 #, python-format
 msgid "Default movie location (%s)"
 msgstr "Oletushakemisto tallennuksille (%s)"
+
+msgid "Default movie location after standby"
+msgstr ""
 
 msgid "Default movie selection location"
 msgstr "Oletushakemisto tallennuksille"
@@ -5531,6 +5756,9 @@ msgstr "Oletus tallennustapa"
 
 msgid "Default right column directory"
 msgstr "Oikean sarakkeen oletus hakemisto"
+
+msgid "Default skin layout"
+msgstr ""
 
 msgid "Default sort order for directories in the left column."
 msgstr "Oletusjärjestys hakemistoille vasemmassa sarakkeessa."
@@ -5741,6 +5969,9 @@ msgstr "Poista merkki kohdistimen vasemmalta puolelta tai valitse 12H aika"
 
 msgid "Delete character under cursor or select PM times"
 msgstr "Poista merkki kohdistimen alta tai valitse 24H aika"
+
+msgid "Delete collection (keep movie files)"
+msgstr ""
 
 msgid "Delete current line"
 msgstr "Poista nykyinen linja"
@@ -6114,6 +6345,9 @@ msgstr "Poista Esittelyn käytöstä"
 msgid "Disable operator profiles"
 msgstr "Poista operaattori profiilit käytöstä"
 
+msgid "Disable previews, start them manually, or start after resting on a movie. Automatic previews access movie storage and do not interrupt timeshift or an already playing movie."
+msgstr ""
+
 msgid "Disable saved Wi-Fi network"
 msgstr "Poista tallennettu Wi-Fi verkko käytöstä"
 
@@ -6223,6 +6457,9 @@ msgstr "Näytä virtuaalinen näppäimistö tietojen syöttämistä varten"
 
 msgid "Display type"
 msgstr "Näytön tyyppi"
+
+msgid "Displayed movie title"
+msgstr ""
 
 msgid "Distance"
 msgstr "Etäisyys"
@@ -6607,6 +6844,9 @@ msgstr "Duplex"
 msgid "Duplicate the current line"
 msgstr "Kopioi nykyinen rivi"
 
+msgid "Duration"
+msgstr ""
+
 msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn't ready in time, this time can be increased."
 msgstr "Tänä aikana asema ja tallennuskohde tarkistetaan. Jos tallennuskohde (esim. NAS) ei ole valmis tallennukseen ajoissa, tätä aikaa voidaan pidentää."
 
@@ -6801,6 +7041,19 @@ msgstr "Muokkaa kappaleita"
 msgid "Edit current line"
 msgstr "Muokkaa nykyistä riviä"
 
+msgid "Edit movie"
+msgstr ""
+
+msgid "Edit play queue"
+msgstr ""
+
+#, python-format
+msgid "Edit play queue (%d movies)"
+msgstr ""
+
+msgid "Edit recording information"
+msgstr ""
+
 msgid "Edit settings"
 msgstr "Muokkaa asetuksia"
 
@@ -6845,6 +7098,9 @@ msgstr "Muokkaa päivityksen lähdeosoitetta."
 
 msgid "Edit the username."
 msgstr "Muokkaa käyttäjänimeä."
+
+msgid "Edit title and description"
+msgstr ""
 
 msgid "Education"
 msgstr "Koulutus"
@@ -6990,6 +7246,12 @@ msgstr ""
 
 msgid "Enable adapter"
 msgstr "Ota käyttöön adapteri"
+
+msgid "Enable an installed movie database in Movie Selection settings to open the library."
+msgstr ""
+
+msgid "Enable an installed movie library provider for metadata, artwork and the Advance Movie List. Local folders remain available if the provider is unavailable."
+msgstr ""
 
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
 msgstr "Ota käyttöön ja aseta toisen tietopalkin kesto (paina OK kahdesti), joka voi sisältää lisätietoja nykyisestä palvelusta."
@@ -7310,6 +7572,9 @@ msgstr "Anna kuvaus tälle ajastukselle."
 
 msgid "Enter a directory or process a file (play/view/edit/install/extract/run)"
 msgstr "Syötä hakemisto tai käsitelty tiedosto (toisto/katselu/muokkaus/asennus/poisto/ajo)"
+
+msgid "Enter a movie title."
+msgstr ""
 
 msgid "Enter a name for this timer."
 msgstr "Anna tälle ajastukselle nimi."
@@ -7665,10 +7930,6 @@ msgstr "Sopivaa tallennusvälinettä ei löytynyt. Poista joitain ladattuja ohje
 #, python-format
 msgid "Error: Creating directory '%s' failed!"
 msgstr "Hakemiston %s luominen epäonnistui!"
-
-#, python-format
-msgid "Error: Creating picon target directory: (%s)"
-msgstr "Virhe: Kanavalogojen kansion luominen epäonnistui: (%s)"
 
 #, python-format
 msgid "Error: Directory '%s' does not exist!"
@@ -8406,6 +8667,15 @@ msgstr "Tiedosto näyttää olevan käytössä.\n"
 msgid "File compression"
 msgstr "Tiedostopakkaus"
 
+msgid "File information"
+msgstr ""
+
+msgid "File name"
+msgstr ""
+
+msgid "File operations require a regular movie file."
+msgstr ""
+
 msgid "File sorting mode"
 msgstr "Tiedoston lajittelutila"
 
@@ -8424,6 +8694,12 @@ msgstr "Tiedostonimi"
 msgid "Files And Directories"
 msgstr "Tiedostot ja hakemistot"
 
+msgid "Files and folders"
+msgstr ""
+
+msgid "Files or database"
+msgstr ""
+
 msgid "Files/folders to exclude from backup"
 msgstr "Poistot varmuuskopioinnista"
 
@@ -8435,6 +8711,9 @@ msgstr "Film-noir"
 
 msgid "Film/Cinema"
 msgstr "elokuva"
+
+msgid "Filter"
+msgstr ""
 
 msgid "Filter extensions"
 msgstr "Suodattimen laajennukset"
@@ -8462,6 +8741,12 @@ msgstr "Etsi nykyinen kanava kanavalistasta"
 
 msgid "Find connected events"
 msgstr "Etsitään yhdistettyjä tapahtumia"
+
+msgid "Find old watched movies"
+msgstr ""
+
+msgid "Find orphaned movie companion files"
+msgstr ""
 
 #, python-format
 msgid "Find out more at %s"
@@ -8493,6 +8778,9 @@ msgstr "Suomi"
 
 msgid "Finnish"
 msgstr "Suomi"
+
+msgid "First chapter marker"
+msgstr ""
 
 msgid "First playable time shift file!"
 msgstr "Olet ensimmäisen toistettavan aikasiirtotiedoston alussa!"
@@ -8593,6 +8881,21 @@ msgstr "Tasainen näkymä kaukosäätimessä"
 msgid "Flush Cache and Rescan"
 msgstr "Tyhjennä välimuisti ja hae uudelleen"
 
+msgid "Folder movie counts and sizes updated."
+msgstr ""
+
+msgid "Folder movie information"
+msgstr ""
+
+msgid "Folder sorting"
+msgstr ""
+
+msgid "Folders"
+msgstr ""
+
+msgid "Folders first"
+msgstr ""
+
 msgid "Folk Music"
 msgstr ""
 
@@ -8601,6 +8904,15 @@ msgstr "Kansanmusiikki ja Country"
 
 msgid "Folk/Traditional music"
 msgstr "kansan-/perinteinen musiikki"
+
+msgid "Follow changes to the EPG start and end times, keeping the recording margins. Missing EPG data or timer conflicts leave the times unchanged."
+msgstr ""
+
+msgid "Follow linked folders in snapshots"
+msgstr ""
+
+msgid "Follow symbolic links during the read-only movie snapshot task. Loops and duplicate directory targets are skipped. Cleanup tasks never follow symbolic links."
+msgstr ""
 
 msgid "Font size"
 msgstr "Tekstikoko"
@@ -8651,6 +8963,9 @@ msgid "Force enabled"
 msgstr "päällä"
 
 msgid "Force progressive for streams and files"
+msgstr ""
+
+msgid "Forced"
 msgstr ""
 
 msgid "Foreign Language"
@@ -8749,6 +9064,9 @@ msgstr "Perjantai"
 
 msgid "From :"
 msgstr "Mistä :"
+
+msgid "From the context menu"
+msgstr ""
 
 msgid "Front"
 msgstr "Edessä"
@@ -9084,6 +9402,9 @@ msgstr "Harmaa"
 msgid "Group"
 msgstr "Ryhmä"
 
+msgid "Group recordings into virtual folders"
+msgstr ""
+
 msgid "Grow drop"
 msgstr "Kasvava pudotus"
 
@@ -9249,6 +9570,9 @@ msgstr "Havaijin"
 msgid "Heard Island and McDonald Islands"
 msgstr "Heard saari ja McDonald saari"
 
+msgid "Hearing impaired"
+msgstr ""
+
 msgid "Hebrew"
 msgstr "Heprea"
 
@@ -9315,6 +9639,9 @@ msgstr "HiSilicon kohtaiset tiedot"
 msgid "HiSilicon specific information not found."
 msgstr "HiSilikonia koskevia tietoja ei löydy."
 
+msgid "Hidden folders"
+msgstr ""
+
 msgid "Hidden network"
 msgstr "Piilotettu verkko"
 
@@ -9367,6 +9694,9 @@ msgid "Hide the InfoBar"
 msgstr "Piilota Tietopalkki"
 
 msgid "Hide the OSD after a period without key presses. Screens and background jobs keep running. The first key press only restores the OSD, and newly opened dialogs make it visible again. Hold 0 to pause until the next GUI restart, or hold 0 again to resume."
+msgstr ""
+
+msgid "Hide this folder"
 msgstr ""
 
 msgid "Hide zap errors"
@@ -9793,6 +10123,9 @@ msgstr "Ohita valmiustila"
 msgid "Ignore services on satellites that are not configured in the tuner settings."
 msgstr ""
 
+msgid "Ignore the resume position when the configured watched percentage has been reached."
+msgstr ""
+
 msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "Ohita odottamaton herätys ja pysy valmiustilassa"
 
@@ -9869,6 +10202,9 @@ msgstr "Vastaanotin vaihdetaan kanavalle tallennusta varten!\n"
 
 msgid "In progress"
 msgstr "Käynnissä"
+
+msgid "In progress from (%)"
+msgstr ""
 
 msgid "In use by DAB+"
 msgstr ""
@@ -10037,6 +10373,9 @@ msgstr "Tietopalkin kanavalogojen polku"
 
 msgid "Information"
 msgstr "Tietoja"
+
+msgid "Information list"
+msgstr ""
 
 msgid "Informational/Educational/School programs"
 msgstr "tiedotus/koulutus/kouluohjelma"
@@ -10210,6 +10549,9 @@ msgstr "Vain sisäinen kiintolevy"
 msgid "Internal flash"
 msgstr "Sisäinen muisti"
 
+msgid "Internal flash only allows small picon packages."
+msgstr ""
+
 #, python-format
 msgid "Internal flash:  %s %s "
 msgstr "Sisäinen muisti:  %s %s "
@@ -10236,8 +10578,14 @@ msgstr "Virheellinen"
 msgid "Invalid Help Page"
 msgstr "Virheellinen ohjesivu"
 
+msgid "Invalid filename."
+msgstr ""
+
 msgid "Invalid location!"
 msgstr "Virheellinen sijainti!"
+
+msgid "Invalid original movie location."
+msgstr ""
 
 msgid "Invalid swap file size."
 msgstr ""
@@ -10419,8 +10767,17 @@ msgstr "Kazakhstan"
 msgid "Kazakhstan"
 msgstr "Kazakhstan"
 
+msgid "Keep previous playback position as chapter marker"
+msgstr ""
+
 msgid "Keep service"
 msgstr "Säilytä kanava"
+
+msgid "Keep the newest recordings up to this limit before applying the selected display order."
+msgstr ""
+
+msgid "Keep the play queue across GUI restarts. The queue is stored in the receiver configuration without accessing movie storage."
+msgstr ""
 
 msgid "Keep warning"
 msgid_plural "Keep warnings"
@@ -10661,11 +11018,32 @@ msgstr "Laos"
 msgid "Large"
 msgstr "Suuri"
 
+msgid "Large tiles"
+msgstr ""
+
+msgid "Last 24 hours"
+msgstr ""
+
+msgid "Last 30 days"
+msgstr ""
+
+msgid "Last 7 days"
+msgstr ""
+
+msgid "Last 90 days"
+msgstr ""
+
 msgid "Last config"
 msgstr "Aiemmat arvot"
 
 msgid "Last flash"
 msgstr "Ohjelmisto päivitetty"
+
+msgid "Last folder"
+msgstr ""
+
+msgid "Last playback position"
+msgstr ""
 
 msgid "Last speed"
 msgstr "Aikaisempi nopeus"
@@ -10685,6 +11063,24 @@ msgstr "Viimeksi käytetty/määritetty äänenvoimakkuus"
 msgctxt "third event: 'third' event label"
 msgid "Later"
 msgstr "Myöhemmin"
+
+msgid "Latest recordings"
+msgstr ""
+
+msgid "Latest recordings collection"
+msgstr ""
+
+msgid "Latest recordings folders"
+msgstr ""
+
+msgid "Latest recordings maximum"
+msgstr ""
+
+msgid "Latest recordings period"
+msgstr ""
+
+msgid "Latest recordings sorting"
+msgstr ""
 
 msgid "Latin"
 msgstr "Latina"
@@ -10887,6 +11283,12 @@ msgstr "Tallennuslaitteet"
 msgid "List of storage devices"
 msgstr "Tallennuslaitteet"
 
+msgid "List or grid style"
+msgstr ""
+
+msgid "List style"
+msgstr ""
+
 msgid "Lists reloaded!"
 msgstr "Listat ladattu!"
 
@@ -10914,6 +11316,9 @@ msgstr "Lataa"
 msgid "Load EPG Cache"
 msgstr "Lataa EPG välimuisti"
 
+msgid "Load M3U playlist"
+msgstr ""
+
 msgid "Load play list"
 msgstr "Lataa soittolista"
 
@@ -10929,6 +11334,9 @@ msgstr ""
 
 msgid "Loading information, please wait..."
 msgstr "Ladataan tietoja, odota..."
+
+msgid "Loading movie library..."
+msgstr ""
 
 msgid "Loading skin..."
 msgstr "Lataa teemaa..."
@@ -11187,6 +11595,10 @@ msgstr "Päävalikko"
 msgid "Maintain your multi boot device."
 msgstr "Ylläpidä multiboot image paikkoja."
 
+#, python-format
+msgid "Maintenance scan finished: %d candidates. Review them from Movie maintenance in the context menu."
+msgstr ""
+
 msgid "Make"
 msgstr "Tee"
 
@@ -11316,8 +11728,29 @@ msgstr "Lisäaika tallenteen alkuun (minuuttia)"
 msgid "Margin before zap"
 msgstr "Lisäaika ennen vaihtoa"
 
+msgid "Mark / unmark movie"
+msgstr ""
+
 msgid "Mark As Dedicated 3D Service"
 msgstr "Merkitse kanava 3D:ksi"
+
+msgid "Mark as unwatched"
+msgstr ""
+
+msgid "Mark as watched"
+msgstr ""
+
+msgid "Mark new recordings"
+msgstr ""
+
+msgid "Mark selected movies as unwatched"
+msgstr ""
+
+msgid "Mark selected movies as watched"
+msgstr ""
+
+msgid "Mark unwatched recordings from the last 24 hours or since the previous visit. Returning from playback keeps the same visit."
+msgstr ""
 
 msgid "Marker Actions"
 msgstr "Merkkitoiminnot"
@@ -11397,6 +11830,9 @@ msgstr "Media Soittimen Asetukset"
 
 msgid "Media Stream"
 msgstr "Media Toisto"
+
+msgid "Media information is currently unavailable."
+msgstr ""
 
 msgid "Media playback Remaining/Elapsed as"
 msgstr "Näytä tallenteen jäljellä oleva/kulunut aika muodossa"
@@ -11538,8 +11974,20 @@ msgstr "MiniTV ja kuvaruutu"
 msgid "Minimum age %d years"
 msgstr "Minimi-ikä %d vuotta"
 
+msgid "Minimum age for watched movie maintenance (days)"
+msgstr ""
+
 msgid "Minimum difference between idle and moving current."
 msgstr "Pienin ero joutokäynti ja liikkuvan laitteen virran välillä."
+
+msgid "Minimum playback percentage for the in-progress status. A movie without a playback position remains unwatched."
+msgstr ""
+
+msgid "Minimum playback percentage for the watched status, watched-movie restart and manual maintenance."
+msgstr ""
+
+msgid "Minimum recordings per virtual folder"
+msgstr ""
 
 msgid "Minimum send interval"
 msgstr "Minimi lähestysjakso"
@@ -11712,6 +12160,18 @@ msgstr "Liitokset"
 msgid "Move"
 msgstr "Siirrä"
 
+#, python-format
+msgid "Move %d selected movies and their companion files to the trashcan?"
+msgstr ""
+
+#, python-format
+msgid "Move %d selected watched movies and their companion files to the trashcan?"
+msgstr ""
+
+#, python-format
+msgid "Move '%s' and its companion files to the trashcan?"
+msgstr ""
+
 msgid "Move Down"
 msgstr "Liiku alas"
 
@@ -11744,6 +12204,9 @@ msgstr "Siirrä kaikki liittyvät tiedostot"
 
 msgid "Move directory/file to target directory"
 msgstr "Kopioi hakemisto/tiedosto kohdehakemistoon"
+
+msgid "Move down"
+msgstr ""
 
 msgid "Move down a line"
 msgstr "Siirry alaspäin yhdellä rivillä"
@@ -11804,11 +12267,17 @@ msgstr "Siirto epäonnistui!"
 msgid "Move job queued."
 msgstr "Siirrä työ jonoon."
 
+msgid "Move left"
+msgstr ""
+
 msgid "Move left a item"
 msgstr "Siirrä kohde vasen"
 
 msgid "Move only highlighted file"
 msgstr "Kopioi vain korostettu tiedosto"
+
+msgid "Move right"
+msgstr ""
 
 msgid "Move right a item"
 msgstr "Siirrä kohde oikealle"
@@ -11934,6 +12403,9 @@ msgstr "Siirry edelliseen kohtaan"
 msgid "Move to the previous item in list"
 msgstr "Siirry edelliseen kategoriaan listalla"
 
+msgid "Move up"
+msgstr ""
+
 msgid "Move up a line"
 msgstr "Siirry ylöspäin yhdellä rivillä"
 
@@ -12009,8 +12481,62 @@ msgstr "Tallenteen valinta"
 msgid "Movie Selection Settings"
 msgstr "Tallenneluettelon asetukset"
 
+msgid "Movie artwork"
+msgstr ""
+
+msgid "Movie count"
+msgstr ""
+
+msgid "Movie count and size"
+msgstr ""
+
+msgid "Movie count, size and new movies"
+msgstr ""
+
+msgid "Movie database"
+msgstr ""
+
+msgid "Movie database unavailable"
+msgstr ""
+
+msgid "Movie database unavailable. Select files and folders from View in the menu."
+msgstr ""
+
+msgid "Movie date format"
+msgstr ""
+
+msgid "Movie file operations"
+msgstr ""
+
+msgid "Movie front display"
+msgstr ""
+
+msgid "Movie information"
+msgstr ""
+
+msgid "Movie library"
+msgstr ""
+
+msgid "Movie maintenance"
+msgstr ""
+
+msgid "Movie play queue"
+msgstr ""
+
 msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr "Toisto ei välttämättä käytä virheellistä/sopimatonta hakemistoa."
+
+msgid "Movie player style"
+msgstr ""
+
+msgid "Movie playlists support local files and mounted storage only."
+msgstr ""
+
+msgid "Movie preview"
+msgstr ""
+
+msgid "Movie size"
+msgstr ""
 
 msgid "Movie/Drama"
 msgstr "Elokuva/draama"
@@ -12020,6 +12546,9 @@ msgstr "Elokuvasoitin"
 
 msgid "Movies"
 msgstr "Elokuvat"
+
+msgid "Movies and series"
+msgstr ""
 
 msgid "Moving"
 msgstr "Siirretään"
@@ -12470,6 +12999,15 @@ msgstr "Uudet tapahtumatiedot"
 msgid "New media"
 msgstr "uusi media"
 
+msgid "New movie filename (without extension)"
+msgstr ""
+
+msgid "New movies"
+msgstr ""
+
+msgid "New movies: update folder statistics"
+msgstr ""
+
 msgid "New password"
 msgstr "Uusi salasana"
 
@@ -12490,6 +13028,9 @@ msgstr "NewCamd DES Avain"
 
 msgid "NewDirectory"
 msgstr "Uusi hakemisto"
+
+msgid "Newest recordings first"
+msgstr ""
 
 msgid "News"
 msgstr "Uutiset"
@@ -12527,6 +13068,12 @@ msgstr "Seuraava kanava sivu"
 
 msgid "Next higher resolution"
 msgstr "seuraava suurempi Resolution"
+
+msgid "Next movie"
+msgstr ""
+
+msgid "Next page"
+msgstr ""
 
 msgid "Next quad PiP channel"
 msgstr "Seuraava 4 PiP kanava"
@@ -12643,6 +13190,9 @@ msgstr "Ei viivettä"
 msgid "No demux available"
 msgstr "Ei demux saatavilla"
 
+msgid "No description available."
+msgstr ""
+
 msgid "No displayable files on this medium found!"
 msgstr "Tiedostoja ei löytynyt!"
 
@@ -12672,6 +13222,9 @@ msgstr "Ei yhdyskäytävää"
 msgid "No hard disks detected."
 msgstr "Kiintolevyjä ei havaittu."
 
+msgid "No hidden folders"
+msgstr ""
+
 msgid "No hosts found yet - still scanning..."
 msgstr "Isäntiä ei ole vielä löytynyt – haku jatkuu..."
 
@@ -12681,8 +13234,17 @@ msgstr ""
 msgid "No log files found so debug logs are unavailable!"
 msgstr "Lokitiedostoja ei löytynyt, joten vianmääritys lokit eivät ole käytettävissä!"
 
+msgid "No maintenance candidates found."
+msgstr ""
+
 msgid "No matching place names found"
 msgstr "Ei vastaavuutta löytynyt nimistä"
+
+msgid "No movie description is available to create an EIT file."
+msgstr ""
+
+msgid "No movies found. Select files and folders from View to see unscanned recordings."
+msgstr ""
 
 msgid "No network adapters enabled/available!"
 msgstr "Verkkosovittimia ei ole käytössä/saatavilla!"
@@ -12715,6 +13277,9 @@ msgstr "Ei tiedostovalikkoa"
 
 msgid "No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."
 msgstr "Satelliitteja ei ole määritetty. Tarkista virittimen asetukset."
+
+msgid "No saved playback position is available."
+msgstr ""
 
 msgid "No service"
 msgstr "Ei kanavaa"
@@ -12792,6 +13357,9 @@ msgstr ""
 
 msgid "No tuners are currently streaming."
 msgstr "Tällä hetkellä ei ole suoratoista asiakkaita."
+
+msgid "No unambiguous series filenames are available. A series name, season and episode are required."
+msgstr ""
 
 msgid "No unused swap file name is available."
 msgstr ""
@@ -13153,6 +13721,9 @@ msgstr "Muuta ja sulje CA laite"
 msgid "Ojibwa"
 msgstr "Ojibwa"
 
+msgid "Oldest recordings first"
+msgstr ""
+
 msgid "Oldies"
 msgstr ""
 
@@ -13219,11 +13790,17 @@ msgstr "Päivitä vain ohjelmisto"
 msgid "Only HD"
 msgstr "vain HD"
 
+msgid "Only create a group when at least this many matching recordings are present."
+msgstr ""
+
 msgid "Only free scan"
 msgstr "Hae vain salaamattomat"
 
 msgid "Only in Standby"
 msgstr "vain valmiustilassa"
+
+msgid "Only include recordings made during this period."
+msgstr ""
 
 msgid "Only log debug information of GStreamer category. * means all categories."
 msgstr "Vain GStreamer luokan vikailmoitustiedot. * tarkoittaa kaikkia kategorioita."
@@ -13267,6 +13844,9 @@ msgstr "Automaattiajastus"
 msgid "Open AutoTimer Overview"
 msgstr "Avaa Automaattiset ajastukset"
 
+msgid "Open BDMV and BRD folder structures with the native Blu-ray service."
+msgstr ""
+
 msgid "Open Bouquet selection"
 msgstr "Näytä Suosikkilista"
 
@@ -13275,6 +13855,12 @@ msgstr "Näytä Tallennukset"
 
 msgid "Open Capability"
 msgstr "Avoin kyky"
+
+msgid "Open DVD images individually with the DVD player."
+msgstr ""
+
+msgid "Open DVD images individually with the DVD player. Play queues support video and audio files."
+msgstr ""
 
 msgid "Open EPG"
 msgstr "Näytä EPG"
@@ -13372,8 +13958,17 @@ msgstr "Näytä tv"
 msgid "Open Usage and GUI Settings"
 msgstr "Näytä käyttö ja järjestelmä valikko"
 
+msgid "Open VIDEO_TS and DVD folder structures directly with the DVD player."
+msgstr ""
+
 msgid "Open VideoMode"
 msgstr "Näytä Muoto Asetukset"
+
+msgid "Open a movie directly when its filename matches its containing folder. File operations still treat the containing folder as a folder."
+msgstr ""
+
+msgid "Open collection"
+msgstr ""
 
 msgid "Open context menu"
 msgstr "Avaa pikavalikko"
@@ -13389,6 +13984,9 @@ msgstr "Avaa ulkoinen tekstin hallinta ruutu"
 
 msgid "Open file sort menu"
 msgstr "Avaa tiedostojen lajittelu valikko"
+
+msgid "Open selected movie or series"
+msgstr ""
 
 msgid "Open service list and select next service"
 msgstr "Avaa kanavalista ja valitse seuraava kanava"
@@ -13441,6 +14039,9 @@ msgstr ""
 msgid "Open the context menu"
 msgstr "Avaa kontekstivalikko"
 
+msgid "Open the last folder, the default movie location, or return to the default location after standby. Returning from playback keeps the selected movie."
+msgstr ""
+
 msgid "Open the multi service EPG view"
 msgstr "Avaa EPG:n monikanava näkymä"
 
@@ -13468,6 +14069,9 @@ msgstr "OpenWebif yhteys"
 msgid "OpenWebif picon path"
 msgstr "OpenWebif kuvake"
 
+msgid "Opening movie folder"
+msgstr ""
+
 msgid "Opening network adapter configuration..."
 msgstr "Avataan verkkosovittimen määrityksiä..."
 
@@ -13482,6 +14086,9 @@ msgstr "LED tila valmistilassa"
 
 msgid "Operating LED status while running"
 msgstr "LED tila käytössä"
+
+msgid "Operation cancelled."
+msgstr ""
 
 msgid "Opkg Actions"
 msgstr "Opkg toiminnot"
@@ -13528,11 +14135,17 @@ msgstr "Alkuperäinen verkkotunnus (ONID)"
 msgid "Original language"
 msgstr "Alkuperäinen kieli"
 
+msgid "Original title"
+msgstr ""
+
 msgid "Oriya"
 msgstr "Oriya"
 
 msgid "Oromo"
 msgstr "Oromo"
+
+msgid "Orphaned companion files removed."
+msgstr ""
 
 msgid "Oscam Information"
 msgstr "Oscam tiedot"
@@ -13706,6 +14319,10 @@ msgstr "Paketit"
 msgid "Packages and associated locales"
 msgstr "Paketit ja niihin liittyvät alueet"
 
+#, python-format
+msgid "Page %(page)d · %(count)d entries"
+msgstr ""
+
 msgid "Page down"
 msgstr "Sivu alas"
 
@@ -13872,6 +14489,18 @@ msgstr ""
 msgid "Period and space '. '"
 msgstr ""
 
+#, python-format
+msgid "Permanently delete %d selected movies and their companion files?"
+msgstr ""
+
+#, python-format
+msgid "Permanently delete %d selected orphaned companion files?"
+msgstr ""
+
+#, python-format
+msgid "Permanently delete '%s' and its companion files?"
+msgstr ""
+
 msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Poista kaikki roskakorin tallenteet pysyvästi?"
 
@@ -14017,6 +14646,9 @@ msgstr "Pitcairn"
 msgid "Pixel Test"
 msgstr "Pikseli Testi"
 
+msgid "Pixel format"
+msgstr ""
+
 msgid "Pixels\n"
 msgstr "Pixelit\n"
 
@@ -14065,6 +14697,9 @@ msgstr "Toista kanava arkisto"
 msgid "Play entry"
 msgstr "Toista"
 
+msgid "Play from here"
+msgstr ""
+
 msgid "Play from next mark or play list entry"
 msgstr "Toista seuraavasta merkistä tai soittolistan valinnasta"
 
@@ -14091,6 +14726,22 @@ msgstr "Toista seuraava (palaa aiemmalle kanavalle)"
 
 msgid "Play previous"
 msgstr "Toista edellinen"
+
+msgid "Play queue"
+msgstr ""
+
+msgid "Play queue / playlists"
+msgstr ""
+
+msgid "Play queue cleared"
+msgstr ""
+
+#, python-format
+msgid "Play queue: %d movies (maximum 1024)"
+msgstr ""
+
+msgid "Play selected movies"
+msgstr ""
 
 msgid "Play selected service in a PiP window"
 msgstr "Toista valittu kanava PiP ikkunassa"
@@ -14122,11 +14773,26 @@ msgstr "Toisto Asetukset"
 msgid "Playback Time:"
 msgstr "Toistoaika:"
 
+msgid "Playback changed. Select the movie again before deleting it."
+msgstr ""
+
 msgid "Playback, Recording & Time Shift"
 msgstr "Tallennus & Ajansiirto"
 
+msgid "Playing"
+msgstr ""
+
 msgid "Playlist"
 msgstr "Soittolista"
+
+msgid "Playlist filename (.m3u or .m3u8)"
+msgstr ""
+
+msgid "Playlist loaded"
+msgstr ""
+
+msgid "Playlist saved"
+msgstr ""
 
 msgid "Playpause"
 msgstr "Tauko"
@@ -14218,6 +14884,9 @@ msgstr "Valitse toistolista."
 
 msgid "Please select a resolution..."
 msgstr "Valitse kuvaruudun tarkkuus"
+
+msgid "Please select a target directory."
+msgstr ""
 
 msgid "Please select an aspect ratio..."
 msgstr "Valitse kuvasuhde."
@@ -14499,6 +15168,12 @@ msgstr "Kääntömoottorin asetukset"
 msgid "Possible causes could be:"
 msgstr "Mahdolliset syyt voivat olla:"
 
+msgid "Poster grid"
+msgstr ""
+
+msgid "Poster list"
+msgstr ""
+
 msgid "Power"
 msgstr "Virta"
 
@@ -14595,7 +15270,19 @@ msgstr "Ensisijainen viritin tallennuksiin, monivalinta sallittu"
 msgid "Preparation time for recording"
 msgstr "Tallennuksen valmisteluaika (sekuntia)"
 
+msgid "Preparing latest recordings. Progress is shown in Tasks."
+msgstr ""
+
+msgid "Preparing picon storage. Existing picons will be preserved. Please wait..."
+msgstr ""
+
+msgid "Preparing picon storage. Please wait..."
+msgstr ""
+
 msgid "Preparing recording, please wait..."
+msgstr ""
+
+msgid "Preparing series filenames..."
 msgstr ""
 
 msgid "Preparing... Please wait"
@@ -14729,6 +15416,15 @@ msgstr "Esikatselu"
 msgid "Preview menu"
 msgstr "Esikatsele valikkoa"
 
+msgid "Preview offset (seconds)"
+msgstr ""
+
+msgid "Preview series filenames from the movie database"
+msgstr ""
+
+msgid "Preview starting point"
+msgstr ""
+
 msgid "Previous"
 msgstr "Edellinen"
 
@@ -14740,6 +15436,9 @@ msgstr "Edellinen sivu"
 
 msgid "Previous channel page"
 msgstr "Siirry edelliselle kanavalle"
+
+msgid "Previous page"
+msgstr ""
 
 msgid "Previous/Next page"
 msgstr "edellinen/seuraava Sivu"
@@ -14801,6 +15500,10 @@ msgstr "Tottele TV:en tuloa"
 
 msgid "Processing"
 msgstr "Käsitellään"
+
+#, python-format
+msgid "Processing %d movies in the background"
+msgstr ""
 
 msgid "Processor information"
 msgstr "Prosessorin tiedot"
@@ -15166,12 +15869,19 @@ msgstr "Satunnainen"
 msgid "Random Password"
 msgstr "Satunnainen salasana"
 
+msgid "Rating"
+msgstr ""
+
 #, python-format
 msgid "Rating defined by broadcaster - %d"
 msgstr "Kanavan määrittelemä ikäraja - %d"
 
 msgid "Rating undefined"
 msgstr "Ikärajaa ei määritelty"
+
+#, python-format
+msgid "Rating: %s"
+msgstr ""
 
 msgid "Re-enter new PIN"
 msgstr "Toista uusi PIN kooditun"
@@ -15188,6 +15898,9 @@ msgstr "Lue Käyttäjäntiedot oscam.conf:ista"
 msgid "Read block size"
 msgstr "Lukulohkon koko"
 
+msgid "Read movie folders"
+msgstr ""
+
 msgid "Read-Only"
 msgstr "Vain luku tila"
 
@@ -15196,6 +15909,12 @@ msgstr "Lue/kirjoita"
 
 msgid "Reader"
 msgstr "Lukija"
+
+msgid "Reading media information timed out."
+msgstr ""
+
+msgid "Reading media information..."
+msgstr ""
 
 msgid "Ready"
 msgstr "Valmis"
@@ -15308,6 +16027,15 @@ msgstr ""
 msgid "Reception sources to scan"
 msgstr ""
 
+msgid "Recognize Blu-ray folders"
+msgstr ""
+
+msgid "Recognize DVD folders"
+msgstr ""
+
+msgid "Recognize movie folders"
+msgstr ""
+
 msgid "Record"
 msgstr "Tallenna"
 
@@ -15341,6 +16069,9 @@ msgstr "Ajastettu Ohjelmat"
 msgid "Recordable media toolbox"
 msgstr "Tallennettavan median työkalupakki"
 
+msgid "Recorded"
+msgstr ""
+
 msgid "Recording"
 msgstr "Tallentaa"
 
@@ -15368,6 +16099,12 @@ msgstr "Tallennus peruutettu"
 msgid "Recording failed"
 msgstr "Tallennus epäonnistui"
 
+#, python-format
+msgid ""
+"Recording failed because the channel's programme information could not be received.\n"
+"%s"
+msgstr ""
+
 msgid "Recording finished"
 msgstr "Tallennus päättyi"
 
@@ -15388,6 +16125,15 @@ msgstr "Tallennus alkoi! Ajansiirto pysähtyy nyt..."
 
 msgid "Recording stopped"
 msgstr "Tallennus keskeytetty"
+
+msgid "Recording title"
+msgstr ""
+
+msgid "Recording title and separator"
+msgstr ""
+
+msgid "Recording title separator"
+msgstr ""
 
 msgid "Recording tuning failed"
 msgstr "Virittimen asettaminen tallennusta varten epäonnistui"
@@ -15469,7 +16215,13 @@ msgstr "Päivitä ZeroTier tila tiedot"
 msgid "Refresh every"
 msgstr "Päivitä joka (tunti)"
 
+msgid "Refresh library"
+msgstr ""
+
 msgid "Refresh list of RTL-SDR USB tuners"
+msgstr ""
+
+msgid "Refresh movie folder"
 msgstr ""
 
 msgid "Refresh rate"
@@ -15502,8 +16254,17 @@ msgstr "Tavallinen tiedosto"
 msgid "Relative"
 msgstr "Suhteellinen"
 
+msgid "Relative date"
+msgstr ""
+
 msgid "Release Notes"
 msgstr "Julkaisutiedot"
+
+msgid "Release date"
+msgstr ""
+
+msgid "Release year"
+msgstr ""
 
 msgid "Relevant PIDs Routing"
 msgstr "Asiaankuuluvien PID Reititys"
@@ -15567,6 +16328,9 @@ msgstr "merkittäviä ihmisiä"
 
 msgid "Remember last service in PiP"
 msgstr "Muista viimeisin PiP-tilan kanava"
+
+msgid "Remember play queue"
+msgstr ""
 
 msgid "Remember service PIN"
 msgstr "Muista kanavan PIN koodi"
@@ -15692,6 +16456,9 @@ msgstr "Poista kaikki ajastukset"
 msgid "Remove all user interface data"
 msgstr "Poista kaikki käyttöliittymän tiedot"
 
+msgid "Remove chapter markers (keep cuts and resume position)"
+msgstr ""
+
 msgid "Remove completed timers after"
 msgstr "Poista tallennetut ajastukset päivän jälkeen"
 
@@ -15701,10 +16468,19 @@ msgstr "Poista nykyinen kansio kirjanmerkeistä"
 msgid "Remove currently selected title"
 msgstr "Poista valittu otsikko"
 
+msgid "Remove from queue"
+msgstr ""
+
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Poista valittu kansio kirjanmerkeistä"
 
+msgid "Remove orphaned movie companion files"
+msgstr ""
+
 msgid "Remove previously stored services from scanned DAB+ multiplexes. Disable this option to retain services when a multiplex is temporarily unavailable."
+msgstr ""
+
+msgid "Remove selected movies from collection"
 msgstr ""
 
 msgid "Remove service from AutoCam"
@@ -15746,6 +16522,10 @@ msgstr "Poistetaan levyosioita"
 msgid "Rename"
 msgstr "Uudelleennimeä"
 
+#, python-format
+msgid "Rename %(count)d movies with their companion files? %(skipped)d unchanged or incomplete entries were skipped."
+msgstr ""
+
 msgid "Rename Directory"
 msgstr "Nimeä hakemisto uudelleen"
 
@@ -15755,11 +16535,17 @@ msgstr "Uudelleennimeä"
 msgid "Rename all related files"
 msgstr "Nimeä kaikki asiaan liittyvät tiedostot uudelleen"
 
+msgid "Rename collection"
+msgstr ""
+
 msgid "Rename directory/file"
 msgstr "Nimeä hakemisto/tiedosto uudelleen"
 
 msgid "Rename failed!"
 msgstr "Uudelleennimeäminen epäonnistui!"
+
+msgid "Rename movie file and companion files"
+msgstr ""
 
 msgid "Rename name and description for new events"
 msgstr "Muokkaa nimi ja kuvaus uusille tallenteille"
@@ -16052,6 +16838,9 @@ msgstr "Palauta järjestelmäasetukset"
 msgid "Restore backups"
 msgstr "Palauta varmuuskopiot"
 
+msgid "Restore previous playback position"
+msgstr ""
+
 msgid "Restore settings from a backup"
 msgstr "Palauta asetukset varmuuskopiosta"
 
@@ -16060,6 +16849,9 @@ msgstr "Palauta asetukset"
 
 msgid "Restore the highlighted slot"
 msgstr "Palauta korostettu image paikka"
+
+msgid "Restore to original location"
+msgstr ""
 
 msgid "Restore your %s %s settings."
 msgstr "Palauta %s %s:n asetukset."
@@ -16140,6 +16932,9 @@ msgstr ""
 msgid "Return to previous service"
 msgstr "Palaa TV-kanavalle"
 
+msgid "Reuse recently read folders for this duration. The cache is limited to 32 folders and 10000 entries. Refresh from the context menu to see external changes immediately."
+msgstr ""
+
 msgid "Reverse bouquet buttons"
 msgstr "Käänteiset suosikkilistanäppäimet"
 
@@ -16148,6 +16943,9 @@ msgstr "Käänteinen lista"
 
 msgid "Review"
 msgstr "Tarkastele"
+
+msgid "Review last maintenance scan"
+msgstr ""
 
 msgid "Rewind"
 msgstr "Kelaus taaksepäin"
@@ -16293,6 +17091,9 @@ msgstr "Suoritetaan komentoa %d: '%s'."
 msgid "Running only"
 msgstr "Vain käytössä"
 
+msgid "Runtime"
+msgstr ""
+
 msgid "Russian"
 msgstr "Venäjä"
 
@@ -16414,6 +17215,9 @@ msgstr "Samoa"
 msgid "Samoan"
 msgstr "Samoalainen"
 
+msgid "Sample rate"
+msgstr ""
+
 msgid "San Marino"
 msgstr "San Marino"
 
@@ -16504,6 +17308,9 @@ msgstr "Tallenna ja jatka tallennusta"
 msgid "Save and stop"
 msgstr "Tallenna ja pysäytä"
 
+msgid "Save available movie information beside video files, including MKV. Existing EIT files are kept. Automatic creation applies to selected files in the folder view; database browsing does not write to sleeping storage."
+msgstr ""
+
 msgid "Save directory on EXIT"
 msgstr "tallenna viimeisin hakemisto suljettaessa"
 
@@ -16523,6 +17330,9 @@ msgstr "Tallenna soittolista"
 msgid "Save play list on EXIT"
 msgstr "tallenna soittolista suljettaessa"
 
+msgid "Save queue as M3U playlist"
+msgstr ""
+
 msgid "Save right directory on exit"
 msgstr "Tallenna oikea hakemisto poistuttaessa"
 
@@ -16540,6 +17350,9 @@ msgstr "Tallenna lokimuutokset ja poistu"
 
 msgid "Save the log of the console messages to a file"
 msgstr "Tallenna Konsolin viesti tiedostoon"
+
+msgid "Save the previous playback position and movie duration in the standard .cuts file."
+msgstr ""
 
 msgid "Save the right column directory location on exit."
 msgstr "Tallenna oikean sarakkeen hakemiston sijainti poistuttaessa."
@@ -16615,6 +17428,9 @@ msgstr "Hae Wi-Fi verkkoja"
 msgid "Scan additional SR"
 msgstr "Hae muita SR:iä"
 
+msgid "Scan cancelled or folder limit reached."
+msgstr ""
+
 msgid "Scan files..."
 msgstr "Hae tiedostoja."
 
@@ -16626,6 +17442,9 @@ msgstr "Etsi paikallisia lisäosia ja asenna ne."
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "Skannaa antenni kanavat ja luo LCN kanavalista"
+
+msgid "Scan movie folders"
+msgstr ""
 
 msgid "Scan region"
 msgstr ""
@@ -16667,6 +17486,9 @@ msgstr[1] "Haku valmis, löytyi %d kanavaa."
 
 msgid "Scanning for shares..."
 msgstr "Etsii jakoja..."
+
+msgid "Scanning movie folders in the background"
+msgstr ""
 
 msgid "Scanning swap devices..."
 msgstr ""
@@ -16733,17 +17555,29 @@ msgstr "scifi/fantasia/kauhu"
 msgid "Scope"
 msgstr "Alue"
 
+msgid "Screen layout"
+msgstr ""
+
 msgid "Screen saver mode"
 msgstr "Näytönsäästäjä tila"
 
 msgid "Screen saver movement"
 msgstr "Näytönsäästäjä liikkuminen"
 
+msgid "Screen style"
+msgstr ""
+
 msgid "Script Manager"
 msgstr "Komentosarjojen hallinta"
 
 msgid "ScriptRunner"
 msgstr "ScriptRunner"
+
+msgid "Scroll down"
+msgstr ""
+
+msgid "Scroll up"
+msgstr ""
 
 msgid "Scrolling Speed"
 msgstr "Vieritysnopeus"
@@ -16775,6 +17609,9 @@ msgstr "Etsi verkkojakoja"
 msgid "Search in the current view"
 msgstr ""
 
+msgid "Search movie library"
+msgstr ""
+
 msgid "Search packages by name or description"
 msgstr ""
 
@@ -16792,6 +17629,20 @@ msgstr ""
 
 msgid "Searching west ..."
 msgstr "Etsitään länteen..."
+
+#, python-format
+msgid "Season %(season)s · Episode %(episode)s"
+msgstr ""
+
+#, python-format
+msgid "Season %d"
+msgstr ""
+
+msgid "Season and episode"
+msgstr ""
+
+msgid "Season unknown"
+msgstr ""
 
 msgid "Second cable of motorized LNB"
 msgstr "Kääntyvän antennin LNB:n toinen kaapeli"
@@ -17128,9 +17979,6 @@ msgstr ""
 msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr "Kun kyllä, VPS otetaan käyttöön pikatallenteissa (pysäytetään nykyisen ohjelman jälkeen), jos kanava tukee VPS:ää."
 
-msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
-msgstr "Valitse \"Kyllä\" käyttääksesi vaihtoehtoisia GitHubin IP osoitteita. Tämä voi olla hyödyllistä, jos käytät VPN:ää, eikä normaalia ip voi käyttää DNS nimien kautta."
-
 msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
 msgstr "Valitse \"Kyllä\" käyttääksesi perinteistä navigointia, jossa CH+/- vaihtaa aktiivisen sarakkeeseen. Valitse \"Ei\" käyttääksesi uudempaa yhtenäistä navigointi vaihtoehtoa johdonmukaiseen navigointiin muiden ruutujen kanssa, joissa VASEN/OIKEA vaihtaa aktiivisen sarakkeen ja CH+/- sivut ylös ja alas."
 
@@ -17232,6 +18080,9 @@ msgstr "Valitse softcam käytettävissä olevasta listasta."
 msgid "Select a bouquet"
 msgstr "Valitse suosikkilista"
 
+msgid "Select a connected HDD or USB device for the picons."
+msgstr ""
+
 msgid "Select a debug log file to view:"
 msgstr "Valitse tarkasteltava vianmäärityslokitiedosto:"
 
@@ -17259,6 +18110,12 @@ msgstr "Säätää laitteistopuskurin viiveen kompensaatiota DM9x0."
 msgid "Select a duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "Anna aikapuskuri, joka lisätään suoratoistopuskuriin suoratoistovirheen jälkeen. Tämä lisäpuskuri voi auttaa välttämään uusia suoratoisto ongelmia puskuritilan puutteen vuoksi."
 
+msgid "Select a folder to show again. This does not change database scan paths."
+msgstr ""
+
+msgid "Select a list or grid style. Text styles also work without a movie database. Poster styles require an installed metadata provider. Select legacy mode to use the existing list settings."
+msgstr ""
+
 #, python-format
 msgid "Select a location into which to extract '%s':"
 msgstr "Valitse sijainti, johon haluat purkaa '%s':"
@@ -17271,6 +18128,12 @@ msgstr ""
 
 msgid "Select a movie"
 msgstr "Elokuvan valinta"
+
+msgid "Select a movie folder outside the trashcan."
+msgstr ""
+
+msgid "Select a movie information bar supplied by the skin."
+msgstr ""
 
 msgid "Select a network adapter"
 msgstr "Valitse verkkoadapteri"
@@ -17333,8 +18196,17 @@ msgstr "Valitse kaikki"
 msgid "Select all lines"
 msgstr "Valitse kaikki rivit"
 
+msgid "Select all movies in this list"
+msgstr ""
+
+msgid "Select all movies on this page"
+msgstr ""
+
 msgid "Select all related files"
 msgstr "Valitse kaikki liittyvät tiedostot"
+
+msgid "Select an absolute playlist path."
+msgstr ""
 
 msgid "Select an action for the current device"
 msgstr "Valitse toiminto nykyiselle laitteelle"
@@ -17368,6 +18240,10 @@ msgstr "Valitse oletus ohjelmaoppaan tyyppi:"
 
 msgid "Select default File Commander directory:"
 msgstr "Valitse File Commander oletushakemisto:"
+
+#, python-format
+msgid "Select destination for %d movies"
+msgstr ""
 
 msgid "Select destination for:"
 msgstr "Valitse kohde:"
@@ -17500,8 +18376,23 @@ msgstr "Valitse syöttölaite."
 msgid "Select last browsed service"
 msgstr ""
 
+msgid "Select maintenance candidates"
+msgstr ""
+
 msgid "Select movie"
 msgstr "Valitse tallenne"
+
+msgid "Select movie information or artwork for the receiver display. Small displays fall back to a text layout."
+msgstr ""
+
+msgid "Select movies inside or outside the trashcan separately."
+msgstr ""
+
+msgid "Select one movie to edit its information."
+msgstr ""
+
+msgid "Select one movie to rename its file."
+msgstr ""
 
 msgid "Select only highlighted file"
 msgstr "Valitse vain korostettu tiedosto"
@@ -17785,6 +18676,9 @@ msgstr "Määrittää, käytetäänkö näytönsäästäjää ja jos, niin kuink
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "Valitse päättymisaika, ennen jota tämä ajastin voidaan aktivoida. Tämän ajan jälkeen ajastinta ei aktivoida, vaikka muut ehdot täyttyisivät."
 
+msgid "Select the existing movie player behavior for the EXIT button."
+msgstr ""
+
 msgid "Select the fast scan provider and press BLUE to start the scan."
 msgstr ""
 
@@ -17816,6 +18710,9 @@ msgstr "Valitse korostettu image paikka ja käynnistä uudelleen"
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
 msgstr "Valitse aikajana merkin alkuasento. Merkki on EPG:hen piirretty pystysuora viiva, joka näyttää nykyisen ajan. Mitä suurempi arvo on, sitä enemmän merkki siirtyy oikealle ja näyttää enemmän historiaa ja vähemmän tulevia ohjelmia."
+
+msgid "Select the initial view when a movie database is enabled. The View action switches between local folders and the movie library."
+msgstr ""
 
 msgid "Select the input connector you want to use."
 msgstr "Valitse tulo, jota haluat käyttää."
@@ -17874,8 +18771,14 @@ msgstr "Valitse liitos piste"
 msgid "Select the mountpoint for the device."
 msgstr "Valitse laitten liitos tällä laitteelle."
 
+msgid "Select the movie folder to scan, including subfolders"
+msgstr ""
+
 msgid "Select the movie path"
 msgstr "Valitse tallennus hakemisto"
+
+msgid "Select the movie selection screen layout supplied by the skin."
+msgstr ""
 
 msgid "Select the network data rate below which the timer should activate as specified. Traffic above this rate with deactivate the timer."
 msgstr "Valitse verkon tiedonsiirtonopeus, milloin ajastus tulee aktivoida määritetyllä tavalla. Tämän nopeuden ylittävä liikenne poistaa ajastuksen käytöstä."
@@ -18094,6 +18997,9 @@ msgstr "Valitse videotila"
 msgid "Select video output port with UP/DOWN buttons"
 msgstr "Valitse video ulostulo portti YLÖS/ALAS painikkeilla"
 
+msgid "Select view and sorting for this movie list"
+msgstr ""
+
 msgid "Select what action to take when reaching the end of a media file during playback."
 msgstr "Tallenteen lopussa voit valita mitä tehdään."
 
@@ -18297,6 +19203,15 @@ msgid "Serial No"
 msgstr "Sarjanumero"
 
 msgid "Serial number"
+msgstr ""
+
+msgid "Series"
+msgstr ""
+
+msgid "Series episode sort order"
+msgstr ""
+
+msgid "Series information and episode numbers"
 msgstr ""
 
 msgid "Serious Classical"
@@ -19179,6 +20094,9 @@ msgstr "Näytä aktiivinen kanava"
 msgid "Show System Plugin packages"
 msgstr "Näytä järjestelmän paketit"
 
+msgid "Show TS, MKV and other formats in the file information field. Classic layouts append this information to the title."
+msgstr ""
+
 msgid "Show Timer List"
 msgstr "Näytä ajastusluettelo"
 
@@ -19199,6 +20117,9 @@ msgstr "Näytä Pystysuora EPG"
 
 msgid "Show Web Link packages"
 msgstr "Näytä Netti sivut"
+
+msgid "Show a dynamic collection across movie folders. With a movie database it uses indexed files; otherwise a read-only background task creates a snapshot."
+msgstr ""
 
 msgid "Show a spinning logo when the system is busy."
 msgstr "Näytä pyörivä kuvake, kun järjestelmä on varattu."
@@ -19233,11 +20154,17 @@ msgstr "Näytä taustakuva radiotilassa"
 msgid "Show background when tuned to a radio channel."
 msgstr "Näytä taustakuva, kun kuunnellaan radiokanavaa."
 
+msgid "Show bookmarks in the movie list"
+msgstr ""
+
 msgid "Show bouquet on launch"
 msgstr "Näytä avattaessa suosikkilistat"
 
 msgid "Show build information"
 msgstr "Näytä koontiversion tiedot"
+
+msgid "Show cached movie counts and sizes. Update the cache explicitly from Movie maintenance in the context menu. Browsing does not scan subfolders."
+msgstr ""
 
 #, python-format
 msgid "Show cards with uphop %s"
@@ -19272,6 +20199,12 @@ msgstr "Näytä salaustyyppi tietopalkissa"
 
 msgid "Show current directory"
 msgstr "Näytä nykyinen hakemisto"
+
+msgid "Show current recording length"
+msgstr ""
+
+msgid "Show cut copy number"
+msgstr ""
 
 msgid "Show debug log information"
 msgstr "Näytä virheenkorjaus lokin tiedot"
@@ -19315,6 +20248,9 @@ msgstr "Ohjelman etenemisnäyttö kanavalistassa"
 msgid "Show eventinfo plugins"
 msgstr "Näytä tapahtumainfo liitännäiset"
 
+msgid "Show existing movie bookmarks as virtual folder entries. Their targets are accessed only when opened."
+msgstr ""
+
 msgid "Show extended description"
 msgstr "Näytä laajennettu ohjelmakuvaus"
 
@@ -19332,6 +20268,9 @@ msgstr "Näytä oletuksena varmuuskopioitavat tiedostot"
 
 msgid "Show first picture"
 msgstr "Näytä ensimmäinen kuva"
+
+msgid "Show folders"
+msgstr ""
 
 msgid "Show free space in timer view"
 msgstr "Näytä vapaa tila ajastin näkymässä"
@@ -19370,6 +20309,9 @@ msgstr "Näytä tehtävät (job tasks) laajennusvalikossa"
 msgid "Show last picture"
 msgstr "Näytä edellinen kuva"
 
+msgid "Show links to files and folders. Broken links are omitted when the directory is refreshed."
+msgstr ""
+
 msgid "Show list of bouquets"
 msgstr "Näytä kanava lista"
 
@@ -19393,6 +20335,12 @@ msgstr "Näytä valikko"
 
 msgid "Show message when recording starts"
 msgstr "Näytä viesti kun tallennus alkaa"
+
+msgid "Show movie format"
+msgstr ""
+
+msgid "Show movie information"
+msgstr ""
 
 msgid "Show movie lengths in movie list"
 msgstr "Näytä tallennuksien kesto tallennus listassa"
@@ -19453,6 +20401,9 @@ msgstr "Näytä tietopalkki tapahtumien välillä."
 
 msgid "Show persistent InfoBar while paused"
 msgstr "Näytä tietopalkki pysyvästi tauon aikana"
+
+msgid "Show physical folders. Parent navigation, the trashcan, bookmarks, virtual collections and recognized movie structures remain accessible."
+msgstr ""
 
 msgid "Show picon background color"
 msgstr "Kanavalogojen taustaväri"
@@ -19577,6 +20528,9 @@ msgstr "Näytä tekstityksen pikavalikko"
 msgid "Show subtitle selection"
 msgstr "Tekstitysvalinta"
 
+msgid "Show symbolic links"
+msgstr ""
+
 msgid "Show system information"
 msgstr "Näytä järjestelmätiedot"
 
@@ -19607,8 +20561,14 @@ msgstr "Näytä OSCam tietonäytössä"
 msgid "Show the about screen"
 msgstr ""
 
+msgid "Show the cut copy suffix, such as _001, even when the recording title comes from metadata. This is not the number of chapter markers."
+msgstr ""
+
 msgid "Show the last opkg command's output"
 msgstr "Näytä viimeinen opkg komento"
+
+msgid "Show the measured length of active recordings in the file information field, updated once a minute in the file view. Database views use cached metadata."
+msgstr ""
 
 msgid "Show the task list"
 msgstr "Näytä tehtäväluettelo"
@@ -19645,6 +20605,9 @@ msgstr "Näytä tuntematon videon tarkkuus muodossa"
 
 msgid "Show vertical Program Guide"
 msgstr "Näytä pystysuora EPG"
+
+msgid "Show virtual folders first, or sort them among movies by the current title or recording date order."
+msgstr ""
 
 msgid "Show warning before restart"
 msgstr "Varoita uudelleenkäynnistyksestä"
@@ -19751,6 +20714,9 @@ msgstr "Yksinkertainen liittäminen"
 
 msgid "Simplified Chinese"
 msgstr "Simple Kiina"
+
+msgid "Since the previous visit"
+msgstr ""
 
 msgid "Sindhi"
 msgstr "Sindhi"
@@ -19868,6 +20834,9 @@ msgstr "Ohita paketin asennus, vain ydin paketit ovat käytettävissä"
 
 msgid "Skip sensibility for '%s' button"
 msgstr "Ohituksen herkkyys '%s' painikkeelle"
+
+msgid "Skip this many seconds after the chosen preview starting point."
+msgstr ""
 
 msgid "Skip time for '%s' button"
 msgstr "Painikkeen '%s' ohitusaika"
@@ -20257,6 +21226,9 @@ msgstr "Lajittele nimen mukaan"
 msgid "Sort by default"
 msgstr "Oletusjärjestys"
 
+msgid "Sort folders with movies"
+msgstr ""
+
 msgid "Sort list by"
 msgstr "Listan järjestystapa"
 
@@ -20268,6 +21240,12 @@ msgstr "Kieliluettelon lajittelujärjestys."
 
 msgid "Sort playlists"
 msgstr "soittolistojen järjestys"
+
+msgid "Sort the whole catalogue before pagination. Long PVR/File temporarily selects another order."
+msgstr ""
+
+msgid "Sort this movie list"
+msgstr ""
 
 #, python-format
 msgid "Sort: Directories by %s %s; Files by %s %s."
@@ -20290,6 +21268,9 @@ msgstr "Äänikantoaallon taajuus"
 
 msgid "Source Packages"
 msgstr "Lähde paketit"
+
+msgid "Source and destination are identical."
+msgstr ""
 
 msgid "Source request"
 msgstr "Lähteen pyyntö"
@@ -20437,6 +21418,12 @@ msgstr ""
 msgid "Start an instant recording"
 msgstr "Aloita tallennus heti"
 
+msgid "Start at the first early chapter marker"
+msgstr ""
+
+msgid "Start at the resume position, the beginning or the first early chapter marker. Preview does not save playback positions or change watch status."
+msgstr ""
+
 msgid "Start date"
 msgstr "Aloituspäivä"
 
@@ -20502,6 +21489,12 @@ msgstr "Aloitusaika"
 
 msgid "Start time shift"
 msgstr "Aloita ajansiirto"
+
+msgid "Start view"
+msgstr ""
+
+msgid "Start watched movies from the beginning"
+msgstr ""
 
 msgid "Start/stop slide show"
 msgstr "Käynnistä / lopeta diaesitys"
@@ -20580,6 +21573,12 @@ msgstr "Tila ei saatavilla!"
 msgid "Stay in time shift at buffer end (for plugins)"
 msgstr ""
 
+msgid "Stay on the marked movie, move to the next movie, or continue in the last navigation direction."
+msgstr ""
+
+msgid "Stay on the movie"
+msgstr ""
+
 msgid "Step"
 msgstr "Vaihe"
 
@@ -20621,6 +21620,9 @@ msgstr "Lopeta muokkaus tila"
 
 msgid "Stop entry"
 msgstr "Pysäytä"
+
+msgid "Stop playback or preview before changing this movie."
+msgstr ""
 
 msgid "Stop playing this movie?"
 msgstr "Lopetetaanko tallenteen toistaminen?"
@@ -20795,6 +21797,9 @@ msgstr "Nauhat"
 
 msgid "Style:"
 msgstr "Tyyli:"
+
+msgid "Subchannel ID"
+msgstr ""
 
 msgid "Subnet mask"
 msgstr "Aliverkon peite"
@@ -21000,6 +22005,9 @@ msgstr "Vaihda tiedosto-/soittoluettelon välillä"
 msgid "Switch config"
 msgstr "Vaihda asetuksia"
 
+msgid "Switch movie and file information"
+msgstr ""
+
 msgid "Switch off the TV to correct input"
 msgstr "Vaihda TV oikealle sisäänmenolle"
 
@@ -21050,6 +22058,9 @@ msgstr "Vaihda vasempaan sarakkeeseen"
 
 msgid "Switch to the other column"
 msgstr "Siirry toiseen sarakkeeseen"
+
+msgid "Switch to the recording channel"
+msgstr ""
 
 msgid "Switch to the right column"
 msgstr "Vaihda oikeaan sarakkeeseen"
@@ -21110,6 +22121,12 @@ msgstr "Järjestelmä lisäosat pluginit"
 
 msgid "System Setup"
 msgstr "Järjestelmän asetukset"
+
+msgid "System date and time"
+msgstr ""
+
+msgid "System date format"
+msgstr ""
 
 msgid "System information"
 msgstr "Järjestelmä tiedot"
@@ -21187,6 +22204,9 @@ msgstr "Tunniste Editorin toiminnot"
 
 msgid "Tagalog"
 msgstr "Tagalog"
+
+msgid "Tagline"
+msgstr ""
 
 msgid "Tags"
 msgstr "Avainsanat"
@@ -21327,6 +22347,9 @@ msgstr "Väliaikainen liitos %s"
 
 msgid "Temporary directory"
 msgstr "Väliaikainen hakemisto"
+
+msgid "Temporary layout and sorting"
+msgstr ""
 
 msgid "Tennis"
 msgstr "Tennis"
@@ -21567,6 +22590,9 @@ msgstr ""
 msgid "The backup can take up to about 15 minutes to complete."
 msgstr "Varmuuskopiointi voi kestää jopa 10 minuuttia."
 
+msgid "The bookmarked folder is not available."
+msgstr ""
+
 msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
@@ -21576,6 +22602,12 @@ msgstr ""
 
 msgid "The command to wake from Standby will be sent multiple times."
 msgstr "Valmiustilasta herätyskomento lähetetään useita kertoja."
+
+msgid "The companion file changed or belongs to a movie again."
+msgstr ""
+
+msgid "The complete movie is at the destination, but some source files could not be removed."
+msgstr ""
 
 msgid "The continuation recording could not be identified safely. Both recordings have been kept and will not be merged."
 msgstr ""
@@ -21587,6 +22619,9 @@ msgstr ""
 msgid "The custom mount point for '%s' is empty!"
 msgstr ""
 
+msgid "The cut list is damaged; it was left unchanged."
+msgstr ""
+
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -21596,6 +22631,13 @@ msgstr ""
 
 msgid "The default settings are wake up time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wake up time. So can be detected a wake up by a timer even at very early starting receivers."
 msgstr "Vakioasetukset ovat herätysaika - 5 minuuttia ja ajastimen käynnistys + 5 minuuttia. Tämä asetus muuttaa aikaikkunaa ennen herätysaikaa. Tällä tavalla ajastin tunnistaa heräämisen jopa sellaisten vastaanottimien kanssa, jotka käynnistyvät hyvin aikaisin."
+
+#, python-format
+msgid "The destination '%s' already exists. Choose an empty destination or move the picons manually."
+msgstr ""
+
+msgid "The destination changed during the operation."
+msgstr ""
 
 msgid "The detailed information is intended for developers only."
 msgstr "Yksityiskohtaiset tiedot on tarkoitettu vain kehittäjille."
@@ -21655,6 +22697,9 @@ msgstr ""
 msgid "The loopthrough setting is wrong."
 msgstr "Läpisyötön asetus on väärä."
 
+msgid "The manual maintenance scan offers watched movies only when neither the movie nor its playback position has changed within this many days. Review and select candidates in the context menu before moving them to the trashcan."
+msgstr ""
+
 msgid "The manufacturer STARTUP device cannot be mounted for inspection."
 msgstr ""
 
@@ -21676,14 +22721,61 @@ msgstr ""
 msgid "The mount point '%s' is used by more than one share."
 msgstr ""
 
+msgid "The movie duration is unknown."
+msgstr ""
+
+msgid "The movie file is still being written. Try again later."
+msgstr ""
+
+msgid "The movie folder or companion file changed."
+msgstr ""
+
+msgid "The movie is currently being recorded."
+msgstr ""
+
+msgid "The movie or its playback position changed since the maintenance scan. Scan again."
+msgstr ""
+
+#, python-format
+msgid "The operation failed. Some files remain at the destination: %s"
+msgstr ""
+
+msgid "The original location is unknown. Use Move to select a destination."
+msgstr ""
+
 msgid "The panic channel was not found. Please select it again in Channel Selection Settings."
 msgstr ""
 
-msgid "The picon directory already exists and must be removed. Do you want to proceed?"
-msgstr "Kanavalogo hakemisto on jos olemassa ja pitää poistaa ensin. Haluatko jatkaa?"
+msgid "The picon destination must be outside the existing picon directory."
+msgstr ""
+
+msgid ""
+"The picon package could not be installed. Connect an HDD or USB device and select it as the picon install location in Plugin Browser settings. Check that the device is mounted and writable.\n"
+"\n"
+"Internal flash only allows small packages with up to 1,000 files and 10 MiB, with enough free space and file entries remaining."
+msgstr ""
+
+#, python-format
+msgid "The picon path '%s' is not a directory."
+msgstr ""
+
+msgid "The picon storage device is read-only or full."
+msgstr ""
+
+msgid "The play queue is empty"
+msgstr ""
+
+msgid "The playlist contains too many movies."
+msgstr ""
+
+msgid "The playlist is too large."
+msgstr ""
 
 msgid "The positioner tuner is currently unavailable. Stop recordings or other services using this tuner and try again."
 msgstr "Viritin ei ole tällä hetkellä käytettävissä. Lopeta tätä viritintä käyttävät tallennukset tai muut palvelut ja yritä uudelleen."
+
+msgid "The preview shows the first 20 filenames."
+msgstr ""
 
 msgid "The previous mount point is already in use."
 msgstr ""
@@ -21692,7 +22784,16 @@ msgstr ""
 msgid "The process will take approximately %d minutes to complete."
 msgstr "Prosessi vie noin %d minuuttia valmistuakseen."
 
+msgid "The recording changed while the operation was running."
+msgstr ""
+
 msgid "The recording end time has already passed."
+msgstr ""
+
+msgid "The recording is still running. Switch to its live channel?"
+msgstr ""
+
+msgid "The recording metadata is too large; it was left unchanged."
 msgstr ""
 
 msgid "The requested recording conflicts with other timers. What do you want to do?"
@@ -21792,6 +22893,21 @@ msgstr ""
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
 msgstr "Ajastinluettelo '%s' on vioittunut eikä sitä voida ladata."
+
+msgid "The trash index is damaged."
+msgstr ""
+
+msgid "The trash index is too large."
+msgstr ""
+
+msgid "The trash index must not be a symbolic link."
+msgstr ""
+
+msgid "The trashcan and the movie must be on the same mounted filesystem. No files were copied."
+msgstr ""
+
+msgid "The trashcan must be a directory on the movie's filesystem."
+msgstr ""
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -21901,6 +23017,9 @@ msgstr ""
 msgid "This device has multiple mount points. Unmount them before checking the file system."
 msgstr ""
 
+msgid "This directory is locked for movie file changes."
+msgstr ""
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Tämä kenttä sallii etsiä ylimääräisen symbolinopeuden %s asti."
@@ -21936,6 +23055,9 @@ msgstr "Tämä valikko sisältää tietoja vastaanottimen ohjelmistosta."
 
 msgid "This menu offers options related managing the software on the %s %s."
 msgstr "Tämä valikko tarjoaa vaihtoehtoja, jotka liittyvät ohjelmiston hallintaan %s %s."
+
+msgid "This movie is currently unavailable. Check its storage device or network mount."
+msgstr ""
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Tätä offsetia käytetään vain, jos kanavalla ei ole omaa äänenvoimakkuuden offsetia."
@@ -22110,7 +23232,16 @@ msgstr "Tämä asetus määrittää ääriviivakorostumien vaimennuksen."
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Tämä asetus määrittää kuvan terävyyden, käytetään kun kuva skaalataan suurempaan tarkkuuteen."
 
+msgid "This playlist contains unsupported files. Play queues support video and audio files; open DVD images individually."
+msgstr ""
+
+msgid "This provider supplies movie information but no browsable library."
+msgstr ""
+
 msgid "This recording has already ended."
+msgstr ""
+
+msgid "This service is not a local movie file."
 msgstr ""
 
 msgid "This service is protected by a parental control PIN!"
@@ -22168,6 +23299,9 @@ msgstr "Tibetan"
 
 msgid "Tigrinya"
 msgstr "Tigrinya"
+
+msgid "Tiles"
+msgstr ""
 
 msgid "Time"
 msgstr "Aika"
@@ -22370,6 +23504,12 @@ msgstr "Timor-Leste / Itä Timor"
 msgid "Title"
 msgstr "Otsikko"
 
+msgid "Title (A–Z)"
+msgstr ""
+
+msgid "Title (Z–A)"
+msgstr ""
+
 msgid "Title properties"
 msgstr "Ominaisuudet"
 
@@ -22470,6 +23610,9 @@ msgstr "Nykyisen tagin valinnan vaihtaminen"
 msgid "Toggle selections"
 msgstr "Vaihda valinnat"
 
+msgid "Toggle series grouping for this folder"
+msgstr ""
+
 msgid "Toggle service name display"
 msgstr "Näytä palvelu nimi näytöllä"
 
@@ -22499,6 +23642,18 @@ msgstr "22 kHz-ääni"
 
 msgid "Tonga"
 msgstr "Tonga"
+
+msgid "Too many candidates. Scan a smaller movie folder."
+msgstr ""
+
+msgid "Too many entries. Scan a smaller movie folder."
+msgstr ""
+
+msgid "Too many movies. Scan a smaller movie folder."
+msgstr ""
+
+msgid "Too many pending movie database changes. Reconnect the database first."
+msgstr ""
 
 msgid "Top"
 msgstr "suositut"
@@ -22543,6 +23698,9 @@ msgstr "turismi/matkailu"
 msgid "Track"
 msgstr "Raita"
 
+msgid "Track language"
+msgstr ""
+
 msgid "Traditional"
 msgstr "Perinteinen"
 
@@ -22557,6 +23715,9 @@ msgstr "Transkoodaus"
 
 msgid "Transcoding"
 msgstr "Transkoodaus"
+
+msgid "Transfer characteristics"
+msgstr ""
 
 msgid "Translate Subs On This Service"
 msgstr "Käännös tekstitys tällä kanavalla"
@@ -22944,10 +24105,17 @@ msgstr "Ukraina"
 msgid "Ukrainian"
 msgstr "Ukraina"
 
+msgid "Unable to access the script directory."
+msgstr ""
+
 #, python-format
 msgid ""
 "Unable to change swap state for '%s'.\n"
 "%s"
+msgstr ""
+
+#, python-format
+msgid "Unable to change the picon storage location: %s"
 msgstr ""
 
 #, python-format
@@ -22971,8 +24139,15 @@ msgstr "Kexec MultiBootin alustaminen ei onnistu!"
 msgid "Unable to load package information!"
 msgstr ""
 
+msgid "Unable to move the movie without overwriting existing files."
+msgstr ""
+
 #, python-format
 msgid "Unable to open tuner (%d)"
+msgstr ""
+
+#, python-format
+msgid "Unable to prepare picon storage: %s"
 msgstr ""
 
 msgid "Unable to prepare the bouquet update. The scan will continue without updating bouquets."
@@ -23029,11 +24204,18 @@ msgstr "LNB:n %d Unicable sijaintia ei voitu tarkistaa: %s."
 msgid "Unable to write the time shift event information."
 msgstr ""
 
+msgid "Unassigned / pending recordings"
+msgstr ""
+
 msgid "Unattended upgrade without GUI"
 msgstr "Päivitä järjestelmä taustalla ilman käyttäjän ohjausta"
 
 msgid "Unavailable"
 msgstr "ei saatavilla"
+
+#, python-format
+msgid "Unavailable: %s"
+msgstr ""
 
 msgid "Undefined"
 msgstr "Ei määritelty"
@@ -23135,6 +24317,9 @@ msgstr "Tuntematon!"
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr "'Kyllä' valinnalla EPG-listassa voi esikatsella kanavia."
 
+msgid "Unlimited"
+msgstr ""
+
 msgid "Unmark As Dedicated 3D Service"
 msgstr "Poista kanavan 3D merkintä"
 
@@ -23169,6 +24354,9 @@ msgstr "valmiustilaan/uudelleenkäynnistykseen asti"
 msgid "Unused %s"
 msgstr "Käyttämätön %s"
 
+msgid "Unwatched"
+msgstr ""
+
 msgid "Unzipping Image"
 msgstr "Puretaan Ohjelmistoa"
 
@@ -23177,6 +24365,9 @@ msgstr "Ylös"
 
 msgid "Up / Active"
 msgstr "Aktiivinen"
+
+msgid "Up to 256 folders can be hidden."
+msgstr ""
 
 msgid "Up to 50 Mbps"
 msgstr "Enintään 50 Mbps"
@@ -23204,6 +24395,15 @@ msgstr "Päivitys epäonnistui!"
 
 msgid "Update finished!"
 msgstr "Päivitys suoritettu!"
+
+msgid "Update folder movie counts and sizes"
+msgstr ""
+
+msgid "Update movie folder snapshot"
+msgstr ""
+
+msgid "Update movie folder snapshot / latest recordings"
+msgstr ""
 
 msgid "Update outdated bouquet entries"
 msgstr ""
@@ -23235,6 +24435,12 @@ msgstr "Päivityksiä saatavilla:"
 
 msgid "Updating"
 msgstr "Päivitetään"
+
+msgid "Updating library index..."
+msgstr ""
+
+msgid "Updating movie folder snapshot in Tasks"
+msgstr ""
 
 msgid "Updating package list."
 msgstr "Päivitetään lisäosa listaa."
@@ -23390,8 +24596,8 @@ msgstr "Käytä kanavan vaihto ajastimen lopetusaikoja"
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
 msgstr "Käytä DNS välimuistia tallentaaksesi paikallisesti viimeisimmät DNS kyselyt suorituskyvyn parantamiseksi, viiveen vähentämiseksi ja lähtevän liikenteen vähentämiseksi."
 
-msgid "Use alternate GitHub DNS"
-msgstr "Käytä vaihtoehtoista GitHub DNS"
+msgid "Use an absolute filename ending in .m3u or .m3u8."
+msgstr ""
 
 msgid "Use an alternative smaller screen."
 msgstr "Käytä vaihtoehtoista näyttöä."
@@ -23419,6 +24625,9 @@ msgstr "käytä parasta / HDMI:n hallinnoima"
 
 msgid "Use circular LNB"
 msgstr "Kiertopolarisaatio"
+
+msgid "Use configured defaults"
+msgstr ""
 
 msgid "Use defaults"
 msgstr "Käytä oletusarvoja"
@@ -23459,6 +24668,9 @@ msgstr "Käytä näppäimistökarttaa *"
 msgid "Use legacy navigation"
 msgstr "Käytä vanhaa navigointia"
 
+msgid "Use normal end-of-movie action"
+msgstr ""
+
 msgid "Use official channel numbering"
 msgstr "Käytä virallista kanavanumerointia"
 
@@ -23482,6 +24694,12 @@ msgstr "Käytä joka hakemistolle yksilöllisiä asetuksia"
 
 msgid "Use power measurement"
 msgstr "Käytä virranmittausta"
+
+msgid "Use relative dates or the configured system date format, with or without the time."
+msgstr ""
+
+msgid "Use selected sorting"
+msgstr ""
 
 msgid "Use skin default"
 msgstr ""
@@ -23540,8 +24758,23 @@ msgstr ""
 msgid "Use the current selection and exit"
 msgstr "Käytä nykyistä valintaa ja poistu"
 
+msgid "Use the database title when available, the original recording title, or the filename. Title cleanup applies after this choice. Grouped series keep their series title."
+msgstr ""
+
+msgid "Use the existing default playback location. Press OK to select a folder."
+msgstr ""
+
 msgid "Use the extended List"
 msgstr "Käytä laajennettua listaa"
+
+msgid "Use the normal end action, ask, or switch to the recording channel when playback catches up with a local recording that is still running."
+msgstr ""
+
+msgid "Use the selected sort order, keep folders first, or sort folders together with movie files."
+msgstr ""
+
+msgid "Use the title before this separator as the virtual folder name. An empty separator groups identical titles."
+msgstr ""
 
 msgid "Use the wizard to set up basic features"
 msgstr "Käytä avustajaa perusasetusten määrittämiseen"
@@ -23923,6 +25156,9 @@ msgstr "Näytä ruudukkona"
 msgid "View as list"
 msgstr "Näytä listana"
 
+msgid "View for this movie list only"
+msgstr ""
+
 msgid "View mode"
 msgstr "Näyttötila"
 
@@ -23972,6 +25208,15 @@ msgstr "Virtuaali Näppäimistön toiminnot"
 msgid "Virtual Keyboard Text:"
 msgstr "Virtuaali näppäimistön teksti:"
 
+msgid "Virtual collections"
+msgstr ""
+
+msgid "Virtual folder — movie files stay in their original locations."
+msgstr ""
+
+msgid "Virtual folders before movies"
+msgstr ""
+
 msgid "Visual impaired commentary"
 msgstr "Näkövammaisten kommentti"
 
@@ -24020,6 +25265,9 @@ msgstr "Äänenvoimakkuus +"
 msgid "Volume/Mute display timer"
 msgstr "Äänenvoimakkuuden/mykistyksen näytön ajastin"
 
+msgid "Votes"
+msgstr ""
+
 msgid "Vu+ MultiBoot"
 msgstr "Vu+ MultiBootti"
 
@@ -24049,6 +25297,9 @@ msgstr "WSS-kuvasuhdesignaali"
 
 msgid "Wait for timesync at startup"
 msgstr "Odota ajan synkronointia järjestelmän käynnistyessä"
+
+msgid "Wait this long after moving the selection before starting a preview."
+msgstr ""
 
 msgid "Waiting"
 msgstr "Odottaa"
@@ -24132,6 +25383,12 @@ msgstr "Varoitus: ei LNB:tä, käytetään tehdasasetuksia."
 
 msgid "Watch movies..."
 msgstr "Toista tallenteet..."
+
+msgid "Watched"
+msgstr ""
+
+msgid "Watched from (%)"
+msgstr ""
 
 msgid "Water sport"
 msgstr "vesiurheilu"
@@ -24263,6 +25520,9 @@ msgstr "Mitä haluat tehdä?"
 
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr "Kun 'Käytössä', ajastin näkymä näyttää laitteen vapaan tilan. Tämä herättää laitteen lepotilasta."
+
+msgid "When disabled, skip recordings already indexed by E2MDB with the same title and descriptions. If the database is unavailable or the match is uncertain, record normally."
+msgstr ""
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "Kun päällä, AIT-tiedot lähetetään http striimeissä. Tämä mahdollistaa HbbTV:n käyttämisen asiakasvastaanottimessa."
@@ -24483,6 +25743,9 @@ msgstr "Käy käytössä, voit määritellä etävastaanottimen OpenWebIf asetuk
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Kun päällä, vastaanotin tunnistaa aktiviteetin VCR SCART-sisäänmenossa."
 
+msgid "When movie information is displayed"
+msgstr ""
+
 msgid "When nonzero, a recording will start the nominated period before the starting time indicated in the EPG."
 msgstr "Kun arvo ei ole nolla, tallennus alkaa aiemmin kuin ohjelmaoppaassa oleva aloitusaika."
 
@@ -24503,6 +25766,12 @@ msgstr "Kun päällä, pikkukuva jatkaa tv-kanavan toistoa, kun tallenteen katse
 
 msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
 msgstr "Kun määrität \"kyllä\" Softcam voidaan määrittää jokaiseen salatullle kanavalle erikseen."
+
+msgid "When starting a movie, keep its previous playback position as a chapter marker. Existing chapter markers remain available."
+msgstr ""
+
+msgid "When starting from the beginning, skip the recording lead-in using an early chapter marker. Resume positions and cut boundaries are respected."
+msgstr ""
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Kun ohjelman kuvasuhde on 16:9, valitse skaalataanko/venytetäänkö kuvaa."
@@ -25699,6 +26968,22 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Can't move to trashcan!"
+#~ msgstr "Ei voida siirtää roskakoriin!"
+
+#, python-format
+#~ msgid "Error: Creating picon target directory: (%s)"
+#~ msgstr "Virhe: Kanavalogojen kansion luominen epäonnistui: (%s)"
+
+#~ msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
+#~ msgstr "Valitse \"Kyllä\" käyttääksesi vaihtoehtoisia GitHubin IP osoitteita. Tämä voi olla hyödyllistä, jos käytät VPN:ää, eikä normaalia ip voi käyttää DNS nimien kautta."
+
+#~ msgid "The picon directory already exists and must be removed. Do you want to proceed?"
+#~ msgstr "Kanavalogo hakemisto on jos olemassa ja pitää poistaa ensin. Haluatko jatkaa?"
+
+#~ msgid "Use alternate GitHub DNS"
+#~ msgstr "Käytä vaihtoehtoista GitHub DNS"
 
 #~ msgid "%-H:%M:%S"
 #~ msgstr "%-H:%M:%S"
@@ -27349,9 +28634,6 @@ msgstr "®"
 
 #~ msgid "Are you sure you want to restart your network interfaces?"
 #~ msgstr "Haluatko käynnistää verkkosovittimet uudelleen?"
-
-#~ msgid "Back"
-#~ msgstr "Takaisin"
 
 #~ msgid "Configure DNS (name servers)"
 #~ msgstr "Määritä DNS (nimipalvelimet)"
@@ -30064,9 +31346,6 @@ msgstr "®"
 #~ msgid "128 Mb"
 #~ msgstr "128 Mb"
 
-#~ msgid "15 minutes"
-#~ msgstr "15 minuuttia"
-
 #~ msgid "1536 Mb"
 #~ msgstr "1536 Mb"
 
@@ -30108,9 +31387,6 @@ msgstr "®"
 
 #~ msgid "5 hours"
 #~ msgstr "5 tuntia"
-
-#~ msgid "5 minutes"
-#~ msgstr "5 minuuttia"
 
 #~ msgid "512 Mb"
 #~ msgstr "512 Mb"
