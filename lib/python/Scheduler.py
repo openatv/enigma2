@@ -1287,6 +1287,9 @@ class SchedulerEntry(TimerEntry):
 				seconds = now - self.netbytes_time
 				self.netbytes = newBytes
 				self.netbytes_time = now
+				if seconds <= 0:
+					print("[Scheduler] NetworkTraffic: Interval <= 0 seconds; postpone shutdown and measure again.")
+					return True
 				diffBytes = float(newBytes - oldBytes) * 8.0 / 1024.0 / seconds  # In kbit/s.
 				if diffBytes < 0:
 					print("[Scheduler] NetworkTraffic: Overflow of interface counter, waiting for next value.")
