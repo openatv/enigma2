@@ -492,7 +492,8 @@ class WizardLanguage(Wizard, ShowRemoteControl):
 			rate = "multi"
 		else:
 			rate = self.getVideoRate()
-		avSwitch.setMode(port="HDMI", mode=self.mode, rate=rate)
+		if rate is not None:
+			avSwitch.setMode(port="HDMI", mode=self.mode, rate=rate)
 
 	def getVideoRate(self):
 		def sortKey(name):
@@ -509,7 +510,7 @@ class WizardLanguage(Wizard, ShowRemoteControl):
 						continue
 					rates.append((rate, rate))
 		rates.sort(key=sortKey)
-		return rates[0][0]
+		return rates[0][0] if rates else None
 
 	def resolutionTimeout(self):
 		if self.mode == "720p":

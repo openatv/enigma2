@@ -811,10 +811,7 @@ std::string eAVControl::getPreferredModes(int flags) const
 std::string eAVControl::readAvailableModes(int flags) const
 {
 
-#ifdef HAVE_AMLOGIC_HDMI
-	std::string modes = getPreferredModes(flags);
-	return modes.empty() ? getVideoMode("720p", flags) : modes;
-#elif defined(DREAMNEXTGEN)
+#if defined(DREAMNEXTGEN) || defined(HAVE_AMLOGIC_HDMI)
 	return std::string("480i 576i 480p 576p 720p 720p50 1080i 1080i50 1080p 1080p24 1080p25 1080p30 1080p50 2160p24 2160p25 2160p30 2160p50 2160p smpte24 smpte25 smpte30 smpte50 smpte60");
 #elif USE_VIDEO_MODE_HD
 	return std::string("pal ntsc 720p 720p25 720p30 720p50 1080i 1080i50 1080p25 1080p30 1080p50 1080p 576i 576p 480i 480p");
@@ -840,11 +837,7 @@ std::string eAVControl::readAvailableModes(int flags) const
 /// @return
 std::string eAVControl::getAvailableModes() const
 {
-#ifdef HAVE_AMLOGIC_HDMI
-	return readAvailableModes();
-#else
 	return m_videomode_choices;
-#endif
 }
 
 /// @brief set the aspect ratio
