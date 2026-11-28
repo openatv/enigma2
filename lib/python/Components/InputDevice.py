@@ -55,7 +55,7 @@ class InputDevices:
 					"configuredName": None
 				}
 
-				if BoxInfo.getItem("machinebuild") == "gtxcombo" and self.name == "meson-ir":
+				if BoxInfo.getItem("machinebuild") in {"gtcombo", "gtxcombo"} and self.name == "meson-ir":
 					self.devices[device].update(defaultRepeat=70, defaultDelay=300)
 					self.setDeviceDefaults(device)
 

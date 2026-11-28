@@ -288,7 +288,7 @@ class Standby2(Screen):
 		self.session.isStandby = True
 		self.session.screen["Standby"].boolean = True
 		config.misc.standbyCounter.value += 1
-		if BoxInfo.getItem("AmlogicFamily") and BoxInfo.getItem("machinebuild") != "gtxcombo":
+		if BoxInfo.getItem("AmlogicFamily") and BoxInfo.getItem("machinebuild") not in {"gtcombo", "gtxcombo"}:
 			try:
 				open("/proc/stb/lcd/oled_brightness", "w").write("0")
 			except OSError:

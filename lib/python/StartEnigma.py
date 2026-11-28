@@ -493,7 +493,7 @@ def runScreenTest():
 	modalMessagebox = ModalMessageBox(session)  # noqa F841
 	enigma.eProfileWrite("PowerKey")
 	power = PowerKey(session)  # noqa F841
-	if enigma.getVFDSymbolsPoll():
+	if enigma.getVFDSymbolsPoll() or (BOX_TYPE == "gtcombo" and exists("/sys/class/leds/gtcombo::iptv/brightness")):
 		enigma.eProfileWrite("VFDSymbolsCheck")
 		from Components.VfdSymbols import SymbolsCheck
 		SymbolsCheck(session)

@@ -42,7 +42,7 @@ class CpuControl:
 		self.thermalZones = {self.readValue(join(x, "type")): x for x in glob("/sys/class/thermal/thermal_zone*")}
 		for policy in self.POLICIES:
 			frequencies = tuple(self.readValue(join(self.CPUFREQ_PATH, policy, "scaling_available_frequencies")).split())
-			if not frequencies and BoxInfo.getItem("machinebuild") == "gtxcombo":
+			if not frequencies and BoxInfo.getItem("machinebuild") in {"gtcombo", "gtxcombo"}:
 				continue
 			cpus = self.readValue(join(self.CPUFREQ_PATH, policy, "affected_cpus")).split() or [policy[-1]]
 			self.cpus[policy] = {f"cpu{x}" for x in cpus}

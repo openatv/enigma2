@@ -25,14 +25,22 @@ class VFDSymbolsUpdater:
 		self.recMode, self.recPath = self.getRecModes()
 		self.onClose = []  # This is needed for ServiceEventTracker
 		eventMap = {iPlayableService.evUpdatedInfo: self.evUpdatedInfo}
-		if BOX_TYPE == "gtxcombo":
+		if BOX_TYPE in {"gtcombo", "gtxcombo"}:
 			self.tunerSymbol = None
+			self.tunerLedPrefix = "gtcombo" if BOX_TYPE == "gtcombo" else "gtx"
 			eventMap[iPlayableService.evEnd] = self.setTunerSymbol
+			if BOX_TYPE == "gtcombo":
+				for symbol in ("iptv", "dvbs2"):
+					fileWriteLine(join("/sys/class/leds", f"gtcombo::{symbol}", "brightness"), "0", source=MODULE_NAME)
+				eventMap[iPlayableService.evStart] = self.evUpdatedInfo
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=eventMap)
 		self.pollTime = getVFDSymbolsPoll()  # In seconds.
-		self.timer = eTimer()
-		self.timer.callback.append(self.updateSymbols)
-		self.timer.startLongTimer(0)
+		if self.pollTime:
+			self.timer = eTimer()
+			self.timer.callback.append(self.updateSymbols)
+			self.timer.startLongTimer(0)
+		if BOX_TYPE == "gtcombo":
+			self.evUpdatedInfo()
 
 	def findProcFiles(self):
 		ledConfig = {}
@@ -81,18 +89,27 @@ class VFDSymbolsUpdater:
 	def setTunerSymbol(self, symbol=None):
 		if self.tunerSymbol != symbol:
 			if self.tunerSymbol:
-				fileWriteLine(join("/sys/class/leds", f"gtx::{self.tunerSymbol}", "brightness"), "0", source=MODULE_NAME)
+				fileWriteLine(join("/sys/class/leds", f"{self.tunerLedPrefix}::{self.tunerSymbol}", "brightness"), "0", source=MODULE_NAME)
 			if symbol:
-				fileWriteLine(join("/sys/class/leds", f"gtx::{symbol}", "brightness"), "1", source=MODULE_NAME)
+				fileWriteLine(join("/sys/class/leds", f"{self.tunerLedPrefix}::{symbol}", "brightness"), "1", source=MODULE_NAME)
 			self.tunerSymbol = symbol
 
 	def evUpdatedInfo(self):
 		self.service = self.session.nav.getCurrentService()
-		if BOX_TYPE == "gtxcombo":
+		if BOX_TYPE in {"gtcombo", "gtxcombo"}:
 			info = self.service and self.service.info()
 			transponder = info and info.getInfoObject(iServiceInformation.sTransponderData)
 			tunerType = transponder.get("tuner_type") if isinstance(transponder, dict) else None
-			self.setTunerSymbol({"ATSC": "atsc", "DVB-C": "cable", "DVB-T": "dvbt2", "ISDB-T": "isdb", "DVB-S": "dvbs2"}.get(tunerType))
+			if BOX_TYPE == "gtcombo":
+				symbol = None
+				reference = self.session.nav.getCurrentlyPlayingServiceReference()
+				if self.session.nav.isCurrentServiceIPTV():
+					symbol = "iptv"
+				elif reference and not reference.getPath() and tunerType == "DVB-S":
+					symbol = "dvbs2"
+				self.setTunerSymbol(symbol)
+			else:
+				self.setTunerSymbol({"ATSC": "atsc", "DVB-C": "cable", "DVB-T": "dvbt2", "ISDB-T": "isdb", "DVB-S": "dvbs2"}.get(tunerType))
 		if MODEL == "u41":
 			self.setAudio()
 			self.setCrypted()

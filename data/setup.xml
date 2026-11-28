@@ -239,7 +239,7 @@
 			<item level="1" text="Show Media playback remaining/elapsed as" description="This option allows you to choose how to display the remaining/elapsed time for media playback." indent="1">config.usage.swap_media_time_display_on_vfd</item>
 			<item level="0" text="Show time elapsed as positive" description="This option allows you to choose how to display elapsed time, as + or -." indent="1">config.usage.elapsed_time_positive_vfd</item>
 		</if>
-		<item level="0" text="Power On Display" description="This option allows you to Power Off the display." conditional="BoxInfo.getItem('ConfigDisplay') or BoxInfo.getItem('machinebuild') == 'gtxcombo'" indent="1">config.lcd.power</item>
+		<item level="0" text="Power On Display" description="This option allows you to Power Off the display." conditional="BoxInfo.getItem('ConfigDisplay') or BoxInfo.getItem('machinebuild') in ('gtcombo', 'gtxcombo')" indent="1">config.lcd.power</item>
 		<if requires="ConfigDisplay">
 			<item level="0" text="Show HDMI-Output Res" description="Show HDMI Output Resolution." indent="1">config.lcd.showoutputresolution</item>
 			<item level="0" text="Show HDD progress" description="Disable the HDD Process on VFD." indent="1">config.lcd.hdd</item>

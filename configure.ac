@@ -618,16 +618,16 @@ AC_ARG_WITH(amlogic,
 	[[with_amlogic=no]]
 )
 
-if test x"$with_amlogic" = xyes && test "$BOXTYPE" = gtxcombo; then
+if test x"$with_amlogic" = xyes && { test "$BOXTYPE" = gtcombo || test "$BOXTYPE" = gtxcombo; }; then
 	AC_DEFINE(HAVE_AMLOGIC_HDMI, 1, [Use the Amlogic HDMI mode and EDID interfaces])
 	AC_DEFINE(HAVE_AMLOGIC_FBDEV, 1, [Synchronize the fbdev draw and display pages])
 fi
 
 FFMPEG_CFLAGS=" "
 
-AM_CONDITIONAL(AML_DVB_AV, test "$BOXTYPE" = dreamone -o "$BOXTYPE" = dreamtwo -o "$BOXTYPE" = gtxcombo)
+AM_CONDITIONAL(AML_DVB_AV, test "$BOXTYPE" = dreamone -o "$BOXTYPE" = dreamtwo -o "$BOXTYPE" = gtcombo -o "$BOXTYPE" = gtxcombo)
 AM_CONDITIONAL(DREAMNEXTGEN, test "$BOXTYPE" == dreamone -o "$BOXTYPE" == dreamtwo)
-AM_CONDITIONAL(AML_SYSTEM_PLUGINS, test "$BOXTYPE" = dreamone -o "$BOXTYPE" = dreamtwo -o "$BOXTYPE" = gtxcombo)
+AM_CONDITIONAL(AML_SYSTEM_PLUGINS, test "$BOXTYPE" = dreamone -o "$BOXTYPE" = dreamtwo -o "$BOXTYPE" = gtcombo -o "$BOXTYPE" = gtxcombo)
 if test "$BOXTYPE" == "dreamone" -o "$BOXTYPE" == "dreamtwo"; then
 	ALSA_CFLAGS="-lasound"
 	FFMPEG_CFLAGS=" -lavdevice -lavformat -lavcodec -lswresample -lswscale -lavutil -lm "

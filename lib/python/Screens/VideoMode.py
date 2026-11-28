@@ -365,7 +365,7 @@ class AutoVideoMode(Screen):
 				# iPlayableService.evStopped: self.BufferInfoStop,  # Sometimes not called or called before evBuffering -> if bufferfull = False (when evBuffering permanently called and buffer < 98%) will auto resolution not longer working.
 				# iPlayableService.evEnd: self.BufferInfoStop  # Alternative for 'evStopped'.
 			})
-		if session is not None and BoxInfo.getItem("machinebuild") == "gtxcombo":
+		if session is not None and BoxInfo.getItem("machinebuild") in {"gtcombo", "gtxcombo"}:
 			self.refreshTimer = eTimer()
 			self.refreshTimer.callback.append(self.matchRefresh)
 			self.externalRate = 0

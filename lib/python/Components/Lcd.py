@@ -1,3 +1,4 @@
+from glob import glob
 from os.path import exists
 from sys import maxsize
 from usb import busses
@@ -61,10 +62,11 @@ class IconCheckPoller:
 
 	def jobTask(self):
 		if self.symbolNetwork and self.lcdMode:
-			if MACHINEBUILD == "gtxcombo":
+			if MACHINEBUILD in {"gtcombo", "gtxcombo"}:
 				linkState = "1" if fileReadLine("/sys/class/net/eth0/operstate", "down") == "up" else "0"
 				wifi = exists("/sys/class/net/wlan0/operstate") and fileReadLine("/sys/class/net/wlan0/operstate") == "up"
-				fileWriteLine("/sys/class/leds/gtx::wifi/brightness", "1" if wifi else "0")
+				wifiLed = "/sys/class/leds/gtcombo::wifi/brightness" if MACHINEBUILD == "gtcombo" else "/sys/class/leds/gtx::wifi/brightness"
+				fileWriteLine(wifiLed, "1" if wifi else "0")
 			else:
 				linkState = "0"
 				if exists("/sys/class/net/wlan0/operstate"):
@@ -76,19 +78,22 @@ class IconCheckPoller:
 					if linkState != "down":
 						linkState = fileReadLine("/sys/class/net/eth0/carrier")
 			fileWriteLine("/proc/stb/lcd/symbol_network", linkState)
+		if MACHINEBUILD == "gtcombo" and exists("/sys/class/leds/gtcombo::sd/brightness"):
+			sdPresent = any(fileReadLine(x, "") == "SD" for x in glob("/sys/block/mmcblk*/device/type"))
+			fileWriteLine("/sys/class/leds/gtcombo::sd/brightness", "1" if sdPresent else "0")
 		if self.symbolUsb:
 			USBState = 0
 			try:
 				for bus in busses():
 					devices = bus.devices
 					for dev in devices:
-						if dev.deviceClass in (2, 9) or dev.idVendor <= 0:
+						if dev.deviceClass == 9 or dev.idVendor <= 0 or (dev.deviceClass == 2 and MACHINEBUILD != "gtcombo"):
 							continue
 						if MACHINEBUILD == "gtxcombo":
 							# The GTX connects its LAN, SATA bridge and CI controller via USB.
 							if (dev.idVendor, dev.idProduct) in ((0x0BDA, 0x8153), (0x2109, 0x0715), (0x1B0D, 0x2F00)):
 								continue
-						elif dev.idVendor == 0x0BDA:
+						elif MACHINEBUILD != "gtcombo" and dev.idVendor == 0x0BDA:
 							continue
 						USBState = 1
 			except Exception as err:
@@ -429,7 +434,7 @@ def InitLcd():
 		if exists("/proc/stb/fp/power4x7standby"):
 			config.usage.lcd_power4x7standby.addNotifier(setPower4x7Standby)
 
-		config.usage.lcd_power4x7suspend = ConfigOnOff(default=MACHINEBUILD != "gtxcombo")
+		config.usage.lcd_power4x7suspend = ConfigOnOff(default=MACHINEBUILD not in {"gtcombo", "gtxcombo"})
 		if exists("/proc/stb/fp/power4x7suspend"):
 			config.usage.lcd_power4x7suspend.addNotifier(setPower4x7Suspend)
 
