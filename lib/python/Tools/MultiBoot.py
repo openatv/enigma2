@@ -282,8 +282,9 @@ class MultiBootClass():
 		bootDeviceList = BOOT_DEVICE_LIST
 		if fileHas("/proc/cmdline", "kexec=1"):
 			bootDeviceList = BOOT_DEVICE_LIST_VUPLUS
-		elif fileReadLine("/proc/stb/info/model", default="", source=MODULE_NAME) == "gtxcombo":
-			# The GTX links bootoptions to the running USB or eMMC system.
+		elif (model := fileReadLine("/proc/stb/info/model", default="", source=MODULE_NAME)) in ("gtcombo", "gtxcombo"):
+			if model == "gtcombo" and not fileHas("/proc/cmdline", "gtx.emmc=1"):
+				return None, None  # The standalone C20 SD image has no internal slots.
 			bootOptions = "/dev/block/by-name/bootoptions"
 			bootDeviceList = (bootOptions, *(x for x in bootDeviceList if x != bootOptions))
 		for device in bootDeviceList:
