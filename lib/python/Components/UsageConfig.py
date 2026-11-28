@@ -1888,7 +1888,7 @@ def InitUsageConfig():
 	BoxInfo.setItem("OScamInstalled", False)
 
 	config.softcsa = ConfigSubsection()
-	config.softcsa.enabled = ConfigBoolean(default=True, descriptions={False: _("Disabled"), True: _("Enabled")})
+	config.softcsa.enabled = ConfigYesNo(default=True)
 	config.softcsa.decoderRelease = ConfigSelection(default=0, choices=[
 			(0, _("Quick")),
 			(1, _("Normal")),
