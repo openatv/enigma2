@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-19 21:27+0000\n"
+"POT-Creation-Date: 2026-11-27 22:08+0000\n"
 "PO-Revision-Date: 2026-08-16 15:55+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -315,10 +315,6 @@ msgid "%d min recorded"
 msgstr ""
 
 #, python-format
-msgid "%d minutes"
-msgstr "%d minutit"
-
-#, python-format
 msgid "%d movies"
 msgstr ""
 
@@ -451,10 +447,6 @@ msgstr[1] ""
 #, python-format
 msgid "%d radio bouquets created"
 msgstr ""
-
-#, python-format
-msgid "%d sec"
-msgstr "%d sek"
 
 #, python-format
 msgid "%d service found."
@@ -790,9 +782,6 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1 minute"
-msgstr ""
-
 msgid "1. (Highest)"
 msgstr ""
 
@@ -816,10 +805,6 @@ msgstr "12V output."
 
 msgid "12bit"
 msgstr "12bit"
-
-#
-msgid "15 minutes"
-msgstr "15 minutit"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 letterbox"
@@ -924,10 +909,6 @@ msgstr ""
 #
 msgid "5"
 msgstr "5"
-
-#
-msgid "5 minutes"
-msgstr "5 minutit"
 
 msgid "50-200 Mbps"
 msgstr ""
@@ -9363,9 +9344,6 @@ msgstr ""
 msgid "Go back to the previous step"
 msgstr ""
 
-msgid "Go down the list"
-msgstr "Liigu nimekirjas alla"
-
 msgid "Go to deep standby"
 msgstr "Vastuvõtja puhkeseisundisse"
 
@@ -9392,9 +9370,6 @@ msgstr ""
 
 msgid "Go to the previous page of documentation"
 msgstr ""
-
-msgid "Go up the list"
-msgstr "Liigu nimekirjas üles"
 
 msgid "Gold"
 msgstr ""
@@ -12456,7 +12431,7 @@ msgstr ""
 msgid "Move job queued."
 msgstr ""
 
-msgid "Move left"
+msgid "Move left / Move up a screen"
 msgstr ""
 
 msgid "Move left a item"
@@ -12465,7 +12440,7 @@ msgstr ""
 msgid "Move only highlighted file"
 msgstr ""
 
-msgid "Move right"
+msgid "Move right / Move down a screen"
 msgstr ""
 
 msgid "Move right a item"
@@ -12943,9 +12918,6 @@ msgstr ""
 msgid "National Music"
 msgstr ""
 
-msgid "National music"
-msgstr ""
-
 msgid "Native"
 msgstr "Loomulik"
 
@@ -13020,9 +12992,6 @@ msgstr "Võrgu uurimine"
 
 msgid "Network Credentials"
 msgstr ""
-
-msgid "Network ID"
-msgstr "Võrgu ID"
 
 msgid "Network Information"
 msgstr "Võrgumaski teave"
@@ -16185,9 +16154,6 @@ msgid "Re-enter new PIN"
 msgstr "Sisesta veel kord uus PIN kood"
 
 msgid "Reachable"
-msgstr ""
-
-msgid "Read Only"
 msgstr ""
 
 msgid "Read Userdata from 'oscam.conf'"
@@ -21447,6 +21413,9 @@ msgstr ""
 msgid "Soft mount"
 msgstr ""
 
+msgid "SoftCSA"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr ""
 
@@ -24384,6 +24353,9 @@ msgstr ""
 msgid "Turn on the power LED"
 msgstr ""
 
+msgid "Turn the software descrambling of CSA-ALT services on or off."
+msgstr ""
+
 # satconfig.py
 msgid "Turning step size"
 msgstr "Pööramise sammu suurus"
@@ -25308,10 +25280,6 @@ msgstr "Usbekistan"
 
 msgid "VCR Scart Settings"
 msgstr "VCR scart"
-
-#, fuzzy
-msgid "VMC"
-msgstr "MAC"
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
@@ -26858,9 +26826,6 @@ msgstr "Kirjuta heliriba (%s)"
 msgid "by date"
 msgstr "Uuemad ees"
 
-msgid "by hmmmdada"
-msgstr ""
-
 msgid "caid:"
 msgstr "caid:"
 
@@ -27015,9 +26980,6 @@ msgstr "Kõrgus"
 msgid "help..."
 msgstr "Abi"
 
-msgid "hops:"
-msgstr "hops:"
-
 msgid "inactive"
 msgstr ""
 
@@ -27055,9 +27017,6 @@ msgstr "Hüppa järgmisele failile"
 
 msgid "jump to chapter by number"
 msgstr "Hüpe peatükile  numbri järgi"
-
-msgid "left"
-msgstr "Vasak"
 
 msgid "left column"
 msgstr ""
@@ -27195,9 +27154,6 @@ msgstr "Vanemad ees"
 msgid "rewind to the previous chapter"
 msgstr "Tagasi eelmisele peatükile"
 
-msgid "right"
-msgstr "Parem"
-
 msgid "right column"
 msgstr ""
 
@@ -27268,9 +27224,6 @@ msgstr "Alusta lõiget siit"
 
 msgid "step size"
 msgstr "Sammu suurus"
-
-msgid "stereo"
-msgstr "Stereo"
 
 msgid "successful"
 msgstr "edukas"
@@ -27410,6 +27363,47 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%d minutes"
+#~ msgstr "%d minutit"
+
+#, python-format
+#~ msgid "%d sec"
+#~ msgstr "%d sek"
+
+#
+#~ msgid "15 minutes"
+#~ msgstr "15 minutit"
+
+#
+#~ msgid "5 minutes"
+#~ msgstr "5 minutit"
+
+#~ msgid "Go down the list"
+#~ msgstr "Liigu nimekirjas alla"
+
+#~ msgid "Go up the list"
+#~ msgstr "Liigu nimekirjas üles"
+
+#~ msgid "Network ID"
+#~ msgstr "Võrgu ID"
+
+#, fuzzy
+#~ msgid "VMC"
+#~ msgstr "MAC"
+
+#~ msgid "hops:"
+#~ msgstr "hops:"
+
+#~ msgid "left"
+#~ msgstr "Vasak"
+
+#~ msgid "right"
+#~ msgstr "Parem"
+
+#~ msgid "stereo"
+#~ msgstr "Stereo"
 
 #~ msgid "Can't move to trashcan!"
 #~ msgstr "Prügikasti saatmine ei ole võimalik"

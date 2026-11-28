@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-19 21:27+0000\n"
-"PO-Revision-Date: 2026-11-27 13:51+0000\n"
+"POT-Creation-Date: 2026-11-27 22:08+0000\n"
+"PO-Revision-Date: 2026-11-28 17:21+0000\n"
 "Last-Translator: Mark Stone <mstone@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -321,10 +321,6 @@ msgid "%d min recorded"
 msgstr "已录制 %d 分钟"
 
 #, python-format
-msgid "%d minutes"
-msgstr "%d 分钟"
-
-#, python-format
 msgid "%d movies"
 msgstr "%d 部影片"
 
@@ -457,10 +453,6 @@ msgstr[1] "有 %d 个插件不可用："
 #, python-format
 msgid "%d radio bouquets created"
 msgstr "已创建 %d 个广播频道分组"
-
-#, python-format
-msgid "%d sec"
-msgstr "%d 秒"
 
 #, python-format
 msgid "%d service found."
@@ -797,9 +789,6 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1 minute"
-msgstr "1 分钟"
-
 msgid "1. (Highest)"
 msgstr "1.（最高）"
 
@@ -823,9 +812,6 @@ msgstr "12V 输出。"
 
 msgid "12bit"
 msgstr "12位"
-
-msgid "15 minutes"
-msgstr "15 分钟"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 信箱模式"
@@ -925,9 +911,6 @@ msgstr "4x"
 
 msgid "5"
 msgstr "5"
-
-msgid "5 minutes"
-msgstr "5分钟"
 
 msgid "50-200 Mbps"
 msgstr "50-200 Mbps"
@@ -9258,9 +9241,6 @@ msgstr "给定设备 ID"
 msgid "Go back to the previous step"
 msgstr "返回上一步"
 
-msgid "Go down the list"
-msgstr "下拉列表"
-
 msgid "Go to deep standby"
 msgstr "进入深度待机"
 
@@ -9287,9 +9267,6 @@ msgstr "转到文档的下一页"
 
 msgid "Go to the previous page of documentation"
 msgstr "返回文档上一页"
-
-msgid "Go up the list"
-msgstr "上拉列表"
 
 msgid "Gold"
 msgstr "金"
@@ -12261,8 +12238,8 @@ msgstr "移动作业失败！"
 msgid "Move job queued."
 msgstr "移动排队的作业。"
 
-msgid "Move left"
-msgstr "左移"
+msgid "Move left / Move up a screen"
+msgstr "左移 / 上移一屏"
 
 msgid "Move left a item"
 msgstr "左移一项"
@@ -12270,8 +12247,8 @@ msgstr "左移一项"
 msgid "Move only highlighted file"
 msgstr "仅移动突出显示的文件"
 
-msgid "Move right"
-msgstr "右移"
+msgid "Move right / Move down a screen"
+msgstr "右移 / 下移一屏"
 
 msgid "Move right a item"
 msgstr "右移一项"
@@ -12727,9 +12704,6 @@ msgstr "旁白"
 msgid "National Music"
 msgstr "民族音乐"
 
-msgid "National music"
-msgstr "民族音乐"
-
 msgid "Native"
 msgstr "原生"
 
@@ -12799,9 +12773,6 @@ msgstr "网络浏览器"
 
 msgid "Network Credentials"
 msgstr "网络凭据"
-
-msgid "Network ID"
-msgstr "网络 ID"
 
 msgid "Network Information"
 msgstr "网络信息"
@@ -13236,7 +13207,7 @@ msgid "No movie description is available to create an EIT file."
 msgstr "没有可用来创建 EIT 文件的影片描述。"
 
 msgid "No movies found. Select files and folders from View to see unscanned recordings."
-msgstr ""
+msgstr "未找到影片。请通过“视图”选择文件和文件夹，以查看未扫描的录制内容。"
 
 msgid "No network adapters enabled/available!"
 msgstr "没有启用/可用的网络适配器！"
@@ -13269,7 +13240,7 @@ msgid "No satellite, terrestrial or cable tuner is configured. Please check your
 msgstr "未配置卫星、地面波或有线电视调谐器。请检查您的调谐器设置。"
 
 msgid "No saved playback position is available."
-msgstr ""
+msgstr "没有可用的已保存播放位置。"
 
 msgid "No service"
 msgstr "没有频道"
@@ -13347,7 +13318,7 @@ msgid "No tuners are currently streaming."
 msgstr "目前没有调谐器在串流。"
 
 msgid "No unambiguous series filenames are available. A series name, season and episode are required."
-msgstr ""
+msgstr "没有可用的明确剧集文件名。需要剧集名称、季和集号。"
 
 msgid "No unused swap file name is available."
 msgstr "没有可用的未使用交换文件名。"
@@ -13710,7 +13681,7 @@ msgid "Ojibwa"
 msgstr "奥吉布瓦"
 
 msgid "Oldest recordings first"
-msgstr ""
+msgstr "最早录制优先"
 
 msgid "Oldies"
 msgstr "老歌"
@@ -13779,7 +13750,7 @@ msgid "Only HD"
 msgstr "仅高清"
 
 msgid "Only create a group when at least this many matching recordings are present."
-msgstr ""
+msgstr "仅当匹配的录制内容达到此数量时，才创建分组。"
 
 msgid "Only free scan"
 msgstr "仅扫描免费频道"
@@ -13947,7 +13918,7 @@ msgid "Open Usage and GUI Settings"
 msgstr "打开使用偏好和图形界面设置"
 
 msgid "Open VIDEO_TS and DVD folder structures directly with the DVD player."
-msgstr ""
+msgstr "使用 DVD 播放器直接打开 VIDEO_TS 和 DVD 文件夹结构。"
 
 msgid "Open VideoMode"
 msgstr "显示格式设置"
@@ -13956,7 +13927,7 @@ msgid "Open a movie directly when its filename matches its containing folder. Fi
 msgstr ""
 
 msgid "Open collection"
-msgstr ""
+msgstr "打开合集"
 
 msgid "Open context menu"
 msgstr "打开上下文菜单"
@@ -13974,7 +13945,7 @@ msgid "Open file sort menu"
 msgstr "打开文件排序菜单"
 
 msgid "Open selected movie or series"
-msgstr ""
+msgstr "打开所选影片或剧集"
 
 msgid "Open service list and select next service"
 msgstr "打开频道列表并选择下一个频道"
@@ -15877,9 +15848,6 @@ msgstr "重新输入新 PIN"
 msgid "Reachable"
 msgstr "可达"
 
-msgid "Read Only"
-msgstr "只读"
-
 msgid "Read Userdata from 'oscam.conf'"
 msgstr "从 oscam.conf 读取用户数据"
 
@@ -16839,7 +16807,7 @@ msgid "Restore the highlighted slot"
 msgstr "还原突出显示的槽位"
 
 msgid "Restore to original location"
-msgstr ""
+msgstr "还原到原始位置"
 
 msgid "Restore your %s %s settings."
 msgstr "恢复 %s %s 的设置。"
@@ -16933,7 +16901,7 @@ msgid "Review"
 msgstr "评论"
 
 msgid "Review last maintenance scan"
-msgstr ""
+msgstr "查看上次维护扫描"
 
 msgid "Rewind"
 msgstr "快退"
@@ -17080,7 +17048,7 @@ msgid "Running only"
 msgstr "仅正在运行"
 
 msgid "Runtime"
-msgstr ""
+msgstr "运行时长"
 
 msgid "Russian"
 msgstr "俄语"
@@ -17204,7 +17172,7 @@ msgid "Samoan"
 msgstr "萨摩亚语"
 
 msgid "Sample rate"
-msgstr ""
+msgstr "采样率"
 
 msgid "San Marino"
 msgstr "圣马力诺"
@@ -21050,6 +21018,9 @@ msgstr "柔和摇滚"
 msgid "Soft mount"
 msgstr "软挂载"
 
+msgid "SoftCSA"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr "SoftCSA 设置"
 
@@ -23942,6 +23913,9 @@ msgstr "打开指示灯控制"
 msgid "Turn on the power LED"
 msgstr "打开电源指示灯"
 
+msgid "Turn the software descrambling of CSA-ALT services on or off."
+msgstr ""
+
 msgid "Turning step size"
 msgstr "调谐步长大小"
 
@@ -24854,9 +24828,6 @@ msgstr "乌兹别克斯坦"
 msgid "VCR Scart Settings"
 msgstr "VCR Scart 设置"
 
-msgid "VMC"
-msgstr "VMC"
-
 msgid "VMGM (intro trailer)"
 msgstr "VMGM（预告片简介）"
 
@@ -25189,7 +25160,7 @@ msgid "Virtual folder — movie files stay in their original locations."
 msgstr ""
 
 msgid "Virtual folders before movies"
-msgstr ""
+msgstr "虚拟文件夹排在影片前"
 
 msgid "Visual impaired commentary"
 msgstr "视障评论"
@@ -25240,7 +25211,7 @@ msgid "Volume/Mute display timer"
 msgstr "音量/静音显示定时器"
 
 msgid "Votes"
-msgstr ""
+msgstr "评分人数"
 
 msgid "Vu+ MultiBoot"
 msgstr "Vu+ 多系统启动"
@@ -25273,7 +25244,7 @@ msgid "Wait for timesync at startup"
 msgstr "启动时等待时间同步"
 
 msgid "Wait this long after moving the selection before starting a preview."
-msgstr ""
+msgstr "移动选中项后，等待该时长再启动预览。"
 
 msgid "Waiting"
 msgstr "正在等待"
@@ -26393,9 +26364,6 @@ msgstr "刻录音轨（%s）"
 msgid "by date"
 msgstr "按日期"
 
-msgid "by hmmmdada"
-msgstr "按 hmmmdada"
-
 msgid "caid:"
 msgstr "CAID："
 
@@ -26547,9 +26515,6 @@ msgstr "高度"
 msgid "help..."
 msgstr "帮助..."
 
-msgid "hops:"
-msgstr "Hops:"
-
 msgid "inactive"
 msgstr "闲置"
 
@@ -26585,9 +26550,6 @@ msgstr "跳转到下一个标题"
 
 msgid "jump to chapter by number"
 msgstr "通过数字跳到章节"
-
-msgid "left"
-msgstr "左"
 
 msgid "left column"
 msgstr "左列"
@@ -26724,9 +26686,6 @@ msgstr "按日期反向"
 msgid "rewind to the previous chapter"
 msgstr "退回上一个章节"
 
-msgid "right"
-msgstr "右"
-
 msgid "right column"
 msgstr "右列"
 
@@ -26797,9 +26756,6 @@ msgstr "从此处开始剪切"
 
 msgid "step size"
 msgstr "步长大小"
-
-msgid "stereo"
-msgstr "立体声"
 
 msgid "successful"
 msgstr "成功"
@@ -26938,6 +26894,62 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d minutes"
+#~ msgstr "%d 分钟"
+
+#, python-format
+#~ msgid "%d sec"
+#~ msgstr "%d 秒"
+
+#~ msgid "1 minute"
+#~ msgstr "1 分钟"
+
+#~ msgid "15 minutes"
+#~ msgstr "15 分钟"
+
+#~ msgid "5 minutes"
+#~ msgstr "5分钟"
+
+#~ msgid "Go down the list"
+#~ msgstr "下拉列表"
+
+#~ msgid "Go up the list"
+#~ msgstr "上拉列表"
+
+#~ msgid "Move left"
+#~ msgstr "左移"
+
+#~ msgid "Move right"
+#~ msgstr "右移"
+
+#~ msgid "National music"
+#~ msgstr "民族音乐"
+
+#~ msgid "Network ID"
+#~ msgstr "网络 ID"
+
+#~ msgid "Read Only"
+#~ msgstr "只读"
+
+#~ msgid "VMC"
+#~ msgstr "VMC"
+
+#~ msgid "by hmmmdada"
+#~ msgstr "按 hmmmdada"
+
+#~ msgid "hops:"
+#~ msgstr "Hops:"
+
+#~ msgid "left"
+#~ msgstr "左"
+
+#~ msgid "right"
+#~ msgstr "右"
+
+#~ msgid "stereo"
+#~ msgstr "立体声"
 
 #~ msgid "Can't move to trashcan!"
 #~ msgstr "无法移动到回收站！"

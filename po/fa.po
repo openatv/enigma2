@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-19 21:27+0000\n"
+"POT-Creation-Date: 2026-11-27 22:08+0000\n"
 "PO-Revision-Date: 2026-08-16 18:21+0000\n"
 "Last-Translator: Hamed Beyrami <h.beyrami@outlook.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fa/>\n"
@@ -301,10 +301,6 @@ msgid "%d min recorded"
 msgstr ""
 
 #, python-format
-msgid "%d minutes"
-msgstr "%d دقیقه"
-
-#, python-format
 msgid "%d movies"
 msgstr ""
 
@@ -420,10 +416,6 @@ msgstr[0] ""
 #, python-format
 msgid "%d radio bouquets created"
 msgstr ""
-
-#, python-format
-msgid "%d sec"
-msgstr "%d ثانیه"
 
 #, python-format
 msgid "%d service found."
@@ -761,9 +753,6 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1 minute"
-msgstr ""
-
 msgid "1. (Highest)"
 msgstr ""
 
@@ -790,10 +779,6 @@ msgstr "خروجی 12 ولت"
 
 msgid "12bit"
 msgstr ""
-
-#, fuzzy
-msgid "15 minutes"
-msgstr "دقیقه"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
@@ -895,9 +880,6 @@ msgstr ""
 
 msgid "5"
 msgstr "5"
-
-msgid "5 minutes"
-msgstr ""
 
 msgid "50-200 Mbps"
 msgstr ""
@@ -9339,9 +9321,6 @@ msgstr ""
 msgid "Go back to the previous step"
 msgstr ""
 
-msgid "Go down the list"
-msgstr "برو پایین لیست"
-
 msgid "Go to deep standby"
 msgstr "رفتن به خاموشی کامل"
 
@@ -9368,9 +9347,6 @@ msgstr ""
 
 msgid "Go to the previous page of documentation"
 msgstr ""
-
-msgid "Go up the list"
-msgstr "برو بالای لیست"
 
 msgid "Gold"
 msgstr ""
@@ -12416,7 +12392,7 @@ msgstr ""
 msgid "Move job queued."
 msgstr ""
 
-msgid "Move left"
+msgid "Move left / Move up a screen"
 msgstr ""
 
 msgid "Move left a item"
@@ -12425,7 +12401,7 @@ msgstr ""
 msgid "Move only highlighted file"
 msgstr ""
 
-msgid "Move right"
+msgid "Move right / Move down a screen"
 msgstr ""
 
 msgid "Move right a item"
@@ -12900,9 +12876,6 @@ msgstr ""
 msgid "National Music"
 msgstr ""
 
-msgid "National music"
-msgstr ""
-
 #, fuzzy
 msgid "Native"
 msgstr "مربوط"
@@ -12973,9 +12946,6 @@ msgstr ""
 
 msgid "Network Credentials"
 msgstr ""
-
-msgid "Network ID"
-msgstr "ID شبکه"
 
 msgid "Network Information"
 msgstr ""
@@ -16144,9 +16114,6 @@ msgid "Re-enter new PIN"
 msgstr ""
 
 msgid "Reachable"
-msgstr ""
-
-msgid "Read Only"
 msgstr ""
 
 msgid "Read Userdata from 'oscam.conf'"
@@ -21411,6 +21378,9 @@ msgstr ""
 msgid "Soft mount"
 msgstr ""
 
+msgid "SoftCSA"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr ""
 
@@ -24318,6 +24288,9 @@ msgstr ""
 msgid "Turn on the power LED"
 msgstr ""
 
+msgid "Turn the software descrambling of CSA-ALT services on or off."
+msgstr ""
+
 msgid "Turning step size"
 msgstr ""
 
@@ -25230,9 +25203,6 @@ msgstr "ازبکستان"
 
 msgid "VCR Scart Settings"
 msgstr "VCR scart"
-
-msgid "VMC"
-msgstr ""
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
@@ -26750,9 +26720,6 @@ msgstr ""
 msgid "by date"
 msgstr ""
 
-msgid "by hmmmdada"
-msgstr ""
-
 msgid "caid:"
 msgstr ""
 
@@ -26906,9 +26873,6 @@ msgstr "ارتفاع"
 msgid "help..."
 msgstr ""
 
-msgid "hops:"
-msgstr ""
-
 msgid "inactive"
 msgstr ""
 
@@ -26946,9 +26910,6 @@ msgstr "پرش به جلو عنوان بعدی"
 
 msgid "jump to chapter by number"
 msgstr ""
-
-msgid "left"
-msgstr "چپ"
 
 msgid "left column"
 msgstr ""
@@ -27090,9 +27051,6 @@ msgstr "معکوس توسط تاریخ"
 msgid "rewind to the previous chapter"
 msgstr "بازگشت به فصل قبلی"
 
-msgid "right"
-msgstr "راست"
-
 msgid "right column"
 msgstr ""
 
@@ -27159,9 +27117,6 @@ msgstr "شروع برش اینجا"
 
 msgid "step size"
 msgstr ""
-
-msgid "stereo"
-msgstr "استریو"
 
 msgid "successful"
 msgstr ""
@@ -27302,6 +27257,36 @@ msgstr "بله نگه داشتن feeds"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%d minutes"
+#~ msgstr "%d دقیقه"
+
+#, python-format
+#~ msgid "%d sec"
+#~ msgstr "%d ثانیه"
+
+#, fuzzy
+#~ msgid "15 minutes"
+#~ msgstr "دقیقه"
+
+#~ msgid "Go down the list"
+#~ msgstr "برو پایین لیست"
+
+#~ msgid "Go up the list"
+#~ msgstr "برو بالای لیست"
+
+#~ msgid "Network ID"
+#~ msgstr "ID شبکه"
+
+#~ msgid "left"
+#~ msgstr "چپ"
+
+#~ msgid "right"
+#~ msgstr "راست"
+
+#~ msgid "stereo"
+#~ msgstr "استریو"
 
 #~ msgid "Can't move to trashcan!"
 #~ msgstr "نمیتوان به سطل زباله انتقال داد"

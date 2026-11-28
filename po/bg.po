@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-19 21:27+0000\n"
+"POT-Creation-Date: 2026-11-27 22:08+0000\n"
 "PO-Revision-Date: 2026-08-17 04:56+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -315,10 +315,6 @@ msgid "%d min recorded"
 msgstr ""
 
 #, python-format
-msgid "%d minutes"
-msgstr "%d минути"
-
-#, python-format
 msgid "%d movies"
 msgstr ""
 
@@ -451,10 +447,6 @@ msgstr[1] ""
 #, python-format
 msgid "%d radio bouquets created"
 msgstr ""
-
-#, python-format
-msgid "%d sec"
-msgstr "%d сек"
 
 #, python-format
 msgid "%d service found."
@@ -788,9 +780,6 @@ msgstr ""
 msgid "1"
 msgstr ""
 
-msgid "1 minute"
-msgstr ""
-
 msgid "1. (Highest)"
 msgstr ""
 
@@ -813,9 +802,6 @@ msgid "12V output."
 msgstr "12V изход."
 
 msgid "12bit"
-msgstr ""
-
-msgid "15 minutes"
 msgstr ""
 
 msgid "16:10 Letterbox"
@@ -916,9 +902,6 @@ msgstr ""
 
 msgid "5"
 msgstr ""
-
-msgid "5 minutes"
-msgstr "5 минути"
 
 msgid "50-200 Mbps"
 msgstr ""
@@ -9218,9 +9201,6 @@ msgstr ""
 msgid "Go back to the previous step"
 msgstr ""
 
-msgid "Go down the list"
-msgstr "Отиди надолу в списъка"
-
 msgid "Go to deep standby"
 msgstr "Отиди в режим на дълбока готовност"
 
@@ -9247,9 +9227,6 @@ msgstr ""
 
 msgid "Go to the previous page of documentation"
 msgstr ""
-
-msgid "Go up the list"
-msgstr "Отиди нагоре в списъка"
 
 msgid "Gold"
 msgstr "Злато"
@@ -12214,7 +12191,7 @@ msgstr ""
 msgid "Move job queued."
 msgstr ""
 
-msgid "Move left"
+msgid "Move left / Move up a screen"
 msgstr ""
 
 msgid "Move left a item"
@@ -12223,7 +12200,7 @@ msgstr ""
 msgid "Move only highlighted file"
 msgstr ""
 
-msgid "Move right"
+msgid "Move right / Move down a screen"
 msgstr ""
 
 msgid "Move right a item"
@@ -12680,9 +12657,6 @@ msgstr ""
 msgid "National Music"
 msgstr ""
 
-msgid "National music"
-msgstr ""
-
 msgid "Native"
 msgstr "Местен"
 
@@ -12752,9 +12726,6 @@ msgstr "Мрежов браузър"
 
 msgid "Network Credentials"
 msgstr ""
-
-msgid "Network ID"
-msgstr "Мрежово ID"
 
 msgid "Network Information"
 msgstr "Мрежова информация"
@@ -15818,9 +15789,6 @@ msgid "Re-enter new PIN"
 msgstr "Въведете отново новия PIN"
 
 msgid "Reachable"
-msgstr ""
-
-msgid "Read Only"
 msgstr ""
 
 msgid "Read Userdata from 'oscam.conf'"
@@ -20988,6 +20956,9 @@ msgstr ""
 msgid "Soft mount"
 msgstr ""
 
+msgid "SoftCSA"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr ""
 
@@ -23853,6 +23824,9 @@ msgstr "Включете светодиода за управление"
 msgid "Turn on the power LED"
 msgstr "Включете светодиода за захранване"
 
+msgid "Turn the software descrambling of CSA-ALT services on or off."
+msgstr ""
+
 msgid "Turning step size"
 msgstr "Обръщане размер на стъпката"
 
@@ -24759,9 +24733,6 @@ msgstr ""
 
 msgid "VCR Scart Settings"
 msgstr "VCR скарт"
-
-msgid "VMC"
-msgstr ""
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (интро трейлър)"
@@ -26265,9 +26236,6 @@ msgstr "запиши саундтрак (%s)"
 msgid "by date"
 msgstr "по дата"
 
-msgid "by hmmmdada"
-msgstr ""
-
 msgid "caid:"
 msgstr ""
 
@@ -26419,9 +26387,6 @@ msgstr "височина"
 msgid "help..."
 msgstr "помощ..."
 
-msgid "hops:"
-msgstr ""
-
 msgid "inactive"
 msgstr ""
 
@@ -26457,9 +26422,6 @@ msgstr "скок напред до следващото заглавие"
 
 msgid "jump to chapter by number"
 msgstr "скок на глава по номер"
-
-msgid "left"
-msgstr "наляво"
 
 msgid "left column"
 msgstr ""
@@ -26596,9 +26558,6 @@ msgstr "обратно по дата"
 msgid "rewind to the previous chapter"
 msgstr "превъртете назад към предишната глава"
 
-msgid "right"
-msgstr "надясно"
-
 msgid "right column"
 msgstr ""
 
@@ -26669,9 +26628,6 @@ msgstr "започнете да режете тук"
 
 msgid "step size"
 msgstr "размер на стъпката"
-
-msgid "stereo"
-msgstr "стерео"
 
 msgid "successful"
 msgstr "успешен"
@@ -26810,6 +26766,35 @@ msgstr "да (запази фийдове)"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%d minutes"
+#~ msgstr "%d минути"
+
+#, python-format
+#~ msgid "%d sec"
+#~ msgstr "%d сек"
+
+#~ msgid "5 minutes"
+#~ msgstr "5 минути"
+
+#~ msgid "Go down the list"
+#~ msgstr "Отиди надолу в списъка"
+
+#~ msgid "Go up the list"
+#~ msgstr "Отиди нагоре в списъка"
+
+#~ msgid "Network ID"
+#~ msgstr "Мрежово ID"
+
+#~ msgid "left"
+#~ msgstr "наляво"
+
+#~ msgid "right"
+#~ msgstr "надясно"
+
+#~ msgid "stereo"
+#~ msgstr "стерео"
 
 #~ msgid "Can't move to trashcan!"
 #~ msgstr "Не мога да преместя в коша за боклук"

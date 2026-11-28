@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-19 21:27+0000\n"
+"POT-Creation-Date: 2026-11-27 22:08+0000\n"
 "PO-Revision-Date: 2026-08-21 14:51+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -335,10 +335,6 @@ msgid "%d min recorded"
 msgstr ""
 
 #, python-format
-msgid "%d minutes"
-msgstr "%d minutos"
-
-#, python-format
 msgid "%d movies"
 msgstr ""
 
@@ -472,10 +468,6 @@ msgstr[1] "%d Plugins no disponibles:"
 #, python-format
 msgid "%d radio bouquets created"
 msgstr ""
-
-#, python-format
-msgid "%d sec"
-msgstr "%d seg"
 
 #, python-format
 msgid "%d service found."
@@ -821,9 +813,6 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1 minute"
-msgstr ""
-
 msgid "1. (Highest)"
 msgstr ""
 
@@ -849,10 +838,6 @@ msgstr "12V de salida."
 
 msgid "12bit"
 msgstr "12bit"
-
-#
-msgid "15 minutes"
-msgstr "15 minutos"
 
 #
 msgid "16:10 Letterbox"
@@ -962,10 +947,6 @@ msgstr "4x"
 #
 msgid "5"
 msgstr "5"
-
-#
-msgid "5 minutes"
-msgstr "5 minutos"
 
 msgid "50-200 Mbps"
 msgstr "50-200 Mbps"
@@ -9634,9 +9615,6 @@ msgstr "Identificación del dispositivo"
 msgid "Go back to the previous step"
 msgstr "Volver al paso anterior"
 
-msgid "Go down the list"
-msgstr "Bajar en la lista"
-
 #
 msgid "Go to deep standby"
 msgstr "Apagar"
@@ -9665,9 +9643,6 @@ msgstr ""
 
 msgid "Go to the previous page of documentation"
 msgstr ""
-
-msgid "Go up the list"
-msgstr "Subir en la lista"
 
 msgid "Gold"
 msgstr "Oro"
@@ -12787,7 +12762,7 @@ msgstr "Fallo en tarea de movimiento!"
 msgid "Move job queued."
 msgstr "Tarea de movimiento en cola."
 
-msgid "Move left"
+msgid "Move left / Move up a screen"
 msgstr ""
 
 msgid "Move left a item"
@@ -12796,7 +12771,7 @@ msgstr ""
 msgid "Move only highlighted file"
 msgstr "Mover solo el archivo resaltado"
 
-msgid "Move right"
+msgid "Move right / Move down a screen"
 msgstr ""
 
 msgid "Move right a item"
@@ -13265,9 +13240,6 @@ msgstr "Narración"
 msgid "National Music"
 msgstr ""
 
-msgid "National music"
-msgstr "Música nacional"
-
 msgid "Native"
 msgstr "Nativo"
 
@@ -13340,9 +13312,6 @@ msgstr "Navegador Web"
 
 msgid "Network Credentials"
 msgstr "Credenciales de red"
-
-msgid "Network ID"
-msgstr "ID de red"
 
 # Informationen
 msgid "Network Information"
@@ -16593,9 +16562,6 @@ msgstr "Re-introducir PIN nuevo"
 
 msgid "Reachable"
 msgstr "Accesible"
-
-msgid "Read Only"
-msgstr "Solo lectura"
 
 msgid "Read Userdata from 'oscam.conf'"
 msgstr "Leer datos de usuario desde oscam.conf"
@@ -21991,6 +21957,9 @@ msgstr ""
 msgid "Soft mount"
 msgstr "Montaje suave"
 
+msgid "SoftCSA"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr "Configuración SoftCSA"
 
@@ -25026,6 +24995,9 @@ msgstr "Activar el LED de control"
 msgid "Turn on the power LED"
 msgstr "Activar el LED de encendido"
 
+msgid "Turn the software descrambling of CSA-ALT services on or off."
+msgstr ""
+
 msgid "Turning step size"
 msgstr "Tamaño del paso de giro"
 
@@ -25974,9 +25946,6 @@ msgstr "Uzbekistán"
 #
 msgid "VCR Scart Settings"
 msgstr "Euroconector VCR"
-
-msgid "VMC"
-msgstr "VMC"
 
 #
 msgid "VMGM (intro trailer)"
@@ -27578,9 +27547,6 @@ msgstr "Grabar pista de audio (%s)"
 msgid "by date"
 msgstr "Por fecha"
 
-msgid "by hmmmdada"
-msgstr "por hmmmdada"
-
 msgid "caid:"
 msgstr "Caid:"
 
@@ -27751,9 +27717,6 @@ msgstr "Altura"
 msgid "help..."
 msgstr "Ayuda..."
 
-msgid "hops:"
-msgstr "Saltos:"
-
 msgid "inactive"
 msgstr "inactivo"
 
@@ -27795,10 +27758,6 @@ msgstr "Avanzar al título siguiente"
 
 msgid "jump to chapter by number"
 msgstr "Saltar a capítulo por nombre"
-
-#
-msgid "left"
-msgstr "Izquierda"
 
 msgid "left column"
 msgstr "columna izquierda"
@@ -27959,10 +27918,6 @@ msgstr "invertir por fecha"
 msgid "rewind to the previous chapter"
 msgstr "Rebobinar al capítulo anterior"
 
-#
-msgid "right"
-msgstr "derecha"
-
 msgid "right column"
 msgstr "columna derecha"
 
@@ -28040,10 +27995,6 @@ msgstr "Comenzar el corte aquí"
 
 msgid "step size"
 msgstr "Tamaño de los saltos"
-
-#
-msgid "stereo"
-msgstr "Estéreo"
 
 #
 msgid "successful"
@@ -28200,6 +28151,58 @@ msgstr "Sí (conservar fuentes)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d minutes"
+#~ msgstr "%d minutos"
+
+#, python-format
+#~ msgid "%d sec"
+#~ msgstr "%d seg"
+
+#
+#~ msgid "15 minutes"
+#~ msgstr "15 minutos"
+
+#
+#~ msgid "5 minutes"
+#~ msgstr "5 minutos"
+
+#~ msgid "Go down the list"
+#~ msgstr "Bajar en la lista"
+
+#~ msgid "Go up the list"
+#~ msgstr "Subir en la lista"
+
+#~ msgid "National music"
+#~ msgstr "Música nacional"
+
+#~ msgid "Network ID"
+#~ msgstr "ID de red"
+
+#~ msgid "Read Only"
+#~ msgstr "Solo lectura"
+
+#~ msgid "VMC"
+#~ msgstr "VMC"
+
+#~ msgid "by hmmmdada"
+#~ msgstr "por hmmmdada"
+
+#~ msgid "hops:"
+#~ msgstr "Saltos:"
+
+#
+#~ msgid "left"
+#~ msgstr "Izquierda"
+
+#
+#~ msgid "right"
+#~ msgstr "derecha"
+
+#
+#~ msgid "stereo"
+#~ msgstr "Estéreo"
 
 #~ msgid "Can't move to trashcan!"
 #~ msgstr "¡No se puede mover a la papelera!"

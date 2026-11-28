@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-19 21:27+0000\n"
+"POT-Creation-Date: 2026-11-27 22:08+0000\n"
 "PO-Revision-Date: 2026-08-16 16:13+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -315,10 +315,6 @@ msgid "%d min recorded"
 msgstr ""
 
 #, python-format
-msgid "%d minutes"
-msgstr "%d minutter"
-
-#, python-format
 msgid "%d movies"
 msgstr ""
 
@@ -451,10 +447,6 @@ msgstr[1] ""
 #, python-format
 msgid "%d radio bouquets created"
 msgstr ""
-
-#, python-format
-msgid "%d sec"
-msgstr "%d sek"
 
 #, python-format
 msgid "%d service found."
@@ -788,9 +780,6 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1 minute"
-msgstr ""
-
 msgid "1. (Highest)"
 msgstr ""
 
@@ -814,9 +803,6 @@ msgstr "12V udgang."
 
 msgid "12bit"
 msgstr "12bit"
-
-msgid "15 minutes"
-msgstr "15 minutter"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
@@ -916,9 +902,6 @@ msgstr ""
 
 msgid "5"
 msgstr "5"
-
-msgid "5 minutes"
-msgstr "5 minutter"
 
 msgid "50-200 Mbps"
 msgstr ""
@@ -9235,9 +9218,6 @@ msgstr ""
 msgid "Go back to the previous step"
 msgstr ""
 
-msgid "Go down the list"
-msgstr "Gå ned af listen"
-
 msgid "Go to deep standby"
 msgstr "Skift til Dyb Standby"
 
@@ -9264,9 +9244,6 @@ msgstr ""
 
 msgid "Go to the previous page of documentation"
 msgstr ""
-
-msgid "Go up the list"
-msgstr "Gå op af listen"
 
 msgid "Gold"
 msgstr "Guld"
@@ -12282,7 +12259,7 @@ msgstr ""
 msgid "Move job queued."
 msgstr ""
 
-msgid "Move left"
+msgid "Move left / Move up a screen"
 msgstr ""
 
 msgid "Move left a item"
@@ -12291,7 +12268,7 @@ msgstr ""
 msgid "Move only highlighted file"
 msgstr ""
 
-msgid "Move right"
+msgid "Move right / Move down a screen"
 msgstr ""
 
 msgid "Move right a item"
@@ -12754,9 +12731,6 @@ msgstr ""
 msgid "National Music"
 msgstr ""
 
-msgid "National music"
-msgstr ""
-
 msgid "Native"
 msgstr "Oprindelig"
 
@@ -12828,9 +12802,6 @@ msgstr "Netværksbrowser"
 
 msgid "Network Credentials"
 msgstr ""
-
-msgid "Network ID"
-msgstr "NetværksID"
 
 msgid "Network Information"
 msgstr "Netværksinformation"
@@ -15925,9 +15896,6 @@ msgid "Re-enter new PIN"
 msgstr "Genindtast ny PIN"
 
 msgid "Reachable"
-msgstr ""
-
-msgid "Read Only"
 msgstr ""
 
 msgid "Read Userdata from 'oscam.conf'"
@@ -21115,6 +21083,9 @@ msgstr ""
 msgid "Soft mount"
 msgstr ""
 
+msgid "SoftCSA"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr ""
 
@@ -24001,6 +23972,9 @@ msgstr "Tænd kontrol LED"
 msgid "Turn on the power LED"
 msgstr "Tænd strøm LED"
 
+msgid "Turn the software descrambling of CSA-ALT services on or off."
+msgstr ""
+
 msgid "Turning step size"
 msgstr "Drejning trinstørrelse"
 
@@ -24912,9 +24886,6 @@ msgstr "Usbekistan"
 
 msgid "VCR Scart Settings"
 msgstr "VCR Scart"
-
-msgid "VMC"
-msgstr "VMC"
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
@@ -26423,9 +26394,6 @@ msgstr "brænd lydspor (%s)"
 msgid "by date"
 msgstr "Efter dato"
 
-msgid "by hmmmdada"
-msgstr ""
-
 msgid "caid:"
 msgstr "CaID:"
 
@@ -26579,10 +26547,6 @@ msgstr "højde"
 msgid "help..."
 msgstr "Hjælp..."
 
-#, fuzzy
-msgid "hops:"
-msgstr "hops:"
-
 msgid "inactive"
 msgstr ""
 
@@ -26619,9 +26583,6 @@ msgstr "spring frem til næste titel"
 
 msgid "jump to chapter by number"
 msgstr "spring til kapitel med nummer"
-
-msgid "left"
-msgstr "Venstre"
 
 msgid "left column"
 msgstr ""
@@ -26758,9 +26719,6 @@ msgstr "Baglæns efter dato"
 msgid "rewind to the previous chapter"
 msgstr "spol tilbage til forrige kapitel"
 
-msgid "right"
-msgstr "Højre"
-
 msgid "right column"
 msgstr ""
 
@@ -26831,9 +26789,6 @@ msgstr "Start klip her"
 
 msgid "step size"
 msgstr "trinstørrelse"
-
-msgid "stereo"
-msgstr "Stereo"
 
 msgid "successful"
 msgstr "med succes"
@@ -26972,6 +26927,45 @@ msgstr "ja (behold feeds)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d minutes"
+#~ msgstr "%d minutter"
+
+#, python-format
+#~ msgid "%d sec"
+#~ msgstr "%d sek"
+
+#~ msgid "15 minutes"
+#~ msgstr "15 minutter"
+
+#~ msgid "5 minutes"
+#~ msgstr "5 minutter"
+
+#~ msgid "Go down the list"
+#~ msgstr "Gå ned af listen"
+
+#~ msgid "Go up the list"
+#~ msgstr "Gå op af listen"
+
+#~ msgid "Network ID"
+#~ msgstr "NetværksID"
+
+#~ msgid "VMC"
+#~ msgstr "VMC"
+
+#, fuzzy
+#~ msgid "hops:"
+#~ msgstr "hops:"
+
+#~ msgid "left"
+#~ msgstr "Venstre"
+
+#~ msgid "right"
+#~ msgstr "Højre"
+
+#~ msgid "stereo"
+#~ msgstr "Stereo"
 
 #~ msgid "Can't move to trashcan!"
 #~ msgstr "Kan ikke flytte til papirkurv"

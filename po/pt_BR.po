@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-19 21:27+0000\n"
+"POT-Creation-Date: 2026-11-27 22:08+0000\n"
 "PO-Revision-Date: 2026-08-16 18:09+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt_BR/>\n"
@@ -320,10 +320,6 @@ msgid "%d min recorded"
 msgstr ""
 
 #, python-format
-msgid "%d minutes"
-msgstr "%d minutos"
-
-#, python-format
 msgid "%d movies"
 msgstr ""
 
@@ -456,10 +452,6 @@ msgstr[1] ""
 #, python-format
 msgid "%d radio bouquets created"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "%d sec"
-msgstr "%d segundo"
 
 #, python-format
 msgid "%d service found."
@@ -795,9 +787,6 @@ msgstr ""
 msgid "1"
 msgstr ""
 
-msgid "1 minute"
-msgstr ""
-
 msgid "1. (Highest)"
 msgstr ""
 
@@ -823,10 +812,6 @@ msgstr "saída 12V"
 
 msgid "12bit"
 msgstr ""
-
-#, fuzzy
-msgid "15 minutes"
-msgstr "minutos"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
@@ -929,9 +914,6 @@ msgid "4x"
 msgstr ""
 
 msgid "5"
-msgstr ""
-
-msgid "5 minutes"
 msgstr ""
 
 msgid "50-200 Mbps"
@@ -9457,9 +9439,6 @@ msgstr ""
 msgid "Go back to the previous step"
 msgstr ""
 
-msgid "Go down the list"
-msgstr "Ir para baixo na lista"
-
 msgid "Go to deep standby"
 msgstr "Desligar"
 
@@ -9486,9 +9465,6 @@ msgstr ""
 
 msgid "Go to the previous page of documentation"
 msgstr ""
-
-msgid "Go up the list"
-msgstr "Ir para o topo da lista"
 
 msgid "Gold"
 msgstr ""
@@ -12557,7 +12533,7 @@ msgstr ""
 msgid "Move job queued."
 msgstr ""
 
-msgid "Move left"
+msgid "Move left / Move up a screen"
 msgstr ""
 
 msgid "Move left a item"
@@ -12566,7 +12542,7 @@ msgstr ""
 msgid "Move only highlighted file"
 msgstr ""
 
-msgid "Move right"
+msgid "Move right / Move down a screen"
 msgstr ""
 
 msgid "Move right a item"
@@ -13041,9 +13017,6 @@ msgstr ""
 msgid "National Music"
 msgstr ""
 
-msgid "National music"
-msgstr ""
-
 #, fuzzy
 msgid "Native"
 msgstr "Relativo"
@@ -13116,9 +13089,6 @@ msgstr ""
 
 msgid "Network Credentials"
 msgstr ""
-
-msgid "Network ID"
-msgstr "ID de rede"
 
 #, fuzzy
 msgid "Network Information"
@@ -16287,9 +16257,6 @@ msgid "Re-enter new PIN"
 msgstr ""
 
 msgid "Reachable"
-msgstr ""
-
-msgid "Read Only"
 msgstr ""
 
 msgid "Read Userdata from 'oscam.conf'"
@@ -21597,6 +21564,9 @@ msgstr ""
 msgid "Soft mount"
 msgstr ""
 
+msgid "SoftCSA"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr ""
 
@@ -24538,6 +24508,9 @@ msgstr ""
 msgid "Turn on the power LED"
 msgstr ""
 
+msgid "Turn the software descrambling of CSA-ALT services on or off."
+msgstr ""
+
 msgid "Turning step size"
 msgstr ""
 
@@ -25455,9 +25428,6 @@ msgstr ""
 
 msgid "VCR Scart Settings"
 msgstr "Entrada VCR"
-
-msgid "VMC"
-msgstr ""
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (trailer de intro)"
@@ -26991,9 +26961,6 @@ msgstr ""
 msgid "by date"
 msgstr "Por data"
 
-msgid "by hmmmdada"
-msgstr ""
-
 msgid "caid:"
 msgstr ""
 
@@ -27152,9 +27119,6 @@ msgstr "Altura"
 msgid "help..."
 msgstr "Ajuda"
 
-msgid "hops:"
-msgstr ""
-
 msgid "inactive"
 msgstr ""
 
@@ -27191,9 +27155,6 @@ msgstr "Próximo título"
 
 msgid "jump to chapter by number"
 msgstr ""
-
-msgid "left"
-msgstr "Esquerda"
 
 msgid "left column"
 msgstr ""
@@ -27337,9 +27298,6 @@ msgstr "Invertido por data"
 msgid "rewind to the previous chapter"
 msgstr "Voltar ao capítulo anterior"
 
-msgid "right"
-msgstr "Direita"
-
 msgid "right column"
 msgstr ""
 
@@ -27407,9 +27365,6 @@ msgstr "Iniciar corte aqui"
 
 msgid "step size"
 msgstr "Tamanho do passo"
-
-msgid "stereo"
-msgstr "Estéreo"
 
 msgid "successful"
 msgstr ""
@@ -27555,6 +27510,36 @@ msgstr "Sim (manter os feeds)"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%d minutes"
+#~ msgstr "%d minutos"
+
+#, fuzzy, python-format
+#~ msgid "%d sec"
+#~ msgstr "%d segundo"
+
+#, fuzzy
+#~ msgid "15 minutes"
+#~ msgstr "minutos"
+
+#~ msgid "Go down the list"
+#~ msgstr "Ir para baixo na lista"
+
+#~ msgid "Go up the list"
+#~ msgstr "Ir para o topo da lista"
+
+#~ msgid "Network ID"
+#~ msgstr "ID de rede"
+
+#~ msgid "left"
+#~ msgstr "Esquerda"
+
+#~ msgid "right"
+#~ msgstr "Direita"
+
+#~ msgid "stereo"
+#~ msgstr "Estéreo"
 
 #~ msgid "Can't move to trashcan!"
 #~ msgstr "Não foi possível mover para a lixeira"

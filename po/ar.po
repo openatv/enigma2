@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-19 21:27+0000\n"
+"POT-Creation-Date: 2026-11-27 22:08+0000\n"
 "PO-Revision-Date: 2026-11-18 10:51+0000\n"
 "Last-Translator: Che Guevara_DZ <user-174708@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -398,10 +398,6 @@ msgid "%d min recorded"
 msgstr ""
 
 #, python-format
-msgid "%d minutes"
-msgstr "%d دقائق"
-
-#, python-format
 msgid "%d movies"
 msgstr ""
 
@@ -603,10 +599,6 @@ msgstr[5] "%d بلق ان غير متوفرة:"
 #, python-format
 msgid "%d radio bouquets created"
 msgstr ""
-
-#, python-format
-msgid "%d sec"
-msgstr "%d ث"
 
 #, python-format
 msgid "%d service found."
@@ -953,9 +945,6 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1 minute"
-msgstr ""
-
 msgid "1. (Highest)"
 msgstr ""
 
@@ -981,10 +970,6 @@ msgstr "مخرج 12 فولت."
 
 msgid "12bit"
 msgstr "12بت"
-
-#, fuzzy
-msgid "15 minutes"
-msgstr "دقائق"
 
 #
 #, fuzzy
@@ -1098,9 +1083,6 @@ msgstr "4x"
 
 msgid "5"
 msgstr "5"
-
-msgid "5 minutes"
-msgstr ""
 
 msgid "50-200 Mbps"
 msgstr ""
@@ -9707,9 +9689,6 @@ msgstr ""
 msgid "Go back to the previous step"
 msgstr ""
 
-msgid "Go down the list"
-msgstr "الانتقال إلى أخر القائمة"
-
 msgid "Go to deep standby"
 msgstr "الذهاب الى وضع الاستعداد العميق"
 
@@ -9736,9 +9715,6 @@ msgstr ""
 
 msgid "Go to the previous page of documentation"
 msgstr ""
-
-msgid "Go up the list"
-msgstr "الانتقال إلى اعلي القائمة"
 
 msgid "Gold"
 msgstr "ذهبي"
@@ -12831,7 +12807,7 @@ msgstr ""
 msgid "Move job queued."
 msgstr ""
 
-msgid "Move left"
+msgid "Move left / Move up a screen"
 msgstr ""
 
 msgid "Move left a item"
@@ -12840,7 +12816,7 @@ msgstr ""
 msgid "Move only highlighted file"
 msgstr ""
 
-msgid "Move right"
+msgid "Move right / Move down a screen"
 msgstr ""
 
 msgid "Move right a item"
@@ -13309,9 +13285,6 @@ msgstr ""
 msgid "National Music"
 msgstr ""
 
-msgid "National music"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Native"
@@ -13383,9 +13356,6 @@ msgstr "متصفح الشبكة"
 
 msgid "Network Credentials"
 msgstr ""
-
-msgid "Network ID"
-msgstr "معرف شبكه الاتصال"
 
 msgid "Network Information"
 msgstr "معلومات الشبكة"
@@ -16602,9 +16572,6 @@ msgid "Re-enter new PIN"
 msgstr ""
 
 msgid "Reachable"
-msgstr ""
-
-msgid "Read Only"
 msgstr ""
 
 msgid "Read Userdata from 'oscam.conf'"
@@ -21955,6 +21922,9 @@ msgstr ""
 msgid "Soft mount"
 msgstr ""
 
+msgid "SoftCSA"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr ""
 
@@ -24931,6 +24901,9 @@ msgstr ""
 msgid "Turn on the power LED"
 msgstr ""
 
+msgid "Turn the software descrambling of CSA-ALT services on or off."
+msgstr ""
+
 msgid "Turning step size"
 msgstr "حجم خطوة البحث عن التردد"
 
@@ -25863,9 +25836,6 @@ msgstr "أوزبكستان"
 #
 msgid "VCR Scart Settings"
 msgstr "وصله فيديو كاسيت"
-
-msgid "VMC"
-msgstr ""
 
 #
 msgid "VMGM (intro trailer)"
@@ -27415,9 +27385,6 @@ msgstr ""
 msgid "by date"
 msgstr "حسب التاريخ"
 
-msgid "by hmmmdada"
-msgstr ""
-
 msgid "caid:"
 msgstr "معرّف الوصول المشروط (CAID):"
 
@@ -27578,9 +27545,6 @@ msgstr "طول"
 msgid "help..."
 msgstr "مساعدة..."
 
-msgid "hops:"
-msgstr "عدد الحلقات (Hops):"
-
 msgid "inactive"
 msgstr "غير فعال"
 
@@ -27619,9 +27583,6 @@ msgstr "الانتقال أماما للعنوان التالى"
 
 msgid "jump to chapter by number"
 msgstr "القفز إلى الفصل برقم"
-
-msgid "left"
-msgstr "يسار"
 
 msgid "left column"
 msgstr ""
@@ -27771,9 +27732,6 @@ msgstr "حسب التاريخ"
 msgid "rewind to the previous chapter"
 msgstr "عوده للفصل السابق"
 
-msgid "right"
-msgstr "يمين"
-
 msgid "right column"
 msgstr "العمود الايمن"
 
@@ -27843,9 +27801,6 @@ msgstr "أبدأ القطع هنا"
 
 msgid "step size"
 msgstr "حجم الخطوة"
-
-msgid "stereo"
-msgstr "ستيريو"
 
 msgid "successful"
 msgstr "ناجح"
@@ -27997,6 +27952,39 @@ msgstr "نعم (احتفظ بالفيدز)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d minutes"
+#~ msgstr "%d دقائق"
+
+#, python-format
+#~ msgid "%d sec"
+#~ msgstr "%d ث"
+
+#, fuzzy
+#~ msgid "15 minutes"
+#~ msgstr "دقائق"
+
+#~ msgid "Go down the list"
+#~ msgstr "الانتقال إلى أخر القائمة"
+
+#~ msgid "Go up the list"
+#~ msgstr "الانتقال إلى اعلي القائمة"
+
+#~ msgid "Network ID"
+#~ msgstr "معرف شبكه الاتصال"
+
+#~ msgid "hops:"
+#~ msgstr "عدد الحلقات (Hops):"
+
+#~ msgid "left"
+#~ msgstr "يسار"
+
+#~ msgid "right"
+#~ msgstr "يمين"
+
+#~ msgid "stereo"
+#~ msgstr "ستيريو"
 
 #~ msgid "Can't move to trashcan!"
 #~ msgstr "غير قادر على النقل إلى سلة المهملات!"

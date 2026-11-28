@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-19 21:27+0000\n"
+"POT-Creation-Date: 2026-11-27 22:08+0000\n"
 "PO-Revision-Date: 2026-08-17 22:31+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/id/>\n"
@@ -325,10 +325,6 @@ msgid "%d min recorded"
 msgstr ""
 
 #, python-format
-msgid "%d minutes"
-msgstr "%d menit"
-
-#, python-format
 msgid "%d movies"
 msgstr ""
 
@@ -461,10 +457,6 @@ msgstr[1] ""
 #, python-format
 msgid "%d radio bouquets created"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "%d sec"
-msgstr "%d detik"
 
 #, python-format
 msgid "%d service found."
@@ -800,9 +792,6 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1 minute"
-msgstr ""
-
 msgid "1. (Highest)"
 msgstr ""
 
@@ -826,10 +815,6 @@ msgstr "keluaran 12V."
 
 msgid "12bit"
 msgstr ""
-
-#, fuzzy
-msgid "15 minutes"
-msgstr "5 menit"
 
 msgid "16:10 Letterbox"
 msgstr "Kotaksurat 16:10"
@@ -930,9 +915,6 @@ msgstr ""
 
 msgid "5"
 msgstr "5"
-
-msgid "5 minutes"
-msgstr "5 menit"
 
 msgid "50-200 Mbps"
 msgstr ""
@@ -9355,9 +9337,6 @@ msgstr ""
 msgid "Go back to the previous step"
 msgstr ""
 
-msgid "Go down the list"
-msgstr "Go down the list"
-
 msgid "Go to deep standby"
 msgstr "Go to deep standby"
 
@@ -9384,9 +9363,6 @@ msgstr ""
 
 msgid "Go to the previous page of documentation"
 msgstr ""
-
-msgid "Go up the list"
-msgstr "Go up the list"
 
 msgid "Gold"
 msgstr "Gold"
@@ -12430,7 +12406,7 @@ msgstr ""
 msgid "Move job queued."
 msgstr ""
 
-msgid "Move left"
+msgid "Move left / Move up a screen"
 msgstr ""
 
 msgid "Move left a item"
@@ -12439,7 +12415,7 @@ msgstr ""
 msgid "Move only highlighted file"
 msgstr ""
 
-msgid "Move right"
+msgid "Move right / Move down a screen"
 msgstr ""
 
 msgid "Move right a item"
@@ -12907,9 +12883,6 @@ msgstr ""
 msgid "National Music"
 msgstr ""
 
-msgid "National music"
-msgstr ""
-
 msgid "Native"
 msgstr "Native"
 
@@ -12983,9 +12956,6 @@ msgstr "Perambah Jaringan"
 
 msgid "Network Credentials"
 msgstr ""
-
-msgid "Network ID"
-msgstr "ID Jaringan"
 
 msgid "Network Information"
 msgstr "Informasi Jaringan"
@@ -16130,9 +16100,6 @@ msgid "Re-enter new PIN"
 msgstr "Re-enter new PIN"
 
 msgid "Reachable"
-msgstr ""
-
-msgid "Read Only"
 msgstr ""
 
 msgid "Read Userdata from 'oscam.conf'"
@@ -21370,6 +21337,9 @@ msgstr ""
 msgid "Soft mount"
 msgstr ""
 
+msgid "SoftCSA"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr ""
 
@@ -24291,6 +24261,9 @@ msgstr ""
 msgid "Turn on the power LED"
 msgstr ""
 
+msgid "Turn the software descrambling of CSA-ALT services on or off."
+msgstr ""
+
 msgid "Turning step size"
 msgstr "Turning step size"
 
@@ -25204,10 +25177,6 @@ msgstr "Uzbekistan"
 
 msgid "VCR Scart Settings"
 msgstr "VCR scart"
-
-#, fuzzy
-msgid "VMC"
-msgstr "MAC:"
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
@@ -26745,9 +26714,6 @@ msgstr "burn audio track (%s)"
 msgid "by date"
 msgstr "by date"
 
-msgid "by hmmmdada"
-msgstr ""
-
 msgid "caid:"
 msgstr "caid:"
 
@@ -26899,9 +26865,6 @@ msgstr "height"
 msgid "help..."
 msgstr "help..."
 
-msgid "hops:"
-msgstr "hops:"
-
 msgid "inactive"
 msgstr ""
 
@@ -26938,9 +26901,6 @@ msgstr "jump forward to the next title"
 
 msgid "jump to chapter by number"
 msgstr "jump to chapter by number"
-
-msgid "left"
-msgstr "left"
 
 msgid "left column"
 msgstr ""
@@ -27081,9 +27041,6 @@ msgstr "reverse by date"
 msgid "rewind to the previous chapter"
 msgstr "rewind to the previous chapter"
 
-msgid "right"
-msgstr "right"
-
 msgid "right column"
 msgstr ""
 
@@ -27154,9 +27111,6 @@ msgstr "start cut here"
 
 msgid "step size"
 msgstr "stepsize"
-
-msgid "stereo"
-msgstr "stereo"
 
 msgid "successful"
 msgstr ""
@@ -27299,6 +27253,46 @@ msgstr "yes (keep feeds)"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%d minutes"
+#~ msgstr "%d menit"
+
+#, fuzzy, python-format
+#~ msgid "%d sec"
+#~ msgstr "%d detik"
+
+#, fuzzy
+#~ msgid "15 minutes"
+#~ msgstr "5 menit"
+
+#~ msgid "5 minutes"
+#~ msgstr "5 menit"
+
+#~ msgid "Go down the list"
+#~ msgstr "Go down the list"
+
+#~ msgid "Go up the list"
+#~ msgstr "Go up the list"
+
+#~ msgid "Network ID"
+#~ msgstr "ID Jaringan"
+
+#, fuzzy
+#~ msgid "VMC"
+#~ msgstr "MAC:"
+
+#~ msgid "hops:"
+#~ msgstr "hops:"
+
+#~ msgid "left"
+#~ msgstr "left"
+
+#~ msgid "right"
+#~ msgstr "right"
+
+#~ msgid "stereo"
+#~ msgstr "stereo"
 
 #~ msgid "Can't move to trashcan!"
 #~ msgstr "Can't move to trashcan!"

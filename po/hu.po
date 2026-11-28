@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-19 21:27+0000\n"
+"POT-Creation-Date: 2026-11-27 22:08+0000\n"
 "PO-Revision-Date: 2026-08-17 22:31+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -321,10 +321,6 @@ msgid "%d min recorded"
 msgstr ""
 
 #, python-format
-msgid "%d minutes"
-msgstr "%d perc"
-
-#, python-format
 msgid "%d movies"
 msgstr ""
 
@@ -457,10 +453,6 @@ msgstr[1] "%d bővítmény nem érhető el:"
 #, python-format
 msgid "%d radio bouquets created"
 msgstr ""
-
-#, python-format
-msgid "%d sec"
-msgstr "%d másodperc"
 
 #, python-format
 msgid "%d service found."
@@ -796,9 +788,6 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1 minute"
-msgstr ""
-
 msgid "1. (Highest)"
 msgstr ""
 
@@ -822,9 +811,6 @@ msgstr "12V kimenet."
 
 msgid "12bit"
 msgstr "12 bit"
-
-msgid "15 minutes"
-msgstr "15 perc"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
@@ -925,9 +911,6 @@ msgstr ""
 
 msgid "5"
 msgstr "5"
-
-msgid "5 minutes"
-msgstr "5 perc"
 
 msgid "50-200 Mbps"
 msgstr ""
@@ -9250,9 +9233,6 @@ msgstr ""
 msgid "Go back to the previous step"
 msgstr ""
 
-msgid "Go down the list"
-msgstr "A listán lefelé"
-
 msgid "Go to deep standby"
 msgstr "kikapcsolás"
 
@@ -9279,9 +9259,6 @@ msgstr ""
 
 msgid "Go to the previous page of documentation"
 msgstr ""
-
-msgid "Go up the list"
-msgstr "A listán felfelé"
 
 msgid "Gold"
 msgstr "Arany"
@@ -12293,7 +12270,7 @@ msgstr ""
 msgid "Move job queued."
 msgstr ""
 
-msgid "Move left"
+msgid "Move left / Move up a screen"
 msgstr ""
 
 msgid "Move left a item"
@@ -12302,7 +12279,7 @@ msgstr ""
 msgid "Move only highlighted file"
 msgstr ""
 
-msgid "Move right"
+msgid "Move right / Move down a screen"
 msgstr ""
 
 msgid "Move right a item"
@@ -12773,9 +12750,6 @@ msgstr ""
 msgid "National Music"
 msgstr ""
 
-msgid "National music"
-msgstr ""
-
 msgid "Native"
 msgstr "Natív"
 
@@ -12847,9 +12821,6 @@ msgstr "Hálózat kezelő"
 
 msgid "Network Credentials"
 msgstr ""
-
-msgid "Network ID"
-msgstr "Hálózat ID"
 
 msgid "Network Information"
 msgstr "Hálózat Információ"
@@ -15943,9 +15914,6 @@ msgid "Re-enter new PIN"
 msgstr "Írja be újra az új PIN-kód"
 
 msgid "Reachable"
-msgstr ""
-
-msgid "Read Only"
 msgstr ""
 
 msgid "Read Userdata from 'oscam.conf'"
@@ -21127,6 +21095,9 @@ msgstr ""
 msgid "Soft mount"
 msgstr ""
 
+msgid "SoftCSA"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr ""
 
@@ -24020,6 +23991,9 @@ msgstr ""
 msgid "Turn on the power LED"
 msgstr ""
 
+msgid "Turn the software descrambling of CSA-ALT services on or off."
+msgstr ""
+
 msgid "Turning step size"
 msgstr "A lépés méretének megfordítása"
 
@@ -24929,10 +24903,6 @@ msgstr "Üzbegisztán"
 
 msgid "VCR Scart Settings"
 msgstr "VCR scart"
-
-#, fuzzy
-msgid "VMC"
-msgstr "MAC"
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (Intro trailer)"
@@ -26447,9 +26417,6 @@ msgstr "hangsáv írása (%s)"
 msgid "by date"
 msgstr "dátum szerint"
 
-msgid "by hmmmdada"
-msgstr ""
-
 msgid "caid:"
 msgstr "caid:"
 
@@ -26601,9 +26568,6 @@ msgstr "magasság"
 msgid "help..."
 msgstr "súgó..."
 
-msgid "hops:"
-msgstr "hops:"
-
 msgid "inactive"
 msgstr ""
 
@@ -26640,9 +26604,6 @@ msgstr "előreugrás a következő címhez"
 
 msgid "jump to chapter by number"
 msgstr "ugrás fejezethez szám alapján"
-
-msgid "left"
-msgstr "bal"
 
 msgid "left column"
 msgstr ""
@@ -26779,9 +26740,6 @@ msgstr "dátum szerint csökkenő"
 msgid "rewind to the previous chapter"
 msgstr "visszatekerés az előző chapterhez"
 
-msgid "right"
-msgstr "jobb"
-
 msgid "right column"
 msgstr ""
 
@@ -26852,9 +26810,6 @@ msgstr "vágás belépő pontja"
 
 msgid "step size"
 msgstr "lépték mérték"
-
-msgid "stereo"
-msgstr "sztereó"
 
 msgid "successful"
 msgstr "sikeres"
@@ -26994,6 +26949,45 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d minutes"
+#~ msgstr "%d perc"
+
+#, python-format
+#~ msgid "%d sec"
+#~ msgstr "%d másodperc"
+
+#~ msgid "15 minutes"
+#~ msgstr "15 perc"
+
+#~ msgid "5 minutes"
+#~ msgstr "5 perc"
+
+#~ msgid "Go down the list"
+#~ msgstr "A listán lefelé"
+
+#~ msgid "Go up the list"
+#~ msgstr "A listán felfelé"
+
+#~ msgid "Network ID"
+#~ msgstr "Hálózat ID"
+
+#, fuzzy
+#~ msgid "VMC"
+#~ msgstr "MAC"
+
+#~ msgid "hops:"
+#~ msgstr "hops:"
+
+#~ msgid "left"
+#~ msgstr "bal"
+
+#~ msgid "right"
+#~ msgstr "jobb"
+
+#~ msgid "stereo"
+#~ msgstr "sztereó"
 
 #~ msgid "Can't move to trashcan!"
 #~ msgstr "Nem helyezthető a kukába"

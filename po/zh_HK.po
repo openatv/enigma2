@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-19 21:27+0000\n"
+"POT-Creation-Date: 2026-11-27 22:08+0000\n"
 "PO-Revision-Date: 2026-08-17 05:18+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional Han script, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -297,10 +297,6 @@ msgid "%d min recorded"
 msgstr ""
 
 #, python-format
-msgid "%d minutes"
-msgstr ""
-
-#, python-format
 msgid "%d movies"
 msgstr ""
 
@@ -416,10 +412,6 @@ msgstr[0] ""
 #, python-format
 msgid "%d radio bouquets created"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "%d sec"
-msgstr "%d detik"
 
 #, python-format
 msgid "%d service found."
@@ -753,9 +745,6 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1 minute"
-msgstr ""
-
 msgid "1. (Highest)"
 msgstr ""
 
@@ -781,10 +770,6 @@ msgstr "12V-輸出"
 
 msgid "12bit"
 msgstr ""
-
-#, fuzzy
-msgid "15 minutes"
-msgstr "5 分鐘"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
@@ -893,9 +878,6 @@ msgstr ""
 
 msgid "5"
 msgstr "5"
-
-msgid "5 minutes"
-msgstr "5 分鐘"
 
 msgid "50-200 Mbps"
 msgstr ""
@@ -9474,9 +9456,6 @@ msgstr ""
 msgid "Go back to the previous step"
 msgstr ""
 
-msgid "Go down the list"
-msgstr ""
-
 msgid "Go to deep standby"
 msgstr "深度休眠"
 
@@ -9502,9 +9481,6 @@ msgid "Go to the next page of documentation"
 msgstr ""
 
 msgid "Go to the previous page of documentation"
-msgstr ""
-
-msgid "Go up the list"
 msgstr ""
 
 msgid "Gold"
@@ -12629,7 +12605,7 @@ msgstr ""
 msgid "Move job queued."
 msgstr ""
 
-msgid "Move left"
+msgid "Move left / Move up a screen"
 msgstr ""
 
 msgid "Move left a item"
@@ -12638,7 +12614,7 @@ msgstr ""
 msgid "Move only highlighted file"
 msgstr ""
 
-msgid "Move right"
+msgid "Move right / Move down a screen"
 msgstr ""
 
 msgid "Move right a item"
@@ -13119,9 +13095,6 @@ msgstr ""
 msgid "National Music"
 msgstr ""
 
-msgid "National music"
-msgstr ""
-
 #, fuzzy
 msgid "Native"
 msgstr "啟動"
@@ -13194,9 +13167,6 @@ msgid "Network Browser"
 msgstr "網路流覽器"
 
 msgid "Network Credentials"
-msgstr ""
-
-msgid "Network ID"
 msgstr ""
 
 #, fuzzy
@@ -16418,9 +16388,6 @@ msgid "Re-enter new PIN"
 msgstr "重新輸入新的密碼"
 
 msgid "Reachable"
-msgstr ""
-
-msgid "Read Only"
 msgstr ""
 
 msgid "Read Userdata from 'oscam.conf'"
@@ -21819,6 +21786,9 @@ msgstr ""
 msgid "Soft mount"
 msgstr ""
 
+msgid "SoftCSA"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr ""
 
@@ -24784,6 +24754,9 @@ msgstr ""
 msgid "Turn on the power LED"
 msgstr ""
 
+msgid "Turn the software descrambling of CSA-ALT services on or off."
+msgstr ""
+
 #, fuzzy
 msgid "Turning step size"
 msgstr "調整"
@@ -25714,9 +25687,6 @@ msgstr ""
 
 msgid "VCR Scart Settings"
 msgstr "錄影機"
-
-msgid "VMC"
-msgstr ""
 
 msgid "VMGM (intro trailer)"
 msgstr ""
@@ -27261,9 +27231,6 @@ msgstr "燒錄單軌 (%s)"
 msgid "by date"
 msgstr ""
 
-msgid "by hmmmdada"
-msgstr ""
-
 msgid "caid:"
 msgstr ""
 
@@ -27419,9 +27386,6 @@ msgstr ""
 msgid "help..."
 msgstr "説明..."
 
-msgid "hops:"
-msgstr ""
-
 msgid "inactive"
 msgstr ""
 
@@ -27459,9 +27423,6 @@ msgstr "跳轉到下一個標題"
 
 msgid "jump to chapter by number"
 msgstr ""
-
-msgid "left"
-msgstr "左"
 
 msgid "left column"
 msgstr ""
@@ -27604,9 +27565,6 @@ msgstr ""
 msgid "rewind to the previous chapter"
 msgstr "退回上一個章節"
 
-msgid "right"
-msgstr "右"
-
 msgid "right column"
 msgstr ""
 
@@ -27677,9 +27635,6 @@ msgstr "從這裏開始剪輯"
 
 msgid "step size"
 msgstr ""
-
-msgid "stereo"
-msgstr "身歷聲"
 
 msgid "successful"
 msgstr "安裝成功"
@@ -27827,6 +27782,26 @@ msgstr "是 (保留)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy, python-format
+#~ msgid "%d sec"
+#~ msgstr "%d detik"
+
+#, fuzzy
+#~ msgid "15 minutes"
+#~ msgstr "5 分鐘"
+
+#~ msgid "5 minutes"
+#~ msgstr "5 分鐘"
+
+#~ msgid "left"
+#~ msgstr "左"
+
+#~ msgid "right"
+#~ msgstr "右"
+
+#~ msgid "stereo"
+#~ msgstr "身歷聲"
 
 #, fuzzy
 #~ msgid "%-H:%M:%S"

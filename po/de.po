@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-19 21:27+0000\n"
-"PO-Revision-Date: 2026-11-22 09:39+0000\n"
+"POT-Creation-Date: 2026-11-27 22:08+0000\n"
+"PO-Revision-Date: 2026-11-28 01:00+0000\n"
 "Last-Translator: Makumbo <makumbo@users.noreply.hosted.weblate.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -338,10 +338,6 @@ msgid "%d min recorded"
 msgstr "%d Min. aufgenommen"
 
 #, python-format
-msgid "%d minutes"
-msgstr "%d Minuten"
-
-#, python-format
 msgid "%d movies"
 msgstr "%d Filme"
 
@@ -475,10 +471,6 @@ msgstr[1] "%d Plugins nicht verfügbar:"
 #, python-format
 msgid "%d radio bouquets created"
 msgstr "%d Radiobouquets erstellt"
-
-#, python-format
-msgid "%d sec"
-msgstr "%d Sek."
 
 #, python-format
 msgid "%d service found."
@@ -820,9 +812,6 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1 minute"
-msgstr "1 Minute"
-
 msgid "1. (Highest)"
 msgstr "1. (Höchste)"
 
@@ -847,9 +836,6 @@ msgstr "12V-Ausgang."
 
 msgid "12bit"
 msgstr "12 Bit"
-
-msgid "15 minutes"
-msgstr "15 Minuten"
 
 #
 msgid "16:10 Letterbox"
@@ -960,9 +946,6 @@ msgstr "4x"
 #
 msgid "5"
 msgstr "5"
-
-msgid "5 minutes"
-msgstr "5 Minuten"
 
 msgid "50-200 Mbps"
 msgstr "50–200 Mbps"
@@ -9682,9 +9665,6 @@ msgstr "Angegebene Geräte-ID"
 msgid "Go back to the previous step"
 msgstr "Einen Schritt zurück"
 
-msgid "Go down the list"
-msgstr "Die Liste nach unten gehen"
-
 #
 msgid "Go to deep standby"
 msgstr "Herunterfahren"
@@ -9713,9 +9693,6 @@ msgstr "Zur nächsten Seite der Dokumentation gehen"
 
 msgid "Go to the previous page of documentation"
 msgstr "Zur vorherigen Seite der Dokumentation gehen"
-
-msgid "Go up the list"
-msgstr "Die Liste nach oben gehen"
 
 msgid "Gold"
 msgstr "Gold"
@@ -12817,8 +12794,8 @@ msgstr "Verschieben fehlgeschlagen!"
 msgid "Move job queued."
 msgstr "Verschieben in Warteschlange."
 
-msgid "Move left"
-msgstr "Nach links"
+msgid "Move left / Move up a screen"
+msgstr "Nach links / Eine Seite nach oben gehen"
 
 msgid "Move left a item"
 msgstr "Einen Eintrag nach links verschieben"
@@ -12826,8 +12803,8 @@ msgstr "Einen Eintrag nach links verschieben"
 msgid "Move only highlighted file"
 msgstr "Nur markierte Datei verschieben"
 
-msgid "Move right"
-msgstr "Nach rechts"
+msgid "Move right / Move down a screen"
+msgstr "Nach rechts / Eine Seite nach unten gehen"
 
 msgid "Move right a item"
 msgstr "Einen Eintrag nach rechts verschieben"
@@ -13309,9 +13286,6 @@ msgstr "Erzählung"
 msgid "National Music"
 msgstr "Musik des Landes"
 
-msgid "National music"
-msgstr "Nationalmusik"
-
 msgid "Native"
 msgstr "Nativ"
 
@@ -13386,9 +13360,6 @@ msgstr "Netzwerkmanager"
 
 msgid "Network Credentials"
 msgstr "Netzwerkanmeldedaten"
-
-msgid "Network ID"
-msgstr "Netzwerk-ID (0 – alle Netzwerke)"
 
 # Informationen
 msgid "Network Information"
@@ -16654,9 +16625,6 @@ msgstr "Neue PIN wiederholen"
 
 msgid "Reachable"
 msgstr "Erreichbar"
-
-msgid "Read Only"
-msgstr "Nur Lesen"
 
 msgid "Read Userdata from 'oscam.conf'"
 msgstr "Benutzerdaten von 'oscam.conf' auslesen"
@@ -22085,6 +22053,9 @@ msgstr "Softrock"
 msgid "Soft mount"
 msgstr "Soft Mount"
 
+msgid "SoftCSA"
+msgstr "SoftCSA"
+
 msgid "SoftCSA Settings"
 msgstr "SoftCSA-Einstellungen"
 
@@ -25116,6 +25087,9 @@ msgstr "Kontroll-LED einschalten"
 msgid "Turn on the power LED"
 msgstr "Power-LED einschalten"
 
+msgid "Turn the software descrambling of CSA-ALT services on or off."
+msgstr "Die softwarebasierte Entschlüsselung von CSA-ALT-Diensten ein- oder ausschalten."
+
 # satconfig.py
 msgid "Turning step size"
 msgstr "Dreh-Schrittweite"
@@ -26072,9 +26046,6 @@ msgstr "Usbekistan"
 #
 msgid "VCR Scart Settings"
 msgstr "VCR-Scartbuchse"
-
-msgid "VMC"
-msgstr "VMC"
 
 #
 msgid "VMGM (intro trailer)"
@@ -27691,9 +27662,6 @@ msgstr "Tonspur (%s) brennen"
 msgid "by date"
 msgstr "Datum"
 
-msgid "by hmmmdada"
-msgstr "von hmmmdada"
-
 msgid "caid:"
 msgstr "CAID:"
 
@@ -27864,9 +27832,6 @@ msgstr "Höhe"
 msgid "help..."
 msgstr "Hilfe …"
 
-msgid "hops:"
-msgstr "Hops:"
-
 msgid "inactive"
 msgstr "inaktiv"
 
@@ -27908,10 +27873,6 @@ msgstr "Zum nächsten Titel springen"
 
 msgid "jump to chapter by number"
 msgstr "Nach Nummer zum Kapitel springen"
-
-#
-msgid "left"
-msgstr "Links"
 
 msgid "left column"
 msgstr "linke Spalte"
@@ -28068,10 +28029,6 @@ msgstr "Umgekehrt nach Datum"
 msgid "rewind to the previous chapter"
 msgstr "Zum vorherigen Kapitel zurück"
 
-#
-msgid "right"
-msgstr "Rechts"
-
 msgid "right column"
 msgstr "rechte Spalte"
 
@@ -28147,10 +28104,6 @@ msgstr "Schnitt hier starten"
 
 msgid "step size"
 msgstr "Schrittweite"
-
-#
-msgid "stereo"
-msgstr "Stereo"
 
 msgid "successful"
 msgstr "Erfolgreich"
@@ -28302,6 +28255,65 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d minutes"
+#~ msgstr "%d Minuten"
+
+#, python-format
+#~ msgid "%d sec"
+#~ msgstr "%d Sek."
+
+#~ msgid "1 minute"
+#~ msgstr "1 Minute"
+
+#~ msgid "15 minutes"
+#~ msgstr "15 Minuten"
+
+#~ msgid "5 minutes"
+#~ msgstr "5 Minuten"
+
+#~ msgid "Go down the list"
+#~ msgstr "Die Liste nach unten gehen"
+
+#~ msgid "Go up the list"
+#~ msgstr "Die Liste nach oben gehen"
+
+#~ msgid "Move left"
+#~ msgstr "Nach links"
+
+#~ msgid "Move right"
+#~ msgstr "Nach rechts"
+
+#~ msgid "National music"
+#~ msgstr "Nationalmusik"
+
+#~ msgid "Network ID"
+#~ msgstr "Netzwerk-ID (0 – alle Netzwerke)"
+
+#~ msgid "Read Only"
+#~ msgstr "Nur Lesen"
+
+#~ msgid "VMC"
+#~ msgstr "VMC"
+
+#~ msgid "by hmmmdada"
+#~ msgstr "von hmmmdada"
+
+#~ msgid "hops:"
+#~ msgstr "Hops:"
+
+#
+#~ msgid "left"
+#~ msgstr "Links"
+
+#
+#~ msgid "right"
+#~ msgstr "Rechts"
+
+#
+#~ msgid "stereo"
+#~ msgstr "Stereo"
 
 #~ msgid "Can't move to trashcan!"
 #~ msgstr "Nicht in den Papierkorb verschiebbar!"

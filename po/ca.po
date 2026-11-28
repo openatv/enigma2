@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-19 21:27+0000\n"
+"POT-Creation-Date: 2026-11-27 22:08+0000\n"
 "PO-Revision-Date: 2026-08-21 14:51+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -329,10 +329,6 @@ msgid "%d min recorded"
 msgstr ""
 
 #, python-format
-msgid "%d minutes"
-msgstr "%d minuts"
-
-#, python-format
 msgid "%d movies"
 msgstr ""
 
@@ -466,10 +462,6 @@ msgstr[1] ""
 #, python-format
 msgid "%d radio bouquets created"
 msgstr ""
-
-#, python-format
-msgid "%d sec"
-msgstr "%d seg"
 
 #, python-format
 msgid "%d service found."
@@ -812,9 +804,6 @@ msgstr "0"
 msgid "1"
 msgstr "1"
 
-msgid "1 minute"
-msgstr ""
-
 msgid "1. (Highest)"
 msgstr ""
 
@@ -840,11 +829,6 @@ msgstr "Sortida 12V."
 
 msgid "12bit"
 msgstr "12 bits"
-
-#
-#, fuzzy
-msgid "15 minutes"
-msgstr "minuts"
 
 #
 msgid "16:10 Letterbox"
@@ -952,9 +936,6 @@ msgstr "4x"
 
 msgid "5"
 msgstr "5"
-
-msgid "5 minutes"
-msgstr ""
 
 msgid "50-200 Mbps"
 msgstr ""
@@ -9637,9 +9618,6 @@ msgstr "ID dispositiu"
 msgid "Go back to the previous step"
 msgstr "torna al títol anterior"
 
-msgid "Go down the list"
-msgstr "Baixeu a la llista"
-
 #
 msgid "Go to deep standby"
 msgstr "Anar a repòs profund"
@@ -9668,9 +9646,6 @@ msgstr ""
 
 msgid "Go to the previous page of documentation"
 msgstr ""
-
-msgid "Go up the list"
-msgstr "Vés a la llista"
 
 msgid "Gold"
 msgstr "Or"
@@ -12798,7 +12773,7 @@ msgstr "Ha fallat la tasca de moure!"
 msgid "Move job queued."
 msgstr "Tasca de moure en cola."
 
-msgid "Move left"
+msgid "Move left / Move up a screen"
 msgstr ""
 
 msgid "Move left a item"
@@ -12807,7 +12782,7 @@ msgstr ""
 msgid "Move only highlighted file"
 msgstr "Moure només l'arxiu seleccionat"
 
-msgid "Move right"
+msgid "Move right / Move down a screen"
 msgstr ""
 
 msgid "Move right a item"
@@ -13290,9 +13265,6 @@ msgstr ""
 msgid "National Music"
 msgstr ""
 
-msgid "National music"
-msgstr ""
-
 msgid "Native"
 msgstr "Natiu"
 
@@ -13364,9 +13336,6 @@ msgstr "Navegador de xarxa"
 
 msgid "Network Credentials"
 msgstr ""
-
-msgid "Network ID"
-msgstr "Xarxa ID"
 
 msgid "Network Information"
 msgstr "Informació de xarxa"
@@ -16621,9 +16590,6 @@ msgid "Re-enter new PIN"
 msgstr "Re-introduir PIN nou"
 
 msgid "Reachable"
-msgstr ""
-
-msgid "Read Only"
 msgstr ""
 
 msgid "Read Userdata from 'oscam.conf'"
@@ -21998,6 +21964,9 @@ msgstr ""
 msgid "Soft mount"
 msgstr ""
 
+msgid "SoftCSA"
+msgstr ""
+
 msgid "SoftCSA Settings"
 msgstr ""
 
@@ -25003,6 +24972,9 @@ msgstr ""
 msgid "Turn on the power LED"
 msgstr ""
 
+msgid "Turn the software descrambling of CSA-ALT services on or off."
+msgstr ""
+
 msgid "Turning step size"
 msgstr "Volant la mida del pas"
 
@@ -25940,9 +25912,6 @@ msgstr "Uzbekistan"
 #
 msgid "VCR Scart Settings"
 msgstr "Euroconnector VCR"
-
-msgid "VMC"
-msgstr ""
 
 #
 msgid "VMGM (intro trailer)"
@@ -27507,9 +27476,6 @@ msgstr "Gravar pista d'àudio (%s)"
 msgid "by date"
 msgstr "per data"
 
-msgid "by hmmmdada"
-msgstr ""
-
 msgid "caid:"
 msgstr "caid:"
 
@@ -27678,9 +27644,6 @@ msgstr "alçada"
 msgid "help..."
 msgstr "ajuda..."
 
-msgid "hops:"
-msgstr "salts:"
-
 msgid "inactive"
 msgstr "Inactiu"
 
@@ -27722,10 +27685,6 @@ msgstr "salta endavant al següent títol"
 
 msgid "jump to chapter by number"
 msgstr "salta al capítol per número"
-
-#
-msgid "left"
-msgstr "esquerra"
 
 msgid "left column"
 msgstr ""
@@ -27887,10 +27846,6 @@ msgstr "revertir per data"
 msgid "rewind to the previous chapter"
 msgstr "rebobina al capítol anterior"
 
-#
-msgid "right"
-msgstr "dreta"
-
 msgid "right column"
 msgstr ""
 
@@ -27968,10 +27923,6 @@ msgstr "començar tall aquí"
 
 msgid "step size"
 msgstr "mida reduïda"
-
-#
-msgid "stereo"
-msgstr "stèreo"
 
 msgid "successful"
 msgstr "reeixit"
@@ -28125,6 +28076,43 @@ msgstr "si (mantenir feeds)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d minutes"
+#~ msgstr "%d minuts"
+
+#, python-format
+#~ msgid "%d sec"
+#~ msgstr "%d seg"
+
+#
+#, fuzzy
+#~ msgid "15 minutes"
+#~ msgstr "minuts"
+
+#~ msgid "Go down the list"
+#~ msgstr "Baixeu a la llista"
+
+#~ msgid "Go up the list"
+#~ msgstr "Vés a la llista"
+
+#~ msgid "Network ID"
+#~ msgstr "Xarxa ID"
+
+#~ msgid "hops:"
+#~ msgstr "salts:"
+
+#
+#~ msgid "left"
+#~ msgstr "esquerra"
+
+#
+#~ msgid "right"
+#~ msgstr "dreta"
+
+#
+#~ msgid "stereo"
+#~ msgstr "stèreo"
 
 #~ msgid "Can't move to trashcan!"
 #~ msgstr "No es pot moure a la paperera"
