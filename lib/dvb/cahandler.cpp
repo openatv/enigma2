@@ -452,7 +452,7 @@ void eDVBCAHandler::newConnection(int socket)
 	ePMTClient *client = new ePMTClient(this, client_fd);
 	clients.push_back(client);
 
-	if (protocol3_capable)
+	if (protocol3_capable && eDVBCSAEngine::isAvailable())
 	{
 		/*
 		 * Protocol-3-capable client: initiate handshake.
@@ -460,6 +460,11 @@ void eDVBCAHandler::newConnection(int socket)
 		 * after the client responds with SERVER_INFO.
 		 */
 		client->sendClientInfo();
+	}
+	else if (protocol3_capable)
+	{
+		eDebug("[eDVBCAHandler] SoftCSA not available, skipping Protocol 3");
+		distributeCAPMT();
 	}
 	/*
 	 * Legacy clients: no data sent on .listen.camd.socket.
